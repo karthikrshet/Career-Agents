@@ -201,6 +201,43 @@ Talk to the agent like you would a real specialist. Give it context — your res
 
 ---
 
+## Installation
+
+This project supports multiple installer targets and tool integrations. Use `scripts/install.sh` on macOS/Linux and `scripts/install.ps1` on Windows for validation and local setup. For tool-specific packaging, use `scripts/convert.py`.
+
+### Claude Code
+
+Export an agent to Claude Code manifest using the converter:
+
+```bash
+python3 scripts/convert.py convert --agent career/placement-coach.md --target claude-code --out ./build
+```
+
+### Cursor
+
+Export a Cursor rules package (JSON) for inspection:
+
+```bash
+python3 scripts/convert.py convert --agent startup/market-research-analyst.md --target cursor --out ./build
+```
+
+### Codex
+
+Prepare a Codex-compatible manifest:
+
+```bash
+python3 scripts/convert.py convert --agent career/ats-resume-reviewer.md --target codex --out ./build
+```
+
+### Gemini CLI
+
+Generate a CLI-friendly manifest for Gemini integrations:
+
+```bash
+python3 scripts/convert.py convert --agent career/technical-interview-coach.md --target gemini-cli --out ./build
+```
+
+
 ## 🤝 Contributing
 
 This project grows through community-built agents. If you can write a specialist to the same bar as `placement-coach.md`, we want it in this repository.

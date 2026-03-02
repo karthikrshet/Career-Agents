@@ -1,0 +1,9 @@
+# Code owners for CodeMyFYP-Agents
+# Update these entries with actual GitHub usernames or teams for your org.
+
+/docs/ @codemyfyp-maintainers
+/career/ @codemyfyp-maintainers
+/engineering/ @codemyfyp-maintainers
+/startup/ @codemyfyp-maintainers
+/projects/ @codemyfyp-maintainers
+*.md @codemyfyp-maintainers
