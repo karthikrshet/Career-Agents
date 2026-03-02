@@ -19,14 +19,19 @@ validate() {
   echo "Validation passed."
 }
 
+TARGET_DIR="$ROOT_DIR/installed_agents"
+
 install_agents() {
-  echo "Listing agents from divisions.json..."
+  echo "Installing agent markdown files to $TARGET_DIR..."
+  mkdir -p "$TARGET_DIR"
   jq -r '.divisions[].agents[]?.file' "$ROOT_DIR/divisions.json" | while read -r file; do
     if [ -z "$file" ]; then continue; fi
     src="$ROOT_DIR/$file"
     if [ -f "$src" ]; then
-      echo "  - validating $file"
-      head -n 3 "$src" || true
+      dest="$TARGET_DIR/$(dirname "$file")"
+      mkdir -p "$dest"
+      cp "$src" "$dest/"
+      echo "  - installed $file"
     else
       echo "  - missing $file (skipping)"
     fi
@@ -34,7 +39,7 @@ install_agents() {
 }
 
 show_help() {
-  echo "Usage: install.sh [--validate-only]"
+  echo "Usage: install.sh [--validate-only] [--target <path>]"
 }
 
 if [ "${1-}" = "--validate-only" ]; then
@@ -43,7 +48,26 @@ if [ "${1-}" = "--validate-only" ]; then
   exit 0
 fi
 
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --target)
+      TARGET_DIR="$(cd "$2" && pwd)"
+      shift 2
+      ;;
+    --validate-only)
+      validate
+      install_agents
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1"
+      show_help
+      exit 1
+      ;;
+  esac
+done
+
 validate
 install_agents
 
-echo "Install complete. Use scripts/convert.py to generate tool-specific packages."
+echo "Install complete. Installed available agents to $TARGET_DIR. Use scripts/convert.py to generate tool-specific packages."

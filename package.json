@@ -1,0 +1,16 @@
+{
+  "name": "codemyfyp-agents",
+  "version": "0.1.0",
+  "description": "CLI installer and tool integration helper for CodeMyFYP-Agents.",
+  "main": "scripts/cli.js",
+  "type": "module",
+  "bin": {
+    "codemyfyp-agents": "./scripts/cli.js"
+  },
+  "scripts": {
+    "test": "node ./scripts/cli.js validate"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

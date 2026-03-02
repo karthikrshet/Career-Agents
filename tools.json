@@ -1,8 +1,8 @@
 {
   "$schema": "https://codemyfyp-agents.dev/schema/tools.json",
-  "repository": "CodeMyFYP-Agents",
+  "repository": "Career-Agents",
   "version": "0.1.0",
-  "description": "Registry of platforms and tools CodeMyFYP-Agents is designed to work with, and integration status per the project roadmap.",
+  "description": "Registry of platforms and tools Career-Agents is designed to work with, and integration status per the project roadmap.",
   "supported_platforms": [
     {
       "id": "generic-llm",

@@ -10,7 +10,7 @@ Every agent in this repository is engineered like a real specialist — with a m
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
-[![Agents](https://img.shields.io/badge/agents-1%2F100-blue.svg)](./divisions.json)
+[![Agents](https://img.shields.io/badge/agents-25%2F100-blue.svg)](./divisions.json)
 [![Divisions](https://img.shields.io/badge/divisions-4-orange.svg)](#-divisions)
 
 [Quick Start](#-quick-start) • [Divisions](#-divisions) • [Agent Roster](#-agent-roster) • [Examples](#-examples--use-cases) • [Contributing](#-contributing) • [Roadmap](#-roadmap)
@@ -96,7 +96,7 @@ CodeMyFYP-Agents/
 ### 💼 Career
 Everything between "I have a degree" and "I have an offer letter." Resume engineering, ATS survival, interview reps, and personal brand.
 
-**6 agents**
+**11 agents**
 
 </td>
 <td width="25%" valign="top">
@@ -145,15 +145,20 @@ The Final Year Project lifecycle — from topic selection to viva defense — wi
 | `devops-engineer` | Engineering | 🔜 Planned | CI/CD, containers, deployment pipelines |
 | `code-reviewer` | Engineering | 🔜 Planned | Senior-level code review and technical debt triage |
 | `founder-advisor` | Startup | 🔜 Planned | Early-stage founder judgment and decision-making |
-| `product-manager` | Startup | 🔜 Planned | Product strategy, prioritization, roadmapping |
-| `growth-strategist` | Startup | 🔜 Planned | Acquisition, retention, and growth-loop design |
 | `market-research-analyst` | Startup | 🔜 Planned | Market sizing, competitor analysis, validation |
-| `final-year-project-advisor` | Projects | 🔜 Planned | FYP topic selection, scoping, and execution planning |
-| `research-assistant` | Projects | 🔜 Planned | Literature review and academic research support |
-| `documentation-specialist` | Projects | 🔜 Planned | Technical documentation and report writing |
-| `viva-coach` | Projects | 🔜 Planned | Viva voce preparation and defense drilling |
+| `product-manager` | Startup | 🔜 Planned | MVP definition and product roadmap strategy for early-stage startups |
+| `growth-strategist` | Startup | 🔜 Planned | Customer acquisition and retention planning for startup growth |
+| `final-year-project-advisor` | Projects | 🔜 Planned | Final Year Project scope, feasibility, and evaluation readiness guidance |
+| `research-assistant` | Projects | 🔜 Planned | Research method support, literature review guidance, and data analysis planning |
+| `documentation-specialist` | Projects | 🔜 Planned | Project documentation, technical writing, and academic report structuring |
+| `viva-coach` | Projects | 🔜 Planned | Viva preparation, examiner question prediction, and defense confidence coaching |
+| `internship-application-strategist` | Career | 🔜 Planned | Internship application strategy and campus placement readiness |
+| `job-search-strategist` | Career | 🔜 Planned | Targeted job search planning and application tracking |
+| `salary-negotiation-coach` | Career | 🔜 Planned | Offer negotiation strategy and compensation benchmarking |
+| `offer-evaluation-advisor` | Career | 🔜 Planned | Offer comparison and decision-making framework |
+| `recruiter-outreach-specialist` | Career | 🔜 Planned | Recruiter outreach message sequencing and response strategy |
 
-**Progress: 1 / 20 Phase-1 agents live.** See the [Roadmap](./ROADMAP.md) for what's next.
+**Progress: 1 / 25 available agents live in the repository.** See the [Roadmap](./ROADMAP.md) for what's next.
 
 ---
 
@@ -168,8 +173,8 @@ Browse the [Agent Roster](#-agent-roster) or the division folders above and pick
 ### 2. Copy the agent file
 
 ```bash
-git clone https://github.com/your-org/CodeMyFYP-Agents.git
-cd CodeMyFYP-Agents
+git clone https://github.com/karthikrshet/Career-Agents.git
+cd Career-Agents
 cat career/placement-coach.md
 ```
 
@@ -312,3 +317,4 @@ Released under the [MIT License](./LICENSE). Use it, fork it, ship it, build a p
 [Get Started](#-quick-start) · [Browse Agents](#-agent-roster) · [Contribute](./CONTRIBUTING.md)
 
 </div>
+

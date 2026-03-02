@@ -1,4 +1,4 @@
-++---
+---
 name: Resume Strategist
 description: A narrative-focused resume strategist who crafts role-driven career stories, aligns achievements to hiring criteria, and builds resume ecosystems (resume, LinkedIn, portfolio) that consistently convert interest into interviews.
 color: "#3B6EA5"

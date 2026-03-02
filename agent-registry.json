@@ -1,6 +1,6 @@
 {
   "$schema": "https://codemyfyp-agents.dev/schema/agent-registry.json",
-  "repository": "CodeMyFYP-Agents",
+  "repository": "Career-Agents",
   "version": "0.1.0",
   "generated": "2026-07-02",
   "agents": [
@@ -75,6 +75,159 @@
       "status": "planned",
       "version": "0.1.0",
       "description": "Market sizing, competitor analysis, and idea validation."
+    },
+    {
+      "id": "product-manager",
+      "name": "Product Manager",
+      "file": "startup/product-manager.md",
+      "division": "startup",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Product strategy, roadmap prioritization, and MVP definition for early-stage startups."
+    },
+    {
+      "id": "growth-strategist",
+      "name": "Growth Strategist",
+      "file": "startup/growth-strategist.md",
+      "division": "startup",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Growth loops, customer acquisition, and retention planning for early-stage products."
+    },
+    {
+      "id": "mern-architect",
+      "name": "MERN Architect",
+      "file": "engineering/mern-architect.md",
+      "division": "engineering",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "MERN stack architecture review and scalability planning."
+    },
+    {
+      "id": "nextjs-performance-engineer",
+      "name": "Next.js Performance Engineer",
+      "file": "engineering/nextjs-performance-engineer.md",
+      "division": "engineering",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Structured Next.js performance audits and optimization plans."
+    },
+    {
+      "id": "backend-architect",
+      "name": "Backend Architect",
+      "file": "engineering/backend-architect.md",
+      "division": "engineering",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "API design, service boundaries, and backend system architecture."
+    },
+    {
+      "id": "database-engineer",
+      "name": "Database Engineer",
+      "file": "engineering/database-engineer.md",
+      "division": "engineering",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Schema design, indexing strategy, and query optimization."
+    },
+    {
+      "id": "devops-engineer",
+      "name": "DevOps Engineer",
+      "file": "engineering/devops-engineer.md",
+      "division": "engineering",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "CI/CD pipelines, containerization, and deployment strategy."
+    },
+    {
+      "id": "code-reviewer",
+      "name": "Code Reviewer",
+      "file": "engineering/code-reviewer.md",
+      "division": "engineering",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Senior-level code review and technical debt triage."
+    },
+    {
+      "id": "final-year-project-advisor",
+      "name": "Final Year Project Advisor",
+      "file": "projects/final-year-project-advisor.md",
+      "division": "projects",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "FYP scope, feasibility, and evaluation readiness guidance for final-year students."
+    },
+    {
+      "id": "research-assistant",
+      "name": "Research Assistant",
+      "file": "projects/research-assistant.md",
+      "division": "projects",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Research method support, literature review guidance, and data analysis planning."
+    },
+    {
+      "id": "documentation-specialist",
+      "name": "Documentation Specialist",
+      "file": "projects/documentation-specialist.md",
+      "division": "projects",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Project documentation, technical writing, and report structuring for academic submission."
+    },
+    {
+      "id": "viva-coach",
+      "name": "Viva Coach",
+      "file": "projects/viva-coach.md",
+      "division": "projects",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Viva preparation, examiner question prediction, and defense confidence coaching."
+    },
+    {
+      "id": "internship-application-strategist",
+      "name": "Internship Application Strategist",
+      "file": "career/internship-application-strategist.md",
+      "division": "career",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Resume and application strategy for internship candidates and campus placement rounds."
+    },
+    {
+      "id": "job-search-strategist",
+      "name": "Job Search Strategist",
+      "file": "career/job-search-strategist.md",
+      "division": "career",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Targeted job search planning, employer funnels, and application tracking."
+    },
+    {
+      "id": "salary-negotiation-coach",
+      "name": "Salary Negotiation Coach",
+      "file": "career/salary-negotiation-coach.md",
+      "division": "career",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Salary ask strategy, compensation benchmarking, and negotiation readiness."
+    },
+    {
+      "id": "offer-evaluation-advisor",
+      "name": "Offer Evaluation Advisor",
+      "file": "career/offer-evaluation-advisor.md",
+      "division": "career",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Offer comparison, total compensation modeling, and acceptance framework."
+    },
+    {
+      "id": "recruiter-outreach-specialist",
+      "name": "Recruiter Outreach Specialist",
+      "file": "career/recruiter-outreach-specialist.md",
+      "division": "career",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Recruiter message sequence and outreach strategy to drive hiring conversations."
     }
   ]
 }
