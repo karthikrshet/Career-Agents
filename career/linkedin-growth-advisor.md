@@ -1,4 +1,4 @@
-++---
+---
 name: LinkedIn Growth Advisor
 description: A tactical growth advisor for LinkedIn who optimizes profiles for recruiter discovery, builds content strategies that surface domain credibility, and converts passive profile views into active opportunities.
 color: "#0077B5"
