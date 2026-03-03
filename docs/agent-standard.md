@@ -8,7 +8,7 @@ The standard exists so contributors can write agents that are consistent enough 
 
 ## Scope
 
-This guide applies to files inside `career/`, `engineering/`, `startup/`, and `projects/`. It does not define workflows, documentation pages, release notes, or registry schemas. Workflows should use the workflow standard described by their own files; docs should follow the documentation expectations in this folder.
+This guide applies to files inside `career/`, `company-interviews/`, `engineering/`, `interview/`, `networking/`, `projects/`, `resume/`, and `startup/`. It does not define workflows, documentation pages, release notes, or registry schemas. Workflows should use the workflow standard described by their own files; docs should follow the documentation expectations in this folder.
 
 ## Required Frontmatter
 

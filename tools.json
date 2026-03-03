@@ -28,36 +28,36 @@
     {
       "id": "cursor",
       "name": "Cursor",
-      "status": "planned",
+      "status": "supported",
       "roadmap_phase": 5,
       "installation_target": "cursor://rules",
-      "supported": false,
-      "integration_notes": "Plan: export agent as .cursor rules package; mapping frontmatter fields to Cursor metadata."
+      "supported": true,
+      "integration_notes": "Supported: export agent as .cursor rules package using scripts/convert.sh."
     },
     {
       "id": "claude-code",
       "name": "Claude Code",
-      "status": "planned",
+      "status": "supported",
       "roadmap_phase": 6,
       "installation_target": "claude://project/instructions",
-      "supported": false,
-      "integration_notes": "Plan: convert agent frontmatter and workflow into Claude Code subagent manifest. Uses convert.py converters."
+      "supported": true,
+      "integration_notes": "Supported: convert agent into Claude Code subagent manifest via scripts/convert.sh."
     },
     {
       "id": "codex",
       "name": "Codex",
-      "status": "planned",
+      "status": "supported",
       "installation_target": "codex://agent",
-      "supported": false,
-      "integration_notes": "Plan: emit instruction sets and tool bindings compatible with Codex packaging."
+      "supported": true,
+      "integration_notes": "Supported: emit instruction sets and tool bindings compatible with Codex packaging via scripts/convert.sh."
     },
     {
       "id": "gemini-cli",
       "name": "Gemini CLI",
-      "status": "planned",
+      "status": "supported",
       "installation_target": "gemini://cli/load",
-      "supported": false,
-      "integration_notes": "Plan: generate CLI-friendly manifest and installable package; keep agent text as system prompt fallback."
+      "supported": true,
+      "integration_notes": "Supported: generate CLI-friendly manifest and configuration templates via scripts/convert.sh."
     },
     {
       "id": "cli-installer",
@@ -66,6 +66,76 @@
       "roadmap_phase": 4,
       "method": "npx codemyfyp-agents add <agent-id>",
       "notes": "Planned installer to remove manual copy-paste friction."
+    },
+    {
+      "id": "github-copilot",
+      "name": "GitHub Copilot",
+      "status": "future-ready",
+      "supported": false,
+      "integration_notes": "Hook planned for custom agent packaging."
+    },
+    {
+      "id": "antigravity",
+      "name": "Antigravity",
+      "status": "future-ready",
+      "supported": false,
+      "integration_notes": "Compatibility verified for system-prompt instructions."
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "status": "future-ready",
+      "supported": false,
+      "integration_notes": "Compatibility mapping planned."
+    },
+    {
+      "id": "openclaw",
+      "name": "OpenClaw",
+      "status": "future-ready",
+      "supported": false,
+      "integration_notes": "Platform instructions mapping planned."
+    },
+    {
+      "id": "windsurf",
+      "name": "Windsurf",
+      "status": "future-ready",
+      "supported": false,
+      "integration_notes": "Custom system prompt configuration template planned."
+    },
+    {
+      "id": "aider",
+      "name": "Aider",
+      "status": "future-ready",
+      "supported": false,
+      "integration_notes": "Aider-conforming system prompt template planned."
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "status": "future-ready",
+      "supported": false,
+      "integration_notes": "Qwen CLI configuration template planned."
+    },
+    {
+      "id": "kimi",
+      "name": "Kimi",
+      "status": "future-ready",
+      "supported": false,
+      "integration_notes": "Kimi custom instruction set planned."
+    },
+    {
+      "id": "osaurus",
+      "name": "Osaurus",
+      "status": "future-ready",
+      "supported": false,
+      "integration_notes": "Osaurus-compatible subagent manifest planned."
+    },
+    {
+      "id": "hermes",
+      "name": "Hermes",
+      "status": "future-ready",
+      "supported": false,
+      "integration_notes": "Hermes-conforming instruction package planned."
     }
   ],
   "agent_capabilities": {
