@@ -1,7 +1,7 @@
 ---
 name: Bug report
-about: Create a report to help us improve the project
-title: "[BUG] Describe the bug briefly"
+about: Report validation check errors, installer script failures, or registry bugs
+title: "[BUG] Issue summary"
 labels: bug
 assignees: ''
 ---
@@ -11,20 +11,16 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Run '...'
-3. Observe '...'
+1. Run command `python scripts/...` or `./scripts/install.sh ...`
+2. See error message
 
 **Expected behavior**
-What you expected to happen.
+A clear and concise description of what you expected to happen.
 
-**Screenshots or Logs**
-If applicable, add screenshots or terminal output to help explain your problem.
+**Screenshots/Logs**
+Add error logs or terminal printouts to help explain your problem.
 
-**Environment**
-- OS: (e.g. Windows 10, macOS 12)
-- Repository commit: (if known)
-- Agent/Tool: (which agent or tool)
-
-**Additional context**
-Any other context about the problem here.
+**Desktop/OS Info:**
+- OS: [e.g. Windows 11, macOS, Ubuntu]
+- Shell: [e.g. PowerShell, bash, zsh]
+- Python Version: [e.g. 3.10]

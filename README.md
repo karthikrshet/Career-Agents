@@ -1,40 +1,38 @@
 <div align="center">
 # 🚀 Career-Agents
-### "The World's Largest Collection of Career, Placement, Internship, Startup, and Developer AI Agents."
+### The Open-Source Career Operating System (Career OS)
 **Stop prompting. Start hiring.**
-Every agent in this repository is built like a real specialist — with workflows, deliverables, rules, and a clear mission. Not a one-line prompt. A hire.
+Career-Agents is a modular, multi-disciplinary Career Operating System designed to help developers, freshers, and founders navigate placement, internship, startup, and technical growth milestones. Not a one-line prompt. An operational partner.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
-[![Divisions](https://img.shields.io/badge/divisions-8-orange.svg)](#-division-overview)
+[![Divisions](https://img.shields.io/badge/divisions-14-orange.svg)](#-division-overview)
 [![Agents](https://img.shields.io/badge/agents-65%2F100-blue.svg)](./divisions.json)
 
-[Why Career-Agents](#-why-career-agents) • [Divisions](#-division-overview) • [Agent Ecosystem](#-agent-ecosystem) • [Agent Roster](#-agent-roster) • [Workflows](#-career-workflows) • [Quick Start](#-quick-start) • [Integrations](#-multi-tool-integrations)
+[Why Career OS](#-why-career-agents-career-os) • [Divisions](#-division-overview) • [Agent Ecosystem](#-agent-ecosystem) • [Agent Roster](#-agent-roster) • [Workflows](#-career-workflows) • [Quick Start](#-quick-start) • [Integrations](#-multi-tool-integrations)
 </div>
 
 ---
 
-## 💡 Why Career-Agents
+## 💡 Why Career-Agents (Career OS)
 
 Most agent repositories are prompt collections wrapped in specialist language. You paste them in, get an answer, and repeat. 
 
-**Career-Agents is different.** We build agents as repeatable, expert workflows:
+**Career-Agents is an Operating System for your career. It acts as:**
 
-- 🧠 **Memory and structure.** Agents remember what they have seen, track key decisions, and keep the conversation on task.
-- 🎯 **Outcome-oriented.** Each agent works toward a clear deliverable, not a vague "helpful reply."
-- 🚨 **Built-in guardrails.** Every agent has explicit rules for what it will and will not do.
-- 📋 **Actionable outputs.** Reports, checklists, roadmaps, and evaluation matrices you can use directly.
-- 💬 **Distinct voice.** Agents feel like a specialized collaborator, not a generic assistant.
-
-This repository exists to give students, interns, founders, and early-career developers a stronger alternative to copying and pasting generic prompts.
+- 💼 **Placement OS:** Guided pipelines for FAANG and product-based interview loops, mock testing, and behavioral preparation.
+- 📄 **Resume OS:** Automated achievements writer, keyword optimizer, design formatting, and portfolios.
+- 🤝 **Networking OS:** Alumni outreach messaging, LinkedIn growth hacks, and referral strategies.
+- 🚀 **Startup Founder OS:** MVP definitions, product roadmaps, growth campaigns, and competitor audits.
+- 🛠️ **Developer Growth OS:** Backend architectures, DevOps infrastructure, and performance audits.
 
 ---
 
 ## 📊 Repository Statistics
 
 - **Total Agents:** 65 (100% active, fully specified, and tested)
-- **Total Divisions:** 8 functional specialty areas
+- **Total Divisions:** 14 functional specialty areas
 - **Total Career Workflows:** 10 multi-agent operation guides
-- **Total Documentation Files:** 5 architectural standards & guides
+- **Total Documentation Files:** 7 architectural standards & guides
 - **Total Scripts:** 6 local development and installation tools
 - **Total Integrations:** 7 supported configurations
 - **Total Supported Platforms:** 7 runtimes
@@ -44,7 +42,7 @@ This repository exists to give students, interns, founders, and early-career dev
 
 ## 🏛️ Division Overview
 
-The Career-Agents ecosystem is mapped across 8 core divisions representing distinct phases of student, developer, and startup growth:
+The Career-Agents ecosystem is mapped across 14 divisions representing distinct phases of student, developer, and startup growth:
 
 ### 💼 Career
 - **Agent Count:** 26 Live Agents
@@ -85,6 +83,36 @@ The Career-Agents ecosystem is mapped across 8 core divisions representing disti
 - **Agent Count:** 4 Live Agents
 - **Description:** Founder decision support, MVP definition, growth marketing strategy, and competitive market research.
 - **Coverage Area:** MVP scoping, founder judgment, competitor analysis, growth marketing campaigns.
+
+### 🤖 AI Engineering
+- **Agent Count:** 0 Live Agents
+- **Description:** Language models, prompt engineering, retrieval-augmented generation (RAG), cognitive agents, and machine learning operations (MLOps).
+- **Coverage Area:** Prompt design, context windows, indexing, agent systems, model evaluation, MLOps, LLMs.
+
+### ☁️ Cloud & Infrastructure
+- **Agent Count:** 0 Live Agents
+- **Description:** Public cloud systems, platform engineering, kubernetes clusters, infrastructure security, and site reliability.
+- **Coverage Area:** AWS, GCP, Azure, Terraform, cloud cost auditing, secure platforms, Kubernetes, CI/CD.
+
+### 🔒 Cybersecurity
+- **Agent Count:** 0 Live Agents
+- **Description:** Secure coding principles, network operations, penetration testing, compliance advisors, and risk auditing.
+- **Coverage Area:** OWASP Top 10, network telemetry, pen-tests, identity management (IAM), regulatory compliance (GRC).
+
+### 📖 Open Source
+- **Agent Count:** 0 Live Agents
+- **Description:** Collaborative repository design, developer community building, open-source documentation, and maintainer guidance.
+- **Coverage Area:** PR workflows, code documentation standards, community engagement metrics, funding advice.
+
+### 📊 Data Engineering
+- **Agent Count:** 0 Live Agents
+- **Description:** Analytical warehouse construction, stream processors, pipeline schedulers, and database optimizations.
+- **Coverage Area:** ETL/ELT processes, streaming data pipelines, analytic databases, governance controls.
+
+### 📣 Developer Relations
+- **Agent Count:** 0 Live Agents
+- **Description:** Developer advocate strategies, technology education, community management, and developer experience.
+- **Coverage Area:** Technical content strategy, conference presentation loops, api adoption, community metrics.
 
 ---
 
@@ -203,6 +231,36 @@ Here is the complete roster of agents currently live and active in the repositor
 | [`Market Research Analyst`](./startup/market-research-analyst.md) | ✅ Live | A rigorous market research specialist who turns ambiguous business questions into defensible market insights, go-to-market priorities, and evidence-backed decisions — built for founders, product teams, and early-stage PMs who need market clarity fast. |
 | [`Product Manager`](./startup/product-manager.md) | ✅ Live | A product strategy advisor who turns fuzzy feature requests into prioritized roadmaps, stakeholder-aligned outcomes, and execution-ready release plans. |
 
+### AI Engineering Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+
+### Cloud & Infrastructure Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+
+### Cybersecurity Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+
+### Open Source Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+
+### Data Engineering Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+
+### Developer Relations Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+
 ---
 
 ## 🔄 Career Workflows
@@ -230,6 +288,8 @@ Detailed documentation on architecture, contribution guidelines, and packaging s
 - [**Architecture**](./docs/architecture.md): Guide detailing repository standards.
 - [**Contributor Guide**](./docs/contributor-guide.md): Guide detailing repository standards.
 - [**Integrations**](./docs/integrations.md): Guide detailing repository standards.
+- [**Marketplace**](./docs/marketplace.md): Guide detailing repository standards.
+- [**Platform Architecture**](./docs/platform-architecture.md): Guide detailing repository standards.
 - [**Release Guide**](./docs/release-guide.md): Guide detailing repository standards.
 
 ---

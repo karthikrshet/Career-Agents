@@ -13,8 +13,8 @@
       "filename": "career/ats-resume-reviewer.md",
       "tags": [
         "recruiter-aware",
-        "career",
         "forensic",
+        "career",
         "no-nonsense",
         "exacting"
       ],
@@ -31,10 +31,10 @@
       "filename": "career/career-accountability-coach.md",
       "tags": [
         "career",
-        "structured",
         "follow-through-obsessed",
-        "warmly relentless",
-        "non-judgmental"
+        "non-judgmental",
+        "structured",
+        "warmly relentless"
       ],
       "color": "#D35400",
       "emoji": "\ud83d\udccc",
@@ -48,9 +48,9 @@
       "status": "live",
       "filename": "career/career-pivot-to-tech-advisor.md",
       "tags": [
-        "path-specific",
-        "career",
         "non-stem-background-affirming",
+        "career",
+        "path-specific",
         "transition-realistic",
         "evidence-obsessed"
       ],
@@ -69,8 +69,8 @@
         "milestone-obsessed",
         "compounding-minded",
         "career",
-        "long-horizon",
-        "immune to short-term noise"
+        "immune to short-term noise",
+        "long-horizon"
       ],
       "color": "#1E8449",
       "emoji": "\ud83d\uddfa\ufe0f",
@@ -85,9 +85,9 @@
       "filename": "career/career-transition-coach.md",
       "tags": [
         "career",
-        "asset-focused",
-        "decisive",
         "bridge-builder",
+        "decisive",
+        "asset-focused",
         "allergic to \"start from scratch"
       ],
       "color": "#7D3C98",
@@ -102,11 +102,11 @@
       "status": "live",
       "filename": "career/diversity-inclusion-career-coach.md",
       "tags": [
-        "strengths-first",
         "career",
-        "structurally honest",
+        "systemic-not-personal",
         "equity-aware",
-        "systemic-not-personal"
+        "strengths-first",
+        "structurally honest"
       ],
       "color": "#7D3C98",
       "emoji": "\ud83c\udf31",
@@ -121,9 +121,9 @@
       "filename": "career/executive-job-search-coach.md",
       "tags": [
         "discretion-first",
+        "long-game strategist",
         "board-aware",
         "career",
-        "long-game strategist",
         "network-over-resume"
       ],
       "color": "#1C2833",
@@ -138,10 +138,10 @@
       "status": "live",
       "filename": "career/freelance-career-advisor.md",
       "tags": [
-        "career",
         "client-quality-over-quantity",
-        "business-first",
         "anti-hustle-culture",
+        "career",
+        "business-first",
         "income-predictability-obsessed"
       ],
       "color": "#117A65",
@@ -156,11 +156,11 @@
       "status": "live",
       "filename": "career/graduate-career-advisor.md",
       "tags": [
-        "anti-panic",
-        "first-job-focused",
+        "strategy-before-volume",
         "career",
         "honest about timelines",
-        "strategy-before-volume"
+        "first-job-focused",
+        "anti-panic"
       ],
       "color": "#884EA0",
       "emoji": "\ud83c\udfaf",
@@ -174,11 +174,11 @@
       "status": "live",
       "filename": "career/hr-interview-coach.md",
       "tags": [
-        "bluntly-honest",
-        "career",
+        "reassuring",
         "strategic",
         "empathetic",
-        "reassuring"
+        "career",
+        "bluntly-honest"
       ],
       "color": "#6C4FA0",
       "emoji": "\ud83e\udd1d",
@@ -193,10 +193,10 @@
       "filename": "career/internship-application-strategist.md",
       "tags": [
         "polished",
-        "career",
+        "opportunity-driven",
         "strategic",
-        "student-focused",
-        "opportunity-driven"
+        "career",
+        "student-focused"
       ],
       "color": "#2E86C1",
       "emoji": "\ud83e\uddf3",
@@ -210,11 +210,11 @@
       "status": "live",
       "filename": "career/internship-success-coach.md",
       "tags": [
-        "visibility-aware",
-        "career",
         "warm but results-driven",
         "return-offer-obsessed",
-        "performance-first"
+        "performance-first",
+        "career",
+        "visibility-aware"
       ],
       "color": "#2471A3",
       "emoji": "\ud83c\udf93",
@@ -228,11 +228,11 @@
       "status": "live",
       "filename": "career/job-search-strategist.md",
       "tags": [
-        "organized",
-        "career",
         "results-focused",
-        "practical",
-        "proactive"
+        "career",
+        "organized",
+        "proactive",
+        "practical"
       ],
       "color": "#2471A3",
       "emoji": "\ud83c\udfaf",
@@ -247,9 +247,9 @@
       "filename": "career/linkedin-growth-advisor.md",
       "tags": [
         "personable",
-        "career",
         "evidence-driven",
         "tactical",
+        "career",
         "network-savvy"
       ],
       "color": "#0077B5",
@@ -266,8 +266,8 @@
       "tags": [
         "warm-but-strategic",
         "career",
-        "systems-thinker",
         "deeply human",
+        "systems-thinker",
         "anti-hustle"
       ],
       "color": "#1A5276",
@@ -282,11 +282,11 @@
       "status": "live",
       "filename": "career/offer-evaluation-advisor.md",
       "tags": [
-        "analytical",
+        "career-aware",
+        "impartial",
         "career",
         "structured",
-        "career-aware",
-        "impartial"
+        "analytical"
       ],
       "color": "#117A65",
       "emoji": "\ud83e\uddfe",
@@ -300,11 +300,11 @@
       "status": "live",
       "filename": "career/personal-branding-advisor.md",
       "tags": [
-        "career",
-        "identity-first",
-        "consistency-obsessed",
         "evidence-over-aesthetics",
-        "anti-performative"
+        "consistency-obsessed",
+        "anti-performative",
+        "career",
+        "identity-first"
       ],
       "color": "#C0392B",
       "emoji": "\ud83c\udfa8",
@@ -318,11 +318,11 @@
       "status": "live",
       "filename": "career/placement-coach.md",
       "tags": [
-        "career",
-        "relentlessly practical",
-        "data-driven",
+        "blunt",
         "quietly encouraging",
-        "blunt"
+        "data-driven",
+        "relentlessly practical",
+        "career"
       ],
       "color": "#1B4D3E",
       "emoji": "\ud83c\udfaf",
@@ -336,11 +336,11 @@
       "status": "live",
       "filename": "career/product-manager-coach.md",
       "tags": [
-        "career",
         "frameworks-over-feelings",
-        "execution-focused",
+        "career",
         "user-obsessed",
-        "data-literate"
+        "data-literate",
+        "execution-focused"
       ],
       "color": "#C0392B",
       "emoji": "\ud83e\udded",
@@ -354,10 +354,10 @@
       "status": "live",
       "filename": "career/recruiter-outreach-specialist.md",
       "tags": [
-        "professional",
         "recruiter-aware",
-        "career",
         "follow-up-savvy",
+        "career",
+        "professional",
         "targeted"
       ],
       "color": "#D35400",
@@ -372,11 +372,11 @@
       "status": "live",
       "filename": "career/remote-work-advisor.md",
       "tags": [
+        "visibility-conscious",
+        "async-native",
         "anti-isolation-as-default",
         "career",
-        "visibility-conscious",
-        "systems-thinker",
-        "async-native"
+        "systems-thinker"
       ],
       "color": "#1F618D",
       "emoji": "\ud83c\udf0d",
@@ -390,11 +390,11 @@
       "status": "live",
       "filename": "career/resume-strategist.md",
       "tags": [
-        "narrative-first",
-        "career",
         "strategic",
         "empathetic",
-        "evidence-rooted"
+        "evidence-rooted",
+        "career",
+        "narrative-first"
       ],
       "color": "#3B6EA5",
       "emoji": "\u270d\ufe0f",
@@ -408,11 +408,11 @@
       "status": "live",
       "filename": "career/returnship-coach.md",
       "tags": [
-        "full-experience-honoring",
-        "career",
-        "confidence-rebuilder",
+        "gap-reframer",
         "anti-stigma",
-        "gap-reframer"
+        "career",
+        "full-experience-honoring",
+        "confidence-rebuilder"
       ],
       "color": "#BA4A00",
       "emoji": "\ud83d\udd04",
@@ -426,11 +426,11 @@
       "status": "live",
       "filename": "career/salary-benchmark-analyst.md",
       "tags": [
+        "zero tolerance for guesswork",
+        "data-first",
         "career",
         "unsentimental about money",
-        "precision-obsessed",
-        "data-first",
-        "zero tolerance for guesswork"
+        "precision-obsessed"
       ],
       "color": "#1A6B3C",
       "emoji": "\ud83d\udcb0",
@@ -444,11 +444,11 @@
       "status": "live",
       "filename": "career/salary-negotiation-coach.md",
       "tags": [
-        "data-backed",
-        "career",
         "strategic",
         "direct",
-        "candidate-first"
+        "career",
+        "candidate-first",
+        "data-backed"
       ],
       "color": "#C0392B",
       "emoji": "\ud83d\udcb0",
@@ -462,11 +462,11 @@
       "status": "live",
       "filename": "career/technical-interview-coach.md",
       "tags": [
-        "rigorous",
-        "outcome-oriented",
+        "pragmatic",
         "career",
         "mentor-forward",
-        "pragmatic"
+        "rigorous",
+        "outcome-oriented"
       ],
       "color": "#1F8DD6",
       "emoji": "\ud83e\udde9",
@@ -480,11 +480,11 @@
       "status": "live",
       "filename": "company-interviews/adobe-interview-coach.md",
       "tags": [
-        "product-empathetic",
         "craft-focused",
+        "company-interviews",
         "detail-loving",
-        "technically rigorous",
-        "company-interviews"
+        "product-empathetic",
+        "technically rigorous"
       ],
       "color": "#FA0F00",
       "emoji": "\ud83c\udfa8",
@@ -499,9 +499,9 @@
       "filename": "company-interviews/amazon-interview-coach.md",
       "tags": [
         "exacting on story structure",
-        "principle-obsessed",
+        "bar-raiser mindset",
         "company-interviews",
-        "bar-raiser mindset"
+        "principle-obsessed"
       ],
       "color": "#FF9900",
       "emoji": "\ud83d\udce6",
@@ -515,11 +515,11 @@
       "status": "live",
       "filename": "company-interviews/atlassian-interview-coach.md",
       "tags": [
-        "transparent",
-        "values-literate",
-        "collaborative",
         "practically minded",
-        "company-interviews"
+        "company-interviews",
+        "collaborative",
+        "values-literate",
+        "transparent"
       ],
       "color": "#0052CC",
       "emoji": "\ud83e\udde9",
@@ -533,11 +533,11 @@
       "status": "live",
       "filename": "company-interviews/google-interview-coach.md",
       "tags": [
+        "company-interviews",
+        "calmly demanding",
         "rigorous",
         "structure-obsessed",
-        "calmly demanding",
-        "precise",
-        "company-interviews"
+        "precise"
       ],
       "color": "#4285F4",
       "emoji": "\ud83d\udd0e",
@@ -551,11 +551,11 @@
       "status": "live",
       "filename": "company-interviews/meta-interview-coach.md",
       "tags": [
-        "impact-driven",
         "fast-paced",
+        "impact-driven",
+        "company-interviews",
         "unsentimental about scope",
-        "direct",
-        "company-interviews"
+        "direct"
       ],
       "color": "#0668E1",
       "emoji": "\ud83d\ude80",
@@ -569,11 +569,11 @@
       "status": "live",
       "filename": "company-interviews/microsoft-interview-coach.md",
       "tags": [
-        "structured",
+        "company-interviews",
         "quietly rigorous",
-        "collaborative",
         "growth-minded",
-        "company-interviews"
+        "collaborative",
+        "structured"
       ],
       "color": "#00A4EF",
       "emoji": "\ud83e\ude9f",
@@ -587,11 +587,11 @@
       "status": "live",
       "filename": "company-interviews/netflix-interview-coach.md",
       "tags": [
-        "judgment-focused",
-        "high standards",
+        "company-interviews",
         "candid",
         "unimpressed by hedging",
-        "company-interviews"
+        "judgment-focused",
+        "high standards"
       ],
       "color": "#E50914",
       "emoji": "\ud83c\udfac",
@@ -605,11 +605,11 @@
       "status": "live",
       "filename": "company-interviews/oracle-interview-coach.md",
       "tags": [
-        "no patience for shortcuts",
-        "fundamentals-obsessed",
-        "thorough",
         "methodical",
-        "company-interviews"
+        "company-interviews",
+        "fundamentals-obsessed",
+        "no patience for shortcuts",
+        "thorough"
       ],
       "color": "#F80000",
       "emoji": "\ud83d\uddc3\ufe0f",
@@ -623,11 +623,11 @@
       "status": "live",
       "filename": "company-interviews/salesforce-interview-coach.md",
       "tags": [
+        "company-interviews",
+        "warm",
         "customer-obsessed",
         "values-literate",
-        "warm",
-        "relationship-focused",
-        "company-interviews"
+        "relationship-focused"
       ],
       "color": "#00A1E0",
       "emoji": "\u2601\ufe0f",
@@ -641,11 +641,11 @@
       "status": "live",
       "filename": "company-interviews/uber-interview-coach.md",
       "tags": [
-        "ownership-obsessed",
+        "company-interviews",
         "operationally sharp",
         "scale-minded",
-        "direct",
-        "company-interviews"
+        "ownership-obsessed",
+        "direct"
       ],
       "color": "#000000",
       "emoji": "\ud83d\ude97",
@@ -660,10 +660,10 @@
       "filename": "engineering/backend-architect.md",
       "tags": [
         "skeptical of shortcuts",
-        "engineering",
-        "unflashy",
+        "methodical",
         "long-term-thinking",
-        "methodical"
+        "unflashy",
+        "engineering"
       ],
       "color": "#4A4A4A",
       "emoji": "\ud83e\uddf1",
@@ -677,11 +677,11 @@
       "status": "live",
       "filename": "engineering/code-reviewer.md",
       "tags": [
-        "rigorous",
-        "fair",
         "unimpressed by cleverness",
         "teaching-oriented",
-        "engineering"
+        "rigorous",
+        "engineering",
+        "fair"
       ],
       "color": "#5C6BC0",
       "emoji": "\ud83d\udd2c",
@@ -695,11 +695,11 @@
       "status": "live",
       "filename": "engineering/database-engineer.md",
       "tags": [
-        "quietly relentless about correctness",
-        "patient teacher",
         "plan-reading",
+        "quietly relentless about correctness",
+        "precise",
         "engineering",
-        "precise"
+        "patient teacher"
       ],
       "color": "#336791",
       "emoji": "\ud83d\uddc4\ufe0f",
@@ -713,11 +713,11 @@
       "status": "live",
       "filename": "engineering/devops-engineer.md",
       "tags": [
+        "methodical",
+        "allergic to manual steps",
         "engineering",
         "calm in incidents",
-        "reliability-obsessed",
-        "methodical",
-        "allergic to manual steps"
+        "reliability-obsessed"
       ],
       "color": "#FF6B35",
       "emoji": "\ud83d\udd27",
@@ -731,11 +731,11 @@
       "status": "live",
       "filename": "engineering/mern-architect.md",
       "tags": [
-        "opinionated",
         "pragmatic",
+        "allergic to over-engineering",
         "scalability-focused",
         "engineering",
-        "allergic to over-engineering"
+        "opinionated"
       ],
       "color": "#00684A",
       "emoji": "\ud83c\udfd7\ufe0f",
@@ -751,9 +751,9 @@
       "tags": [
         "quietly intense",
         "measurement-obsessed",
+        "precise",
         "impatient with guesswork",
-        "engineering",
-        "precise"
+        "engineering"
       ],
       "color": "#000000",
       "emoji": "\u26a1",
@@ -767,11 +767,11 @@
       "status": "live",
       "filename": "interview/behavioral-interview-specialist.md",
       "tags": [
-        "structure-focused",
         "authentic",
-        "interview",
         "retrospective-driven",
-        "evidence-oriented"
+        "evidence-oriented",
+        "structure-focused",
+        "interview"
       ],
       "color": "#C0392B",
       "emoji": "\ud83d\udde3\ufe0f",
@@ -785,11 +785,11 @@
       "status": "live",
       "filename": "interview/group-discussion-coach.md",
       "tags": [
-        "structured",
-        "collaborative",
-        "interview",
         "consensus-oriented",
-        "assertive-polite"
+        "collaborative",
+        "assertive-polite",
+        "structured",
+        "interview"
       ],
       "color": "#8E44AD",
       "emoji": "\ud83d\udc65",
@@ -803,11 +803,11 @@
       "status": "live",
       "filename": "interview/leadership-interview-coach.md",
       "tags": [
+        "vision-oriented",
         "executive-mature",
-        "interview",
-        "organization-focused",
         "direct-honest",
-        "vision-oriented"
+        "organization-focused",
+        "interview"
       ],
       "color": "#117A65",
       "emoji": "\ud83d\udc51",
@@ -821,11 +821,11 @@
       "status": "live",
       "filename": "interview/mock-interviewer.md",
       "tags": [
-        "candidate-challenging",
-        "follow-up-active",
+        "diagnostic-critical",
         "simulation-realistic",
+        "candidate-challenging",
         "interview",
-        "diagnostic-critical"
+        "follow-up-active"
       ],
       "color": "#7B241C",
       "emoji": "\ud83c\udfad",
@@ -839,11 +839,11 @@
       "status": "live",
       "filename": "interview/system-design-coach.md",
       "tags": [
+        "logic-driven",
         "trade-off-centered",
         "architect-level",
-        "interview",
         "scalability-obsessed",
-        "logic-driven"
+        "interview"
       ],
       "color": "#1F618D",
       "emoji": "\ud83c\udfd7\ufe0f",
@@ -857,11 +857,11 @@
       "status": "live",
       "filename": "networking/alumni-networking-advisor.md",
       "tags": [
-        "networking",
-        "relationship-first",
-        "supportive",
         "curious",
-        "affinity-driven"
+        "supportive",
+        "relationship-first",
+        "affinity-driven",
+        "networking"
       ],
       "color": "#7D6608",
       "emoji": "\ud83c\udf93",
@@ -875,11 +875,11 @@
       "status": "live",
       "filename": "networking/cold-outreach-specialist.md",
       "tags": [
-        "value-first",
-        "professional",
-        "networking",
+        "conversion-oriented",
         "direct",
-        "conversion-oriented"
+        "professional",
+        "value-first",
+        "networking"
       ],
       "color": "#7E5109",
       "emoji": "\ud83d\udce7",
@@ -893,11 +893,11 @@
       "status": "live",
       "filename": "networking/linkedin-outreach-specialist.md",
       "tags": [
-        "high-conversion",
+        "network-strategic",
         "professional",
-        "networking",
         "connection-centric",
-        "network-strategic"
+        "high-conversion",
+        "networking"
       ],
       "color": "#0E66C2",
       "emoji": "\ud83d\udcac",
@@ -912,10 +912,10 @@
       "filename": "networking/recruiter-communication-coach.md",
       "tags": [
         "responsive",
-        "professional",
-        "networking",
         "recruitment-fluent",
-        "clear-headed"
+        "clear-headed",
+        "professional",
+        "networking"
       ],
       "color": "#B03A2E",
       "emoji": "\ud83d\udcde",
@@ -929,11 +929,11 @@
       "status": "live",
       "filename": "networking/referral-strategy-coach.md",
       "tags": [
-        "networking",
+        "relationship-respectful",
         "strategic",
         "conversion-focused",
-        "relationship-respectful",
-        "advocacy-driven"
+        "advocacy-driven",
+        "networking"
       ],
       "color": "#1F618D",
       "emoji": "\ud83e\udd1d",
@@ -948,10 +948,10 @@
       "filename": "projects/documentation-specialist.md",
       "tags": [
         "projects",
-        "precise",
-        "structured",
         "quality-driven",
-        "reader-first"
+        "precise",
+        "reader-first",
+        "structured"
       ],
       "color": "#6A5DAD",
       "emoji": "\ud83d\udcdd",
@@ -968,8 +968,8 @@
         "projects",
         "academic",
         "deadline-aware",
-        "practical",
-        "mentor-led"
+        "mentor-led",
+        "practical"
       ],
       "color": "#3B2D6B",
       "emoji": "\ud83c\udf93",
@@ -985,9 +985,9 @@
       "tags": [
         "projects",
         "methodological",
-        "evidence-based",
         "precise",
-        "systematic"
+        "systematic",
+        "evidence-based"
       ],
       "color": "#4A6FA5",
       "emoji": "\ud83d\udcda",
@@ -1001,11 +1001,11 @@
       "status": "live",
       "filename": "projects/viva-coach.md",
       "tags": [
-        "projects",
         "confidence-building",
-        "exam-aware",
+        "projects",
+        "precise",
         "calm",
-        "precise"
+        "exam-aware"
       ],
       "color": "#C058A0",
       "emoji": "\ud83c\udfa4",
@@ -1019,11 +1019,11 @@
       "status": "live",
       "filename": "resume/executive-resume-advisor.md",
       "tags": [
-        "strategic",
-        "corporate",
-        "boardroom-ready",
         "resume",
-        "outcomes-first"
+        "strategic",
+        "boardroom-ready",
+        "outcomes-first",
+        "corporate"
       ],
       "color": "#2C3E50",
       "emoji": "\ud83d\udc54",
@@ -1037,11 +1037,11 @@
       "status": "live",
       "filename": "resume/portfolio-reviewer.md",
       "tags": [
-        "detail-oriented",
         "critique-honest",
-        "proof-obsessed",
+        "structure-driven",
         "resume",
-        "structure-driven"
+        "detail-oriented",
+        "proof-obsessed"
       ],
       "color": "#D35400",
       "emoji": "\ud83c\udfa8",
@@ -1056,10 +1056,10 @@
       "filename": "resume/resume-achievement-writer.md",
       "tags": [
         "impact-driven",
-        "precision-first",
-        "anti-bullet-list",
         "resume",
-        "metric-obsessed"
+        "anti-bullet-list",
+        "metric-obsessed",
+        "precision-first"
       ],
       "color": "#4A235A",
       "emoji": "\ud83d\udcdd",
@@ -1073,10 +1073,10 @@
       "status": "live",
       "filename": "resume/resume-formatting-specialist.md",
       "tags": [
+        "resume",
         "minimalist",
         "typographically precise",
         "detail-obsessed",
-        "resume",
         "layout-first"
       ],
       "color": "#28B463",
@@ -1091,11 +1091,11 @@
       "status": "live",
       "filename": "resume/resume-keyword-optimizer.md",
       "tags": [
-        "analytical",
-        "keyword-aligned",
         "resume",
-        "semantic-match",
-        "search-engine-focused"
+        "keyword-aligned",
+        "search-engine-focused",
+        "analytical",
+        "semantic-match"
       ],
       "color": "#1A5276",
       "emoji": "\ud83d\udd0d",
@@ -1110,10 +1110,10 @@
       "filename": "startup/founder-advisor.md",
       "tags": [
         "genuinely rooting for you",
+        "blunt",
         "pattern-matching",
-        "allergic to founder self-delusion",
         "startup",
-        "blunt"
+        "allergic to founder self-delusion"
       ],
       "color": "#7B2D26",
       "emoji": "\ud83e\udded",
@@ -1128,10 +1128,10 @@
       "filename": "startup/growth-strategist.md",
       "tags": [
         "retention-first",
-        "experimental",
-        "metrics-driven",
         "startup",
-        "no-nonsense"
+        "metrics-driven",
+        "no-nonsense",
+        "experimental"
       ],
       "color": "#1A936F",
       "emoji": "\ud83d\udcc8",
@@ -1145,11 +1145,11 @@
       "status": "live",
       "filename": "startup/market-research-analyst.md",
       "tags": [
-        "strategist-first",
+        "methodical",
         "commercially-minded",
-        "forensic",
         "startup",
-        "methodical"
+        "forensic",
+        "strategist-first"
       ],
       "color": "#0F4C81",
       "emoji": "\ud83d\udd0e",
@@ -1163,11 +1163,11 @@
       "status": "live",
       "filename": "startup/product-manager.md",
       "tags": [
-        "strategic",
         "pragmatic",
-        "customer-focused",
+        "strategic",
+        "data-informed",
         "startup",
-        "data-informed"
+        "customer-focused"
       ],
       "color": "#E9724C",
       "emoji": "\ud83e\udded",
