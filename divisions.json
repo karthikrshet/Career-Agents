@@ -2,12 +2,12 @@
   "$schema": "https://codemyfyp-agents.dev/schema/divisions.json",
   "repository": "Career-Agents",
   "version": "0.2.0",
-  "last_updated": "2026-07-02",
+  "last_updated": "2026-07-03",
   "registry_source": "agent-registry.json",
   "stats": {
-    "total_divisions": 14,
-    "agents_live": 125,
-    "agents_present": 125
+    "total_divisions": 19,
+    "agents_live": 135,
+    "agents_present": 135
   },
   "divisions": [
     {
@@ -1849,6 +1849,201 @@
             "community-centric",
             "devrel",
             "engaging"
+          ]
+        }
+      ]
+    },
+    {
+      "division": "job-automation",
+      "description": "Automated job discovery, listing filters, pipeline trackers, email outreach cadences, and funnel optimization engines.",
+      "count": 2,
+      "category": "Automation",
+      "emoji": "🤖",
+      "name": "Job Automation",
+      "path": "job-automation/",
+      "agents": [
+        {
+          "id": "job-hunter-ai",
+          "file": "job-automation/job-hunter-ai.md",
+          "name": "Job Hunter AI",
+          "status": "live",
+          "description": "An automated job discovery and application tracking companion that manages target queues.",
+          "tags": [
+            "automation",
+            "career",
+            "job-search",
+            "tactical",
+            "pipeline"
+          ]
+        },
+        {
+          "id": "job-application-optimizer",
+          "file": "job-automation/job-application-optimizer.md",
+          "name": "Job Application Optimizer",
+          "status": "live",
+          "description": "An AI context tailoring engine that customizes applications, resume bullets, and cover letters for specific job descriptions at scale.",
+          "tags": [
+            "automation",
+            "resume",
+            "cover-letter",
+            "context",
+            "surgical"
+          ]
+        }
+      ]
+    },
+    {
+      "division": "faang",
+      "description": "Specialized coaches for top-tier tech companies (FAANG+), AI labs, and high-growth platform engineering teams.",
+      "count": 2,
+      "category": "Interviews",
+      "emoji": "🧠",
+      "name": "FAANG & Top Tech",
+      "path": "faang/",
+      "agents": [
+        {
+          "id": "openai-career-coach",
+          "file": "faang/openai-career-coach.md",
+          "name": "OpenAI Career Coach",
+          "status": "live",
+          "description": "A specialized coach for OpenAI interview loops, engineering culture, and AI research/engineering positions.",
+          "tags": [
+            "openai",
+            "faang",
+            "ai-research",
+            "machine-learning",
+            "interview-prep"
+          ]
+        },
+        {
+          "id": "google-swe-coach",
+          "file": "faang/google-swe-coach.md",
+          "name": "Google SWE Coach",
+          "status": "live",
+          "description": "A specialized technical coach for Google Software Engineering (SWE) loops, focusing on DS & Algorithms, complex complexity analysis, clean code structure, and Googleyness & Leadership (G&L).",
+          "tags": [
+            "google",
+            "faang",
+            "algorithms",
+            "system-design",
+            "googleyness"
+          ]
+        }
+      ]
+    },
+    {
+      "division": "ai-business",
+      "description": "Strategic builders, technical PMs, and business architects focusing on launching and scaling AI-first startups, SaaS MVPs, and proprietary data loops.",
+      "count": 2,
+      "category": "Entrepreneurship",
+      "emoji": "🚀",
+      "name": "AI Business",
+      "path": "ai-business/",
+      "agents": [
+        {
+          "id": "ai-founder",
+          "file": "ai-business/ai-founder.md",
+          "name": "AI Founder",
+          "status": "live",
+          "description": "A strategic AI builder focused on scaling AI-first products, MVPs, and business models.",
+          "tags": [
+            "ai-business",
+            "founder",
+            "mvp",
+            "moats",
+            "startup"
+          ]
+        },
+        {
+          "id": "ai-consultant",
+          "file": "ai-business/ai-consultant.md",
+          "name": "AI Consultant",
+          "status": "live",
+          "description": "An enterprise AI strategist mapping company problems to LLM/RAG solutions, scoping APIs, drafting security/privacy architectures, and showing ROI.",
+          "tags": [
+            "ai-business",
+            "consultant",
+            "enterprise",
+            "security",
+            "roi"
+          ]
+        }
+      ]
+    },
+    {
+      "division": "gtm",
+      "description": "Outreach systems design, waterfall data enrichments, CRM synchronizations, webhooks, and programmatic pipeline automation.",
+      "count": 2,
+      "category": "Marketing & Sales",
+      "emoji": "⚙️",
+      "name": "Modern GTM",
+      "path": "gtm/",
+      "agents": [
+        {
+          "id": "gtm-engineer",
+          "file": "gtm/gtm-engineer.md",
+          "name": "GTM Engineer",
+          "status": "live",
+          "description": "An outreach systems architect who designs clay workflows, API enrichments, and automated cold inbound/outbound setup.",
+          "tags": [
+            "gtm",
+            "clay",
+            "outbound",
+            "automation",
+            "systems"
+          ]
+        },
+        {
+          "id": "clay-specialist",
+          "file": "gtm/clay-specialist.md",
+          "name": "Clay Specialist",
+          "status": "live",
+          "description": "A master of Clay workflows, waterfall search logic, AI enrichment prompting, data cleaning, and CSV normalization.",
+          "tags": [
+            "gtm",
+            "clay",
+            "waterfalls",
+            "data-enrichment",
+            "formulas"
+          ]
+        }
+      ]
+    },
+    {
+      "division": "freelancing",
+      "description": "Productization, pricing advisory, retainer growth, client acquisition networks, and operation designs for independent consultants.",
+      "count": 2,
+      "category": "Freelance",
+      "emoji": "💎",
+      "name": "Freelancing",
+      "path": "freelancing/",
+      "agents": [
+        {
+          "id": "freelance-founder",
+          "file": "freelancing/freelance-founder.md",
+          "name": "Freelance Founder",
+          "status": "live",
+          "description": "An independent consultant strategist driving retainer growth, pricing, and client acquisition channels.",
+          "tags": [
+            "freelancing",
+            "consulting",
+            "retainers",
+            "proposals",
+            "sales"
+          ]
+        },
+        {
+          "id": "upwork-specialist",
+          "file": "freelancing/upwork-specialist.md",
+          "name": "Upwork Specialist",
+          "status": "live",
+          "description": "A profile positioning and proposal writing advisor focused on converting Upwork feeds into closed contracts.",
+          "tags": [
+            "freelancing",
+            "upwork",
+            "proposals",
+            "positioning",
+            "sales"
           ]
         }
       ]
