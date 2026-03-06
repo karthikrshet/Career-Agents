@@ -1,16 +1,12 @@
 <div align="center">
-  
 # 🚀 Career-Agents
-
-### "The World's Largest Collection of Career, Placement, Internship, Startup, and Developer AI Agents."
-
+### The Open-Source Career Operating System (Career OS)
 **Stop prompting. Start hiring.**
-
-Every agent in this repository is built like a real specialist — with workflows, deliverables, rules, and a clear mission. Not a one-line prompt. A hire.
+Career-Agents is a modular, multi-disciplinary Career Operating System designed to help developers, freshers, and founders navigate placement, internship, startup, and technical growth milestones. Not a one-line prompt. An operational partner.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 [![Divisions](https://img.shields.io/badge/divisions-14-orange.svg)](#-division-overview)
-[![Agents](https://img.shields.io/badge/agents-65%2F100-blue.svg)](./divisions.json)
+[![Agents](https://img.shields.io/badge/agents-125%2F100-blue.svg)](./divisions.json)
 
 [Why Career OS](#-why-career-agents-career-os) • [Divisions](#-division-overview) • [Agent Ecosystem](#-agent-ecosystem) • [Agent Roster](#-agent-roster) • [Workflows](#-career-workflows) • [Quick Start](#-quick-start) • [Integrations](#-multi-tool-integrations)
 </div>
@@ -33,7 +29,7 @@ Most agent repositories are prompt collections wrapped in specialist language. Y
 
 ## 📊 Repository Statistics
 
-- **Total Agents:** 65 (100% active, fully specified, and tested)
+- **Total Agents:** 125 (100% active, fully specified, and tested)
 - **Total Divisions:** 14 functional specialty areas
 - **Total Career Workflows:** 10 multi-agent operation guides
 - **Total Documentation Files:** 7 architectural standards & guides
@@ -89,32 +85,32 @@ The Career-Agents ecosystem is mapped across 14 divisions representing distinct 
 - **Coverage Area:** MVP scoping, founder judgment, competitor analysis, growth marketing campaigns.
 
 ### 🤖 AI Engineering
-- **Agent Count:** 0 Live Agents
+- **Agent Count:** 10 Live Agents
 - **Description:** Language models, prompt engineering, retrieval-augmented generation (RAG), cognitive agents, and machine learning operations (MLOps).
 - **Coverage Area:** Prompt design, context windows, indexing, agent systems, model evaluation, MLOps, LLMs.
 
 ### ☁️ Cloud & Infrastructure
-- **Agent Count:** 0 Live Agents
+- **Agent Count:** 10 Live Agents
 - **Description:** Public cloud systems, platform engineering, kubernetes clusters, infrastructure security, and site reliability.
 - **Coverage Area:** AWS, GCP, Azure, Terraform, cloud cost auditing, secure platforms, Kubernetes, CI/CD.
 
 ### 🔒 Cybersecurity
-- **Agent Count:** 0 Live Agents
+- **Agent Count:** 10 Live Agents
 - **Description:** Secure coding principles, network operations, penetration testing, compliance advisors, and risk auditing.
 - **Coverage Area:** OWASP Top 10, network telemetry, pen-tests, identity management (IAM), regulatory compliance (GRC).
 
 ### 📖 Open Source
-- **Agent Count:** 0 Live Agents
+- **Agent Count:** 10 Live Agents
 - **Description:** Collaborative repository design, developer community building, open-source documentation, and maintainer guidance.
 - **Coverage Area:** PR workflows, code documentation standards, community engagement metrics, funding advice.
 
 ### 📊 Data Engineering
-- **Agent Count:** 0 Live Agents
+- **Agent Count:** 10 Live Agents
 - **Description:** Analytical warehouse construction, stream processors, pipeline schedulers, and database optimizations.
 - **Coverage Area:** ETL/ELT processes, streaming data pipelines, analytic databases, governance controls.
 
 ### 📣 Developer Relations
-- **Agent Count:** 0 Live Agents
+- **Agent Count:** 10 Live Agents
 - **Description:** Developer advocate strategies, technology education, community management, and developer experience.
 - **Coverage Area:** Technical content strategy, conference presentation loops, api adoption, community metrics.
 
@@ -239,31 +235,91 @@ Here is the complete roster of agents currently live and active in the repositor
 
 | Agent Name | Status | Purpose / Description |
 | :--- | :--- | :--- |
+| [`AI Agent Architect`](./ai-engineering/ai-agent-architect.md) | ✅ Live | Designs autonomous agent loops, tool bindings, planning algorithms, and multi-agent coordination layers. |
+| [`AI Engineer Career Coach`](./ai-engineering/ai-engineer-career-coach.md) | ✅ Live | Coaches developers pivoting into artificial intelligence, structuring study plans, project portfolios, and technical interview prep. |
+| [`AI Product Builder`](./ai-engineering/ai-product-builder.md) | ✅ Live | Helps founders and product managers scope AI features, evaluate API costs, and design user-centric AI feedback loops. |
+| [`Computer Vision Engineer`](./ai-engineering/computer-vision-engineer.md) | ✅ Live | Advises on convolutional networks, object detection systems, segmentation pipelines, and edge device deployment. |
+| [`Generative AI Consultant`](./ai-engineering/generative-ai-consultant.md) | ✅ Live | Guides organizations through generative AI strategy, risk mitigation, compliance, and ROI analysis. |
+| [`LLM Engineer`](./ai-engineering/llm-engineer.md) | ✅ Live | Advises on model selection, context window optimization, fine-tuning pipelines, and inference efficiency. |
+| [`Machine Learning Engineer`](./ai-engineering/machine-learning-engineer.md) | ✅ Live | Designs classical ML systems, feature stores, model training pipelines, and dataset validations. |
+| [`MLOps Engineer`](./ai-engineering/mlops-engineer.md) | ✅ Live | Sets up continuous training pipelines, model registries, monitoring systems, and containerized deployment infrastructure. |
+| [`Prompt Engineer`](./ai-engineering/prompt-engineer.md) | ✅ Live | Designs systematic prompt templates, Few-Shot examples, Chain-of-Thought flows, and system instructions. |
+| [`RAG Architect`](./ai-engineering/rag-architect.md) | ✅ Live | Designs semantic search architectures, vector databases, chunking strategies, and metadata indexing pipelines. |
 
 ### Cloud & Infrastructure Division
 
 | Agent Name | Status | Purpose / Description |
 | :--- | :--- | :--- |
+| [`AWS Cloud Architect`](./cloud/aws-cloud-architect.md) | ✅ Live | Designs highly available, secure, and well-architected systems on AWS. |
+| [`Azure Cloud Engineer`](./cloud/azure-cloud-engineer.md) | ✅ Live | Configures and manages enterprise cloud deployments on Microsoft Azure. |
+| [`Cloud Cost Optimizer`](./cloud/cloud-cost-optimizer.md) | ✅ Live | Audits cloud invoices, identifying wastage, reserved instance coverages, and autoscaling opportunities. |
+| [`Cloud Migration Advisor`](./cloud/cloud-migration-advisor.md) | ✅ Live | Plans datacenter migrations to public clouds using Rehost, Replatform, and Refactor pathways. |
+| [`Cloud Security Advisor`](./cloud/cloud-security-advisor.md) | ✅ Live | Reviews cloud security configurations, ensuring compliance with ISO 27001, SOC2, and CIS benchmarks. |
+| [`GCP Cloud Engineer`](./cloud/gcp-cloud-engineer.md) | ✅ Live | Designs scale-ready infrastructure on Google Cloud Platform using native services. |
+| [`Kubernetes Specialist`](./cloud/kubernetes-specialist.md) | ✅ Live | Configures production Kubernetes clusters, pod scheduling, network policies, and ingress controllers. |
+| [`Platform Engineer`](./cloud/platform-engineer.md) | ✅ Live | Builds developer self-service tooling, landing zones, and continuous delivery systems. |
+| [`Site Reliability Engineer`](./cloud/site-reliability-engineer.md) | ✅ Live | Defines service level objectives, error budgets, incident response playbooks, and disaster recovery strategies. |
+| [`Terraform Specialist`](./cloud/terraform-specialist.md) | ✅ Live | Writes modular Terraform, structuring state files, workspace variables, and locks. |
 
 ### Cybersecurity Division
 
 | Agent Name | Status | Purpose / Description |
 | :--- | :--- | :--- |
+| [`Application Security Specialist`](./cybersecurity/application-security-specialist.md) | ✅ Live | Audits application source code for OWASP Top 10 vulnerabilities, configuring SAST/DAST pipelines. |
+| [`Cloud Security Engineer`](./cybersecurity/cloud-security-engineer.md) | ✅ Live | Implements IAM least privilege policies, cloud security posture monitoring, and secrets managers. |
+| [`Ethical Hacking Advisor`](./cybersecurity/ethical-hacking-advisor.md) | ✅ Live | Conducts threat simulations and red-team operations across human, network, and application boundaries. |
+| [`Governance Risk Compliance Advisor`](./cybersecurity/governance-risk-compliance-advisor.md) | ✅ Live | Audits processes and designs system configurations to satisfy compliance rules (SOC2, ISO 27001, GDPR). |
+| [`Identity Access Management Specialist`](./cybersecurity/identity-access-management-specialist.md) | ✅ Live | Designs directory service integrations, access management controls, and provisioning flows. |
+| [`Incident Response Specialist`](./cybersecurity/incident-response-specialist.md) | ✅ Live | Triages active security breaches, structures containment strategies, and performs digital forensics. |
+| [`Penetration Testing Coach`](./cybersecurity/penetration-testing-coach.md) | ✅ Live | Runs network-level vulnerability assessments and simulated penetration testing. |
+| [`Security Architect`](./cybersecurity/security-architect.md) | ✅ Live | Designs global zero-trust security frameworks, IAM directories, and endpoint controls. |
+| [`Security Engineer`](./cybersecurity/security-engineer.md) | ✅ Live | Designs secure infrastructure boundaries, perimeter defense networks, and encryption strategies. |
+| [`Security Operations Analyst`](./cybersecurity/security-operations-analyst.md) | ✅ Live | Analyzes security telemetry logs, configure SIEM dashboards, and responds to alerts. |
 
 ### Open Source Division
 
 | Agent Name | Status | Purpose / Description |
 | :--- | :--- | :--- |
+| [`Community Builder`](./open-source/community-builder.md) | ✅ Live | Designs community portals, discord guidelines, online events, and contributor recognition models. |
+| [`Developer Advocate`](./open-source/developer-advocate.md) | ✅ Live | Bridges developer feedback with core product roadmaps, producing workshops and api demos. |
+| [`DevRel Strategist`](./open-source/devrel-strategist.md) | ✅ Live | Aligns developer programs with business metrics, tracking developer acquisitions and community ROI. |
+| [`GitHub Growth Advisor`](./open-source/github-growth-advisor.md) | ✅ Live | Advises on repository metadata, README copywriting, issue curation, and community visibility. |
+| [`Maintainer Coach`](./open-source/maintainer-coach.md) | ✅ Live | Advises project leads on contributor onboarding, issue labeling, license compliance, and roadmap publishing. |
+| [`Open Source Funding Advisor`](./open-source/open-source-funding-advisor.md) | ✅ Live | Guides projects on sponsor directories (GitHub Sponsors, Open Collective) and grant applications. |
+| [`Open Source Mentor`](./open-source/open-source-mentor.md) | ✅ Live | Coaches new contributors on git branches, repository issues, and pull request etiquette. |
+| [`OSS Contributor Coach`](./open-source/oss-contributor-coach.md) | ✅ Live | Helps developers scale contributions from single commits to regular maintainers of key libraries. |
+| [`Project Maintenance Specialist`](./open-source/project-maintenance-specialist.md) | ✅ Live | Automates project builds, configuring lint rules, tests, and publishing workflows. |
+| [`Technical Writing Advisor`](./open-source/technical-writing-advisor.md) | ✅ Live | Guides developers in writing clean API guides, release notes, code reviews, and README docs. |
 
 ### Data Engineering Division
 
 | Agent Name | Status | Purpose / Description |
 | :--- | :--- | :--- |
+| [`Analytics Engineer`](./data-engineering/analytics-engineer.md) | ✅ Live | Structures data transformation layers using dbt (data build tool), creating documentation and testing frameworks. |
+| [`Business Intelligence Specialist`](./data-engineering/business-intelligence-specialist.md) | ✅ Live | Designs semantic datasets, dashboards, and analytical metrics using PowerBI or Tableau. |
+| [`Data Architect`](./data-engineering/data-architect.md) | ✅ Live | Designs corporate data strategies, data mesh architectures, and warehouse schemas. |
+| [`Data Engineer`](./data-engineering/data-engineer.md) | ✅ Live | Designs robust analytical pipeline systems, feature databases, and ingestion engines. |
+| [`Data Governance Advisor`](./data-engineering/data-governance-advisor.md) | ✅ Live | Defines access control policies, data cataloging rules, and column-level masking models. |
+| [`Data Platform Engineer`](./data-engineering/data-platform-engineer.md) | ✅ Live | Deploys cloud-based data storage and analysis platforms using Snowflake, Databricks, or BigQuery. |
+| [`Data Quality Engineer`](./data-engineering/data-quality-engineer.md) | ✅ Live | Designs automated validation routines, alerting systems, and data drift dashboards. |
+| [`Database Performance Specialist`](./data-engineering/database-performance-specialist.md) | ✅ Live | Audits database resource consumption, index efficiency, and query logs to optimize latency. |
+| [`ETL Specialist`](./data-engineering/etl-specialist.md) | ✅ Live | Designs high-throughput batch ETL/ELT pipelines using Airflow, Prefect, or Dagster. |
+| [`Stream Processing Specialist`](./data-engineering/stream-processing-specialist.md) | ✅ Live | Designs high-velocity real-time analytical event flows using Kafka or Flink. |
 
 ### Developer Relations Division
 
 | Agent Name | Status | Purpose / Description |
 | :--- | :--- | :--- |
+| [`API Adoption Consultant`](./devrel/api-adoption-consultant.md) | ✅ Live | Reviews developer APIs, SDK structures, and documentation onboarding to reduce activation barriers. |
+| [`Community Growth Specialist`](./devrel/community-growth-specialist.md) | ✅ Live | Designs programmatic referral schemes, user acquisition initiatives, and event plans. |
+| [`Conference Speaker Coach`](./devrel/conference-speaker-coach.md) | ✅ Live | Guides developers in preparing technical talk submissions, slide structures, and slide delivery. |
+| [`Content Strategy Advisor`](./devrel/content-strategy-advisor.md) | ✅ Live | Plans technical content calendars, writing schedules, and publication distributions. |
+| [`Developer Education Specialist`](./devrel/developer-education-specialist.md) | ✅ Live | Designs tutorials, structured learning paths, sample project repos, and technical documentation. |
+| [`Developer Evangelist`](./devrel/developer-evangelist.md) | ✅ Live | Presents product value at developer conferences, online meetups, and key technical forums. |
+| [`Developer Experience Specialist`](./devrel/developer-experience-specialist.md) | ✅ Live | Reviews local developer environments, CLI ease-of-use, config errors, and initial setup steps. |
+| [`Developer Relations Manager`](./devrel/developer-relations-manager.md) | ✅ Live | Manages developer engagement programs, ambassador networks, and metric analysis. |
+| [`Technical Community Builder`](./devrel/technical-community-builder.md) | ✅ Live | Moderates developer forums, discord/slack servers, and handles user onboarding strategies. |
+| [`Technical Marketing Advisor`](./devrel/technical-marketing-advisor.md) | ✅ Live | Aligns product positioning with developer interests, writing copy and analyzing competition. |
 
 ---
 
@@ -454,6 +510,6 @@ This project is licensed under the [MIT License](./LICENSE).
 
 <div align="center">
 
-**Built by Karthik Rajesh Shet - Founder of CodeMyFYP for students, technologists, and founders.**
+**Built by CodeMyFYP for students, technologists, and founders.**
 
 </div>
