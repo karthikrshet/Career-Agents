@@ -1,52 +1,60 @@
-# Contributing to Career Operating System (Career OS)
+# Contributing to Career-Agents
 
-Welcome! We are excited that you want to contribute to **Career-Agents**, the world's leading open-source Career Operating System. 
-
-By standardizing our agent specification format and local tooling, we are building the open infrastructure for career advancement, developer growth, placement preparation, and startup execution.
+Welcome! We are excited that you want to contribute to the Open-Source Career Operating System. By contributing prompts, workflow playbooks, or CLI features, you are helping engineers globally automate their career scaling.
 
 ---
 
-## 🏛️ New Division Architecture
+## 🛠️ Getting Started
 
-All additions must align with our standardized divisions. If you are proposing a new agent, make sure it is assigned to one of the following directories:
-
-1. **career/** — Job applications, salary negotiation, career planning.
-2. **company-interviews/** — Company-specific (FAANG+) loop coaching.
-3. **engineering/** — System architecture, Next.js optimization, DevOps pipelines.
-4. **interview/** — STAR behavioral answers, system design, mock screens.
-5. **networking/** — LinkedIn cold messaging, warm referrals, recruiter screenings.
-6. **projects/** — Final Year Projects, documentation reviews, viva defense.
-7. **resume/** — Achievements metrics (STAR/XYZ), ATS keywords, formats.
-8. **startup/** — MVPs, competitor audits, product growth loops.
-
----
-
-## 🚀 How to Contribute
-
-### 1. Developer Onboarding
-Please review the complete onboarding steps documented in [**docs/contributor-guide.md**](./docs/contributor-guide.md). 
-
-### 2. Standardized Agent Format
-Every agent markdown file must adhere strictly to the [**docs/agent-standard.md**](./docs/agent-standard.md) file structure, containing:
-- Full YAML frontmatter (`name`, `description`, `color`, `emoji`, `vibe`).
-- 9 required headings (starting with `## 🧠 Your Identity & Memory`).
-- Minimum 1,500 words of high-fidelity, consulting-grade advice.
-
-### 3. Registry & Index Updates
-Any new agent addition requires updating the registries. Rather than editing files manually, run the automation helper:
-```bash
-python scripts/sync.py
-```
-This script rebuilds `agent-registry.json` and `divisions.json` with correct metrics and metadata.
-
-### 4. Code Quality & Formatting
-Ensure all files are validated by running:
-```bash
-python scripts/validate.py
-```
+1. **Fork** the repository on GitHub.
+2. **Clone** your fork locally:
+   ```bash
+   git clone https://github.com/<your-username>/Career-Agents.git
+   cd Career-Agents
+   ```
+3. **Install** dependencies:
+   ```bash
+   npm install
+   ```
 
 ---
 
-## 💬 Community Discussions & Submissions
-- Suggest feature requests or report bugs using our structured **GitHub Issue Templates**.
-- Share custom workflows or discuss desktop features in the **GitHub Discussions** area.
+## 🤖 Adding a New Agent
+
+All agent prompts are defined under `agents/` as Markdown documents. To add a new agent, follow these steps:
+
+1. **Create the Prompt File**:
+   Create a markdown file under `agents/` (e.g. `agents/cloud-architect-coach.md`) and define:
+   *   Vibe, Difficulty, Experience Levels.
+   *   Core system instructions.
+   *   Example outputs.
+2. **Register the Agent**:
+   Add an entry inside `agent-registry.json`:
+   ```json
+   {
+     "id": "cloud-architect-coach",
+     "name": "Cloud Architect Coach",
+     "description": "Guides candidates on AWS/GCP system design loops.",
+     "filename": "agents/cloud-architect-coach.md",
+     "division": "Engineering",
+     "vibe": "Technical & Rigorous",
+     "color": "#EA580C",
+     "emoji": "☁️",
+     "difficulty": "Expert",
+     "experienceLevel": "Senior",
+     "popularity": 85
+   }
+   ```
+3. **Verify the Schema**:
+   Run the CLI validation test to make sure there are no syntax anomalies, missing files, or schema violations:
+   ```bash
+   npm test
+   ```
+
+---
+
+## 📜 Pull Request Guidelines
+
+*   Ensure all tests pass before submitting your PR (`npm test` must be fully green).
+*   Clearly document the target role, division, or company preparation track that the new agent addresses.
+*   Do not submit generic prompt collections. All agents must define structured metrics, vibes, steps, and target outputs.

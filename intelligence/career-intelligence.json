@@ -1,0 +1,17 @@
+{
+  "category": "Career Intelligence",
+  "strategies": [
+    {
+      "milestone": "promotion_track",
+      "guideline": "Document achievements weekly using business metrics (dollars saved, headcount optimized, feature adoption). Align with engineering managers on advancement goals every quarter rather than waiting for annual reviews."
+    },
+    {
+      "milestone": "career_pivot",
+      "guideline": "Map current functional assets to target tech domains. Build adjacent proof-of-work (e.g. open source contributions for developers pivoting to DevRel, or full system designs for SDE-1 to SDE-2 pivots)."
+    },
+    {
+      "milestone": "compensation_negotiation",
+      "guideline": "Acquire at least two external offers to establish a market benchmark. Pivot discussions from raw salary desires to value delivery, and negotiate sign-on bonuses and equity refreshers."
+    }
+  ]
+}

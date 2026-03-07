@@ -1,0 +1,42 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    name: Build and Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ github.ref_name }}
+          body: |
+            ## Career Operating System Release ${{ github.ref_name }}
+            
+            This release updates the agent metadata registries, search indices, and integrations profiles.
+            
+            ### Changes in this version
+            Please refer to the [CHANGELOG.md](./CHANGELOG.md) file for the detailed list of changes.
+            
+            ### How to update CLI
+            Run the following command in your local workspace:
+            ```bash
+            career-agents update
+            ```
+          draft: false
+          prerelease: false
+          files: |
+            search-index.json
+            knowledge-graph.json
+            career-agents-index.json
+            llms.txt
+            llms-full.txt

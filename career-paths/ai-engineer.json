@@ -1,0 +1,26 @@
+{
+  "id": "ai-engineer",
+  "name": "AI Engineer",
+  "description": "Specialist in integrating machine learning, large language models, retrieval augmented generation, and cognitive agents into product architectures.",
+  "core_skills": [
+    "LLMs & Prompt Engineering",
+    "RAG & Semantic Search",
+    "Python & PyTorch",
+    "Agentic Architectures",
+    "Model Orchestration"
+  ],
+  "recommended_divisions": [
+    "ai-engineering",
+    "ai-business",
+    "cloud"
+  ],
+  "recommended_agents": [
+    "ai-agent-architect",
+    "llm-engineer",
+    "rag-architect",
+    "ai-engineer-career-coach"
+  ],
+  "recommended_workflows": [
+    "technical-interview-week"
+  ]
+}

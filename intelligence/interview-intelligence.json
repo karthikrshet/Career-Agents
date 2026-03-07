@@ -1,0 +1,17 @@
+{
+  "category": "Interview Intelligence",
+  "strategies": [
+    {
+      "round": "coding_dsa",
+      "tips": "Speak out loud during problem solving. Discuss complexity tradeoffs before writing any code. Test boundary cases (null, empty, negative, giant values) explicitly."
+    },
+    {
+      "round": "system_design",
+      "tips": "Start with functional and non-functional requirements (QPS, storage, latency bounds). Sketch high-level services before zooming into database schema, caching layers, and messaging queues."
+    },
+    {
+      "round": "behavioral_star",
+      "tips": "Construct 5-6 core STAR stories that can adapt to multiple prompts. Focus on peer conflict, dealing with ambiguity, prioritization decisions, and ownership failures."
+    }
+  ]
+}

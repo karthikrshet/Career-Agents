@@ -1,0 +1,26 @@
+{
+  "id": "product-manager",
+  "name": "Product Manager",
+  "description": "Connecting technology, business, and design to define product features, scope releases, prioritize roadmaps, and align cross-functional teams.",
+  "core_skills": [
+    "Product Roadmap Planning",
+    "User Interviewing & Feedback",
+    "Prioritization Frameworks",
+    "Market & Competitor Analysis",
+    "Data-Driven Decisions"
+  ],
+  "recommended_divisions": [
+    "startup",
+    "career",
+    "networking"
+  ],
+  "recommended_agents": [
+    "product-manager",
+    "product-manager-coach",
+    "market-research-analyst"
+  ],
+  "recommended_workflows": [
+    "ats-optimization",
+    "salary-negotiation"
+  ]
+}

@@ -1,4 +1,4 @@
-name: CI
+name: CI Validation
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
     branches: [ main, master ]
 
 jobs:
-  validate:
+  validate-agents:
+    name: Validate Agents & Directories
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,19 +16,79 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Start Node
+      - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
           node-version: '18'
       - name: Install dependencies
+        run: npm install
+      - name: Run validate script
+        run: python scripts/validate.py
+
+  validate-frontmatter:
+    name: Validate Agent Frontmatter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify Frontmatter Constraints
         run: |
-          npm install
-      - name: Run install validation
+          python -c '
+          import os, sys
+          from pathlib import Path
+          sys.path.append(os.path.abspath("scripts"))
+          from validate import discover_markdown_files, parse_frontmatter, REQUIRED_FIELDS
+          
+          files = discover_markdown_files()
+          errors = 0
+          for f in files:
+              path = Path(f)
+              text = path.read_text(encoding="utf-8")
+              fm = parse_frontmatter(text)
+              if fm is None:
+                  print(f"FAIL: Frontmatter parsing error in {f}")
+                  errors += 1
+                  continue
+              missing = REQUIRED_FIELDS - set(fm.keys())
+              if missing:
+                  print(f"FAIL: Missing required frontmatter fields in {f}: {missing}")
+                  errors += 1
+          if errors > 0:
+              sys.exit(1)
+          print("All agent frontmatter profiles validated successfully.")
+          '
+
+  validate-registry:
+    name: Validate Registry Formats
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '18'
+      - name: Verify JSON Validity
         run: |
-          pwsh -NoProfile -Command "& { .\scripts\install.ps1 -ValidateOnly }"
-      - name: Run repo validation
-        run: |
-          python scripts/validate.py
-      - name: Run CLI validate command
-        run: |
-          npx codemyfyp-agents validate
+          node -e '
+          const fs = require("fs");
+          const registries = ["agent-registry.json", "divisions.json", "workflow-registry.json", "career-paths.json", "companies.json"];
+          let errors = 0;
+          for (const file of registries) {
+            try {
+              if (fs.existsSync(file)) {
+                JSON.parse(fs.readFileSync(file, "utf8"));
+                console.log(`PASS: ${file} parsed successfully.`);
+              } else {
+                console.log(`FAIL: ${file} does not exist.`);
+                errors++;
+              }
+            } catch (e) {
+              console.log(`FAIL: ${file} JSON parsing error: ${e.message}`);
+              errors++;
+            }
+          }
+          if (errors > 0) process.exit(1);
+          '

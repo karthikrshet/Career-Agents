@@ -1,0 +1,26 @@
+{
+  "id": "stripe",
+  "name": "Stripe",
+  "interview_process": [
+    "Recruiter screen and phone interview (coding/debugging)",
+    "Onsite loop: 1 practical integration coding round, 1 bug squash debugging round, 1 system architecture round, 1 leadership/behavioral round"
+  ],
+  "skills": [
+    "Practical API design and integration",
+    "Squashing bugs in large codebases",
+    "Clean code refactoring and design structures",
+    "Unit testing"
+  ],
+  "preparation_workflow": "technical-interview-week",
+  "agents": [
+    "code-reviewer",
+    "backend-architect",
+    "technical-interview-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Stripe API Reference docs",
+    "Stripe Engineering Blog",
+    "Stripe developer workshops"
+  ]
+}

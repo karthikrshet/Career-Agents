@@ -20,7 +20,30 @@
       ],
       "color": "#2A6F97",
       "emoji": "\ud83e\uddfe",
-      "vibe": "forensic, exacting, recruiter-aware, no-nonsense"
+      "vibe": "forensic, exacting, recruiter-aware, no-nonsense",
+      "difficulty": "Easy",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "executive-job-search-coach",
+        "freelance-career-advisor",
+        "graduate-career-advisor"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 65
     },
     {
       "id": "career-accountability-coach",
@@ -38,7 +61,30 @@
       ],
       "color": "#D35400",
       "emoji": "\ud83d\udccc",
-      "vibe": "structured, non-judgmental, follow-through-obsessed, warmly relentless"
+      "vibe": "structured, non-judgmental, follow-through-obsessed, warmly relentless",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "salary-benchmark-analyst",
+        "salary-negotiation-coach",
+        "technical-interview-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 87
     },
     {
       "id": "career-pivot-to-tech-advisor",
@@ -56,7 +102,30 @@
       ],
       "color": "#1E8449",
       "emoji": "\u2699\ufe0f",
-      "vibe": "transition-realistic, path-specific, evidence-obsessed, non-STEM-background-affirming"
+      "vibe": "transition-realistic, path-specific, evidence-obsessed, non-STEM-background-affirming",
+      "difficulty": "Medium",
+      "experience_level": "Entry",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "recruiter-outreach-specialist",
+        "remote-work-advisor",
+        "resume-strategist"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 73
     },
     {
       "id": "career-roadmap-strategist",
@@ -74,7 +143,30 @@
       ],
       "color": "#1E8449",
       "emoji": "\ud83d\uddfa\ufe0f",
-      "vibe": "long-horizon, milestone-obsessed, compounding-minded, immune to short-term noise"
+      "vibe": "long-horizon, milestone-obsessed, compounding-minded, immune to short-term noise",
+      "difficulty": "Medium",
+      "experience_level": "Senior",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "offer-evaluation-advisor",
+        "personal-branding-advisor",
+        "placement-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 64
     },
     {
       "id": "career-transition-coach",
@@ -92,7 +184,30 @@
       ],
       "color": "#7D3C98",
       "emoji": "\ud83d\udd00",
-      "vibe": "decisive, bridge-builder, asset-focused, allergic to \"start from scratch"
+      "vibe": "decisive, bridge-builder, asset-focused, allergic to \"start from scratch",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "freelance-career-advisor",
+        "graduate-career-advisor",
+        "hr-interview-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 66
     },
     {
       "id": "diversity-inclusion-career-coach",
@@ -110,7 +225,30 @@
       ],
       "color": "#7D3C98",
       "emoji": "\ud83c\udf31",
-      "vibe": "equity-aware, structurally honest, strengths-first, systemic-not-personal"
+      "vibe": "equity-aware, structurally honest, strengths-first, systemic-not-personal",
+      "difficulty": "Medium",
+      "experience_level": "Senior",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "resume-strategist",
+        "returnship-coach",
+        "salary-benchmark-analyst"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 60
     },
     {
       "id": "executive-job-search-coach",
@@ -128,7 +266,30 @@
       ],
       "color": "#1C2833",
       "emoji": "\ud83c\udfdb\ufe0f",
-      "vibe": "discretion-first, network-over-resume, board-aware, long-game strategist"
+      "vibe": "discretion-first, network-over-resume, board-aware, long-game strategist",
+      "difficulty": "Medium",
+      "experience_level": "Executive",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "linkedin-growth-advisor",
+        "networking-coach",
+        "offer-evaluation-advisor"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 62
     },
     {
       "id": "freelance-career-advisor",
@@ -146,7 +307,30 @@
       ],
       "color": "#117A65",
       "emoji": "\ud83e\udde9",
-      "vibe": "business-first, income-predictability-obsessed, anti-hustle-culture, client-quality-over-quantity"
+      "vibe": "business-first, income-predictability-obsessed, anti-hustle-culture, client-quality-over-quantity",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "career-roadmap-strategist",
+        "career-transition-coach",
+        "diversity-inclusion-career-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 88
     },
     {
       "id": "graduate-career-advisor",
@@ -164,7 +348,30 @@
       ],
       "color": "#884EA0",
       "emoji": "\ud83c\udfaf",
-      "vibe": "first-job-focused, anti-panic, strategy-before-volume, honest about timelines"
+      "vibe": "first-job-focused, anti-panic, strategy-before-volume, honest about timelines",
+      "difficulty": "Medium",
+      "experience_level": "Entry",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "executive-job-search-coach",
+        "freelance-career-advisor",
+        "hr-interview-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 81
     },
     {
       "id": "hr-interview-coach",
@@ -182,7 +389,30 @@
       ],
       "color": "#6C4FA0",
       "emoji": "\ud83e\udd1d",
-      "vibe": "empathetic, bluntly-honest, strategic, reassuring"
+      "vibe": "empathetic, bluntly-honest, strategic, reassuring",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "graduate-career-advisor",
+        "internship-application-strategist",
+        "internship-success-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 88
     },
     {
       "id": "internship-application-strategist",
@@ -200,7 +430,30 @@
       ],
       "color": "#2E86C1",
       "emoji": "\ud83e\uddf3",
-      "vibe": "student-focused, strategic, opportunity-driven, polished"
+      "vibe": "student-focused, strategic, opportunity-driven, polished",
+      "difficulty": "Medium",
+      "experience_level": "Entry",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "offer-evaluation-advisor",
+        "personal-branding-advisor",
+        "placement-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 69
     },
     {
       "id": "internship-success-coach",
@@ -218,7 +471,30 @@
       ],
       "color": "#2471A3",
       "emoji": "\ud83c\udf93",
-      "vibe": "performance-first, visibility-aware, return-offer-obsessed, warm but results-driven"
+      "vibe": "performance-first, visibility-aware, return-offer-obsessed, warm but results-driven",
+      "difficulty": "Medium",
+      "experience_level": "Entry",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "personal-branding-advisor",
+        "placement-coach",
+        "product-manager-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 80
     },
     {
       "id": "job-search-strategist",
@@ -236,7 +512,30 @@
       ],
       "color": "#2471A3",
       "emoji": "\ud83c\udfaf",
-      "vibe": "organized, proactive, results-focused, practical"
+      "vibe": "organized, proactive, results-focused, practical",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "salary-benchmark-analyst",
+        "salary-negotiation-coach",
+        "technical-interview-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 72
     },
     {
       "id": "linkedin-growth-advisor",
@@ -254,7 +553,30 @@
       ],
       "color": "#0077B5",
       "emoji": "\ud83d\udd17",
-      "vibe": "tactical, network-savvy, evidence-driven, personable"
+      "vibe": "tactical, network-savvy, evidence-driven, personable",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "remote-work-advisor",
+        "resume-strategist",
+        "returnship-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 94
     },
     {
       "id": "networking-coach",
@@ -272,7 +594,30 @@
       ],
       "color": "#1A5276",
       "emoji": "\ud83e\udd1d",
-      "vibe": "warm-but-strategic, systems-thinker, anti-hustle, deeply human"
+      "vibe": "warm-but-strategic, systems-thinker, anti-hustle, deeply human",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "graduate-career-advisor",
+        "hr-interview-coach",
+        "internship-application-strategist"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 98
     },
     {
       "id": "offer-evaluation-advisor",
@@ -290,7 +635,30 @@
       ],
       "color": "#117A65",
       "emoji": "\ud83e\uddfe",
-      "vibe": "analytical, impartial, career-aware, structured"
+      "vibe": "analytical, impartial, career-aware, structured",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "diversity-inclusion-career-coach",
+        "executive-job-search-coach",
+        "freelance-career-advisor"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 65
     },
     {
       "id": "personal-branding-advisor",
@@ -308,7 +676,30 @@
       ],
       "color": "#C0392B",
       "emoji": "\ud83c\udfa8",
-      "vibe": "identity-first, anti-performative, consistency-obsessed, evidence-over-aesthetics"
+      "vibe": "identity-first, anti-performative, consistency-obsessed, evidence-over-aesthetics",
+      "difficulty": "Medium",
+      "experience_level": "Senior",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "graduate-career-advisor",
+        "hr-interview-coach",
+        "internship-application-strategist"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 63
     },
     {
       "id": "placement-coach",
@@ -326,7 +717,30 @@
       ],
       "color": "#1B4D3E",
       "emoji": "\ud83c\udfaf",
-      "vibe": "blunt, data-driven, relentlessly practical, quietly encouraging"
+      "vibe": "blunt, data-driven, relentlessly practical, quietly encouraging",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "resume-strategist",
+        "returnship-coach",
+        "salary-benchmark-analyst"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 80
     },
     {
       "id": "product-manager-coach",
@@ -344,7 +758,30 @@
       ],
       "color": "#C0392B",
       "emoji": "\ud83e\udded",
-      "vibe": "frameworks-over-feelings, user-obsessed, data-literate, execution-focused"
+      "vibe": "frameworks-over-feelings, user-obsessed, data-literate, execution-focused",
+      "difficulty": "Medium",
+      "experience_level": "Executive",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "placement-coach",
+        "recruiter-outreach-specialist",
+        "remote-work-advisor"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 77
     },
     {
       "id": "recruiter-outreach-specialist",
@@ -362,7 +799,30 @@
       ],
       "color": "#D35400",
       "emoji": "\u2709\ufe0f",
-      "vibe": "targeted, professional, follow-up-savvy, recruiter-aware"
+      "vibe": "targeted, professional, follow-up-savvy, recruiter-aware",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "executive-job-search-coach",
+        "freelance-career-advisor",
+        "graduate-career-advisor"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 86
     },
     {
       "id": "remote-work-advisor",
@@ -380,7 +840,30 @@
       ],
       "color": "#1F618D",
       "emoji": "\ud83c\udf0d",
-      "vibe": "async-native, visibility-conscious, systems-thinker, anti-isolation-as-default"
+      "vibe": "async-native, visibility-conscious, systems-thinker, anti-isolation-as-default",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "career-roadmap-strategist",
+        "career-transition-coach",
+        "diversity-inclusion-career-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 68
     },
     {
       "id": "resume-strategist",
@@ -398,7 +881,30 @@
       ],
       "color": "#3B6EA5",
       "emoji": "\u270d\ufe0f",
-      "vibe": "strategic, narrative-first, evidence-rooted, empathetic"
+      "vibe": "strategic, narrative-first, evidence-rooted, empathetic",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "networking-coach",
+        "offer-evaluation-advisor",
+        "personal-branding-advisor"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 94
     },
     {
       "id": "returnship-coach",
@@ -416,7 +922,30 @@
       ],
       "color": "#BA4A00",
       "emoji": "\ud83d\udd04",
-      "vibe": "gap-reframer, confidence-rebuilder, full-experience-honoring, anti-stigma"
+      "vibe": "gap-reframer, confidence-rebuilder, full-experience-honoring, anti-stigma",
+      "difficulty": "Medium",
+      "experience_level": "Entry",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "personal-branding-advisor",
+        "placement-coach",
+        "product-manager-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 86
     },
     {
       "id": "salary-benchmark-analyst",
@@ -434,7 +963,30 @@
       ],
       "color": "#1A6B3C",
       "emoji": "\ud83d\udcb0",
-      "vibe": "data-first, unsentimental about money, precision-obsessed, zero tolerance for guesswork"
+      "vibe": "data-first, unsentimental about money, precision-obsessed, zero tolerance for guesswork",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "placement-coach",
+        "product-manager-coach",
+        "recruiter-outreach-specialist"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 72
     },
     {
       "id": "salary-negotiation-coach",
@@ -452,7 +1004,30 @@
       ],
       "color": "#C0392B",
       "emoji": "\ud83d\udcb0",
-      "vibe": "strategic, direct, data-backed, candidate-first"
+      "vibe": "strategic, direct, data-backed, candidate-first",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "personal-branding-advisor",
+        "placement-coach",
+        "product-manager-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 86
     },
     {
       "id": "technical-interview-coach",
@@ -470,7 +1045,30 @@
       ],
       "color": "#1F8DD6",
       "emoji": "\ud83e\udde9",
-      "vibe": "rigorous, pragmatic, mentor-forward, outcome-oriented"
+      "vibe": "rigorous, pragmatic, mentor-forward, outcome-oriented",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "salary-negotiation-coach",
+        "ats-resume-reviewer",
+        "career-accountability-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement",
+        "internship-hunt"
+      ],
+      "popularity_score": 94
     },
     {
       "id": "adobe-interview-coach",
@@ -488,7 +1086,31 @@
       ],
       "color": "#FA0F00",
       "emoji": "\ud83c\udfa8",
-      "vibe": "craft-focused, technically rigorous, product-empathetic, detail-loving"
+      "vibe": "craft-focused, technically rigorous, product-empathetic, detail-loving",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Adobe"
+      ],
+      "related_agents": [
+        "microsoft-interview-coach",
+        "netflix-interview-coach",
+        "oracle-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 90
     },
     {
       "id": "amazon-interview-coach",
@@ -505,7 +1127,31 @@
       ],
       "color": "#FF9900",
       "emoji": "\ud83d\udce6",
-      "vibe": "principle-obsessed, exacting on story structure, bar-raiser mindset"
+      "vibe": "principle-obsessed, exacting on story structure, bar-raiser mindset",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "All",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Amazon"
+      ],
+      "related_agents": [
+        "netflix-interview-coach",
+        "oracle-interview-coach",
+        "salesforce-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 96
     },
     {
       "id": "atlassian-interview-coach",
@@ -523,7 +1169,31 @@
       ],
       "color": "#0052CC",
       "emoji": "\ud83e\udde9",
-      "vibe": "values-literate, collaborative, transparent, practically minded"
+      "vibe": "values-literate, collaborative, transparent, practically minded",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Atlassian"
+      ],
+      "related_agents": [
+        "microsoft-interview-coach",
+        "netflix-interview-coach",
+        "oracle-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 76
     },
     {
       "id": "google-interview-coach",
@@ -541,7 +1211,31 @@
       ],
       "color": "#4285F4",
       "emoji": "\ud83d\udd0e",
-      "vibe": "rigorous, structure-obsessed, precise, calmly demanding"
+      "vibe": "rigorous, structure-obsessed, precise, calmly demanding",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "related_agents": [
+        "meta-interview-coach",
+        "microsoft-interview-coach",
+        "netflix-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 80
     },
     {
       "id": "meta-interview-coach",
@@ -559,7 +1253,31 @@
       ],
       "color": "#0668E1",
       "emoji": "\ud83d\ude80",
-      "vibe": "fast-paced, impact-driven, direct, unsentimental about scope"
+      "vibe": "fast-paced, impact-driven, direct, unsentimental about scope",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Meta"
+      ],
+      "related_agents": [
+        "amazon-interview-coach",
+        "atlassian-interview-coach",
+        "google-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 87
     },
     {
       "id": "microsoft-interview-coach",
@@ -577,7 +1295,31 @@
       ],
       "color": "#00A4EF",
       "emoji": "\ud83e\ude9f",
-      "vibe": "collaborative, growth-minded, structured, quietly rigorous"
+      "vibe": "collaborative, growth-minded, structured, quietly rigorous",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Microsoft"
+      ],
+      "related_agents": [
+        "uber-interview-coach",
+        "adobe-interview-coach",
+        "amazon-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 73
     },
     {
       "id": "netflix-interview-coach",
@@ -595,7 +1337,31 @@
       ],
       "color": "#E50914",
       "emoji": "\ud83c\udfac",
-      "vibe": "candid, judgment-focused, unimpressed by hedging, high standards"
+      "vibe": "candid, judgment-focused, unimpressed by hedging, high standards",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Netflix"
+      ],
+      "related_agents": [
+        "meta-interview-coach",
+        "microsoft-interview-coach",
+        "oracle-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 92
     },
     {
       "id": "oracle-interview-coach",
@@ -613,7 +1379,31 @@
       ],
       "color": "#F80000",
       "emoji": "\ud83d\uddc3\ufe0f",
-      "vibe": "fundamentals-obsessed, methodical, no patience for shortcuts, thorough"
+      "vibe": "fundamentals-obsessed, methodical, no patience for shortcuts, thorough",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Oracle"
+      ],
+      "related_agents": [
+        "uber-interview-coach",
+        "adobe-interview-coach",
+        "amazon-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 73
     },
     {
       "id": "salesforce-interview-coach",
@@ -631,7 +1421,31 @@
       ],
       "color": "#00A1E0",
       "emoji": "\u2601\ufe0f",
-      "vibe": "relationship-focused, values-literate, warm, customer-obsessed"
+      "vibe": "relationship-focused, values-literate, warm, customer-obsessed",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Salesforce"
+      ],
+      "related_agents": [
+        "oracle-interview-coach",
+        "uber-interview-coach",
+        "adobe-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 76
     },
     {
       "id": "uber-interview-coach",
@@ -649,7 +1463,31 @@
       ],
       "color": "#000000",
       "emoji": "\ud83d\ude97",
-      "vibe": "scale-minded, ownership-obsessed, operationally sharp, direct"
+      "vibe": "scale-minded, ownership-obsessed, operationally sharp, direct",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Uber"
+      ],
+      "related_agents": [
+        "salesforce-interview-coach",
+        "adobe-interview-coach",
+        "amazon-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 90
     },
     {
       "id": "backend-architect",
@@ -667,7 +1505,29 @@
       ],
       "color": "#4A4A4A",
       "emoji": "\ud83e\uddf1",
-      "vibe": "methodical, skeptical of shortcuts, long-term-thinking, unflashy"
+      "vibe": "methodical, skeptical of shortcuts, long-term-thinking, unflashy",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": [],
+      "related_agents": [
+        "database-engineer",
+        "devops-engineer",
+        "mern-architect"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 66
     },
     {
       "id": "code-reviewer",
@@ -685,7 +1545,29 @@
       ],
       "color": "#5C6BC0",
       "emoji": "\ud83d\udd2c",
-      "vibe": "rigorous, fair, unimpressed by cleverness, teaching-oriented"
+      "vibe": "rigorous, fair, unimpressed by cleverness, teaching-oriented",
+      "difficulty": "Easy",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": [],
+      "related_agents": [
+        "nextjs-performance-engineer",
+        "backend-architect",
+        "database-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 99
     },
     {
       "id": "database-engineer",
@@ -703,7 +1585,29 @@
       ],
       "color": "#336791",
       "emoji": "\ud83d\uddc4\ufe0f",
-      "vibe": "precise, plan-reading, patient teacher, quietly relentless about correctness"
+      "vibe": "precise, plan-reading, patient teacher, quietly relentless about correctness",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": [],
+      "related_agents": [
+        "backend-architect",
+        "code-reviewer",
+        "devops-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 90
     },
     {
       "id": "devops-engineer",
@@ -721,7 +1625,29 @@
       ],
       "color": "#FF6B35",
       "emoji": "\ud83d\udd27",
-      "vibe": "reliability-obsessed, calm in incidents, allergic to manual steps, methodical"
+      "vibe": "reliability-obsessed, calm in incidents, allergic to manual steps, methodical",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": [],
+      "related_agents": [
+        "backend-architect",
+        "code-reviewer",
+        "database-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 60
     },
     {
       "id": "mern-architect",
@@ -739,7 +1665,29 @@
       ],
       "color": "#00684A",
       "emoji": "\ud83c\udfd7\ufe0f",
-      "vibe": "pragmatic, opinionated, allergic to over-engineering, scalability-focused"
+      "vibe": "pragmatic, opinionated, allergic to over-engineering, scalability-focused",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": [],
+      "related_agents": [
+        "nextjs-performance-engineer",
+        "backend-architect",
+        "code-reviewer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 89
     },
     {
       "id": "nextjs-performance-engineer",
@@ -757,7 +1705,29 @@
       ],
       "color": "#000000",
       "emoji": "\u26a1",
-      "vibe": "measurement-obsessed, impatient with guesswork, precise, quietly intense"
+      "vibe": "measurement-obsessed, impatient with guesswork, precise, quietly intense",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": [],
+      "related_agents": [
+        "database-engineer",
+        "devops-engineer",
+        "mern-architect"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 97
     },
     {
       "id": "behavioral-interview-specialist",
@@ -775,7 +1745,30 @@
       ],
       "color": "#C0392B",
       "emoji": "\ud83d\udde3\ufe0f",
-      "vibe": "structure-focused, evidence-oriented, retrospective-driven, authentic"
+      "vibe": "structure-focused, evidence-oriented, retrospective-driven, authentic",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "companies": [],
+      "related_agents": [
+        "mock-interviewer",
+        "system-design-coach",
+        "group-discussion-coach"
+      ],
+      "related_workflows": [
+        "technical-interview-week",
+        "hr-interview-week"
+      ],
+      "popularity_score": 90
     },
     {
       "id": "group-discussion-coach",
@@ -793,7 +1786,30 @@
       ],
       "color": "#8E44AD",
       "emoji": "\ud83d\udc65",
-      "vibe": "collaborative, structured, assertive-polite, consensus-oriented"
+      "vibe": "collaborative, structured, assertive-polite, consensus-oriented",
+      "difficulty": "Medium",
+      "experience_level": "Senior",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "companies": [],
+      "related_agents": [
+        "leadership-interview-coach",
+        "mock-interviewer",
+        "system-design-coach"
+      ],
+      "related_workflows": [
+        "technical-interview-week",
+        "hr-interview-week"
+      ],
+      "popularity_score": 65
     },
     {
       "id": "leadership-interview-coach",
@@ -811,7 +1827,30 @@
       ],
       "color": "#117A65",
       "emoji": "\ud83d\udc51",
-      "vibe": "executive-mature, vision-oriented, organization-focused, direct-honest"
+      "vibe": "executive-mature, vision-oriented, organization-focused, direct-honest",
+      "difficulty": "Hard",
+      "experience_level": "Executive",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "companies": [],
+      "related_agents": [
+        "system-design-coach",
+        "behavioral-interview-specialist",
+        "group-discussion-coach"
+      ],
+      "related_workflows": [
+        "technical-interview-week",
+        "hr-interview-week"
+      ],
+      "popularity_score": 71
     },
     {
       "id": "mock-interviewer",
@@ -829,7 +1868,30 @@
       ],
       "color": "#7B241C",
       "emoji": "\ud83c\udfad",
-      "vibe": "simulation-realistic, diagnostic-critical, follow-up-active, candidate-challenging"
+      "vibe": "simulation-realistic, diagnostic-critical, follow-up-active, candidate-challenging",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "companies": [],
+      "related_agents": [
+        "system-design-coach",
+        "behavioral-interview-specialist",
+        "group-discussion-coach"
+      ],
+      "related_workflows": [
+        "technical-interview-week",
+        "hr-interview-week"
+      ],
+      "popularity_score": 75
     },
     {
       "id": "system-design-coach",
@@ -847,7 +1909,30 @@
       ],
       "color": "#1F618D",
       "emoji": "\ud83c\udfd7\ufe0f",
-      "vibe": "architect-level, scalability-obsessed, logic-driven, trade-off-centered"
+      "vibe": "architect-level, scalability-obsessed, logic-driven, trade-off-centered",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "companies": [],
+      "related_agents": [
+        "leadership-interview-coach",
+        "mock-interviewer",
+        "behavioral-interview-specialist"
+      ],
+      "related_workflows": [
+        "technical-interview-week",
+        "hr-interview-week"
+      ],
+      "popularity_score": 74
     },
     {
       "id": "alumni-networking-advisor",
@@ -865,7 +1950,29 @@
       ],
       "color": "#7D6608",
       "emoji": "\ud83c\udf93",
-      "vibe": "relationship-first, affinity-driven, curious, supportive"
+      "vibe": "relationship-first, affinity-driven, curious, supportive",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "companies": [],
+      "related_agents": [
+        "recruiter-communication-coach",
+        "referral-strategy-coach",
+        "cold-outreach-specialist"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 82
     },
     {
       "id": "cold-outreach-specialist",
@@ -883,7 +1990,29 @@
       ],
       "color": "#7E5109",
       "emoji": "\ud83d\udce7",
-      "vibe": "conversion-oriented, value-first, direct, professional"
+      "vibe": "conversion-oriented, value-first, direct, professional",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "companies": [],
+      "related_agents": [
+        "recruiter-communication-coach",
+        "referral-strategy-coach",
+        "alumni-networking-advisor"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 66
     },
     {
       "id": "linkedin-outreach-specialist",
@@ -901,7 +2030,29 @@
       ],
       "color": "#0E66C2",
       "emoji": "\ud83d\udcac",
-      "vibe": "network-strategic, high-conversion, professional, connection-centric"
+      "vibe": "network-strategic, high-conversion, professional, connection-centric",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "companies": [],
+      "related_agents": [
+        "cold-outreach-specialist",
+        "recruiter-communication-coach",
+        "referral-strategy-coach"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 93
     },
     {
       "id": "recruiter-communication-coach",
@@ -919,7 +2070,29 @@
       ],
       "color": "#B03A2E",
       "emoji": "\ud83d\udcde",
-      "vibe": "professional, clear-headed, responsive, recruitment-fluent"
+      "vibe": "professional, clear-headed, responsive, recruitment-fluent",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "companies": [],
+      "related_agents": [
+        "alumni-networking-advisor",
+        "cold-outreach-specialist",
+        "linkedin-outreach-specialist"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 64
     },
     {
       "id": "referral-strategy-coach",
@@ -937,7 +2110,29 @@
       ],
       "color": "#1F618D",
       "emoji": "\ud83e\udd1d",
-      "vibe": "conversion-focused, relationship-respectful, advocacy-driven, strategic"
+      "vibe": "conversion-focused, relationship-respectful, advocacy-driven, strategic",
+      "difficulty": "Medium",
+      "experience_level": "Entry",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "companies": [],
+      "related_agents": [
+        "linkedin-outreach-specialist",
+        "recruiter-communication-coach",
+        "alumni-networking-advisor"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 90
     },
     {
       "id": "documentation-specialist",
@@ -955,7 +2150,29 @@
       ],
       "color": "#6A5DAD",
       "emoji": "\ud83d\udcdd",
-      "vibe": "precise, structured, reader-first, quality-driven"
+      "vibe": "precise, structured, reader-first, quality-driven",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "companies": [],
+      "related_agents": [
+        "final-year-project-advisor",
+        "research-assistant",
+        "viva-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement"
+      ],
+      "popularity_score": 98
     },
     {
       "id": "final-year-project-advisor",
@@ -973,7 +2190,29 @@
       ],
       "color": "#3B2D6B",
       "emoji": "\ud83c\udf93",
-      "vibe": "academic, practical, deadline-aware, mentor-led"
+      "vibe": "academic, practical, deadline-aware, mentor-led",
+      "difficulty": "Medium",
+      "experience_level": "Entry",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "companies": [],
+      "related_agents": [
+        "documentation-specialist",
+        "research-assistant",
+        "viva-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement"
+      ],
+      "popularity_score": 75
     },
     {
       "id": "research-assistant",
@@ -991,7 +2230,29 @@
       ],
       "color": "#4A6FA5",
       "emoji": "\ud83d\udcda",
-      "vibe": "systematic, evidence-based, methodological, precise"
+      "vibe": "systematic, evidence-based, methodological, precise",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "companies": [],
+      "related_agents": [
+        "documentation-specialist",
+        "final-year-project-advisor",
+        "viva-coach"
+      ],
+      "related_workflows": [
+        "fresher-placement"
+      ],
+      "popularity_score": 91
     },
     {
       "id": "viva-coach",
@@ -1009,7 +2270,29 @@
       ],
       "color": "#C058A0",
       "emoji": "\ud83c\udfa4",
-      "vibe": "calm, precise, confidence-building, exam-aware"
+      "vibe": "calm, precise, confidence-building, exam-aware",
+      "difficulty": "Medium",
+      "experience_level": "Entry",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "companies": [],
+      "related_agents": [
+        "documentation-specialist",
+        "final-year-project-advisor",
+        "research-assistant"
+      ],
+      "related_workflows": [
+        "fresher-placement"
+      ],
+      "popularity_score": 80
     },
     {
       "id": "executive-resume-advisor",
@@ -1027,7 +2310,29 @@
       ],
       "color": "#2C3E50",
       "emoji": "\ud83d\udc54",
-      "vibe": "strategic, corporate, boardroom-ready, outcomes-first"
+      "vibe": "strategic, corporate, boardroom-ready, outcomes-first",
+      "difficulty": "Medium",
+      "experience_level": "Executive",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "companies": [],
+      "related_agents": [
+        "resume-formatting-specialist",
+        "resume-keyword-optimizer",
+        "portfolio-reviewer"
+      ],
+      "related_workflows": [
+        "ats-optimization"
+      ],
+      "popularity_score": 62
     },
     {
       "id": "portfolio-reviewer",
@@ -1045,7 +2350,29 @@
       ],
       "color": "#D35400",
       "emoji": "\ud83c\udfa8",
-      "vibe": "critique-honest, structure-driven, detail-oriented, proof-obsessed"
+      "vibe": "critique-honest, structure-driven, detail-oriented, proof-obsessed",
+      "difficulty": "Easy",
+      "experience_level": "Mid",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "companies": [],
+      "related_agents": [
+        "executive-resume-advisor",
+        "resume-achievement-writer",
+        "resume-formatting-specialist"
+      ],
+      "related_workflows": [
+        "ats-optimization"
+      ],
+      "popularity_score": 80
     },
     {
       "id": "resume-achievement-writer",
@@ -1063,7 +2390,29 @@
       ],
       "color": "#4A235A",
       "emoji": "\ud83d\udcdd",
-      "vibe": "metric-obsessed, impact-driven, anti-bullet-list, precision-first"
+      "vibe": "metric-obsessed, impact-driven, anti-bullet-list, precision-first",
+      "difficulty": "Easy",
+      "experience_level": "Mid",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "companies": [],
+      "related_agents": [
+        "resume-formatting-specialist",
+        "resume-keyword-optimizer",
+        "executive-resume-advisor"
+      ],
+      "related_workflows": [
+        "ats-optimization"
+      ],
+      "popularity_score": 82
     },
     {
       "id": "resume-formatting-specialist",
@@ -1081,7 +2430,29 @@
       ],
       "color": "#28B463",
       "emoji": "\ud83d\udcd0",
-      "vibe": "detail-obsessed, typographically precise, layout-first, minimalist"
+      "vibe": "detail-obsessed, typographically precise, layout-first, minimalist",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "companies": [],
+      "related_agents": [
+        "resume-keyword-optimizer",
+        "executive-resume-advisor",
+        "portfolio-reviewer"
+      ],
+      "related_workflows": [
+        "ats-optimization"
+      ],
+      "popularity_score": 79
     },
     {
       "id": "resume-keyword-optimizer",
@@ -1099,7 +2470,29 @@
       ],
       "color": "#1A5276",
       "emoji": "\ud83d\udd0d",
-      "vibe": "analytical, search-engine-focused, keyword-aligned, semantic-match"
+      "vibe": "analytical, search-engine-focused, keyword-aligned, semantic-match",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "companies": [],
+      "related_agents": [
+        "executive-resume-advisor",
+        "portfolio-reviewer",
+        "resume-achievement-writer"
+      ],
+      "related_workflows": [
+        "ats-optimization"
+      ],
+      "popularity_score": 92
     },
     {
       "id": "founder-advisor",
@@ -1117,7 +2510,30 @@
       ],
       "color": "#7B2D26",
       "emoji": "\ud83e\udded",
-      "vibe": "blunt, pattern-matching, allergic to founder self-delusion, genuinely rooting for you"
+      "vibe": "blunt, pattern-matching, allergic to founder self-delusion, genuinely rooting for you",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "companies": [],
+      "related_agents": [
+        "growth-strategist",
+        "market-research-analyst",
+        "product-manager"
+      ],
+      "related_workflows": [
+        "linkedin-growth",
+        "remote-job-hunt"
+      ],
+      "popularity_score": 62
     },
     {
       "id": "growth-strategist",
@@ -1135,7 +2551,30 @@
       ],
       "color": "#1A936F",
       "emoji": "\ud83d\udcc8",
-      "vibe": "experimental, metrics-driven, retention-first, no-nonsense"
+      "vibe": "experimental, metrics-driven, retention-first, no-nonsense",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "companies": [],
+      "related_agents": [
+        "founder-advisor",
+        "market-research-analyst",
+        "product-manager"
+      ],
+      "related_workflows": [
+        "linkedin-growth",
+        "remote-job-hunt"
+      ],
+      "popularity_score": 82
     },
     {
       "id": "market-research-analyst",
@@ -1153,7 +2592,30 @@
       ],
       "color": "#0F4C81",
       "emoji": "\ud83d\udd0e",
-      "vibe": "forensic, methodical, strategist-first, commercially-minded"
+      "vibe": "forensic, methodical, strategist-first, commercially-minded",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "companies": [],
+      "related_agents": [
+        "founder-advisor",
+        "growth-strategist",
+        "product-manager"
+      ],
+      "related_workflows": [
+        "linkedin-growth",
+        "remote-job-hunt"
+      ],
+      "popularity_score": 65
     },
     {
       "id": "product-manager",
@@ -1171,7 +2633,30 @@
       ],
       "color": "#E9724C",
       "emoji": "\ud83e\udded",
-      "vibe": "strategic, customer-focused, data-informed, pragmatic"
+      "vibe": "strategic, customer-focused, data-informed, pragmatic",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "companies": [],
+      "related_agents": [
+        "founder-advisor",
+        "growth-strategist",
+        "market-research-analyst"
+      ],
+      "related_workflows": [
+        "linkedin-growth",
+        "remote-job-hunt"
+      ],
+      "popularity_score": 69
     },
     {
       "id": "ai-agent-architect",
@@ -1188,7 +2673,29 @@
       ],
       "color": "#0284C7",
       "emoji": "\ud83e\udd16",
-      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": [],
+      "related_agents": [
+        "machine-learning-engineer",
+        "mlops-engineer",
+        "prompt-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 90
     },
     {
       "id": "ai-engineer-career-coach",
@@ -1205,7 +2712,29 @@
       ],
       "color": "#0284C7",
       "emoji": "\ud83e\udd16",
-      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "Tech",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": [],
+      "related_agents": [
+        "ai-agent-architect",
+        "ai-product-builder",
+        "computer-vision-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 75
     },
     {
       "id": "ai-product-builder",
@@ -1222,7 +2751,29 @@
       ],
       "color": "#0284C7",
       "emoji": "\ud83e\udd16",
-      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": [],
+      "related_agents": [
+        "ai-engineer-career-coach",
+        "computer-vision-engineer",
+        "generative-ai-consultant"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 61
     },
     {
       "id": "computer-vision-engineer",
@@ -1239,7 +2790,29 @@
       ],
       "color": "#0284C7",
       "emoji": "\ud83e\udd16",
-      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": [],
+      "related_agents": [
+        "generative-ai-consultant",
+        "llm-engineer",
+        "machine-learning-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 67
     },
     {
       "id": "generative-ai-consultant",
@@ -1256,7 +2829,29 @@
       ],
       "color": "#0284C7",
       "emoji": "\ud83e\udd16",
-      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": [],
+      "related_agents": [
+        "rag-architect",
+        "ai-agent-architect",
+        "ai-engineer-career-coach"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 60
     },
     {
       "id": "llm-engineer",
@@ -1273,7 +2868,29 @@
       ],
       "color": "#0284C7",
       "emoji": "\ud83e\udd16",
-      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": [],
+      "related_agents": [
+        "ai-agent-architect",
+        "ai-engineer-career-coach",
+        "ai-product-builder"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 69
     },
     {
       "id": "machine-learning-engineer",
@@ -1290,7 +2907,29 @@
       ],
       "color": "#0284C7",
       "emoji": "\ud83e\udd16",
-      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": [],
+      "related_agents": [
+        "rag-architect",
+        "ai-agent-architect",
+        "ai-engineer-career-coach"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 81
     },
     {
       "id": "mlops-engineer",
@@ -1307,7 +2946,29 @@
       ],
       "color": "#0284C7",
       "emoji": "\ud83e\udd16",
-      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": [],
+      "related_agents": [
+        "computer-vision-engineer",
+        "generative-ai-consultant",
+        "llm-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 94
     },
     {
       "id": "prompt-engineer",
@@ -1324,7 +2985,29 @@
       ],
       "color": "#0284C7",
       "emoji": "\ud83e\udd16",
-      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": [],
+      "related_agents": [
+        "computer-vision-engineer",
+        "generative-ai-consultant",
+        "llm-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 92
     },
     {
       "id": "rag-architect",
@@ -1341,7 +3024,29 @@
       ],
       "color": "#0284C7",
       "emoji": "\ud83e\udd16",
-      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": [],
+      "related_agents": [
+        "generative-ai-consultant",
+        "llm-engineer",
+        "machine-learning-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 74
     },
     {
       "id": "aws-cloud-architect",
@@ -1358,7 +3063,29 @@
       ],
       "color": "#0369A1",
       "emoji": "\u2601\ufe0f",
-      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "site-reliability-engineer",
+        "terraform-specialist",
+        "azure-cloud-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 83
     },
     {
       "id": "azure-cloud-engineer",
@@ -1375,7 +3102,29 @@
       ],
       "color": "#0369A1",
       "emoji": "\u2601\ufe0f",
-      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "terraform-specialist",
+        "aws-cloud-architect",
+        "cloud-cost-optimizer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 81
     },
     {
       "id": "cloud-cost-optimizer",
@@ -1392,7 +3141,29 @@
       ],
       "color": "#0369A1",
       "emoji": "\u2601\ufe0f",
-      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "site-reliability-engineer",
+        "terraform-specialist",
+        "aws-cloud-architect"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 76
     },
     {
       "id": "cloud-migration-advisor",
@@ -1409,7 +3180,29 @@
       ],
       "color": "#0369A1",
       "emoji": "\u2601\ufe0f",
-      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "cloud-cost-optimizer",
+        "cloud-security-advisor",
+        "gcp-cloud-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 74
     },
     {
       "id": "cloud-security-advisor",
@@ -1426,7 +3219,29 @@
       ],
       "color": "#0369A1",
       "emoji": "\u2601\ufe0f",
-      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "cloud-cost-optimizer",
+        "cloud-migration-advisor",
+        "gcp-cloud-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 84
     },
     {
       "id": "gcp-cloud-engineer",
@@ -1443,7 +3258,29 @@
       ],
       "color": "#0369A1",
       "emoji": "\u2601\ufe0f",
-      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "cloud-cost-optimizer",
+        "cloud-migration-advisor",
+        "cloud-security-advisor"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 83
     },
     {
       "id": "kubernetes-specialist",
@@ -1460,7 +3297,31 @@
       ],
       "color": "#0369A1",
       "emoji": "\u2601\ufe0f",
-      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [
+        "Uber"
+      ],
+      "related_agents": [
+        "gcp-cloud-engineer",
+        "platform-engineer",
+        "site-reliability-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 64
     },
     {
       "id": "platform-engineer",
@@ -1477,7 +3338,29 @@
       ],
       "color": "#0369A1",
       "emoji": "\u2601\ufe0f",
-      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "cloud-security-advisor",
+        "gcp-cloud-engineer",
+        "kubernetes-specialist"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 68
     },
     {
       "id": "site-reliability-engineer",
@@ -1494,7 +3377,29 @@
       ],
       "color": "#0369A1",
       "emoji": "\u2601\ufe0f",
-      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "aws-cloud-architect",
+        "azure-cloud-engineer",
+        "cloud-cost-optimizer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 66
     },
     {
       "id": "terraform-specialist",
@@ -1511,7 +3416,29 @@
       ],
       "color": "#0369A1",
       "emoji": "\u2601\ufe0f",
-      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "cloud-security-advisor",
+        "gcp-cloud-engineer",
+        "kubernetes-specialist"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 95
     },
     {
       "id": "application-security-specialist",
@@ -1528,7 +3455,29 @@
       ],
       "color": "#DC2626",
       "emoji": "\ud83d\udd12",
-      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "security-architect",
+        "security-engineer",
+        "security-operations-analyst"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 75
     },
     {
       "id": "cloud-security-engineer",
@@ -1545,7 +3494,29 @@
       ],
       "color": "#DC2626",
       "emoji": "\ud83d\udd12",
-      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "penetration-testing-coach",
+        "security-architect",
+        "security-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 62
     },
     {
       "id": "ethical-hacking-advisor",
@@ -1562,7 +3533,29 @@
       ],
       "color": "#DC2626",
       "emoji": "\ud83d\udd12",
-      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "cloud-security-engineer",
+        "governance-risk-compliance-advisor",
+        "identity-access-management-specialist"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 79
     },
     {
       "id": "governance-risk-compliance-advisor",
@@ -1579,7 +3572,29 @@
       ],
       "color": "#DC2626",
       "emoji": "\ud83d\udd12",
-      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "incident-response-specialist",
+        "penetration-testing-coach",
+        "security-architect"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 72
     },
     {
       "id": "identity-access-management-specialist",
@@ -1596,7 +3611,29 @@
       ],
       "color": "#DC2626",
       "emoji": "\ud83d\udd12",
-      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+      "difficulty": "Hard",
+      "experience_level": "Executive",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "security-engineer",
+        "security-operations-analyst",
+        "application-security-specialist"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 81
     },
     {
       "id": "incident-response-specialist",
@@ -1613,7 +3650,29 @@
       ],
       "color": "#DC2626",
       "emoji": "\ud83d\udd12",
-      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "security-architect",
+        "security-engineer",
+        "security-operations-analyst"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 70
     },
     {
       "id": "penetration-testing-coach",
@@ -1630,7 +3689,29 @@
       ],
       "color": "#DC2626",
       "emoji": "\ud83d\udd12",
-      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "identity-access-management-specialist",
+        "incident-response-specialist",
+        "security-architect"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 60
     },
     {
       "id": "security-architect",
@@ -1647,7 +3728,29 @@
       ],
       "color": "#DC2626",
       "emoji": "\ud83d\udd12",
-      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+      "difficulty": "Hard",
+      "experience_level": "Executive",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "cloud-security-engineer",
+        "ethical-hacking-advisor",
+        "governance-risk-compliance-advisor"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 82
     },
     {
       "id": "security-engineer",
@@ -1664,7 +3767,29 @@
       ],
       "color": "#DC2626",
       "emoji": "\ud83d\udd12",
-      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "governance-risk-compliance-advisor",
+        "identity-access-management-specialist",
+        "incident-response-specialist"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 96
     },
     {
       "id": "security-operations-analyst",
@@ -1681,7 +3806,29 @@
       ],
       "color": "#DC2626",
       "emoji": "\ud83d\udd12",
-      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": [],
+      "related_agents": [
+        "incident-response-specialist",
+        "penetration-testing-coach",
+        "security-architect"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 80
     },
     {
       "id": "community-builder",
@@ -1698,7 +3845,29 @@
       ],
       "color": "#16A34A",
       "emoji": "\ud83d\udcd6",
-      "vibe": "Collaborative, Community-Driven, Documentation-First"
+      "vibe": "Collaborative, Community-Driven, Documentation-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": [],
+      "related_agents": [
+        "devrel-strategist",
+        "github-growth-advisor",
+        "maintainer-coach"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 72
     },
     {
       "id": "developer-advocate",
@@ -1715,7 +3884,29 @@
       ],
       "color": "#16A34A",
       "emoji": "\ud83d\udcd6",
-      "vibe": "Collaborative, Community-Driven, Documentation-First"
+      "vibe": "Collaborative, Community-Driven, Documentation-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": [],
+      "related_agents": [
+        "open-source-funding-advisor",
+        "open-source-mentor",
+        "oss-contributor-coach"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 97
     },
     {
       "id": "devrel-strategist",
@@ -1732,7 +3923,29 @@
       ],
       "color": "#16A34A",
       "emoji": "\ud83d\udcd6",
-      "vibe": "Collaborative, Community-Driven, Documentation-First"
+      "vibe": "Collaborative, Community-Driven, Documentation-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": [],
+      "related_agents": [
+        "community-builder",
+        "developer-advocate",
+        "github-growth-advisor"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 61
     },
     {
       "id": "github-growth-advisor",
@@ -1749,7 +3962,29 @@
       ],
       "color": "#16A34A",
       "emoji": "\ud83d\udcd6",
-      "vibe": "Collaborative, Community-Driven, Documentation-First"
+      "vibe": "Collaborative, Community-Driven, Documentation-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": [],
+      "related_agents": [
+        "community-builder",
+        "developer-advocate",
+        "devrel-strategist"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 79
     },
     {
       "id": "maintainer-coach",
@@ -1766,7 +4001,29 @@
       ],
       "color": "#16A34A",
       "emoji": "\ud83d\udcd6",
-      "vibe": "Collaborative, Community-Driven, Documentation-First"
+      "vibe": "Collaborative, Community-Driven, Documentation-First",
+      "difficulty": "Medium",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": [],
+      "related_agents": [
+        "developer-advocate",
+        "devrel-strategist",
+        "github-growth-advisor"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 88
     },
     {
       "id": "open-source-funding-advisor",
@@ -1783,7 +4040,29 @@
       ],
       "color": "#16A34A",
       "emoji": "\ud83d\udcd6",
-      "vibe": "Collaborative, Community-Driven, Documentation-First"
+      "vibe": "Collaborative, Community-Driven, Documentation-First",
+      "difficulty": "Medium",
+      "experience_level": "Executive",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": [],
+      "related_agents": [
+        "maintainer-coach",
+        "open-source-mentor",
+        "oss-contributor-coach"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 71
     },
     {
       "id": "open-source-mentor",
@@ -1800,7 +4079,29 @@
       ],
       "color": "#16A34A",
       "emoji": "\ud83d\udcd6",
-      "vibe": "Collaborative, Community-Driven, Documentation-First"
+      "vibe": "Collaborative, Community-Driven, Documentation-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": [],
+      "related_agents": [
+        "project-maintenance-specialist",
+        "technical-writing-advisor",
+        "community-builder"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 94
     },
     {
       "id": "oss-contributor-coach",
@@ -1817,7 +4118,29 @@
       ],
       "color": "#16A34A",
       "emoji": "\ud83d\udcd6",
-      "vibe": "Collaborative, Community-Driven, Documentation-First"
+      "vibe": "Collaborative, Community-Driven, Documentation-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": [],
+      "related_agents": [
+        "maintainer-coach",
+        "open-source-funding-advisor",
+        "open-source-mentor"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 69
     },
     {
       "id": "project-maintenance-specialist",
@@ -1834,7 +4157,29 @@
       ],
       "color": "#16A34A",
       "emoji": "\ud83d\udcd6",
-      "vibe": "Collaborative, Community-Driven, Documentation-First"
+      "vibe": "Collaborative, Community-Driven, Documentation-First",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": [],
+      "related_agents": [
+        "github-growth-advisor",
+        "maintainer-coach",
+        "open-source-funding-advisor"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 64
     },
     {
       "id": "technical-writing-advisor",
@@ -1851,7 +4196,29 @@
       ],
       "color": "#16A34A",
       "emoji": "\ud83d\udcd6",
-      "vibe": "Collaborative, Community-Driven, Documentation-First"
+      "vibe": "Collaborative, Community-Driven, Documentation-First",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": [],
+      "related_agents": [
+        "open-source-mentor",
+        "oss-contributor-coach",
+        "project-maintenance-specialist"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 88
     },
     {
       "id": "analytics-engineer",
@@ -1868,7 +4235,29 @@
       ],
       "color": "#7C3AED",
       "emoji": "\ud83d\udcca",
-      "vibe": "Transactional, Data-Driven, Analytical"
+      "vibe": "Transactional, Data-Driven, Analytical",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": [],
+      "related_agents": [
+        "data-architect",
+        "data-engineer",
+        "data-governance-advisor"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 91
     },
     {
       "id": "business-intelligence-specialist",
@@ -1885,7 +4274,29 @@
       ],
       "color": "#7C3AED",
       "emoji": "\ud83d\udcca",
-      "vibe": "Transactional, Data-Driven, Analytical"
+      "vibe": "Transactional, Data-Driven, Analytical",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": [],
+      "related_agents": [
+        "data-engineer",
+        "data-governance-advisor",
+        "data-platform-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 79
     },
     {
       "id": "data-architect",
@@ -1902,7 +4313,29 @@
       ],
       "color": "#7C3AED",
       "emoji": "\ud83d\udcca",
-      "vibe": "Transactional, Data-Driven, Analytical"
+      "vibe": "Transactional, Data-Driven, Analytical",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": [],
+      "related_agents": [
+        "stream-processing-specialist",
+        "analytics-engineer",
+        "business-intelligence-specialist"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 97
     },
     {
       "id": "data-engineer",
@@ -1919,7 +4352,29 @@
       ],
       "color": "#7C3AED",
       "emoji": "\ud83d\udcca",
-      "vibe": "Transactional, Data-Driven, Analytical"
+      "vibe": "Transactional, Data-Driven, Analytical",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": [],
+      "related_agents": [
+        "data-governance-advisor",
+        "data-platform-engineer",
+        "data-quality-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 81
     },
     {
       "id": "data-governance-advisor",
@@ -1936,7 +4391,29 @@
       ],
       "color": "#7C3AED",
       "emoji": "\ud83d\udcca",
-      "vibe": "Transactional, Data-Driven, Analytical"
+      "vibe": "Transactional, Data-Driven, Analytical",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": [],
+      "related_agents": [
+        "data-platform-engineer",
+        "data-quality-engineer",
+        "database-performance-specialist"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 99
     },
     {
       "id": "data-platform-engineer",
@@ -1953,7 +4430,29 @@
       ],
       "color": "#7C3AED",
       "emoji": "\ud83d\udcca",
-      "vibe": "Transactional, Data-Driven, Analytical"
+      "vibe": "Transactional, Data-Driven, Analytical",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": [],
+      "related_agents": [
+        "database-performance-specialist",
+        "etl-specialist",
+        "stream-processing-specialist"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 89
     },
     {
       "id": "data-quality-engineer",
@@ -1970,7 +4469,29 @@
       ],
       "color": "#7C3AED",
       "emoji": "\ud83d\udcca",
-      "vibe": "Transactional, Data-Driven, Analytical"
+      "vibe": "Transactional, Data-Driven, Analytical",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": [],
+      "related_agents": [
+        "data-architect",
+        "data-engineer",
+        "data-governance-advisor"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 93
     },
     {
       "id": "database-performance-specialist",
@@ -1987,7 +4508,29 @@
       ],
       "color": "#7C3AED",
       "emoji": "\ud83d\udcca",
-      "vibe": "Transactional, Data-Driven, Analytical"
+      "vibe": "Transactional, Data-Driven, Analytical",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": [],
+      "related_agents": [
+        "data-architect",
+        "data-engineer",
+        "data-governance-advisor"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 76
     },
     {
       "id": "etl-specialist",
@@ -2004,7 +4547,29 @@
       ],
       "color": "#7C3AED",
       "emoji": "\ud83d\udcca",
-      "vibe": "Transactional, Data-Driven, Analytical"
+      "vibe": "Transactional, Data-Driven, Analytical",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": [],
+      "related_agents": [
+        "analytics-engineer",
+        "business-intelligence-specialist",
+        "data-architect"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 72
     },
     {
       "id": "stream-processing-specialist",
@@ -2021,7 +4586,29 @@
       ],
       "color": "#7C3AED",
       "emoji": "\ud83d\udcca",
-      "vibe": "Transactional, Data-Driven, Analytical"
+      "vibe": "Transactional, Data-Driven, Analytical",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": [],
+      "related_agents": [
+        "data-architect",
+        "data-engineer",
+        "data-governance-advisor"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 95
     },
     {
       "id": "api-adoption-consultant",
@@ -2038,7 +4625,29 @@
       ],
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
-      "vibe": "Engaging, Empathetic, Community-Centric"
+      "vibe": "Engaging, Empathetic, Community-Centric",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": [],
+      "related_agents": [
+        "developer-education-specialist",
+        "developer-evangelist",
+        "developer-experience-specialist"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 70
     },
     {
       "id": "community-growth-specialist",
@@ -2055,7 +4664,29 @@
       ],
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
-      "vibe": "Engaging, Empathetic, Community-Centric"
+      "vibe": "Engaging, Empathetic, Community-Centric",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": [],
+      "related_agents": [
+        "technical-community-builder",
+        "technical-marketing-advisor",
+        "api-adoption-consultant"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 64
     },
     {
       "id": "conference-speaker-coach",
@@ -2072,7 +4703,29 @@
       ],
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
-      "vibe": "Engaging, Empathetic, Community-Centric"
+      "vibe": "Engaging, Empathetic, Community-Centric",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": [],
+      "related_agents": [
+        "content-strategy-advisor",
+        "developer-education-specialist",
+        "developer-evangelist"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 88
     },
     {
       "id": "content-strategy-advisor",
@@ -2089,7 +4742,29 @@
       ],
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
-      "vibe": "Engaging, Empathetic, Community-Centric"
+      "vibe": "Engaging, Empathetic, Community-Centric",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": [],
+      "related_agents": [
+        "developer-evangelist",
+        "developer-experience-specialist",
+        "developer-relations-manager"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 70
     },
     {
       "id": "developer-education-specialist",
@@ -2106,7 +4781,29 @@
       ],
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
-      "vibe": "Engaging, Empathetic, Community-Centric"
+      "vibe": "Engaging, Empathetic, Community-Centric",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": [],
+      "related_agents": [
+        "technical-marketing-advisor",
+        "api-adoption-consultant",
+        "community-growth-specialist"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 87
     },
     {
       "id": "developer-evangelist",
@@ -2123,7 +4820,29 @@
       ],
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
-      "vibe": "Engaging, Empathetic, Community-Centric"
+      "vibe": "Engaging, Empathetic, Community-Centric",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": [],
+      "related_agents": [
+        "technical-marketing-advisor",
+        "api-adoption-consultant",
+        "community-growth-specialist"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 91
     },
     {
       "id": "developer-experience-specialist",
@@ -2140,7 +4859,29 @@
       ],
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
-      "vibe": "Engaging, Empathetic, Community-Centric"
+      "vibe": "Engaging, Empathetic, Community-Centric",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": [],
+      "related_agents": [
+        "content-strategy-advisor",
+        "developer-education-specialist",
+        "developer-evangelist"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 99
     },
     {
       "id": "developer-relations-manager",
@@ -2157,7 +4898,29 @@
       ],
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
-      "vibe": "Engaging, Empathetic, Community-Centric"
+      "vibe": "Engaging, Empathetic, Community-Centric",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": [],
+      "related_agents": [
+        "api-adoption-consultant",
+        "community-growth-specialist",
+        "conference-speaker-coach"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 80
     },
     {
       "id": "technical-community-builder",
@@ -2174,7 +4937,29 @@
       ],
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
-      "vibe": "Engaging, Empathetic, Community-Centric"
+      "vibe": "Engaging, Empathetic, Community-Centric",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": [],
+      "related_agents": [
+        "api-adoption-consultant",
+        "community-growth-specialist",
+        "conference-speaker-coach"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 75
     },
     {
       "id": "technical-marketing-advisor",
@@ -2191,7 +4976,29 @@
       ],
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
-      "vibe": "Engaging, Empathetic, Community-Centric"
+      "vibe": "Engaging, Empathetic, Community-Centric",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": [],
+      "related_agents": [
+        "community-growth-specialist",
+        "conference-speaker-coach",
+        "content-strategy-advisor"
+      ],
+      "related_workflows": [
+        "linkedin-growth"
+      ],
+      "popularity_score": 88
     },
     {
       "id": "gtm-engineer",
@@ -2208,8 +5015,28 @@
         "systems"
       ],
       "color": "#8E44AD",
-      "emoji": "⚙️",
-      "vibe": "technical, automation-driven, pipeline-obsessed, detail-oriented"
+      "emoji": "\u2699\ufe0f",
+      "vibe": "technical, automation-driven, pipeline-obsessed, detail-oriented",
+      "difficulty": "Medium",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Outreach Automation",
+        "CRM Sync",
+        "Clay Workspaces",
+        "Sales Pipeline",
+        "Clay",
+        "Outbound"
+      ],
+      "companies": [],
+      "related_agents": [
+        "clay-specialist"
+      ],
+      "related_workflows": [
+        "remote-job-hunt"
+      ],
+      "popularity_score": 86
     },
     {
       "id": "openai-career-coach",
@@ -2226,8 +5053,30 @@
         "interview-prep"
       ],
       "color": "#10A37F",
-      "emoji": "🧠",
-      "vibe": "elite, research-focused, frontier-aware, rigorous"
+      "emoji": "\ud83e\udde0",
+      "vibe": "elite, research-focused, frontier-aware, rigorous",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Distributed Systems",
+        "Scaling",
+        "DSA",
+        "FAANG Interview",
+        "Openai",
+        "Faang"
+      ],
+      "companies": [
+        "OpenAI"
+      ],
+      "related_agents": [
+        "google-swe-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 66
     },
     {
       "id": "job-hunter-ai",
@@ -2244,8 +5093,28 @@
         "pipeline"
       ],
       "color": "#2E86C1",
-      "emoji": "🎯",
-      "vibe": "structured, tactical, outcome-driven, organized"
+      "emoji": "\ud83c\udfaf",
+      "vibe": "structured, tactical, outcome-driven, organized",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Job Scraping",
+        "Notion Databases",
+        "Pipeline Tracking",
+        "Cold Outreach",
+        "Automation",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "job-application-optimizer"
+      ],
+      "related_workflows": [
+        "remote-job-hunt"
+      ],
+      "popularity_score": 94
     },
     {
       "id": "ai-founder",
@@ -2262,8 +5131,28 @@
         "startup"
       ],
       "color": "#3498DB",
-      "emoji": "🚀",
-      "vibe": "visionary, execution-focused, analytical, product-minded"
+      "emoji": "\ud83d\ude80",
+      "vibe": "visionary, execution-focused, analytical, product-minded",
+      "difficulty": "Medium",
+      "experience_level": "Executive",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "AI Unit Economics",
+        "SaaS MVP",
+        "Semantic Caching",
+        "Defensibility",
+        "Ai-business",
+        "Founder"
+      ],
+      "companies": [],
+      "related_agents": [
+        "ai-consultant"
+      ],
+      "related_workflows": [
+        "remote-job-hunt"
+      ],
+      "popularity_score": 89
     },
     {
       "id": "freelance-founder",
@@ -2280,8 +5169,28 @@
         "sales"
       ],
       "color": "#F1C40F",
-      "emoji": "💎",
-      "vibe": "elite, high-value, business-minded, structured"
+      "emoji": "\ud83d\udc8e",
+      "vibe": "elite, high-value, business-minded, structured",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Freelancing",
+        "Productized Services",
+        "Client Acquisition",
+        "Retainers",
+        "Consulting",
+        "Proposals"
+      ],
+      "companies": [],
+      "related_agents": [
+        "upwork-specialist"
+      ],
+      "related_workflows": [
+        "remote-job-hunt"
+      ],
+      "popularity_score": 83
     },
     {
       "id": "job-application-optimizer",
@@ -2298,8 +5207,28 @@
         "surgical"
       ],
       "color": "#2E86C1",
-      "emoji": "⚡",
-      "vibe": "surgical, contextual, performance-minded, efficient"
+      "emoji": "\u26a1",
+      "vibe": "surgical, contextual, performance-minded, efficient",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Job Search",
+      "industry": "All",
+      "skills": [
+        "Job Scraping",
+        "Notion Databases",
+        "Pipeline Tracking",
+        "Cold Outreach",
+        "Automation",
+        "Career"
+      ],
+      "companies": [],
+      "related_agents": [
+        "job-hunter-ai"
+      ],
+      "related_workflows": [
+        "remote-job-hunt"
+      ],
+      "popularity_score": 60
     },
     {
       "id": "google-swe-coach",
@@ -2316,8 +5245,30 @@
         "googleyness"
       ],
       "color": "#10A37F",
-      "emoji": "🟩",
-      "vibe": "algorithmic, analytical, Googley, structured"
+      "emoji": "\ud83d\udfe9",
+      "vibe": "algorithmic, analytical, Googley, structured",
+      "difficulty": "Medium",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "Distributed Systems",
+        "Scaling",
+        "DSA",
+        "FAANG Interview",
+        "Openai",
+        "Faang"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "related_agents": [
+        "openai-career-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 66
     },
     {
       "id": "ai-consultant",
@@ -2334,8 +5285,28 @@
         "roi"
       ],
       "color": "#3498DB",
-      "emoji": "👔",
-      "vibe": "advisory, enterprise-aware, risk-conscious, strategic"
+      "emoji": "\ud83d\udc54",
+      "vibe": "advisory, enterprise-aware, risk-conscious, strategic",
+      "difficulty": "Medium",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "AI Unit Economics",
+        "SaaS MVP",
+        "Semantic Caching",
+        "Defensibility",
+        "Ai-business",
+        "Founder"
+      ],
+      "companies": [],
+      "related_agents": [
+        "ai-founder"
+      ],
+      "related_workflows": [
+        "remote-job-hunt"
+      ],
+      "popularity_score": 91
     },
     {
       "id": "clay-specialist",
@@ -2352,8 +5323,28 @@
         "formulas"
       ],
       "color": "#8E44AD",
-      "emoji": "🧱",
-      "vibe": "structured, detail-oriented, pipeline-focused, data-obsessed"
+      "emoji": "\ud83e\uddf1",
+      "vibe": "structured, detail-oriented, pipeline-focused, data-obsessed",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Outreach Automation",
+        "CRM Sync",
+        "Clay Workspaces",
+        "Sales Pipeline",
+        "Clay",
+        "Outbound"
+      ],
+      "companies": [],
+      "related_agents": [
+        "gtm-engineer"
+      ],
+      "related_workflows": [
+        "remote-job-hunt"
+      ],
+      "popularity_score": 81
     },
     {
       "id": "upwork-specialist",
@@ -2370,8 +5361,28 @@
         "sales"
       ],
       "color": "#F1C40F",
-      "emoji": "🎯",
-      "vibe": "practical, persuasive, client-centric, result-oriented"
+      "emoji": "\ud83c\udfaf",
+      "vibe": "practical, persuasive, client-centric, result-oriented",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "All",
+      "skills": [
+        "Freelancing",
+        "Productized Services",
+        "Client Acquisition",
+        "Retainers",
+        "Consulting",
+        "Proposals"
+      ],
+      "companies": [],
+      "related_agents": [
+        "freelance-founder"
+      ],
+      "related_workflows": [
+        "remote-job-hunt"
+      ],
+      "popularity_score": 93
     }
   ]
 }

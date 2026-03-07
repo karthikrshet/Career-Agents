@@ -1,0 +1,27 @@
+{
+  "id": "openai",
+  "name": "OpenAI",
+  "interview_process": [
+    "Recruiter screen and take-home practical engineering assignment",
+    "Technical phone screen: review take-home assignment and coding test",
+    "Onsite loop: 4-5 rounds covering PyTorch coding, distributed training systems, AI safety/alignment, and executive values"
+  ],
+  "skills": [
+    "PyTorch scale training models",
+    "Transformer mechanics and scaling math",
+    "AI Safety & alignment criteria",
+    "GPU memory optimizations"
+  ],
+  "preparation_workflow": "technical-interview-week",
+  "agents": [
+    "llm-engineer",
+    "ai-agent-architect",
+    "ai-engineer-career-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "OpenAI Research Papers",
+    "Triton Compiler tutorials",
+    "Scaling Laws papers"
+  ]
+}

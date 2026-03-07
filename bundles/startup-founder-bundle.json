@@ -1,0 +1,34 @@
+{
+  "id": "startup-founder-bundle",
+  "name": "Startup Founder & Builder Bundle",
+  "description": "Decision support configs, MVP definitions, GTM waterfall enrichment, pricing structures, and competitive metrics for early-stage builders.",
+  "agents": [
+    "founder-advisor",
+    "growth-strategist",
+    "market-research-analyst",
+    "ai-product-builder",
+    "freelance-career-advisor"
+  ],
+  "workflows": [
+    "linkedin-growth",
+    "remote-job-hunt",
+    "offer-comparison"
+  ],
+  "career_paths": [
+    "startup-founder",
+    "product-manager",
+    "ai-engineer"
+  ],
+  "skills": [
+    "MVP Scoping",
+    "Competitor Audit",
+    "Growth Marketing",
+    "Unit Economics",
+    "GTM Waterfall Sourcing"
+  ],
+  "companies": [
+    "OpenAI",
+    "Stripe",
+    "Databricks"
+  ]
+}

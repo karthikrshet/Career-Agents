@@ -1,0 +1,13 @@
+{
+  "category": "Company Intelligence",
+  "strategies": [
+    {
+      "area": "culture_alignment",
+      "guideline": "Deconstruct target company value decks. Reflect their vocabulary (e.g. Amazon's 'Working Backwards' or Meta's 'Focus on Impact') in mock responses."
+    },
+    {
+      "area": "assessment_styles",
+      "guideline": "Recognize that Stripe focuses on practical library debugging, OpenAI on model scale math, Google on runtime space/time optimization, and Netflix on direct autonomy loops."
+    }
+  ]
+}

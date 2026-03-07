@@ -1,0 +1,60 @@
+{
+  "platforms": {
+    "claude": {
+      "name": "Anthropic Claude Chat",
+      "url": "https://claude.ai/new",
+      "copy_method": "clipboard",
+      "accepts_file_attachments": true,
+      "max_context_tokens": 200000
+    },
+    "gemini": {
+      "name": "Google Gemini App",
+      "url": "https://gemini.google.com/app",
+      "copy_method": "clipboard",
+      "accepts_file_attachments": true,
+      "max_context_tokens": 2000000
+    },
+    "chatgpt": {
+      "name": "OpenAI ChatGPT",
+      "url": "https://chatgpt.com/",
+      "copy_method": "clipboard",
+      "accepts_file_attachments": true,
+      "max_context_tokens": 128000
+    },
+    "grok": {
+      "name": "xAI Grok",
+      "url": "https://x.com/i/grok",
+      "copy_method": "clipboard",
+      "accepts_file_attachments": false,
+      "max_context_tokens": 131072
+    },
+    "deepseek": {
+      "name": "DeepSeek Chat",
+      "url": "https://chat.deepseek.com/",
+      "copy_method": "clipboard",
+      "accepts_file_attachments": true,
+      "max_context_tokens": 64000
+    },
+    "perplexity": {
+      "name": "Perplexity Pro",
+      "url": "https://www.perplexity.ai/",
+      "copy_method": "clipboard",
+      "accepts_file_attachments": true,
+      "max_context_tokens": 32000
+    },
+    "qwen": {
+      "name": "Alibaba Qwen Chat",
+      "url": "https://chat.qwenlm.ai/",
+      "copy_method": "clipboard",
+      "accepts_file_attachments": true,
+      "max_context_tokens": 32000
+    },
+    "openrouter": {
+      "name": "OpenRouter Chat Client",
+      "url": "https://openrouter.ai/chat",
+      "copy_method": "clipboard",
+      "accepts_file_attachments": true,
+      "max_context_tokens": 128000
+    }
+  }
+}

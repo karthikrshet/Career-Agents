@@ -1,0 +1,191 @@
+{
+  "$schema": "https://codemyfyp-agents.dev/schema/workflow-registry.json",
+  "repository": "Career-Agents",
+  "version": "0.1.0",
+  "workflows": [
+    {
+      "id": "ats-optimization",
+      "name": "ATS Optimization",
+      "category": "resume workflows",
+      "filename": "workflows/ats-optimization.md",
+      "description": "A repeatable resume operating system for candidates who apply through portals, campus systems, and enterprise hiring platforms. Optimizes resume structures, headings, and keyword mapping to survive ATS parsing.",
+      "recommended_agents": [
+        "ats-resume-reviewer",
+        "resume-strategist",
+        "job-search-strategist",
+        "linkedin-growth-advisor",
+        "placement-coach"
+      ],
+      "prerequisites": [
+        "Current resume in editable format",
+        "Target role family (e.g. backend developer, data analyst)",
+        "At least three representative job descriptions"
+      ]
+    },
+    {
+      "id": "faang-preparation",
+      "name": "FAANG Preparation",
+      "category": "interview workflows",
+      "filename": "workflows/faang-preparation.md",
+      "description": "Targeted preparation pipeline for high-tier tech companies (FAANG+), aligning algorithms, system design, and leadership principles prep.",
+      "recommended_agents": [
+        "google-interview-coach",
+        "amazon-interview-coach",
+        "meta-interview-coach",
+        "microsoft-interview-coach",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "prerequisites": [
+        "Data structures & algorithms baseline knowledge",
+        "Target company list",
+        "STAR behavioral stories draft"
+      ]
+    },
+    {
+      "id": "fresher-placement",
+      "name": "Fresher Placement",
+      "category": "career workflows",
+      "filename": "workflows/fresher-placement.md",
+      "description": "Step-by-step guidance for college students and recent grads navigating their first job hunt and campus placement cycles.",
+      "recommended_agents": [
+        "placement-coach",
+        "graduate-career-advisor",
+        "ats-resume-reviewer",
+        "mock-interviewer",
+        "networking-coach"
+      ],
+      "prerequisites": [
+        "Target college graduation timeline",
+        "List of eligible companies visiting campus",
+        "Current draft resume"
+      ]
+    },
+    {
+      "id": "hr-interview-week",
+      "name": "HR Interview Week",
+      "category": "interview workflows",
+      "filename": "workflows/hr-interview-week.md",
+      "description": "Intense behavioral prep week covering common HR screening, culture fit, and soft-skill evaluation challenges.",
+      "recommended_agents": [
+        "hr-interview-coach",
+        "behavioral-interview-specialist",
+        "mock-interviewer",
+        "recruiter-communication-coach"
+      ],
+      "prerequisites": [
+        "Upcoming behavioral or HR screening invitation",
+        "Understanding of target company values",
+        "Resume details aligned with story examples"
+      ]
+    },
+    {
+      "id": "internship-hunt",
+      "name": "Internship Hunt",
+      "category": "job search workflows",
+      "filename": "workflows/internship-hunt.md",
+      "description": "Tactical action plan for finding, applying to, and landing summer/semester internships.",
+      "recommended_agents": [
+        "internship-application-strategist",
+        "networking-coach",
+        "ats-resume-reviewer",
+        "cold-outreach-specialist",
+        "graduate-career-advisor"
+      ],
+      "prerequisites": [
+        "Target internship timeline (e.g. Summer 2027)",
+        "Minimum qualifications checklist",
+        "List of target companies with active internship programs"
+      ]
+    },
+    {
+      "id": "linkedin-growth",
+      "name": "LinkedIn Growth",
+      "category": "networking workflows",
+      "filename": "workflows/linkedin-growth.md",
+      "description": "Personal branding and network expansion strategy to attract recruiters, founders, and industry peers.",
+      "recommended_agents": [
+        "linkedin-growth-advisor",
+        "personal-branding-advisor",
+        "networking-coach",
+        "recruiter-outreach-specialist"
+      ],
+      "prerequisites": [
+        "Created LinkedIn profile",
+        "Professional headshot or clean banner image",
+        "Clearly defined niche or industry focus"
+      ]
+    },
+    {
+      "id": "offer-comparison",
+      "name": "Offer Comparison",
+      "category": "job search workflows",
+      "filename": "workflows/offer-comparison.md",
+      "description": "Analytical approach to evaluating multiple job offers across total compensation, equity, career growth, and work-life balance.",
+      "recommended_agents": [
+        "offer-evaluation-advisor",
+        "salary-benchmark-analyst",
+        "salary-negotiation-coach"
+      ],
+      "prerequisites": [
+        "At least one active written or verbal job offer",
+        "Baseline budget or financial target",
+        "Long-term career progression goals"
+      ]
+    },
+    {
+      "id": "remote-job-hunt",
+      "name": "Remote Job Hunt",
+      "category": "job search workflows",
+      "filename": "workflows/remote-job-hunt.md",
+      "description": "Navigating the specialized remote job market, optimizing for global companies, and establishing remote collaboration proof.",
+      "recommended_agents": [
+        "remote-work-advisor",
+        "job-search-strategist",
+        "cold-outreach-specialist",
+        "linkedin-outreach-specialist"
+      ],
+      "prerequisites": [
+        "Stable internet setup and home office environment",
+        "Proof of async work or independent delivery capability",
+        "Resume updated with remote-relevant skills"
+      ]
+    },
+    {
+      "id": "salary-negotiation",
+      "name": "Salary Negotiation",
+      "category": "job search workflows",
+      "filename": "workflows/salary-negotiation.md",
+      "description": "Tactics and script preparation for maximizing base salary, equity, and benefits during the offer stage.",
+      "recommended_agents": [
+        "salary-negotiation-coach",
+        "salary-benchmark-analyst",
+        "offer-evaluation-advisor",
+        "recruiter-communication-coach"
+      ],
+      "prerequisites": [
+        "Job offer details or expectation stage discussions",
+        "Market salary survey or benchmark data",
+        "List of high-value non-monetary items (e.g. remote days, sign-on bonus)"
+      ]
+    },
+    {
+      "id": "technical-interview-week",
+      "name": "Technical Interview Week",
+      "category": "interview workflows",
+      "filename": "workflows/technical-interview-week.md",
+      "description": "High-intensity technical prep covering DSA drills, system design practice, and clean code principles.",
+      "recommended_agents": [
+        "technical-interview-coach",
+        "system-design-coach",
+        "mock-interviewer",
+        "code-reviewer"
+      ],
+      "prerequisites": [
+        "Upcoming technical interview scheduled within 7-14 days",
+        "Selection of programming language for coding rounds",
+        "List of core system design patterns reviewed"
+      ]
+    }
+  ]
+}
