@@ -1,0 +1,26 @@
+{
+  "id": "full-stack-engineer",
+  "name": "Full Stack Engineer",
+  "description": "Versatile engineer capable of building and maintaining both client-side and server-side components of modern web applications.",
+  "core_skills": [
+    "Frontend Frameworks",
+    "Backend APIs",
+    "Database Design",
+    "Cloud Deployments",
+    "End-to-End Testing"
+  ],
+  "recommended_divisions": [
+    "engineering",
+    "cloud",
+    "career"
+  ],
+  "recommended_agents": [
+    "mern-architect",
+    "code-reviewer",
+    "placement-coach"
+  ],
+  "recommended_workflows": [
+    "fresher-placement",
+    "ats-optimization"
+  ]
+}
