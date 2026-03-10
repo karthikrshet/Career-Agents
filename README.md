@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 [![Divisions](https://img.shields.io/badge/divisions-19-orange.svg)](#browse-by-division)
-[![Agents](https://img.shields.io/badge/agents-135%2F200-blue.svg)](./career-os.json)
+[![Agents](https://img.shields.io/badge/agents-135%2F100-blue.svg)](./career-os.json)
 
 ---
 
@@ -73,7 +73,7 @@ career-agents export bundle faang-bundle json
 - **Total Divisions:** 19 functional specialty areas
 - **Total Career Workflows:** 10 multi-agent operation guides
 - **Total Career Bundles:** 7 pre-packaged bundles
-- **Total Career Paths:** 7 engineering/PM/founder paths
+- **Total Career Paths:** 10 engineering/PM/founder paths
 - **Total Target Companies:** 10 tier-1 track prep databases
 - **Total Integrations:** 10 supported configurations
 - **Total Supported Platforms:** 10 runtimes
@@ -455,6 +455,11 @@ Explore our pre-mapped career growth roadmaps detailing core competencies:
 - **Core Skills Required**: LLMs & Prompt Engineering, RAG & Semantic Search, Python & PyTorch, Agentic Architectures, Model Orchestration
 - **Associated Coaches**: ai-agent-architect, llm-engineer, rag-architect, ai-engineer-career-coach
 
+#### 🎓 [Backend Engineer](./career-paths/backend-engineer.json)
+- **Focus**: Specialized engineer focused on server-side logic, API design, database structures, security, caching, and scalability.
+- **Core Skills Required**: API Design (REST/GraphQL), Database Architecture & Indexing, Distributed Systems, Server-Side Languages (Go, Python, Java, Node.js), Performance Engineering
+- **Associated Coaches**: backend-architect, database-engineer, system-design-coach
+
 #### 🎓 [Cloud Engineer](./career-paths/cloud-engineer.json)
 - **Focus**: Focused on provisioning public cloud infrastructure, maintaining high availability, designing scalable networks, and managing containerized systems.
 - **Core Skills Required**: AWS / GCP / Azure, Terraform & IaC, Kubernetes & Containers, Networking & VPCs, Site Reliability (SRE)
@@ -469,6 +474,16 @@ Explore our pre-mapped career growth roadmaps detailing core competencies:
 - **Focus**: Bridging development and operations to automate software delivery pipelines, manage configuration state, and ensure infrastructure reliability.
 - **Core Skills Required**: CI/CD Pipelines, Configuration Management, Infrastructure as Code, Monitoring & Logging, Build Tools & Packaging
 - **Associated Coaches**: devops-engineer, platform-engineer, site-reliability-engineer
+
+#### 🎓 [Frontend Engineer](./career-paths/frontend-engineer.json)
+- **Focus**: Specialized engineer focused on client-side applications, user interfaces, performance optimization, and modern web frameworks.
+- **Core Skills Required**: JavaScript / TypeScript, React / Next.js, CSS & Styling, Web Vitals & Performance, API Integration
+- **Associated Coaches**: nextjs-performance-engineer, portfolio-reviewer, ats-resume-reviewer
+
+#### 🎓 [Full Stack Engineer](./career-paths/full-stack-engineer.json)
+- **Focus**: Versatile engineer capable of building and maintaining both client-side and server-side components of modern web applications.
+- **Core Skills Required**: Frontend Frameworks, Backend APIs, Database Design, Cloud Deployments, End-to-End Testing
+- **Associated Coaches**: mern-architect, code-reviewer, placement-coach
 
 #### 🎓 [Product Manager](./career-paths/product-manager.json)
 - **Focus**: Connecting technology, business, and design to define product features, scope releases, prioritize roadmaps, and align cross-functional teams.
