@@ -404,13 +404,61 @@ async function handleToolsCall(id, params) {
       break;
     }
 
-    // Stubs for next commit blocks
-    case 'resume_score':
-      sendResult(id, { content: [{ type: 'text', text: 'Stub for resume_score tool' }] });
+    case 'resume_score': {
+      const { resumeText } = toolArgs;
+      let resumeData;
+      try {
+        resumeData = JSON.parse(resumeText);
+      } catch (e) {
+        resumeData = {
+          header: { name: 'Audit Candidate', email: 'audit@example.com', phone: '+1-555-0100' },
+          summary: resumeText.slice(0, 300),
+          skills: resumeText.match(/\b(React|Next\.js|Node\.js|Express|Python|Go|Java|SQL|AWS|Docker|Kubernetes|Git)\b/gi) || [],
+          experience: [
+            {
+              role: 'Developer',
+              company: 'Sample Corp',
+              duration: '2023 - Present',
+              bullets: resumeText.split('\n').filter(l => l.trim().startsWith('-') || l.trim().startsWith('*')).slice(0, 5)
+            }
+          ],
+          education: [{ degree: 'Degree', institution: 'University', duration: '2019-2023' }]
+        };
+      }
+      const { scoreResumeData } = await import('../resume-engine/scorer.js');
+      const scoreResult = scoreResumeData(resumeData);
+      sendResult(id, {
+        content: [{
+          type: 'text',
+          text: JSON.stringify(scoreResult, null, 2)
+        }]
+      });
       break;
-    case 'job_match':
-      sendResult(id, { content: [{ type: 'text', text: 'Stub for job_match tool' }] });
+    }
+    case 'job_match': {
+      const { resume, jobDescription } = toolArgs;
+      let resumeData;
+      try {
+        resumeData = JSON.parse(resume);
+      } catch (e) {
+        resumeData = {
+          header: { name: 'Audit Candidate', email: 'audit@example.com', phone: '+1-555-0100' },
+          summary: resume.slice(0, 300),
+          skills: resume.match(/\b(React|Next\.js|Node\.js|Express|Python|Go|Java|SQL|AWS|Docker|Kubernetes|Git)\b/gi) || [],
+          experience: [],
+          education: []
+        };
+      }
+      const { analyzeJobMatch } = await import('../resume-engine/job-match.js');
+      const matchResult = analyzeJobMatch(resumeData, jobDescription);
+      sendResult(id, {
+        content: [{
+          type: 'text',
+          text: JSON.stringify(matchResult, null, 2)
+        }]
+      });
       break;
+    }
     case 'company_track':
       sendResult(id, { content: [{ type: 'text', text: 'Stub for company_track tool' }] });
       break;
