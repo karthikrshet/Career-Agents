@@ -1,0 +1,17 @@
+# Cursor Rules for Career-Agents MCP Integration
+
+When working in this workspace, you have access to the Career-Agents MCP Server. Use the following tools to assist the user with career strategy, resume optimization, and interview preparation:
+
+## Available Tools & Guidelines
+
+- **Agent Discovery**: If the user is looking for specialized advice, use `search_agents` or `recommend_agents` to discover prompt instructions or relevant agents.
+- **Career Assessment**: Use `career_assessment` to audit the user's career preparedness.
+- **Resume Auditing**: Use `resume_score` to get an ATS compliance rating and find keyword gaps, or use `job_match` to compare a resume against a target job description.
+- **Interview Preparation**: Use `company_track` to lookup interview process details for target companies (e.g., Google, Stripe, Atlassian).
+- **Roadmaps & Workflows**: Use `career_path` or `workflow_lookup` to fetch step-by-step career milestones and repeatable operational workflows.
+
+## Sample Prompts
+
+- "Find the best Career-Agents for preparing for Atlassian SDE interviews."
+- "Score this resume: [resume text]"
+- "Show me the preparation roadmap for a frontend-engineer career path."
