@@ -1,0 +1,13 @@
+# NPM Publication Exclusions
+exports/
+logs/
+.git/
+.github/
+coverage/
+node_modules/
+*.log
+*.tmp
+llms-full.txt
+career-agents-*.tgz
+dir
+type
