@@ -23,7 +23,7 @@ const careerOsPath = path.join(root, 'career-os.json');
 const bundlesDir = path.join(root, 'bundles');
 const companiesDir = path.join(root, 'companies');
 const pathsDir = path.join(root, 'career-paths');
-const intelligenceDir = path.join(root, 'intelligence');
+// const intelligenceDir = path.join(root, 'intelligence');
 
 const launcherRegistryPath = path.join(root, 'launcher', 'launcher-registry.json');
 const launcherConfigPath = path.join(root, 'launcher', 'launcher-config.json');
@@ -84,7 +84,7 @@ function searchCatalog(query) {
     return;
   }
   const normalized = query.toLowerCase();
-  
+
   if (!fs.existsSync(searchIndexPath)) {
     console.log(`${c.yellow}Search index not found. Building indices first...${c.reset}`);
     runUpdate();
@@ -146,7 +146,7 @@ function runAgent(agentId, exportFormat) {
     const content = fs.readFileSync(agentFilePath, 'utf8');
     let outputContent = '';
     let ext = '';
-    
+
     switch (format) {
       case 'markdown':
       case 'md':
@@ -197,7 +197,7 @@ function handleBundles(bundleId) {
     console.error(`${c.red}Bundles directory does not exist.${c.reset}`);
     return;
   }
-  
+
   if (!bundleId) {
     console.log(`${c.bold}=== Available Career Bundles ===${c.reset}\n`);
     const files = fs.readdirSync(bundlesDir).filter(f => f.endsWith('.json'));
@@ -291,7 +291,7 @@ function handlePaths(pathId) {
   console.log(`${c.bold}Recommended Divisions:${c.reset} ${p.recommended_divisions.join(', ')}`);
   console.log(`${c.bold}Associated Agents:${c.reset} ${p.recommended_agents.join(', ')}`);
   console.log(`${c.bold}Recommended Workflows:${c.reset} ${p.recommended_workflows.join(', ')}`);
-  
+
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -353,7 +353,7 @@ function handleCompanies(companyId) {
 function handleLauncher(agentId, platform) {
   const registry = loadJSON(registryPath);
   const agent = registry.agents.find(a => a.id === agentId);
-  
+
   if (!agent) {
     // Check if the argument is a bundle ID
     const bundlePath = path.join(bundlesDir, `${agentId}.json`);
@@ -398,11 +398,11 @@ function launchBundlePrompt(bundleId, platform) {
   const registry = loadJSON(registryPath);
 
   console.log(`\n${c.purple}Compiling prompts for Bundle: ${b.name}...${c.reset}`);
-  
+
   let consolidatedPrompt = `## CONSOLIDATED PROMPT PACK FOR BUNDLE: ${b.name}\n\n`;
   consolidatedPrompt += `Target Path Roles: ${b.career_paths.join(', ')}\n`;
   consolidatedPrompt += `Target Skills: ${b.skills.join(', ')}\n\n`;
-  
+
   for (const aid of b.agents) {
     const agent = registry.agents.find(a => a.id === aid);
     if (agent) {
@@ -422,7 +422,7 @@ function launchBundlePrompt(bundleId, platform) {
   let selectedPlatform = platform || 'claude';
   const launcherReg = loadJSON(launcherRegistryPath);
   const platDetails = launcherReg.platforms[selectedPlatform.toLowerCase()] || launcherReg.platforms.claude;
-  
+
   console.log(`${c.green}Opening target platform portal => ${platDetails.url}${c.reset}`);
   const startCmd = process.platform === 'win32' ? 'start' : process.platform === 'darwin' ? 'open' : 'xdg-open';
   exec(`${startCmd} ${platDetails.url}`);
@@ -492,11 +492,11 @@ function handleInteractiveScoring() {
       calculateScores(answers, questions);
       return;
     }
-    
+
     const curr = questions[idx];
     console.log(`${c.bold}${curr.q}${c.reset}`);
     curr.opts.forEach(opt => console.log(`  ${opt}`));
-    
+
     rl.question(`Select option (1, 2, or 3): `, (ans) => {
       const parsed = parseInt(ans.trim(), 10);
       if (parsed === 1 || parsed === 2 || parsed === 3) {
