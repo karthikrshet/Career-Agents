@@ -65,6 +65,7 @@
     "workflows",
     "templates",
     "scripts",
+    "runtime",
     "launcher",
     "mcp",
     "career-agents-mcp",
