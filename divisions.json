@@ -6,14 +6,14 @@
   "registry_source": "agent-registry.json",
   "stats": {
     "total_divisions": 19,
-    "agents_live": 135,
-    "agents_present": 135
+    "agents_live": 147,
+    "agents_present": 147
   },
   "divisions": [
     {
       "division": "career",
       "description": "Placement strategy, resume engineering, interview coaching, and personal brand growth for students and job seekers.",
-      "count": 26,
+      "count": 33,
       "category": "Career Strategy",
       "emoji": "\ud83d\udcbc",
       "name": "Career",
@@ -369,6 +369,105 @@
             "candidate-first"
           ]
         },
+        {
+  "id": "performance-review-advisor",
+  "file": "career/performance-review-advisor.md",
+  "name": "Performance Review Advisor",
+  "status": "live",
+  "description": "A feedback strategy specialist who coaches professionals to design pre-review evidence campaigns, write compelling self-assessments, and conduct productive review conversations.",
+  "tags": [
+    "performance",
+    "career",
+    "reviews",
+    "promotion",
+    "management"
+  ]
+},
+{
+  "id": "career-risk-assessor",
+  "file": "career/career-risk-assessor.md",
+  "name": "Career Risk Assessor",
+  "status": "live",
+  "description": "A strategic career risk analyst who identifies threats to long-term professional growth, evaluates market vulnerability, and designs mitigation plans to improve career resilience.",
+  "tags": [
+    "career",
+    "risk",
+    "strategy",
+    "planning",
+    "growth"
+  ]
+},
+{
+  "id": "executive-presence-coach",
+  "file": "career/executive-presence-coach.md",
+  "name": "Executive Presence Coach",
+  "status": "live",
+  "description": "A leadership communication specialist who develops executive presence, stakeholder influence, decision-making confidence, and organizational visibility.",
+  "tags": [
+    "leadership",
+    "executive",
+    "communication",
+    "influence",
+    "presence"
+  ]
+},
+{
+  "id": "graduate-school-vs-industry-advisor",
+  "file": "career/graduate-school-vs-industry-advisor.md",
+  "name": "Graduate School vs Industry Advisor",
+  "status": "live",
+  "description": "A career decision strategist who helps professionals evaluate graduate education versus direct industry experience using ROI, opportunity cost, and long-term career outcomes.",
+  "tags": [
+    "education",
+    "career",
+    "masters",
+    "phd",
+    "decision-making"
+  ]
+},
+{
+  "id": "international-job-search-coach",
+  "file": "career/international-job-search-coach.md",
+  "name": "International Job Search Coach",
+  "status": "live",
+  "description": "A global mobility specialist who guides professionals through international hiring markets, relocation planning, visa considerations, and cross-border career transitions.",
+  "tags": [
+    "international",
+    "visa",
+    "relocation",
+    "jobs",
+    "global"
+  ]
+},
+{
+  "id": "promotion-readiness-coach",
+  "file": "career/promotion-readiness-coach.md",
+  "name": "Promotion Readiness Coach",
+  "status": "live",
+  "description": "A career advancement advisor who evaluates promotion readiness, identifies competency gaps, and develops evidence-backed advancement strategies.",
+  "tags": [
+    "promotion",
+    "career-growth",
+    "leadership",
+    "performance",
+    "advancement"
+  ]
+},
+{
+  "id": "relocation-strategy-advisor",
+  "file": "career/relocation-strategy-advisor.md",
+  "name": "Relocation Strategy Advisor",
+  "status": "live",
+  "description": "A relocation planning specialist who helps professionals evaluate geographic moves, compensation adjustments, lifestyle tradeoffs, and long-term career impact.",
+  "tags": [
+    "relocation",
+    "career",
+    "salary",
+    "mobility",
+    "planning"
+  ]
+},
+
         {
           "id": "technical-interview-coach",
           "file": "career/technical-interview-coach.md",
@@ -862,7 +961,7 @@
     {
       "division": "resume",
       "description": "Technical resume writing, achievement optimization, ATS formatting, design portfolios, and executive resumes.",
-      "count": 5,
+      "count": 10,
       "category": "Resume Engineering",
       "emoji": "\ud83d\udcc4",
       "name": "Resume",
@@ -924,6 +1023,77 @@
             "layout-first"
           ]
         },
+        {
+  "id": "achievement-quantification-coach",
+  "file": "resume/achievement-quantification-coach.md",
+  "name": "Achievement Quantification Coach",
+  "status": "live",
+  "description": "A resume impact specialist who transforms vague accomplishments into quantified, metric-driven achievements that demonstrate measurable business value.",
+  "tags": [
+    "resume",
+    "achievements",
+    "metrics",
+    "ats",
+    "impact"
+  ]
+},
+{
+  "id": "executive-resume-advisor",
+  "file": "resume/executive-resume-advisor.md",
+  "name": "Executive Resume Advisor",
+  "status": "live",
+  "description": "A senior-level resume strategist specializing in leadership branding, executive storytelling, board-facing communication, and high-level career positioning.",
+  "tags": [
+    "resume",
+    "executive",
+    "leadership",
+    "branding",
+    "career"
+  ]
+},
+{
+  "id": "resume-bullet-generator",
+  "file": "resume/resume-bullet-generator.md",
+  "name": "Resume Bullet Generator",
+  "status": "live",
+  "description": "A resume writing assistant that converts projects, responsibilities, and achievements into concise, ATS-friendly, action-oriented resume bullets.",
+  "tags": [
+    "resume",
+    "bullets",
+    "ats",
+    "writing",
+    "optimization"
+  ]
+},
+{
+  "id": "resume-gap-strategist",
+  "file": "resume/resume-gap-strategist.md",
+  "name": "Resume Gap Strategist",
+  "status": "live",
+  "description": "A career narrative specialist who helps candidates address employment gaps, academic breaks, career transitions, and non-traditional experiences with confidence.",
+  "tags": [
+    "resume",
+    "career-gap",
+    "transition",
+    "job-search",
+    "storytelling"
+  ]
+},
+{
+  "id": "technical-project-positioning-advisor",
+  "file": "resume/technical-project-positioning-advisor.md",
+  "name": "Technical Project Positioning Advisor",
+  "status": "live",
+  "description": "A portfolio and resume strategist who helps engineers showcase technical projects, open-source contributions, and product impact for maximum recruiter appeal.",
+  "tags": [
+    "resume",
+    "projects",
+    "portfolio",
+    "engineering",
+    "ats"
+  ]
+},
+
         {
           "id": "resume-keyword-optimizer",
           "file": "resume/resume-keyword-optimizer.md",
