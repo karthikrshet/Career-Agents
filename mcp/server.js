@@ -814,7 +814,7 @@ const MCP_RESOURCES = [
     uri: 'career-agents://registry/agents',
     name: 'Agent Registry',
     mimeType: 'application/json',
-    description: 'Dynamic database catalog of all 135 specialized AI career agents.'
+    description: 'Dynamic database catalog of all 146 specialized AI career agents.'
   },
   {
     uri: 'career-agents://registry/paths',
