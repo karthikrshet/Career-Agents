@@ -160,6 +160,27 @@ def generate_search_index(agents, divisions, workflows, bundles, companies, path
         json.dump({"items": items, "version": "1.0.0", "total": len(items)}, f, indent=2)
     print(f"Generated search-index.json with {len(items)} items.")
 
+def validate_agents(agents):
+    """Pre-flight check: fail fast with actionable errors if any agent has a missing division."""
+    errors = []
+    for a in agents:
+        aid = a.get("id", "<missing-id>")
+        div = a.get("division")
+        if div is None:
+            errors.append(f'  ERROR: Agent "{aid}" has a null division assignment.')
+        elif not isinstance(div, str):
+            errors.append(f'  ERROR: Agent "{aid}" has a non-string division value: {repr(div)}')
+        elif div.strip() == "":
+            errors.append(f'  ERROR: Agent "{aid}" has an empty division assignment.')
+    if errors:
+        print("\n[generate-data.py] DIVISION INTEGRITY FAILURES DETECTED:")
+        for e in errors:
+            print(e)
+        print(f"\nTotal failures: {len(errors)}")
+        print("Fix the division field in agent-registry.json for the agents listed above, then re-run.\n")
+        raise SystemExit(1)
+    print(f"Division integrity check passed: all {len(agents)} agents have valid division assignments.")
+
 def generate_knowledge_graph(agents, divisions, workflows, bundles, companies, paths):
     print("Generating expanded knowledge graph...")
     nodes = []
@@ -184,8 +205,11 @@ def generate_knowledge_graph(agents, divisions, workflows, bundles, companies, p
         aid = a.get("id")
         div = a.get("division")
         add_node(aid, a.get("name"), "agent")
-        add_node(div, div.capitalize(), "division")
-        add_edge(aid, div, "belongs_to_division")
+        if div and isinstance(div, str) and div.strip():
+            add_node(div, div.capitalize(), "division")
+            add_edge(aid, div, "belongs_to_division")
+        else:
+            print(f"  WARNING: Agent '{aid}' has invalid division {repr(div)} — skipping division edge.")
         
         # Add skills and skill edges
         for skill in a.get("skills", []):
@@ -238,8 +262,11 @@ def generate_knowledge_graph(agents, divisions, workflows, bundles, companies, p
             add_node(skill_id, skill, "skill")
             add_edge(pid, skill_id, "requires_skill")
         for div in p.get("recommended_divisions", []):
-            add_node(div, div.capitalize(), "division")
-            add_edge(pid, div, "uses_division")
+            if div and isinstance(div, str) and div.strip():
+                add_node(div, div.capitalize(), "division")
+                add_edge(pid, div, "uses_division")
+            else:
+                print(f"  WARNING: Career path '{pid}' has invalid recommended_division {repr(div)} — skipping.")
         for agent in p.get("recommended_agents", []):
             add_edge(pid, agent, "uses_agent")
         for wf in p.get("recommended_workflows", []):
@@ -462,7 +489,7 @@ The Open-Source Career Operating System
 </p>
 
 <p align="center">
-  <strong>🚀 135+ AI Agents</strong> | <strong>📄 20 ATS Templates</strong> | <strong>📁 {num_divs} Divisions</strong> | <strong>⚡ MCP Server</strong> | <strong>💻 Global CLI</strong> | <strong>🎓 Career Paths</strong> | <strong>🏢 Company Tracks</strong>
+  <strong>🚀 {num_agents}+ AI Agents</strong> | <strong>📄 20 ATS Templates</strong> | <strong>📁 {num_divs} Divisions</strong> | <strong>⚡ MCP Server</strong> | <strong>💻 Global CLI</strong> | <strong>🎓 Career Paths</strong> | <strong>🏢 Company Tracks</strong>
 </p>
 
 <p align="center">
@@ -713,6 +740,7 @@ def main():
     
     compile_career_os(agents, divisions_data, workflows_data, bundles, companies, paths, tools_data)
     generate_search_index(agents, divisions_data, workflows_data, bundles, companies, paths)
+    validate_agents(agents)
     generate_knowledge_graph(agents, divisions_data, workflows_data, bundles, companies, paths)
     generate_discoverability_maps(agents, workflows_data, companies, paths)
     generate_llm_indexes(agents, workflows_data)

@@ -5387,7 +5387,7 @@
     {
       "id": "performance-review-advisor",
       "name": "Performance Review Advisor",
-      "division": null,
+      "division": "career",
       "description": "A feedback strategy specialist who coaches professionals to",
       "status": "live",
       "filename": "career/performance-review-advisor.md",
@@ -5404,7 +5404,7 @@
     {
       "id": "career-risk-assessor",
       "name": "Career Risk Assessor",
-      "division": null,
+      "division": "career",
       "description": "A strategic risk analyst who evaluates the stability of a",
       "status": "live",
       "filename": "career/career-risk-assessor.md",
@@ -5421,7 +5421,7 @@
     {
       "id": "executive-presence-coach",
       "name": "Executive Presence Coach",
-      "division": null,
+      "division": "career",
       "description": "A senior leadership communication specialist who helps directors,",
       "status": "live",
       "filename": "career/executive-presence-coach.md",
@@ -5438,7 +5438,7 @@
     {
       "id": "graduate-school-vs-industry-advisor",
       "name": "Graduate School vs. Industry Advisor",
-      "division": null,
+      "division": "career",
       "description": "A decision-science consultant who helps early- and mid-career",
       "status": "live",
       "filename": "career/graduate-school-vs-industry-advisor.md",
@@ -5455,7 +5455,7 @@
     {
       "id": "international-job-search-coach",
       "name": "International Job Search Coach",
-      "division": null,
+      "division": "career",
       "description": "A cross-border career strategist who guides professionals through",
       "status": "live",
       "filename": "career/international-job-search-coach.md",
@@ -5472,7 +5472,7 @@
     {
       "id": "promotion-readiness-coach",
       "name": "Promotion Readiness Coach",
-      "division": null,
+      "division": "career",
       "description": "A leadership development specialist who prepares mid- to senior-",
       "status": "live",
       "filename": "career/promotion-readiness-coach.md",
@@ -5489,7 +5489,7 @@
     {
       "id": "relocation-strategy-advisor",
       "name": "Relocation Strategy Advisor",
-      "division": null,
+      "division": "career",
       "description": "A cross-market logistics and compensation consultant who helps",
       "status": "live",
       "filename": "career/relocation-strategy-advisor.md",
@@ -5506,7 +5506,7 @@
     {
       "id": "achievement-quantification-coach",
       "name": "Achievement Quantification Coach",
-      "division": null,
+      "division": "resume",
       "description": "A data-forensics coach who helps professionals excavate,",
       "status": "live",
       "filename": "resume/achievement-quantification-coach.md",
@@ -5523,7 +5523,7 @@
     {
       "id": "resume-bullet-generator",
       "name": "Resume Bullet Generator",
-      "division": null,
+      "division": "resume",
       "description": "A high-velocity achievement writer who transforms raw job",
       "status": "live",
       "filename": "resume/resume-bullet-generator.md",
@@ -5540,7 +5540,7 @@
     {
       "id": "resume-gap-strategist",
       "name": "Resume Gap Strategist",
-      "division": null,
+      "division": "resume",
       "description": "A candid career narrative advisor who helps professionals",
       "status": "live",
       "filename": "resume/resume-gap-strategist.md",
@@ -5557,7 +5557,7 @@
     {
       "id": "technical-project-positioning-advisor",
       "name": "Technical Project Positioning Advisor",
-      "division": null,
+      "division": "resume",
       "description": "A technical narrative strategist who helps engineers,",
       "status": "live",
       "filename": "resume/technical-project-positioning-advisor.md",
