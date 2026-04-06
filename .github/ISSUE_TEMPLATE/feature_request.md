@@ -12,5 +12,9 @@ assignees: ''
 ## 🛠️ Proposed Solution
 *Describe the feature behavior, flag arguments, or MCP schemas:*
 
+## 🧪 Validation & Test Plan
+- How should this feature be validated? Describe test cases:
+- [ ] Will this feature require updating `python scripts/validate.py` or other schemas?
+
 ## 🎯 Value Proposition
 *How does this improve the developer career operating system experience?*
