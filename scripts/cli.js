@@ -5,8 +5,8 @@ import { spawnSync, exec } from 'child_process';
 import readline from 'readline';
 import { fileURLToPath } from 'url';
 
-import { executeAgent } from '../runtime/executor.js';
-import { recommendProfile } from '../recommendation-engine/recommender.js';
+import { executeAgent } from '../packages/core/executor.js';
+import { recommendProfile } from '../packages/core/recommender.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -886,22 +886,22 @@ Commands:
       if (tFlagIndex !== -1 && args[tFlagIndex + 1]) {
         templateId = args[tFlagIndex + 1];
       }
-      const { runInteractiveBuilder } = await import('../resume-engine/builder.js');
+      const { runInteractiveBuilder } = await import('../packages/resume/builder.js');
       await runInteractiveBuilder(templateId);
       break;
     }
     case 'score': {
-      const { runScorerCLI } = await import('../resume-engine/scorer.js');
+      const { runScorerCLI } = await import('../packages/resume/scorer.js');
       runScorerCLI(args[1]);
       break;
     }
     case 'match': {
-      const { runJobMatchCLI } = await import('../resume-engine/job-match.js');
+      const { runJobMatchCLI } = await import('../packages/resume/job-match.js');
       runJobMatchCLI(args[1], args[2]);
       break;
     }
     case 'faang': {
-      const { runFaangCLI } = await import('../resume-engine/faang.js');
+      const { runFaangCLI } = await import('../packages/resume/faang.js');
       runFaangCLI(args[1], args[2]);
       break;
     }
@@ -912,6 +912,12 @@ Commands:
 
 function printHelp() {
   printBanner();
+  
+  let features = { resumeStudio: true, githubAnalyzer: false, linkedinAnalyzer: false, mockInterview: false, dashboard: false };
+  try {
+    features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+  } catch (e) {}
+
   console.log(`Usage: career-agents <command> [args]
 
 Commands:
@@ -925,12 +931,48 @@ Commands:
   company [company-id]           Inspect target company preparation tracks
   launcher <agent/bundle> [plat] Copy prompts and launch AI browser interface
   export <type> <id> <format>    Consolidate and export bundle/company/path prompt packs
-  use <agent-id> <tool>          Export prompt configuration bundle for target IDE/tool
-  resume <command>               Launch the ATS Resume Studio tools suite
+  use <agent-id> <tool>          Export prompt configuration bundle for target IDE/tool`);
+
+  if (features.resumeStudio) {
+    console.log(`
+  -- AI Resume Studio --
+  review <file> [company]        Analyze resume section completeness and target fit
+  score [file]                   ATS resume score (if file path is provided) or interactive questionnaire
+  improve <file>                 List weak bullets and yield optimized suggestions
+  ats <file>                     Forensic compatibility audit for block flags`);
+  }
+
+  if (features.githubAnalyzer) {
+    console.log(`
+  -- Profile & Fit Analyzers --
+  github <username>              Evaluate technical portfolios, grade READMEs & traction`);
+  }
+
+  if (features.linkedinAnalyzer) {
+    console.log(`  linkedin <file>                Scan tagline keyword signaling and summary storytelling`);
+  }
+
+  if (features.resumeStudio && features.githubAnalyzer) {
+    console.log(`  jobs <file>                    Match profile skills against active company vacancy tracks`);
+  }
+
+  if (features.mockInterview) {
+    console.log(`
+  -- Prep & Interactive Coaching --
+  mock <company> [mode]          Interactive simulation mock loops (Google, Stripe, Amazon)`);
+  }
+
+  if (features.dashboard) {
+    console.log(`  roadmap [company]              Generate 30-60-90 day checklist (if company provided) or projects timeline
+  project <type>                 Generate skeleton structures (ai-engineer, backend, frontend)
+  dashboard                      Render personal progress checklist and analytics dashboard`);
+  }
+
+  console.log(`
+  -- Utilities --
   recommend                      Interactive profile target recommendations
-  score / assess                 Interactive questionnaire compliance score
+  assess                         Interactive questionnaire compliance score
   graph                          Display knowledge graph network dimensions
-  roadmap                        Check project version release roadmap
   diagnose / doctor              Execute health diagnostic verification checks
   update                         Regenerate all statistics and indexing databases
   mcp                            Start the Model Context Protocol (MCP) stdio server
@@ -945,6 +987,30 @@ async function main() {
     printHelp();
     return;
   }
+
+  let features = { resumeStudio: true, githubAnalyzer: false, linkedinAnalyzer: false, mockInterview: false, dashboard: false };
+  try {
+    features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+  } catch (e) {}
+
+  // Load telemetry dynamically
+  let trackEvent = null;
+  try {
+    const telemetryMod = await import('../packages/telemetry/telemetry.js');
+    trackEvent = telemetryMod.trackEvent;
+    if (trackEvent) trackEvent(cmd, { source: 'cli' });
+  } catch (e) {}
+
+  // Load plugins dynamically
+  try {
+    const { loadPlugins } = await import('../packages/plugins/plugin-manager.js');
+    const { commandsList } = await loadPlugins();
+    if (commandsList[cmd]) {
+      if (trackEvent) trackEvent(cmd, { source: 'plugin' });
+      commandsList[cmd].handler(args.slice(1));
+      return;
+    }
+  } catch (e) {}
 
   switch (cmd) {
     case 'mcp':
@@ -997,18 +1063,128 @@ async function main() {
     case 'resume':
       await handleResume(args.slice(1));
       break;
+    
+    // AI Resume Studio Commands
+    case 'review': {
+      if (!features.resumeStudio) {
+        console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m The Resume Studio commands are currently disabled behind a feature flag.\n`);
+        return;
+      }
+      const { runStudioCLI } = await import('../packages/resume/studio.js');
+      await runStudioCLI('review', args[1], args[2]);
+      break;
+    }
+    case 'score': {
+      if (args[1]) {
+        if (!features.resumeStudio) {
+          console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m The Resume Studio commands are currently disabled behind a feature flag.\n`);
+          return;
+        }
+        const { runStudioCLI } = await import('../packages/resume/studio.js');
+        await runStudioCLI('score', args[1]);
+      } else {
+        handleInteractiveScoring();
+      }
+      break;
+    }
+    case 'improve': {
+      if (!features.resumeStudio) {
+        console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m The Resume Studio commands are currently disabled behind a feature flag.\n`);
+        return;
+      }
+      const { runStudioCLI } = await import('../packages/resume/studio.js');
+      await runStudioCLI('improve', args[1]);
+      break;
+    }
+    case 'ats': {
+      if (!features.resumeStudio) {
+        console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m The Resume Studio commands are currently disabled behind a feature flag.\n`);
+        return;
+      }
+      const { runStudioCLI } = await import('../packages/resume/studio.js');
+      await runStudioCLI('ats', args[1]);
+      break;
+    }
+
+    // Profile & Fit Analyzers
+    case 'github': {
+      if (!features.githubAnalyzer) {
+        console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m The GitHub Analyzer command is currently disabled behind a feature flag.\n`);
+        return;
+      }
+      const { runGithubCLI } = await import('../packages/github/analyzer.js');
+      await runGithubCLI(args[1]);
+      break;
+    }
+    case 'linkedin': {
+      if (!features.linkedinAnalyzer) {
+        console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m The LinkedIn Auditor command is currently disabled behind a feature flag.\n`);
+        return;
+      }
+      const { runLinkedinCLI } = await import('../packages/linkedin/analyzer.js');
+      await runLinkedinCLI(args[1]);
+      break;
+    }
+    case 'jobs': {
+      if (!features.resumeStudio || !features.githubAnalyzer) {
+        console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m The Job Match commands are currently disabled behind a feature flag.\n`);
+        return;
+      }
+      const { runJobMatchCLI } = await import('../packages/resume/job-engine.js');
+      await runJobMatchCLI(args[1]);
+      break;
+    }
+
+    // Prep & Interactive Coaching
+    case 'mock': {
+      if (!features.mockInterview) {
+        console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m The Mock Interview Engine is currently disabled behind a feature flag.\n`);
+        return;
+      }
+      const { runMockInterview } = await import('../packages/interview/engine.js');
+      await runMockInterview(args[1] || 'google', args[2] || 'behavioral');
+      break;
+    }
+    case 'roadmap': {
+      if (args[1]) {
+        if (!features.dashboard) {
+          console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m Target Roadmaps are currently disabled behind a feature flag.\n`);
+          return;
+        }
+        const { runRoadmapCLI } = await import('../packages/core/roadmap.js');
+        runRoadmapCLI(args[1]);
+      } else {
+        handleRoadmap();
+      }
+      break;
+    }
+    case 'project': {
+      if (!features.dashboard) {
+        console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m Project Skeletons generator is currently disabled behind a feature flag.\n`);
+        return;
+      }
+      const { runProjectCLI } = await import('../packages/core/project-generator.js');
+      runProjectCLI(args[1]);
+      break;
+    }
+    case 'dashboard': {
+      if (!features.dashboard) {
+        console.log(`\n\x1b[31m[Feature Disabled]\x1b[0m The Career Dashboard is currently disabled behind a feature flag.\n`);
+        return;
+      }
+      const { displayDashboard } = await import('../packages/dashboard/dashboard.js');
+      displayDashboard();
+      break;
+    }
+
     case 'recommend':
       handleRecommendation();
       break;
-    case 'score':
     case 'assess':
       handleInteractiveScoring();
       break;
     case 'graph':
       handleGraph();
-      break;
-    case 'roadmap':
-      handleRoadmap();
       break;
     case 'doctor':
     case 'diagnose':

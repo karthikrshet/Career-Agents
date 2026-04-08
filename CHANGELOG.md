@@ -6,6 +6,21 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ---
 
+## [v2.0.0] — 2026-07-24
+### Added
+- Created a complete **Resume Studio** supporting `review`, `score`, `improve`, and `ats` subcommands for resume JSON, Markdown, Text, and PDF files.
+- Built **GitHub Portfolio Analyzer** to evaluate repository traction, stars, forks, and README quality metrics.
+- Developed **LinkedIn Auditor** to critique tagline keyword density and summaries.
+- Implemented **Interactive Mock Interview Engine** with context-aware technical, behavioral, system design, and coding modes.
+- Added **Job Match Engine** to analyze profile readiness indexes and gap checklist configurations.
+- Integrated **Ecosystem Dashboard** for personal metrics tracking.
+- Created **Company Roadmaps** generating custom 30-60-90 Day learning plans.
+- Established **Project skeleton generator** templates (AI engineering, Frontend, and Backend structures).
+- Introduced **Plugin Architecture** allowing custom command extensions in `plugins/`.
+- Configured anonymous opt-in **Telemetry** logging.
+- Deployed React Next.js-based **Web Dashboard** under `apps/web/`.
+- Exposed new **MCP tools** (`resume_review`, `github_review`, `linkedin_review`, `career_dashboard`, `mock_interview`, `roadmap`).
+
 ## [v1.3.1] — 2026-07-14
 ### Added
 - Created missing company prep tracks for Adobe (`companies/adobe.json`), Oracle (`companies/oracle.json`), and Salesforce (`companies/salesforce.json`).

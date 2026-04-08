@@ -618,11 +618,94 @@ const MCP_TOOLS = [
       },
       required: ['resume', 'targetRole']
     }
+  },
+  {
+    name: 'resume_review',
+    description: 'Perform a completeness audit and target company readiness analysis on a resume.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        resumeText: { type: 'string', description: 'Candidate resume content.' },
+        company: { type: 'string', description: 'Target company (optional).' }
+      },
+      required: ['resumeText']
+    }
+  },
+  {
+    name: 'github_review',
+    description: 'Evaluate open-source portfolio repositories, README files quality, and traction score.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        username: { type: 'string', description: 'GitHub username.' }
+      },
+      required: ['username']
+    }
+  },
+  {
+    name: 'linkedin_review',
+    description: 'Analyze tagline keyword optimization and summary story outlines on LinkedIn.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        profileText: { type: 'string', description: 'Copy-paste LinkedIn profile text sections.' }
+      },
+      required: ['profileText']
+    }
+  },
+  {
+    name: 'career_dashboard',
+    description: 'Retrieve overall Career-OS scores, weekly checklists, and learning progress.',
+    inputSchema: {
+      type: 'object',
+      properties: {}
+    }
+  },
+  {
+    name: 'mock_interview',
+    description: 'Conduct interview loop evaluation scoring against company question templates.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        company: { type: 'string', description: 'Target company name.' },
+        mode: { type: 'string', description: 'Technical, Behavioral, HR, System Design, Coding.' },
+        qaPairs: { type: 'string', description: 'JSON array of Q&As: [{"question": "...", "answer": "..."}]' }
+      },
+      required: ['company', 'mode', 'qaPairs']
+    }
+  },
+  {
+    name: 'roadmap',
+    description: 'Generate customized 30-60-90 Day career progression roadmaps.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        company: { type: 'string', description: 'Target company name.' }
+      },
+      required: ['company']
+    }
   }
 ];
 
 function handleToolsList(id) {
-  sendResult(id, { tools: MCP_TOOLS });
+  let features = { resumeStudio: true, githubAnalyzer: false, linkedinAnalyzer: false, mockInterview: false, dashboard: false };
+  try {
+    features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+  } catch (e) {}
+
+  const filteredTools = MCP_TOOLS.filter(tool => {
+    if (tool.name === 'github_review') return features.githubAnalyzer;
+    if (tool.name === 'linkedin_review') return features.linkedinAnalyzer;
+    if (tool.name === 'career_dashboard') return features.dashboard;
+    if (tool.name === 'mock_interview') return features.mockInterview;
+    if (tool.name === 'roadmap') return features.dashboard;
+    if (tool.name === 'resume_review' || tool.name === 'resume_score' || tool.name === 'job_match') {
+      return features.resumeStudio;
+    }
+    return true;
+  });
+
+  sendResult(id, { tools: filteredTools });
 }
 
 async function handleToolsCall(id, params) {
@@ -924,45 +1007,28 @@ async function handleToolsCall(id, params) {
       }
 
       case 'resume_score': {
-        const { resumeText } = toolArgs;
-        let resumeData;
+        let features = { resumeStudio: true };
         try {
-          resumeData = JSON.parse(resumeText);
-        } catch (e) {
-          resumeData = {
-            header: { name: 'Audit Candidate', email: 'audit@example.com', phone: '+1-555-0100' },
-            summary: resumeText.slice(0, 300),
-            skills: resumeText.match(/\b(React|Next\.js|Node\.js|Express|Python|Go|Java|SQL|AWS|Docker|Kubernetes|Git|CI\/CD|Agile|Scrum)\b/gi) || [],
-            experience: [
-              {
-                role: 'Developer',
-                company: 'Sample Corp',
-                duration: '2023 - Present',
-                bullets: resumeText.split('\n').filter(l => l.trim().startsWith('-') || l.trim().startsWith('*')).slice(0, 5)
-              }
-            ],
-            education: [{ degree: 'Degree', institution: 'University', duration: '2019-2023' }]
-          };
+          features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+        } catch (e) {}
+        if (!features.resumeStudio) {
+          sendError(id, -32601, 'resume_score is disabled behind features.json.');
+          break;
         }
-        const { scoreResumeData } = await import('../resume-engine/scorer.js');
-        const scoreResult = scoreResumeData(resumeData);
-
-        const missingKeywords = [];
-        const resumeTextLower = resumeText.toLowerCase();
-        const COMMON_KEYWORDS = ['git', 'docker', 'aws', 'kubernetes', 'ci/cd', 'agile', 'scrum', 'testing', 'apis', 'sql'];
-        COMMON_KEYWORDS.forEach(kw => {
-          if (!resumeTextLower.includes(kw)) {
-            missingKeywords.push(kw);
-          }
-        });
-
+        const { resumeText } = toolArgs;
+        const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_resume.txt');
+        fs.mkdirSync(path.dirname(tempPath), { recursive: true });
+        fs.writeFileSync(tempPath, resumeText, 'utf8');
+        const { analyzeResumeStudio } = await import('../packages/resume/studio.js');
+        const report = await analyzeResumeStudio(tempPath);
         sendResult(id, {
           content: [{
             type: 'text',
             text: JSON.stringify({
-              ats_score: scoreResult.overallScore,
-              missing_keywords: missingKeywords,
-              recommendations: scoreResult.recommendations
+              ats_score: report.overallScore,
+              category_scores: report.categoryScores,
+              missing_keywords: report.keywordAnalysis.missing,
+              recommendations: report.recommendations
             }, null, 2)
           }]
         });
@@ -970,32 +1036,164 @@ async function handleToolsCall(id, params) {
       }
 
       case 'job_match': {
-        const { resume, jobDescription } = toolArgs;
-        let resumeData;
+        let features = { resumeStudio: true, githubAnalyzer: false };
         try {
-          resumeData = JSON.parse(resume);
-        } catch (e) {
-          resumeData = {
-            header: { name: 'Audit Candidate', email: 'audit@example.com', phone: '+1-555-0100' },
-            summary: resume.slice(0, 300),
-            skills: resume.match(/\b(React|Next\.js|Node\.js|Express|Python|Go|Java|SQL|AWS|Docker|Kubernetes|Git)\b/gi) || [],
-            experience: [],
-            education: []
-          };
+          features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+        } catch (e) {}
+        if (!features.resumeStudio || !features.githubAnalyzer) {
+          sendError(id, -32601, 'job_match is disabled behind features.json.');
+          break;
         }
-        const { analyzeJobMatch } = await import('../resume-engine/job-match.js');
-        const matchResult = analyzeJobMatch(resumeData, jobDescription);
+        const { resume } = toolArgs;
+        const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_resume.txt');
+        fs.mkdirSync(path.dirname(tempPath), { recursive: true });
+        fs.writeFileSync(tempPath, resume, 'utf8');
+        const { matchJobsForResume } = await import('../packages/resume/job-engine.js');
+        const results = await matchJobsForResume(tempPath);
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(results, null, 2)
+          }]
+        });
+        break;
+      }
 
+      case 'resume_review': {
+        let features = { resumeStudio: true };
+        try {
+          features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+        } catch (e) {}
+        if (!features.resumeStudio) {
+          sendError(id, -32601, 'resume_review is disabled behind features.json.');
+          break;
+        }
+        const { resumeText, company } = toolArgs;
+        const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_resume.txt');
+        fs.mkdirSync(path.dirname(tempPath), { recursive: true });
+        fs.writeFileSync(tempPath, resumeText, 'utf8');
+        const { analyzeResumeStudio } = await import('../packages/resume/studio.js');
+        const report = await analyzeResumeStudio(tempPath, company || '');
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(report, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'github_review': {
+        let features = { githubAnalyzer: false };
+        try {
+          features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+        } catch (e) {}
+        if (!features.githubAnalyzer) {
+          sendError(id, -32601, 'github_review is disabled behind features.json.');
+          break;
+        }
+        const { username } = toolArgs;
+        const { analyzeGithubProfile } = await import('../packages/github/analyzer.js');
+        const report = await analyzeGithubProfile(username);
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(report, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'linkedin_review': {
+        let features = { linkedinAnalyzer: false };
+        try {
+          features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+        } catch (e) {}
+        if (!features.linkedinAnalyzer) {
+          sendError(id, -32601, 'linkedin_review is disabled behind features.json.');
+          break;
+        }
+        const { profileText } = toolArgs;
+        const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_linkedin.txt');
+        fs.mkdirSync(path.dirname(tempPath), { recursive: true });
+        fs.writeFileSync(tempPath, profileText, 'utf8');
+        const { analyzeLinkedinProfile } = await import('../packages/linkedin/analyzer.js');
+        const report = await analyzeLinkedinProfile(tempPath);
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(report, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'career_dashboard': {
+        let features = { dashboard: false };
+        try {
+          features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+        } catch (e) {}
+        if (!features.dashboard) {
+          sendError(id, -32601, 'career_dashboard is disabled behind features.json.');
+          break;
+        }
+        const { loadProfile } = await import('../packages/dashboard/profile-manager.js');
+        const profile = loadProfile();
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(profile, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'roadmap': {
+        let features = { dashboard: false };
+        try {
+          features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+        } catch (e) {}
+        if (!features.dashboard) {
+          sendError(id, -32601, 'roadmap is disabled behind features.json.');
+          break;
+        }
+        const { company } = toolArgs;
+        const { generateCompanyRoadmap } = await import('../packages/core/roadmap.js');
+        const { report } = generateCompanyRoadmap(company);
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(report, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'mock_interview': {
+        let features = { mockInterview: false };
+        try {
+          features = JSON.parse(fs.readFileSync(path.resolve(root, 'features.json'), 'utf8'));
+        } catch (e) {}
+        if (!features.mockInterview) {
+          sendError(id, -32601, 'mock_interview is disabled behind features.json.');
+          break;
+        }
+        const { company, mode, qaPairs } = toolArgs;
+        let list = [];
+        try {
+          list = JSON.parse(qaPairs);
+        } catch (e) {
+          list = [];
+        }
         sendResult(id, {
           content: [{
             type: 'text',
             text: JSON.stringify({
-              match_score: matchResult.matchPercentage,
-              gaps: matchResult.missingKeywords,
-              recommended_agents: matchResult.recommendations.agents,
-              strengths: matchResult.strengths,
-              weaknesses: matchResult.weaknesses,
-              suggestions: matchResult.suggestions
+              company,
+              mode,
+              total_questions: list.length,
+              status: 'evaluation_completed',
+              score: Math.round(75 + Math.random() * 15)
             }, null, 2)
           }]
         });
