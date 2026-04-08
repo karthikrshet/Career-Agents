@@ -4,7 +4,7 @@ This guide establishes the coding standards, directory conventions, and testing 
 
 ---
 
-## 📁 Directory Conventions
+## Directory Conventions
 
 All runtime code, utilities, and engines must live in modular packages under the `packages/` directory:
 
@@ -22,7 +22,7 @@ All runtime code, utilities, and engines must live in modular packages under the
 
 ---
 
-## 💻 Coding Standards
+## Coding Standards
 
 1. **ES Modules (ESM)**: Use import/export statements statically. Avoid raw CommonJS `require()`.
 2. **Dynamic Imports**: Load heavy feature engines inside CLI/MCP cases to optimize launch speed.
@@ -31,7 +31,7 @@ All runtime code, utilities, and engines must live in modular packages under the
 
 ---
 
-## 🛡️ Error Handling & Logging
+## Error Handling and Logging
 
 1. **Try-Catch Wrappers**: Wrap file system, parsing, and HTTP requests in safe try-catch handlers.
 2. **Graceful Fallbacks**: If external APIs fail or are rate-limited, yield cached or simulated data cards instead of crashing.
@@ -39,7 +39,7 @@ All runtime code, utilities, and engines must live in modular packages under the
 
 ---
 
-## 🧪 Testing Requirements
+## Testing Requirements
 
 1. **Standalone Test Scripts**: Every package must include dedicated test scripts under the `scripts/` directory.
 2. **Coverage**: Validate boundaries (inputs/outputs), error recovery, and grading calibrations.
