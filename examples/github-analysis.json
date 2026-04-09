@@ -1,0 +1,44 @@
+{
+  "username": "johndoe",
+  "portfolioScore": 88,
+  "metrics": {
+    "starsCount": 108,
+    "forksCount": 24,
+    "reposCount": 18,
+    "followers": 42
+  },
+  "languages": [
+    { "name": "TypeScript", "percent": 65 },
+    { "name": "JavaScript", "percent": 20 },
+    { "name": "Go", "percent": 15 }
+  ],
+  "readmeAnalysis": {
+    "grade": "High Quality",
+    "strengths": [
+      "Prerequisites and local installation steps are explicitly detailed.",
+      "Primary code symbols and packages have clear architecture explanations."
+    ],
+    "weaknesses": [
+      "Automated coverage tests badges are missing from top headers.",
+      "Lacks clear links pointing to the Contributing Guidelines."
+    ]
+  },
+  "pinnedProjects": [
+    {
+      "name": "mcp-gateway-adapter",
+      "stars": 102,
+      "quality": "Excellent",
+      "description": "Stdio protocol gateway for compatible language models."
+    },
+    {
+      "name": "visual-task-board",
+      "stars": 6,
+      "quality": "Good",
+      "description": "Kanban workspace for personal project tracking."
+    }
+  ],
+  "recommendations": [
+    "Add build status and package version badges to the main project README.",
+    "Embed Mermaid flow charts to visually map system execution loops."
+  ]
+}
