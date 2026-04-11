@@ -20,24 +20,34 @@ const PROVIDER_ENDPOINTS: Record<AIProvider, string> = {
   groq:       "https://api.groq.com/openai/v1/chat/completions",
   openai:     "https://api.openai.com/v1/chat/completions",
   anthropic:  "https://api.anthropic.com/v1/messages",
+  claude:     "https://api.anthropic.com/v1/messages",
   gemini:     "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
   openrouter: "https://openrouter.ai/api/v1/chat/completions",
   deepseek:   "https://api.deepseek.com/chat/completions",
   ollama:     "http://localhost:11434/v1/chat/completions",
   lmstudio:   "http://localhost:1234/v1/chat/completions",
   azure:      "", // dynamic via baseUrl
+  together:   "https://api.together.xyz/v1/chat/completions",
+  mistral:    "https://api.mistral.ai/v1/chat/completions",
+  cohere:     "https://api.cohere.ai/v1/chat/completions",
+  xai:        "https://api.x.ai/v1/chat/completions",
 };
 
 export const PROVIDER_MODELS: Record<AIProvider, string[]> = {
-  groq:       ["llama3-70b-8192", "llama3-8b-8192", "mixtral-8x7b-32768", "gemma2-9b-it"],
-  openai:     ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-3.5-turbo"],
+  groq:       ["llama-3.3-70b-versatile", "llama3-70b-8192", "mixtral-8x7b-32768", "gemma2-9b-it"],
+  openai:     ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "o1-preview", "o1-mini"],
   anthropic:  ["claude-3-5-sonnet-20241022", "claude-3-haiku-20240307", "claude-3-opus-20240229"],
-  gemini:     ["gemini-1.5-pro", "gemini-1.5-flash", "gemini-2.0-flash"],
-  openrouter: ["meta-llama/llama-3-70b-instruct", "google/gemma-2-27b-it", "mistralai/mistral-large"],
-  deepseek:   ["deepseek-chat", "deepseek-coder"],
-  ollama:     ["llama3", "mistral", "codellama", "gemma2"],
+  claude:     ["claude-3-5-sonnet-20241022", "claude-3-haiku-20240307", "claude-3-opus-20240229"],
+  gemini:     ["gemini-1.5-pro", "gemini-1.5-flash", "gemini-2.0-flash", "gemini-2.5-pro"],
+  openrouter: ["meta-llama/llama-3.1-405b", "google/gemini-2.0-flash-exp", "anthropic/claude-3.5-sonnet"],
+  deepseek:   ["deepseek-chat", "deepseek-reasoner"],
+  ollama:     ["llama3.3", "mistral", "codellama", "deepseek-coder"],
   lmstudio:   ["local-model"],
-  azure:      ["gpt-4", "gpt-35-turbo"],
+  azure:      ["gpt-4-azure", "gpt-35-turbo-azure"],
+  together:   ["meta-llama/Llama-3-70b-chat-hf", "mistralai/Mixtral-8x7B-Instruct-v0.1"],
+  mistral:    ["mistral-large-latest", "codestral-latest"],
+  cohere:     ["command-r-plus", "command-r"],
+  xai:        ["grok-2", "grok-beta"],
 };
 
 // ─── OpenAI-compatible completion ─────────────────────────────────────────

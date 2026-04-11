@@ -1,8 +1,9 @@
 // Career OS — Type Definitions
 
 export type AIProvider =
-  | "openai" | "anthropic" | "gemini" | "groq"
-  | "openrouter" | "azure" | "deepseek" | "ollama" | "lmstudio";
+  | "openai" | "anthropic" | "claude" | "gemini" | "groq"
+  | "openrouter" | "azure" | "deepseek" | "ollama" | "lmstudio"
+  | "together" | "mistral" | "cohere" | "xai";
 
 export interface AIProviderConfig {
   provider: AIProvider;
