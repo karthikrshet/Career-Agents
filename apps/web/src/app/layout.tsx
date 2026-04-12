@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { Sidebar } from "@/components/layout/sidebar";
+import { JsonLd } from "@/components/seo/json-ld";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,19 +11,81 @@ const inter = Inter({
   display: "swap",
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://career-os.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
   title: {
-    default: "Career OS — Career Intelligence Platform",
+    default: "Career OS — AI Career Intelligence Platform",
     template: "%s | Career OS",
   },
   description:
-    "Career OS is an AI-powered career intelligence platform with 146 specialized agents for resume analysis, GitBranch auditing, interview preparation, and job tracking.",
-  keywords: ["career", "AI agents", "resume", "interview", "job tracker", "career OS"],
+    "Career OS is an AI-powered career intelligence platform with 146 specialized agents for resume ATS analysis, GitHub portfolio auditing, LinkedIn optimization, AI mock interviews, and job tracking.",
+  keywords: [
+    "career OS", "AI career platform", "resume analyzer", "ATS score", "GitHub portfolio",
+    "LinkedIn optimizer", "interview prep", "job tracker", "career copilot", "AI agents",
+    "career intelligence", "software engineer career", "technical interview", "STAR method",
+    "MCP model context protocol", "career coaching AI",
+  ],
+  authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
+  publisher: "Career OS",
+  creator: "Karthik R Shet",
+  category: "Career & Productivity",
+  classification: "Software Application",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: baseUrl,
+  },
   openGraph: {
     type: "website",
-    title: "Career OS",
-    description: "AI-powered Career Intelligence Platform",
+    url: baseUrl,
+    title: "Career OS — AI Career Intelligence Platform",
+    description:
+      "146 specialized AI agents for resume analysis, GitHub auditing, LinkedIn optimization, and interview prep. The open-source career copilot for engineers.",
     siteName: "Career OS",
+    locale: "en_US",
+    images: [
+      {
+        url: `${baseUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "Career OS — AI Career Intelligence Platform",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Career OS — AI Career Intelligence Platform",
+    description:
+      "146 specialized AI agents for resume, GitHub, LinkedIn, and interview coaching. Open source.",
+    images: [`${baseUrl}/og-image.png`],
+    creator: "@karthikrshet",
+  },
+  icons: {
+    icon: [
+      { url: "/icons/icon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icons/icon-32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" }],
+    other: [{ rel: "mask-icon", url: "/icons/icon-512.png" }],
+  },
+  manifest: "/manifest.webmanifest",
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || "",
+  },
+  other: {
+    "msapplication-TileColor": "#070d1f",
+    "theme-color": "#3b82f6",
   },
 };
 
@@ -30,6 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased bg-background text-foreground">
+        <JsonLd />
         <div className="flex h-screen overflow-hidden">
           <Sidebar />
           <main className="flex-1 overflow-hidden flex flex-col min-w-0">
@@ -47,16 +111,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             },
           }}
         />
+        {/* PWA Service Worker Registration */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                  for (var registration of registrations) {
-                    registration.unregister().then(function(success) {
-                      if (success) console.log('SW unregistered successfully');
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .then(function(reg) {
+                      console.log('[Career OS] SW registered:', reg.scope);
+                    })
+                    .catch(function(err) {
+                      console.warn('[Career OS] SW registration failed:', err);
                     });
-                  }
                 });
               }
             `,
@@ -66,5 +133,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
-

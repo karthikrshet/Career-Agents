@@ -186,22 +186,21 @@ export default function InterviewPage() {
       }
 
       const scorecard = {
-        overallScore: parsed.scores.overall,
+        overallScore: parsed.scores.overall ?? 0,
         dimensions: {
-          situation: parsed.scores.situation,
-          task: parsed.scores.task,
-          action: parsed.scores.action,
-          result: parsed.scores.result,
-          ownership: parsed.scores.ownership,
-          leadership: parsed.scores.leadership,
-          communication: parsed.scores.communication,
-          technicalDepth: parsed.scores.technicalDepth,
-          problemSolving: parsed.scores.problemSolving,
-          confidence: parsed.scores.confidence
+          starStructure: Math.round(
+            ((parsed.scores.situation ?? 0) + (parsed.scores.task ?? 0) +
+             (parsed.scores.action ?? 0) + (parsed.scores.result ?? 0)) / 4
+          ),
+          technicalAccuracy: parsed.scores.technicalDepth ?? parsed.scores.technical ?? 0,
+          communication: parsed.scores.communication ?? 0,
+          problemSolving: parsed.scores.problemSolving ?? 0,
+          leadership: parsed.scores.leadership ?? 0,
+          cultureAdd: parsed.scores.confidence ?? parsed.scores.ownership ?? 0,
         },
         strengths: parsed.strengths || [],
         improvements: parsed.improvements || [],
-        aiSummary: parsed.feedback || "Evaluation complete."
+        aiSummary: parsed.feedback || "Evaluation complete.",
       };
 
       updateSessionScorecard(s.id, {
@@ -417,7 +416,7 @@ export default function InterviewPage() {
                       className="w-full px-2 py-1.5 rounded bg-secondary border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary text-foreground"
                       value={settings.aiProvider.provider}
                       onChange={(e) => {
-                        const newProvider = e.target.value;
+                        const newProvider = e.target.value as import("@/types").AIProvider;
                         const defaultModelMap: Record<string, string> = {
                           openai: "gpt-4o",
                           claude: "claude-3-5-sonner",

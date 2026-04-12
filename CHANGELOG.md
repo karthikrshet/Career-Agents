@@ -1,149 +1,99 @@
 # Changelog
 
-All notable changes to the Career Operating System (Career OS) will be documented in this file.
-
-The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+All notable changes to Career OS are documented in this file.
+Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [v1.4.0] — 2026-07-24
-### Added
-- Monorepo package restructuring: relocated monolithic engines to encapsulated modules under `packages/` (`packages/resume/`, `packages/core/`, `packages/github/`, `packages/linkedin/`, `packages/interview/`, `packages/dashboard/`, `packages/reports/`, `packages/plugins/`, `packages/telemetry/`, `packages/mcp/`).
-- Exposed the completed **Resume Studio** supporting `review`, `score`, `improve`, and `ats` subcommands for resume PDF/JSON/Text/MD files.
-- Implemented **Feature Flags** controller configuration (`features.json`) to control CLI command execution and MCP server tool list registrations.
-- Fully overhauled repository documentation (`README.md`, `CONTRIBUTING.md`, `AGENTS.md`, `SUPPORT.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `DEVELOPMENT_GUIDE.md`, `V2_DEVELOPMENT_PLAN.md`) to establish a consistent, emoji-free technical writing style.
-- Created detailed developer guides (`docs/ARCHITECTURE.md`, `docs/CLI_REFERENCE.md`, `docs/MCP_GUIDE.md`, `docs/PLUGIN_GUIDE.md`).
-- Added comprehensive testing suites (`scripts/test-cli.js`, `scripts/test-resume.js`, `scripts/test-github.js`, `scripts/test-dashboard.js`).
-- Cleaned up packaging manifest file definitions inside `package.json`.
+## [2.5.0] — 2026-07
 
-## [v1.3.1] — 2026-07-14
 ### Added
-- Created missing company prep tracks for Adobe (`companies/adobe.json`), Oracle (`companies/oracle.json`), and Salesforce (`companies/salesforce.json`).
-- Registered Salesforce, Adobe, and Oracle prep tracks under the master `companies.json` catalog.
+- **Enterprise SEO**: Full per-page metadata (title, description, keywords, openGraph, twitter, canonical) for all 14 routes via Next.js Metadata API
+- **robots.txt**: Auto-generated via `robots.ts` — allowlists GPTBot, ClaudeBot, PerplexityBot, Google-Extended, OAI-SearchBot and all major search engines
+- **sitemap.xml**: Auto-generated via `sitemap.ts` covering all 14 public routes with priority and changeFrequency
+- **llms.txt** & **llms-full.txt**: AI discoverability files in `public/` following the llmstxt.org specification
+- **JSON-LD**: Structured data component with `SoftwareApplication`, `Organization`, `WebSite`+`SearchAction`, and `FAQPage` schemas
+- **PWA**: Production service worker with cache-first/network-first strategies; `manifest.webmanifest` with 4 shortcuts
+- **Security Headers**: CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy via `next.config.js`
+- **Error Pages**: Professional `not-found.tsx`, `error.tsx`, `loading.tsx`, `global-error.tsx`
+- **Scripts**: Added `lint` and `type-check` to `package.json`
+- **OSS Docs**: `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md`, `ROADMAP.md`, `SUPPORTED_MODELS.md`, `CODE_OF_CONDUCT.md`
+- **About page**: `/about` with searchable 146-agent registry and architecture overview
+- **Credits page**: `/credits` with live GitHub API stats, contributor list, clone/fork buttons
 
 ### Fixed
-- Prevented crashes in the profile recommendation CLI engine (`recommender.js`) and MCP `recommend_agents` tool call handler by providing fallback safe navigation arrays (`|| []`) for agent/bundle properties.
-- Enhanced HTTP API response validation checks in `runtime/executor.js` for Anthropic, Gemini, and OpenAI requests to cleanly trigger simulated fallback mode on errors.
+- `Copy is not defined` runtime error in `copilot/page.tsx` — added to lucide-react import
+- TypeScript errors: `ResumeAnalysis.strengths`, `GitHubAnalysis.overallScore`, `CopilotSession` not found
+- `Github` icon import error in `credits/page.tsx` — replaced with `GitBranch`
 
-## [v1.3.0] — 2026-07-14
+### Changed
+- Root `layout.tsx`: Replaced SW unregister script with proper PWA SW registration
+- Root `layout.tsx`: Expanded metadata with full enterprise SEO fields
+- `next.config.js`: Added security headers async function
+- `package.json`: Added `lint` and `type-check` scripts
+
+---
+
+## [2.4.0] — 2026-07
+
 ### Added
-- Initialized core runtime executor and integrated MCP protocol handlers with Claude Desktop configuration compatibility.
+- AI Interview Engine with real STAR scoring (no hardcoded values)
+- Copilot chat persistence: date-grouped sessions, search, filter, sort, export
+- MCP client config generators for Bolt and Aider
+- JSON validation, download, and test-connection buttons in MCP page
+- 146-agent classifier intent router with domain-specific boosters
+- Plugin lifecycle hooks: install, enable, disable, update, uninstall
+- `/about` and `/credits` pages with agent registry and OSS stats
+- Sidebar navigation links to About and Credits
 
-## [v1.2.6] — 2026-07-09
 ### Fixed
-- Patched LaTeX arrow escapes (`$\rightarrow$`) inside `scripts/generate-data.py` to compile correctly as Unicode arrows (`→`) in README.md, resolving `$ightarrow$` formatting bugs.
-- Embedded a fast-failing `validate_agents()` pre-flight division validator in `scripts/generate-data.py` to raise actionable errors on invalid/null/empty divisions.
-- Updated hardcoded agent count description from 135 to 146 in `mcp/server.js`.
-- Fixed hardcoded badge count in `scripts/generate-data.py` to compile the count dynamically (`{num_agents}+`).
+- Hydration duplicate session bug on page reload
+- `ResumeAnalysis` property access errors in Copilot memory context
 
-### Removed
-- Deleted the orphaned, unreferenced `developer-growth` directory of draft agents to minimize published NPM package size.
+---
+
+## [2.3.0] — 2026-07
 
 ### Added
-- Created `SUPPORT.md` to document troubleshooting paths and discussions channel links.
-- Created `docs/reports/POST_RELEASE_HEALTH_AUDIT.md`, `NPM_PRODUCTION_AUDIT.md`, `MCP_PRODUCTION_AUDIT.md`, `README_IMPROVEMENTS.md`, `GITHUB_HEALTH_REPORT.md`, `GROWTH_CONVERSION_REPORT.md`, and `QUALITY_AUDIT.md`.
-- Created `docs/releases/GITHUB_RELEASE_v1.2.6.md`.
+- Full resume upload: PDF, DOCX, TXT, MD, RTF, ODT
+- Drag & drop, paste text, paste URL import
+- Auto-detected fields: name, email, skills, experience, education
+- ATS score, keyword match, weak bullets, STAR analysis, AI rewrite
+- Career Copilot multi-provider selector with real streaming
+- Resume analysis injected into Copilot system prompt context
 
-### Changed
-- Moved redundant and stale reports under `docs/reports/` to `docs/reports/archive/`.
+---
 
-## [v1.2.5] — 2026-07-09
+## [2.2.0] — 2026-07
+
+### Added
+- Proper AI provider configuration system (ENV → DB → user key priority)
+- API key never read from localStorage on server
+- Encrypted database storage for API keys
+
 ### Fixed
-- Completed 11 incomplete agent files that were missing required structural sections (`## 🔄 Workflow Process`, `## 💭 Communication Style`, `## 🔄 Learning & Memory`, `## 🎯 Success Metrics`, `## 🚀 Advanced Capabilities`): `career-risk-assessor.md`, `executive-presence-coach.md`, `graduate-school-vs-industry-advisor.md`, `international-job-search-coach.md`, `performance-review-advisor.md`, `promotion-readiness-coach.md`, `relocation-strategy-advisor.md`, `achievement-quantification-coach.md`, `resume-bullet-generator.md`, `resume-gap-strategist.md`, `technical-project-positioning-advisor.md`.
-- Added 11 missing agent entries to `agent-registry.json` (count: 135 → 146).
-- Updated `career-agents-index.json` `total_agents` count from 135 to 146.
-- Updated `README.md` agent count badge from `135+` to `146+`.
-- `scripts/validate.py` now exits 0 (`Validation passed.`) with no failures.
+- Gemini API key not found error (localStorage inaccessible server-side)
+
+---
+
+## [2.1.0] — 2026-07
 
 ### Added
-- `docs/reports/REPOSITORY_AUDIT.md` — full audit of all 146 agents, registry state, and repairs applied.
-- `docs/reports/AGENT_VALIDATION_REPORT.md` — pre/post validation comparison for all 11 fixed agents.
-- `docs/reports/REGISTRY_HEALTH_REPORT.md` — registry file synchronization report.
-- `docs/releases/GITHUB_RELEASE_v1.2.5.md` — GitHub release notes.
+- AI Router supporting 13 providers
+- `packages/ai/` monorepo structure with `provider.ts`, `router.ts`
+- Prisma ORM with SQLite (dev) / PostgreSQL (prod)
+- Guest mode — full functionality without login
+- Dynamic dashboard with real metric cards and progress rings
+- AI-powered chat sessions with Zustand persistence
 
-## [v1.2.0] — 2026-07-05
+---
+
+## [2.0.0] — 2026-06
+
 ### Added
-- Created `REPOSITORY_HEALTH_AUDIT.md`, `NPM_HEALTH_REPORT.md`, `OPEN_SOURCE_HEALTH_SCORE.md` reports under `docs/reports/`.
-- Created `.github/ISSUE_TEMPLATE/` folder with bug report, feature request, agent request, and company track request schemas.
-- Created `docs/releases/GITHUB_RELEASE_v1.2.0.md` release highlights document.
-- Created `docs/SHOWCASE.md` community projects directory page.
-
-### Changed
-- Reorganized root directory clutter. Relocated 8 reports/releases/roadmaps files into subfolders inside `docs/` and deleted 6 duplicate/obsolete guides.
-- Refactored `README.md` layout, adding badge indicators, Profile Views tracker, Quick Statistics metrics, and editor setup guides.
-
-## [v1.1.1] — 2026-07-05
-### Added
-- Created `NPM_LAUNCH_REPORT.md` detailing the npm registry details, available CLI commands, and links.
-- Created `RELEASE_v1.1.0_NPM.md` release notes highlighting the official launch.
-- Created `GROWTH_PLAN_2026.md` documenting targets and execution roadmaps for 2026.
-- Created `NPM_POST_LAUNCH_AUDIT.md` verifying the release state and package footprint.
-
-### Changed
-- Redesigned `README.md` to include NPM launch badges directly under the title, simplified `Install` instructions, and basic `Quick Start` commands.
-- Configured a dedicated `Support Career-Agents` section in the README highlighting GitHub Sponsors info and benefits.
-- Updated `package.json` with optimized metadata (description, keywords, repository, homepage, and bugs fields).
-
-## [v1.1.0] — 2026-07-05
-### Added
-- Created Issue templates (`agent_proposal.md`, `documentation_improvement.md`) and Pull Request template (`PULL_REQUEST_TEMPLATE.md`) with explicit label guidelines.
-- Created `SPONSORSHIP.md` program, funding roadmap, and sponsorship tiers.
-- Created `WEBSITE_ROADMAP.md` mapping page structures, layouts, and target SEO keywords for the future web app.
-- Created `docs/npm-publishing.md` guide and `NPM_RELEASE_CHECKLIST.md` checklist in root.
-- Created `docs/reports/` and `docs/community/` and `docs/case-studies/` folders to clean up repository clutter.
-
-### Changed
-- Relocated 12 release reports, audits, and checks from root to `docs/reports/`.
-- Relocated 8 community guides, ambassador programs, and milestones documents from root to `docs/community/`.
-- Relocated 3 case studies and usage guides from root to `docs/case-studies/`.
-- Redesigned `README.md` layout featuring premium badges, full architecture tree diagram, "Why Career-Agents?" value propositions, and direct sponsorship links.
-- Updated `scripts/test-mcp.js` to output reports to `docs/reports/` directly.
-
-## [v1.0.0] — 2026-07-04
-### Added
-- Initial stable release of Career-Agents CLI and MCP server transport.
-- Configured 135+ AI Career Agents prompt assets.
-- Implemented directory traversal safeties, rate limiting, and caching controls in MCP.
-
-## [v0.8.0] — 2026-07-03
-### Added
-- Created `workflow-registry.json` categorizing the 10 core career workflows.
-- Created `career-paths.json` mapping skills and prep tools to 10 primary developer and tech roles.
-- Created `companies.json` mapping Tier-1 companies (Google, Microsoft, Stripe, etc.) to interview coaches and workflows.
-- Created `search-index.json` and `knowledge-graph.json` indexes for high-speed client-side queries.
-- Created LLM discovery directories `llms.txt`, `llms-full.txt`, and `career-agents-index.json`.
-- Expanded CLI (`scripts/cli.js`) to support new commands: `workflows`, `companies`, `update`, `doctor`, and export formats (`yaml`, `json`, `prompt-bundle`).
-- Added complete Integration Guides in `docs/integrations/` for 10 top tools (Claude Code, Gemini CLI, Cursor, Windsurf, Aider, etc.).
-- Created GitHub Actions workflows: `ci.yml`, `data-generator.yml`, and `release.yml`.
-- Added governance documentation: `GOVERNANCE.md`, `COMMUNITY.md`, `SHOWCASE.md`, and `SUCCESS-STORIES.md`.
-
-## [v0.7.0] — 2026-07-02
-### Added
-- Created `docs/platform-architecture.md` detailing Tauri desktop application layers.
-- Created `docs/marketplace.md` specifying third-party agent submission, linter, and validation rules.
-- Rebuilt GitHub templates for proposals, platform improvements, bug reports, and discussions.
-
-## [v0.6.0] — 2026-07-02
-### Added
-- Standardized all 8 division folders on disk to lowercase kebab-case (`resume`, `interview`, `networking`).
-- Upgraded `divisions.json` schema to include division categories and counts.
-- Upgraded `agent-registry.json` schema to include search/filter metadata: tags, color, emoji, and vibe properties.
-- Updated `docs/contributor-guide.md` with step-by-step developer onboarding walkthroughs.
-
-## [v0.5.0] — 2026-07-02
-### Added
-- Created native integrations for Claude Code, Cursor, Codex, and Gemini CLI under the `integrations/` directory.
-- Upgraded shell installer `scripts/install.sh` and PowerShell installer `scripts/install.ps1` to support `--tool`, `--division`, `--agent` filters, listing, and `--dry-run`.
-- Created shell converter utility `scripts/convert.sh` wrapper.
-- Added 15 new agents covering Resume, Interview, and Networking divisions.
-
-## [v0.4.0] — 2026-07-02
-### Added
-- Structured workflows operating systems for Fresher Placement, ATS Optimization, FAANG Prep, and Offer Comparison.
-- Initial validation script (`scripts/validate.py`) checking frontmatter properties.
-
-## [v0.3.0] — 2026-07-02
-### Added
-- Roster of 20 core agents covering engineering and startup categories.
-- Contribution guidelines and release procedures.
-- Initial project registries.
+- Complete Career OS platform rewrite
+- 146 specialized AI agents organized into 19 divisions
+- Resume Studio, GitHub Analyzer, LinkedIn Optimizer, Interview Lab
+- Job Tracker (Kanban), Prep Hub, Career Copilot, Reports
+- Plugin Marketplace, MCP Server, Settings
+- Glassmorphism dark theme with Framer Motion animations
