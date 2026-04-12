@@ -47,6 +47,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             },
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                  for (var registration of registrations) {
+                    registration.unregister().then(function(success) {
+                      if (success) console.log('SW unregistered successfully');
+                    });
+                  }
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

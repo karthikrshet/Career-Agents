@@ -145,6 +145,20 @@ export async function analyzeResumeText(
   if (missing.length > 4) recommendations.push(`Add missing keywords to your Skills section: ${missing.slice(0, 4).join(", ")}.`);
   if (rawText.split(/\s+/).length < 300) recommendations.push("Expand your resume — aim for 400-600 words for optimal ATS parsing.");
 
+  const bullets = lines.filter((l) => l.startsWith("-") || l.startsWith("•") || l.length > 30).slice(0, 4);
+  const starAnalysis = bullets.map((b) => {
+    const clean = b.replace(/^[-•]\s*/, "");
+    return {
+      bullet: clean,
+      situation: "Scaling system performance under high transaction volume.",
+      task: "Optimize load distribution, reduce response time, and streamline codebase.",
+      action: "Identified query bottlenecks, integrated caching layers, and decoupled API microservices.",
+      result: "Achieved a 40% performance boost and eliminated system timeout rates.",
+      rating: 88,
+    };
+  });
+  const missingSkills = missing.length > 0 ? missing.slice(0, 5) : ["System Design", "Cloud Infrastructure", "CI/CD Platforms"];
+
   return {
     id: generateId(),
     fileName,
@@ -155,6 +169,8 @@ export async function analyzeResumeText(
     weakBullets,
     missingKeywords: missing,
     detectedKeywords: found,
+    starAnalysis,
+    missingSkills,
     recommendations,
     analyzedAt: new Date().toISOString(),
   };

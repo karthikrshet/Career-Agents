@@ -57,7 +57,18 @@ export interface ResumeAnalysis {
   detectedKeywords: string[];
   recommendations: string[];
   aiRewrite?: string;
+  starAnalysis?: StarAnalysisItem[];
+  missingSkills?: string[];
   analyzedAt: string;
+}
+
+export interface StarAnalysisItem {
+  bullet: string;
+  situation: string;
+  task: string;
+  action: string;
+  result: string;
+  rating: number;
 }
 
 export interface WeakBullet {

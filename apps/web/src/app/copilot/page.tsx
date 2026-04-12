@@ -23,6 +23,7 @@ import { useStore } from "@/lib/store";
 import { buildCareerContext } from "@/lib/ai";
 import { cn, timeAgo, generateId } from "@/lib/utils";
 import { PROVIDER_MODELS } from "@/lib/ai";
+import type { CopilotSession } from "@/types";
 
 const QUICK_ACTIONS = [
   { label: "Analyze my resume", icon: FileText, prompt: "Review my resume scores and give me the 3 most important improvements I can make right now." },
@@ -72,10 +73,14 @@ function CopilotWorkspace() {
   const renameCopilotSession = useStore((s) => s.renameCopilotSession);
   const updateAIProvider = useStore((s) => s.updateAIProvider);
 
+  const duplicateCopilotSession = useStore((s) => s.duplicateCopilotSession);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const [streamBuffer, setStreamBuffer] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [historyFilter, setHistoryFilter] = useState<"active" | "archived" | "favorites" | "pinned" | "all">("active");
+  const [historySort, setHistorySort] = useState<"newest" | "oldest" | "title">("newest");
+  const [hydrated, setHydrated] = useState(false);
   
   // Custom Provider/Model overrides for workspace
   const [activeProvider, setActiveProvider] = useState(settings.aiProvider.provider);
@@ -91,8 +96,20 @@ function CopilotWorkspace() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
+  // Zustand Hydration Guard
+  useEffect(() => {
+    if (useStore.persist?.hasHydrated()) {
+      setHydrated(true);
+    } else {
+      const unsub = useStore.persist?.onFinishHydration(() => setHydrated(true));
+      return () => unsub?.();
+    }
+  }, []);
+
   // Sync state with URL params
   useEffect(() => {
+    if (!hydrated) return;
+
     if (chatParam) {
       const session = copilotSessions.find((s) => s.id === chatParam);
       if (session) {
@@ -103,7 +120,7 @@ function CopilotWorkspace() {
     } else if (!currentSession) {
       startCopilotSession();
     }
-  }, [chatParam, copilotSessions]);
+  }, [chatParam, copilotSessions, hydrated, currentSession]);
 
   // Sync internal active values on settings changes
   useEffect(() => {
@@ -418,7 +435,33 @@ Recalculated tracker statistics and updated applications metrics.`);
 
     try {
       abortRef.current = new AbortController();
-      const systemContext = buildCareerContext(profile, metrics);
+      const resumeAnalysis = useStore.getState().resumeAnalysis;
+      const GitHubAnalysis = useStore.getState().GitHubAnalysis;
+      const linkedinAnalysis = useStore.getState().linkedinAnalysis;
+      const interviewSessions = useStore.getState().interviewSessions || [];
+      const jobApplications = useStore.getState().jobApplications || [];
+      
+      let memoryContext = `\n\nAdditional Workspace Context:`;
+      if (resumeAnalysis?.atsScore) {
+        memoryContext += `\n- Resume ATS Score: ${resumeAnalysis.atsScore}/100. Keywords: ${resumeAnalysis.detectedKeywords?.slice(0, 3).join(", ")}. Recommendations: ${resumeAnalysis.recommendations?.slice(0, 3).join(", ")}. STAR items: ${resumeAnalysis.starAnalysis?.length || 0}`;
+      }
+      if (GitHubAnalysis?.portfolioScore) {
+        memoryContext += `\n- GitHub Portfolio Score: ${GitHubAnalysis.portfolioScore}/100. Repositories count: ${GitHubAnalysis.publicRepos || 0}. Stars: ${GitHubAnalysis.totalStars || 0}. Forks: ${GitHubAnalysis.totalForks || 0}`;
+      }
+      if (linkedinAnalysis?.overallScore) {
+        memoryContext += `\n- LinkedIn Profile Score: ${linkedinAnalysis.overallScore}/100. Visibility Index: ${linkedinAnalysis.visibilityIndex || "Medium"}. Suggested Skills: ${linkedinAnalysis.suggestedSkills?.slice(0, 3).join(", ")}`;
+      }
+      if (interviewSessions.length > 0) {
+        const lastSession = interviewSessions[interviewSessions.length - 1];
+        if (lastSession.scorecard) {
+          memoryContext += `\n- Last Mock Interview at ${lastSession.company} (${lastSession.mode}) score: ${lastSession.scorecard.overallScore}/100. Strengths identified: ${lastSession.scorecard.strengths?.slice(0, 2).join(", ")}`;
+        }
+      }
+      if (jobApplications.length > 0) {
+        memoryContext += `\n- Active Job Applications: ${jobApplications.map(app => `${app.role} at ${app.company} (${app.status})`).join(", ")}`;
+      }
+      
+      const systemContext = buildCareerContext(profile, metrics) + memoryContext;
 
       // Construct multi-part visual payload if vision images are attached (Issue 6)
       const imageAttachments = attachments.filter((a) => a.type.startsWith("image/") && a.previewUrl);
@@ -463,6 +506,7 @@ Recalculated tracker statistics and updated applications metrics.`);
             GitHubAnalysis: useStore.getState().GitHubAnalysis,
             linkedinAnalysis: useStore.getState().linkedinAnalysis,
             jobApplications: useStore.getState().jobApplications,
+            enabledPlugins: useStore.getState().enabledPlugins || {},
           },
         }),
         signal: abortRef.current.signal,
@@ -512,7 +556,13 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
       setAttachments([]); // clear attachments on submit
     } catch (e: any) {
       if (e.name !== "AbortError") {
-        appendCopilotMessage("assistant", `I encountered a communication issue connecting to **${activeProvider}**: ${e.message}. Please verify your API Key and latency in settings.`);
+        const errorMsg = e.message || "";
+        if (errorMsg.includes("RESOURCE_EXHAUSTED") || errorMsg.includes("limit") || errorMsg.includes("429") || errorMsg.includes("Quota")) {
+          const quotaWarning = `[QUOTA_EXCEEDED] **Gemini has reached its usage limit.**`;
+          appendCopilotMessage("assistant", quotaWarning);
+        } else {
+          appendCopilotMessage("assistant", `I encountered a communication issue connecting to **${activeProvider}**: ${e.message}. Please verify your API Key and latency in settings.`);
+        }
       }
     } finally {
       setIsStreaming(false);
@@ -534,11 +584,74 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
 
   const messages = currentSession?.messages || [];
 
-  // Filter sessions by search query (Issue 12)
-  const filteredSessions = copilotSessions.filter((s) =>
-    s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    s.messages.some((m) => m.content.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  // Export Session as JSON
+  function handleExportSession(session: CopilotSession) {
+    try {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(session, null, 2));
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `chat_${session.id}_${session.title.replace(/\s+/g, "_")}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      toast.success("Chat history exported successfully!");
+    } catch {
+      toast.error("Export failed");
+    }
+  }
+
+  // Filter sessions
+  const filteredSessions = copilotSessions.filter((s) => {
+    const matchesSearch = !searchQuery ||
+      s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.messages.some((m) => m.content.toLowerCase().includes(searchQuery.toLowerCase()));
+      
+    if (!matchesSearch) return false;
+
+    if (historyFilter === "active") return !s.archived;
+    if (historyFilter === "archived") return !!s.archived;
+    if (historyFilter === "favorites") return !!s.favorite;
+    if (historyFilter === "pinned") return !!s.pinned;
+    return true;
+  });
+
+  // Sort sessions
+  const sortedSessions = [...filteredSessions].sort((a, b) => {
+    if (historySort === "newest") return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    if (historySort === "oldest") return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+    if (historySort === "title") return a.title.localeCompare(b.title);
+    return 0;
+  });
+
+  // Group sorted sessions by date
+  function groupChatsByDate(chats: typeof sortedSessions) {
+    const todayGroup: typeof chats = [];
+    const yesterdayGroup: typeof chats = [];
+    const thisWeekGroup: typeof chats = [];
+    const olderGroup: typeof chats = [];
+
+    const now = new Date();
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+    const startOfYesterday = startOfToday - 24 * 60 * 60 * 1000;
+    const startOfThisWeek = startOfToday - 7 * 24 * 60 * 60 * 1000;
+
+    chats.forEach((chat) => {
+      const time = new Date(chat.createdAt).getTime();
+      if (time >= startOfToday) {
+        todayGroup.push(chat);
+      } else if (time >= startOfYesterday) {
+        yesterdayGroup.push(chat);
+      } else if (time >= startOfThisWeek) {
+        thisWeekGroup.push(chat);
+      } else {
+        olderGroup.push(chat);
+      }
+    });
+
+    return { today: todayGroup, yesterday: yesterdayGroup, thisWeek: thisWeekGroup, older: olderGroup };
+  }
+
+  const { today, yesterday, thisWeek, older } = groupChatsByDate(sortedSessions);
 
   return (
     <div {...getRootProps()} className="flex h-full overflow-hidden relative">
@@ -563,14 +676,45 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
         </div>
 
         {/* Search Chats Input (Issue 12) */}
-        <div className="relative">
-          <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search conversations..."
-            className="pl-8 text-xs h-8 bg-secondary/30"
-          />
+        <div className="space-y-2">
+          <div className="relative">
+            <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search conversations..."
+              className="pl-8 text-xs h-8 bg-secondary/30"
+            />
+          </div>
+          {/* Filter and Sort options */}
+          <div className="grid grid-cols-2 gap-1.5 px-1">
+            <div>
+              <label className="text-[8px] text-muted-foreground block font-semibold mb-0.5 uppercase tracking-wider">Filter</label>
+              <select
+                className="w-full bg-secondary/40 border border-border/30 rounded px-1.5 py-0.5 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary text-foreground"
+                value={historyFilter}
+                onChange={(e) => setHistoryFilter(e.target.value as any)}
+              >
+                <option value="active">Active</option>
+                <option value="archived">Archived</option>
+                <option value="favorites">Favorites</option>
+                <option value="pinned">Pinned</option>
+                <option value="all">All</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-[8px] text-muted-foreground block font-semibold mb-0.5 uppercase tracking-wider">Sort</label>
+              <select
+                className="w-full bg-secondary/40 border border-border/30 rounded px-1.5 py-0.5 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary text-foreground"
+                value={historySort}
+                onChange={(e) => setHistorySort(e.target.value as any)}
+              >
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="title">A-Z</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         {/* Sidebar folders */}
@@ -591,7 +735,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
               </button>
             </div>
             {copilotFolders.map((folder) => {
-              const folderChats = filteredSessions.filter((s) => s.folderId === folder.id);
+              const folderChats = sortedSessions.filter((s) => s.folderId === folder.id);
               return (
                 <div key={folder.id} className="space-y-0.5">
                   <div className="flex items-center justify-between px-3 py-1.5 rounded-lg text-xs hover:bg-secondary/40 text-muted-foreground hover:text-foreground cursor-pointer group">
@@ -656,7 +800,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
           {/* Pinned Section */}
           <div className="space-y-1">
             <p className="text-[10px] font-semibold text-muted-foreground/60 uppercase tracking-widest px-3 mb-1.5">Pinned Chats</p>
-            {filteredSessions.filter((s) => s.pinned).map((s) => (
+            {sortedSessions.filter((s) => s.pinned).map((s) => (
               <div
                 key={s.id}
                 onClick={() => router.push(`/copilot?chat=${s.id}`)}
@@ -674,7 +818,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
           {/* Favorites Section */}
           <div className="space-y-1">
             <p className="text-[10px] font-semibold text-muted-foreground/60 uppercase tracking-widest px-3 mb-1.5">Favorites</p>
-            {filteredSessions.filter((s) => s.favorite).map((s) => (
+            {sortedSessions.filter((s) => s.favorite).map((s) => (
               <div
                 key={s.id}
                 onClick={() => router.push(`/copilot?chat=${s.id}`)}
@@ -689,91 +833,128 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
             ))}
           </div>
 
-          {/* Recent Chats Section */}
-          <div className="space-y-1">
-            <p className="text-[10px] font-semibold text-muted-foreground/60 uppercase tracking-widest px-3 mb-1.5">Recent Conversations</p>
-            {filteredSessions.filter(s => !s.folderId).slice(0, 10).map((s) => (
-              <div
-                key={s.id}
-                onClick={() => router.push(`/copilot?chat=${s.id}`)}
-                className={cn(
-                  "px-3 py-2 rounded-lg text-xs cursor-pointer transition-colors relative group",
-                  s.id === currentSession?.id
-                    ? "bg-secondary text-foreground font-semibold"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
-                )}
-              >
-                <p className="truncate pr-8">{s.title}</p>
-                <p className="opacity-60 text-[9px] mt-0.5">{timeAgo(s.createdAt)}</p>
-                
-                {/* Chat item options dropdown/hover actions */}
-                <div className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 flex items-center gap-1.5 transition-opacity">
-                  {/* Pin button */}
-                  <button
-                    onClick={(e) => { e.stopPropagation(); toggleSessionPin(s.id); }}
-                    className={cn("text-muted-foreground hover:text-foreground", s.pinned && "text-amber-400")}
-                    title={s.pinned ? "Unpin chat" : "Pin chat"}
-                  >
-                    <Pin className="w-3 h-3" />
-                  </button>
-                  {/* Favorite button */}
-                  <button
-                    onClick={(e) => { e.stopPropagation(); toggleSessionFavorite(s.id); }}
-                    className={cn("text-muted-foreground hover:text-foreground", s.favorite && "text-sky-400")}
-                    title={s.favorite ? "Unfavorite chat" : "Favorite chat"}
-                  >
-                    <Star className="w-3 h-3" />
-                  </button>
-                  {/* Move to folder dropdown simulation */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (copilotFolders.length === 0) {
-                        toast.info("Create a folder first using '+ Add' above.");
-                        return;
-                      }
-                      const folderNameList = copilotFolders.map((f, i) => `${i + 1}. ${f.name}`).join("\n");
-                      const choice = prompt(`Move this chat to folder index:\n${folderNameList}\nType folder index or leave blank to move outside.`);
-                      if (choice) {
-                        const idx = parseInt(choice) - 1;
-                        if (copilotFolders[idx]) updateSessionFolder(s.id, copilotFolders[idx].id);
-                      }
-                    }}
-                    className="text-muted-foreground hover:text-foreground"
-                    title="Move to Folder"
-                  >
-                    <Folder className="w-3 h-3" />
-                  </button>
-                  {/* Rename Chat */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      const name = prompt("Rename session to:", s.title);
-                      if (name) renameCopilotSession(s.id, name);
-                    }}
-                    className="text-muted-foreground hover:text-sky-400"
-                    title="Rename"
-                  >
-                    <Settings className="w-3 h-3" />
-                  </button>
-                  {/* Delete */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      deleteCopilotSession(s.id);
-                      if (currentSession?.id === s.id) {
-                        startCopilotSession();
-                      }
-                      toast.info("Conversation deleted");
-                    }}
-                    className="text-red-400 hover:text-red-500"
-                    title="Delete Chat"
-                  >
-                    <Trash2 className="w-3 h-3" />
-                  </button>
+          {/* Recent Grouped Chats Section */}
+          <div className="space-y-3 pt-2">
+            {[
+              { label: "Today", items: today.filter((s) => !s.folderId) },
+              { label: "Yesterday", items: yesterday.filter((s) => !s.folderId) },
+              { label: "This Week", items: thisWeek.filter((s) => !s.folderId) },
+              { label: "Older", items: older.filter((s) => !s.folderId) }
+            ].map(({ label, items }) => {
+              if (items.length === 0) return null;
+              return (
+                <div key={label} className="space-y-1">
+                  <p className="text-[10px] font-semibold text-muted-foreground/50 uppercase tracking-wider px-3 mb-1">
+                    {label}
+                  </p>
+                  {items.map((s) => (
+                    <div
+                      key={s.id}
+                      onClick={() => router.push(`/copilot?chat=${s.id}`)}
+                      className={cn(
+                        "px-3 py-2 rounded-lg text-xs cursor-pointer transition-colors relative group",
+                        s.id === currentSession?.id
+                          ? "bg-secondary text-foreground font-semibold"
+                          : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
+                      )}
+                    >
+                      <p className="truncate pr-16">{s.title}</p>
+                      
+                      {/* Chat item options dropdown/hover actions */}
+                      <div className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity z-10">
+                        {/* Pin button */}
+                        <button
+                          onClick={(e) => { e.stopPropagation(); toggleSessionPin(s.id); }}
+                          className={cn("text-muted-foreground hover:text-foreground", s.pinned && "text-amber-400")}
+                          title={s.pinned ? "Unpin chat" : "Pin chat"}
+                        >
+                          <Pin className="w-3 h-3" />
+                        </button>
+                        {/* Favorite button */}
+                        <button
+                          onClick={(e) => { e.stopPropagation(); toggleSessionFavorite(s.id); }}
+                          className={cn("text-muted-foreground hover:text-foreground", s.favorite && "text-sky-400")}
+                          title={s.favorite ? "Unfavorite chat" : "Favorite chat"}
+                        >
+                          <Star className="w-3 h-3" />
+                        </button>
+                        {/* Archive button */}
+                        <button
+                          onClick={(e) => { e.stopPropagation(); toggleSessionArchive(s.id); }}
+                          className={cn("text-muted-foreground hover:text-foreground", s.archived && "text-violet-400")}
+                          title={s.archived ? "Unarchive chat" : "Archive chat"}
+                        >
+                          <Archive className="w-3 h-3" />
+                        </button>
+                        {/* Duplicate button */}
+                        <button
+                          onClick={(e) => { e.stopPropagation(); duplicateCopilotSession(s.id); toast.success("Chat duplicated"); }}
+                          className="text-muted-foreground hover:text-foreground"
+                          title="Duplicate chat"
+                        >
+                          <Copy className="w-3 h-3" />
+                        </button>
+                        {/* Export button */}
+                        <button
+                          onClick={(e) => { e.stopPropagation(); handleExportSession(s); }}
+                          className="text-muted-foreground hover:text-foreground"
+                          title="Export chat history"
+                        >
+                          <Download className="w-3 h-3" />
+                        </button>
+                        {/* Move to folder dropdown simulation */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (copilotFolders.length === 0) {
+                              toast.info("Create a folder first using '+ Add' above.");
+                              return;
+                            }
+                            const folderNameList = copilotFolders.map((f, i) => `${i + 1}. ${f.name}`).join("\n");
+                            const choice = prompt(`Move this chat to folder index:\n${folderNameList}\nType folder index or leave blank to move outside.`);
+                            if (choice) {
+                              const idx = parseInt(choice) - 1;
+                              if (copilotFolders[idx]) updateSessionFolder(s.id, copilotFolders[idx].id);
+                            }
+                          }}
+                          className="text-muted-foreground hover:text-foreground"
+                          title="Move to Folder"
+                        >
+                          <Folder className="w-3 h-3" />
+                        </button>
+                        {/* Rename Chat */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const name = prompt("Rename session to:", s.title);
+                            if (name) renameCopilotSession(s.id, name);
+                          }}
+                          className="text-muted-foreground hover:text-sky-400"
+                          title="Rename"
+                        >
+                          <Settings className="w-3 h-3" />
+                        </button>
+                        {/* Delete */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            deleteCopilotSession(s.id);
+                            if (currentSession?.id === s.id) {
+                              startCopilotSession();
+                            }
+                            toast.info("Conversation deleted");
+                          }}
+                          className="text-red-400 hover:text-red-500"
+                          title="Delete Chat"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -825,20 +1006,59 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                     )}
                     
                     {content && (
-                      <div className={cn(
-                        "rounded-2xl px-5 py-4 text-sm leading-relaxed",
-                        msg.role === "assistant"
-                          ? "bg-card border border-border/60 text-foreground prose prose-sm prose-invert max-w-none shadow-sm"
-                          : "bg-primary/10 border border-primary/20 text-foreground"
-                      )}>
-                        {msg.role === "assistant" ? (
-                          <div className="prose prose-sm prose-invert max-w-none prose-p:my-1.5 prose-li:my-0.5">
-                            <ReactMarkdown>{content}</ReactMarkdown>
+                      content.startsWith("[QUOTA_EXCEEDED]") ? (
+                        <div className="rounded-2xl px-5 py-4 bg-red-500/10 border border-red-500/20 text-foreground space-y-3">
+                          <div className="flex items-center gap-2 text-red-400 font-semibold">
+                            <AlertCircle className="w-5 h-5 shrink-0" />
+                            <span>Gemini Usage Limit Reached</span>
                           </div>
-                        ) : (
-                          <p className="whitespace-pre-line">{content}</p>
-                        )}
-                      </div>
+                          <p className="text-xs text-muted-foreground leading-relaxed">
+                            Gemini has reached its usage limit (RESOURCE_EXHAUSTED). The provider's quota limits have been temporarily exceeded.
+                          </p>
+                          <div className="text-xs space-y-1">
+                            <p className="font-medium">You can:</p>
+                            <ul className="list-disc pl-4 space-y-0.5 text-muted-foreground">
+                              <li>Wait 1 minute for rate limits to refresh automatically</li>
+                              <li>Switch gateway selector to Groq, Claude, or OpenRouter</li>
+                              <li>Upgrade your Gemini API key billing quota</li>
+                            </ul>
+                          </div>
+                          <div className="flex flex-wrap gap-2 pt-2 border-t border-border/20">
+                            <Button size="sm" variant="outline" className="text-[10px] bg-background h-8" onClick={() => {
+                              setActiveProvider("groq");
+                              setActiveModel("llama3-70b-8192");
+                              updateAIProvider({ provider: "groq", model: "llama3-70b-8192" });
+                              toast.info("Switched to Groq (Llama3)");
+                            }}>
+                              Switch to Groq
+                            </Button>
+                            <Button size="sm" variant="outline" className="text-[10px] bg-background h-8" onClick={() => {
+                              const lastUserMsg = [...messages].reverse().find(m => m.role === "user")?.content;
+                              if (lastUserMsg) send(lastUserMsg);
+                            }}>
+                              Retry
+                            </Button>
+                            <a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">
+                              <Button size="sm" variant="ghost" className="h-8 text-[10px]">Learn More</Button>
+                            </a>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className={cn(
+                          "rounded-2xl px-5 py-4 text-sm leading-relaxed",
+                          msg.role === "assistant"
+                            ? "bg-card border border-border/60 text-foreground prose prose-sm prose-invert max-w-none shadow-sm"
+                            : "bg-primary/10 border border-primary/20 text-foreground"
+                        )}>
+                          {msg.role === "assistant" ? (
+                            <div className="prose prose-sm prose-invert max-w-none prose-p:my-1.5 prose-li:my-0.5">
+                              <ReactMarkdown>{content}</ReactMarkdown>
+                            </div>
+                          ) : (
+                            <p className="whitespace-pre-line">{content}</p>
+                          )}
+                        </div>
+                      )
                     )}
 
                     {/* Quality Controls Toolbar on hover (Issue 4) */}
@@ -880,26 +1100,36 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                           )}
 
                           {msg.role === "assistant" && (
-                            <button
-                              onClick={() => {
-                                const idx = messages.findIndex((m) => m.id === msg.id);
-                                const slice = messages.slice(0, idx);
-                                const lastUserMsg = [...slice].reverse().find(m => m.role === "user")?.content;
-                                if (lastUserMsg) {
-                                  useStore.setState({
-                                    currentCopilotSession: {
-                                      ...currentSession,
-                                      messages: slice,
-                                    },
-                                  });
-                                  send(lastUserMsg, slice);
-                                }
-                              }}
-                              className="hover:text-foreground transition-colors"
-                              title="Regenerate this response"
-                            >
-                              Regenerate / Retry
-                            </button>
+                            <>
+                              <button
+                                onClick={() => {
+                                  const idx = messages.findIndex((m) => m.id === msg.id);
+                                  const slice = messages.slice(0, idx);
+                                  const lastUserMsg = [...slice].reverse().find(m => m.role === "user")?.content;
+                                  if (lastUserMsg) {
+                                    useStore.setState({
+                                      currentCopilotSession: {
+                                        ...currentSession,
+                                        messages: slice,
+                                      },
+                                    });
+                                    send(lastUserMsg, slice);
+                                  }
+                                }}
+                                className="hover:text-foreground transition-colors"
+                                title="Regenerate this response"
+                              >
+                                Regenerate
+                              </button>
+                              <span className="opacity-40">·</span>
+                              <button
+                                onClick={() => send("Continue writing", messages)}
+                                className="hover:text-foreground transition-colors"
+                                title="Continue writing response"
+                              >
+                                Continue
+                              </button>
+                            </>
                           )}
 
                           <button
@@ -1066,54 +1296,58 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
         <div className="p-4 border-t border-border/40 bg-card/20 backdrop-blur-md">
           <div className="flex flex-col gap-3 max-w-4xl mx-auto">
             {/* Input Row */}
-            <div className="flex gap-2 relative">
+            <div className="flex items-center gap-2">
+              {/* Attachment Clip button [ + ] */}
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                onClick={() => {
+                  const el = document.querySelector("input[type=file]") as HTMLInputElement;
+                  el?.click();
+                }}
+                className="h-11 w-11 shrink-0 bg-card/65 border-border/80 text-muted-foreground hover:text-foreground"
+                title="Attach workspace documents (PDF/ZIP/Spreadsheet)"
+              >
+                <Plus className="w-5 h-5" />
+              </Button>
+
+              {/* Message Input Box */}
               <Input
                 placeholder="Message Career Copilot workspace, upload code repositories, drag in resume sheets..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && send(input)}
                 disabled={isStreaming}
-                className="flex-1 text-sm h-11 bg-card/65 border-border/80 focus:border-primary pr-28"
+                className="flex-1 text-sm h-11 bg-card/65 border-border/80 focus:border-primary px-4"
               />
 
-              <div className="absolute right-2 top-1.5 flex items-center gap-1.5">
-                {/* Voice microphone push-to-talk */}
-                <button
-                  type="button"
-                  onClick={toggleListening}
-                  className={cn(
-                    "p-2 rounded-lg hover:bg-secondary transition-all shrink-0 relative",
-                    isListening ? "text-red-400 bg-red-500/10 hover:bg-red-500/20" : "text-muted-foreground hover:text-foreground"
-                  )}
-                  title="Speech transcription push-to-talk (Ctrl+M)"
-                >
-                  <Mic className="w-4.5 h-4.5" />
-                  {isListening && <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-red-400 animate-ping" />}
-                </button>
+              {/* Microphone Speech button [ 🎤 ] */}
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                onClick={toggleListening}
+                className={cn(
+                  "h-11 w-11 shrink-0 bg-card/65 border-border/80 relative",
+                  isListening ? "text-red-400 bg-red-500/10 hover:bg-red-500/20" : "text-muted-foreground hover:text-foreground"
+                )}
+                title="Speech transcription push-to-talk (Ctrl+M)"
+              >
+                <Mic className="w-4.5 h-4.5" />
+                {isListening && <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-400 animate-ping" />}
+              </Button>
 
-                {/* File Upload trigger */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    const el = document.querySelector("input[type=file]") as HTMLInputElement;
-                    el?.click();
-                  }}
-                  className="p-2 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition-all shrink-0"
-                  title="Attach workspace documents (PDF/ZIP/Spreadsheet)"
-                >
-                  <Paperclip className="w-4.5 h-4.5" />
-                </button>
-              </div>
-
-              {/* Submit controller / Stop generating (Issue 4) */}
+              {/* Submit / Stop generating button [ ↑ ] */}
               <Button
                 onClick={() => isStreaming ? abortRef.current?.abort() : send(input)}
                 disabled={!input.trim() && attachments.length === 0 && !isStreaming}
                 variant={isStreaming ? "destructive" : "default"}
-                className="h-11 px-4"
+                size="icon"
+                className="h-11 w-11 shrink-0"
               >
                 {isStreaming ? (
-                  <span className="w-3.5 h-3.5 rounded-sm bg-white" />
+                  <span className="w-3 h-3 rounded-sm bg-white" />
                 ) : (
                   <Send className="w-4 h-4" />
                 )}

@@ -11,20 +11,56 @@ Format: {"questions": [{"id": "q1", "text": "...", "type": "...", "followUp": ".
 
 const SYSTEM_PROMPT_EVALUATE = `You are an expert interview coach evaluating candidate answers using the STAR framework.
 Evaluate the provided interview answers and return ONLY valid JSON.
-Format: {"scores": {"situation": N, "task": N, "action": N, "result": N, "communication": N, "overall": N}, "feedback": "...", "strengths": ["..."], "improvements": ["..."]}
-Where N is a number 0-100.`;
+Never include comments, explanations, or markdown blocks (e.g. do not wrap in \`\`\`json).
+
+Evaluate these dimensions:
+1. situation (out of 10)
+2. task (out of 10)
+3. action (out of 10)
+4. result (out of 10)
+5. ownership (out of 10)
+6. leadership (out of 10)
+7. communication (out of 10)
+8. technicalDepth (out of 10)
+9. problemSolving (out of 10)
+10. confidence (out of 10)
+11. overall (overall score out of 100)
+
+If user answers are extremely short, placeholder, or insubstantial (e.g., "Hi", "Hello", "Thanks", "Ok", "I don't know"), evaluate them strictly and award very low ratings (such as 0 or 1 out of 10, and overall less than 15 out of 100). Do not fabricate high scores for empty answers.
+
+Format:
+{
+  "scores": {
+    "situation": N,
+    "task": N,
+    "action": N,
+    "result": N,
+    "ownership": N,
+    "leadership": N,
+    "communication": N,
+    "technicalDepth": N,
+    "problemSolving": N,
+    "confidence": N,
+    "overall": M
+  },
+  "feedback": "...",
+  "strengths": ["..."],
+  "improvements": ["..."]
+}`;
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { action, company, role, mode, difficulty, responses, aiConfig } = body;
 
-    if (!aiConfig?.apiKey && !["ollama", "lmstudio"].includes(aiConfig?.provider)) {
-      // Return sample questions when no API key is configured
-      return NextResponse.json(generateSampleQuestions(mode, company));
-    }
+    const provider = aiConfig?.provider || "gemini";
+    const apiKey = aiConfig?.apiKey || process.env[`${provider.toUpperCase()}_API_KEY` || ""];
+    const hasKey = !!apiKey || ["ollama", "lmstudio"].includes(provider);
 
     if (action === "generate") {
+      if (!hasKey) {
+        return NextResponse.json(generateSampleQuestions(mode, company));
+      }
       return await generateQuestions({ company, role, mode, difficulty, aiConfig });
     } else if (action === "evaluate") {
       return await evaluateAnswers({ responses, company, mode, aiConfig });
@@ -40,24 +76,26 @@ async function generateQuestions({ company, role, mode, difficulty, aiConfig }: 
   const userPrompt = `Generate ${difficulty} ${mode} interview questions for a ${role || "Software Engineer"} position at ${company || "a top tech company"}.
 Make them realistic and specific to the company culture and role.`;
 
-  const raw = await generate({
-    messages: [
-      { role: "system", content: SYSTEM_PROMPT_GENERATE },
-      { role: "user", content: userPrompt },
-    ],
-    config: {
-      ...aiConfig,
-      streaming: false,
-    },
-  });
-
   try {
-    // Strip markdown formatting if the model wrapped JSON in ```json ... ```
+    const provider = aiConfig?.provider || "gemini";
+    const apiKey = aiConfig?.apiKey || process.env[`${provider.toUpperCase()}_API_KEY` || ""];
+
+    const raw = await generate({
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT_GENERATE },
+        { role: "user", content: userPrompt },
+      ],
+      config: {
+        ...aiConfig,
+        apiKey,
+        streaming: false,
+      },
+    });
+
     const cleanJSON = raw.replace(/```json|```/g, "").trim();
     const parsed = JSON.parse(cleanJSON);
     return NextResponse.json(parsed);
   } catch {
-    // Fallback to sample questions if AI response isn't valid JSON
     return NextResponse.json(generateSampleQuestions(mode, company));
   }
 }
@@ -69,29 +107,40 @@ async function evaluateAnswers({ responses, company, mode, aiConfig }: any) {
 
   const userPrompt = `Evaluate these ${mode} interview answers for ${company || "a top tech company"}:\n\n${answersText}`;
 
-  const raw = await generate({
-    messages: [
-      { role: "system", content: SYSTEM_PROMPT_EVALUATE },
-      { role: "user", content: userPrompt },
-    ],
-    config: {
-      ...aiConfig,
-      streaming: false,
-    },
-  });
-
   try {
+    const provider = aiConfig?.provider || "gemini";
+    const apiKey = aiConfig?.apiKey || process.env[`${provider.toUpperCase()}_API_KEY` || ""];
+
+    if (!apiKey && !["ollama", "lmstudio"].includes(provider)) {
+      throw new Error("API key not configured");
+    }
+
+    const raw = await generate({
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT_EVALUATE },
+        { role: "user", content: userPrompt },
+      ],
+      config: {
+        ...aiConfig,
+        apiKey,
+        streaming: false,
+      },
+    });
+
     const cleanJSON = raw.replace(/```json|```/g, "").trim();
     const parsed = JSON.parse(cleanJSON);
+    
+    if (!parsed || !parsed.scores || typeof parsed.scores.overall !== "number") {
+      throw new Error("Invalid format received from model");
+    }
+    
     return NextResponse.json(parsed);
-  } catch {
-    // Fallback scorecard
+  } catch (error: any) {
     return NextResponse.json({
-      scores: { situation: 70, task: 72, action: 75, result: 68, communication: 74, overall: 72 },
-      feedback: "Good overall structure. Focus on quantifying your results with specific metrics.",
-      strengths: ["Clear communication", "Relevant experience highlighted"],
-      improvements: ["Add more quantitative results", "Use the STAR format more explicitly"],
-    });
+      success: false,
+      error: "Unable to evaluate because AI provider is unavailable.",
+      actions: ["retry", "switch_provider", "save_draft"]
+    }, { status: 503 });
   }
 }
 

@@ -28,6 +28,40 @@ export async function POST(req: NextRequest) {
       } catch (err: any) {
         throw new Error(`PDF Parsing failed: ${err.message}`);
       }
+    } else if (ext === "docx") {
+      try {
+        const zip = await JSZip.loadAsync(buffer as any);
+        const docXml = await zip.file("word/document.xml")?.async("text");
+        text = docXml ? docXml.replace(/<[^>]+>/g, " ").trim() : "";
+        data = { type: "docx", textLength: text.length };
+      } catch (err: any) {
+        throw new Error(`DOCX Parsing failed: ${err.message}`);
+      }
+    } else if (ext === "odt") {
+      try {
+        const zip = await JSZip.loadAsync(buffer as any);
+        const contentXml = await zip.file("content.xml")?.async("text");
+        text = contentXml ? contentXml.replace(/<[^>]+>/g, " ").trim() : "";
+        data = { type: "odt", textLength: text.length };
+      } catch (err: any) {
+        throw new Error(`ODT Parsing failed: ${err.message}`);
+      }
+    } else if (ext === "rtf") {
+      try {
+        const rawRtf = buffer.toString("utf-8");
+        text = rawRtf.replace(/\\([a-z]{1,32})(-?\d+)? ?/g, "").replace(/\{[^}]+\}/g, "").trim();
+        data = { type: "rtf", textLength: text.length };
+      } catch (err: any) {
+        throw new Error(`RTF Parsing failed: ${err.message}`);
+      }
+    } else if (ext === "doc") {
+      try {
+        // Strip non-printable ASCII characters for basic .doc extraction
+        text = buffer.toString("binary").replace(/[^\x20-\x7E\s]/g, " ").replace(/\s+/g, " ").trim();
+        data = { type: "doc", textLength: text.length };
+      } catch (err: any) {
+        throw new Error(`DOC Parsing failed: ${err.message}`);
+      }
     } else if (ext === "xlsx" || ext === "xls") {
       try {
         const workbook = new ExcelJS.Workbook();
