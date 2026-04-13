@@ -1,89 +1,212 @@
 # Contributing to Career OS
 
-Thank you for your interest in contributing! Career OS is an open source AI career intelligence platform and we welcome contributions of all kinds.
+Thank you for considering a contribution to Career OS! We welcome contributions of all kinds.
 
-## Quick Start
+---
+
+## Ways to Contribute
+
+| Type | Effort | Requirements |
+|---|---|---|
+| ⭐ **Star the repo** | 5 seconds | None |
+| 🐛 **Report a bug** | 5 minutes | GitHub account |
+| 📝 **Add an agent** | 30 minutes | Markdown, domain knowledge |
+| 📖 **Improve docs** | 1-2 hours | Writing skills |
+| 🔧 **Fix a bug** | 2-4 hours | TypeScript, Next.js |
+| ✨ **Add a feature** | varies | Architecture discussion first |
+
+---
+
+## Before You Start
+
+1. **Check existing issues** — your idea may already be discussed
+2. **Open a discussion** for major features before coding — saves time if the direction changes
+3. **Read the architecture** — see [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) for system design
+
+---
+
+## Development Setup
 
 ```bash
-git clone https://github.com/karthikrshet/Career-Agents.git
-cd Career-Agents
-python scripts/validate.py    # verify workspace is clean
-python scripts/generate-data.py  # compile indexes
+git clone https://github.com/<your-fork>/Career-Agents.git
+cd Career-Agents/apps/web
+npm install
+cp .env.example .env
+# Edit .env with NEXTAUTH_SECRET + NEXTAUTH_URL
+npm run dev
 ```
 
-## Pre-Development Checklist
+See [docs/DEVELOPMENT.md](./docs/DEVELOPMENT.md) for the full developer guide.
 
-Before making **any** changes:
+---
 
-1. Run `python scripts/validate.py` — must exit 0
-2. Run `python scripts/generate-data.py` — must succeed
-3. Read `agent-registry.json`, `divisions.json`, and `AGENTS.md`
-4. Check for duplicate IDs before adding new agents
+## Adding an Agent (Quickest Contribution)
 
-## Types of Contributions
+An agent is a Markdown file with YAML frontmatter and a system prompt. No coding required.
 
-### 🤖 Adding a New Agent
+### Step 1 — Create the File
 
-1. Create a markdown file in the appropriate division directory (minimum 300 words)
-2. Add required frontmatter (see existing agents for format)
-3. Add entry to `agent-registry.json` (unique ID)
-4. Add agent ID to the correct division in `divisions.json`
-5. Run `python scripts/generate-data.py`
-6. Run `python scripts/validate.py` — must pass
+Choose a division that matches your agent. All divisions:
+`career`, `engineering`, `interview`, `resume`, `networking`, `projects`, `startup`, `company-interviews`, `ai-engineering`, `cloud`, `cybersecurity`, `open-source`, `data-engineering`, `devrel`, `gtm`, `faang`, `job-automation`, `ai-business`, `freelancing`
 
-**Never create duplicate IDs. Never leave orphaned agents.**
-
-### 🐛 Bug Fixes
-
-1. Fork the repository
-2. Create a branch: `git checkout -b fix/your-bug-description`
-3. Fix the bug, add tests if applicable
-4. Run validation pipeline
-5. Submit a PR with clear description of the fix
-
-### ✨ New Features
-
-1. Open an issue first to discuss the feature
-2. Wait for maintainer approval before implementing
-3. Follow existing code style and architecture
-4. Ensure `npm run build` passes with zero errors
-
-### 📝 Documentation
-
-- README is auto-generated — edit `scripts/generate-data.py` template instead
-- Other docs in `/` root are editable directly
-
-## Code Style
-
-- TypeScript strict mode
-- Functional React components with hooks
-- Zustand for state management
-- Tailwind CSS for styling (existing classes only, no ad-hoc)
-- No hardcoded API keys or secrets
-
-## Commit Convention
-
-```
-feat: add new resume scoring metric
-fix: correct agent classifier threshold
-docs: update MCP configuration guide
-chore: regenerate workspace indexes
+```bash
+touch career/my-agent-name.md
 ```
 
-## Pull Request Checklist
+### Step 2 — Write Frontmatter + Content
 
-- [ ] `python scripts/validate.py` passes (exit 0)
-- [ ] `python scripts/generate-data.py` succeeds
-- [ ] `npm run type-check` passes (zero TS errors)
-- [ ] `npm run build` succeeds (exit 0)
-- [ ] No duplicate agent IDs created
-- [ ] No generated files edited directly
+```yaml
+---
+id: my-agent-name              # unique kebab-case ID
+name: My Agent Name            # human-readable name
+division: career               # matching division
+description: "One sentence description of this agent's specialty."
+status: live
+tags:
+  - career
+  - example
+color: "#2A6F97"
+emoji: 🎯
+vibe: "descriptive, actionable, specific"
+difficulty: Medium             # Easy | Medium | Hard
+experience_level: Mid          # Entry | Mid | Senior | Executive
+career_stage: Growth           # Entry | Growth | Transition | Leadership
+industry: All                  # All or specific industry
+skills:
+  - Career Strategy
+  - Skill 2
+companies: []
+related_agents:
+  - ats-resume-reviewer
+related_workflows: []
+popularity_score: 50
+---
 
-## Getting Help
+# My Agent Name
 
-- Open a [GitHub Issue](https://github.com/karthikrshet/Career-Agents/issues)
-- Start a [Discussion](https://github.com/karthikrshet/Career-Agents/discussions)
+[Minimum 300 words of actual agent content]
 
-## License
+## Role
+...
 
-By contributing, you agree that your contributions will be licensed under the [MIT License](./LICENSE).
+## Approach
+...
+
+## Key Capabilities
+...
+
+## When to Use This Agent
+...
+
+## Output Format
+...
+```
+
+### Step 3 — Register the Agent
+
+Add to **both** `agent-registry.json` and `divisions.json`.
+
+See [docs/DEVELOPMENT.md#adding-a-new-agent](./docs/DEVELOPMENT.md#adding-a-new-agent) for the exact format.
+
+### Step 4 — Validate and Regenerate
+
+```bash
+python scripts/validate.py      # must pass
+python scripts/generate-data.py # regenerate all files
+```
+
+---
+
+## Code Contributions
+
+### Branch Naming
+
+```
+feature/<description>    # New features
+fix/<description>        # Bug fixes
+docs/<description>       # Documentation
+agent/<agent-id>         # New agents
+refactor/<description>   # Refactors
+```
+
+### Commit Messages
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+feat: add voice interview mode
+fix: resolve copilot session hydration bug on reload
+docs: add MCP configuration guide for VS Code
+agent: add Golang Engineer Coach to engineering division
+chore: upgrade framer-motion to v12
+```
+
+### Coding Standards
+
+- TypeScript everywhere — no JavaScript in `apps/web/src/`
+- No `any` types — define proper interfaces in `src/types/`
+- Tailwind CSS for styling — no inline styles
+- Use the `cn()` utility for conditional classnames
+- Run `npm run type-check` and `npm run lint` before pushing
+
+### Pull Request Process
+
+1. Fork the repo, create a branch from `main`
+2. Make changes and ensure:
+   - `npm run type-check` passes
+   - `npm run lint` passes
+   - If agents changed: `python scripts/validate.py` passes
+3. Write a clear PR description (what + why)
+4. Link related issues with `Fixes #123`
+5. Request review — maintainers respond within 3-5 business days
+
+---
+
+## Validation Requirements
+
+Before any PR that modifies agents or registry files:
+
+```bash
+# Both must exit with status 0
+python scripts/validate.py
+python scripts/generate-data.py
+```
+
+The validator checks:
+- All agent markdown files are ≥ 300 words
+- All required frontmatter fields are present
+- No duplicate agent IDs
+- No orphaned agents (in registry but not divisions, or vice versa)
+- No broken relative links in agent files
+
+---
+
+## Generated Files — Do Not Edit Directly
+
+These files are auto-generated by `scripts/generate-data.py`. Never edit them manually:
+
+- `career-os.json`
+- `search-index.json`
+- `knowledge-graph.json`
+- `agent-map.json`
+- `workflow-map.json`
+- `company-map.json`
+- `career-path-map.json`
+- `llms.txt`
+- `llms-full.txt`
+- `career-agents-index.json`
+- `README.md` ← (root README is a special exception — PR changes directly to it are fine)
+
+---
+
+## Code of Conduct
+
+All contributors must adhere to our [Code of Conduct](./CODE_OF_CONDUCT.md). We are committed to a welcoming, inclusive community.
+
+---
+
+## Questions?
+
+- [GitHub Discussions](https://github.com/karthikrshet/Career-Agents/discussions) — feature ideas, questions
+- [GitHub Issues](https://github.com/karthikrshet/Career-Agents/issues) — bug reports
+- [SUPPORT.md](./SUPPORT.md) — how to get help
