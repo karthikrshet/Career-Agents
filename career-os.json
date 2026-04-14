@@ -7,7 +7,7 @@
     "agent_count": 146,
     "division_count": 19,
     "workflow_count": 10,
-    "company_count": 13,
+    "company_count": 15,
     "career_path_count": 10,
     "bundle_count": 7,
     "integration_count": 18
@@ -8287,6 +8287,32 @@
       ]
     },
     {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "interview_process": [
+        "Initial technical chat (30 min)",
+        "Technical programming screen (45 min)",
+        "Onsite loop: 2 coding rounds, 1 system design / AI engineering round, 1 cultural fit round (45 min each)"
+      ],
+      "skills": [
+        "Data Structures & Algorithms",
+        "Generative AI & LLM Fine-Tuning",
+        "Alignment & Safety Principles",
+        "System Design & Scalability"
+      ],
+      "preparation_workflow": "faang-preparation",
+      "agents": [
+        "openai-career-coach",
+        "technical-interview-coach",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "resources": [
+        "Anthropic Research Blog",
+        "Constitutional AI documentation"
+      ]
+    },
+    {
       "id": "atlassian",
       "name": "Atlassian",
       "interview_process": [
@@ -8440,6 +8466,32 @@
         "Netflix Tech Blog",
         "Netflix Culture Slide Deck",
         "Netflix Chaos Engineering research papers"
+      ]
+    },
+    {
+      "id": "nvidia",
+      "name": "Nvidia",
+      "interview_process": [
+        "Recruiter call & screening (30 min)",
+        "Technical phone interview: C++ coding & systems concepts (45 min)",
+        "Onsite loop: 3 technical coding / systems architecture rounds, 1 AI/graphics round, 1 team fit round (45 min each)"
+      ],
+      "skills": [
+        "Systems Programming (C/C++, CUDA)",
+        "Parallel Computing & GPU Architecture",
+        "Data Structures & Algorithms",
+        "Deep Learning & Computer Vision"
+      ],
+      "preparation_workflow": "faang-preparation",
+      "agents": [
+        "technical-interview-coach",
+        "system-design-coach",
+        "machine-learning-engineer",
+        "mock-interviewer"
+      ],
+      "resources": [
+        "Nvidia Developer Blog",
+        "CUDA Documentation"
       ]
     },
     {

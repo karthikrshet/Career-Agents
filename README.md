@@ -100,7 +100,7 @@ Career OS takes a different approach:
 
 ## Demo
 
-- **Live Demo Instance:** [career-os.dev](https://career-os.dev) (Local guest mode active)
+- **Live Demo Instance:** [career-os.dev](https://career-os.dev) (Use fully in guest mode with no credentials needed)
 - **GitHub Repository:** [github.com/karthikrshet/Career-Agents](https://github.com/karthikrshet/Career-Agents)
 - **NPM Package Registry:** [npmjs.com/package/career-agents](https://www.npmjs.com/package/career-agents)
 - **Documentation index:** [docs/README.md](./docs/README.md)
@@ -165,27 +165,286 @@ The top 3 matching agents with score >= 5 are compiled, their Markdown prompt bo
 
 ### Division Summary Table
 
-| Division | Count | Focus | Target Input | Expected Output |
-|----------|-------|-------|--------------|-----------------|
-| **career** | 33 | Job search, career roadmaps | Target role / experience | Pivot milestones, timeline |
-| **company-interviews** | 10 | Company specific interview prep | Target FAANG company | Values-aligned prep checklist |
-| **ai-engineering** | 10 | Prompting, fine-tuning, architecture | LLM/ML systems queries | Target models, RAG workflows |
-| **cloud** | 10 | AWS, GCP, Platform tooling | IaC code / configuration | Kubernetes/Terraform review |
-| **cybersecurity** | 10 | Pen-testing, GRC compliance | Compliance framework | SOC2 / OWASP checks |
-| **open-source** | 10 | GitHub growth, OSS contributions | Project repo URL | README optimization recommendations |
-| **data-engineering** | 10 | Pipelines, analytics database | Pipeline scripts | ETL designs, Spark suggestions |
-| **devrel** | 10 | Developer advocacy, DX | Developer content | CFP outlines, DX strategies |
-| **resume** | 9 | Bullet-point structure, achievements | Raw resume text | Action-verb STAR bullet outputs |
-| **engineering** | 6 | API routing, systems scale | System requirements | Architecture sketches |
-| **interview** | 5 | Mock interviews, STAR scoring | User interview answer | Scoring scorecard, improvements |
-| **networking** | 5 | Cold emails, LinkedIn DMs | Target contact / company | Communication outreach templates |
-| **projects** | 4 | Research and academic defenses | Thesis topic / draft | Viva prep questions |
-| **startup** | 4 | Market research, GTM | Product concept | Competitive matrix, GTM |
-| **gtm** | 2 | Clay operations, sales loops | Prospect lists | Automation workflows |
-| **faang** | 2 | OpenAI and Google Swe prep | Coding requirements | LeetCode patterns |
-| **job-automation**| 2 | Automated job tracking | Job details | Tracker updates |
-| **ai-business** | 2 | AI consulting | Client specs | Deliverable blueprints |
-| **freelancing** | 2 | Upwork profile | Proposal text | Bid pitch drafts |
+### Career Division (`career`)
+*Placement strategy, resume engineering, interview coaching, and personal brand growth for students and job seekers.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`ATS Resume Reviewer`](./career/ats-resume-reviewer.md) | Live | A focused, line-by-line resume auditor who optimizes resume structure, language, and keyword signaling to survive ATS parsing and convert recruiter skim-time into interview invites. |
+| [`Career Accountability Coach`](./career/career-accountability-coach.md) | Live | A structured, non-judgmental accountability partner who converts career goals into weekly commitments, tracks follow-through with honest data, diagnoses why execution is failing, and rebuilds momentum when it stalls — without letting candidates off the hook or crushing them with guilt. |
+| [`Career Pivot to Tech Advisor`](./career/career-pivot-to-tech-advisor.md) | Live | A transition strategist for non-technical professionals entering the tech industry — covering entry point selection (software engineering, product, data, UX, technical sales, DevRel, and more), learning path design, portfolio development, narrative construction, and the tactical job search mechanics specific to tech industry hiring. |
+| [`Career Roadmap Strategist`](./career/career-roadmap-strategist.md) | Live | A long-horizon career architect who builds milestone-based, decade-spanning career roadmaps — turning vague ambitions into sequenced, evidence-gated development plans that compound skill, reputation, and leverage over time. |
+| [`Career Transition Coach`](./career/career-transition-coach.md) | Live | A decisive, pattern-aware career transition coach who helps professionals move from one field, function, or industry into another — by mapping transferable assets, designing bridge strategies, and turning "I don't have the background for this" into a concrete, evidence-backed plan that works. |
+| [`Diversity & Inclusion Career Coach`](./career/diversity-inclusion-career-coach.md) | Live | A career strategist specializing in helping underrepresented professionals navigate systemic barriers, bias in hiring, and unequal advancement dynamics — providing concrete, evidence-informed strategies that turn awareness of barriers into actionable career architecture. |
+| [`Executive Job Search Coach`](./career/executive-job-search-coach.md) | Live | A senior-level career strategist who helps VP, Director, and C-suite professionals navigate the fundamentally different world of executive hiring — where most roles never appear on job boards, where personal brand and reputation are the primary search vehicles, and where the quality of your board and peer network determines your access more than your resume. |
+| [`Freelance Career Advisor`](./career/freelance-career-advisor.md) | Live | A pragmatic freelance business strategist who helps independent professionals build sustainable, client-diversified freelance careers — covering rate-setting, client acquisition, portfolio positioning, contract fundamentals, and the transition from feast-or-famine to predictable income. |
+| [`Graduate Career Advisor`](./career/graduate-career-advisor.md) | Live | A strategic first-job advisor for recent graduates who cuts through the noise of "apply everywhere" and "network more" to build targeted, evidence-backed launch strategies that get new graduates into the right first role — not just any role — within a realistic timeline. |
+| [`HR Interview Coach`](./career/hr-interview-coach.md) | Live | A behavioural and offer-readiness coach who prepares candidates for HR and cultural interviews, designs story-driven answers to behavioural prompts, and leads offer evaluation and negotiation prep with professional rigor. |
+| [`Internship Application Strategist`](./career/internship-application-strategist.md) | Live | An internship application strategist who helps students package their skills, target hiring windows, and win sought-after internship roles. |
+| [`Internship Success Coach`](./career/internship-success-coach.md) | Live | A hands-on internship performance coach who helps interns move from "showing up" to "standing out" — by building visibility, delivering meaningful work, converting internships into return offers, and treating every internship as a twelve-week audition with a clear performance plan. |
+| [`Job Search Strategist`](./career/job-search-strategist.md) | Live | A job search strategist who builds targeted application plans, opportunity funnels, and outreach systems for faster interview traction. |
+| [`LinkedIn Growth Advisor`](./career/linkedin-growth-advisor.md) | Live | A tactical growth advisor for LinkedIn who optimizes profiles for recruiter discovery, builds content strategies that surface domain credibility, and converts passive profile views into active opportunities. |
+| [`Networking Coach`](./career/networking-coach.md) | Live | A strategic, relationship-first networking coach who transforms transactional connection requests into genuine professional relationships — helping candidates build the kind of network that surfaces hidden job market opportunities, generates warm referrals, and compounds in value over an entire career. |
+| [`Offer Evaluation Advisor`](./career/offer-evaluation-advisor.md) | Live | An offer evaluation advisor who helps candidates compare multiple opportunities and choose the best role for their career goals. |
+| [`Personal Branding Advisor`](./career/personal-branding-advisor.md) | Live | A strategic personal brand architect who builds authentic, channel-consistent professional identities that attract the right opportunities — turning scattered professional presence into a coherent, searchable, memorable signal that does career work even when the candidate isn't actively job hunting. |
+| [`Placement Coach`](./career/placement-coach.md) | Live | An end-to-end placement strategist who audits your readiness, builds a prioritized action plan, and drives you from "applying blind" to "negotiating offers" with the discipline of someone who has watched a thousand placement cycles play out. |
+| [`Product Manager Coach`](./career/product-manager-coach.md) | Live | A rigorous PM career coach who helps aspiring and practicing product managers break into the discipline, ace PM interviews at any company tier, build product intuition through structured practice, and advance from APM to VP of Product — with frameworks grounded in how the best PMs actually think, not in what sounds good in a textbook. |
+| [`Recruiter Outreach Specialist`](./career/recruiter-outreach-specialist.md) | Live | A recruiter outreach specialist who crafts message sequences and outreach plans to get recruiters to respond and move candidates into hiring conversations. |
+| [`Remote Work Advisor`](./career/remote-work-advisor.md) | Live | A strategic remote-work specialist who helps professionals find, land, and thrive in remote roles — covering remote-specific job search tactics, distributed team visibility, async communication mastery, home office optimization, and the specific career risks that remote work creates if not managed deliberately. |
+| [`Resume Strategist`](./career/resume-strategist.md) | Live | A narrative-focused resume strategist who crafts role-driven career stories, aligns achievements to hiring criteria, and builds resume ecosystems (resume, LinkedIn, portfolio) that consistently convert interest into interviews. |
+| [`Returnship Coach`](./career/returnship-coach.md) | Live | A re-entry specialist who helps professionals return to the workforce after a career break — reframing gaps, rebuilding confidence, refreshing skills, and designing targeted re-entry strategies that land roles that respect the candidate's full experience, not just their most recent role. |
+| [`Salary Benchmark Analyst`](./career/salary-benchmark-analyst.md) | Live | A rigorous, data-literate compensation analyst who builds evidence-based salary benchmarks, deconstructs total compensation packages, and arms candidates with the market intelligence and framing to negotiate from facts rather than hope. |
+| [`Salary Negotiation Coach`](./career/salary-negotiation-coach.md) | Live | A salary negotiation specialist who prepares candidates to evaluate offers, build leverage, and negotiate compensation confidently. |
+| [`Performance Review Advisor`](./career/performance-review-advisor.md) | Live | A feedback strategy specialist who coaches professionals to design pre-review evidence campaigns, write compelling self-assessments, and conduct productive review conversations. |
+| [`Career Risk Assessor`](./career/career-risk-assessor.md) | Live | A strategic career risk analyst who identifies threats to long-term professional growth, evaluates market vulnerability, and designs mitigation plans to improve career resilience. |
+| [`Executive Presence Coach`](./career/executive-presence-coach.md) | Live | A leadership communication specialist who develops executive presence, stakeholder influence, decision-making confidence, and organizational visibility. |
+| [`Graduate School vs Industry Advisor`](./career/graduate-school-vs-industry-advisor.md) | Live | A career decision strategist who helps professionals evaluate graduate education versus direct industry experience using ROI, opportunity cost, and long-term career outcomes. |
+| [`International Job Search Coach`](./career/international-job-search-coach.md) | Live | A global mobility specialist who guides professionals through international hiring markets, relocation planning, visa considerations, and cross-border career transitions. |
+| [`Promotion Readiness Coach`](./career/promotion-readiness-coach.md) | Live | A career advancement advisor who evaluates promotion readiness, identifies competency gaps, and develops evidence-backed advancement strategies. |
+| [`Relocation Strategy Advisor`](./career/relocation-strategy-advisor.md) | Live | A relocation planning specialist who helps professionals evaluate geographic moves, compensation adjustments, lifestyle tradeoffs, and long-term career impact. |
+| [`Technical Interview Coach`](./career/technical-interview-coach.md) | Live | A hands-on technical interview coach who prepares candidates for data structures & algorithms, system design, and role-specific coding rounds through targeted drills, rubric-based feedback, and measurable progression plans. |
+
+
+### Company Interviews Division (`company-interviews`)
+*Target-company-specific interview coaches for FAANG, tier-1 product companies, and tech giants.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Adobe Interview Coach`](./company-interviews/adobe-interview-coach.md) | Live | A creativity-meets-engineering specialist who prepares candidates for Adobe's blend of technical rigor and genuine product-craft sensibility, where caring about the actual user experience of the tools you build is a real evaluation signal. |
+| [`Amazon Interview Coach`](./company-interviews/amazon-interview-coach.md) | Live | A Leadership Principles specialist who knows that Amazon interviews are won or lost on STAR-structured stories mapped precisely to specific principles, not generic behavioral answers with an Amazon logo pasted on top. |
+| [`Atlassian Interview Coach`](./company-interviews/atlassian-interview-coach.md) | Live | A values-driven collaboration specialist who prepares candidates for Atlassian's structured, values-mapped interview loop, where "open company, no bullshit" is an actual evaluation criterion, not just a wall poster. |
+| [`Google Interview Coach`](./company-interviews/google-interview-coach.md) | Live | A structured-rigor specialist for Google's algorithm-heavy, googleyness-aware interview loop, who treats clean code communication and structured problem decomposition as non-negotiable, not optional polish. |
+| [`Meta Interview Coach`](./company-interviews/meta-interview-coach.md) | Live | An execution-speed and impact-obsessed coach who prepares candidates for Meta's fast-paced technical bar and its distinct "move fast, focus on impact" behavioral evaluation. |
+| [`Microsoft Interview Coach`](./company-interviews/microsoft-interview-coach.md) | Live | A growth-mindset and collaborative-problem-solving specialist who prepares candidates for Microsoft's blend of technical depth and "how do you work with others" evaluation, including the as-appropriate design/coding rounds. |
+| [`Netflix Interview Coach`](./company-interviews/netflix-interview-coach.md) | Live | A radical-candor and high-judgment specialist who prepares candidates for Netflix's uniquely direct culture interviews, where "would I fight to keep this person" is the real question behind every round. |
+| [`Oracle Interview Coach`](./company-interviews/oracle-interview-coach.md) | Live | A fundamentals-first specialist who prepares candidates for Oracle's traditionally rigorous CS-fundamentals and systems-depth interview style, where solid, unglamorous engineering knowledge is genuinely rewarded. |
+| [`Salesforce Interview Coach`](./company-interviews/salesforce-interview-coach.md) | Live | A trust-and-customer-success specialist who prepares candidates for Salesforce's values-and-relationship-driven interview culture, where "trust is our #1 value" is treated as a real evaluation lens, not a slogan. |
+| [`Uber Interview Coach`](./company-interviews/uber-interview-coach.md) | Live | A scale-and-ownership specialist who prepares candidates for Uber's operationally intense, ownership-driven interview culture, where "built for scale, obsessed with the details that break at scale" is the actual bar. |
+
+
+### Engineering Division (`engineering`)
+*Software architecture, database design, Next.js performance tuning, DevOps infrastructure, and senior-level code reviews.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Backend Architect`](./engineering/backend-architect.md) | Live | An API and service-design reviewer who evaluates backend architecture for the failure modes that don't show up until real load, real edge cases, and real time have all had a chance to find them. |
+| [`Code Reviewer`](./engineering/code-reviewer.md) | Live | A senior-level code reviewer who triages real risk instead of nitpicking style, distinguishing "this will break in production" from "this is a preference" and never letting the two get confused. |
+| [`Database Engineer`](./engineering/database-engineer.md) | Live | A schema and query optimization specialist who reads execution plans instead of guessing, and treats indexing strategy as a precise discipline rather than a "just add an index" reflex. |
+| [`DevOps Engineer`](./engineering/devops-engineer.md) | Live | A CI/CD and infrastructure reliability specialist who treats deployment pipelines as production systems in their own right, obsessed with reversibility, observability, and never being surprised by a failure. |
+| [`MERN Architect`](./engineering/mern-architect.md) | Live | A full-stack architecture reviewer for MongoDB/Express/React/Node applications who evaluates real scalability and maintainability tradeoffs instead of rubber-stamping whatever framework is trendy this year. |
+| [`Next.js Performance Engineer`](./engineering/nextjs-performance-engineer.md) | Live | A performance auditor obsessed with real Core Web Vitals and actual user-perceived speed, who diagnoses Next.js applications the way a profiler does — with numbers, not vibes. |
+
+
+### Interview Division (`interview`)
+*Specialized interview coaching, system design, mock interviewing, behavioral strategies, and group discussions.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Behavioral Interview Specialist`](./interview/behavioral-interview-specialist.md) | Live | A behavioral interview drilling coach who helps candidates structure stories using STAR/STAR+ structures, handles high-pressure situational queries, and maps achievements to organizational leadership principles. |
+| [`Group Discussion Coach`](./interview/group-discussion-coach.md) | Live | A facilitation and group communication coach who prepares candidates for group discussions, case studies, and collaborative rounds by teaching moderation, active listening, structured entry, and collaborative leadership. |
+| [`Leadership Interview Coach`](./interview/leadership-interview-coach.md) | Live | A leadership coaching specialist who prepares senior candidates for executive, management, and leadership interviews — focusing on vision, organization building, decision-making, and organizational conflict. |
+| [`Mock Interviewer`](./interview/mock-interviewer.md) | Live | A realistic, high-fidelity mock interviewer that conducts role-play simulations, dynamically probes candidate answers, handles follow-up queries, and provides rigorous feedback. |
+| [`System Design Coach`](./interview/system-design-coach.md) | Live | A technical interview coach specializing in distributed systems, scalability, and system design interviews — covering requirements gathering, API design, data modeling, high-level architecture, and deep-dive bottlenecks. |
+
+
+### Networking Division (`networking`)
+*LinkedIn outreach, alumni networking, cold email strategies, recruiter communications, and referral acquisition.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Alumni Networking Advisor`](./networking/alumni-networking-advisor.md) | Live | A campus and school affinity networking strategist who helps candidates locate, re-engage, and leverage university and corporate alumni networks for career insights and referrals. |
+| [`Cold Outreach Specialist`](./networking/cold-outreach-specialist.md) | Live | A cold communication copywriter and strategist who helps candidates write highly optimized cold emails and messages to hiring managers, founders, and leaders. |
+| [`LinkedIn Outreach Specialist`](./networking/linkedin-outreach-specialist.md) | Live | A digital networking expert who helps candidates write highly customized, high-conversion LinkedIn messages for informational interviews, warm introductions, and job inquiries. |
+| [`Recruiter Communication Coach`](./networking/recruiter-communication-coach.md) | Live | A communication strategist who helps candidates manage recruiter channels, script outreach messages, prepare for screening calls, and negotiate communication touchpoints. |
+| [`Referral Strategy Coach`](./networking/referral-strategy-coach.md) | Live | A relationship monetization strategist who helps candidates turn casual professional interactions, alumni links, and warm networks into formal job referrals and active internal advocates. |
+
+
+### Projects Division (`projects`)
+*Final Year Project lifecycle support from topic selection and research planning to documentation and viva defense.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Documentation Specialist`](./projects/documentation-specialist.md) | Live | A technical documentation agent that turns project outputs into clear reports, manuals, and presentation-ready artifacts. |
+| [`Final Year Project Advisor`](./projects/final-year-project-advisor.md) | Live | A FYP coach who helps students select, scope, and defend academic projects with real-world structure and evaluation clarity. |
+| [`Research Assistant`](./projects/research-assistant.md) | Live | A structured research partner for literature reviews, methodology planning, and academic sourcing. |
+| [`Viva Coach`](./projects/viva-coach.md) | Live | A viva preparation coach that helps students structure defense responses, anticipate examiner questions, and present confidently. |
+
+
+### Resume Division (`resume`)
+*Technical resume writing, achievement optimization, ATS formatting, design portfolios, and executive resumes.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Executive Resume Advisor`](./resume/executive-resume-advisor.md) | Live | A senior-level resume strategist who helps VPs, Directors, and C-suite executives structure their resumes to emphasize executive presence, strategic scope, P&L ownership, and board visibility. |
+| [`Portfolio Reviewer`](./resume/portfolio-reviewer.md) | Live | A design and technical portfolio critic who helps designers, engineers, and product managers structure, document, and present their work through compelling case studies that prove competency. |
+| [`Resume Achievement Writer`](./resume/resume-achievement-writer.md) | Live | A metrics-focused resume achievement writer who helps candidates translate standard job duties into high-impact, outcome-oriented achievements using the STAR, Google X-Y-Z, and CAR frameworks. |
+| [`Resume Formatting Specialist`](./resume/resume-formatting-specialist.md) | Live | A design and layout expert who ensures resumes are visually polished, perfectly aligned, typographically balanced, and structured for maximum scannability and ATS compatibility. |
+| [`Achievement Quantification Coach`](./resume/achievement-quantification-coach.md) | Live | A resume impact specialist who transforms vague accomplishments into quantified, metric-driven achievements that demonstrate measurable business value. |
+| [`Executive Resume Advisor`](./resume/executive-resume-advisor.md) | Live | A senior-level resume strategist specializing in leadership branding, executive storytelling, board-facing communication, and high-level career positioning. |
+| [`Resume Bullet Generator`](./resume/resume-bullet-generator.md) | Live | A resume writing assistant that converts projects, responsibilities, and achievements into concise, ATS-friendly, action-oriented resume bullets. |
+| [`Resume Gap Strategist`](./resume/resume-gap-strategist.md) | Live | A career narrative specialist who helps candidates address employment gaps, academic breaks, career transitions, and non-traditional experiences with confidence. |
+| [`Technical Project Positioning Advisor`](./resume/technical-project-positioning-advisor.md) | Live | A portfolio and resume strategist who helps engineers showcase technical projects, open-source contributions, and product impact for maximum recruiter appeal. |
+| [`Resume Keyword Optimizer`](./resume/resume-keyword-optimizer.md) | Live | An ATS-oriented search optimization specialist who helps candidates align their resumes with target job descriptions using keyword mapping, context optimization, and phrase parsing strategies. |
+
+
+### Startup Division (`startup`)
+*Founder decision support, MVP definition, growth marketing strategy, and competitive market research.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Founder Advisor`](./startup/founder-advisor.md) | Live | A blunt, experienced-feeling co-founder substitute who stress-tests ideas and decisions the way a real early-stage advisor would — before money, time, or credibility get spent finding out the hard way. |
+| [`Growth Strategist`](./startup/growth-strategist.md) | Live | A growth specialist who designs acquisition, activation, retention, and monetization strategies for early-stage products. |
+| [`Market Research Analyst`](./startup/market-research-analyst.md) | Live | A rigorous market research specialist who turns ambiguous business questions into defensible market insights, go-to-market priorities, and evidence-backed decisions — built for founders, product teams, and early-stage PMs who need market clarity fast. |
+| [`Product Manager`](./startup/product-manager.md) | Live | A product strategy advisor who turns fuzzy feature requests into prioritized roadmaps, stakeholder-aligned outcomes, and execution-ready release plans. |
+
+
+### AI Engineering Division (`ai-engineering`)
+*Language models, prompt engineering, retrieval-augmented generation (RAG), cognitive agents, and machine learning operations (MLOps).*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`AI Agent Architect`](./ai-engineering/ai-agent-architect.md) | Live | Designs autonomous agent loops, tool bindings, planning algorithms, and multi-agent coordination layers. |
+| [`AI Engineer Career Coach`](./ai-engineering/ai-engineer-career-coach.md) | Live | Coaches developers pivoting into artificial intelligence, structuring study plans, project portfolios, and technical interview prep. |
+| [`AI Product Builder`](./ai-engineering/ai-product-builder.md) | Live | Helps founders and product managers scope AI features, evaluate API costs, and design user-centric AI feedback loops. |
+| [`Computer Vision Engineer`](./ai-engineering/computer-vision-engineer.md) | Live | Advises on convolutional networks, object detection systems, segmentation pipelines, and edge device deployment. |
+| [`Generative AI Consultant`](./ai-engineering/generative-ai-consultant.md) | Live | Guides organizations through generative AI strategy, risk mitigation, compliance, and ROI analysis. |
+| [`LLM Engineer`](./ai-engineering/llm-engineer.md) | Live | Advises on model selection, context window optimization, fine-tuning pipelines, and inference efficiency. |
+| [`Machine Learning Engineer`](./ai-engineering/machine-learning-engineer.md) | Live | Designs classical ML systems, feature stores, model training pipelines, and dataset validations. |
+| [`MLOps Engineer`](./ai-engineering/mlops-engineer.md) | Live | Sets up continuous training pipelines, model registries, monitoring systems, and containerized deployment infrastructure. |
+| [`Prompt Engineer`](./ai-engineering/prompt-engineer.md) | Live | Designs systematic prompt templates, Few-Shot examples, Chain-of-Thought flows, and system instructions. |
+| [`RAG Architect`](./ai-engineering/rag-architect.md) | Live | Designs semantic search architectures, vector databases, chunking strategies, and metadata indexing pipelines. |
+
+
+### Cloud & Infrastructure Division (`cloud`)
+*Public cloud systems, platform engineers, kubernetes clusters, infrastructure security, and site reliability.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`AWS Cloud Architect`](./cloud/aws-cloud-architect.md) | Live | Designs highly available, secure, and well-architected systems on AWS. |
+| [`Azure Cloud Engineer`](./cloud/azure-cloud-engineer.md) | Live | Configures and manages enterprise cloud deployments on Microsoft Azure. |
+| [`Cloud Cost Optimizer`](./cloud/cloud-cost-optimizer.md) | Live | Audits cloud invoices, identifying wastage, reserved instance coverages, and autoscaling opportunities. |
+| [`Cloud Migration Advisor`](./cloud/cloud-migration-advisor.md) | Live | Plans datacenter migrations to public clouds using Rehost, Replatform, and Refactor pathways. |
+| [`Cloud Security Advisor`](./cloud/cloud-security-advisor.md) | Live | Reviews cloud security configurations, ensuring compliance with ISO 27001, SOC2, and CIS benchmarks. |
+| [`GCP Cloud Engineer`](./cloud/gcp-cloud-engineer.md) | Live | Designs scale-ready infrastructure on Google Cloud Platform using native services. |
+| [`Kubernetes Specialist`](./cloud/kubernetes-specialist.md) | Live | Configures production Kubernetes clusters, pod scheduling, network policies, and ingress controllers. |
+| [`Platform Engineer`](./cloud/platform-engineer.md) | Live | Builds developer self-service tooling, landing zones, and continuous delivery systems. |
+| [`Site Reliability Engineer`](./cloud/site-reliability-engineer.md) | Live | Defines service level objectives, error budgets, incident response playbooks, and disaster recovery strategies. |
+| [`Terraform Specialist`](./cloud/terraform-specialist.md) | Live | Writes modular Terraform, structuring state files, workspace variables, and locks. |
+
+
+### Cybersecurity Division (`cybersecurity`)
+*Secure coding principles, network operations, penetration testing, compliance advisors, and risk auditing.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Application Security Specialist`](./cybersecurity/application-security-specialist.md) | Live | Audits application source code for OWASP Top 10 vulnerabilities, configuring SAST/DAST pipelines. |
+| [`Cloud Security Engineer`](./cybersecurity/cloud-security-engineer.md) | Live | Implements IAM least privilege policies, cloud security posture monitoring, and secrets managers. |
+| [`Ethical Hacking Advisor`](./cybersecurity/ethical-hacking-advisor.md) | Live | Conducts threat simulations and red-team operations across human, network, and application boundaries. |
+| [`Governance Risk Compliance Advisor`](./cybersecurity/governance-risk-compliance-advisor.md) | Live | Audits processes and designs system configurations to satisfy compliance rules (SOC2, ISO 27001, GDPR). |
+| [`Identity Access Management Specialist`](./cybersecurity/identity-access-management-specialist.md) | Live | Designs directory service integrations, access management controls, and provisioning flows. |
+| [`Incident Response Specialist`](./cybersecurity/incident-response-specialist.md) | Live | Triages active security breaches, structures containment strategies, and performs digital forensics. |
+| [`Penetration Testing Coach`](./cybersecurity/penetration-testing-coach.md) | Live | Runs network-level vulnerability assessments and simulated penetration testing. |
+| [`Security Architect`](./cybersecurity/security-architect.md) | Live | Designs global zero-trust security frameworks, IAM directories, and endpoint controls. |
+| [`Security Engineer`](./cybersecurity/security-engineer.md) | Live | Designs secure infrastructure boundaries, perimeter defense networks, and encryption strategies. |
+| [`Security Operations Analyst`](./cybersecurity/security-operations-analyst.md) | Live | Analyzes security telemetry logs, configure SIEM dashboards, and responds to alerts. |
+
+
+### Open Source Division (`open-source`)
+*Collaborative repository design, developer community building, open-source documentation, and maintainer guidance.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Community Builder`](./open-source/community-builder.md) | Live | Designs community portals, discord guidelines, online events, and contributor recognition models. |
+| [`Developer Advocate`](./open-source/developer-advocate.md) | Live | Bridges developer feedback with core product roadmaps, producing workshops and api demos. |
+| [`DevRel Strategist`](./open-source/devrel-strategist.md) | Live | Aligns developer programs with business metrics, tracking developer acquisitions and community ROI. |
+| [`GitHub Growth Advisor`](./open-source/github-growth-advisor.md) | Live | Advises on repository metadata, README copywriting, issue curation, and community visibility. |
+| [`Maintainer Coach`](./open-source/maintainer-coach.md) | Live | Advises project leads on contributor onboarding, issue labeling, license compliance, and roadmap publishing. |
+| [`Open Source Funding Advisor`](./open-source/open-source-funding-advisor.md) | Live | Guides projects on sponsor directories (GitHub Sponsors, Open Collective) and grant applications. |
+| [`Open Source Mentor`](./open-source/open-source-mentor.md) | Live | Coaches new contributors on git branches, repository issues, and pull request etiquette. |
+| [`OSS Contributor Coach`](./open-source/oss-contributor-coach.md) | Live | Helps developers scale contributions from single commits to regular maintainers of key libraries. |
+| [`Project Maintenance Specialist`](./open-source/project-maintenance-specialist.md) | Live | Automates project builds, configuring lint rules, tests, and publishing workflows. |
+| [`Technical Writing Advisor`](./open-source/technical-writing-advisor.md) | Live | Guides developers in writing clean API guides, release notes, code reviews, and README docs. |
+
+
+### Data Engineering Division (`data-engineering`)
+*Analytical warehouse construction, stream processors, pipeline schedulers, and database optimizations.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Analytics Engineer`](./data-engineering/analytics-engineer.md) | Live | Structures data transformation layers using dbt (data build tool), creating documentation and testing frameworks. |
+| [`Business Intelligence Specialist`](./data-engineering/business-intelligence-specialist.md) | Live | Designs semantic datasets, dashboards, and analytical metrics using PowerBI or Tableau. |
+| [`Data Architect`](./data-engineering/data-architect.md) | Live | Designs corporate data strategies, data mesh architectures, and warehouse schemas. |
+| [`Data Engineer`](./data-engineering/data-engineer.md) | Live | Designs robust analytical pipeline systems, feature databases, and ingestion engines. |
+| [`Data Governance Advisor`](./data-engineering/data-governance-advisor.md) | Live | Defines access control policies, data cataloging rules, and column-level masking models. |
+| [`Data Platform Engineer`](./data-engineering/data-platform-engineer.md) | Live | Deploys cloud-based data storage and analysis platforms using Snowflake, Databricks, or BigQuery. |
+| [`Data Quality Engineer`](./data-engineering/data-quality-engineer.md) | Live | Designs automated validation routines, alerting systems, and data drift dashboards. |
+| [`Database Performance Specialist`](./data-engineering/database-performance-specialist.md) | Live | Audits database resource consumption, index efficiency, and query logs to optimize latency. |
+| [`ETL Specialist`](./data-engineering/etl-specialist.md) | Live | Designs high-throughput batch ETL/ELT pipelines using Airflow, Prefect, or Dagster. |
+| [`Stream Processing Specialist`](./data-engineering/stream-processing-specialist.md) | Live | Designs high-velocity real-time analytical event flows using Kafka or Flink. |
+
+
+### Developer Relations Division (`devrel`)
+*Developer advocate strategies, technology education, community management, and developer experience.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`API Adoption Consultant`](./devrel/api-adoption-consultant.md) | Live | Reviews developer APIs, SDK structures, and documentation onboarding to reduce activation barriers. |
+| [`Community Growth Specialist`](./devrel/community-growth-specialist.md) | Live | Designs programmatic referral schemes, user acquisition initiatives, and event plans. |
+| [`Conference Speaker Coach`](./devrel/conference-speaker-coach.md) | Live | Guides developers in preparing technical talk submissions, slide structures, and slide delivery. |
+| [`Content Strategy Advisor`](./devrel/content-strategy-advisor.md) | Live | Plans technical content calendars, writing schedules, and publication distributions. |
+| [`Developer Education Specialist`](./devrel/developer-education-specialist.md) | Live | Designs tutorials, structured learning paths, sample project repos, and technical documentation. |
+| [`Developer Evangelist`](./devrel/developer-evangelist.md) | Live | Presents product value at developer conferences, online meetups, and key technical forums. |
+| [`Developer Experience Specialist`](./devrel/developer-experience-specialist.md) | Live | Reviews local developer environments, CLI ease-of-use, config errors, and initial setup steps. |
+| [`Developer Relations Manager`](./devrel/developer-relations-manager.md) | Live | Manages developer engagement programs, ambassador networks, and metric analysis. |
+| [`Technical Community Builder`](./devrel/technical-community-builder.md) | Live | Moderates developer forums, discord/slack servers, and handles user onboarding strategies. |
+| [`Technical Marketing Advisor`](./devrel/technical-marketing-advisor.md) | Live | Aligns product positioning with developer interests, writing copy and analyzing competition. |
+
+
+### Job Automation Division (`job-automation`)
+*Automated job discovery, listing filters, pipeline trackers, email outreach cadences, and funnel optimization engines.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Job Hunter AI`](./job-automation/job-hunter-ai.md) | Live | An automated job discovery and application tracking companion that manages target queues. |
+| [`Job Application Optimizer`](./job-automation/job-application-optimizer.md) | Live | An AI context tailoring engine that customizes applications, resume bullets, and cover letters for specific job descriptions at scale. |
+
+
+### FAANG & Top Tech Division (`faang`)
+*Specialized coaches for top-tier tech companies (FAANG+), AI labs, and high-growth platform engineering teams.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`OpenAI Career Coach`](./faang/openai-career-coach.md) | Live | A specialized coach for OpenAI interview loops, engineering culture, and AI research/engineering positions. |
+| [`Google SWE Coach`](./faang/google-swe-coach.md) | Live | A specialized technical coach for Google Software Engineering (SWE) loops, focusing on DS & Algorithms, complex complexity analysis, clean code structure, and Googleyness & Leadership (G&L). |
+
+
+### AI Business Division (`ai-business`)
+*Strategic builders, technical PMs, and business architects focusing on launching and scaling AI-first startups, SaaS MVPs, and proprietary data loops.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`AI Founder`](./ai-business/ai-founder.md) | Live | A strategic AI builder focused on scaling AI-first products, MVPs, and business models. |
+| [`AI Consultant`](./ai-business/ai-consultant.md) | Live | An enterprise AI strategist mapping company problems to LLM/RAG solutions, scoping APIs, drafting security/privacy architectures, and showing ROI. |
+
+
+### Modern GTM Division (`gtm`)
+*Outreach systems design, waterfall data enrichments, CRM synchronizations, webhooks, and programmatic pipeline automation.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`GTM Engineer`](./gtm/gtm-engineer.md) | Live | An outreach systems architect who designs clay workflows, API enrichments, and automated cold inbound/outbound setup. |
+| [`Clay Specialist`](./gtm/clay-specialist.md) | Live | A master of Clay workflows, waterfall search logic, AI enrichment prompting, data cleaning, and CSV normalization. |
+
+
+### Freelancing Division (`freelancing`)
+*Productization, pricing advisory, retainer growth, client acquisition networks, and operation designs for independent consultants.*
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :---: | :--- |
+| [`Freelance Founder`](./freelancing/freelance-founder.md) | Live | An independent consultant strategist driving retainer growth, pricing, and client acquisition channels. |
+| [`Upwork Specialist`](./freelancing/upwork-specialist.md) | Live | A profile positioning and proposal writing advisor focused on converting Upwork feeds into closed contracts. |
+
+
 
 *For the complete agent index, see [docs/AGENTS.md](./docs/AGENTS.md).*
 
@@ -481,7 +740,7 @@ Expose Career OS tools directly to your local LLM clients:
 
 ## REST API Reference
 
-Career OS exposes 10 REST endpoints. For request/response schemas, check [docs/API.md](./docs/API.md):
+Career OS exposes 10 REST endpoints. For request/response schemas, check [docs/API.md](./docs/API.md) or `/api/docs`:
 
 - `POST /api/copilot` — Streams response tokens using SSE.
 - `POST /api/interview` — Generates questions or evaluates answers.
@@ -618,11 +877,11 @@ Deploy Career OS to production using one of three methods:
 
 ## Roadmap
 
-- **v2.5.0 (Current):** Complete enterprise-grade documentation, Next.js build verification, and clean tagging.
-- **v2.6.0 (Next):** Real-time voice interview drills and WebRTC integration.
-- **v2.7.0:** Direct LinkedIn Profile API OAuth imports.
-- **v2.8.0:** Local offline AI support running inside web browsers via WebGPU.
-- **v3.0.0:** Multi-user team workspaces and shared organization dashboard layouts.
+- **v3.0.0 (Completed):** AI Agent Orchestration, Career Memory, Workflow Engine, Company Intelligence.
+- **v3.1.0 (Next):** Real-time voice interview drills and WebRTC integration.
+- **v3.2.0:** Direct LinkedIn Profile API OAuth imports.
+- **v3.3.0:** Local offline AI support running inside web browsers via WebGPU.
+- **v4.0.0:** Multi-user team workspaces and shared organization dashboard layouts.
 
 ---
 

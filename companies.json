@@ -112,9 +112,9 @@
       "name": "OpenAI",
       "description": "Focuses on deep model scaling math, PyTorch scripting, distributed ML system training, and safety alignment concepts.",
       "agents": [
-        "llm-engineer",
-        "ai-agent-architect",
-        "ai-engineer-career-coach",
+        "openai-career-coach",
+        "technical-interview-coach",
+        "system-design-coach",
         "mock-interviewer"
       ],
       "workflows": [
@@ -131,6 +131,55 @@
         "OpenAI Research Papers",
         "Triton compiler guides",
         "Scaling Laws for Neural Language Models"
+      ]
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "description": "Focuses on deep model alignment principles, constitutional AI frameworks, safety metrics, and advanced generative reasoning.",
+      "agents": [
+        "openai-career-coach",
+        "technical-interview-coach",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "faang-preparation",
+        "technical-interview-week"
+      ],
+      "skills": [
+        "AI Safety & alignment",
+        "Constitutional AI",
+        "Generative reasoning",
+        "Transformer scaling"
+      ],
+      "resources": [
+        "Anthropic Research Blog",
+        "Constitutional AI documentation"
+      ]
+    },
+    {
+      "id": "nvidia",
+      "name": "Nvidia",
+      "description": "Rigorous systems programming interview loop focused on C++, CUDA parallel computing architectures, and GPU memory optimization.",
+      "agents": [
+        "technical-interview-coach",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "faang-preparation",
+        "technical-interview-week"
+      ],
+      "skills": [
+        "C++ systems programming",
+        "CUDA parallel compute",
+        "GPU memory design",
+        "Deep Learning acceleration"
+      ],
+      "resources": [
+        "Nvidia Developer Blog",
+        "CUDA Programming Guide"
       ]
     },
     {

@@ -2,23 +2,20 @@
 
 This document outlines the planned development trajectory for Career OS.
 
-## Current: v2.5.0 ✅
-- Enterprise SEO, AI discoverability (llms.txt), PWA, security headers
-- Professional error pages (404, 500, loading)
-- Per-page metadata for all 14 routes
-- JSON-LD structured data (Organization, SoftwareApplication, FAQ, WebSite)
-- robots.txt + sitemap.xml auto-generation
-- OSS documentation suite (CONTRIBUTING, SECURITY, CHANGELOG)
+## Current: v3.0.0 ✅
+- **Intelligent Agent Orchestration Engine**: Added `packages/agents` (router, planner, executor, merger, context, cache) for multi-agent context planning, intent routing, and advice merging.
+- **Career Memory**: Added `packages/memory` cache interface to persist achievements, milestones, and metrics.
+- **Workflow Engine**: Added stateful `packages/core/workflow-engine.js` tracker.
+- **Company Intelligence**: Added structured JSON company profiles for `anthropic` and `nvidia` inside `companies/`.
+- **OpenAPI / Swagger Reference**: Added an interactive API documentation page at `/api/docs` mapping requests/responses.
 
----
-
-## v2.6.0 — Real-Time Collaboration (Q3 2026)
+## v3.1.0 — Real-Time Collaboration (Q3 2026)
 - [ ] Real-time collaborative mock interview sessions (WebRTC)
 - [ ] Shared interview prep rooms with peers
 - [ ] Live code collaboration for technical interviews
 - [ ] Video recording and playback for mock interviews
 
-## v2.7.0 — Cloud Sync & Integrations (Q3 2026)
+## v3.2.0 — Cloud Sync & Integrations (Q3 2026)
 - [ ] OAuth sync with Google Drive (resume import/export)
 - [ ] OAuth sync with Dropbox
 - [ ] LinkedIn profile import via OAuth
@@ -31,7 +28,7 @@ This document outlines the planned development trajectory for Career OS.
 - [ ] Edge runtime for API routes (lower latency)
 - [ ] Progressive enhancement for low-bandwidth usage
 
-## v3.0.0 — Team Workspaces (2027)
+## v4.0.0 — Team Workspaces (2027)
 - [ ] Multi-user team workspaces
 - [ ] Shared agent library per organization
 - [ ] Team interview question banks
@@ -39,7 +36,7 @@ This document outlines the planned development trajectory for Career OS.
 - [ ] Billing and subscription management (Stripe)
 - [ ] White-label deployment option for bootcamps/universities
 
-## v3.1.0 — Enterprise (2027)
+## v4.1.0 — Enterprise (2027)
 - [ ] SSO (SAML, Okta, Auth0)
 - [ ] Admin dashboard with usage analytics
 - [ ] Custom agent creation UI (no-code)

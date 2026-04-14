@@ -30,6 +30,22 @@
       "System Design & Database selections"
     ]
   },
+  "anthropic": {
+    "name": "Anthropic",
+    "agents": [
+      "openai-career-coach",
+      "technical-interview-coach",
+      "system-design-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "Data Structures & Algorithms",
+      "Generative AI & LLM Fine-Tuning",
+      "Alignment & Safety Principles",
+      "System Design & Scalability"
+    ]
+  },
   "atlassian": {
     "name": "Atlassian",
     "agents": [
@@ -122,6 +138,22 @@
       "High-throughput CDN architectures",
       "Autonomy and direct feedback loops (Radical Candor)",
       "Resilience engineering (Chaos Monkey)"
+    ]
+  },
+  "nvidia": {
+    "name": "Nvidia",
+    "agents": [
+      "technical-interview-coach",
+      "system-design-coach",
+      "machine-learning-engineer",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "Systems Programming (C/C++, CUDA)",
+      "Parallel Computing & GPU Architecture",
+      "Data Structures & Algorithms",
+      "Deep Learning & Computer Vision"
     ]
   },
   "openai": {
