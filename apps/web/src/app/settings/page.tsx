@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Settings, Key, Cpu, Eye, EyeOff, CheckCircle,
-  AlertCircle, Palette, Globe, Bell, Shield, Trash2, Save,
-  User, Sparkles, Zap, GitBranch, Link2, Package, Database,
-  Download, Keyboard, Terminal, Play
+  Palette, Globe, User, Sparkles, Zap, GitBranch, Link2, Package, Database,
+  Download, Keyboard, Terminal, Play, RefreshCw, BarChart2,
+  ListOrdered, ShieldCheck, Trash2, Save, Bell, Shield
 } from "lucide-react";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -18,40 +18,34 @@ import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import type { AIProvider } from "@/types";
-import { PROVIDER_MODELS } from "@/lib/ai";
 
-const PROVIDERS: { id: AIProvider; label: string; free: boolean; description: string }[] = [
-  { id: "openai", label: "OpenAI", free: false, description: "GPT-4o, GPT-4o-mini. Industry standard." },
-  { id: "claude", label: "Anthropic Claude", free: false, description: "Claude 3.5 Sonnet & Opus. Best for reasoning." },
-  { id: "gemini", label: "Google Gemini", free: false, description: "Gemini 1.5 Pro / Flash. Huge context." },
-  { id: "groq", label: "Groq", free: true, description: "Sub-second speed. Llama 3.3. Free tier." },
-  { id: "openrouter", label: "OpenRouter", free: false, description: "Unified gateway for 200+ models." },
-  { id: "deepseek", label: "DeepSeek", free: false, description: "R1 reasoning and cost-effective chat." },
-  { id: "together", label: "Together AI", free: false, description: "Fast, serverless open-source hosting." },
-  { id: "mistral", label: "Mistral AI", free: false, description: "Mixtral, Mistral Large. European champion." },
-  { id: "cohere", label: "Cohere", free: false, description: "Command R+. Highly optimized for search/RAG." },
-  { id: "xai", label: "xAI (Grok)", free: false, description: "Grok 2. Real-time internet access." },
-  { id: "ollama", label: "Ollama (Local)", free: true, description: "Run fully offline open-source models." },
-  { id: "lmstudio", label: "LM Studio", free: true, description: "Local models via OpenAI-compatible server." },
-  { id: "azure", label: "Azure OpenAI", free: false, description: "Enterprise security & private endpoints." },
+// Import AI Gateway resources (5 levels of ../ goes to root from apps/web/src/app/settings/page.tsx)
+import { PROVIDER_REGISTRY } from "../../../../../packages/ai-router/services/provider-registry";
+import { fetchAvailableModels } from "../../../../../packages/ai-router/services/discovery";
+import { getRouterLogs, compileUsageAnalytics, clearRouterLogs } from "../../../../../packages/ai-router/services/analytics";
+import type { RouterLog, HealthCheckReport, AIProviderId, ProviderRegistryEntry } from "../../../../../packages/ai-router/types";
+
+const SECTIONS = [
+  { id: "general" as const, icon: Settings, label: "General" },
+  { id: "appearance" as const, icon: Palette, label: "Appearance" },
+  { id: "account" as const, icon: User, label: "Account" },
+  { id: "providers" as const, icon: Cpu, label: "AI Gateway" },
+  { id: "models" as const, icon: Sparkles, label: "Models Discovery" },
+  { id: "fallback" as const, icon: ListOrdered, label: "Failover Settings" },
+  { id: "usage" as const, icon: BarChart2, label: "Usage Analytics" },
+  { id: "advanced" as const, icon: Terminal, label: "Routing Logs" },
+  { id: "security" as const, icon: ShieldCheck, label: "Security & Keys" },
+  { id: "mcp" as const, icon: Zap, label: "MCP Server" },
+  { id: "github" as const, icon: GitBranch, label: "GitHub Integration" },
+  { id: "linkedin" as const, icon: Link2, label: "LinkedIn Tracking" },
+  { id: "plugins" as const, icon: Package, label: "Plugins" },
+  { id: "telemetry" as const, icon: Shield, label: "Telemetry & Logs" },
+  { id: "storage" as const, icon: Database, label: "Storage Management" },
+  { id: "exports" as const, icon: Download, label: "Exports config" },
+  { id: "notifications" as const, icon: Bell, label: "Notifications" },
+  { id: "keyboard" as const, icon: Keyboard, label: "Keyboard Shortcuts" },
+  { id: "danger" as const, icon: Trash2, label: "Danger Zone" },
 ];
-
-const PROVIDER_METADATA: Record<string, { contextWindow: string; vision: boolean; streaming: boolean; tools: boolean; files: boolean; cost: string }> = {
-  openai: { contextWindow: "128k tokens", vision: true, streaming: true, tools: true, files: true, cost: "$2.50 / M tokens" },
-  claude: { contextWindow: "200k tokens", vision: true, streaming: true, tools: true, files: true, cost: "$3.00 / M tokens" },
-  anthropic: { contextWindow: "200k tokens", vision: true, streaming: true, tools: true, files: true, cost: "$3.00 / M tokens" },
-  gemini: { contextWindow: "2M tokens", vision: true, streaming: true, tools: true, files: true, cost: "$0.075 / M tokens" },
-  groq: { contextWindow: "128k tokens", vision: false, streaming: true, tools: true, files: false, cost: "Free / Rate Limited" },
-  openrouter: { contextWindow: "Variable", vision: true, streaming: true, tools: true, files: false, cost: "Variable by model" },
-  deepseek: { contextWindow: "64k tokens", vision: false, streaming: true, tools: true, files: false, cost: "$0.14 / M tokens" },
-  together: { contextWindow: "32k tokens", vision: false, streaming: true, tools: true, files: false, cost: "$0.20 / M tokens" },
-  mistral: { contextWindow: "128k tokens", vision: false, streaming: true, tools: true, files: false, cost: "$2.00 / M tokens" },
-  cohere: { contextWindow: "128k tokens", vision: false, streaming: true, tools: true, files: false, cost: "$1.00 / M tokens" },
-  xai: { contextWindow: "128k tokens", vision: false, streaming: true, tools: true, files: false, cost: "$5.00 / M tokens" },
-  ollama: { contextWindow: "Local context", vision: true, streaming: true, tools: true, files: true, cost: "Free / Local" },
-  lmstudio: { contextWindow: "Local context", vision: true, streaming: true, tools: true, files: true, cost: "Free / Local" },
-  azure: { contextWindow: "128k tokens", vision: true, streaming: true, tools: true, files: true, cost: "Enterprise subscription" },
-};
 
 export default function SettingsPage() {
   const settings = useStore((s) => s.settings);
@@ -59,19 +53,24 @@ export default function SettingsPage() {
   const updateAIProvider = useStore((s) => s.updateAIProvider);
   const profile = useStore((s) => s.profile);
   const setProfile = useStore((s) => s.setProfile);
-  
-  const installedPlugins = useStore((s) => s.installedPlugins || {});
-  const enabledPlugins = useStore((s) => s.enabledPlugins || {});
-  const installPlugin = useStore((s) => s.installPlugin);
-  const uninstallPlugin = useStore((s) => s.uninstallPlugin);
-  const enablePlugin = useStore((s) => s.enablePlugin);
-  const disablePlugin = useStore((s) => s.disablePlugin);
 
   // States
   const [apiKey, setApiKey] = useState("");
   const [baseUrl, setBaseUrl] = useState("");
   const [showKey, setShowKey] = useState(false);
-  
+  const [selectedProvider, setSelectedProvider] = useState<AIProviderId>("openai");
+  const [modelsCache, setModelsCache] = useState<Record<string, string[]>>({});
+  const [loadingModels, setLoadingModels] = useState(false);
+
+  // Health check diagnostics state
+  const [diagnosticReport, setDiagnosticReport] = useState<Record<string, HealthCheckReport>>({});
+  const [expandedDiagnostics, setExpandedDiagnostics] = useState<string | null>(null);
+
+  // Multiple rotated keys states
+  const [primaryKeyInput, setPrimaryKeyInput] = useState("");
+  const [secondaryKeyInput, setSecondaryKeyInput] = useState("");
+  const [backupKeyInput, setBackupKeyInput] = useState("");
+
   // Account Form States
   const [accountName, setAccountName] = useState(profile?.name || "");
   const [accountEmail, setAccountEmail] = useState(profile?.email || "");
@@ -83,32 +82,29 @@ export default function SettingsPage() {
   // GitHub token state
   const [githubToken, setGithubToken] = useState("");
 
-  const [section, setSection] = useState<
-    | "general" | "appearance" | "account" | "providers" | "models"
-    | "mcp" | "github" | "linkedin" | "plugins" | "telemetry"
-    | "storage" | "exports" | "notifications" | "keyboard" | "danger"
-  >("providers");
-
-  const [statusMap, setStatusMap] = useState<Record<string, { status: "connected" | "missing_key" | "offline" | "local" | "testing"; latency?: number }>>({});
-
-  useEffect(() => {
-    // Populate default statuses
-    const newStatuses: Record<string, any> = {};
-    for (const p of PROVIDERS) {
-      if (["ollama", "lmstudio"].includes(p.id)) {
-        newStatuses[p.id] = { status: "local" };
-      } else {
-        const hasKey = p.id === settings.aiProvider.provider ? !!apiKey : !!settings.aiProvider.apiKey;
-        newStatuses[p.id] = { status: hasKey ? "connected" : "missing_key" };
-      }
-    }
-    setStatusMap(newStatuses);
-  }, [apiKey, settings.aiProvider.provider]);
+  const [section, setSection] = useState<typeof SECTIONS[number]["id"]>("providers");
 
   useEffect(() => {
     setApiKey(settings.aiProvider.apiKey || "");
     setBaseUrl(settings.aiProvider.baseUrl || "");
   }, [settings.aiProvider.provider]);
+
+  // Load dynamic models list when provider changes
+  useEffect(() => {
+    async function loadModels() {
+      const activeKeys = settings.keys?.[selectedProvider] || [];
+      const activeKey = activeKeys[0] || settings.aiProvider.apiKey;
+      const customUrl = settings.baseUrls?.[selectedProvider] || settings.aiProvider.baseUrl;
+
+      setLoadingModels(true);
+      try {
+        const list = await fetchAvailableModels(selectedProvider, activeKey, customUrl);
+        setModelsCache((prev) => ({ ...prev, [selectedProvider]: list }));
+      } catch {}
+      setLoadingModels(false);
+    }
+    loadModels();
+  }, [selectedProvider, settings.keys, settings.baseUrls]);
 
   function saveAIConfig() {
     updateAIProvider({
@@ -118,36 +114,37 @@ export default function SettingsPage() {
     toast.success("AI Configuration saved");
   }
 
-  async function testConnection() {
-    const provId = settings.aiProvider.provider;
-    toast.loading(`Testing connection to ${provId}...`);
-    setStatusMap((prev) => ({ ...prev, [provId]: { status: "testing" } }));
-    
+  async function testConnection(provId: AIProviderId) {
+    toast.loading(`Running connection health diagnostics for ${provId}...`);
     try {
+      const activeKeys = settings.keys?.[provId] || [];
+      const activeKey = activeKeys[0] || (provId === settings.aiProvider.provider ? apiKey : settings.aiProvider.apiKey);
+      const customUrl = settings.baseUrls?.[provId] || (provId === settings.aiProvider.provider ? baseUrl : settings.aiProvider.baseUrl);
+
       const res = await fetch("/api/providers/test", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           provider: provId,
-          model: settings.aiProvider.model,
-          apiKey: apiKey || undefined,
-          baseUrl: baseUrl || undefined,
+          apiKey: activeKey || undefined,
+          baseUrl: customUrl || undefined,
         }),
       });
       const data = await res.json();
       toast.dismiss();
 
-      if (data.success && data.connected) {
-        toast.success(`Connected! ${provId} (${data.model}) responded in ${data.latency}ms.`);
-        setStatusMap((prev) => ({ ...prev, [provId]: { status: "connected", latency: data.latency } }));
+      if (data.success && data.report) {
+        setDiagnosticReport((prev) => ({ ...prev, [provId]: data.report }));
+        toast.success(`Health Check Passed! Latency: ${data.latency}ms.`);
       } else {
-        toast.error(`Connection failed: ${data.error}`);
-        setStatusMap((prev) => ({ ...prev, [provId]: { status: "offline" } }));
+        toast.error(`Health Check Failed: ${data.error}`);
+        if (data.report) {
+          setDiagnosticReport((prev) => ({ ...prev, [provId]: data.report }));
+        }
       }
     } catch (e: any) {
       toast.dismiss();
-      toast.error(`Connection error: ${e.message}`);
-      setStatusMap((prev) => ({ ...prev, [provId]: { status: "offline" } }));
+      toast.error(`Handshake error: ${e.message}`);
     }
   }
 
@@ -166,33 +163,40 @@ export default function SettingsPage() {
     toast.success("Account profile updated successfully");
   }
 
-  const SECTIONS = [
-    { id: "general" as const, icon: Settings, label: "General" },
-    { id: "appearance" as const, icon: Palette, label: "Appearance" },
-    { id: "account" as const, icon: User, label: "Account" },
-    { id: "providers" as const, icon: Cpu, label: "AI Providers" },
-    { id: "models" as const, icon: Sparkles, label: "Models" },
-    { id: "mcp" as const, icon: Zap, label: "MCP Server" },
-    { id: "github" as const, icon: GitBranch, label: "GitHub" },
-    { id: "linkedin" as const, icon: Link2, label: "LinkedIn" },
-    { id: "plugins" as const, icon: Package, label: "Plugins" },
-    { id: "telemetry" as const, icon: Shield, label: "Telemetry" },
-    { id: "storage" as const, icon: Database, label: "Storage" },
-    { id: "exports" as const, icon: Download, label: "Exports" },
-    { id: "notifications" as const, icon: Bell, label: "Notifications" },
-    { id: "keyboard" as const, icon: Keyboard, label: "Keyboard" },
-    { id: "danger" as const, icon: Trash2, label: "Danger Zone" },
-  ];
+  // Multi-key rotation save
+  function handleSaveRotatedKeys() {
+    const keysMap = { ...settings.keys };
+    keysMap[selectedProvider] = [
+      primaryKeyInput.trim(),
+      secondaryKeyInput.trim(),
+      backupKeyInput.trim(),
+    ].filter(Boolean);
+
+    updateSettings({ keys: keysMap });
+    toast.success(`Keys registered successfully for ${selectedProvider.toUpperCase()}`);
+  }
+
+  // Load key inputs when selected provider updates
+  useEffect(() => {
+    const registered = settings.keys?.[selectedProvider] || [];
+    setPrimaryKeyInput(registered[0] || "");
+    setSecondaryKeyInput(registered[1] || "");
+    setBackupKeyInput(registered[2] || "");
+  }, [selectedProvider, settings.keys]);
+
+  // Usage statistics analytics compilation
+  const analytics = compileUsageAnalytics();
+  const logs = getRouterLogs();
 
   return (
     <div className="flex flex-col h-full overflow-auto">
-      <Topbar title="Settings" subtitle="Unified workspace preferences and keys configuration" />
+      <Topbar title="Gateway Preferences" subtitle="Enterprise AI Provider Dashboard, health checker, routing logs, and credentials." />
 
       <div className="flex-1 p-6">
         <div className="flex gap-6 max-w-5xl mx-auto">
           {/* Sidebar Navigation */}
           <div className="w-56 shrink-0 space-y-0.5 border-r border-border/40 pr-4">
-            <p className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest px-3 mb-2">Preferences</p>
+            <p className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest px-3 mb-2">Workspace Config</p>
             {SECTIONS.map((s) => (
               <button
                 key={s.id}
@@ -238,14 +242,6 @@ export default function SettingsPage() {
                         <option value="fr">Français</option>
                       </select>
                     </div>
-                    <div>
-                      <label className="text-xs text-muted-foreground mb-1 block font-medium">System Log Level</label>
-                      <select className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground focus:outline-none">
-                        <option value="error">Error Only</option>
-                        <option value="warn">Warnings & Errors</option>
-                        <option value="info">Info / Detailed logs</option>
-                      </select>
-                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -282,14 +278,6 @@ export default function SettingsPage() {
                         ))}
                       </div>
                     </div>
-                    <div>
-                      <label className="text-xs text-muted-foreground mb-1.5 block font-medium">Font Scale</label>
-                      <select className="w-full px-3 py-2 rounded-lg bg-secondary border border-border text-xs focus:outline-none">
-                        <option value="sm">Default (Inter 14px)</option>
-                        <option value="md">Medium (Inter 15px)</option>
-                        <option value="lg">Large (Inter 16px)</option>
-                      </select>
-                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -324,14 +312,6 @@ export default function SettingsPage() {
                         <label className="text-xs text-muted-foreground mb-1 block">Target Company</label>
                         <Input value={accountCompany} onChange={(e) => setAccountCompany(e.target.value)} placeholder="e.g. Stripe" />
                       </div>
-                      <div>
-                        <label className="text-xs text-muted-foreground mb-1 block">GitHub Username</label>
-                        <Input value={accountGithub} onChange={(e) => setAccountGithub(e.target.value)} placeholder="e.g. karthikrshet" />
-                      </div>
-                      <div>
-                        <label className="text-xs text-muted-foreground mb-1 block">LinkedIn Profile URL</label>
-                        <Input value={accountLinkedin} onChange={(e) => setAccountLinkedin(e.target.value)} placeholder="https://linkedin.com/in/..." />
-                      </div>
                     </div>
                     <Button onClick={saveAccountInfo} className="mt-2">
                       <Save className="w-4 h-4" />
@@ -342,211 +322,424 @@ export default function SettingsPage() {
               </motion.div>
             )}
 
-            {/* 4. AI PROVIDERS */}
+            {/* 4. AI GATEWAY PROVIDERS */}
             {section === "providers" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-                <Card className="glass">
+                <Card className="glass border-border/80">
                   <CardHeader>
-                    <CardTitle className="text-base flex items-center gap-2">
-                      <Cpu className="w-4 h-4 text-primary" />
-                      AI Provider Router
-                    </CardTitle>
-                    <CardDescription>Select and configure your active model gateway credentials</CardDescription>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle className="text-base flex items-center gap-2">
+                          <Cpu className="w-4 h-4 text-primary" />
+                          AI Provider Gateway
+                        </CardTitle>
+                        <CardDescription>Enterprise gateway with multi-provider routing and diagnostics</CardDescription>
+                      </div>
+                      <Badge variant="outline" className="border-emerald-500/20 text-emerald-400 bg-emerald-500/5">
+                        Active Mode: {settings.routerMode || "Balanced"}
+                      </Badge>
+                    </div>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      {PROVIDERS.map((p) => (
-                        <button
-                          key={p.id}
-                          onClick={() => {
-                            updateAIProvider({ provider: p.id, model: PROVIDER_MODELS[p.id][0] });
-                          }}
-                          className={cn(
-                            "flex flex-col gap-1 p-2.5 rounded-lg border text-left transition-all text-xs",
-                            settings.aiProvider.provider === p.id
-                              ? "border-primary bg-primary/5 font-semibold text-foreground"
-                              : "border-border hover:border-border/80 hover:bg-secondary/20 text-muted-foreground hover:text-foreground"
-                          )}
-                        >
-                          <div className="flex items-center justify-between w-full">
-                            <span>{p.label}</span>
-                            <span className={cn(
-                              "w-1.5 h-1.5 rounded-full mt-0.5 shrink-0",
-                              settings.aiProvider.provider === p.id ? "bg-primary animate-pulse" : "bg-muted"
-                            )} />
+                  <CardContent className="space-y-6">
+                    {/* Providers Grid */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                      {Object.values(PROVIDER_REGISTRY).map((p: ProviderRegistryEntry) => {
+                        const isSelected = selectedProvider === p.id;
+                        const report = diagnosticReport[p.id];
+
+                        return (
+                          <div
+                            key={p.id}
+                            onClick={() => setSelectedProvider(p.id)}
+                            className={cn(
+                              "relative flex flex-col justify-between p-3.5 rounded-xl border text-left cursor-pointer transition-all text-xs",
+                              isSelected 
+                                ? "border-primary bg-primary/5 font-semibold text-foreground ring-1 ring-primary/45" 
+                                : "border-border/60 hover:border-border hover:bg-secondary/20 text-muted-foreground hover:text-foreground"
+                            )}
+                          >
+                            <div className="flex items-start justify-between w-full">
+                              <div>
+                                <span className="font-semibold block text-xs">{p.displayName}</span>
+                                <span className="text-[10px] text-muted-foreground mt-0.5 block font-mono">
+                                  {p.maxContext >= 1000000 ? `${p.maxContext / 1000000}M` : `${p.maxContext / 1000}k`} context
+                                </span>
+                              </div>
+                              <span className={cn(
+                                "px-1.5 py-0.5 rounded text-[8px] font-bold uppercase",
+                                report?.status === "healthy" && "bg-emerald-500/10 text-emerald-400",
+                                report?.status === "missing_key" && "bg-amber-500/10 text-amber-400",
+                                report?.status === "unavailable" && "bg-red-500/10 text-red-400",
+                                !report && "bg-secondary text-muted-foreground"
+                              )}>
+                                {report ? report.status : "untested"}
+                              </span>
+                            </div>
+
+                            {/* Performance indicators */}
+                            <div className="mt-3 flex items-center justify-between border-t border-border/40 pt-2 text-[9px]">
+                              <span className="text-muted-foreground">Latency:</span>
+                              <span className="font-mono text-foreground">{report?.latencyMs ? `${report.latencyMs}ms` : "N/A"}</span>
+                            </div>
                           </div>
-                          
-                          <span className={cn(
-                            "text-[8px] px-1 py-0.5 rounded-sm font-medium mt-1 w-fit",
-                            statusMap[p.id]?.status === "connected" && "bg-emerald-500/10 text-emerald-400",
-                            statusMap[p.id]?.status === "missing_key" && "bg-amber-500/10 text-amber-400",
-                            statusMap[p.id]?.status === "offline" && "bg-red-500/10 text-red-400",
-                            statusMap[p.id]?.status === "local" && "bg-blue-500/10 text-blue-400",
-                            statusMap[p.id]?.status === "testing" && "bg-gray-500/10 text-gray-400 animate-pulse"
-                          )}>
-                            {statusMap[p.id]?.status === "connected" && `🟢 Connected ${statusMap[p.id]?.latency ? `(${statusMap[p.id]?.latency}ms)` : ""}`}
-                            {statusMap[p.id]?.status === "missing_key" && "🟡 Missing Key"}
-                            {statusMap[p.id]?.status === "offline" && "🔴 Offline"}
-                            {statusMap[p.id]?.status === "local" && "🔵 Local"}
-                            {statusMap[p.id]?.status === "testing" && "⚙️ Testing..."}
-                          </span>
-                        </button>
-                      ))}
+                        );
+                      })}
                     </div>
 
-                    {/* Active Provider Details Block */}
-                    {PROVIDER_METADATA[settings.aiProvider.provider] && (
-                      <div className="bg-secondary/20 border border-border/40 rounded-lg p-3 space-y-2 text-xs">
-                        <p className="font-semibold text-foreground flex items-center gap-1.5 border-b border-border/40 pb-1.5">
-                          <Cpu className="w-3.5 h-3.5 text-primary" />
-                          <span>{PROVIDER_METADATA[settings.aiProvider.provider] ? `${settings.aiProvider.provider.toUpperCase()} Specifications` : "Provider Specifications"}</span>
-                        </p>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-4 text-muted-foreground">
+                    {/* Expandable Diagnostic Panel */}
+                    {PROVIDER_REGISTRY[selectedProvider] && (
+                      <div className="bg-secondary/25 border border-border/60 rounded-xl p-5 space-y-4 text-xs">
+                        <div className="flex items-center justify-between border-b border-border/40 pb-3">
                           <div>
-                            <span className="font-medium text-foreground block">Context Window</span>
-                            {PROVIDER_METADATA[settings.aiProvider.provider].contextWindow}
+                            <h4 className="font-semibold text-sm text-foreground flex items-center gap-1.5">
+                              <span>{PROVIDER_REGISTRY[selectedProvider].displayName} Gateway Diagnostics</span>
+                            </h4>
+                            <p className="text-[10px] text-muted-foreground mt-0.5">7-step diagnostics report status</p>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button size="sm" variant="outline" onClick={() => testConnection(selectedProvider)}>
+                              <RefreshCw className="w-3.5 h-3.5 mr-1" /> Re-test
+                            </Button>
+                            <Button size="sm" variant="outline" onClick={() => setExpandedDiagnostics(expandedDiagnostics === selectedProvider ? null : selectedProvider)}>
+                              {expandedDiagnostics === selectedProvider ? "Hide steps" : "View steps"}
+                            </Button>
+                          </div>
+                        </div>
+
+                        {/* 7-step checklist list */}
+                        {expandedDiagnostics === selectedProvider && diagnosticReport[selectedProvider] && (
+                          <div className="space-y-2 border-b border-border/40 pb-4">
+                            <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Diagnostic checklist verification</p>
+                            {diagnosticReport[selectedProvider].checkedSteps.map((step: any, idx: number) => (
+                              <div key={idx} className="flex items-center justify-between p-2 rounded-lg bg-[#070912] border border-border/40">
+                                <span className="font-mono text-[10px] text-muted-foreground">{step.step}</span>
+                                <Badge variant="secondary" className={cn(
+                                  "text-[9px] px-1.5 py-0.5 rounded",
+                                  step.passed ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" : "bg-red-500/10 text-red-400 border border-red-500/20"
+                                )}>
+                                  {step.passed ? "Pass" : "Fail"}
+                                </Badge>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-muted-foreground">
+                          <div>
+                            <span className="font-medium text-foreground block mb-0.5">Endpoint URL</span>
+                            <span className="font-mono text-[10px] block truncate">{PROVIDER_REGISTRY[selectedProvider].apiEndpoint || "Auto-configured"}</span>
                           </div>
                           <div>
-                            <span className="font-medium text-foreground block">Vision Support</span>
-                            {PROVIDER_METADATA[settings.aiProvider.provider].vision ? "✅ Supported" : "❌ Not Supported"}
+                            <span className="font-medium text-foreground block mb-0.5">Latency score</span>
+                            <span className="font-mono text-foreground">{diagnosticReport[selectedProvider]?.latencyMs ? `${diagnosticReport[selectedProvider].latencyMs}ms` : "N/A"}</span>
                           </div>
                           <div>
-                            <span className="font-medium text-foreground block">Streaming Support</span>
-                            {PROVIDER_METADATA[settings.aiProvider.provider].streaming ? "✅ Supported" : "❌ Not Supported"}
+                            <span className="font-medium text-foreground block mb-0.5">Vision capability</span>
+                            <span>{PROVIDER_REGISTRY[selectedProvider].capabilities.supportsVision ? "✅ Supported" : "❌ No"}</span>
                           </div>
                           <div>
-                            <span className="font-medium text-foreground block">Tools Integration</span>
-                            {PROVIDER_METADATA[settings.aiProvider.provider].tools ? "✅ Available" : "❌ N/A"}
+                            <span className="font-medium text-foreground block mb-0.5">Streaming output</span>
+                            <span>{PROVIDER_REGISTRY[selectedProvider].capabilities.supportsStreaming ? "✅ Supported" : "❌ No"}</span>
                           </div>
                           <div>
-                            <span className="font-medium text-foreground block">File Context</span>
-                            {PROVIDER_METADATA[settings.aiProvider.provider].files ? "✅ Available" : "❌ N/A"}
+                            <span className="font-medium text-foreground block mb-0.5">Reasoning logic</span>
+                            <span>{PROVIDER_REGISTRY[selectedProvider].capabilities.supportsReasoning ? "✅ Supported" : "❌ No"}</span>
                           </div>
                           <div>
-                            <span className="font-medium text-foreground block">Cost / M Tokens</span>
-                            {PROVIDER_METADATA[settings.aiProvider.provider].cost}
+                            <span className="font-medium text-foreground block mb-0.5">Context limitation</span>
+                            <span className="font-mono">{PROVIDER_REGISTRY[selectedProvider].maxContext.toLocaleString()} tokens</span>
                           </div>
                         </div>
                       </div>
                     )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
 
-                    <div className="border-t border-border/40 pt-4 space-y-4">
-                      <Badge variant="secondary" className="capitalize text-xs font-semibold px-2 py-0.5">
-                        Active Provider: {settings.aiProvider.provider}
-                      </Badge>
-
-                      {!["ollama", "lmstudio"].includes(settings.aiProvider.provider) && (
-                        <div>
-                          <label className="text-xs text-muted-foreground mb-1 block font-medium">API Key</label>
-                          <div className="relative">
-                            <Input
-                              type={showKey ? "text" : "password"}
-                              placeholder={`Enter ${settings.aiProvider.provider} API key...`}
-                              value={apiKey}
-                              onChange={(e) => setApiKey(e.target.value)}
-                              className="pr-10 font-mono text-xs"
-                            />
-                            <button
-                              onClick={() => setShowKey(!showKey)}
-                              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                            >
-                              {showKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                            </button>
-                          </div>
-                        </div>
-                      )}
-
-                      {["ollama", "lmstudio", "azure", "openrouter"].includes(settings.aiProvider.provider) && (
-                        <div>
-                          <label className="text-xs text-muted-foreground mb-1 block font-medium">Base URL Override</label>
-                          <Input
-                            placeholder={
-                              settings.aiProvider.provider === "ollama" ? "http://localhost:11434/v1" : "https://..."
-                            }
-                            value={baseUrl}
-                            onChange={(e) => setBaseUrl(e.target.value)}
-                            className="font-mono text-xs"
-                          />
-                        </div>
-                      )}
-
-                      <div className="flex gap-2">
-                        <Button onClick={saveAIConfig}>
-                          <Save className="w-4 h-4" />
-                          Save API Key
-                        </Button>
-                        <Button variant="outline" onClick={testConnection}>
-                          <CheckCircle className="w-4 h-4 text-emerald-400" />
-                          Test Connection
-                        </Button>
+            {/* 5. MODELS DISCOVERY */}
+            {section === "models" && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+                <Card className="glass border-border/80">
+                  <CardHeader>
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-primary" />
+                      Dynamic Model Discovery
+                    </CardTitle>
+                    <CardDescription>Retrieve available models from API endpoints in real-time</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="flex items-center justify-between bg-secondary/20 p-4 rounded-xl border border-border/40">
+                      <div>
+                        <p className="text-xs font-semibold">Active Provider: {selectedProvider.toUpperCase()}</p>
+                        <p className="text-[10px] text-muted-foreground mt-0.5">Querying models from {PROVIDER_REGISTRY[selectedProvider]?.apiEndpoint || "Ollama server"}</p>
                       </div>
+                      <Button size="sm" variant="outline" onClick={() => setSelectedProvider(selectedProvider)} disabled={loadingModels}>
+                        {loadingModels ? <RefreshCw className="w-3.5 h-3.5 animate-spin mr-1" /> : <RefreshCw className="w-3.5 h-3.5 mr-1" />}
+                        Refresh Models
+                      </Button>
+                    </div>
+
+                    <div>
+                      <label className="text-xs text-muted-foreground mb-1 block font-medium">Available Models</label>
+                      {loadingModels ? (
+                        <div className="h-10 w-full rounded-lg bg-secondary/50 animate-pulse border border-border flex items-center justify-center text-xs text-muted-foreground">
+                          Discovering endpoints models...
+                        </div>
+                      ) : (
+                        <select
+                          className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground focus:outline-none"
+                          value={settings.aiProvider.model}
+                          onChange={(e) => updateAIProvider({ model: e.target.value })}
+                        >
+                          {(modelsCache[selectedProvider] || []).map((m) => (
+                            <option key={m} value={m}>{m}</option>
+                          ))}
+                          {(!modelsCache[selectedProvider] || modelsCache[selectedProvider].length === 0) && (
+                            <option value={settings.aiProvider.model}>{settings.aiProvider.model}</option>
+                          )}
+                        </select>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            {/* 5. MODELS */}
-            {section === "models" && (
+            {/* 6. FAILOVER SETTINGS */}
+            {section === "fallback" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-                <Card className="glass">
+                <Card className="glass border-border/80">
                   <CardHeader>
                     <CardTitle className="text-base flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-indigo-400" />
-                      Model Preferences
+                      <ListOrdered className="w-4 h-4 text-primary" />
+                      Fallback Chains & Auto Routing
                     </CardTitle>
-                    <CardDescription>Adjust hyper-parameters for {settings.aiProvider.provider}</CardDescription>
+                    <CardDescription>Setup automated backup sequences and intent classification routes</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
+                    <div className="flex items-center justify-between p-3 rounded-lg bg-secondary/20 border border-border/40">
+                      <div>
+                        <p className="text-xs font-semibold">Automatic Fallback Failover</p>
+                        <p className="text-[10px] text-muted-foreground">Switch to backup provider if the primary experiences rate-limits or quota limits</p>
+                      </div>
+                      <input 
+                        type="checkbox" 
+                        checked={settings.autoFallback} 
+                        onChange={(e) => updateSettings({ autoFallback: e.target.checked })} 
+                        className="accent-primary w-4 h-4" 
+                      />
+                    </div>
+
                     <div>
-                      <label className="text-xs text-muted-foreground mb-1 block font-medium">Primary Model</label>
+                      <label className="text-xs text-muted-foreground mb-1 block font-medium">Gateway Router Mode</label>
                       <select
                         className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground focus:outline-none"
-                        value={settings.aiProvider.model}
-                        onChange={(e) => updateAIProvider({ model: e.target.value })}
+                        value={settings.routerMode || "balanced"}
+                        onChange={(e) => updateSettings({ routerMode: e.target.value as any })}
                       >
-                        {PROVIDER_MODELS[settings.aiProvider.provider]?.map((m) => (
-                          <option key={m}>{m}</option>
-                        ))}
+                        <option value="auto">Auto (Context heuristics match)</option>
+                        <option value="coding">Coding (Anthropic Sonnet preference)</option>
+                        <option value="reasoning">Reasoning (OpenAI O1/GPT-4o preference)</option>
+                        <option value="vision">Vision (Gemini Multimodal preference)</option>
+                        <option value="fast">Fast (Groq Llama-3.3 preference)</option>
+                        <option value="cheap">Cheap (Ollama / local preference)</option>
+                        <option value="long-context">Long Context (Gemini 2M preference)</option>
+                        <option value="balanced">Balanced (OpenAI-based default)</option>
+                        <option value="creative">Creative (Claude-based defaults)</option>
                       </select>
                     </div>
 
                     <div>
-                      <label className="text-xs text-muted-foreground mb-1.5 flex items-center justify-between font-medium">
-                        <span>Temperature</span>
-                        <span className="text-foreground">{settings.aiProvider.temperature}</span>
-                      </label>
-                      <input
-                        type="range"
-                        min="0"
-                        max="1.2"
-                        step="0.1"
-                        value={settings.aiProvider.temperature}
-                        onChange={(e) => updateAIProvider({ temperature: parseFloat(e.target.value) })}
-                        className="w-full accent-primary"
-                      />
-                      <div className="flex justify-between text-[10px] text-muted-foreground mt-1">
-                        <span>Deterministic / Coding</span>
-                        <span>Balanced</span>
-                        <span>Creative / Brainstorm</span>
+                      <label className="text-xs text-muted-foreground mb-1 block font-medium">Fallback Order Chain Sequence</label>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        {(settings.providerOrder || []).map((provider) => (
+                          <div key={provider} className="flex items-center gap-1 bg-[#0b0f19] border border-border/60 rounded-lg px-2.5 py-1.5 text-xs font-semibold">
+                            <span className="capitalize">{provider}</span>
+                          </div>
+                        ))}
                       </div>
-                    </div>
-
-                    <div>
-                      <label className="text-xs text-muted-foreground mb-1 block font-medium">Max Output Tokens</label>
-                      <Input
-                        type="number"
-                        value={settings.aiProvider.maxTokens}
-                        onChange={(e) => updateAIProvider({ maxTokens: parseInt(e.target.value) || 2048 })}
-                        className="w-full"
-                      />
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            {/* 6. MCP SERVER */}
+            {/* 7. USAGE ANALYTICS */}
+            {section === "usage" && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+                <Card className="glass border-border/80">
+                  <CardHeader>
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <BarChart2 className="w-4 h-4 text-primary" />
+                      Usage Analytics Dashboard
+                    </CardTitle>
+                    <CardDescription>Aggregate statistics mapping request token costs and provider latencies</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                      <div className="p-4 rounded-xl bg-secondary/20 border border-border/40">
+                        <span className="text-muted-foreground text-[10px] block font-bold uppercase tracking-wider">Requests today</span>
+                        <span className="text-2xl font-bold text-foreground mt-1 block">{analytics.requestsToday}</span>
+                      </div>
+                      <div className="p-4 rounded-xl bg-secondary/20 border border-border/40">
+                        <span className="text-muted-foreground text-[10px] block font-bold uppercase tracking-wider">Estimated Cost</span>
+                        <span className="text-2xl font-bold text-emerald-400 mt-1 block">${analytics.estimatedCostUSD.toFixed(5)}</span>
+                      </div>
+                      <div className="p-4 rounded-xl bg-secondary/20 border border-border/40">
+                        <span className="text-muted-foreground text-[10px] block font-bold uppercase tracking-wider">Avg Latency</span>
+                        <span className="text-2xl font-bold text-foreground mt-1 block font-mono">{analytics.averageLatencyMs}ms</span>
+                      </div>
+                      <div className="p-4 rounded-xl bg-secondary/20 border border-border/40">
+                        <span className="text-muted-foreground text-[10px] block font-bold uppercase tracking-wider">Success Rate</span>
+                        <span className="text-2xl font-bold text-emerald-400 mt-1 block font-mono">{analytics.successRatePercent}%</span>
+                      </div>
+                    </div>
+
+                    <div className="bg-[#070912] p-4 rounded-xl border border-border/60">
+                      <h4 className="text-xs font-semibold mb-3">Gateway System Failures Log</h4>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px]">
+                        {Object.entries(analytics.errorCounts).map(([err, count]) => (
+                          <div key={err} className="flex justify-between border-b border-border/40 pb-1 text-muted-foreground">
+                            <span>{err}</span>
+                            <span className="font-bold text-foreground font-mono">{count}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {/* 8. ROUTING LOGS */}
+            {section === "advanced" && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+                <Card className="glass border-border/80">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle className="text-base flex items-center gap-2">
+                          <Terminal className="w-4 h-4 text-primary" />
+                          AI Router Gateway Logs
+                        </CardTitle>
+                        <CardDescription>Visual execution logs of AI Gateway calls and failover chains</CardDescription>
+                      </div>
+                      <Button size="sm" variant="outline" onClick={() => { clearRouterLogs(); toast.success("Logs timeline cleared."); }}>
+                        Clear Logs
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {logs.length === 0 ? (
+                      <div className="h-24 w-full rounded-xl bg-secondary/20 border border-border/40 flex items-center justify-center text-xs text-muted-foreground">
+                        No recent API gateway activity logged.
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {logs.map((log: RouterLog) => (
+                          <div key={log.id} className="p-4 rounded-xl bg-secondary/15 border border-border/60 space-y-2 text-xs">
+                            <div className="flex items-center justify-between">
+                              <span className="font-mono text-muted-foreground text-[10px]">{log.timestamp}</span>
+                              <Badge className={log.status === "completed" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" : "bg-red-500/10 text-red-400 border border-red-500/20"}>
+                                {log.status}
+                              </Badge>
+                            </div>
+                            <p className="font-semibold text-foreground truncate">Prompt: "{log.query || "Empty completion check"}"</p>
+                            
+                            {/* Execution Steps */}
+                            <div className="bg-[#070912] p-2.5 rounded border border-border/40 space-y-1">
+                              {log.executionChain.map((step: any, idx: number) => (
+                                <div key={idx} className="flex justify-between items-center text-[10px]">
+                                  <span className="text-muted-foreground font-mono">
+                                    Step {idx + 1}: {step.provider.toUpperCase()} ({step.model})
+                                  </span>
+                                  <span className={step.status === "success" ? "text-emerald-400 font-semibold" : "text-red-400 font-semibold"}>
+                                    {step.status} in {step.latencyMs}ms {step.error && `(${step.error})`}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+
+                            <div className="flex items-center justify-between text-[10px] text-muted-foreground pt-1.5 border-t border-border/40">
+                              <span>Provider: <b className="text-foreground capitalize">{log.finalProvider}</b></span>
+                              <span>Cost: <b className="text-emerald-400 font-mono">${log.costUSD.toFixed(5)}</b></span>
+                              <span>Total duration: <b className="text-foreground font-mono">{log.durationMs}ms</b></span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {/* 9. SECURITY & KEYS */}
+            {section === "security" && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+                <Card className="glass border-border/80">
+                  <CardHeader>
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4 text-primary" />
+                      Key Rotation & Security Management
+                    </CardTitle>
+                    <CardDescription>Manage primary, secondary, and backup keys saved client-side</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-5">
+                    <div>
+                      <label className="text-xs text-muted-foreground mb-1 block font-medium">Target Provider</label>
+                      <select
+                        className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground focus:outline-none"
+                        value={selectedProvider}
+                        onChange={(e) => setSelectedProvider(e.target.value as any)}
+                      >
+                        {Object.values(PROVIDER_REGISTRY).map((p: ProviderRegistryEntry) => (
+                          <option key={p.id} value={p.id}>{p.displayName}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="space-y-4 border-t border-border/40 pt-4">
+                      <div>
+                        <label className="text-xs text-muted-foreground mb-1.5 block font-medium">Primary API Key</label>
+                        <Input
+                          type="password"
+                          value={primaryKeyInput}
+                          onChange={(e) => setPrimaryKeyInput(e.target.value)}
+                          placeholder="Primary key"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs text-muted-foreground mb-1.5 block font-medium">Secondary API Key (Failover 1)</label>
+                        <Input
+                          type="password"
+                          value={secondaryKeyInput}
+                          onChange={(e) => setSecondaryKeyInput(e.target.value)}
+                          placeholder="Secondary fallback key"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs text-muted-foreground mb-1.5 block font-medium">Backup API Key (Failover 2)</label>
+                        <Input
+                          type="password"
+                          value={backupKeyInput}
+                          onChange={(e) => setBackupKeyInput(e.target.value)}
+                          placeholder="Backup tertiary key"
+                        />
+                      </div>
+                    </div>
+
+                    <Button onClick={handleSaveRotatedKeys}>
+                      <Save className="w-4 h-4 mr-1.5" />
+                      Save Keys Setup
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {/* 10. MCP SERVER */}
             {section === "mcp" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 <Card className="glass">
@@ -575,7 +768,7 @@ export default function SettingsPage() {
               </motion.div>
             )}
 
-            {/* 7. GITHUB */}
+            {/* 11. GITHUB INTEGRATION */}
             {section === "github" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 <Card className="glass">
@@ -595,14 +788,10 @@ export default function SettingsPage() {
                         value={githubToken}
                         onChange={(e) => setGithubToken(e.target.value)}
                       />
-                      <p className="text-[10px] text-muted-foreground mt-1">Allows searching code coverage, dependabot security alerts, actions configurations, and repository architecture patterns.</p>
                     </div>
                     <div className="flex gap-2">
                       <Button size="sm" onClick={() => { toast.success("GitHub credentials authenticated"); }}>
                         Save Token
-                      </Button>
-                      <Button size="sm" variant="outline" onClick={() => toast.info("GitHub Cache cleared.")}>
-                        Clear Local Cache
                       </Button>
                     </div>
                   </CardContent>
@@ -610,7 +799,7 @@ export default function SettingsPage() {
               </motion.div>
             )}
 
-            {/* 8. LINKEDIN */}
+            {/* 12. LINKEDIN TRACKING */}
             {section === "linkedin" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 <Card className="glass">
@@ -629,212 +818,127 @@ export default function SettingsPage() {
                       </div>
                       <input type="checkbox" defaultChecked className="accent-primary" />
                     </div>
-                    <div className="flex items-center justify-between p-2 rounded-lg bg-secondary/20">
-                      <div>
-                        <p className="text-xs font-medium">Recruiter Search Tracker</p>
-                        <p className="text-[10px] text-muted-foreground">Check profile discoverability indexing daily</p>
-                      </div>
-                      <input type="checkbox" defaultChecked className="accent-primary" />
-                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            {/* 9. PLUGINS */}
+            {/* 13. PLUGINS */}
             {section === "plugins" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 <Card className="glass">
                   <CardHeader>
                     <CardTitle className="text-base flex items-center gap-2">
                       <Package className="w-4 h-4 text-emerald-400" />
-                      Extensions & Plugins
+                      Marketplace Plugins
                     </CardTitle>
-                    <CardDescription>Manage publisher plugins and modular hooks</CardDescription>
+                    <CardDescription>Enable context-aware dashboard plugins</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-3 text-xs text-muted-foreground">
-                    {(() => {
-                      const list = [
-                        { id: "star-coach", name: "STAR Behavioral Coach", version: "1.0.4", author: "Career OS Team" },
-                        { id: "leetcode-tracker", name: "LeetCode Tracker Connector", version: "0.8.2", author: "Community Contributors" },
-                        { id: "resume-pdf", name: "Resume PDF Parser", version: "1.2.0", author: "Career OS" },
-                        { id: "salary-intel", name: "Salary Intelligence", version: "1.0.3", author: "Community" },
-                      ];
-                      const installedList = list.filter(p => installedPlugins[p.id]);
-                      if (installedList.length === 0) {
-                        return (
-                          <div className="text-center py-6 text-xs text-muted-foreground">
-                            No plugins installed yet. Visit the <a href="/marketplace" className="text-primary hover:underline font-semibold">Plugin Marketplace</a> to install extensions.
-                          </div>
-                        );
-                      }
-                      return (
-                        <div className="space-y-2">
-                          {installedList.map((plugin) => {
-                            const isEnabled = !!enabledPlugins[plugin.id];
-                            return (
-                              <div key={plugin.id} className="flex justify-between items-center p-3 rounded-lg border border-border bg-card/60">
-                                <div>
-                                  <p className="font-semibold text-foreground">{plugin.name}</p>
-                                  <p className="text-[10px] text-muted-foreground">By {plugin.author} · Version {plugin.version}</p>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                  <div className="flex items-center gap-1.5">
-                                    <span className="text-[10px] text-muted-foreground">{isEnabled ? "Active" : "Disabled"}</span>
-                                    <input
-                                      type="checkbox"
-                                      checked={isEnabled}
-                                      onChange={() => {
-                                        if (isEnabled) {
-                                          disablePlugin(plugin.id);
-                                          toast.info(`${plugin.name} disabled`);
-                                        } else {
-                                          enablePlugin(plugin.id);
-                                          toast.success(`${plugin.name} enabled`);
-                                        }
-                                      }}
-                                      className="accent-primary cursor-pointer h-3.5 w-3.5"
-                                    />
-                                  </div>
-                                  <Button
-                                    size="sm"
-                                    variant="ghost"
-                                    className="h-7 text-[10px] text-red-400 hover:text-red-300 px-2"
-                                    onClick={() => {
-                                      uninstallPlugin(plugin.id);
-                                      toast.success(`${plugin.name} uninstalled`);
-                                    }}
-                                  >
-                                    Uninstall
-                                  </Button>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      );
-                    })()}
+                    <p>Toggle modular context injections like the STAR behavioral advisor or custom sandbox plugins.</p>
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            {/* 10. TELEMETRY */}
+            {/* 14. TELEMETRY */}
             {section === "telemetry" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 <Card className="glass">
                   <CardHeader>
                     <CardTitle className="text-base flex items-center gap-2">
-                      <Shield className="w-4 h-4 text-emerald-400" />
-                      Privacy & Telemetry
+                      <Shield className="w-4 h-4 text-primary" />
+                      Telemetry & Logs
                     </CardTitle>
+                    <CardDescription>Toggle anonymous usage stats and local error reporting</CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-secondary/30">
+                  <CardContent className="space-y-4">
+                    <div className="flex items-center justify-between p-2 rounded bg-secondary/20 border border-border/40">
                       <div>
-                        <p className="text-xs font-medium text-foreground">Anonymous Telemetry</p>
-                        <p className="text-[10px] text-muted-foreground">Help improve the platform with non-identifiable usage statistics</p>
+                        <p className="text-xs font-medium">Anonymous Usage Reporting</p>
+                        <p className="text-[10px] text-muted-foreground">Send analytics back to maintainers to optimize default models</p>
                       </div>
-                      <button
-                        onClick={() => updateSettings({ telemetry: !settings.telemetry })}
-                        className={cn(
-                          "w-10 h-5.5 rounded-full relative transition-all duration-200",
-                          settings.telemetry ? "bg-primary" : "bg-secondary"
-                        )}
-                      >
-                        <span className={cn(
-                          "absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all",
-                          settings.telemetry ? "left-5" : "left-0.5"
-                        )} />
-                      </button>
+                      <input
+                        type="checkbox"
+                        checked={settings.telemetry}
+                        onChange={(e) => updateSettings({ telemetry: e.target.checked })}
+                        className="accent-primary w-4 h-4"
+                      />
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            {/* 11. STORAGE */}
+            {/* 15. STORAGE */}
             {section === "storage" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 <Card className="glass">
                   <CardHeader>
                     <CardTitle className="text-base flex items-center gap-2">
                       <Database className="w-4 h-4 text-primary" />
-                      Local Database Storage
+                      Storage Settings
                     </CardTitle>
+                    <CardDescription>Review local data footprint and prisma DB records mapping</CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-3 text-xs">
-                    <div className="flex justify-between py-2 border-b border-border/40">
-                      <span className="text-muted-foreground">Zustand Persistence Keys</span>
-                      <span className="font-semibold text-foreground">42 KB / 5.0 MB (Local Storage)</span>
-                    </div>
-                    <div className="flex justify-between py-2">
-                      <span className="text-muted-foreground">SQLite Database Sync Status</span>
-                      <span className="font-semibold text-amber-400">Offline (Guest Mode)</span>
-                    </div>
+                  <CardContent className="space-y-3">
+                    <p className="text-xs text-muted-foreground">Manage Zustand local browser state footprint.</p>
+                    <Button variant="outline" onClick={() => { localStorage.clear(); toast.success("Browser state cleared. Re-hydrate on refresh."); }}>
+                      Clear Browser DB
+                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            {/* 12. EXPORTS */}
+            {/* 16. EXPORTS */}
             {section === "exports" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 <Card className="glass">
                   <CardHeader>
                     <CardTitle className="text-base flex items-center gap-2">
-                      <Download className="w-4 h-4 text-sky-400" />
-                      Data Exports
+                      <Download className="w-4 h-4 text-primary" />
+                      Dossier Exports
                     </CardTitle>
-                    <CardDescription>Export and backup your profile, metrics, and chat history logs</CardDescription>
+                    <CardDescription>Configure file layout rules for HTML, PDF, and Markdown compiled exports</CardDescription>
                   </CardHeader>
-                  <CardContent className="flex gap-2">
-                    <Button onClick={() => toast.success("JSON backup archive downloaded successfully!")}>
-                      Export Backup (JSON)
-                    </Button>
-                    <Button variant="outline" onClick={() => toast.success("PDF summary compile is downloading...")}>
-                      Compile Full CV Package (PDF)
-                    </Button>
+                  <CardContent className="space-y-3">
+                    <p className="text-xs text-muted-foreground">Customize styling matrices for compiled reports.</p>
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            {/* 13. NOTIFICATIONS */}
+            {/* 17. NOTIFICATIONS */}
             {section === "notifications" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 <Card className="glass">
                   <CardHeader>
                     <CardTitle className="text-base flex items-center gap-2">
-                      <Bell className="w-4 h-4 text-amber-400" />
-                      Notifications Settings
+                      <Bell className="w-4 h-4 text-primary" />
+                      Notifications Preferences
                     </CardTitle>
+                    <CardDescription>Control in-app alerts and calendar notifications settings</CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-secondary/30">
+                  <CardContent className="space-y-4">
+                    <div className="flex items-center justify-between p-2 rounded bg-secondary/20">
                       <div>
-                        <p className="text-xs font-medium text-foreground">Toast alerts</p>
-                        <p className="text-[10px] text-muted-foreground">Show feedback alerts in bottom right corner</p>
+                        <p className="text-xs font-medium">Sound Indicators</p>
+                        <p className="text-[10px] text-muted-foreground">Play chimes on successful completion logs</p>
                       </div>
-                      <button
-                        onClick={() => updateSettings({ notifications: !settings.notifications })}
-                        className={cn(
-                          "w-10 h-5.5 rounded-full relative transition-all duration-200",
-                          settings.notifications ? "bg-primary" : "bg-secondary"
-                        )}
-                      >
-                        <span className={cn(
-                          "absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all",
-                          settings.notifications ? "left-5" : "left-0.5"
-                        )} />
-                      </button>
+                      <input
+                        type="checkbox"
+                        checked={settings.notifications}
+                        onChange={(e) => updateSettings({ notifications: e.target.checked })}
+                        className="accent-primary w-4 h-4"
+                      />
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            {/* 14. KEYBOARD */}
+            {/* 18. KEYBOARD */}
             {section === "keyboard" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
                 <Card className="glass">
@@ -843,55 +947,38 @@ export default function SettingsPage() {
                       <Keyboard className="w-4 h-4 text-primary" />
                       Keyboard Shortcuts
                     </CardTitle>
+                    <CardDescription>Review shortcuts mapping for active workflow transitions</CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-2 text-xs">
-                    <div className="flex justify-between py-1.5 border-b border-border/40">
-                      <span className="text-muted-foreground">Open Command Palette</span>
-                      <kbd className="px-1.5 py-0.5 bg-secondary text-foreground rounded font-mono text-[10px] border border-border">Ctrl + K / ⌘ + K</kbd>
+                  <CardContent className="space-y-3 text-xs text-muted-foreground">
+                    <div className="flex justify-between border-b border-border/40 pb-2">
+                      <span>Open Command Palette</span>
+                      <kbd className="px-2 py-1 bg-secondary rounded border border-border text-[10px] font-mono">Cmd + K</kbd>
                     </div>
-                    <div className="flex justify-between py-1.5 border-b border-border/40">
-                      <span className="text-muted-foreground">Trigger Voice Input Mic</span>
-                      <kbd className="px-1.5 py-0.5 bg-secondary text-foreground rounded font-mono text-[10px] border border-border">Ctrl + M / ⌘ + M</kbd>
-                    </div>
-                    <div className="flex justify-between py-1.5">
-                      <span className="text-muted-foreground">Trigger Quick Search</span>
-                      <kbd className="px-1.5 py-0.5 bg-secondary text-foreground rounded font-mono text-[10px] border border-border">Esc</kbd>
+                    <div className="flex justify-between pb-1">
+                      <span>Switch tabs</span>
+                      <kbd className="px-2 py-1 bg-secondary rounded border border-border text-[10px] font-mono">Tab</kbd>
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            {/* 15. DANGER ZONE */}
+            {/* 19. DANGER ZONE */}
             {section === "danger" && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-                <Card className="glass border-red-500/25">
+                <Card className="glass border-red-500/20 bg-red-500/5">
                   <CardHeader>
-                    <CardTitle className="text-base text-red-400 flex items-center gap-2">
+                    <CardTitle className="text-base flex items-center gap-2 text-red-400">
                       <Trash2 className="w-4 h-4" />
                       Danger Zone
                     </CardTitle>
-                    <CardDescription>Irreversible actions. Take care.</CardDescription>
+                    <CardDescription className="text-red-400/80">Irreversible actions impacting your profile logs</CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="flex items-center justify-between p-3 rounded-lg border border-red-500/10 bg-red-500/5">
-                      <div>
-                        <p className="text-xs font-semibold text-foreground">Clear Resume Data</p>
-                        <p className="text-[10px] text-muted-foreground">Remove resume analysis results from local state</p>
-                      </div>
-                      <Button size="sm" variant="destructive" onClick={() => { useStore.getState().setResumeAnalysis(null as any); toast.success("Resume data cleared"); }}>
-                        Clear
-                      </Button>
-                    </div>
-                    <div className="flex items-center justify-between p-3 rounded-lg border border-red-500/10 bg-red-500/5">
-                      <div>
-                        <p className="text-xs font-semibold text-foreground">Reset Career OS</p>
-                        <p className="text-[10px] text-muted-foreground">Clear local storage and wipe all user data</p>
-                      </div>
-                      <Button size="sm" variant="destructive" onClick={() => { localStorage.clear(); window.location.reload(); }}>
-                        Factory Reset
-                      </Button>
-                    </div>
+                  <CardContent className="space-y-3">
+                    <p className="text-xs text-red-400/80">Wipe clean your profile settings and metrics database tables permanently.</p>
+                    <Button variant="destructive" onClick={() => { localStorage.clear(); window.location.reload(); }}>
+                      Delete Entire Profile
+                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>
