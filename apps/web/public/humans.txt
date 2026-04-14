@@ -1,0 +1,10 @@
+/* TEAM */
+Creator & Lead Developer: Karthik R Shet
+GitHub: https://github.com/karthikrshet
+
+/* SITE INFO */
+Standards: HTML5, CSS3, ESNext
+Framework: Next.js (App Router), React, TailwindCSS, TypeScript
+Database: PostgreSQL, Prisma, Zustand (Client Persistence)
+AI Tech Stack: AI Provider Gateway, Model Context Protocol (MCP)
+Hosting: Vercel Production Infrastructure

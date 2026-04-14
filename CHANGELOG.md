@@ -8,6 +8,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [3.0.0] — 2026-07
 
 ### Added
+- **Intelligent AI Gateway**: Centralized multi-provider gateway under `packages/ai-router` supporting 18 providers (OpenAI, Anthropic, Google Gemini, Groq, OpenRouter, DeepSeek, Together AI, Mistral, Cohere, Azure OpenAI, Ollama, LM Studio, xAI, Fireworks, Perplexity, AI21, and Custom endpoints).
+- **7-Step Health Diagnostics**: Comprehensive provider diagnostics pipeline checking key presence, auth handshake, model list query, SSE streaming, completion test, latency score, and status compiling.
+- **Dynamic Model Discovery**: Fetching available models directly from `/v1/models` in real-time with local caching.
+- **Failover & Auto Routing**: Automatic fallback sequence loops cycling through backups when primary providers experience rate-limiting or quota errors. Custom routing modes: auto, coding, reasoning, vision, fast, cheap, long-context, balanced, and creative.
+- **Key Rotation**: Security rotation supporting Primary, Secondary, and Backup key arrays saved client-side.
+- **Usage Analytics & Logs Timeline**: Aggregating token count requests, estimated cost calculations, latency averages, and detailed execution pathway logs.
 - **Intelligent Agent Orchestration Engine**: Added `packages/agents` (router, planner, executor, merger, context, cache) for multi-agent context planning, intent routing, and advice merging.
 - **Career Memory**: Added `packages/memory` cache interface to persist achievements, milestones, and metrics.
 - **Workflow Engine**: Added stateful `packages/core/workflow-engine.js` tracker.
@@ -16,7 +22,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 - **Bushed Version**: Version upgrade to `3.0.0` for core packages, web dashboard, and registries.
-- **Copilot Integration**: Unified the Copilot API route (`/api/copilot`) to resolve prompt pipelines using the new orchestration packages.
+- **Copilot Integration**: Unified the Copilot API route (`/api/copilot`) to resolve prompt pipelines using the new orchestration packages and the unified AI Gateway router.
+- **Metadata Layouts**: Extended layout metadata with custom server-side metadata tags for API Docs.
+- **JSON-LD Schema**: Expanded schema blocks to include BreadcrumbList structured data.
 
 ---
 
