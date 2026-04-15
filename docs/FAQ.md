@@ -1,29 +1,29 @@
-# Career OS — Frequently Asked Questions
+# Career Agents — Frequently Asked Questions
 
 ---
 
 ## General
 
-**Q: What is Career OS?**  
-A: Career OS is an open-source, AI-powered career intelligence platform for software engineers. It combines 146 specialized AI agents, resume analysis, GitHub portfolio auditing, LinkedIn optimization, mock interviews, job tracking, and a career copilot into one integrated workspace.
+**Q: What is Career Agents?**  
+A: Career Agents is an open-source, AI-powered career intelligence platform for software engineers. It combines 146 specialized AI agents, resume analysis, GitHub portfolio auditing, LinkedIn optimization, mock interviews, job tracking, and a career copilot into one integrated workspace.
 
-**Q: Who is Career OS for?**  
+**Q: Who is Career Agents for?**  
 A: Primarily software engineers at all levels — from students and bootcamp graduates to senior engineers targeting FAANG roles and tech leads navigating executive transitions. Many features are useful for any tech professional.
 
-**Q: Is Career OS free?**  
+**Q: Is Career Agents free?**  
 A: Yes — completely open source under the MIT license. You can self-host it for free. The only costs are AI provider API usage (many providers have free tiers) and optional hosting.
 
 **Q: Do I need to create an account?**  
-A: No. Career OS has a full **guest mode** — all features work without signing in. Your data is stored in your browser's localStorage. Creating an account (via GitHub or Google OAuth) enables cross-device sync through the optional PostgreSQL database.
+A: No. Career Agents has a full **guest mode** — all features work without signing in. Your data is stored in your browser's localStorage. Creating an account (via GitHub or Google OAuth) enables cross-device sync through the optional PostgreSQL database.
 
-**Q: Can I use Career OS without any API key?**  
+**Q: Can I use Career Agents without any API key?**  
 A: Yes. Resume ATS scoring, section detection, keyword analysis, and weak bullet detection all work without an AI key (they use local heuristics). The interview lab falls back to curated sample questions. AI features (Copilot chat, AI rewriting, personalized question generation, STAR scoring) require an API key.
 
 **Q: Which AI provider do you recommend?**  
-A: **Groq** for most users — it's free, extremely fast, and supports all major Career OS AI features. **Google Gemini** is also free and has a 1M token context window. See [PROVIDERS.md](./PROVIDERS.md) for a full comparison.
+A: **Groq** for most users — it's free, extremely fast, and supports all major Career Agents AI features. **Google Gemini** is also free and has a 1M token context window. See [PROVIDERS.md](./PROVIDERS.md) for a full comparison.
 
 **Q: Is my data private?**  
-A: Yes. Your resume text, GitHub data, and career information never leave your browser unless you explicitly configure a database. AI features use your own API key to call your chosen provider directly. Career OS servers never store your API keys.
+A: Yes. Your resume text, GitHub data, and career information never leave your browser unless you explicitly configure a database. AI features use your own API key to call your chosen provider directly. Career Agents servers never store your API keys.
 
 ---
 
@@ -32,7 +32,7 @@ A: Yes. Your resume text, GitHub data, and career information never leave your b
 **Q: What are the minimum system requirements?**  
 A: Node.js ≥ 18, npm ≥ 9, and Git. A modern browser. PostgreSQL is optional (for database persistence).
 
-**Q: Can I run Career OS on Windows?**  
+**Q: Can I run Career Agents on Windows?**  
 A: Yes. All features work on Windows. Use PowerShell or Git Bash for terminal commands.
 
 **Q: Do I need Docker?**  
@@ -41,7 +41,7 @@ A: No. Docker is an optional deployment method. Local development uses plain Nod
 **Q: Why does the app lose data when I close the browser?**  
 A: Guest mode stores data in localStorage, which persists across browser sessions (it does not clear on close). If data is lost, it means localStorage was cleared (private/incognito mode, browser history clear, or browser settings). Use a regular browser window for persistent data, or set up a database.
 
-**Q: Can I run Career OS offline?**  
+**Q: Can I run Career Agents offline?**  
 A: Partially. The web UI loads without internet. Local AI features work with Ollama or LM Studio. GitHub Analyzer requires internet (GitHub API). AI features with cloud providers require internet.
 
 ---
@@ -55,7 +55,7 @@ A: Groq API keys take a few minutes to activate after creation. Wait 2-3 minutes
 A: You can configure one active provider at a time in Settings. Different features (Copilot vs Interview vs Resume) each use the same configured provider.
 
 **Q: Does Claude (Anthropic) work differently from other providers?**  
-A: Claude uses a different auth header (`x-api-key` instead of `Authorization: Bearer`) and a different API format. Career OS handles this automatically — you just need to select Anthropic in Settings and enter your key.
+A: Claude uses a different auth header (`x-api-key` instead of `Authorization: Bearer`) and a different API format. Career Agents handles this automatically — you just need to select Anthropic in Settings and enter your key.
 
 **Q: Can I use a local LLM with Ollama?**  
 A: Yes. Install Ollama, pull a model (`ollama pull llama3.3`), and select Ollama in Settings. No API key required. Performance depends on your hardware — models larger than 7B parameters require a GPU for reasonable speed.
@@ -79,11 +79,11 @@ A: The local ATS engine checks for: required resume sections (Experience, Educat
 **Q: Why are keywords like "TypeScript" and "React" listed as missing when they're clearly in my resume?**  
 A: The keyword detection uses regex word-boundary matching. If the word is inside a code block, table, or formatted section that wasn't parsed cleanly from the PDF, it may be missed. Try pasting plain text directly.
 
-**Q: Can Career OS rewrite my entire resume?**  
+**Q: Can Career Agents rewrite my entire resume?**  
 A: The AI rewrite feature rewrites individual weak bullets (passive verbs, missing metrics) using your configured AI provider. Full resume generation is not currently supported.
 
-**Q: Is my resume sent to Career OS servers?**  
-A: No. Resume parsing happens in your browser (`/api/parse-file` runs server-side but does not store the text). Analysis happens either client-side (`resume-engine.ts`) or via your own AI provider key. No resume data is persisted by Career OS.
+**Q: Is my resume sent to Career Agents servers?**  
+A: No. Resume parsing happens in your browser (`/api/parse-file` runs server-side but does not store the text). Analysis happens either client-side (`resume-engine.ts`) or via your own AI provider key. No resume data is persisted by Career Agents.
 
 ---
 
@@ -102,8 +102,8 @@ A: No. It only reads public repositories using the GitHub REST API. If you provi
 
 ## LinkedIn Optimizer
 
-**Q: Does Career OS connect to LinkedIn's API?**  
-A: No. Career OS analyzes text you paste from your LinkedIn profile — it does not use the LinkedIn API. Paste your headline, summary, and skills into the LinkedIn Optimizer to get analysis.
+**Q: Does Career Agents connect to LinkedIn's API?**  
+A: No. Career Agents analyzes text you paste from your LinkedIn profile — it does not use the LinkedIn API. Paste your headline, summary, and skills into the LinkedIn Optimizer to get analysis.
 
 **Q: Why isn't there an "Import from LinkedIn" button?**  
 A: LinkedIn's API is heavily restricted and doesn't allow automated profile reading without a partnership agreement. LinkedIn OAuth profile import is planned for v2.7.0.
@@ -125,7 +125,7 @@ A: Your answers are evaluated by the AI on 10 dimensions: Situation, Task, Actio
 A: The AI is explicitly instructed to score brief or insubstantial answers strictly — they will receive very low scores (overall < 15/100). This prevents inflated scores for empty submissions.
 
 **Q: Are interview questions AI-generated or hardcoded?**  
-A: Both. With an AI provider configured, questions are dynamically generated for the specific company, role, mode, and difficulty. Without a key, Career OS returns 5 high-quality curated fallback questions per mode.
+A: Both. With an AI provider configured, questions are dynamically generated for the specific company, role, mode, and difficulty. Without a key, Career Agents returns 5 high-quality curated fallback questions per mode.
 
 ---
 
@@ -148,7 +148,7 @@ A: Yes — Copilot history is saved in localStorage (guest mode) or the database
 ## MCP Server
 
 **Q: What is MCP and why should I use it?**  
-A: MCP (Model Context Protocol) lets AI assistants in your code editor (Cursor, Claude Desktop, Continue) call Career OS tools directly. Instead of copy-pasting information between your editor and a browser, you can ask Cursor to analyze your GitHub profile or generate interview prep — right inside your IDE.
+A: MCP (Model Context Protocol) lets AI assistants in your code editor (Cursor, Claude Desktop, Continue) call Career Agents tools directly. Instead of copy-pasting information between your editor and a browser, you can ask Cursor to analyze your GitHub profile or generate interview prep — right inside your IDE.
 
 **Q: Is the MCP server safe to run locally?**  
 A: Yes. The MCP server only reads local registry files and makes no network requests. It has a built-in rate limiter (200 req/min) and audit logging.
@@ -186,13 +186,13 @@ A: Yes. All enabled plugins are injected simultaneously into the Copilot context
 
 ## Deployment
 
-**Q: Can I deploy Career OS to Vercel for free?**  
+**Q: Can I deploy Career Agents to Vercel for free?**  
 A: Yes. Vercel's free (Hobby) plan supports Next.js deployments. You'll need a free PostgreSQL provider (Neon or Supabase) for the database.
 
-**Q: Can I white-label Career OS for my bootcamp/university?**  
+**Q: Can I white-label Career Agents for my bootcamp/university?**  
 A: Yes — the MIT license allows this. White-label deployment options (custom branding, private agent library) are on the v3.1 roadmap.
 
-**Q: Is Career OS GDPR compliant?**  
+**Q: Is Career Agents GDPR compliant?**  
 A: The data architecture supports GDPR (cascade deletes, no third-party data sharing, no server-side API key storage). A formal GDPR data export/deletion tool is planned for v3.1.
 
 ---

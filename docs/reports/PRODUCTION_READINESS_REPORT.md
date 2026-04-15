@@ -36,7 +36,7 @@ For every documented module, we performed a strict validation of the implementat
 | **7. Validation Script** | **Working** | Upgraded to double-check markdown relative links, templates on-disk existence, and referential registry alignment. |
 | **8. GitHub Workflows** | **Working** | `.github/workflows/ci.yml` triggers automated checks on PR/push, executing python linting, validation scripts, and Node integration tests. |
 | **9. Document Links** | **Working** | Relative markdown links scanned across all files. All broken path links have been repaired. |
-| **10. Generated Files** | **Working** | All compiler-generated files (`career-os.json`, `search-index.json`, `knowledge-graph.json`, `llms.txt`, etc.) compile cleanly and are fully synchronized. |
+| **10. Generated Files** | **Working** | All compiler-generated files (`career-agents.json`, `search-index.json`, `knowledge-graph.json`, `llms.txt`, etc.) compile cleanly and are fully synchronized. |
 
 ---
 

@@ -1,6 +1,6 @@
-# Career OS CLI Guide
+# Career Agents CLI Guide
 
-This guide details usage instructions for the command-line interface tools available in Career OS.
+This guide details usage instructions for the command-line interface tools available in Career Agents.
 
 ## Installation
 

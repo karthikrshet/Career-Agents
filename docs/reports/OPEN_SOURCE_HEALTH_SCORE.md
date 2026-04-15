@@ -8,7 +8,7 @@ This assessment evaluates Career-Agents' open-source codebase health, community 
 
 | Dimension | Weight | Score | Evaluation Details |
 | :--- | :---: | :---: | :--- |
-| **Architecture** | 15 | **15** | Unified config registry (`career-os.json`) indexing all subregistries cleanly. |
+| **Architecture** | 15 | **15** | Unified config registry (`career-agents.json`) indexing all subregistries cleanly. |
 | **Documentation** | 15 | **15** | Restructured `docs/` catalog, fully resolved relative links, and comprehensive launch reports. |
 | **CLI** | 15 | **15** | Green diagnostics (`doctor`), lists, search indices, and profile scoring checkups. |
 | **MCP** | 15 | **15** | Multi-editor compatibility (Claude Desktop, Cursor, Windsurf, OpenCode) with full tool/resource schemas. |

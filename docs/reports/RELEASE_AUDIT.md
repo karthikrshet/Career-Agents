@@ -67,7 +67,7 @@
 - [README.md](../../README.md)
 - [.github/CODEOWNERS](../../.github/CODEOWNERS)
 - [.github/FUNDING.yml](../../.github/FUNDING.yml)
-- [career-os.json](../../career-os.json) (compiled statistics)
+- [career-agents.json](../../career-agents.json) (compiled statistics)
 - [career-path-map.json](../../career-path-map.json) (compiled map)
 - [search-index.json](../../search-index.json) (compiled search index)
 - [knowledge-graph.json](../../knowledge-graph.json) (compiled graph)

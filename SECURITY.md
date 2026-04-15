@@ -52,7 +52,7 @@ For the detailed security model, see [docs/SECURITY.md](./docs/SECURITY.md).
 ### Key Points
 
 - **API keys are never stored server-side.** They live in browser `localStorage` only.
-- **No user data is sent to Career OS servers.** All analysis uses your own AI provider key.
+- **No user data is sent to Career Agents servers.** All analysis uses your own AI provider key.
 - **HTTP security headers** are set on all routes: CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy.
 - **No telemetry by default.** Opt-in only (`NEXT_PUBLIC_ENABLE_TELEMETRY=true`).
 
@@ -60,7 +60,7 @@ For the detailed security model, see [docs/SECURITY.md](./docs/SECURITY.md).
 
 ## Known Security Considerations
 
-1. **localStorage API key storage** — API keys in localStorage are accessible to any JavaScript on the same origin. Career OS's CSP prevents third-party scripts from running, mitigating XSS-based key theft.
+1. **localStorage API key storage** — API keys in localStorage are accessible to any JavaScript on the same origin. Career Agents' CSP prevents third-party scripts from running, mitigating XSS-based key theft.
 
 2. **Guest mode data** — All guest mode data (resumes, chat history, job applications) is stored in browser localStorage. Clearing browser data will delete it. This is by design for privacy.
 

@@ -39,7 +39,7 @@ const DEFAULT_METRICS: CareerMetrics = {
   lastUpdated: new Date().toISOString(),
 };
 
-interface CareerOSStore {
+interface CareerAgentsStore {
   // Profile
   profile: UserProfile | null;
   setProfile: (profile: UserProfile) => void;
@@ -118,7 +118,7 @@ interface CareerOSStore {
   updatePlugin: (id: string) => void;
 }
 
-export const useStore = create<CareerOSStore>()(
+export const useStore = create<CareerAgentsStore>()(
   persist(
     (set, get) => ({
       // Profile
@@ -442,7 +442,7 @@ export const useStore = create<CareerOSStore>()(
         }),
     }),
     {
-      name: "career-os-store",
+      name: "career-agents-store",
       partialize: (state) => ({
         profile: state.profile,
         metrics: state.metrics,

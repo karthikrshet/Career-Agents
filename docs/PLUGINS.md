@@ -1,6 +1,6 @@
-# Career OS — Plugin Marketplace
+# Career Agents — Plugin Marketplace
 
-Extend Career OS with official and community plugins.
+Extend Career Agents with official and community plugins.
 
 ---
 
@@ -63,13 +63,13 @@ Each plugin declares the permissions it requires:
 | `read_resume` | Access resume analysis data (ATS score, bullets, keywords) |
 | `write_copilot_context` | Inject instructions into Copilot system prompt |
 
-Permissions are declared in the plugin metadata and shown in the install dialog. Career OS does not enforce permissions programmatically — they are informational for user transparency.
+Permissions are declared in the plugin metadata and shown in the install dialog. Career Agents does not enforce permissions programmatically — they are informational for user transparency.
 
 ---
 
 ## Installing a Plugin
 
-1. Go to **Marketplace** in the Career OS sidebar
+1. Go to **Marketplace** in the Career Agents sidebar
 2. Browse or search for a plugin
 3. Click **Install**
 4. The plugin downloads (simulated, ~1.5 seconds) and is auto-enabled
@@ -91,7 +91,7 @@ Permissions are declared in the plugin metadata and shown in the install dialog.
 | **ID** | `star-coach` |
 | **Version** | `1.0.4` |
 | **Category** | Interview |
-| **Author** | Career OS Team |
+| **Author** | Career Agents Team |
 | **License** | MIT |
 | **Downloads** | 12,400+ |
 | **Rating** | 4.8 / 5 |
@@ -143,7 +143,7 @@ Result: [measurable outcome with metrics]
 | **ID** | `resume-pdf` |
 | **Version** | `1.2.0` |
 | **Category** | Resume |
-| **Author** | Career OS Team |
+| **Author** | Career Agents Team |
 | **License** | MIT |
 | **Downloads** | 4,120+ |
 | **Rating** | 4.7 / 5 |

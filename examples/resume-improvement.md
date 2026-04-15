@@ -1,6 +1,6 @@
 # Resume Improvement Example: ATS Achievement Optimization
 
-This guide demonstrates how to rewrite generic resume bullets into quantitative achievements using Career OS rules.
+This guide demonstrates how to rewrite generic resume bullets into quantitative achievements using Career Agents rules.
 
 ---
 

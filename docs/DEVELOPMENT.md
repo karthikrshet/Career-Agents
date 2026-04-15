@@ -1,6 +1,6 @@
-# Career OS — Developer Guide
+# Career Agents — Developer Guide
 
-Everything you need to contribute to Career OS.
+Everything you need to contribute to Career Agents.
 
 ---
 
@@ -267,7 +267,7 @@ Fix any reported issues. The validator checks:
 python scripts/generate-data.py
 ```
 
-This updates `career-os.json`, `search-index.json`, `knowledge-graph.json`, `llms.txt`, `llms-full.txt`, and the maps.
+This updates `career-agents.json`, `search-index.json`, `knowledge-graph.json`, `llms.txt`, `llms-full.txt`, and the maps.
 
 ---
 

@@ -417,7 +417,7 @@ const MCP_TOOLS = [
   },
   {
     name: 'career_assessment',
-    description: 'Calculate Career OS readiness scores and growth strategy recommendations.',
+    description: 'Calculate Career Agents readiness scores and growth strategy recommendations.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -714,7 +714,7 @@ async function handleToolsCall(id, params) {
 
   const registryPath = path.join(root, 'agent-registry.json');
   const workflowsPath = path.join(root, 'workflow-registry.json');
-  const careerOsPath = path.join(root, 'career-os.json');
+  const careerOsPath = path.join(root, 'career-agents.json');
 
   let success = true;
   let errorMsg = '';
@@ -797,7 +797,7 @@ async function handleToolsCall(id, params) {
         const { skills, experience, role, company } = toolArgs;
         if (!fs.existsSync(careerOsPath)) {
           success = false;
-          errorMsg = 'career-os.json not found. Run update first.';
+          errorMsg = 'career-agents.json not found. Run update first.';
           sendError(id, -32603, errorMsg);
           return;
         }
@@ -2245,7 +2245,7 @@ const MCP_RESOURCES = [
   },
   {
     uri: 'career-agents://registry/graph',
-    name: 'Career OS Knowledge Graph',
+    name: 'Career Agents Knowledge Graph',
     mimeType: 'application/json',
     description: 'Complete relational nodes and connections coordinate map.'
   },

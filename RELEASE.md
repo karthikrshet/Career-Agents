@@ -1,4 +1,4 @@
-# Release Guidelines — Career OS
+# Release Guidelines — Career Agents
 
 This document outlines the standard release checklist, upgrading commands, and release template structure for tagging new versions.
 
@@ -21,7 +21,7 @@ Every release tag description should include:
 
 ## Standard Upgrade Commands
 
-To upgrade an existing local clone of Career OS to the latest release:
+To upgrade an existing local clone of Career Agents to the latest release:
 
 ```bash
 # 1. Fetch latest commits and tags

@@ -1,6 +1,6 @@
-# Career OS v3.0.0 — Production Release (Intelligent AI Gateway & Router)
+# Career Agents v3.0.0 — Production Release (Intelligent AI Gateway & Router)
 
-We are thrilled to announce the official release of **Career OS v3.0.0**, a major platform upgrade designed to transition Career OS into a production-grade, enterprise-ready open-source AI career operating system. 
+We are thrilled to announce the official release of **Career Agents v3.0.0**, a major platform upgrade designed to transition Career Agents into a production-grade, enterprise-ready open-source AI career operating system. 
 
 This release introduces a unified, central **AI Provider Gateway** and **Intelligent Router** that optimizes latency, manages costs, handles API key rotation arrays, dynamically discovers models, and auto-recovers from system failures with seamless fallback sequences.
 

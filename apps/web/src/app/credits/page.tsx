@@ -80,13 +80,13 @@ export default function CreditsPage() {
                     karthikrshet/Career-Agents
                     <Badge variant="secondary" className="text-[9px] scale-90">v2.4.0</Badge>
                   </CardTitle>
-                  <CardDescription>Official Open Source Career OS Repository</CardDescription>
+                  <CardDescription>Official Open Source Career Agents Repository</CardDescription>
                 </div>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-xs text-muted-foreground leading-relaxed">
-                The open-source core behind Career OS. It houses the 146 specialized AI career agents registry, 
+                The open-source core behind Career Agents. It houses the 146 specialized AI career agents registry, 
                 divisions database, schema models, and the local validation pipeline scripts. 
               </p>
 

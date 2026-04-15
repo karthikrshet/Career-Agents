@@ -3,6 +3,7 @@ import { AIProviderId, RouterMode, AIMessage, RouterLog } from "../types";
 import { PROVIDER_REGISTRY } from "./provider-registry";
 import { classifyGatewayError } from "../utils/error-handler";
 import { recordRouterLog } from "./analytics";
+import { secureFetch } from "../../security";
 
 export interface RouterConfig {
   mode: RouterMode;
@@ -107,7 +108,12 @@ export async function routeCompletion(
     // Retrieve configured API keys (handles rotations)
     const keyList = config.keys[providerId] || [];
     const model = config.modelNames?.[providerId] || DEFAULT_MODEL_NAMES[providerId] || "default";
-    const endpoint = config.baseUrls?.[providerId] || registry.apiEndpoint;
+    
+    // Ignore config.baseUrls endpoint overrides unless it's azure, ollama, or lmstudio
+    let endpoint = registry.apiEndpoint;
+    if (["azure", "ollama", "lmstudio"].includes(providerId) && config.baseUrls?.[providerId]) {
+      endpoint = config.baseUrls[providerId];
+    }
     
     // Always fallback to empty string if no auth or local endpoint
     const keysToTry = keyList.length > 0 ? keyList : [""];
@@ -126,7 +132,7 @@ export async function routeCompletion(
         if (providerId === "gemini") {
           // Google Gemini endpoint compilation
           const url = `${endpoint}/models/${model.includes("gemini") ? model : "gemini-2.5-flash"}:generateContent?key=${activeKey}`;
-          const res = await fetch(url, {
+          const res = await secureFetch(url, {
             method: "POST",
             headers,
             body: JSON.stringify({
@@ -137,6 +143,7 @@ export async function routeCompletion(
               },
             }),
             signal,
+            allowedProvider: "gemini",
           });
 
           if (!res.ok) {
@@ -180,11 +187,12 @@ export async function routeCompletion(
                 stream: isStreaming,
               };
 
-          const res = await fetch(url, {
+          const res = await secureFetch(url, {
             method: "POST",
             headers,
             body: JSON.stringify(body),
             signal,
+            allowedProvider: providerId,
           });
 
           if (!res.ok) {

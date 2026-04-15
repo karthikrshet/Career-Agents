@@ -1,12 +1,12 @@
 # Model Context Protocol Guide
 
-This document describes how to integrate the Career OS Model Context Protocol (MCP) server with compatible developer environments.
+This document describes how to integrate the Career Agents Model Context Protocol (MCP) server with compatible developer environments.
 
 ---
 
 ## Overview
 
-The Model Context Protocol (MCP) server enables language model assistants to query Career OS databases, execute resume reviews, evaluate repository metadata, and construct roadmap paths natively within their workspace.
+The Model Context Protocol (MCP) server enables language model assistants to query Career Agents databases, execute resume reviews, evaluate repository metadata, and construct roadmap paths natively within their workspace.
 
 ---
 

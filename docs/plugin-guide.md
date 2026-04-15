@@ -1,6 +1,6 @@
-# Career OS Plugin Guide
+# Career Agents Plugin Guide
 
-Career OS includes a modular plugin architecture that allows external developers to extend CLI commands dynamically.
+Career Agents includes a modular plugin architecture that allows external developers to extend CLI commands dynamically.
 
 ## Anatomy of a Plugin
 
@@ -16,7 +16,7 @@ export function metadata() {
   return {
     name: 'My Custom Plugin',
     version: '1.0.0',
-    description: 'Extends Career OS with developer tools.'
+    description: 'Extends Career Agents with developer tools.'
   };
 }
 

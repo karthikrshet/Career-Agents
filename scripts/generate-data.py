@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent.parent
 REGISTRY_PATH = ROOT / "agent-registry.json"
 DIVISIONS_PATH = ROOT / "divisions.json"
 WORKFLOW_REGISTRY_PATH = ROOT / "workflow-registry.json"
-CAREER_OS_PATH = ROOT / "career-os.json"
+CAREER_OS_PATH = ROOT / "career-agents.json"
 README_PATH = ROOT / "README.md"
 
 BUNDLES_DIR = ROOT / "bundles"
@@ -47,7 +47,7 @@ def load_dir_jsons(directory):
     return items
 
 def compile_career_os(agents, divisions, workflows, bundles, companies, paths, integrations):
-    print("Compiling career-os.json core configuration...")
+    print("Compiling career-agents.json core configuration...")
     
     stats = {
         "agent_count": len(agents),
@@ -60,9 +60,9 @@ def compile_career_os(agents, divisions, workflows, bundles, companies, paths, i
     }
     
     career_os_data = {
-        "$schema": "https://codemyfyp-agents.dev/schema/career-os.json",
+        "$schema": "https://codemyfyp-agents.dev/schema/career-agents.json",
         "repository": "Career-Agents",
-        "name": "The Open-Source Career Operating System",
+        "name": "The Open-Source Career Agents",
         "version": "1.0.0",
         "statistics": stats,
         "agents": agents,
@@ -76,7 +76,7 @@ def compile_career_os(agents, divisions, workflows, bundles, companies, paths, i
     
     with open(CAREER_OS_PATH, "w", encoding="utf-8") as f:
         json.dump(career_os_data, f, indent=2)
-    print("Compiled and wrote career-os.json successfully.")
+    print("Compiled and wrote career-agents.json successfully.")
 
 def generate_search_index(agents, divisions, workflows, bundles, companies, paths):
     print("Generating search index...")
@@ -401,7 +401,7 @@ def generate_llm_indexes(agents, workflows):
     # 3. career-agents-index.json
     index_meta = {
         "repository": "Career-Agents",
-        "name": "The Career Operating System Index",
+        "name": "The Career Agents Index",
         "total_agents": len(agents),
         "total_workflows": len(workflows.get("workflows", [])),
         "agents": [
@@ -481,17 +481,17 @@ def build_merged_readme(agents, divisions_data, workflows, bundles, companies, p
     # Main README Assembly
     readme_content = f"""<div align="center">
 
-<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.png" alt="Career OS Logo" width="120" />
+<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.png" alt="Career Agents Logo" width="120" />
 
-# Career OS
+# Career Agents
 
-### The Open-Source AI Career Operating System for Software Engineers
+### The Open-Source AI Career Agents for Software Engineers
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/banner.svg" alt="Career OS Banner" width="800" />
+  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/banner.svg" alt="Career Agents Banner" width="800" />
 </p>
 
-Career OS is an enterprise-grade, open-source personal career optimization suite designed to automate and systemize professional growth. By unifying 146 specialized AI agents, local ATS resume grading, public GitHub profile auditing, search-visibility LinkedIn scanning, and interactive STAR behavioral mock interviews, it replaces generic prompts and static templates with a context-aware career intelligence cockpit.
+Career Agents is an enterprise-grade, open-source personal career optimization suite designed to automate and systemize professional growth. By unifying 146 specialized AI agents, local ATS resume grading, public GitHub profile auditing, search-visibility LinkedIn scanning, and interactive STAR behavioral mock interviews, it replaces generic prompts and static templates with a context-aware career intelligence cockpit.
 
 </div>
 
@@ -522,15 +522,15 @@ Career OS is an enterprise-grade, open-source personal career optimization suite
 
 ## Elevator Pitch
 
-Software engineers face a fragmented job application cycle where resumes are filtered by parsing engines, portfolios are checked on GitHub, and behavioral performance is scored via structured framework interviews. Existing consumer AI chatbots lack integration with raw files, OAuth profile contexts, and structured ATS parser scoring. Career OS solves this fragmentation by building a local-first workspace that evaluates career assets, synchronizes target scores into a unified profile state, and exposes these workflows directly to developers inside their IDEs via the Model Context Protocol.
+Software engineers face a fragmented job application cycle where resumes are filtered by parsing engines, portfolios are checked on GitHub, and behavioral performance is scored via structured framework interviews. Existing consumer AI chatbots lack integration with raw files, OAuth profile contexts, and structured ATS parser scoring. Career Agents solves this fragmentation by building a local-first workspace that evaluates career assets, synchronizes target scores into a unified profile state, and exposes these workflows directly to developers inside their IDEs via the Model Context Protocol.
 
 ---
 
-## Why Career OS
+## Why Career Agents
 
 Traditional career readiness tools fail because they evaluate portfolios and resumes in isolation. General-purpose AI chatbots fail because they require developers to manually copy-paste resume templates, terminal outputs, and system architecture descriptions into separate windows, losing continuity across sessions. 
 
-Career OS takes a different approach:
+Career Agents takes a different approach:
 - **Heuristic + AI ATS Parsing:** Integrates regex section scanners and action-verb checking with LLM-powered bullet optimization.
 - **Context-Aware Routing:** The Career Copilot reads the user's active resume scores, GitHub repo counts, and target titles, automatically routing queries to the most qualified agent in the 146-agent registry.
 - **Zero-Key Privacy:** Stores sensitive API keys in the browser's `localStorage` rather than database systems, safeguarding user credentials.
@@ -641,7 +641,7 @@ Career OS takes a different approach:
 
 ## AI Agent Ecosystem
 
-Career OS manages **146 agents** categorized across **19 divisions**. When a user prompts the Copilot, the routing engine tokenizes the query and compares it against agent names, descriptions, tags, and required skills to construct a matching scorecard:
+Career Agents manages **146 agents** categorized across **19 divisions**. When a user prompts the Copilot, the routing engine tokenizes the query and compares it against agent names, descriptions, tags, and required skills to construct a matching scorecard:
 
 ```
 Score = (Exact Name Match * 15) + (Keyword Match * 3) + (Skill Match * 2) + (Domain Booster * 12)
@@ -659,7 +659,7 @@ The top 3 matching agents with score >= 5 are compiled, their Markdown prompt bo
 
 ## AI Providers
 
-Career OS supports **18 providers** managed by the centralized AI Gateway. The router evaluates API keys from the browser's `localStorage` settings key arrays (Primary, Secondary, Backup key rotations) first, falling back to server-side environment variables if the local config is empty:
+Career Agents supports **18 providers** managed by the centralized AI Gateway. The router evaluates API keys from the browser's `localStorage` settings key arrays (Primary, Secondary, Backup key rotations) first, falling back to server-side environment variables if the local config is empty:
 
 | Provider | Status | Default Model | Free Tier | Streaming | Vision |
 |----------|--------|--------------|-----------|-----------|--------|
@@ -696,7 +696,7 @@ sequenceDiagram
     participant Router as AI Provider Router
     participant DB as PostgreSQL (Prisma)
     
-    User->>SW: Access Career OS Pages
+    User->>SW: Access Career Agents Pages
     SW->>User: Serve cached layout assets (Offline support)
     User->>NextJS: Request Resume/GitHub Audit
     NextJS->>Router: Forward file/profile buffer
@@ -783,7 +783,7 @@ cp .env.example .env
 
 ## Quick Start
 
-Get Career OS running locally in under 5 minutes:
+Get Career Agents running locally in under 5 minutes:
 
 ```bash
 # Clone and build dependencies
@@ -834,7 +834,7 @@ Open [http://localhost:3000](http://localhost:3000) and configure your AI key un
 
 ## CLI Documentation
 
-Career OS includes a terminal utility under `scripts/cli.js`.
+Career Agents includes a terminal utility under `scripts/cli.js`.
 
 | Command | Arguments | Purpose | Example |
 |---------|-----------|---------|---------|
@@ -938,7 +938,7 @@ Available (Marketplace) -> Install (Register keys) -> Enable (Inject Prompt Cont
 
 ## Model Context Protocol (MCP)
 
-Expose Career OS tools directly to your local LLM clients:
+Expose Career Agents tools directly to your local LLM clients:
 
 ### Supported Editors
 - **Cursor AI:** Add stdio command `node /absolute/path/to/Career-Agents/mcp/server.js` in Settings -> Features -> MCP.
@@ -964,7 +964,7 @@ Expose Career OS tools directly to your local LLM clients:
 
 ## REST API Reference
 
-Career OS exposes 10 REST endpoints. For request/response schemas, check [docs/API.md](./docs/API.md) or `/api/docs`:
+Career Agents exposes 10 REST endpoints. For request/response schemas, check [docs/API.md](./docs/API.md) or `/api/docs`:
 
 - `POST /api/copilot` — Streams response tokens using SSE.
 - `POST /api/interview` — Generates questions or evaluates answers.
@@ -1002,7 +1002,7 @@ Developers can create custom plugins. A plugin is defined as a JSON manifest fil
 
 ## Security
 
-Career OS is built with enterprise security standards:
+Career Agents is built with enterprise security standards:
 - **Zero-Key Storage:** AI provider API keys are saved in browser `localStorage` and never sent to any database.
 - **Session Tokens:** NextAuth JWT tokens are signed using `NEXTAUTH_SECRET` and saved in secure HttpOnly, SameSite=Lax cookies.
 - **Strict Headers:** Includes Content Security Policy (CSP), HTTP Strict Transport Security (HSTS), and clickjacking safeguards.
@@ -1022,7 +1022,7 @@ The application is optimized for low latency:
 
 ## SEO
 
-Career OS implements search engine optimization (SEO) standards:
+Career Agents implements search engine optimization (SEO) standards:
 - **Dynamic Sitemap:** `sitemap.xml` automatically registers all application pages at build time.
 - **Structured Data:** Injects structured JSON-LD data into layouts to help search engines understand the site's content.
 - **AI Discoverability:** Includes `llms.txt` and `llms-full.txt` (following the llmstxt.org specification) to allow LLM agents to index the repository easily.
@@ -1060,10 +1060,10 @@ python scripts/generate-data.py
 
 ## Deployment
 
-Deploy Career OS to production using one of three methods:
+Deploy Career Agents to production using one of three methods:
 
 - **Vercel:** Connect the repository to Vercel, set root directory to `apps/web`, configure env variables, and deploy.
-- **Docker:** Build a container from the root `Dockerfile` using `docker build -t career-os .`.
+- **Docker:** Build a container from the root `Dockerfile` using `docker build -t career-agents .`.
 - **Self-Hosted (Linux/Windows):** Run using a Node.js server with PM2 process manager and an Nginx reverse proxy.
 - For complete steps, see [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md).
 
@@ -1073,7 +1073,7 @@ Deploy Career OS to production using one of three methods:
 
 | Document File | Purpose / Details |
 |---------------|-------------------|
-| [docs/QUICKSTART.md](./docs/QUICKSTART.md) | Get Career OS running locally in 5 minutes. |
+| [docs/QUICKSTART.md](./docs/QUICKSTART.md) | Get Career Agents running locally in 5 minutes. |
 | [docs/INSTALL.md](./docs/INSTALL.md) | Detailed installation steps for all setups. |
 | [docs/DEVELOPMENT.md](./docs/DEVELOPMENT.md) | Developer guide, agent schemas, and contributing guidelines. |
 | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) | Architecture models and request flows. |
@@ -1130,7 +1130,7 @@ We welcome community contributions:
 
 ## FAQ
 
-**Q: Can I use Career OS without an API key?**  
+**Q: Can I use Career Agents without an API key?**  
 A: Yes. Resume ATS scans and GitHub score calculation run fully offline without any keys. Interactive chat features require a key.
 
 **Q: Where are my API keys saved?**  
@@ -1188,7 +1188,7 @@ def main():
         build_merged_readme(agents, divisions_data, workflows_data, bundles, companies, paths)
     else:
         print("Skipping README compilation in CI environment.")
-    print("All Career Operating System databases generated successfully!")
+    print("All Career Agents databases generated successfully!")
 
 if __name__ == "__main__":
     main()

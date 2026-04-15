@@ -1,6 +1,6 @@
 ---
 name: Support Question
-about: Ask a question or request help configuring Career OS
+about: Ask a question or request help configuring Career Agents
 title: "[QUESTION] "
 labels: question
 assignees: ''

@@ -26,7 +26,7 @@ career-agents --help
 Prints the help menu listing all available subcommands and general usage guidelines.
 
 ### 2. `career-agents doctor`
-Runs diagnostic checks verifying registry health (checking that `career-os.json`, `agent-registry.json`, and directories are valid).
+Runs diagnostic checks verifying registry health (checking that `career-agents.json`, `agent-registry.json`, and directories are valid).
 
 ### 3. `career-agents search <query>`
 Searches the catalog index for matching agents, divisions, workflows, and bundles.
@@ -38,7 +38,7 @@ career-agents search resume
 Launches an interactive prompt checklist builder requesting your primary skills, experience level, and target role to generate matching recommendation summaries.
 
 ### 5. `career-agents assess`
-Starts the Career OS compliance scoring questionnaire to evaluate your roadmap, resume structure, interview readiness, outreach pipelines, and proof-of-work status.
+Starts the Career Agents compliance scoring questionnaire to evaluate your roadmap, resume structure, interview readiness, outreach pipelines, and proof-of-work status.
 
 ### 6. `career-agents company [company-id]`
 Inspects tier-1 company preparation tracks.

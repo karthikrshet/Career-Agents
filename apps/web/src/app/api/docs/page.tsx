@@ -207,7 +207,7 @@ export default function APIDocsPage() {
               </span>
             </div>
             <p className="text-sm text-muted-foreground mt-1">
-              Complete REST API specification and developer endpoints for Career OS
+              Complete REST API specification and developer endpoints for Career Agents
             </p>
           </div>
           <Link 

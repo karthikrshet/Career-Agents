@@ -30,7 +30,7 @@ const CONFIGS: Record<string, string> = {
         command: "npx",
         args: ["-y", "@karthikrshet/career-agents-mcp"],
         env: {
-          CAREER_OS_API_URL: "https://career-os.dev/api"
+          CAREER_AGENTS_API_URL: "https://career-agents.dev/api"
         }
       }
     }

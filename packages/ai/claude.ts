@@ -1,12 +1,13 @@
 // packages/ai/claude.ts
 import { AIProviderBase, AICompletionOptions, AIProviderName } from "./provider";
+import { secureFetch, PROVIDER_ENDPOINTS } from "../security";
 
 export class ClaudeProvider extends AIProviderBase {
   name: AIProviderName = "claude";
 
   async generate(options: AICompletionOptions): Promise<string> {
     const { messages, config, signal, onChunk } = options;
-    const url = config.baseUrl || "https://api.anthropic.com/v1/messages";
+    const url = PROVIDER_ENDPOINTS.anthropic;
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
@@ -32,11 +33,12 @@ export class ClaudeProvider extends AIProviderBase {
       stream: !!onChunk && config.streaming,
     };
 
-    const res = await fetch(url, {
+    const res = await secureFetch(url, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
       signal,
+      allowedProvider: "anthropic",
     });
 
     if (!res.ok) {

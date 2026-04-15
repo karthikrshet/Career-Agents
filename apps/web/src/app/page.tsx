@@ -185,7 +185,7 @@ export default function DashboardPage() {
             <div className="flex-1">
               <p className="text-sm font-semibold">Set up your profile to get started</p>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Tell Career OS your name and target role to personalize your experience.
+                Tell Career Agents your name and target role to personalize your experience.
               </p>
             </div>
             <Button size="sm" onClick={() => setShowSetup(true)}>Get Started</Button>

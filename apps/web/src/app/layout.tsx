@@ -11,16 +11,16 @@ const inter = Inter({
   display: "swap",
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://career-os.vercel.app";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://career-agents.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Career OS — AI Career Intelligence Platform",
-    template: "%s | Career OS",
+    default: "Career Agents — AI Career Intelligence Platform",
+    template: "%s | Career Agents",
   },
   description:
-    "Career OS is an AI-powered career intelligence platform with 146 specialized agents for resume ATS analysis, GitHub portfolio auditing, LinkedIn optimization, AI mock interviews, and job tracking.",
+    "Career Agents is an AI-powered career intelligence platform with 146 specialized agents for resume ATS analysis, GitHub portfolio auditing, LinkedIn optimization, AI mock interviews, and job tracking.",
   keywords: [
     "career OS", "AI career platform", "resume analyzer", "ATS score", "GitHub portfolio",
     "LinkedIn optimizer", "interview prep", "job tracker", "career copilot", "AI agents",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "MCP model context protocol", "career coaching AI",
   ],
   authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
-  publisher: "Career OS",
+  publisher: "Career Agents",
   creator: "Karthik R Shet",
   category: "Career & Productivity",
   classification: "Software Application",
@@ -49,23 +49,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: baseUrl,
-    title: "Career OS — AI Career Intelligence Platform",
+    title: "Career Agents — AI Career Intelligence Platform",
     description:
       "146 specialized AI agents for resume analysis, GitHub auditing, LinkedIn optimization, and interview prep. The open-source career copilot for engineers.",
-    siteName: "Career OS",
+    siteName: "Career Agents",
     locale: "en_US",
     images: [
       {
         url: `${baseUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Career OS — AI Career Intelligence Platform",
+        alt: "Career Agents — AI Career Intelligence Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Career OS — AI Career Intelligence Platform",
+    title: "Career Agents — AI Career Intelligence Platform",
     description:
       "146 specialized AI agents for resume, GitHub, LinkedIn, and interview coaching. Open source.",
     images: [`${baseUrl}/og-image.png`],
@@ -119,10 +119,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 window.addEventListener('load', function() {
                   navigator.serviceWorker.register('/sw.js', { scope: '/' })
                     .then(function(reg) {
-                      console.log('[Career OS] SW registered:', reg.scope);
+                      console.log('[Career Agents] SW registered:', reg.scope);
                     })
                     .catch(function(err) {
-                      console.warn('[Career OS] SW registration failed:', err);
+                      console.warn('[Career Agents] SW registration failed:', err);
                     });
                 });
               }

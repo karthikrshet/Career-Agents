@@ -11,7 +11,7 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error("[Career OS] Global error:", error);
+    console.error("[Career Agents] Global error:", error);
   }, [error]);
 
   return (
@@ -23,7 +23,7 @@ export default function GlobalError({
           </div>
           <h1 className="text-2xl font-bold mb-3">Something went wrong</h1>
           <p className="text-sm text-gray-400 mb-6 leading-relaxed">
-            A critical error occurred in Career OS. This has been logged automatically.
+            A critical error occurred in Career Agents. This has been logged automatically.
             {error?.digest && (
               <span className="block mt-2 font-mono text-xs text-gray-500">
                 Error ID: {error.digest}

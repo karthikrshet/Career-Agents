@@ -1,12 +1,12 @@
-# Career OS — File Uploads & Parsing Engine
+# Career Agents — File Uploads & Parsing Engine
 
-This document outlines the file upload capabilities, file formats, size boundaries, and internal text extraction pipelines in Career OS.
+This document outlines the file upload capabilities, file formats, size boundaries, and internal text extraction pipelines in Career Agents.
 
 ---
 
 ## Upload Capabilities
 
-Career OS features a centralized file upload utility accessible under the Resume Studio and Copilot attachments. 
+Career Agents features a centralized file upload utility accessible under the Resume Studio and Copilot attachments. 
 
 - **Maximum Upload Size:** 10MB per file.
 - **Allowed Formats:** `.pdf`, `.docx`, `.doc`, `.txt`, `.md`, `.rtf`, `.odt`, `.csv`, `.json`
@@ -61,7 +61,7 @@ If the parsing engine processes a PDF and yields a word count of 0 (or a very lo
 
 ```
 [Warning] Scanned Image Detected
-This PDF appears to be a scanned image. Career OS cannot analyze image-only resumes.
+This PDF appears to be a scanned image. Career Agents cannot analyze image-only resumes.
 Please upload a PDF generated from Word/Google Docs or paste the plain text directly.
 ```
 

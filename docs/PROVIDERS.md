@@ -1,6 +1,6 @@
-# Career OS — AI Providers
+# Career Agents — AI Providers
 
-Career OS supports 14 AI providers. Configure your preferred one in **Settings → AI Provider** or via environment variables.
+Career Agents supports 14 AI providers. Configure your preferred one in **Settings → AI Provider** or via environment variables.
 
 ---
 
@@ -32,7 +32,7 @@ When making AI requests, the key is resolved in this order:
 2. **Server env var** (`GROQ_API_KEY`, `OPENAI_API_KEY`, etc. in `.env`)
 3. **No key required** (Ollama, LM Studio only)
 
-**Security:** User API keys are stored in localStorage only. They are never sent to any Career OS server and never persisted in a database.
+**Security:** User API keys are stored in localStorage only. They are never sent to any Career Agents server and never persisted in a database.
 
 ---
 
@@ -43,7 +43,7 @@ Groq provides free-tier access to Meta's Llama models with the fastest inference
 **Setup:**
 1. Sign up at [console.groq.com](https://console.groq.com)
 2. Go to API Keys → Create API Key
-3. In Career OS: Settings → AI Provider → Groq → paste key
+3. In Career Agents: Settings → AI Provider → Groq → paste key
 
 **Endpoint:** `https://api.groq.com/openai/v1/chat/completions`  
 **Auth:** Bearer token  
@@ -60,7 +60,7 @@ Groq provides free-tier access to Meta's Llama models with the fastest inference
 **Setup:**
 1. Go to [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
 2. Create → API Key
-3. In Career OS: Settings → AI Provider → OpenAI → paste key
+3. In Career Agents: Settings → AI Provider → OpenAI → paste key
 
 **Endpoint:** `https://api.openai.com/v1/chat/completions`  
 **Auth:** Bearer token  
@@ -78,7 +78,7 @@ Groq provides free-tier access to Meta's Llama models with the fastest inference
 **Setup:**
 1. Go to [console.anthropic.com](https://console.anthropic.com)
 2. Get API key
-3. In Career OS: Settings → AI Provider → Anthropic → paste key
+3. In Career Agents: Settings → AI Provider → Anthropic → paste key
 
 **Endpoint:** `https://api.anthropic.com/v1/messages`  
 **Auth:** `x-api-key` header + `anthropic-version: 2023-06-01`  
@@ -87,7 +87,7 @@ Groq provides free-tier access to Meta's Llama models with the fastest inference
 - `claude-3-haiku-20240307` *(fastest)*
 - `claude-3-opus-20240229` *(most capable)*
 
-**Note:** Claude uses a different auth header scheme than OpenAI-compatible providers. Career OS handles this automatically.
+**Note:** Claude uses a different auth header scheme than OpenAI-compatible providers. Career Agents handles this automatically.
 
 ---
 
@@ -96,7 +96,7 @@ Groq provides free-tier access to Meta's Llama models with the fastest inference
 **Setup:**
 1. Go to [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
 2. Create API key (free)
-3. In Career OS: Settings → AI Provider → Gemini → paste key
+3. In Career Agents: Settings → AI Provider → Gemini → paste key
 
 **Endpoint:** `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`  
 **Auth:** Bearer token (uses OpenAI-compatible endpoint)  
@@ -115,7 +115,7 @@ OpenRouter provides access to 400+ models from different providers through a sin
 **Setup:**
 1. Go to [openrouter.ai/keys](https://openrouter.ai/keys)
 2. Create key (free credits on signup)
-3. In Career OS: Settings → AI Provider → OpenRouter → paste key
+3. In Career Agents: Settings → AI Provider → OpenRouter → paste key
 
 **Endpoint:** `https://openrouter.ai/api/v1/chat/completions`  
 **Auth:** Bearer token  
@@ -133,7 +133,7 @@ Extremely cost-effective models with strong coding abilities.
 **Setup:**
 1. Go to [platform.deepseek.com](https://platform.deepseek.com)
 2. Top up credits (very cheap)
-3. In Career OS: Settings → AI Provider → DeepSeek → paste key
+3. In Career Agents: Settings → AI Provider → DeepSeek → paste key
 
 **Endpoint:** `https://api.deepseek.com/chat/completions`  
 **Auth:** Bearer token  
@@ -148,7 +148,7 @@ Extremely cost-effective models with strong coding abilities.
 **Setup:**
 1. Go to [api.together.xyz](https://api.together.xyz)
 2. Create API key
-3. In Career OS: Settings → AI Provider → Together → paste key
+3. In Career Agents: Settings → AI Provider → Together → paste key
 
 **Endpoint:** `https://api.together.xyz/v1/chat/completions`  
 **Auth:** Bearer token  
@@ -163,7 +163,7 @@ Extremely cost-effective models with strong coding abilities.
 **Setup:**
 1. Go to [console.mistral.ai](https://console.mistral.ai)
 2. Create API key
-3. In Career OS: Settings → AI Provider → Mistral → paste key
+3. In Career Agents: Settings → AI Provider → Mistral → paste key
 
 **Endpoint:** `https://api.mistral.ai/v1/chat/completions`  
 **Auth:** Bearer token  
@@ -178,7 +178,7 @@ Extremely cost-effective models with strong coding abilities.
 **Setup:**
 1. Go to [dashboard.cohere.com](https://dashboard.cohere.com)
 2. Create API key
-3. In Career OS: Settings → AI Provider → Cohere → paste key
+3. In Career Agents: Settings → AI Provider → Cohere → paste key
 
 **Endpoint:** `https://api.cohere.ai/v1/chat/completions`  
 **Auth:** Bearer token  
@@ -193,7 +193,7 @@ Extremely cost-effective models with strong coding abilities.
 **Setup:**
 1. Go to [console.x.ai](https://console.x.ai)
 2. Create API key (requires X Premium subscription)
-3. In Career OS: Settings → AI Provider → xAI → paste key
+3. In Career Agents: Settings → AI Provider → xAI → paste key
 
 **Endpoint:** `https://api.x.ai/v1/chat/completions`  
 **Auth:** Bearer token  
@@ -216,7 +216,7 @@ For enterprise deployments with Azure subscriptions.
    AZURE_OPENAI_ENDPOINT="https://your-resource.openai.azure.com"
    AZURE_OPENAI_DEPLOYMENT="your-deployment-name"
    ```
-4. In Career OS: Settings → AI Provider → Azure → enter your endpoint
+4. In Career Agents: Settings → AI Provider → Azure → enter your endpoint
 
 **Auth:** `api-key` header (handled automatically)
 
@@ -237,7 +237,7 @@ Run models locally on your machine. No API key or internet required.
    ollama pull codellama
    ```
 3. Start Ollama (it runs as a service on port 11434 by default)
-4. In Career OS: Settings → AI Provider → Ollama (no key needed)
+4. In Career Agents: Settings → AI Provider → Ollama (no key needed)
 
 **Endpoint:** `http://localhost:11434/v1/chat/completions`  
 **Available Models (after pulling):**
@@ -258,7 +258,7 @@ A GUI application for running local models with GGUF quantization.
 1. Download LM Studio from [lmstudio.ai](https://lmstudio.ai)
 2. Search and download a model (e.g., Llama 3.3 8B)
 3. Start the local server from LM Studio → Local Server tab
-4. In Career OS: Settings → AI Provider → LM Studio (no key needed)
+4. In Career Agents: Settings → AI Provider → LM Studio (no key needed)
 
 **Endpoint:** `http://localhost:1234/v1/chat/completions`  
 **Available Models:** Any GGUF model you load in LM Studio

@@ -18,7 +18,7 @@ const toolsPath = path.join(root, 'tools.json');
 const workflowsPath = path.join(root, 'workflow-registry.json');
 const searchIndexPath = path.join(root, 'search-index.json');
 const knowledgeGraphPath = path.join(root, 'knowledge-graph.json');
-const careerOsPath = path.join(root, 'career-os.json');
+const careerOsPath = path.join(root, 'career-agents.json');
 
 const bundlesDir = path.join(root, 'bundles');
 const companiesDir = path.join(root, 'companies');
@@ -91,7 +91,7 @@ function searchCatalog(query) {
   }
 
   const indexData = loadJSON(searchIndexPath);
-  console.log(`${c.bold}Search results matching "${query}" in Career OS index:${c.reset}\n`);
+  console.log(`${c.bold}Search results matching "${query}" in Career Agents index:${c.reset}\n`);
 
   let matches = 0;
   for (const item of indexData.items) {
@@ -434,7 +434,7 @@ function handleRecommendation() {
     output: process.stdout
   });
 
-  console.log(`\n${c.bold}=== Career OS Interactive Profile Recommendations ===${c.reset}`);
+  console.log(`\n${c.bold}=== Career Agents Interactive Profile Recommendations ===${c.reset}`);
   rl.question('List 3 of your primary skills (comma-separated): ', (skills) => {
     rl.question('Select experience level (entry, mid, senior, executive): ', (exp) => {
       rl.question('Input target company (e.g. google, stripe) [optional]: ', (co) => {
@@ -450,7 +450,7 @@ function handleRecommendation() {
 function handleInteractiveScoring() {
   printBanner();
   console.log(`${c.bold}=== Career Operating System Interactive Scoring Questionnaire ===${c.reset}`);
-  console.log(`${c.gray}Answer the following questions to calculate your Career OS metrics (Score: 1-3).${c.reset}\n`);
+  console.log(`${c.gray}Answer the following questions to calculate your Career Agents metrics (Score: 1-3).${c.reset}\n`);
 
   const questions = [
     {
@@ -668,7 +668,7 @@ function handleGraph() {
   }
 
   const graph = loadJSON(knowledgeGraphPath);
-  console.log(`${c.bold}=== Career OS Knowledge Graph Network ===${c.reset}\n`);
+  console.log(`${c.bold}=== Career Agents Knowledge Graph Network ===${c.reset}\n`);
   console.log(`Total Graph Nodes: ${c.green}${graph.nodes.length}${c.reset}`);
   console.log(`Total Graph Connections (Edges): ${c.cyan}${graph.edges.length}${c.reset}\n`);
 
@@ -685,9 +685,9 @@ function handleGraph() {
 }
 
 function handleRoadmap() {
-  console.log(`${c.bold}=== Career OS Release Roadmap ===${c.reset}\n`);
+  console.log(`${c.bold}=== Career Agents Release Roadmap ===${c.reset}\n`);
   const phases = [
-    { v: 'v1.0', name: 'Career OS Core', desc: 'Centralized registry structures, schemas, and directories.', status: 'Completed' },
+    { v: 'v1.0', name: 'Career Agents Core', desc: 'Centralized registry structures, schemas, and directories.', status: 'Completed' },
     { v: 'v1.5', name: 'Intelligence Layer', desc: 'Category-specific intelligence documents and path guides.', status: 'Completed' },
     { v: 'v2.0', name: 'Agent Launcher & Runtime', desc: 'Interactive local execution consoles and profile scoring.', status: 'Completed' },
     { v: 'v2.5', name: 'Career Marketplace', desc: 'Community submissions workflows and rating tools.', status: 'Planned' },
@@ -702,11 +702,11 @@ function handleRoadmap() {
 }
 
 function runDoctor() {
-  console.log(`${c.bold}=== Career OS Diagnostic Check (Doctor) ===${c.reset}\n`);
+  console.log(`${c.bold}=== Career Agents Diagnostic Check (Doctor) ===${c.reset}\n`);
   let errors = 0;
 
   const filesToCheck = [
-    { name: 'career-os.json', file: path.join(root, 'career-os.json') },
+    { name: 'career-agents.json', file: path.join(root, 'career-agents.json') },
     { name: 'agent-registry.json', file: registryPath },
     { name: 'workflow-registry.json', file: workflowsPath },
     { name: 'launcher/launcher-registry.json', file: launcherRegistryPath },

@@ -1,6 +1,6 @@
 # Career-Agents Campus Program Specification
 
-This document details the strategy and structures for the **Career-Agents Campus Program**, bridging our open-source Career OS with universities, college placement cells, training institutes, and student clubs.
+This document details the strategy and structures for the **Career-Agents Campus Program**, bridging our open-source Career Agents with universities, college placement cells, training institutes, and student clubs.
 
 ---
 
@@ -25,7 +25,7 @@ graph TD
 - **Incentives:** Exclusive swag, contributor leaderboard score multipliers, and direct mentorship from core maintainers.
 
 ### 2. Placement Cell Partnerships
-- **Objective:** Integrate Career OS directly into university placement cells.
+- **Objective:** Integrate Career Agents directly into university placement cells.
 - **Features:**
   - Custom sitemaps for campus recruitments.
   - Bulletins detailing target-company interview loops.
@@ -40,4 +40,4 @@ graph TD
 ### 4. Certification Programs
 - Offer verified credentials for students:
   - **Certified Agent Engineer:** Awarded upon merging 3+ verified agents into the repository.
-  - **Career OS Power User:** Awarded for completing targeted interview mock test loops and portfolio audits.
+  - **Career Agents Power User:** Awarded for completing targeted interview mock test loops and portfolio audits.

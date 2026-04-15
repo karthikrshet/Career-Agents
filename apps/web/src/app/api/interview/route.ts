@@ -2,6 +2,7 @@
 // AI-powered interview question generation + answer evaluation
 
 import { NextResponse } from "next/server";
+import { enforceRequestLimits } from "packages/security";
 import { generate } from "packages/ai/router";
 
 const SYSTEM_PROMPT_GENERATE = `You are an expert technical interviewer at a top-tier tech company.
@@ -50,6 +51,10 @@ Format:
 
 export async function POST(req: Request) {
   try {
+    const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
+    const limitResponse = enforceRequestLimits(req, clientIp);
+    if (limitResponse) return limitResponse;
+
     const body = await req.json();
     const { action, company, role, mode, difficulty, responses, aiConfig } = body;
 

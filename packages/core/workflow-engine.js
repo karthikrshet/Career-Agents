@@ -1,5 +1,5 @@
 // packages/core/workflow-engine.js
-// Career OS Stateful Workflow Engine
+// Career Agents Stateful Workflow Engine
 
 class WorkflowEngine {
   constructor() {

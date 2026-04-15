@@ -13,7 +13,7 @@ export default function Loading() {
             style={{ animation: "slide 1.5s ease-in-out infinite" }}
           />
         </div>
-        <p className="text-xs text-muted-foreground">Loading Career OS...</p>
+        <p className="text-xs text-muted-foreground">Loading Career Agents...</p>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 {
   "name": "career-agents",
   "version": "3.0.0",
-  "description": "The Open Source Career Operating System",
+  "description": "The Open Source Career Agents Platform",
   "main": "scripts/sdk.js",
   "type": "module",
   "bin": {
@@ -77,7 +77,7 @@
     "career-paths.json",
     "companies.json",
     "resume-templates.json",
-    "career-os.json",
+    "career-agents.json",
     "search-index.json",
     "knowledge-graph.json",
     "llms.txt",

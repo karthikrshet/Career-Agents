@@ -2,6 +2,7 @@
 import { HealthCheckReport, AIProviderId } from "../types";
 import { PROVIDER_REGISTRY } from "./provider-registry";
 import { fetchAvailableModels } from "./discovery";
+import { secureFetch } from "../../security";
 
 export async function runHealthCheck(
   providerId: AIProviderId,
@@ -38,7 +39,11 @@ export async function runHealthCheck(
     return report;
   }
 
-  const endpoint = customBaseUrl || registry.apiEndpoint;
+  // Reject endpoint overrides unless it's azure, ollama, or lmstudio
+  let endpoint = registry.apiEndpoint;
+  if (["azure", "ollama", "lmstudio"].includes(providerId) && customBaseUrl) {
+    endpoint = customBaseUrl;
+  }
   const targetModel = modelName || "default";
 
   // 2. Authentication handshake check
@@ -75,7 +80,7 @@ export async function runHealthCheck(
     };
 
     if (providerId === "gemini") {
-      const res = await fetch(`${endpoint}/models/${targetModel.includes("gemini") ? targetModel : "gemini-2.5-flash"}:generateContent?key=${apiKey}`, {
+      const res = await secureFetch(`${endpoint}/models/${targetModel.includes("gemini") ? targetModel : "gemini-2.5-flash"}:generateContent?key=${apiKey}`, {
         method: "POST",
         headers,
         body: JSON.stringify({
@@ -83,6 +88,7 @@ export async function runHealthCheck(
           generationConfig: { maxOutputTokens: 5 }
         }),
         signal: AbortSignal.timeout(6000),
+        allowedProvider: "gemini",
       });
       completionPassed = res.ok;
       if (!res.ok) completionError = await res.text();
@@ -95,7 +101,7 @@ export async function runHealthCheck(
         headers["dangerously-allow-browser"] = "true";
       }
 
-      const res = await fetch(`${endpoint}/chat/completions`, {
+      const res = await secureFetch(`${endpoint}/chat/completions`, {
         method: "POST",
         headers,
         body: JSON.stringify({
@@ -104,6 +110,7 @@ export async function runHealthCheck(
           max_tokens: 5,
         }),
         signal: AbortSignal.timeout(6000),
+        allowedProvider: providerId,
       });
       completionPassed = res.ok;
       if (!res.ok) completionError = await res.text();

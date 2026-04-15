@@ -1,4 +1,4 @@
-// Career OS — Type Definitions
+// Career Agents — Type Definitions
 
 export type AIProvider =
   | "openai" | "anthropic" | "claude" | "gemini" | "groq"

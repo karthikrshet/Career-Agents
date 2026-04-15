@@ -1,4 +1,4 @@
-# Career OS Case Studies
+# Career Agents Case Studies
 
 This file compiles detailed structural studies of candidates who utilized the Career Operating System to achieve their milestones.
 

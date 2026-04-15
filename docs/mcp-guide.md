@@ -1,6 +1,6 @@
 # Model Context Protocol (MCP) Guide
 
-Career OS exposes specialized tool APIs and registries over the Model Context Protocol stdio transport.
+Career Agents exposes specialized tool APIs and registries over the Model Context Protocol stdio transport.
 
 ## Setup Instructions
 

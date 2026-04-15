@@ -1,6 +1,6 @@
-# Career OS — Troubleshooting
+# Career Agents — Troubleshooting
 
-Solutions for common issues in Career OS v2.5.0.
+Solutions for common issues in Career Agents v2.5.0.
 
 ---
 
@@ -8,7 +8,7 @@ Solutions for common issues in Career OS v2.5.0.
 
 ### `node: command not found` or wrong Node version
 
-**Problem:** Career OS requires Node.js ≥ 18.
+**Problem:** Career Agents requires Node.js ≥ 18.
 
 ```bash
 node --version  # must show v18.x.x or higher
@@ -185,7 +185,7 @@ Or use the API route — the client-side `lib/ai.ts` reads the key from the Zust
 2. Verify the model is pulled: `ollama list`
 3. Test: `curl http://localhost:11434/api/version`
 4. Check firewall isn't blocking port 11434
-5. The endpoint in Career OS should be `http://localhost:11434/v1/chat/completions`
+5. The endpoint in Career Agents should be `http://localhost:11434/v1/chat/completions`
 
 ---
 

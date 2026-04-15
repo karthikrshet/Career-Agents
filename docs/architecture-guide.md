@@ -1,9 +1,9 @@
 # Architecture Guide
 
-This document details the layout structure of Career OS.
+This document details the layout structure of Career Agents.
 
 ```
-Career OS
+Career Agents
 ├── resume-engine/           # Resume Studio & Job Match Engines
 │   ├── file-parser.js       # JSON/TXT/PDF parser wrapper
 │   ├── studio.js            # Scorer and Weak Bullet auditors

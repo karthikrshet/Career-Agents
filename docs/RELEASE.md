@@ -1,6 +1,6 @@
-# Career OS — Release Process
+# Career Agents — Release Process
 
-This document details the step-by-step process for tagging, compiling, and publishing new versions of Career OS to GitHub and the npm registry.
+This document details the step-by-step process for tagging, compiling, and publishing new versions of Career Agents to GitHub and the npm registry.
 
 ---
 
@@ -55,7 +55,7 @@ git push origin v2.5.0
 
 ## Publishing to npm
 
-Career OS publishes helper packages to the npm registry (like CLI utilities and the SDK client). Follow these steps to publish packages:
+Career Agents publishes helper packages to the npm registry (like CLI utilities and the SDK client). Follow these steps to publish packages:
 
 ### Step 1: Login to npm
 Ensure your terminal session is authenticated with your npm credentials:

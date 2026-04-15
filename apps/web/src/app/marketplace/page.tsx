@@ -30,15 +30,15 @@ const MARKETPLACE_PLUGINS: ExtendedPlugin[] = [
     name: "STAR Behavioral Coach",
     description: "Modular behavioral prep coach that analyzes your responses and maps them into Situation, Task, Action, and Result formats.",
     version: "1.0.4",
-    author: "Career OS Team",
+    author: "Career Agents Team",
     downloads: 12400,
     enabled: false,
     installed: false,
     category: "Interview",
     tags: ["star", "interview", "behavioral"],
     permissions: ["read_profile", "read_resume", "write_copilot_context"],
-    website: "https://github.com/career-os/star-coach",
-    documentation: "https://github.com/career-os/star-coach/wiki",
+    website: "https://github.com/career-agents/star-coach",
+    documentation: "https://github.com/career-agents/star-coach/wiki",
     license: "MIT",
     changelog: ["v1.0.4 - Improve situation matching logic", "v1.0.3 - Optimize response analysis speed"],
     rating: 4.8,
@@ -70,15 +70,15 @@ const MARKETPLACE_PLUGINS: ExtendedPlugin[] = [
     name: "Resume PDF Parser",
     description: "Extract structured data from PDF resumes using OCR and layout analysis.",
     version: "1.2.0",
-    author: "Career OS",
+    author: "Career Agents",
     downloads: 4120,
     enabled: false,
     installed: false,
     category: "Resume",
     tags: ["pdf", "ocr", "parsing"],
     permissions: ["read_resume"],
-    website: "https://github.com/career-os/pdf-parser",
-    documentation: "https://github.com/career-os/pdf-parser/blob/main/README.md",
+    website: "https://github.com/career-agents/pdf-parser",
+    documentation: "https://github.com/career-agents/pdf-parser/blob/main/README.md",
     license: "MIT",
     changelog: ["v1.2.0 - Support multi-column PDF layouts"],
     rating: 4.7,
@@ -160,7 +160,7 @@ export default function MarketplacePage() {
 
   return (
     <div className="flex flex-col h-full overflow-auto">
-      <Topbar title="Plugin Marketplace" subtitle="Extend Career OS with community and official plugins" />
+      <Topbar title="Plugin Marketplace" subtitle="Extend Career Agents with community and official plugins" />
 
       <div className="flex-1 p-6 space-y-5">
         {/* Search + Filter */}

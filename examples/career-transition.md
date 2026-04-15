@@ -1,6 +1,6 @@
 # Career Transition Example: Non-Technical to Full Stack Engineer
 
-This guide demonstrates how to execute a transition pivot using the Career OS bundles and path engines.
+This guide demonstrates how to execute a transition pivot using the Career Agents bundles and path engines.
 
 ---
 
