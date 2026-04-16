@@ -125,7 +125,7 @@ def validate_markdown_links():
             clean_link = link.split('#')[0]
             if not clean_link:
                 continue
-            if clean_link.startswith(('http://', 'https://', 'mailto:')):
+            if clean_link.startswith(('http://', 'https://', 'mailto:', 'file:')):
                 continue
             # Resolve link relative to the file location
             target_path = (fpath.parent / clean_link).resolve()
