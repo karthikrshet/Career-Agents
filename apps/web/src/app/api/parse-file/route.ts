@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import ExcelJS from "exceljs";
 import JSZip from "jszip";
 import { extractText, extractPages, extractMetadata } from "@/lib/pdf/server";
+import { indexDocument } from "packages/brain/knowledge";
 
 export async function POST(req: NextRequest) {
   const errors: string[] = [];
@@ -237,6 +238,15 @@ export async function POST(req: NextRequest) {
     const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
     const tokens = Math.round(wordCount * 1.3);
     const language = text.toLowerCase().includes("the") || text.toLowerCase().includes("experience") ? "en" : "unknown";
+
+    // Index the file in the RAG Knowledge Base automatically!
+    if (text && text.trim().length > 0) {
+      try {
+        indexDocument(filename, mime, text);
+      } catch (err) {
+        console.error("Knowledge indexing failed", err);
+      }
+    }
 
     return NextResponse.json({
       success: errors.length === 0,
