@@ -2,49 +2,45 @@
 import { PdfMetadata } from "./types";
 
 export async function extractText(buffer: Buffer): Promise<string> {
-  const { PDFParse } = await import("pdf-parse");
-  const parser = new PDFParse({ data: new Uint8Array(buffer) });
   try {
-    const result = await parser.getText();
-    return result.text || "";
-  } finally {
-    if (parser && typeof parser.destroy === "function") {
-      await parser.destroy().catch(() => {});
-    }
+    const pdfImport = (await import("pdf-parse")) as any;
+    const pdf = pdfImport.default || pdfImport;
+    const data = await pdf(buffer);
+    return data.text || "";
+  } catch (err: any) {
+    throw new Error(`Failed to parse PDF text: ${err.message}`);
   }
 }
 
 export async function extractPages(buffer: Buffer): Promise<string[]> {
-  const { PDFParse } = await import("pdf-parse");
-  const parser = new PDFParse({ data: new Uint8Array(buffer) });
   try {
-    const result = await parser.getText();
-    return result.pages.map((p: any) => p.text || "");
-  } finally {
-    if (parser && typeof parser.destroy === "function") {
-      await parser.destroy().catch(() => {});
-    }
+    const pdfImport = (await import("pdf-parse")) as any;
+    const pdf = pdfImport.default || pdfImport;
+    const data = await pdf(buffer);
+    const text = data.text || "";
+    const pages = text.split(/\u000c/);
+    return pages.map((p: string) => p.trim()).filter(Boolean);
+  } catch (err: any) {
+    throw new Error(`Failed to parse PDF pages: ${err.message}`);
   }
 }
 
 export { extractText as parsePdfServer };
 
 export async function extractMetadata(buffer: Buffer): Promise<PdfMetadata> {
-  const { PDFParse } = await import("pdf-parse");
-  const parser = new PDFParse({ data: new Uint8Array(buffer) });
   try {
-    const result = await parser.getInfo();
+    const pdfImport = (await import("pdf-parse")) as any;
+    const pdf = pdfImport.default || pdfImport;
+    const data = await pdf(buffer);
     return {
-      info: result.info || {},
-      metadata: result.metadata || null,
-      fingerprints: result.fingerprints || null,
-      outline: result.outline || null,
-      permission: result.permission || null,
-      totalPages: result.total || 0,
+      info: data.info || {},
+      metadata: data.metadata || null,
+      fingerprints: null,
+      outline: null,
+      permission: null,
+      totalPages: data.numpages || 0,
     };
-  } finally {
-    if (parser && typeof parser.destroy === "function") {
-      await parser.destroy().catch(() => {});
-    }
+  } catch (err: any) {
+    throw new Error(`Failed to parse PDF metadata: ${err.message}`);
   }
 }
