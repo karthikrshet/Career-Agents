@@ -360,6 +360,59 @@ export default function DashboardPage() {
           </motion.div>
         </div>
 
+        {/* Dynamic Funnels & Analytics Metrics Row */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Application Conversion Funnel */}
+          <Card className="glass">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">Application Funnel conversion</CardTitle>
+              <CardDescription>Conversion metrics across active job leads</CardDescription>
+            </CardHeader>
+            <CardContent className="h-56 flex flex-col justify-around">
+              {[
+                { stage: "Applied Leads", count: jobApplications.length, pct: 100, color: "bg-sky-500" },
+                { stage: "Screenings Schedule", count: jobApplications.filter(j => ["Phone Screen", "Onsite", "OA"].includes(j.status)).length, pct: Math.round((jobApplications.filter(j => ["Phone Screen", "Onsite", "OA"].includes(j.status)).length / Math.max(1, jobApplications.length)) * 100), color: "bg-indigo-500" },
+                { stage: "Onsite Rounds", count: interviewSessions.length, pct: Math.round((interviewSessions.length / Math.max(1, jobApplications.length)) * 100), color: "bg-violet-500" },
+                { stage: "Offer Decisions", count: jobApplications.filter(j => j.status === "Offer").length, pct: Math.round((jobApplications.filter(j => j.status === "Offer").length / Math.max(1, jobApplications.length)) * 100), color: "bg-emerald-500" },
+              ].map((item, idx) => (
+                <div key={idx} className="space-y-1.5">
+                  <div className="flex justify-between text-xs font-semibold">
+                    <span>{item.stage}</span>
+                    <span className="text-muted-foreground">{item.count} ({item.pct}%)</span>
+                  </div>
+                  <div className="w-full bg-secondary/50 h-2.5 rounded-full overflow-hidden">
+                    <div className={cn("h-full rounded-full", item.color)} style={{ width: `${item.pct}%` }} />
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          {/* Learning Prep & Study Time */}
+          <Card className="glass">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">LeetCode & Study Time Tracker</CardTitle>
+              <CardDescription>Weekly aggregated technical prep minutes</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={200}>
+                <LineChart data={[
+                  { week: "W1", mins: 120 },
+                  { week: "W2", mins: 180 },
+                  { week: "W3", mins: 240 },
+                  { week: "W4", mins: 310 },
+                ]}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <XAxis dataKey="week" stroke="hsl(215 20% 45%)" fontSize={11} />
+                  <YAxis stroke="hsl(215 20% 45%)" fontSize={11} />
+                  <Tooltip contentStyle={{ backgroundColor: "#111827", borderColor: "#1f2937" }} />
+                  <Line type="monotone" dataKey="mins" stroke="#818cf8" strokeWidth={2.5} dot={{ fill: "#818cf8" }} />
+                </LineChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Activity feed */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}

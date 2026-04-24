@@ -65,8 +65,8 @@ export function Sidebar() {
         "flex items-center gap-3 p-4 border-b border-border",
         collapsed && "justify-center"
       )}>
-        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center shadow-glow-sky">
-          <Zap className="w-4 h-4 text-white" />
+        <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
+          <img src="/logo.svg" alt="Career Agents Logo" className="w-8 h-8" />
         </div>
         <AnimatePresence>
           {!collapsed && (

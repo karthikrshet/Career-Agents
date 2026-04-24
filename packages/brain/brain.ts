@@ -65,9 +65,9 @@ export function processThroughBrain(
 
   const finalSystemPrompt = `${context.fullPrompt}${pluginPrompt}${agentPrompts}`;
 
-  const agentNames = plan.matchedAgents.map((a) => `${a.name} (${a.emoji || "🤖"})`).join(", ");
+  const allTimelineSteps = plan.timeline.steps.map(s => s.agentName).join(", ");
   const runningCount = plan.timeline.steps.length;
-  const thinkingIndicator = `<thinking>AI Brain executing dynamic route: classified intent as "${plan.intent}" (${plan.intentConfidence}% confidence). Found ${runningCount} specialist agents [${agentNames}]. Confidence: ${plan.timeline.confidence}%. Mapped execution chain in ${plan.timeline.totalTimeMs}ms.</thinking>\n\n`;
+  const thinkingIndicator = `<thinking>AI Brain executing dynamic route: classified intent as "${plan.intent}" (${plan.intentConfidence}% confidence). Found ${runningCount} specialist agents [${allTimelineSteps}]. Confidence: ${plan.timeline.confidence}%. Mapped execution chain in ${plan.timeline.totalTimeMs}ms.</thinking>\n\n`;
 
   return {
     systemPrompt: finalSystemPrompt,
