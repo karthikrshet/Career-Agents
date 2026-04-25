@@ -81,23 +81,31 @@ export async function executeAgent(agentData, agentFilePath) {
         try {
           let agentReply = '';
           if (provider === 'anthropic') {
+            const url = 'https://api.anthropic.com/v1/messages';
+            if (!url.startsWith('https://api.anthropic.com/')) {
+              throw new Error('Unauthorized outbound destination URL');
+            }
             const formattedHistory = conversationHistory.map(m => ({
               role: m.role === 'user' ? 'user' : 'assistant',
               content: m.content
             }));
-            const res = await fetch('https://api.anthropic.com/v1/messages', {
+            const payloadBody = JSON.stringify({
+              model: 'claude-3-5-sonnet-20241022',
+              max_tokens: 1500,
+              system: systemPrompt,
+              messages: formattedHistory
+            });
+            if (payloadBody.length > 5 * 1024 * 1024) {
+              throw new Error('Payload size limit exceeded (max 5MB)');
+            }
+            const res = await fetch(url, {
               method: 'POST',
               headers: {
                 'x-api-key': apiKey,
                 'anthropic-version': '2023-06-01',
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({
-                model: 'claude-3-5-sonnet-20241022',
-                max_tokens: 1500,
-                system: systemPrompt,
-                messages: formattedHistory
-              })
+              body: payloadBody
             });
             if (!res.ok) {
               const errBody = await res.json().catch(() => ({}));
@@ -106,6 +114,10 @@ export async function executeAgent(agentData, agentFilePath) {
             const data = await res.json();
             agentReply = data.content?.[0]?.text || 'No response text received.';
           } else if (provider === 'gemini') {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            if (!url.startsWith('https://generativelanguage.googleapis.com/')) {
+              throw new Error('Unauthorized outbound destination URL');
+            }
             // Build full thread payload
             const contents = [
               { role: 'user', parts: [{ text: `SYSTEM INSTRUCTIONS:\n${systemPrompt}` }] },
@@ -118,10 +130,15 @@ export async function executeAgent(agentData, agentFilePath) {
               });
             });
 
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+            const payloadBody = JSON.stringify({ contents });
+            if (payloadBody.length > 5 * 1024 * 1024) {
+              throw new Error('Payload size limit exceeded (max 5MB)');
+            }
+
+            const res = await fetch(url, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ contents })
+              body: payloadBody
             });
             if (!res.ok) {
               const errBody = await res.json().catch(() => ({}));
@@ -130,20 +147,28 @@ export async function executeAgent(agentData, agentFilePath) {
             const data = await res.json();
             agentReply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No response text received.';
           } else if (provider === 'openai') {
+            const url = 'https://api.openai.com/v1/chat/completions';
+            if (!url.startsWith('https://api.openai.com/')) {
+              throw new Error('Unauthorized outbound destination URL');
+            }
             const messages = [
               { role: 'system', content: systemPrompt },
               ...conversationHistory.map(m => ({ role: m.role, content: m.content }))
             ];
-            const res = await fetch('https://api.openai.com/v1/chat/completions', {
+            const payloadBody = JSON.stringify({
+              model: 'gpt-4o-mini',
+              messages
+            });
+            if (payloadBody.length > 5 * 1024 * 1024) {
+              throw new Error('Payload size limit exceeded (max 5MB)');
+            }
+            const res = await fetch(url, {
               method: 'POST',
               headers: {
                 'Authorization': `Bearer ${apiKey}`,
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({
-                model: 'gpt-4o-mini',
-                messages
-              })
+              body: payloadBody
             });
             if (!res.ok) {
               const errBody = await res.json().catch(() => ({}));

@@ -177,7 +177,6 @@ export async function resolveAndValidateHost(
     return;
   }
 
-  // Resolve hostname
   try {
     const addresses = await dns.promises.lookup(hostname, { all: true });
     for (const addr of addresses) {
@@ -190,6 +189,26 @@ export async function resolveAndValidateHost(
     }
   } catch (err) {
     if (err instanceof ValidationError) throw err;
-    // If DNS resolution fails, allow downstream fetch to fail standardly
   }
+}
+
+export async function resolveAndGetSafeIp(
+  hostname: string,
+  isLocalProviderAllowed: boolean
+): Promise<string> {
+  if (typeof window !== "undefined") return hostname;
+  if (net.isIP(hostname)) {
+    const isPrivate = isPrivateIp(hostname);
+    if (isPrivate && !isLocalProviderAllowed) {
+      throw new ValidationError("Private IP addresses are not allowed");
+    }
+    return hostname;
+  }
+  const lookup = await dns.promises.lookup(hostname, { all: false });
+  const ip = lookup.address;
+  const isPrivate = isPrivateIp(ip);
+  if (isPrivate && !isLocalProviderAllowed) {
+    throw new ValidationError(`Hostname resolved to a private IP: ${ip}`);
+  }
+  return ip;
 }

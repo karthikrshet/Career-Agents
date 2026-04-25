@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Document, Packer, Paragraph, HeadingLevel, Table, TableRow, TableCell, WidthType } from "docx";
 import ExcelJS from "exceljs";
+import { escapeHTML } from "packages/security";
 
 export async function POST(req: NextRequest) {
   try {
@@ -14,11 +15,16 @@ export async function POST(req: NextRequest) {
     const { profile, metrics, resumeAnalysis, GitHubAnalysis, linkedinAnalysis, interviewSessions = [], jobApplications = [] } = reportData;
     const dateStr = new Date().toLocaleDateString();
 
+    const cleanProfile = {
+      name: escapeHTML(profile?.name || "Candidate"),
+      targetRole: escapeHTML(profile?.targetRole || "Not specified"),
+    };
+
     if (format === "markdown") {
       let md = `# Career Progress & Intelligence Report\n\n` +
         `**Generated:** ${dateStr}\n` +
-        `**Candidate:** ${profile?.name || "Candidate"}\n` +
-        `**Target Role:** ${profile?.targetRole || "Not specified"}\n\n` +
+        `**Candidate:** ${cleanProfile.name}\n` +
+        `**Target Role:** ${cleanProfile.targetRole}\n\n` +
         `## 1. Overall Career Score Summary\n\n` +
         `| Module | Score | Grade |\n` +
         `| :--- | :--- | :--- |\n` +
@@ -30,21 +36,21 @@ export async function POST(req: NextRequest) {
 
       if (resumeAnalysis) {
         md += `## 2. Resume ATS Scan Summary\n\n` +
-          `- **File:** ${resumeAnalysis.fileName || "resume.pdf"}\n` +
+          `- **File:** ${escapeHTML(resumeAnalysis.fileName || "resume.pdf")}\n` +
           `- **ATS Score:** ${resumeAnalysis.overallScore || 0}/100\n` +
-          `- **Missing Keywords:** ${resumeAnalysis.missingKeywords?.join(", ") || "None"}\n` +
+          `- **Missing Keywords:** ${resumeAnalysis.missingKeywords?.map((k: string) => escapeHTML(k)).join(", ") || "None"}\n` +
           `- **Recommendations:**\n` +
-          (resumeAnalysis.recommendations?.map((r: string) => `  - ${r}`).join("\n") || "  - None") + "\n\n";
+          (resumeAnalysis.recommendations?.map((r: string) => `  - ${escapeHTML(r)}`).join("\n") || "  - None") + "\n\n";
       }
 
       if (GitHubAnalysis) {
         md += `## 3. GitHub Portfolio Audit\n\n` +
-          `- **Username:** @${GitHubAnalysis.username || "candidate"}\n` +
+          `- **Username:** @${escapeHTML(GitHubAnalysis.username || "candidate")}\n` +
           `- **Portfolio Score:** ${GitHubAnalysis.portfolioScore || 0}/100\n` +
           `- **Total Repositories:** ${GitHubAnalysis.publicRepos || 0}\n` +
           `- **Total Stars:** ${GitHubAnalysis.totalStars || 0}\n` +
           `- **Recommendations:**\n` +
-          (GitHubAnalysis.recommendations?.map((r: string) => `  - ${r}`).join("\n") || "  - None") + "\n\n";
+          (GitHubAnalysis.recommendations?.map((r: string) => `  - ${escapeHTML(r)}`).join("\n") || "  - None") + "\n\n";
       }
 
       md += `## 4. Job Search & Application Log\n\n` +
@@ -52,7 +58,7 @@ export async function POST(req: NextRequest) {
         `Active Leads: ${jobApplications.filter((j: any) => !["Rejected", "Withdrawn"].includes(j.status)).length}\n\n` +
         `| Company | Role | Status | Applied Date |\n` +
         `| :--- | :--- | :--- | :--- |\n` +
-        jobApplications.map((j: any) => `| ${j.company} | ${j.role} | ${j.status} | ${j.appliedDate || "N/A"} |`).join("\n") + "\n";
+        jobApplications.map((j: any) => `| ${escapeHTML(j.company)} | ${escapeHTML(j.role)} | ${escapeHTML(j.status)} | ${escapeHTML(j.appliedDate || "N/A")} |`).join("\n") + "\n";
 
       return new NextResponse(md, {
         headers: {

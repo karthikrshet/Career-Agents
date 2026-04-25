@@ -96,8 +96,18 @@ export function activate(context: vscode.ExtensionContext) {
         });
 
         if (target) {
-          const rootPath = workspaceFolders[0].uri.fsPath;
-          const targetPath = path.join(rootPath, target.file);
+          const rootPath = path.resolve(workspaceFolders[0].uri.fsPath);
+          const targetPath = path.resolve(path.join(rootPath, target.file));
+
+          // Path traversal prevention check
+          if (!targetPath.startsWith(rootPath)) {
+            throw new Error("Path traversal violation detected!");
+          }
+
+          // Size validation boundary limits
+          if (!agentFull || typeof agentFull.systemPrompt !== "string" || agentFull.systemPrompt.length > 500 * 1024) {
+            throw new Error("Invalid or excessively large payload received.");
+          }
 
           const dir = path.dirname(targetPath);
           if (!fs.existsSync(dir)) {
@@ -114,7 +124,11 @@ export function activate(context: vscode.ExtensionContext) {
             fileContent = `# Career Agent: ${agentFull.name}\n\n${agentFull.systemPrompt}`;
           }
 
-          fs.writeFileSync(targetPath, fileContent, 'utf8');
+          // Write atomically using temporary files rename
+          const tempPath = targetPath + ".tmp." + Math.random().toString(36).slice(2);
+          fs.writeFileSync(tempPath, fileContent, 'utf8');
+          fs.renameSync(tempPath, targetPath);
+
           vscode.window.showInformationMessage(`Successfully injected ${agentFull.name} rules into ${target.file}!`);
         }
       }
