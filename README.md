@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.png" alt="Career Agents Logo" width="120" />
+<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.svg" alt="Career Agents Logo" width="120" />
 
 # Career Agents
 
