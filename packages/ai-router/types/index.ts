@@ -99,11 +99,18 @@ export interface ProviderRegistryEntry {
 export interface HealthCheckReport {
   timestamp: string;
   healthy: boolean;
-  status: "connected" | "missing_key" | "healthy" | "limited" | "exceeded" | "unavailable";
+  status: "connected" | "offline" | "missing_key" | "invalid_key" | "quota_exceeded" | "rate_limited" | "auth_failed" | "model_not_found" | "healthy" | "limited" | "exceeded" | "unavailable" | string;
   latencyMs?: number;
   error?: string;
   apiVersion?: string;
   sdkVersion?: string;
+  response?: string;
+  tokenUsage?: {
+    inputTokens: number;
+    outputTokens: number;
+    totalTokens: number;
+  };
+  providerVersion?: string;
   checkedSteps: {
     step: string;
     passed: boolean;
