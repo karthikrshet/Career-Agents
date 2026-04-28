@@ -1,6 +1,7 @@
 // packages/brain/router.ts
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
 const promptCache: Record<string, string> = {};
 
@@ -15,8 +16,33 @@ export interface AgentInfo {
   emoji?: string;
 }
 
+// Robust resolver to locate workspace files in any runtime context
+export function resolveWorkspacePath(filename: string): string {
+  // 1. Try relative to process.cwd()
+  let target = path.resolve(process.cwd(), filename);
+  if (fs.existsSync(target)) return target;
+
+  // 2. Try going up 2 levels (if inside apps/web)
+  target = path.resolve(process.cwd(), "../../", filename);
+  if (fs.existsSync(target)) return target;
+
+  // 3. Try relative to this file's folder (packages/brain)
+  try {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    let current = __dirname;
+    for (let i = 0; i < 5; i++) {
+      const check = path.resolve(current, filename);
+      if (fs.existsSync(check)) return check;
+      current = path.dirname(current);
+    }
+  } catch {}
+
+  return path.resolve(process.cwd(), filename);
+}
+
 export function loadAgentRegistry(): AgentInfo[] {
-  const registryPath = path.join(process.cwd(), "../../agent-registry.json");
+  const registryPath = resolveWorkspacePath("agent-registry.json");
   try {
     if (fs.existsSync(registryPath)) {
       const data = JSON.parse(fs.readFileSync(registryPath, "utf-8"));
@@ -31,7 +57,7 @@ export function loadAgentRegistry(): AgentInfo[] {
 export function getCachedAgentPrompt(filename: string): string {
   if (promptCache[filename]) return promptCache[filename];
   try {
-    const agentFilePath = path.join(process.cwd(), "../../", filename);
+    const agentFilePath = resolveWorkspacePath(filename);
     if (fs.existsSync(agentFilePath)) {
       const rawPrompt = fs.readFileSync(agentFilePath, "utf-8");
       const cleanPrompt = rawPrompt.replace(/^---[\s\S]*?---/, "").trim();
