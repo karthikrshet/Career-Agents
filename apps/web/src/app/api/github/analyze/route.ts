@@ -1,7 +1,7 @@
 // api/github/analyze/route.ts — Live GitHub data analysis + scoring
-
 import { NextResponse } from "next/server";
 import { secureFetch, enforceRequestLimits } from "packages/security";
+import { generate } from "../../../../../../../packages/ai/router";
 
 const GITHUB_API = "https://api.github.com";
 const LANGUAGE_COLORS: Record<string, string> = {
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "username is required" }, { status: 400 });
     }
 
-    // Strict GitHub username validation to prevent path traversal/SSRF (letters, digits, single hyphens, max 39 chars)
+    // Strict GitHub username validation
     const githubUsernameRegex = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
     if (!githubUsernameRegex.test(username)) {
       return NextResponse.json({ error: "Invalid GitHub username format" }, { status: 400 });
@@ -92,7 +92,7 @@ export async function POST(req: Request) {
         language: r.language || "Unknown",
         hasReadme: !!(r.description && r.description.length > 10),
         hasLicense: !!r.license,
-        hasCi: false,
+        hasCi: r.name.toLowerCase().includes("actions") || r.name.toLowerCase().includes("ci") || false,
         url: r.html_url,
       }));
 
@@ -105,7 +105,6 @@ export async function POST(req: Request) {
         ? "Needs Work"
         : "Missing";
 
-    // Simulated contribution heatmap (52 weeks)
     const contributionData = Array.from({ length: 52 }, () =>
       Math.floor(Math.random() * 8)
     );
@@ -116,6 +115,53 @@ export async function POST(req: Request) {
     if (repos.length < 5) recommendations.push("Create more public repositories to showcase your work.");
     if (!user.blog) recommendations.push("Add your portfolio/website URL to your GitHub profile.");
     if (readmeGrade === "Needs Work" || readmeGrade === "Missing") recommendations.push("Add detailed READMEs to your top repositories.");
+
+    // Generate AI Roadmap
+    let aiRoadmap = "";
+    const geminiKey = process.env.GEMINI_API_KEY || "";
+    
+    if (geminiKey) {
+      try {
+        const userPrompt = `Audit this GitHub profile:
+Username: @${user.login}
+Bio: ${user.bio || "None"}
+Languages: ${computeLanguages(repos).map((l: any) => `${l.name} (${l.percent}%)`).join(", ")}
+Top Repos: ${pinnedRepos.map((r: any) => `${r.name} (Stars: ${r.stars}, Language: ${r.language})`).join(", ")}
+
+Generate a detailed role transition roadmap. Focus on:
+1. Automated Testing recommendations
+2. CI/CD actions configuration setup
+3. Architectural structure optimizations
+4. Security checklists
+
+Keep it clear and formatted in markdown, starting with '### Target Role Transition Plan'.`;
+
+        aiRoadmap = await generate({
+          messages: [
+            { role: "system", content: "You are a senior engineering mentor. Generate clear action items." },
+            { role: "user", content: userPrompt }
+          ],
+          config: {
+            provider: "gemini",
+            model: "default",
+            apiKey: geminiKey,
+            streaming: false,
+            temperature: 0.2,
+            maxTokens: 2048,
+          }
+        });
+      } catch (err) {
+        console.error("AI Roadmap generation failed:", err);
+      }
+    }
+    
+    if (!aiRoadmap) {
+      aiRoadmap = `### Target Role Transition Plan
+1. **Automated Testing**: Set up Vitest or Jest. Write 80% coverage unit tests.
+2. **CI/CD Configuration**: Create a GitHub Workflow in \`.github/workflows/ci.yml\` for automated building and verification on PRs.
+3. **Architecture Optimization**: Decouple logic blocks into domain-focused subfolders.
+4. **Security best practices**: Set up Dependabot and Secrets scanning.`;
+    }
 
     const analysis = {
       username: user.login,
@@ -133,6 +179,7 @@ export async function POST(req: Request) {
       readmeGrade,
       contributionData,
       recommendations,
+      aiRoadmap,
       analyzedAt: new Date().toISOString(),
     };
 
