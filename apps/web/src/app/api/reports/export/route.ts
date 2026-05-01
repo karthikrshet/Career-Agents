@@ -20,6 +20,148 @@ export async function POST(req: NextRequest) {
       targetRole: escapeHTML(profile?.targetRole || "Not specified"),
     };
 
+    if (format === "json") {
+      return new NextResponse(JSON.stringify(reportData, null, 2), {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Disposition": `attachment; filename="career-report-${Date.now()}.json"`
+        }
+      });
+    }
+
+    if (format === "html") {
+      const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Career Progress & Intelligence Report</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0b0f19; color: #f1f5f9; max-width: 800px; margin: 40px auto; padding: 20px; }
+    h1 { color: #38bdf8; border-bottom: 2px solid #1e293b; padding-bottom: 12px; }
+    h2 { color: #818cf8; margin-top: 24px; border-bottom: 1px solid #1e293b; padding-bottom: 6px; }
+    .card { background: #111827; border: 1px solid #1e293b; padding: 16px; border-radius: 12px; margin-bottom: 16px; }
+    .metric { font-size: 18px; font-weight: bold; color: #10b981; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { padding: 10px; text-align: left; border-bottom: 1px solid #1e293b; }
+    th { background: #1f2937; }
+  </style>
+</head>
+<body>
+  <h1>Career Progress & Intelligence Report</h1>
+  <p><strong>Candidate Name:</strong> ${cleanProfile.name}</p>
+  <p><strong>Target Role:</strong> ${cleanProfile.targetRole}</p>
+  <p><strong>Date Generated:</strong> ${dateStr}</p>
+
+  <h2>Performance Overview</h2>
+  <ul>
+    <li>Overall Career Score: <span class="metric">${metrics?.careerScore || 0}/100</span></li>
+    <li>Resume Score: <span class="metric">${metrics?.resumeScore || 0}/100</span></li>
+    <li>GitHub Score: <span class="metric">${metrics?.githubScore || 0}/100</span></li>
+    <li>LinkedIn Score: <span class="metric">${metrics?.linkedinScore || 0}/100</span></li>
+    <li>Interview Score: <span class="metric">${metrics?.interviewScore || 0}/100</span></li>
+  </ul>
+
+  ${resumeAnalysis ? `
+  <h2>Resume ATS Scan Summary</h2>
+  <div class="card">
+    <p><strong>File:</strong> ${escapeHTML(resumeAnalysis.fileName || "resume.pdf")}</p>
+    <p><strong>ATS Score:</strong> ${resumeAnalysis.overallScore || 0}/100</p>
+    <p><strong>Missing Keywords:</strong> ${resumeAnalysis.missingKeywords?.map((k: string) => escapeHTML(k)).join(", ") || "None"}</p>
+    <p><strong>Recommendations:</strong></p>
+    <ul>
+      ${resumeAnalysis.recommendations?.map((r: string) => `<li>${escapeHTML(r)}</li>`).join("") || "<li>None</li>"}
+    </ul>
+  </div>
+  ` : ""}
+
+  ${GitHubAnalysis ? `
+  <h2>GitHub Portfolio Audit</h2>
+  <div class="card">
+    <p><strong>Username:</strong> @${escapeHTML(GitHubAnalysis.username || "candidate")}</p>
+    <p><strong>Portfolio Score:</strong> ${GitHubAnalysis.portfolioScore || 0}/100</p>
+    <p><strong>Total Repositories:</strong> ${GitHubAnalysis.publicRepos || 0}</p>
+    <p><strong>Total Stars:</strong> ${GitHubAnalysis.totalStars || 0}</p>
+    <p><strong>Recommendations:</strong></p>
+    <ul>
+      ${GitHubAnalysis.recommendations?.map((r: string) => `<li>${escapeHTML(r)}</li>`).join("") || "<li>None</li>"}
+    </ul>
+  </div>
+  ` : ""}
+
+  <h2>Job Application Log</h2>
+  <p>Total Applications: ${jobApplications.length}</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Applied Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${jobApplications.map((j: any) => `
+        <tr>
+          <td>${escapeHTML(j.company)}</td>
+          <td>${escapeHTML(j.role)}</td>
+          <td>${escapeHTML(j.status)}</td>
+          <td>${escapeHTML(j.appliedDate || "N/A")}</td>
+        </tr>
+      `).join("")}
+    </tbody>
+  </table>
+</body>
+</html>`;
+
+      return new NextResponse(html, {
+        headers: {
+          "Content-Type": "text/html",
+          "Content-Disposition": `attachment; filename="career-report-${Date.now()}.html"`
+        }
+      });
+    }
+
+    if (format === "pdf") {
+      const pdfLines: string[] = [
+        `Candidate: ${cleanProfile.name}`,
+        `Target Role: ${cleanProfile.targetRole}`,
+        `Generated: ${dateStr}`,
+        "",
+        "SCORES MATRIX:",
+        `- Overall Career Score: ${metrics?.careerScore || 0}/100`,
+        `- Resume Score: ${metrics?.resumeScore || 0}/100`,
+        `- GitHub Score: ${metrics?.githubScore || 0}/100`,
+        `- LinkedIn Score: ${metrics?.linkedinScore || 0}/100`,
+        `- Interview Score: ${metrics?.interviewScore || 0}/100`,
+        "",
+      ];
+
+      if (resumeAnalysis) {
+        pdfLines.push("RESUME AUDIT:", `- Score: ${resumeAnalysis.overallScore || 0}/100`, `- File: ${resumeAnalysis.fileName || ""}`);
+        (resumeAnalysis.recommendations || []).forEach((r: string) => pdfLines.push(`* Rec: ${r}`));
+        pdfLines.push("");
+      }
+
+      if (GitHubAnalysis) {
+        pdfLines.push("GITHUB AUDIT:", `- Score: ${GitHubAnalysis.portfolioScore || 0}/100`, `- Username: @${GitHubAnalysis.username || ""}`);
+        (GitHubAnalysis.recommendations || []).forEach((r: string) => pdfLines.push(`* Rec: ${r}`));
+        pdfLines.push("");
+      }
+
+      pdfLines.push("JOB APPLICATIONS LOG:");
+      jobApplications.forEach((app: any) => {
+        pdfLines.push(`- ${app.company} | ${app.role} | ${app.status}`);
+      });
+
+      const buffer = generateSimplePdf("Career Progress & Intelligence Report", pdfLines);
+      return new NextResponse(new Uint8Array(buffer), {
+        headers: {
+          "Content-Type": "application/pdf",
+          "Content-Disposition": `attachment; filename="career-report-${Date.now()}.pdf"`
+        }
+      });
+    }
+
     if (format === "markdown") {
       let md = `# Career Progress & Intelligence Report\n\n` +
         `**Generated:** ${dateStr}\n` +
@@ -189,4 +331,41 @@ export async function POST(req: NextRequest) {
   } catch (err: any) {
     return NextResponse.json({ success: false, error: err.message || "Failed to generate report" }, { status: 500 });
   }
+}
+
+function generateSimplePdf(title: string, lines: string[]): Buffer {
+  const chunks: string[] = [];
+  chunks.push("%PDF-1.4\n");
+  
+  const objectOffsets: number[] = [];
+  const addObj = (content: string) => {
+    const offset = chunks.join("").length;
+    objectOffsets.push(offset);
+    chunks.push(`${objectOffsets.length} 0 obj\n${content}\nendobj\n`);
+  };
+
+  addObj("<< /Type /Catalog /Pages 2 0 R >>");
+  addObj("<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+  addObj("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>");
+  addObj("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
+
+  let streamContent = `BT\n/F1 16 Tf\n70 780 Td\n(${title.replace(/[\(\)]/g, "\\$&")}) Tj\n/F1 9 Tf\n`;
+  for (const line of lines) {
+    const escaped = line.replace(/[\(\)]/g, "\\$&");
+    streamContent += `0 -14 Td\n(${escaped}) Tj\n`;
+  }
+  streamContent += "ET";
+
+  addObj(`<< /Length ${streamContent.length} >>\nstream\n${streamContent}\nstreamend\nendstream`);
+
+  const xrefOffset = chunks.join("").length;
+  let xref = `xref\n0 ${objectOffsets.length + 1}\n0000000000 65535 f \n`;
+  for (const offset of objectOffsets) {
+    xref += `${String(offset).padStart(10, "0")} 00000 n \n`;
+  }
+  chunks.push(xref);
+
+  chunks.push(`trailer\n<< /Size ${objectOffsets.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF\n`);
+
+  return Buffer.from(chunks.join(""), "utf-8");
 }
