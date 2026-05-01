@@ -42,32 +42,13 @@ export async function POST(req: NextRequest) {
       activeProvider: config?.provider || "default"
     };
 
-    let { systemPrompt, thinkingIndicator } = processThroughBrain(
-      lastUserMessage,
-      messages,
-      clientState,
-      context?.enabledPlugins || {}
-    );
-
-    if (webCitations) {
-      systemPrompt += webCitations;
-    }
-
-    // Construct final master system prompt
-    let systemMessage = messages.find((m: any) => m.role === "system");
-
-    if (systemMessage) {
-      systemMessage.content = systemPrompt + "\n\n" + systemMessage.content;
-    } else {
-      messages.unshift({
-        role: "system" as const,
-        content: systemPrompt,
-      });
-    }
-
     // 3. Compile Gateway Config mapping rotated keys and endpoints
     const provider = String(config?.provider || "openai").toLowerCase().trim();
-    const ALLOWED_PROVIDERS = new Set(["openai", "anthropic", "claude", "gemini", "groq", "ollama", "lmstudio"]);
+    const ALLOWED_PROVIDERS = new Set([
+      "openai", "anthropic", "claude", "gemini", "groq", "openrouter",
+      "together", "deepseek", "mistral", "cohere", "azure", "ollama",
+      "lmstudio", "xai", "fireworks", "perplexity", "ai21", "openai-compat", "custom"
+    ]);
     if (!ALLOWED_PROVIDERS.has(provider)) {
       return NextResponse.json({ success: false, error: "Invalid AI provider specified" }, { status: 400 });
     }
@@ -87,7 +68,33 @@ export async function POST(req: NextRequest) {
       temperature: config?.temperature ?? 0.7,
       maxTokens: config?.maxTokens || 4096,
       streaming: true,
+      retryCount: clientSettings?.retryCount ?? 3,
+      retryDelayMs: clientSettings?.retryDelayMs ?? 1000,
     };
+
+    let { systemPrompt, thinkingIndicator } = await processThroughBrain(
+      lastUserMessage,
+      messages,
+      clientState,
+      context?.enabledPlugins || {},
+      gatewayConfig
+    );
+
+    if (webCitations) {
+      systemPrompt += webCitations;
+    }
+
+    // Construct final master system prompt
+    let systemMessage = messages.find((m: any) => m.role === "system");
+
+    if (systemMessage) {
+      systemMessage.content = systemPrompt + "\n\n" + systemMessage.content;
+    } else {
+      messages.unshift({
+        role: "system" as const,
+        content: systemPrompt,
+      });
+    }
 
     // Proxy stream
     const encoder = new TextEncoder();
