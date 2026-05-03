@@ -313,6 +313,21 @@ npm run dev
                   </CardContent>
                 </Card>
               )}
+
+              {/* AI Transition Roadmap */}
+              {(data as any).aiRoadmap && (
+                <Card className="glass text-left col-span-full">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-2">
+                      <Shield className="w-4 h-4 text-violet-400" />
+                      <CardTitle className="text-base">AI Role Transition Roadmap</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="prose prose-invert max-w-none text-xs text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                    {(data as any).aiRoadmap}
+                  </CardContent>
+                </Card>
+              )}
             </motion.div>
           )}
 
