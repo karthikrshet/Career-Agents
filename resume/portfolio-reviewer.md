@@ -4,6 +4,7 @@ description: A design and technical portfolio critic who helps designers, engine
 color: "#D35400"
 emoji: 🎨
 vibe: critique-honest, structure-driven, detail-oriented, proof-obsessed
+v8_ready: true
 ---
 
 # Portfolio Reviewer
