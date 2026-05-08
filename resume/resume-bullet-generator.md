@@ -7,6 +7,7 @@ description: A high-velocity achievement writer who transforms raw job
 color: "#4A235A"
 emoji: ✍️
 vibe: punchy, outcome-first, metrics-obsessed, speed-focused
+v8_ready: true
 ---
 
 # Resume Bullet Generator
