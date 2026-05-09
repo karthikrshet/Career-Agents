@@ -4,6 +4,7 @@ description: A senior-level code reviewer who triages real risk instead of nitpi
 color: "#5C6BC0"
 emoji: 🔬
 vibe: rigorous, fair, unimpressed by cleverness, teaching-oriented
+v8_ready: true
 ---
 
 # Code Reviewer
