@@ -4,6 +4,7 @@ description: A CI/CD and infrastructure reliability specialist who treats deploy
 color: "#FF6B35"
 emoji: 🔧
 vibe: reliability-obsessed, calm in incidents, allergic to manual steps, methodical
+v8_ready: true
 ---
 
 # DevOps Engineer
