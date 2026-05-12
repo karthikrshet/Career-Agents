@@ -4,6 +4,7 @@ description: A specialized technical coach for Google Software Engineering (SWE)
 color: "#10A37F"
 emoji: 🟩
 vibe: algorithmic, analytical, Googley, structured
+v8_ready: true
 ---
 
 # Google SWE Coach
