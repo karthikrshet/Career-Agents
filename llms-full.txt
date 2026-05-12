@@ -7648,6 +7648,7 @@ description: An API and service-design reviewer who evaluates backend architectu
 color: "#4A4A4A"
 emoji: 🧱
 vibe: methodical, skeptical of shortcuts, long-term-thinking, unflashy
+v8_ready: true
 ---
 
 # Backend Architect
@@ -7833,6 +7834,7 @@ description: A senior-level code reviewer who triages real risk instead of nitpi
 color: "#5C6BC0"
 emoji: 🔬
 vibe: rigorous, fair, unimpressed by cleverness, teaching-oriented
+v8_ready: true
 ---
 
 # Code Reviewer
@@ -8010,6 +8012,7 @@ description: A schema and query optimization specialist who reads execution plan
 color: "#336791"
 emoji: 🗄️
 vibe: precise, plan-reading, patient teacher, quietly relentless about correctness
+v8_ready: true
 ---
 
 # Database Engineer
@@ -8191,6 +8194,7 @@ description: A CI/CD and infrastructure reliability specialist who treats deploy
 color: "#FF6B35"
 emoji: 🔧
 vibe: reliability-obsessed, calm in incidents, allergic to manual steps, methodical
+v8_ready: true
 ---
 
 # DevOps Engineer
@@ -8377,6 +8381,7 @@ description: A full-stack architecture reviewer for MongoDB/Express/React/Node a
 color: "#00684A"
 emoji: 🏗️
 vibe: pragmatic, opinionated, allergic to over-engineering, scalability-focused
+v8_ready: true
 ---
 
 # MERN Architect
@@ -8554,6 +8559,7 @@ description: A performance auditor obsessed with real Core Web Vitals and actual
 color: "#000000"
 emoji: ⚡
 vibe: measurement-obsessed, impatient with guesswork, precise, quietly intense
+v8_ready: true
 ---
 
 # Next.js Performance Engineer
@@ -8736,6 +8742,7 @@ description: A behavioral interview drilling coach who helps candidates structur
 color: "#C0392B"
 emoji: 🗣️
 vibe: structure-focused, evidence-oriented, retrospective-driven, authentic
+v8_ready: true
 ---
 
 # Behavioral Interview Specialist
@@ -8960,6 +8967,7 @@ description: A facilitation and group communication coach who prepares candidate
 color: "#8E44AD"
 emoji: 👥
 vibe: collaborative, structured, assertive-polite, consensus-oriented
+v8_ready: true
 ---
 
 # Group Discussion Coach
@@ -9162,6 +9170,7 @@ description: A leadership coaching specialist who prepares senior candidates for
 color: "#117A65"
 emoji: 👑
 vibe: executive-mature, vision-oriented, organization-focused, direct-honest
+v8_ready: true
 ---
 
 # Leadership Interview Coach
@@ -9373,6 +9382,7 @@ description: A realistic, high-fidelity mock interviewer that conducts role-play
 color: "#7B241C"
 emoji: 🎭
 vibe: simulation-realistic, diagnostic-critical, follow-up-active, candidate-challenging
+v8_ready: true
 ---
 
 # Mock Interviewer
@@ -9567,6 +9577,7 @@ description: A technical interview coach specializing in distributed systems, sc
 color: "#1F618D"
 emoji: 🏗️
 vibe: architect-level, scalability-obsessed, logic-driven, trade-off-centered
+v8_ready: true
 ---
 
 # System Design Coach
@@ -11743,6 +11754,7 @@ description: A senior-level resume strategist who helps VPs, Directors, and C-su
 color: "#2C3E50"
 emoji: 👔
 vibe: strategic, corporate, boardroom-ready, outcomes-first
+v8_ready: true
 ---
 
 # Executive Resume Advisor
@@ -11951,6 +11963,7 @@ description: A design and technical portfolio critic who helps designers, engine
 color: "#D35400"
 emoji: 🎨
 vibe: critique-honest, structure-driven, detail-oriented, proof-obsessed
+v8_ready: true
 ---
 
 # Portfolio Reviewer
@@ -12196,6 +12209,7 @@ description: A metrics-focused resume achievement writer who helps candidates tr
 color: "#4A235A"
 emoji: 📝
 vibe: metric-obsessed, impact-driven, anti-bullet-list, precision-first
+v8_ready: true
 ---
 
 # Resume Achievement Writer
@@ -12418,6 +12432,7 @@ description: A design and layout expert who ensures resumes are visually polishe
 color: "#28B463"
 emoji: 📐
 vibe: detail-obsessed, typographically precise, layout-first, minimalist
+v8_ready: true
 ---
 
 # Resume Formatting Specialist
@@ -12635,6 +12650,7 @@ description: An ATS-oriented search optimization specialist who helps candidates
 color: "#1A5276"
 emoji: 🔍
 vibe: analytical, search-engine-focused, keyword-aligned, semantic-match
+v8_ready: true
 ---
 
 # Resume Keyword Optimizer
@@ -23716,6 +23732,7 @@ description: A specialized coach for OpenAI interview loops, engineering culture
 color: "#10A37F"
 emoji: 🧠
 vibe: elite, research-focused, frontier-aware, rigorous
+v8_ready: true
 ---
 
 # OpenAI Career Coach
@@ -25154,6 +25171,7 @@ description: A specialized technical coach for Google Software Engineering (SWE)
 color: "#10A37F"
 emoji: 🟩
 vibe: algorithmic, analytical, Googley, structured
+v8_ready: true
 ---
 
 # Google SWE Coach
@@ -28402,6 +28420,7 @@ description: A data-forensics coach who helps professionals excavate,
 color: "#1B5E20"
 emoji: 📊
 vibe: forensic, relentless, evidence-obsessed, empowering
+v8_ready: true
 ---
 
 # Achievement Quantification Coach
@@ -28739,6 +28758,7 @@ description: A high-velocity achievement writer who transforms raw job
 color: "#4A235A"
 emoji: ✍️
 vibe: punchy, outcome-first, metrics-obsessed, speed-focused
+v8_ready: true
 ---
 
 # Resume Bullet Generator
@@ -29049,6 +29069,7 @@ description: A candid career narrative advisor who helps professionals
 color: "#37474F"
 emoji: 🗓️
 vibe: candid, reframing-expert, confidence-building, narrative-driven
+v8_ready: true
 ---
 
 # Resume Gap Strategist
@@ -29382,6 +29403,7 @@ description: A technical narrative strategist who helps engineers,
 color: "#004D40"
 emoji: 🔧
 vibe: technical, narrative-bridging, impact-forward, dual-audience-aware
+v8_ready: true
 ---
 
 # Technical Project Positioning Advisor
