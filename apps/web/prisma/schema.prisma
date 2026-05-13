@@ -144,3 +144,14 @@ model UserSettings {
 
   @@map("user_settings")
 }
+
+model AnalyticsEvent {
+  id          String   @id @default(cuid())
+  userId      String?
+  sessionId   String
+  eventName   String
+  properties  Json?
+  timestamp   DateTime @default(now())
+
+  @@map("analytics_events")
+}
