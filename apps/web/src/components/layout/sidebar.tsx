@@ -55,8 +55,8 @@ export function Sidebar() {
   const metrics = useStore((s) => s.metrics);
 
   const marketingRoutes = [
-    "/", "/features", "/pricing", "/enterprise", "/opensource", 
-    "/roadmap", "/changelog", "/blog", "/docs", "/contact", 
+    "/", "/features", "/pricing", "/enterprise", "/opensource",
+    "/roadmap", "/changelog", "/blog", "/docs", "/contact",
     "/security", "/privacy", "/terms"
   ];
 
