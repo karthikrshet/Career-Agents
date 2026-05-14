@@ -1,7 +1,6 @@
-// apps/web/src/app/api/interview/route.ts
-// AI-powered interview question generation + answer evaluation
-
 import { NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
 import { enforceRequestLimits } from "packages/security";
 import { generate } from "packages/ai/router";
 

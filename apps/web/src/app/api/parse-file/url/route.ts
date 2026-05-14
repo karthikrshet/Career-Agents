@@ -1,11 +1,11 @@
 // apps/web/src/app/api/parse-file/url/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { parsePdfServer } from "@/lib/pdf/server";
-import JSZip from "jszip";
 import { secureFetch, enforceRequestLimits } from "packages/security";
 
 export async function POST(req: NextRequest) {
   try {
+    const JSZip = (await import("jszip")).default;
     const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
     const limitResponse = enforceRequestLimits(req, clientIp, { maxSize: 10 * 1024 * 1024 });
     if (limitResponse) return limitResponse;

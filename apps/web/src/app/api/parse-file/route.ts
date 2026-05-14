@@ -1,7 +1,5 @@
 // apps/web/src/app/api/parse-file/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import ExcelJS from "exceljs";
-import JSZip from "jszip";
 import { extractText, extractPages, extractMetadata } from "@/lib/pdf/server";
 import { indexDocument } from "packages/brain/knowledge";
 
@@ -13,6 +11,7 @@ if (typeof global !== "undefined" && !(global as any).DOMMatrix) {
 }
 
 export async function POST(req: NextRequest) {
+  const JSZip = (await import("jszip")).default;
   const errors: string[] = [];
   let filename = "uploaded-file";
   let size = 0;
@@ -101,6 +100,7 @@ export async function POST(req: NextRequest) {
       }
     } else if (ext === "xlsx" || ext === "xls") {
       try {
+        const ExcelJS = (await import("exceljs")).default;
         const workbook = new ExcelJS.Workbook();
         await workbook.xlsx.load(buffer as any);
         const sheets: Record<string, any[]> = {};
