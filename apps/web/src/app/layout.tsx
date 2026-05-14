@@ -3,8 +3,13 @@ import { Inter } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import { Toaster } from "sonner";
-import { Sidebar } from "@/components/layout/sidebar";
 import { JsonLd } from "@/components/seo/json-ld";
+import dynamic from "next/dynamic";
+
+const Sidebar = dynamic(
+  () => import("@/components/layout/sidebar").then((mod) => mod.Sidebar),
+  { ssr: false }
+);
 
 const inter = Inter({
   subsets: ["latin"],
