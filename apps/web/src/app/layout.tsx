@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { Sidebar } from "@/components/layout/sidebar";
@@ -95,7 +96,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans antialiased bg-background text-foreground">
         <JsonLd />
         <div className="flex h-screen overflow-hidden">
-          <Sidebar />
+          <Suspense fallback={null}>
+            <Sidebar />
+          </Suspense>
           <main className="flex-1 overflow-hidden flex flex-col min-w-0">
             {children}
           </main>

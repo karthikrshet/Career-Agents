@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import { loadAgentRegistry, resolveWorkspacePath } from "../../../../../../../packages/agents/router";
 
+export const dynamic = "force-dynamic";
+
 function parseFrontmatter(text: string): Record<string, string> {
   const match = text.match(/^---([\s\S]*?)---/);
   if (!match) return {};
