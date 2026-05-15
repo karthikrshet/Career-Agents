@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  Settings, Key, Cpu, Eye, EyeOff, CheckCircle,
+  Settings, Key, Cpu, Eye, EyeOff, CheckCircle, Loader2,
   Palette, Globe, User, Sparkles, Zap, GitBranch, Link2, Package, Database,
   Download, Keyboard, Terminal, Play, RefreshCw, BarChart2,
   ListOrdered, ShieldCheck, Trash2, Save, Bell, Shield
@@ -27,6 +27,7 @@ import type { RouterLog, HealthCheckReport, AIProviderId, ProviderRegistryEntry 
 
 const SECTIONS = [
   { id: "general" as const, icon: Settings, label: "General" },
+  { id: "health" as const, icon: CheckCircle, label: "System Health" },
   { id: "appearance" as const, icon: Palette, label: "Appearance" },
   { id: "account" as const, icon: User, label: "Account" },
   { id: "providers" as const, icon: Cpu, label: "AI Gateway" },
@@ -1029,9 +1030,117 @@ export default function SettingsPage() {
               </motion.div>
             )}
 
+            {/* 20. SYSTEM HEALTH */}
+            {section === "health" && (
+              <SystemHealthPanel />
+            )}
+
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function SystemHealthPanel() {
+  const [loading, setLoading] = useState(true);
+  const [checks, setChecks] = useState<Record<string, { status: string; latency: number; details?: string }>>({});
+
+  const fetchHealth = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/system/health");
+      const data = await res.json();
+      if (data.success) {
+        setChecks(data.checks);
+      } else {
+        toast.error("Failed to fetch health check metrics");
+      }
+    } catch (err: any) {
+      toast.error(`Health check query failed: ${err.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchHealth();
+  }, []);
+
+  return (
+    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+      <Card className="glass border-border/80">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="text-base flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-emerald-400 animate-pulse" />
+                System Health Dashboard
+              </CardTitle>
+              <CardDescription>Real-time status diagnostics of platform dependencies, API gateways, and integrations.</CardDescription>
+            </div>
+            <Button size="sm" variant="outline" onClick={fetchHealth} disabled={loading}>
+              <RefreshCw className={cn("w-3.5 h-3.5 mr-1", loading && "animate-spin")} />
+              Refresh
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-12 space-y-3">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+              <p className="text-xs text-muted-foreground">Running diagnostic handshakes across all dependencies...</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {Object.entries(checks).map(([name, check]) => {
+                const status = check.status;
+                const isGreen = status === "Connected";
+                const isAmber = status === "Missing";
+                const isRed = status === "Offline";
+                const isGray = status === "Disabled";
+
+                return (
+                  <div
+                    key={name}
+                    className="p-4 rounded-xl border border-border/40 bg-secondary/10 flex flex-col justify-between space-y-3"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <span className="font-semibold text-sm text-foreground block">{name}</span>
+                        {check.details && (
+                          <span className="text-[10px] text-muted-foreground font-mono block mt-1 leading-normal max-w-[240px] truncate" title={check.details}>
+                            {check.details}
+                          </span>
+                        )}
+                      </div>
+                      <Badge
+                        variant="secondary"
+                        className={cn(
+                          "text-[9px] font-bold px-2 py-0.5 rounded border uppercase tracking-wider",
+                          isGreen && "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+                          isAmber && "bg-amber-500/10 text-amber-400 border-amber-500/20",
+                          isRed && "bg-red-500/10 text-red-400 border-red-500/20",
+                          isGray && "bg-slate-500/10 text-muted-foreground border-slate-500/20"
+                        )}
+                      >
+                        {status}
+                      </Badge>
+                    </div>
+
+                    {check.latency > 0 && (
+                      <div className="flex justify-between items-center text-[10px] text-muted-foreground border-t border-border/10 pt-2 font-mono">
+                        <span>Response latency:</span>
+                        <span className="text-foreground font-semibold">{check.latency}ms</span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }
