@@ -1,5 +1,6 @@
 // packages/brain/search.ts
 import { secureFetch } from "../security/network";
+import { normalizeAndSanitize } from "../security";
 
 export interface SearchResult {
   title: string;
@@ -9,13 +10,7 @@ export interface SearchResult {
 }
 
 export function normalizeSearchQuery(query: string): string {
-  if (typeof query !== "string") return "";
-  let clean = query.normalize("NFKC");
-  clean = clean.replace(/[\x00-\x1F\x7F-\x9F]/g, "");
-  clean = clean.replace(/[\u200B-\u200D\uFEFF\u202A-\u202E]/g, "");
-  clean = clean.replace(/[\$'"\\;`|*?~<>^\(\)\[\]\{\}]/g, "");
-  clean = clean.replace(/\s+/g, " ").trim();
-  return clean.slice(0, 200);
+  return normalizeAndSanitize(query, 200);
 }
 
 export async function searchInternet(query: string): Promise<SearchResult[]> {
