@@ -185,25 +185,50 @@ export async function parseResumeFile(filePath) {
     throw new Error('No resume file path provided.');
   }
 
-  const resolved = path.resolve(filePath);
-  if (!fs.existsSync(resolved)) {
-    throw new Error(`File not found: ${filePath}`);
+  let isUrl = false;
+  let urlObj = null;
+  try {
+    urlObj = new URL(filePath);
+    isUrl = urlObj.protocol === 'http:' || urlObj.protocol === 'https:';
+  } catch (e) {
+    // Not a valid URL
   }
 
-  const ext = path.extname(resolved).toLowerCase();
+  let ext = '';
+  let buffer = null;
+
+  if (isUrl) {
+    if (urlObj.protocol !== 'https:' && urlObj.protocol !== 'http:') {
+      throw new Error(`Rejected protocol: ${urlObj.protocol}`);
+    }
+    const { secureFetch } = await import('../security/index.js');
+    const res = await secureFetch(filePath);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch remote resume: ${res.statusText}`);
+    }
+    const arrayBuffer = await res.arrayBuffer();
+    buffer = Buffer.from(arrayBuffer);
+    ext = '.' + (urlObj.pathname.split('.').pop()?.toLowerCase() || 'txt');
+  } else {
+    const resolved = path.resolve(filePath);
+    if (!fs.existsSync(resolved)) {
+      throw new Error(`File not found: ${filePath}`);
+    }
+    ext = path.extname(resolved).toLowerCase();
+    buffer = fs.readFileSync(resolved);
+  }
   
   if (ext === '.json') {
-    const raw = fs.readFileSync(resolved, 'utf8');
+    const raw = buffer.toString('utf8');
     return JSON.parse(raw);
   }
 
-  if (ext === '.txt' || ext === '.md') {
-    const raw = fs.readFileSync(resolved, 'utf8');
+  if (ext === '.txt' || ext === '.md' || ext === '.markdown') {
+    const raw = buffer.toString('utf8');
     return parseTextResume(raw);
   }
 
   if (ext === '.pdf') {
-    const buffer = fs.readFileSync(resolved);
     let text = '';
     
     if (pdfParser) {
