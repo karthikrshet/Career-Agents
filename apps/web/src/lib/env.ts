@@ -31,7 +31,7 @@ export function validateEnv() {
     const missingRequired: string[] = [];
     const missingOptional: string[] = [];
 
-    const requiredKeys = ["DATABASE_URL", "NEXTAUTH_SECRET", "NEXTAUTH_URL"];
+    const requiredKeys = ["NEXTAUTH_SECRET", "NEXTAUTH_URL"];
 
     // Find missing fields
     requiredKeys.forEach((key) => {
@@ -41,7 +41,7 @@ export function validateEnv() {
     });
 
     const optionalKeys = [
-      "GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET", "GITHUB_CLIENT_ID",
+      "DATABASE_URL", "GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET", "GITHUB_CLIENT_ID",
       "GITHUB_CLIENT_SECRET", "GROQ_API_KEY", "OPENAI_API_KEY",
       "OPENROUTER_API_KEY", "GEMINI_API_KEY", "REDIS_URL", "QDRANT_URL", "SENTRY_DSN"
     ];
