@@ -67,7 +67,10 @@ export default function LinkedInAIPage() {
         body: JSON.stringify({
           messages: [{ role: "user", content: prompts[contentType] }],
           context: { profile },
-          settings: { aiProvider: settings.aiProvider },
+          settings: { 
+            aiProvider: settings.aiProvider, 
+            demoMode: typeof window !== "undefined" ? localStorage.getItem("demo_mode_enabled") === "true" : false 
+          },
         }),
       });
 

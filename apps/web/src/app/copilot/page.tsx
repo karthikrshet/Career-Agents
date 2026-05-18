@@ -535,6 +535,7 @@ Recalculated tracker statistics and updated applications metrics.`);
             internetMode,
             memoryEnabled,
             reasoningEnabled,
+            demoMode: typeof window !== "undefined" ? localStorage.getItem("demo_mode_enabled") === "true" : false,
           },
           context: {
             profile,
