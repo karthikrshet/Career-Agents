@@ -410,3 +410,119 @@
 {"timestamp":"2026-07-28T22:27:02.693Z","method":"tools/call/analyze_github_profile","client":"unknown","success":true,"error":""}
 {"timestamp":"2026-07-28T22:27:02.700Z","method":"tools/call/linkedin_profile_review","client":"unknown","success":true,"error":""}
 {"timestamp":"2026-07-28T22:27:02.704Z","method":"tools/call/career_action_plan","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.375Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.458Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.510Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.529Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.552Z","method":"tools/call/recommend_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.581Z","method":"tools/call/recommend_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.584Z","method":"tools/call/career_assessment","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.618Z","method":"tools/call/resume_score","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.624Z","method":"tools/call/job_match","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.627Z","method":"tools/call/company_track","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.630Z","method":"tools/call/career_path","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.635Z","method":"tools/call/workflow_lookup","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.639Z","method":"tools/call/agent_details","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.645Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.652Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.674Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.693Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.701Z","method":"resources/read","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.706Z","method":"tools/call/non_existent_tool","client":"unknown","success":false,"error":"Tool not found: non_existent_tool"}
+{"timestamp":"2026-07-29T14:13:59.707Z","method":"resources/read","client":"unknown","success":false,"error":"Resource not found: career-agents://registry/../../package.json"}
+{"timestamp":"2026-07-29T14:13:59.811Z","method":"tools/call/career_gap_analysis","client":"unknown","success":false,"error":"The \"path\" argument must be of type string. Received undefined"}
+{"timestamp":"2026-07-29T14:13:59.815Z","method":"tools/call/generate_resume_docx","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.876Z","method":"tools/call/generate_interview_prep_pdf","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:13:59.935Z","method":"tools/call/generate_career_roadmap_xlsx","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:14:09.297Z","method":"tools/call/search_jobs","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:14:11.195Z","method":"tools/call/analyze_job_posting","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:14:12.326Z","method":"tools/call/analyze_github_profile","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:14:12.371Z","method":"tools/call/linkedin_profile_review","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T14:14:12.396Z","method":"tools/call/career_action_plan","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:37.876Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:37.907Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:37.924Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:37.944Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:37.963Z","method":"tools/call/recommend_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:37.987Z","method":"tools/call/recommend_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:37.991Z","method":"tools/call/career_assessment","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.012Z","method":"tools/call/resume_score","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.016Z","method":"tools/call/job_match","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.018Z","method":"tools/call/company_track","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.020Z","method":"tools/call/career_path","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.024Z","method":"tools/call/workflow_lookup","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.027Z","method":"tools/call/agent_details","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.032Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.038Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.054Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.071Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.077Z","method":"resources/read","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.080Z","method":"tools/call/non_existent_tool","client":"unknown","success":false,"error":"Tool not found: non_existent_tool"}
+{"timestamp":"2026-07-29T16:01:38.081Z","method":"resources/read","client":"unknown","success":false,"error":"Resource not found: career-agents://registry/../../package.json"}
+{"timestamp":"2026-07-29T16:01:38.138Z","method":"tools/call/career_gap_analysis","client":"unknown","success":false,"error":"The \"path\" argument must be of type string. Received undefined"}
+{"timestamp":"2026-07-29T16:01:38.142Z","method":"tools/call/generate_resume_docx","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.174Z","method":"tools/call/generate_interview_prep_pdf","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:38.211Z","method":"tools/call/generate_career_roadmap_xlsx","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:53.050Z","method":"tools/call/search_jobs","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:53.353Z","method":"tools/call/analyze_job_posting","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:54.219Z","method":"tools/call/analyze_github_profile","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:54.225Z","method":"tools/call/linkedin_profile_review","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:01:54.233Z","method":"tools/call/career_action_plan","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.657Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.686Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.703Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.720Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.738Z","method":"tools/call/recommend_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.759Z","method":"tools/call/recommend_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.762Z","method":"tools/call/career_assessment","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.784Z","method":"tools/call/resume_score","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.789Z","method":"tools/call/job_match","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.791Z","method":"tools/call/company_track","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.793Z","method":"tools/call/career_path","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.797Z","method":"tools/call/workflow_lookup","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.799Z","method":"tools/call/agent_details","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.806Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.811Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.828Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.846Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.854Z","method":"resources/read","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.858Z","method":"tools/call/non_existent_tool","client":"unknown","success":false,"error":"Tool not found: non_existent_tool"}
+{"timestamp":"2026-07-29T16:33:09.859Z","method":"resources/read","client":"unknown","success":false,"error":"Resource not found: career-agents://registry/../../package.json"}
+{"timestamp":"2026-07-29T16:33:09.922Z","method":"tools/call/career_gap_analysis","client":"unknown","success":false,"error":"The \"path\" argument must be of type string. Received undefined"}
+{"timestamp":"2026-07-29T16:33:09.925Z","method":"tools/call/generate_resume_docx","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.961Z","method":"tools/call/generate_interview_prep_pdf","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:09.999Z","method":"tools/call/generate_career_roadmap_xlsx","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:27.684Z","method":"tools/call/search_jobs","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:30.501Z","method":"tools/call/analyze_job_posting","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:34.138Z","method":"tools/call/analyze_github_profile","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:34.141Z","method":"tools/call/linkedin_profile_review","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:33:34.145Z","method":"tools/call/career_action_plan","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.285Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.326Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.345Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.366Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.388Z","method":"tools/call/recommend_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.410Z","method":"tools/call/recommend_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.414Z","method":"tools/call/career_assessment","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.439Z","method":"tools/call/resume_score","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.445Z","method":"tools/call/job_match","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.447Z","method":"tools/call/company_track","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.449Z","method":"tools/call/career_path","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.453Z","method":"tools/call/workflow_lookup","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.456Z","method":"tools/call/agent_details","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.461Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.468Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.485Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.510Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.517Z","method":"resources/read","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.522Z","method":"tools/call/non_existent_tool","client":"unknown","success":false,"error":"Tool not found: non_existent_tool"}
+{"timestamp":"2026-07-29T16:47:17.524Z","method":"resources/read","client":"unknown","success":false,"error":"Resource not found: career-agents://registry/../../package.json"}
+{"timestamp":"2026-07-29T16:47:17.596Z","method":"tools/call/career_gap_analysis","client":"unknown","success":false,"error":"The \"path\" argument must be of type string. Received undefined"}
+{"timestamp":"2026-07-29T16:47:17.599Z","method":"tools/call/generate_resume_docx","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.641Z","method":"tools/call/generate_interview_prep_pdf","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:17.685Z","method":"tools/call/generate_career_roadmap_xlsx","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:29.535Z","method":"tools/call/search_jobs","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:38.527Z","method":"tools/call/analyze_job_posting","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:43.776Z","method":"tools/call/analyze_github_profile","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:43.782Z","method":"tools/call/linkedin_profile_review","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-29T16:47:43.786Z","method":"tools/call/career_action_plan","client":"unknown","success":true,"error":""}
