@@ -3,6 +3,22 @@ import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 
+function writeFileSyncAtomic(filePath, content, options) {
+  const dir = path.dirname(filePath);
+  const tempPath = path.join(dir, path.basename(filePath) + '.tmp-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6));
+  try {
+    fs.writeFileSync(tempPath, content, options);
+    fs.renameSync(tempPath, filePath);
+  } catch (err) {
+    try {
+      if (fs.existsSync(tempPath)) {
+        fs.unlinkSync(tempPath);
+      }
+    } catch (_) {}
+    throw err;
+  }
+}
+
 // 1. Minor discoverability tag updates to 22 new agent prompt files
 const agentsToTouch = [
   "resume/achievement-quantification-coach.md",
@@ -36,7 +52,7 @@ for (const relPath of agentsToTouch) {
     let content = fs.readFileSync(fullPath, "utf-8");
     if (!content.includes("v8_ready: true")) {
       content = content.replace(/vibe:\s*(.+)/, "vibe: $1\nv8_ready: true");
-      fs.writeFileSync(fullPath, content, "utf-8");
+      writeFileSyncAtomic(fullPath, content, "utf-8");
     }
   }
 }
