@@ -23,37 +23,46 @@ export async function POST(req: NextRequest) {
     let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
     let userId: string | null = null;
 
-    if (session?.user?.email) {
-      const user = await prisma.user.findUnique({
-        where: { email: session.user.email },
-        select: { id: true, plan: true }
-      });
-      if (user) {
-        userId = user.id;
-        plan = (user.plan as any) || "free";
+    try {
+      if (session?.user?.email) {
+        const user = await prisma.user.findUnique({
+          where: { email: session.user.email },
+          select: { id: true, plan: true }
+        });
+        if (user) {
+          userId = user.id;
+          plan = (user.plan as any) || "free";
+        }
       }
+    } catch (error) {
+      console.error("Prisma user lookup failed, falling back to guest:", error);
     }
 
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
 
     let currentPromptCount = 0;
-    if (userId) {
-      currentPromptCount = await prisma.analyticsEvent.count({
-        where: {
-          userId,
-          eventName: "copilot_prompt",
-          timestamp: { gte: startOfToday }
-        }
-      });
-    } else {
-      currentPromptCount = await prisma.analyticsEvent.count({
-        where: {
-          sessionId: clientIp,
-          eventName: "copilot_prompt",
-          timestamp: { gte: startOfToday }
-        }
-      });
+    try {
+      if (userId) {
+        currentPromptCount = await prisma.analyticsEvent.count({
+          where: {
+            userId,
+            eventName: "copilot_prompt",
+            timestamp: { gte: startOfToday }
+          }
+        });
+      } else {
+        currentPromptCount = await prisma.analyticsEvent.count({
+          where: {
+            sessionId: clientIp,
+            eventName: "copilot_prompt",
+            timestamp: { gte: startOfToday }
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Analytics database call failed (counting prompts):", error);
+      currentPromptCount = 0; // Fallback safely
     }
 
     const { FeatureFlagsManager } = await import("@/lib/feature-flags");
@@ -66,14 +75,18 @@ export async function POST(req: NextRequest) {
     }
 
     // Store copilot prompt telemetry event in database
-    await prisma.analyticsEvent.create({
-      data: {
-        userId,
-        sessionId: clientIp,
-        eventName: "copilot_prompt",
-        properties: { model: config?.model || "default" }
-      }
-    });
+    try {
+      await prisma.analyticsEvent.create({
+        data: {
+          userId,
+          sessionId: clientIp,
+          eventName: "copilot_prompt",
+          properties: { model: config?.model || "default" }
+        }
+      });
+    } catch (error) {
+      console.error("Analytics database call failed (creating prompt event):", error);
+    }
 
     // 1 & 2. AI Brain Orchestrator & Context compilation
     const lastUserMessage = [...messages].reverse().find((m) => m.role === "user")?.content || "";

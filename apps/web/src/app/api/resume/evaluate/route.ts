@@ -61,36 +61,45 @@ export async function POST(req: NextRequest) {
     let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
     let userId: string | null = null;
 
-    if (session?.user?.email) {
-      const user = await prisma.user.findUnique({
-        where: { email: session.user.email },
-        select: { id: true, plan: true }
-      });
-      if (user) {
-        userId = user.id;
-        plan = (user.plan as any) || "free";
+    try {
+      if (session?.user?.email) {
+        const user = await prisma.user.findUnique({
+          where: { email: session.user.email },
+          select: { id: true, plan: true }
+        });
+        if (user) {
+          userId = user.id;
+          plan = (user.plan as any) || "free";
+        }
       }
+    } catch (error) {
+      console.error("Prisma user lookup failed, falling back to guest:", error);
     }
 
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
 
     let currentScansCount = 0;
-    if (userId) {
-      currentScansCount = await prisma.resumeAnalysis.count({
-        where: {
-          userId,
-          analyzedAt: { gte: startOfToday }
-        }
-      });
-    } else {
-      currentScansCount = await prisma.analyticsEvent.count({
-        where: {
-          sessionId: clientIp,
-          eventName: "resume_scan",
-          timestamp: { gte: startOfToday }
-        }
-      });
+    try {
+      if (userId) {
+        currentScansCount = await prisma.resumeAnalysis.count({
+          where: {
+            userId,
+            analyzedAt: { gte: startOfToday }
+          }
+        });
+      } else {
+        currentScansCount = await prisma.analyticsEvent.count({
+          where: {
+            sessionId: clientIp,
+            eventName: "resume_scan",
+            timestamp: { gte: startOfToday }
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Analytics database call failed (counting scans):", error);
+      currentScansCount = 0; // Fallback safely
     }
 
     const { FeatureFlagsManager } = await import("@/lib/feature-flags");
@@ -104,13 +113,17 @@ export async function POST(req: NextRequest) {
 
     // Increment guest scan telemetry in PostgreSQL
     if (!userId) {
-      await prisma.analyticsEvent.create({
-        data: {
-          sessionId: clientIp,
-          eventName: "resume_scan",
-          properties: { fileName: fileName || "resume.pdf" }
-        }
-      });
+      try {
+        await prisma.analyticsEvent.create({
+          data: {
+            sessionId: clientIp,
+            eventName: "resume_scan",
+            properties: { fileName: fileName || "resume.pdf" }
+          }
+        });
+      } catch (error) {
+        console.error("Analytics database call failed (creating scan event):", error);
+      }
     }
 
     const lines = text
