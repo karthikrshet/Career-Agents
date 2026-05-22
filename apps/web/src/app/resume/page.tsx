@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
+import { useGatewayStore } from "@/lib/gateway-store";
 import { analyzeResumeText } from "@/lib/resume-engine";
 import { cn, scoreToColor, scoreToGrade, scoreToBgColor } from "@/lib/utils";
 import { AtsComparison } from "@/components/resume/AtsComparison";
@@ -50,17 +51,28 @@ export default function ResumePage() {
     setStep("analyzing");
     setAnalyzing(true);
     try {
-      const analysis = await analyzeResumeText(text, name, settings.aiProvider);
+      const activeProvider = useGatewayStore.getState().activeProvider;
+      const activeModel = useGatewayStore.getState().activeModel;
+      const gatewayConfig = {
+        provider: activeProvider,
+        model: activeModel,
+        apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey,
+        baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl,
+        temperature: useGatewayStore.getState().temperature,
+        maxTokens: useGatewayStore.getState().maxTokens,
+      };
+      const analysis = await analyzeResumeText(text, name, gatewayConfig as any);
       setResumeAnalysis(analysis);
       setStep("results");
       toast.success(`Analysis complete — ${analysis.overallScore}% ATS score`);
     } catch (e) {
+      console.error(e);
       toast.error("Analysis failed. Please try again.");
       setStep("upload");
     } finally {
       setAnalyzing(false);
     }
-  }, [setResumeAnalysis, settings.aiProvider]);
+  }, [setResumeAnalysis, settings.keys, settings.baseUrls, settings.aiProvider]);
 
   async function handleUrlImport() {
     if (!resumeUrl.trim()) return;
@@ -191,7 +203,16 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
 
   async function handleAIRewrite() {
     if (!resumeAnalysis) return;
-    if (!settings.aiProvider.apiKey) {
+    const activeProvider = useGatewayStore.getState().activeProvider;
+    const gatewayConfig = {
+      provider: activeProvider,
+      model: useGatewayStore.getState().activeModel,
+      apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey,
+      baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl,
+      temperature: useGatewayStore.getState().temperature,
+      maxTokens: useGatewayStore.getState().maxTokens,
+    };
+    if (!gatewayConfig.apiKey) {
       toast.error("Add your AI provider API key in Settings to enable AI rewrites.");
       return;
     }
@@ -202,7 +223,7 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           text: resumeAnalysis.rawText,
-          config: settings.aiProvider,
+          config: gatewayConfig,
         }),
       });
       if (!res.ok) throw new Error(await res.text());
