@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
+import { useGatewayStore } from "@/lib/gateway-store";
 import { generateId, cn, scoreToColor, scoreToGrade } from "@/lib/utils";
 import type { InterviewSession, InterviewMode, InterviewDifficulty, InterviewRound } from "@/types";
 
@@ -166,10 +167,10 @@ export default function InterviewPage() {
             return { question: questionText, answer: r.answer };
           }),
           aiConfig: {
-            provider: settings.aiProvider.provider,
-            apiKey: settings.aiProvider.apiKey,
-            model: settings.aiProvider.model,
-            temperature: settings.aiProvider.temperature || 0.7
+            provider: useGatewayStore.getState().activeProvider,
+            apiKey: settings.keys?.[useGatewayStore.getState().activeProvider]?.[0] || settings.aiProvider.apiKey,
+            model: useGatewayStore.getState().activeModel,
+            temperature: useGatewayStore.getState().temperature || 0.7
           }
         })
       });
@@ -414,7 +415,7 @@ export default function InterviewPage() {
                     <label className="text-[10px] text-muted-foreground block font-semibold mb-1 uppercase tracking-wider">Switch AI Provider</label>
                     <select
                       className="w-full px-2 py-1.5 rounded bg-secondary border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary text-foreground"
-                      value={settings.aiProvider.provider}
+                      value={useGatewayStore((s) => s.activeProvider)}
                       onChange={(e) => {
                         const newProvider = e.target.value as import("@/types").AIProvider;
                         const defaultModelMap: Record<string, string> = {
@@ -423,10 +424,13 @@ export default function InterviewPage() {
                           gemini: "gemini-1.5-pro",
                           groq: "llama3-70b-8192"
                         };
+                        const nextModel = defaultModelMap[newProvider] || "gemini-1.5-pro";
                         updateAIProvider({
                           provider: newProvider,
-                          model: defaultModelMap[newProvider] || "gemini-1.5-pro"
+                          model: nextModel
                         });
+                        useGatewayStore.getState().setProvider(newProvider);
+                        useGatewayStore.getState().setModel(nextModel);
                         toast.info(`Switched active provider to ${newProvider}`);
                       }}
                     >
