@@ -59,13 +59,13 @@ async function testTcp(urlStr: string, defaultPort = 80): Promise<{ ok: boolean;
 export async function GET() {
   const start = Date.now();
   logger.info("Executing system health check diagnostics", { route: "/api/system/health" });
-  const checks: Record<string, { status: "Connected" | "Missing" | "Offline" | "Disabled"; latency: number; details?: string }> = {};
+  const checks: Record<string, { status: "Connected" | "Healthy" | "Partial" | "Missing" | "Offline" | "Disabled"; latency: number; details?: string }> = {};
 
   // 1. Environment variables check
   const requiredEnv = ["DATABASE_URL", "NEXTAUTH_SECRET", "NEXTAUTH_URL"];
   const missingEnv = requiredEnv.filter((k) => !process.env[k]);
   checks["Environment"] = {
-    status: missingEnv.length === 0 ? "Connected" : "Missing",
+    status: missingEnv.length === 0 ? "Healthy" : "Missing",
     latency: 0,
     details: missingEnv.length === 0 ? "All core secrets set" : `Missing: ${missingEnv.join(", ")}`,
   };
@@ -74,7 +74,21 @@ export async function GET() {
   const dbStart = Date.now();
   try {
     await prisma.$queryRaw`SELECT 1`;
-    checks["Database"] = { status: "Connected", latency: Date.now() - dbStart };
+    // Schema check: verify if analyticsEvent table is fully functional
+    try {
+      await prisma.analyticsEvent.count();
+      checks["Database"] = { 
+        status: "Healthy", 
+        latency: Date.now() - dbStart, 
+        details: "Database connected and schema verified" 
+      };
+    } catch (schemaErr: any) {
+      checks["Database"] = { 
+        status: "Partial", 
+        latency: Date.now() - dbStart, 
+        details: `Connected, but schema check failed (need migrations): ${schemaErr.message}` 
+      };
+    }
   } catch (err: any) {
     checks["Database"] = { status: "Offline", latency: 0, details: err.message };
   }
@@ -84,17 +98,18 @@ export async function GET() {
   if (redisUrl) {
     const redisCheck = await testTcp(redisUrl, 6379);
     checks["Redis"] = {
-      status: redisCheck.ok ? "Connected" : "Offline",
+      status: redisCheck.ok ? "Healthy" : "Offline",
       latency: redisCheck.latency,
+      details: redisCheck.ok ? "Redis connection successful" : "TCP check timed out/refused",
     };
   } else {
-    checks["Redis"] = { status: "Disabled", latency: 0 };
+    checks["Redis"] = { status: "Disabled", latency: 0, details: "REDIS_URL not configured" };
   }
 
   // 4. Prisma Client validation
   try {
     const isPrismaConnected = !!prisma;
-    checks["Prisma"] = { status: isPrismaConnected ? "Connected" : "Offline", latency: 0 };
+    checks["Prisma"] = { status: isPrismaConnected ? "Healthy" : "Offline", latency: 0 };
   } catch {
     checks["Prisma"] = { status: "Offline", latency: 0 };
   }
@@ -102,7 +117,7 @@ export async function GET() {
   // 5. NextAuth check
   const nextAuthUrl = process.env.NEXTAUTH_URL;
   checks["NextAuth"] = {
-    status: nextAuthUrl && process.env.NEXTAUTH_SECRET ? "Connected" : "Disabled",
+    status: nextAuthUrl && process.env.NEXTAUTH_SECRET ? "Healthy" : "Disabled",
     latency: 0,
     details: nextAuthUrl ? `Callback URL: ${nextAuthUrl}` : "Missing config secrets",
   };
@@ -114,7 +129,7 @@ export async function GET() {
     try {
       const report = await runHealthCheck("groq", groqKey);
       checks["Groq"] = {
-        status: report.healthy ? "Connected" : "Offline",
+        status: report.healthy ? "Healthy" : "Offline",
         latency: Date.now() - groqStart,
         details: report.status,
       };
@@ -132,7 +147,7 @@ export async function GET() {
     try {
       const report = await runHealthCheck("gemini", geminiKey);
       checks["Gemini"] = {
-        status: report.healthy ? "Connected" : "Offline",
+        status: report.healthy ? "Healthy" : "Offline",
         latency: Date.now() - geminiStart,
         details: report.status,
       };
@@ -150,7 +165,7 @@ export async function GET() {
     try {
       const report = await runHealthCheck("openrouter", openRouterKey);
       checks["OpenRouter"] = {
-        status: report.healthy ? "Connected" : "Offline",
+        status: report.healthy ? "Healthy" : "Offline",
         latency: Date.now() - orStart,
         details: report.status,
       };
@@ -163,17 +178,25 @@ export async function GET() {
 
   // 9. GitHub OAuth
   checks["GitHub OAuth"] = {
-    status: process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET ? "Connected" : "Disabled",
+    status: process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET ? "Healthy" : "Disabled",
     latency: 0,
   };
 
   // 10. Google OAuth
   checks["Google OAuth"] = {
-    status: process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET ? "Connected" : "Disabled",
+    status: process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET ? "Healthy" : "Disabled",
     latency: 0,
   };
 
-  // 11. Storage Check (Check if tmp dir is writeable)
+  // 11. Blob Storage Check
+  const blobToken = process.env.BLOB_READ_WRITE_TOKEN;
+  checks["Blob Storage"] = {
+    status: blobToken ? "Healthy" : "Disabled",
+    latency: 0,
+    details: blobToken ? "Vercel Blob active" : "BLOB_READ_WRITE_TOKEN not set",
+  };
+
+  // 12. Filesystem Check (Check if tmp dir is writeable)
   try {
     const tmpDir = path.join(process.cwd(), "tmp");
     if (!fs.existsSync(tmpDir)) {
@@ -182,17 +205,20 @@ export async function GET() {
     const testFile = path.join(tmpDir, "health-write-test.txt");
     fs.writeFileSync(testFile, "ok");
     fs.unlinkSync(testFile);
-    checks["Storage"] = { status: "Connected", latency: 0 };
-  } catch {
-    checks["Storage"] = { status: "Offline", latency: 0 };
+    checks["Filesystem"] = { status: "Healthy", latency: 0, details: "Local tmp dir writeable" };
+    // Keep 'Storage' as well for frontend display backwards compatibility
+    checks["Storage"] = { status: "Healthy", latency: 0, details: "Local filesystem writeable" };
+  } catch (err: any) {
+    checks["Filesystem"] = { status: "Offline", latency: 0, details: err.message };
+    checks["Storage"] = { status: "Offline", latency: 0, details: err.message };
   }
 
-  // 12. MCP check (Check JSON-RPC semantic configuration status)
+  // 13. MCP check (Check JSON-RPC semantic configuration status)
   try {
     const mcpConfigPath = path.join(process.cwd(), "mcp-servers.json");
     const mcpExists = fs.existsSync(mcpConfigPath);
     checks["MCP"] = {
-      status: mcpExists ? "Connected" : "Disabled",
+      status: mcpExists ? "Healthy" : "Disabled",
       latency: 0,
       details: mcpExists ? "Config settings registered" : "mcp-servers.json not found",
     };
