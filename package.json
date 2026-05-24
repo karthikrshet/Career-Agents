@@ -15,6 +15,7 @@
     "clean": "node scripts/clean-dev.js",
     "dev": "node scripts/dev.js",
     "doctor": "node scripts/doctor.js",
+    "pipeline": "node ./scripts/cli.js pipeline",
     "repair": "node scripts/repair.js",
     "verify": "node scripts/verify.js"
   },
@@ -72,6 +73,7 @@
     "scripts",
     "packages",
     "services",
+    "modes",
     "plugins",
     "features.json",
     "launcher",
