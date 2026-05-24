@@ -9,28 +9,27 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { toast } from "sonner";
+import { useGatewayStore } from "@/lib/gateway-store";
 
 interface HealthCheck {
-  status: "Connected" | "Missing" | "Offline" | "Disabled";
+  status: "Connected" | "Healthy" | "Partial" | "Missing" | "Offline" | "Disabled";
   latency: number;
   details?: string;
 }
 
 export default function DemoChecklistPage() {
   const [loading, setLoading] = useState(true);
-  const [demoMode, setDemoMode] = useState(false);
+  const demoMode = useGatewayStore((s) => s.demoMode);
+  const setDemoMode = useGatewayStore((s) => s.setDemoMode);
   const [systemChecks, setSystemChecks] = useState<Record<string, HealthCheck>>({});
   const [envDetails, setEnvDetails] = useState({
     nodeEnv: "production",
-    buildVer: "v9.2.0-stable",
+    buildVer: "v10.1.0-stable",
     gitBranch: "main",
-    gitCommit: "fa4b7b2"
+    gitCommit: "c11298d"
   });
 
   useEffect(() => {
-    // Retrieve demo mode state from local storage
-    const stored = localStorage.getItem("demo_mode_enabled") === "true";
-    setDemoMode(stored);
     fetchHealthData();
   }, []);
 
@@ -55,7 +54,6 @@ export default function DemoChecklistPage() {
   const handleToggleDemoMode = () => {
     const nextVal = !demoMode;
     setDemoMode(nextVal);
-    localStorage.setItem("demo_mode_enabled", String(nextVal));
     if (nextVal) {
       toast.info("Demo Mode Active: Stream fallbacks enabled for missing API keys.");
     } else {
@@ -66,7 +64,9 @@ export default function DemoChecklistPage() {
   const getStatusIcon = (status: HealthCheck["status"]) => {
     switch (status) {
       case "Connected":
+      case "Healthy":
         return <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />;
+      case "Partial":
       case "Missing":
       case "Disabled":
         return <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0" />;
@@ -78,10 +78,13 @@ export default function DemoChecklistPage() {
   const getStatusBadge = (status: HealthCheck["status"]) => {
     switch (status) {
       case "Connected":
-        return <span className="text-[10px] uppercase font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">Connected</span>;
+      case "Healthy":
+        return <span className="text-[10px] uppercase font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">Healthy</span>;
+      case "Partial":
+        return <span className="text-[10px] uppercase font-bold text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">Partial</span>;
       case "Missing":
       case "Disabled":
-        return <span className="text-[10px] uppercase font-bold text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">Disabled</span>;
+        return <span className="text-[10px] uppercase font-bold text-slate-400 bg-slate-500/10 px-2.5 py-0.5 rounded-full border border-slate-500/20">Disabled</span>;
       default:
         return <span className="text-[10px] uppercase font-bold text-rose-400 bg-rose-500/10 px-2.5 py-0.5 rounded-full border border-rose-500/20">Offline</span>;
     }
