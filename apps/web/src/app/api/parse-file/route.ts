@@ -339,8 +339,25 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    if (errors.length > 0 || !text || text.trim().length === 0) {
+      console.warn("Parsing validation failed. Errors:", errors);
+      return NextResponse.json({
+        success: false,
+        filename,
+        mime,
+        pages: [],
+        text: "",
+        images: [],
+        metadata: {},
+        size,
+        language: "unknown",
+        tokens: 0,
+        errors: ["Cannot parse document. Supported formats: PDF, DOCX, TXT."],
+      }, { status: 400 });
+    }
+
     return NextResponse.json({
-      success: errors.length === 0,
+      success: true,
       filename,
       mime,
       pages,
@@ -351,9 +368,10 @@ export async function POST(req: NextRequest) {
       size,
       language,
       tokens,
-      errors,
+      errors: [],
     });
   } catch (e: any) {
+    console.error("File parsing error (internal):", e);
     return NextResponse.json({
       success: false,
       filename,
@@ -365,7 +383,7 @@ export async function POST(req: NextRequest) {
       size,
       language: "unknown",
       tokens: 0,
-      errors: [e.message || "File parsing failed."],
-    });
+      errors: ["Cannot parse document. Supported formats: PDF, DOCX, TXT."],
+    }, { status: 400 });
   }
 }
