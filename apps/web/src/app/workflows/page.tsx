@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, Trash2, Play, ChevronDown, ChevronUp,
@@ -90,8 +90,58 @@ function makeStep(type: string): WorkflowStep {
   };
 }
 
+function serializeSteps(stepsList: WorkflowStep[]): string {
+  const simplified = stepsList.map(s => ({
+    id: s.id,
+    type: s.type,
+    status: s.status,
+    outputSummary: s.outputSummary
+  }));
+  return JSON.stringify(simplified);
+}
+
+function deserializeSteps(jsonStr: string): WorkflowStep[] {
+  try {
+    const simplified = JSON.parse(jsonStr) as Array<{ id: string; type: string; status: any; outputSummary?: string }>;
+    if (!Array.isArray(simplified)) return [];
+    return simplified.map(s => {
+      const catalog = STEP_CATALOG.find(cat => cat.type === s.type);
+      if (!catalog) return null;
+      return {
+        id: s.id,
+        type: s.type,
+        label: catalog.label,
+        icon: catalog.icon,
+        color: catalog.color,
+        description: catalog.description,
+        status: s.status,
+        outputSummary: s.outputSummary
+      };
+    }).filter(Boolean) as WorkflowStep[];
+  } catch {
+    return [];
+  }
+}
+
 export default function WorkflowPage() {
   const [steps, setSteps] = useState<WorkflowStep[]>([]);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("ca-workflow-steps");
+      if (saved) {
+        setSteps(deserializeSteps(saved));
+      }
+      setLoaded(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (loaded && typeof window !== "undefined") {
+      localStorage.setItem("ca-workflow-steps", serializeSteps(steps));
+    }
+  }, [steps, loaded]);
   const [running, setRunning] = useState(false);
   const [showCatalog, setShowCatalog] = useState(false);
   const [currentStepIdx, setCurrentStepIdx] = useState<number | null>(null);
