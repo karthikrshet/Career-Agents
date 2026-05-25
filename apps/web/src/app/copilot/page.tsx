@@ -90,9 +90,9 @@ function CopilotWorkspace() {
   const [hydrated, setHydrated] = useState(false);
   
   // Custom Provider/Model overrides for workspace
-  const activeProvider = useGatewayStore((s) => s.activeProvider);
+  const activeProvider = useGatewayStore((s) => s.activeProvider) as any;
   const activeModel = useGatewayStore((s) => s.activeModel);
-  const setActiveProvider = useGatewayStore((s) => s.setProvider);
+  const setActiveProvider = useGatewayStore((s) => s.setProvider) as any;
   const setActiveModel = useGatewayStore((s) => s.setModel);
   const [showModelDropdown, setShowModelDropdown] = useState(false);
   

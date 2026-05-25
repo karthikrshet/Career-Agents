@@ -30,6 +30,8 @@ model User {
   interviewSessions InterviewSession[]
   jobApplications JobApplication[]
   copilotSessions CopilotSession[]
+  workflows       Workflow[]
+  reports         Report[]
   metrics         CareerMetrics?
   settings        UserSettings?
   accounts        Account[]
@@ -196,4 +198,37 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+model Workflow {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  steps     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("workflows")
+}
+
+model Report {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  data      Json
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("reports")
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@map("chat_messages")
 }
