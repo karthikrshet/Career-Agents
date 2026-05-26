@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function BlogPage() {
   const posts = [
     {
+      slug: "orchestrating-146-specialized-agents",
       title: "Orchestrating 146 Specialized Agents Concurrently",
       desc: "How we built the low-latency intent classifier and planner to delegate career coaching instructions.",
       author: "Lead Architect",
@@ -14,6 +15,7 @@ export default function BlogPage() {
       readTime: "6 min read"
     },
     {
+      slug: "forensic-resume-star-audits",
       title: "Inside the Forensic Resume STAR Bullet Audits",
       desc: "An in-depth look at semantic density mapping, metric compliance audits, and passive verb replacements.",
       author: "Co-Maintainer",
@@ -21,6 +23,7 @@ export default function BlogPage() {
       readTime: "8 min read"
     },
     {
+      slug: "ssrf-hardening-secure-sandboxes",
       title: "SSRF Hardening and Secure Code Sandboxes",
       desc: "Protecting local networks during document retrieval and executing user scripts safely via Piston.",
       author: "SecOps Engineer",
@@ -50,13 +53,17 @@ export default function BlogPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {posts.map(post => (
-            <div key={post.title} className="border border-slate-900 bg-slate-950/40 p-6 rounded-2xl flex flex-col justify-between hover:border-slate-800 transition">
+            <Link
+              key={post.title}
+              href={`/blog/${post.slug}`}
+              className="border border-slate-900 bg-slate-950/40 p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 hover:bg-slate-950/80 transition"
+            >
               <div>
                 <div className="flex items-center gap-2 text-[9px] text-slate-500 mb-3">
                   <BookOpen className="w-3 h-3 text-indigo-400" />
                   <span>Engineering</span>
                 </div>
-                <h3 className="text-xs font-bold text-white mb-2 leading-snug hover:text-indigo-300 cursor-pointer">{post.title}</h3>
+                <h3 className="text-xs font-bold text-white mb-2 leading-snug hover:text-indigo-300">{post.title}</h3>
                 <p className="text-[10px] text-slate-500 leading-relaxed mb-6">{post.desc}</p>
               </div>
 
@@ -70,7 +77,7 @@ export default function BlogPage() {
                   {post.readTime}
                 </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

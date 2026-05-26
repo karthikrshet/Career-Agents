@@ -12,7 +12,7 @@ import {
   Archive, Trash2, Folder, Paperclip, X, Image as ImageIcon,
   Check, Play, HelpCircle, FileSpreadsheet, FileCode, CheckCircle2,
   TrendingUp, Volume2, Globe, Cpu, ChevronDown, Zap, Download, Star,
-  Search, Copy, StopCircle, RefreshCw, Filter, SortAsc
+  Search, Copy, StopCircle, RefreshCw, Filter, SortAsc, History
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
@@ -88,6 +88,7 @@ function CopilotWorkspace() {
   const [historyFilter, setHistoryFilter] = useState<"active" | "archived" | "favorites" | "pinned" | "all">("active");
   const [historySort, setHistorySort] = useState<"newest" | "oldest" | "title">("newest");
   const [hydrated, setHydrated] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   
   // Custom Provider/Model overrides for workspace
   const activeProvider = useGatewayStore((s) => s.activeProvider) as any;
@@ -703,12 +704,32 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
         </div>
       )}
 
+      {/* Mobile Drawer Backdrop */}
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-black/60 md:hidden z-20 backdrop-blur-xs"
+        />
+      )}
+
       {/* Claude-style Workspace Sidebar */}
-      <div className="w-60 shrink-0 border-r border-border/40 p-3 space-y-4 overflow-y-auto flex flex-col bg-card/15">
-        <div>
-          <Button size="sm" className="w-full flex items-center gap-1.5" onClick={() => startCopilotSession()}>
+      <div className={cn(
+        "w-60 shrink-0 border-r border-border/40 p-3 space-y-4 overflow-y-auto flex flex-col bg-card/15 transition-transform duration-200 z-30",
+        "fixed md:static inset-y-0 left-0 bg-slate-950 md:bg-transparent md:translate-x-0",
+        sidebarOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
+        <div className="flex items-center justify-between gap-2">
+          <Button size="sm" className="flex-1 flex items-center gap-1.5" onClick={() => { startCopilotSession(); setSidebarOpen(false); }}>
             <Plus className="w-3.5 h-3.5" />
             New Chat
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            className="md:hidden text-muted-foreground hover:text-foreground border border-border/40 rounded-lg p-1 shrink-0"
+            onClick={() => setSidebarOpen(false)}
+          >
+            <X className="w-4 h-4" />
           </Button>
         </div>
 
@@ -1013,6 +1034,24 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
           title="Career Copilot Workspace"
           subtitle={`Gateway: ${activeProvider} · model: ${activeModel}`}
         />
+
+        {/* Mobile Sidebar Toggle bar */}
+        <div className="flex md:hidden items-center justify-between px-6 py-2 border-b border-border/40 bg-secondary/10">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground h-8"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <History className="w-4 h-4 text-indigo-400" />
+            <span>Chat History</span>
+          </Button>
+          
+          {/* Active Model pill on mobile */}
+          <Badge variant="secondary" className="text-[10px] font-mono py-0.5 px-2 capitalize bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            {activeProvider} · {activeModel.split("-")[0]}
+          </Badge>
+        </div>
 
         {/* Workspace body */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">

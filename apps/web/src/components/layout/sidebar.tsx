@@ -55,13 +55,15 @@ export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const metrics = useStore((s) => s.metrics);
 
-  const marketingRoutes = [
-    "/", "/features", "/pricing", "/enterprise", "/opensource",
-    "/roadmap", "/changelog", "/blog", "/docs", "/contact",
-    "/security", "/privacy", "/terms"
+  const consoleRoutes = [
+    "/dashboard", "/resume", "/github", "/linkedin", "/interview",
+    "/copilot", "/jobs", "/tracker", "/prephub", "/playground",
+    "/linkedin-ai", "/reports", "/workflows", "/marketplace",
+    "/mcp", "/settings", "/about", "/credits", "/demo"
   ];
 
-  if (marketingRoutes.includes(pathname)) {
+  const isConsole = consoleRoutes.some(r => pathname === r || pathname.startsWith(r + "/"));
+  if (!isConsole) {
     return null;
   }
 

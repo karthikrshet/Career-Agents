@@ -24,6 +24,7 @@ export default function GitHubPage() {
   const GitHubAnalysis = useStore((s) => s.GitHubAnalysis);
   const setGitHubAnalysis = useStore((s) => s.setGitHubAnalysis);
   const profile = useStore((s) => s.profile);
+  const settings = useStore((s) => s.settings);
 
   const [username, setUsername] = useState(profile?.githubUsername || "");
   const [loading, setLoading] = useState(false);
@@ -34,7 +35,7 @@ export default function GitHubPage() {
     if (!u) { toast.error("Enter a GitBranch username"); return; }
     setLoading(true);
     try {
-      const data = await analyzeGitHubProfile(u);
+      const data = await analyzeGitHubProfile(u, settings.githubToken);
       setGitHubAnalysis(data);
       toast.success(`@${u} analyzed — ${data.portfolioScore}% portfolio score`);
     } catch (e: any) {
