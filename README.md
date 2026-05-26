@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.svg" alt="Career Agents Logo" width="120" />
+<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.png" alt="Career Agents Logo" width="120" />
 
 # Career Agents
 
@@ -900,9 +900,10 @@ Deploy Career Agents to production using one of three methods:
 ## Roadmap
 
 - **v10.0.0 (Founder Event Edition):** Immersive AI Career Operating System redesign, system diagnostics, and AI provider fallback chains.
-- **v11.0.0 (Next):** Direct LinkedIn Profile API OAuth imports and automated messaging.
-- **v12.0.0:** Local offline AI support running inside web browsers via WebGPU.
-- **v13.0.0:** Multi-user team workspaces and shared organization dashboard layouts.
+- **v11.0.0:** React, TypeScript, and Vite-based Manifest V3 Chrome Extension.
+- **v12.0.0:** Standard monorepo structures, Vercel deployments, and OpenAPI documentation layouts.
+- **v13.0.0 (Current Release):** Enterprise Authentication, LinkedIn/Microsoft OAuth, and RBAC Role-Based Access controls.
+- **v14.0.0 (Next):** Advanced recruiter workspaces, visual workflow builders, and autonomous Stripe roadmap agents.
 
 ---
 

@@ -361,6 +361,10 @@ Return a JSON object matching this structure:
       analyzedAt: new Date().toISOString(),
     });
   } catch (err: any) {
-    return NextResponse.json({ error: err.message || "Failed to analyze resume" }, { status: 500 });
+    const reqId = "REQ-" + Math.floor(10000 + Math.random() * 90000);
+    console.error(`[${reqId}] Resume evaluate API failed:`, err);
+    return NextResponse.json({ 
+      error: `Unable to evaluate because AI provider is unavailable. Reference ID: ${reqId}. Please try again.` 
+    }, { status: 500 });
   }
 }

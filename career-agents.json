@@ -2,7 +2,7 @@
   "$schema": "https://codemyfyp-agents.dev/schema/career-agents.json",
   "repository": "Career-Agents",
   "name": "The Open-Source Career Agents",
-  "version": "1.0.0",
+  "version": "13.0.0",
   "statistics": {
     "agent_count": 146,
     "division_count": 19,
