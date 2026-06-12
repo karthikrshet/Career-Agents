@@ -112,8 +112,8 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          cd apps/web && npm install
-          cd apps/chrome-extension && npm install
+          (cd apps/web && npm install)
+          (cd apps/chrome-extension && npm install)
       - name: Generate Data Models
         run: python scripts/generate-data.py
       - name: Validate Markdown References
