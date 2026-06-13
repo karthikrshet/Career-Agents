@@ -84,7 +84,7 @@ Career Agents takes a different approach:
 <summary>View LinkedIn Optimizer Preview</summary>
 
 *Grades headline positioning, about summaries, and searches keyword density.*
-![LinkedIn Optimizer View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/linkedin.png)
+![LinkedIn Optimizer View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/linkedinoptimizer.png)
 </details>
 
 <details>
