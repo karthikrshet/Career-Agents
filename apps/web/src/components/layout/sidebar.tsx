@@ -1,204 +1,160 @@
 "use client";
 
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import {
-  LayoutDashboard, FileText, GitBranch, Link2, Mic,
-  KanbanSquare, Building2, Bot, BarChart3, Package,
-  Cpu, Settings, ChevronLeft, ChevronRight, Zap,
-  TrendingUp, Award, Info, Briefcase, Code2, GitMerge
+  LayoutDashboard,
+  FileText,
+  Mic,
+  Briefcase,
+  Kanban,
+  Building2,
+  Code,
+  Link2,
+  BarChart3,
+  Bot,
+  Sparkles,
+  GitFork,
+  Terminal,
+  Settings,
+  Info,
+  Award,
+  ChevronDown,
+  ChevronRight,
+  TrendingUp,
+  GitBranch
 } from "lucide-react";
-import { cn, formatScore } from "@/lib/utils";
+import { Logo } from "@/components/ui/logo";
 import { useStore } from "@/lib/store";
-
-export const NAV_ITEMS = [
-  {
-    section: "Core",
-    items: [
-      { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-      { href: "/resume", icon: FileText, label: "Resume Studio" },
-      { href: "/github", icon: GitBranch, label: "GitHub Analyzer" },
-      { href: "/linkedin", icon: Link2, label: "LinkedIn Optimizer" },
-      { href: "/interview", icon: Mic, label: "Interview Lab" },
-    ],
-  },
-  {
-    section: "Career OS",
-    items: [
-      { href: "/copilot", icon: Bot, label: "AI Copilot" },
-      { href: "/jobs", icon: Briefcase, label: "Job Hub" },
-      { href: "/tracker", icon: KanbanSquare, label: "Job Tracker" },
-      { href: "/prephub", icon: Building2, label: "Prep Hub" },
-      { href: "/playground", icon: Code2, label: "Code Playground" },
-      { href: "/linkedin-ai", icon: Link2, label: "LinkedIn AI" },
-      { href: "/reports", icon: BarChart3, label: "Reports" },
-    ],
-  },
-  {
-    section: "Platform",
-    items: [
-      { href: "/workflows", icon: GitMerge, label: "Workflow Builder" },
-      { href: "/marketplace", icon: Package, label: "Marketplace" },
-      { href: "/mcp", icon: Cpu, label: "MCP Server" },
-      { href: "/settings", icon: Settings, label: "Settings" },
-      { href: "/about", icon: Info, label: "About Platform" },
-      { href: "/credits", icon: Award, label: "Credits" },
-    ],
-  },
-];
 
 export function Sidebar() {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>({});
   const metrics = useStore((s) => s.metrics);
 
-  const consoleRoutes = [
-    "/dashboard", "/resume", "/github", "/linkedin", "/interview",
-    "/copilot", "/jobs", "/tracker", "/prephub", "/playground",
-    "/linkedin-ai", "/reports", "/workflows", "/marketplace",
-    "/mcp", "/settings", "/about", "/credits", "/demo"
+  const careerScore = metrics?.careerScore || 26;
+
+  const toggleGroup = (groupTitle: string) => {
+    setCollapsedGroups((prev) => ({
+      ...prev,
+      [groupTitle]: !prev[groupTitle],
+    }));
+  };
+
+  const navGroups = [
+    {
+      title: "CAREER STUDIO",
+      items: [
+        { name: "Overview Workspace", href: "/dashboard", icon: LayoutDashboard },
+        { name: "Resume Studio", href: "/resume", icon: FileText },
+        { name: "STAR Interview Lab", href: "/interview", icon: Mic },
+        { name: "Job Hub", href: "/jobs", icon: Briefcase },
+        { name: "Job Tracker", href: "/tracker", icon: Kanban },
+        { name: "Prep Hub", href: "/prephub", icon: Building2 },
+        { name: "Code Playground", href: "/playground", icon: Code },
+        { name: "LinkedIn Optimizer", href: "/linkedin", icon: Link2 },
+        { name: "LinkedIn AI Content", href: "/linkedin-ai", icon: Sparkles },
+        { name: "Reports & Diagnostics", href: "/reports", icon: BarChart3 },
+      ],
+    },
+    {
+      title: "AI ECOSYSTEM",
+      items: [
+        { name: "AI Copilot Stream", href: "/copilot", icon: Bot },
+        { name: "146 Agent Marketplace", href: "/marketplace", icon: Sparkles },
+        { name: "Workflow Pipelines", href: "/workflows", icon: GitFork },
+      ],
+    },
+    {
+      title: "DEVELOPER TOOLS",
+      items: [
+        { name: "GitHub Analyzer", href: "/github", icon: GitBranch },
+        { name: "MCP Protocol Server", href: "/mcp", icon: Terminal },
+      ],
+    },
+    {
+      title: "WORKSPACE & SYSTEM",
+      items: [
+        { name: "Settings & API Keys", href: "/settings", icon: Settings },
+        { name: "Credits & Open Source", href: "/credits", icon: Award },
+      ],
+    },
   ];
 
-  const isConsole = consoleRoutes.some(r => pathname === r || pathname.startsWith(r + "/"));
-  if (!isConsole) {
-    return null;
-  }
-
   return (
-    <motion.aside
-      animate={{ width: collapsed ? 68 : 240 }}
-      transition={{ duration: 0.25, ease: "easeInOut" }}
-      className="relative hidden md:flex flex-col h-full border-r border-border bg-card/50 overflow-hidden shrink-0"
-    >
-      {/* Logo */}
-      <Link href="/" className={cn(
-        "flex items-center gap-3 p-4 border-b border-border hover:bg-muted/10 transition-colors",
-        collapsed && "justify-center"
-      )}>
-        <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
-          <Image src="/logo.svg" alt="Career Agents Logo" width={32} height={32} className="w-8 h-8" />
+    <aside className="hidden md:flex w-64 h-screen sticky top-0 bg-[#050814] border-r border-white/10 flex-col justify-between p-4 z-30 font-sans shrink-0">
+      <div className="space-y-5 overflow-y-auto no-scrollbar">
+        {/* Header Logo */}
+        <div className="px-2 pt-1">
+          <Logo size="md" variant="sidebar" showTagline={true} />
         </div>
-        <AnimatePresence>
-          {!collapsed && (
-            <motion.div
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -8 }}
-              transition={{ duration: 0.15 }}
-              className="flex flex-col"
-            >
-              <span className="text-sm font-semibold text-foreground tracking-tight">Career Agents</span>
-              <span className="text-[10px] text-muted-foreground">v4.0 · AI Career OS</span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </Link>
 
-      {/* Score pill */}
-      <AnimatePresence>
-        {!collapsed && metrics.careerScore > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            className="mx-3 mt-3"
-          >
-            <div className="glass rounded-lg px-3 py-2 flex items-center gap-2">
-              <TrendingUp className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              <div className="flex-1 min-w-0">
-                <div className="text-[10px] text-muted-foreground mb-1">Career Score</div>
-                <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${metrics.careerScore}%` }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                    className="h-full bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full"
-                  />
-                </div>
-              </div>
-              <span className="text-xs font-semibold text-foreground shrink-0">
-                {metrics.careerScore}
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto p-3 space-y-5 mt-2">
-        {NAV_ITEMS.map((section) => (
-          <div key={section.section}>
-            <AnimatePresence>
-              {!collapsed && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 px-3 mb-1.5"
-                >
-                  {section.section}
-                </motion.p>
-              )}
-            </AnimatePresence>
-            <div className="space-y-0.5">
-              {section.items.map((item) => {
-                const isActive = item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      "sidebar-item relative",
-                      collapsed && "justify-center px-0",
-                      isActive && "sidebar-item-active"
-                    )}
-                    title={collapsed ? item.label : undefined}
-                  >
-                    <item.icon className="w-4 h-4 shrink-0" />
-                    <AnimatePresence>
-                      {!collapsed && (
-                        <motion.span
-                          initial={{ opacity: 0, x: -8 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -8 }}
-                          className="truncate text-sm"
-                        >
-                          {item.label}
-                        </motion.span>
-                      )}
-                    </AnimatePresence>
-                    {isActive && (
-                      <motion.div
-                        layoutId="sidebar-indicator"
-                        className="absolute inset-0 rounded-lg bg-primary/10 -z-10"
-                        transition={{ duration: 0.2 }}
-                      />
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
+        {/* Career Score Widget */}
+        <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-300">
+            <span className="flex items-center gap-1.5 font-medium text-slate-400">
+              <TrendingUp className="w-3.5 h-3.5 text-cyan-400" /> Career Score
+            </span>
+            <span className="font-mono font-bold text-white text-sm">{careerScore}</span>
           </div>
-        ))}
-      </nav>
+          <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+            <div
+              className="bg-gradient-to-r from-cyan-400 to-indigo-500 h-full rounded-full transition-all duration-500"
+              style={{ width: `${Math.min(100, Math.max(5, careerScore))}%` }}
+            />
+          </div>
+        </div>
 
-      {/* Collapse toggle */}
-      <button
-        onClick={() => setCollapsed(!collapsed)}
-        className="absolute top-4 -right-3 w-6 h-6 rounded-full border border-border bg-card flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-all z-10"
-      >
-        {collapsed
-          ? <ChevronRight className="w-3 h-3" />
-          : <ChevronLeft className="w-3 h-3" />
-        }
-      </button>
-    </motion.aside>
+        {/* Grouped Sidebar Navigation */}
+        <div className="space-y-4">
+          {navGroups.map((group) => {
+            const isCollapsed = collapsedGroups[group.title];
+            return (
+              <div key={group.title} className="space-y-1">
+                <button
+                  onClick={() => toggleGroup(group.title)}
+                  className="w-full flex items-center justify-between px-2.5 py-1 text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider hover:text-slate-300 transition-colors"
+                >
+                  <span>{group.title}</span>
+                  {isCollapsed ? <ChevronRight className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                </button>
+
+                {!isCollapsed && (
+                  <div className="space-y-0.5">
+                    {group.items.map((item) => {
+                      const Icon = item.icon;
+                      const isActive = pathname === item.href;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition-all ${
+                            isActive
+                              ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shadow-[0_0_15px_rgba(56,189,248,0.15)]"
+                              : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
+                          }`}
+                        >
+                          <Icon className={`w-4 h-4 ${isActive ? "text-cyan-400" : "text-slate-500"}`} />
+                          <span suppressHydrationWarning>{item.name}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Footer Telemetry Status */}
+      <div className="pt-3 border-t border-white/10 px-2 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+        <span className="flex items-center gap-1.5 text-emerald-400">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> Local SQLite Ready
+        </span>
+        <span className="text-slate-500">v16.0</span>
+      </div>
+    </aside>
   );
 }
-
-
