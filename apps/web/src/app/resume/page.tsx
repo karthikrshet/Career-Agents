@@ -486,19 +486,19 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
               className="space-y-6"
             >
               {/* Score header */}
-              <div className="flex flex-wrap items-start gap-4">
-                <Card className={cn("glass flex-shrink-0", scoreToBgColor(analysis.overallScore))}>
-                  <CardContent className="p-6 text-center">
-                    <div className="text-4xl font-bold tabular-nums">{analysis.overallScore}</div>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4">
+                <Card className={cn("glass shrink-0 sm:w-auto text-center", scoreToBgColor(analysis.overallScore))}>
+                  <CardContent className="p-4 sm:p-6 text-center">
+                    <div className="text-3xl sm:text-4xl font-bold tabular-nums">{analysis.overallScore}</div>
                     <div className="text-xs mt-1 font-medium">{scoreToGrade(analysis.overallScore)}</div>
                     <div className="text-[10px] mt-0.5 opacity-70">ATS Score</div>
                   </CardContent>
                 </Card>
 
-                <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {Object.entries(analysis.sections).map(([key, present]) => (
                     <div key={key} className={cn(
-                      "flex items-center gap-2 p-3 rounded-lg border text-sm",
+                      "flex items-center gap-2 p-2 sm:p-3 rounded-lg border text-xs sm:text-sm",
                       present
                         ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-400"
                         : "border-red-500/20 bg-red-500/5 text-red-400"
@@ -507,35 +507,35 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
                         ? <CheckCircle className="w-3.5 h-3.5 shrink-0" />
                         : <X className="w-3.5 h-3.5 shrink-0" />
                       }
-                      <span className="capitalize text-xs font-medium">
+                      <span className="capitalize text-xs font-medium truncate">
                         {key.replace("has", "").replace(/([A-Z])/g, " $1").trim()}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <div className="flex flex-col gap-2 ml-auto">
-                  <Button size="sm" onClick={handleAIRewrite} disabled={aiRewriting}>
+                <div className="flex flex-col sm:w-56 gap-2 shrink-0">
+                  <Button size="sm" onClick={handleAIRewrite} disabled={aiRewriting} className="w-full">
                     {aiRewriting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
                     AI Rewrite
                   </Button>
                   
                   {/* Export Options */}
-                  <div className="space-y-1 rounded-lg border border-border p-2 bg-secondary/20">
+                  <div className="space-y-1 rounded-lg border border-border p-2 bg-secondary/20 w-full">
                     <p className="text-[10px] text-muted-foreground font-semibold text-center mb-1 flex items-center justify-center gap-1">
                       <Download className="w-3 h-3" /> Export Report
                     </p>
-                    <div className="grid grid-cols-6 gap-1">
-                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("markdown")}>MD</Button>
-                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("html")}>HTML</Button>
-                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("json")}>JSON</Button>
-                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("doc")}>Word</Button>
-                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("latex")}>LaTeX</Button>
-                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("pdf")}>PDF</Button>
+                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-1">
+                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("markdown")}>MD</Button>
+                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("html")}>HTML</Button>
+                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("json")}>JSON</Button>
+                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("doc")}>Word</Button>
+                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("latex")}>LaTeX</Button>
+                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("pdf")}>PDF</Button>
                     </div>
                   </div>
 
-                  <Button size="sm" variant="ghost" onClick={() => { setStep("upload"); }}>
+                  <Button size="sm" variant="ghost" onClick={() => { setStep("upload"); }} className="w-full">
                     <Upload className="w-4 h-4" />
                     New Resume
                   </Button>

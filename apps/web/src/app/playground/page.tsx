@@ -502,8 +502,8 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no expl
 
       <div className="flex-1 overflow-hidden flex flex-col p-4 gap-4">
         {/* Toolbar */}
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 w-full shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             {/* Language Picker */}
             <div className="relative">
               <button
@@ -543,7 +543,7 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no expl
             <Badge variant="outline" className="text-[10px] text-muted-foreground">{currentLang.ext}</Badge>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <Button variant="outline" size="sm" onClick={() => { setCode(STARTER_CODE[language] || ""); setOutput(""); setReview(null); }} className="h-8 gap-1.5 text-xs">
               <RefreshCw className="w-3 h-3" /> Reset
             </Button>
