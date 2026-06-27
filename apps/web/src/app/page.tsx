@@ -9,6 +9,7 @@ import { HeroBackground3D } from "@/components/landing/hero-background-3d";
 import { HeroSection } from "@/components/landing/hero-section";
 import { TrustedCompanies } from "@/components/landing/trusted-companies";
 import { DashboardPreview } from "@/components/landing/dashboard-preview";
+import { CodingStudioShowcase } from "@/components/landing/coding-studio-showcase";
 import { AIWorkflowBuilder } from "@/components/landing/ai-workflow-builder";
 import { AgentMarketplace } from "@/components/landing/agent-marketplace";
 import { ResumeStudioShowcase } from "@/components/landing/resume-studio-showcase";
@@ -45,6 +46,9 @@ export default function LandingPage() {
 
         {/* Interactive Dashboard Showcase */}
         <DashboardPreview />
+
+        {/* Coding Studio & Playground Showcase */}
+        <CodingStudioShowcase />
 
         {/* Automated Agent Workflow Pipeline */}
         <AIWorkflowBuilder />
