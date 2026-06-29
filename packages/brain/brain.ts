@@ -121,7 +121,7 @@ Limit your response to 120 words. Do not write introductory or conversational he
   const completionTokens = 250; // Mock estimate for streaming delta
   const costEstimate = (promptTokens * 0.0000015 + completionTokens * 0.000002).toFixed(6);
 
-  const thinkingIndicator = `<thinking>AI Brain executing dynamic route: classified intent as "${plan.intent}" (${plan.intentConfidence}% confidence). Mapped agent execution timeline [${plan.timeline.steps.map(s => s.agentName).join(", ")}]. Ran ${matched.length} specialist agents [${matched.map(a => a.name).join(", ")}]. Context: Memory: ${memorySize}, Files: ${filesUsed}, Citations: ${citationsCount}. Model: ${activeModelName}. Provider: ${provider}. PromptTokens: ${promptTokens}. CompletionTokens: ${completionTokens}. Cost: $${costEstimate}. Execution completed in ${totalTimeTaken}ms.</thinking>\n\n`;
+  const thinkingIndicator = ""; // Hidden from frontend output stream
 
   return {
     systemPrompt: finalSystemPrompt,
