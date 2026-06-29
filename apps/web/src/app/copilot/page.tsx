@@ -1310,7 +1310,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                           <MessageActions
                             content={content}
                             isAssistant={msg.role === "assistant"}
-                            onExport={msg.role === "assistant" ? (expType) => handleDownloadFile(expType, `Career_Document.${expType === "excel" ? "csv" : expType}`, cleanText, "Career Document") : undefined}
+                            onExport={msg.role === "assistant" ? (expType) => handleDownloadFile(expType, `Career_Document.${expType === "excel" ? "csv" : expType}`, content, "Career Document") : undefined}
                             onRegenerate={msg.role === "assistant" ? () => {
                               const idx = messages.findIndex((m) => m.id === msg.id);
                               const slice = messages.slice(0, idx);
