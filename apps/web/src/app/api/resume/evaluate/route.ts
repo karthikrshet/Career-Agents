@@ -207,7 +207,7 @@ export async function POST(req: NextRequest) {
     let aiRecs: string[] = [];
 
     const provider = config?.provider || "gemini";
-    const apiKey = config?.apiKey || process.env[`${provider.toUpperCase()}_API_KEY` || ""];
+    const apiKey = config?.apiKey || process.env[`${provider.toUpperCase()}_API_KEY`] || process.env.XAI_API_KEY || process.env.GROK_API_KEY || process.env.GROQ_API_KEY || process.env.GEMINI_API_KEY || process.env.OPENAI_API_KEY || "";
     const hasKey = !!apiKey || ["ollama", "lmstudio"].includes(provider);
 
     if (hasKey && bulletsToAnalyze.length > 0) {

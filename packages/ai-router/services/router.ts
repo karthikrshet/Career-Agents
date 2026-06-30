@@ -17,6 +17,8 @@ const ENV_KEY_MAP: Record<string, string> = {
   mistral: "MISTRAL_API_KEY",
   cohere: "COHERE_API_KEY",
   together: "TOGETHER_API_KEY",
+  xai: "XAI_API_KEY",
+  grok: "XAI_API_KEY",
 };
 
 export interface RouterConfig {
@@ -154,11 +156,23 @@ export async function routeCompletion(
     }
     if (!registry) continue;
 
-    // 1. Resolve key list with priority: Client-saved keys -> Env vars -> Provider Disabled (Empty)
+    // 1. Resolve key list with priority: Client-saved keys -> Alias keys -> Env vars -> Provider Disabled (Empty)
     let keyList = (config.keys[providerId] || []).filter(k => k && k.trim() !== "");
+    
+    if (keyList.length === 0) {
+      if (providerId === "grok" && config.keys["xai"]?.length) keyList = config.keys["xai"].filter(k => k && k.trim() !== "");
+      if (providerId === "xai" && config.keys["grok"]?.length) keyList = config.keys["grok"].filter(k => k && k.trim() !== "");
+      if (providerId === "claude" && config.keys["anthropic"]?.length) keyList = config.keys["anthropic"].filter(k => k && k.trim() !== "");
+      if (providerId === "anthropic" && config.keys["claude"]?.length) keyList = config.keys["claude"].filter(k => k && k.trim() !== "");
+    }
+
     if (keyList.length === 0) {
       const envVarName = ENV_KEY_MAP[providerId];
-      const envKey = envVarName ? process.env[envVarName] : undefined;
+      let envKey = envVarName ? process.env[envVarName] : undefined;
+      if (!envKey && providerId === "grok") envKey = process.env.GROK_API_KEY || process.env.XAI_API_KEY;
+      if (!envKey && providerId === "xai") envKey = process.env.XAI_API_KEY || process.env.GROK_API_KEY;
+      if (!envKey) envKey = process.env[`${providerId.toUpperCase()}_API_KEY`];
+      
       if (envKey && envKey.trim() !== "") {
         keyList = [envKey.trim()];
       }

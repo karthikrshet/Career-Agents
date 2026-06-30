@@ -213,10 +213,7 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
       temperature: useGatewayStore.getState().temperature,
       maxTokens: useGatewayStore.getState().maxTokens,
     };
-    if (!gatewayConfig.apiKey) {
-      toast.error("Add your AI provider API key in Settings to enable AI rewrites.");
-      return;
-    }
+    // Allow request to proceed so server environment variables (Vercel) can be used as fallback
     setAiRewriting(true);
     try {
       const res = await fetch("/api/resume/analyze", {
