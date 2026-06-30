@@ -15,6 +15,7 @@ export type AIProviderId =
   | "ollama"
   | "lmstudio"
   | "xai"
+  | "grok"
   | "fireworks"
   | "perplexity"
   | "ai21"

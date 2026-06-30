@@ -3,7 +3,7 @@
 export type AIProvider =
   | "openai" | "anthropic" | "claude" | "gemini" | "groq"
   | "openrouter" | "azure" | "deepseek" | "ollama" | "lmstudio"
-  | "together" | "mistral" | "cohere" | "xai";
+  | "together" | "mistral" | "cohere" | "xai" | "grok";
 
 export interface AIProviderConfig {
   provider: AIProvider;

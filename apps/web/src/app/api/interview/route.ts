@@ -57,6 +57,18 @@ Format:
 }
 `;
 
+function resolveServerApiKey(provider: string, clientKey?: string): string {
+  if (clientKey && clientKey.trim() !== "") return clientKey;
+  const p = (provider || "gemini").toLowerCase().trim();
+  if (p === "grok" || p === "xai") {
+    return process.env.XAI_API_KEY || process.env.GROK_API_KEY || process.env.GROQ_API_KEY || "";
+  }
+  if (p === "claude" || p === "anthropic") {
+    return process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY || "";
+  }
+  return process.env[`${p.toUpperCase()}_API_KEY`] || process.env.GROQ_API_KEY || process.env.GEMINI_API_KEY || process.env.OPENAI_API_KEY || process.env.XAI_API_KEY || "";
+}
+
 export async function POST(req: Request) {
   try {
     const session = await getServerSession(authOptions);
@@ -135,18 +147,6 @@ export async function POST(req: Request) {
           console.error("Analytics database call failed (creating interview session event):", error);
         }
       }
-
-function resolveServerApiKey(provider: string, clientKey?: string): string {
-  if (clientKey && clientKey.trim() !== "") return clientKey;
-  const p = (provider || "gemini").toLowerCase().trim();
-  if (p === "grok" || p === "xai") {
-    return process.env.XAI_API_KEY || process.env.GROK_API_KEY || process.env.GROQ_API_KEY || "";
-  }
-  if (p === "claude" || p === "anthropic") {
-    return process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY || "";
-  }
-  return process.env[`${p.toUpperCase()}_API_KEY`] || process.env.GROQ_API_KEY || process.env.GEMINI_API_KEY || process.env.OPENAI_API_KEY || process.env.XAI_API_KEY || "";
-}
 
       const provider = aiConfig?.provider || "gemini";
       const apiKey = resolveServerApiKey(provider, aiConfig?.apiKey);
