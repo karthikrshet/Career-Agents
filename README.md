@@ -2,7 +2,7 @@
 
 # Career-Agents
 
-by CodeMyFYP
+by CodeMyFYP - Karthik
 
 ### The Open-Source AI Specialist Ecosystem for Students, Developers, Job Seekers & Founders
 
