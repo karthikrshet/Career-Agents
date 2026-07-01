@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🎓 CodeMyFYP-Agents
+# Career-Agents
+
+by CodeMyFYP
 
 ### The Open-Source AI Specialist Ecosystem for Students, Developers, Job Seekers & Founders
 
