@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Start Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: |
+          npm install
+      - name: Run install validation
+        run: |
+          pwsh -NoProfile -Command "& { .\scripts\install.ps1 -ValidateOnly }"
+      - name: Run repo validation
+        run: |
+          python scripts/validate.py
+      - name: Run CLI validate command
+        run: |
+          npx codemyfyp-agents validate

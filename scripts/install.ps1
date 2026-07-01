@@ -1,5 +1,6 @@
 Param(
-  [switch]$ValidateOnly
+  [switch]$ValidateOnly,
+  [string]$Target = "$Root\installed_agents"
 )
 
 $Root = Split-Path -Parent $PSScriptRoot
@@ -21,13 +22,22 @@ function Validate-Repo {
 }
 
 function Install-Agents {
-  Write-Host "Listing agents from divisions.json..."
+  Write-Host "Installing agent markdown files to $Target..."
+  if (-not (Test-Path $Target)) {
+    New-Item -ItemType Directory -Path $Target | Out-Null
+  }
   $json = Get-Content (Join-Path $Root 'divisions.json') -Raw | ConvertFrom-Json
   foreach ($division in $json.divisions) {
     foreach ($agent in $division.agents) {
-      $file = Join-Path $Root $agent.file
-      if (Test-Path $file) {
-        Write-Host "  - validating $($agent.file)"
+      $source = Join-Path $Root $agent.file
+      if (Test-Path $source) {
+        $destination = Join-Path $Target $agent.file
+        $destinationDir = Split-Path $destination
+        if (-not (Test-Path $destinationDir)) {
+          New-Item -ItemType Directory -Path $destinationDir -Force | Out-Null
+        }
+        Copy-Item $source -Destination $destination -Force
+        Write-Host "  - installed $($agent.file)"
       } else {
         Write-Warning "  - missing $($agent.file)"
       }
@@ -44,4 +54,4 @@ if ($ValidateOnly) {
 Validate-Repo
 Install-Agents
 
-Write-Host "Install complete. Use scripts\convert.py to generate tool-specific packages."
+Write-Host "Install complete. Installed available agents to $Target. Use scripts\convert.py to generate tool-specific packages."
