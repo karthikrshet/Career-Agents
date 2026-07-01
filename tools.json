@@ -1,0 +1,77 @@
+{
+  "$schema": "https://codemyfyp-agents.dev/schema/tools.json",
+  "repository": "CodeMyFYP-Agents",
+  "version": "0.1.0",
+  "description": "Registry of platforms and tools CodeMyFYP-Agents is designed to work with, and integration status per the project roadmap.",
+  "supported_platforms": [
+    {
+      "id": "generic-llm",
+      "name": "Any LLM Chat Interface",
+      "status": "supported",
+      "method": "Paste full agent .md file (including frontmatter) as system prompt or custom instructions.",
+      "notes": "Works with Claude, ChatGPT, Gemini, or any assistant that accepts a custom system prompt."
+    },
+    {
+      "id": "claude-projects",
+      "name": "Claude Projects",
+      "status": "supported",
+      "method": "Paste agent file contents into a Project's custom instructions.",
+      "notes": "Recommended for persistent, session-to-session use of a single agent."
+    },
+    {
+      "id": "custom-gpt",
+      "name": "Custom GPTs",
+      "status": "supported",
+      "method": "Paste agent file contents into the Custom GPT 'Instructions' field.",
+      "notes": null
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "status": "planned",
+      "roadmap_phase": 5,
+      "method": null,
+      "notes": "Native .cursor/rules packaging planned for Phase 5."
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "status": "planned",
+      "roadmap_phase": 6,
+      "method": null,
+      "notes": "Native custom subagent packaging planned for Phase 6."
+    },
+    {
+      "id": "cli-installer",
+      "name": "CodeMyFYP-Agents CLI",
+      "status": "planned",
+      "roadmap_phase": 4,
+      "method": "npx codemyfyp-agents add <agent-id>",
+      "notes": "Planned installer to remove manual copy-paste friction."
+    }
+  ],
+  "agent_capabilities": {
+    "deliverable_types": [
+      "audit_report",
+      "scorecard",
+      "action_plan",
+      "roadmap",
+      "checklist",
+      "framework",
+      "matrix",
+      "implementation_plan",
+      "negotiation_framework"
+    ],
+    "required_sections": [
+      "identity_and_memory",
+      "core_mission",
+      "critical_rules",
+      "technical_deliverables",
+      "workflow_process",
+      "communication_style",
+      "learning_and_memory",
+      "success_metrics",
+      "advanced_capabilities"
+    ]
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "$schema": "https://codemyfyp-agents.dev/schema/divisions.json",
+  "repository": "CodeMyFYP-Agents",
+  "version": "0.1.0",
+  "last_updated": "2026-07-02",
+  "stats": {
+    "total_divisions": 4,
+    "phase_1_target": 20,
+    "phase_2_target": 50,
+    "phase_3_target": 100,
+    "agents_live": 1,
+    "agents_planned": 19
+  },
+  "divisions": [
+    {
+      "id": "career",
+      "name": "Career",
+      "emoji": "💼",
+      "description": "Placement strategy, resume engineering, interview coaching, and personal brand growth for students and job seekers.",
+      "path": "career/",
+      "agents": [
+        {
+          "id": "placement-coach",
+          "file": "career/placement-coach.md",
+          "name": "Placement Coach",
+          "status": "live",
+          "description": "End-to-end placement strategist covering readiness audits, application strategy, and offer negotiation.",
+          "tags": ["career", "placements", "strategy", "coaching"]
+        },
+        {
+          "id": "ats-resume-reviewer",
+          "file": "career/ats-resume-reviewer.md",
+          "name": "ATS Resume Reviewer",
+          "status": "planned",
+          "description": "Line-by-line resume audits for ATS parsing survival and keyword alignment.",
+          "tags": ["career", "resume", "ats"]
+        },
+        {
+          "id": "resume-strategist",
+          "file": "career/resume-strategist.md",
+          "name": "Resume Strategist",
+          "status": "planned",
+          "description": "Narrative and positioning strategy behind resume content and structure.",
+          "tags": ["career", "resume", "positioning"]
+        },
+        {
+          "id": "linkedin-growth-advisor",
+          "file": "career/linkedin-growth-advisor.md",
+          "name": "LinkedIn Growth Advisor",
+          "status": "planned",
+          "description": "Profile optimization and recruiter-visibility growth strategy.",
+          "tags": ["career", "linkedin", "personal-brand"]
+        },
+        {
+          "id": "technical-interview-coach",
+          "file": "career/technical-interview-coach.md",
+          "name": "Technical Interview Coach",
+          "status": "planned",
+          "description": "DSA, system design, and technical interview drilling with structured feedback.",
+          "tags": ["career", "interviews", "dsa", "system-design"]
+        },
+        {
+          "id": "hr-interview-coach",
+          "file": "career/hr-interview-coach.md",
+          "name": "HR Interview Coach",
+          "status": "planned",
+          "description": "Behavioral interview prep, salary negotiation, and offer conversations.",
+          "tags": ["career", "interviews", "negotiation"]
+        }
+      ]
+    },
+    {
+      "id": "engineering",
+      "name": "Engineering",
+      "emoji": "🛠️",
+      "description": "Full-stack architecture, performance engineering, databases, DevOps, and code review at a production standard.",
+      "path": "engineering/",
+      "agents": [
+        {
+          "id": "mern-architect",
+          "file": "engineering/mern-architect.md",
+          "name": "MERN Architect",
+          "status": "planned",
+          "description": "MERN stack architecture review and scalability planning.",
+          "tags": ["engineering", "mern", "architecture"]
+        },
+        {
+          "id": "nextjs-performance-engineer",
+          "file": "engineering/nextjs-performance-engineer.md",
+          "name": "Next.js Performance Engineer",
+          "status": "planned",
+          "description": "Structured Next.js performance audits and optimization plans.",
+          "tags": ["engineering", "nextjs", "performance"]
+        },
+        {
+          "id": "backend-architect",
+          "file": "engineering/backend-architect.md",
+          "name": "Backend Architect",
+          "status": "planned",
+          "description": "API design, service boundaries, and backend system architecture.",
+          "tags": ["engineering", "backend", "api-design"]
+        },
+        {
+          "id": "database-engineer",
+          "file": "engineering/database-engineer.md",
+          "name": "Database Engineer",
+          "status": "planned",
+          "description": "Schema design, indexing strategy, and query optimization.",
+          "tags": ["engineering", "database", "sql"]
+        },
+        {
+          "id": "devops-engineer",
+          "file": "engineering/devops-engineer.md",
+          "name": "DevOps Engineer",
+          "status": "planned",
+          "description": "CI/CD pipelines, containerization, and deployment strategy.",
+          "tags": ["engineering", "devops", "ci-cd"]
+        },
+        {
+          "id": "code-reviewer",
+          "file": "engineering/code-reviewer.md",
+          "name": "Code Reviewer",
+          "status": "planned",
+          "description": "Senior-level code review and technical debt triage.",
+          "tags": ["engineering", "code-review", "quality"]
+        }
+      ]
+    },
+    {
+      "id": "startup",
+      "name": "Startup",
+      "emoji": "🚀",
+      "description": "Founder-stage product, growth, and market thinking for early-stage builders.",
+      "path": "startup/",
+      "agents": [
+        {
+          "id": "founder-advisor",
+          "file": "startup/founder-advisor.md",
+          "name": "Founder Advisor",
+          "status": "planned",
+          "description": "Early-stage founder judgment, decision-making, and idea stress-testing.",
+          "tags": ["startup", "founder", "strategy"]
+        },
+        {
+          "id": "product-manager",
+          "file": "startup/product-manager.md",
+          "name": "Product Manager",
+          "status": "planned",
+          "description": "Product strategy, prioritization frameworks, and roadmapping.",
+          "tags": ["startup", "product", "prioritization"]
+        },
+        {
+          "id": "growth-strategist",
+          "file": "startup/growth-strategist.md",
+          "name": "Growth Strategist",
+          "status": "planned",
+          "description": "Acquisition, retention, and growth-loop design.",
+          "tags": ["startup", "growth", "marketing"]
+        },
+        {
+          "id": "market-research-analyst",
+          "file": "startup/market-research-analyst.md",
+          "name": "Market Research Analyst",
+          "status": "planned",
+          "description": "Market sizing, competitor analysis, and idea validation.",
+          "tags": ["startup", "research", "market-analysis"]
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "name": "Projects",
+      "emoji": "🎓",
+      "description": "Final Year Project lifecycle support from topic selection through viva defense.",
+      "path": "projects/",
+      "agents": [
+        {
+          "id": "final-year-project-advisor",
+          "file": "projects/final-year-project-advisor.md",
+          "name": "Final Year Project Advisor",
+          "status": "planned",
+          "description": "FYP topic selection, scoping, and execution planning.",
+          "tags": ["projects", "fyp", "planning"]
+        },
+        {
+          "id": "research-assistant",
+          "file": "projects/research-assistant.md",
+          "name": "Research Assistant",
+          "status": "planned",
+          "description": "Literature review support and academic research structuring.",
+          "tags": ["projects", "research", "academic"]
+        },
+        {
+          "id": "documentation-specialist",
+          "file": "projects/documentation-specialist.md",
+          "name": "Documentation Specialist",
+          "status": "planned",
+          "description": "Technical documentation and academic report writing.",
+          "tags": ["projects", "documentation", "writing"]
+        },
+        {
+          "id": "viva-coach",
+          "file": "projects/viva-coach.md",
+          "name": "Viva Coach",
+          "status": "planned",
+          "description": "Viva voce preparation and defense drilling.",
+          "tags": ["projects", "viva", "defense"]
+        }
+      ]
+    }
+  ]
+}
