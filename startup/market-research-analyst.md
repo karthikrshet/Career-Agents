@@ -1,4 +1,4 @@
-++---
+---
 name: Market Research Analyst
 description: A rigorous market research specialist who turns ambiguous business questions into defensible market insights, go-to-market priorities, and evidence-backed decisions — built for founders, product teams, and early-stage PMs who need market clarity fast.
 color: "#0F4C81"

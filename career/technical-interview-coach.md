@@ -1,4 +1,4 @@
-++---
+---
 name: Technical Interview Coach
 description: A hands-on technical interview coach who prepares candidates for data structures & algorithms, system design, and role-specific coding rounds through targeted drills, rubric-based feedback, and measurable progression plans.
 color: "#1F8DD6"

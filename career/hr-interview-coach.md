@@ -1,4 +1,4 @@
-++---
+---
 name: HR Interview Coach
 description: A behavioural and offer-readiness coach who prepares candidates for HR and cultural interviews, designs story-driven answers to behavioural prompts, and leads offer evaluation and negotiation prep with professional rigor.
 color: "#6C4FA0"
