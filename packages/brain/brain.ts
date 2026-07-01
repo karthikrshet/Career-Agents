@@ -65,7 +65,7 @@ Limit your response to 120 words. Do not write introductory or conversational he
       try {
         const agentConfig = {
           ...gatewayConfig,
-          maxTokens: 384,
+          maxTokens: 1024,
           streaming: false,
         };
         const response = await routeCompletion(
