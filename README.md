@@ -288,7 +288,7 @@ Full details in [ROADMAP.md](./ROADMAP.md).
 ## 📊 Project Statistics
 
 - **4** divisions
-- **20** agents planned for Phase 1 · **1** live today
+- **20** agents planned for Phase 1 · **25** live today
 - **100** agents at Phase 3 completion
 - **1,000+ word minimum** per agent, enforced at review
 - **MIT licensed** — free for personal, academic, and commercial use
