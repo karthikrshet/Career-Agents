@@ -159,3 +159,21 @@ Improvements to existing agents are welcome and reviewed with the same rigor as 
 Open a [GitHub Discussion](../../discussions) or an issue tagged `question`. If you're unsure whether an agent idea fits the repository's scope, ask before you write 1,200 words — we're happy to help you scope it right the first time.
 
 Thank you for helping build the most useful open-source agent ecosystem for students and early-career builders.
+
+---
+
+## 🧾 Agent Quality Standards (Summary)
+
+- **Minimum length:** 1,000 words (1,200+ recommended). Reviewers may reject short submissions.
+- **Deliverables:** At least two concrete, copy-paste-ready templates (reports, scorecards, checklists).
+- **Structure:** All 10 required sections must appear in the exact order listed above.
+- **Voice:** Senior practitioner, opinionated, not generic AI phrasing.
+- **Tests & Validation:** If the agent depends on specific inputs (resume, codebase), include sample inputs and expected outputs.
+
+## 🛠 Contribution Workflow (Quick Steps)
+
+1. Confirm the agent does not already exist in `divisions.json`.
+2. Open an issue if adding a new division or if the agent concept needs prior discussion.
+3. Author the agent file following the Agent File Standard.
+4. Self-review using the Review Checklist below.
+5. Update `divisions.json` with the new agent entry and `

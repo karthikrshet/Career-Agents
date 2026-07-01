@@ -30,16 +30,34 @@
       "name": "Cursor",
       "status": "planned",
       "roadmap_phase": 5,
-      "method": null,
-      "notes": "Native .cursor/rules packaging planned for Phase 5."
+      "installation_target": "cursor://rules",
+      "supported": false,
+      "integration_notes": "Plan: export agent as .cursor rules package; mapping frontmatter fields to Cursor metadata."
     },
     {
       "id": "claude-code",
       "name": "Claude Code",
       "status": "planned",
       "roadmap_phase": 6,
-      "method": null,
-      "notes": "Native custom subagent packaging planned for Phase 6."
+      "installation_target": "claude://project/instructions",
+      "supported": false,
+      "integration_notes": "Plan: convert agent frontmatter and workflow into Claude Code subagent manifest. Uses convert.py converters."
+    },
+    {
+      "id": "codex",
+      "name": "Codex",
+      "status": "planned",
+      "installation_target": "codex://agent",
+      "supported": false,
+      "integration_notes": "Plan: emit instruction sets and tool bindings compatible with Codex packaging."
+    },
+    {
+      "id": "gemini-cli",
+      "name": "Gemini CLI",
+      "status": "planned",
+      "installation_target": "gemini://cli/load",
+      "supported": false,
+      "integration_notes": "Plan: generate CLI-friendly manifest and installable package; keep agent text as system prompt fallback."
     },
     {
       "id": "cli-installer",

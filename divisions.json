@@ -3,6 +3,7 @@
   "repository": "CodeMyFYP-Agents",
   "version": "0.1.0",
   "last_updated": "2026-07-02",
+  "registry_source": "agent-registry.json",
   "stats": {
     "total_divisions": 4,
     "phase_1_target": 20,

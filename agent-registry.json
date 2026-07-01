@@ -1,0 +1,80 @@
+{
+  "$schema": "https://codemyfyp-agents.dev/schema/agent-registry.json",
+  "repository": "CodeMyFYP-Agents",
+  "version": "0.1.0",
+  "generated": "2026-07-02",
+  "agents": [
+    {
+      "id": "placement-coach",
+      "name": "Placement Coach",
+      "file": "career/placement-coach.md",
+      "division": "career",
+      "status": "live",
+      "version": "0.1.0",
+      "description": "End-to-end placement strategist covering readiness audits, application strategy, and offer negotiation."
+    },
+    {
+      "id": "ats-resume-reviewer",
+      "name": "ATS Resume Reviewer",
+      "file": "career/ats-resume-reviewer.md",
+      "division": "career",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Line-by-line resume audits for ATS parsing survival and keyword alignment."
+    },
+    {
+      "id": "resume-strategist",
+      "name": "Resume Strategist",
+      "file": "career/resume-strategist.md",
+      "division": "career",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Narrative and positioning strategy behind resume content and structure."
+    },
+    {
+      "id": "linkedin-growth-advisor",
+      "name": "LinkedIn Growth Advisor",
+      "file": "career/linkedin-growth-advisor.md",
+      "division": "career",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Profile optimization and recruiter-visibility growth strategy."
+    },
+    {
+      "id": "technical-interview-coach",
+      "name": "Technical Interview Coach",
+      "file": "career/technical-interview-coach.md",
+      "division": "career",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "DSA, system design, and technical interview drilling with structured feedback."
+    },
+    {
+      "id": "hr-interview-coach",
+      "name": "HR Interview Coach",
+      "file": "career/hr-interview-coach.md",
+      "division": "career",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Behavioral interview prep, salary negotiation, and offer conversations."
+    },
+    {
+      "id": "founder-advisor",
+      "name": "Founder Advisor",
+      "file": "startup/founder-advisor.md",
+      "division": "startup",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Early-stage founder judgment, decision-making, and idea stress-testing."
+    },
+    {
+      "id": "market-research-analyst",
+      "name": "Market Research Analyst",
+      "file": "startup/market-research-analyst.md",
+      "division": "startup",
+      "status": "planned",
+      "version": "0.1.0",
+      "description": "Market sizing, competitor analysis, and idea validation."
+    }
+  ]
+}
