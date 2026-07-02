@@ -12,10 +12,10 @@
       "status": "live",
       "filename": "career/ats-resume-reviewer.md",
       "tags": [
+        "no-nonsense",
+        "career",
         "recruiter-aware",
         "forensic",
-        "career",
-        "no-nonsense",
         "exacting"
       ],
       "color": "#2A6F97",
@@ -30,11 +30,11 @@
       "status": "live",
       "filename": "career/career-accountability-coach.md",
       "tags": [
-        "career",
         "follow-through-obsessed",
+        "career",
         "non-judgmental",
-        "structured",
-        "warmly relentless"
+        "warmly relentless",
+        "structured"
       ],
       "color": "#D35400",
       "emoji": "\ud83d\udccc",
@@ -48,11 +48,11 @@
       "status": "live",
       "filename": "career/career-pivot-to-tech-advisor.md",
       "tags": [
-        "non-stem-background-affirming",
-        "career",
         "path-specific",
+        "career",
         "transition-realistic",
-        "evidence-obsessed"
+        "evidence-obsessed",
+        "non-stem-background-affirming"
       ],
       "color": "#1E8449",
       "emoji": "\u2699\ufe0f",
@@ -66,11 +66,11 @@
       "status": "live",
       "filename": "career/career-roadmap-strategist.md",
       "tags": [
-        "milestone-obsessed",
         "compounding-minded",
         "career",
-        "immune to short-term noise",
-        "long-horizon"
+        "milestone-obsessed",
+        "long-horizon",
+        "immune to short-term noise"
       ],
       "color": "#1E8449",
       "emoji": "\ud83d\uddfa\ufe0f",
@@ -84,11 +84,11 @@
       "status": "live",
       "filename": "career/career-transition-coach.md",
       "tags": [
+        "allergic to \"start from scratch",
         "career",
-        "bridge-builder",
         "decisive",
-        "asset-focused",
-        "allergic to \"start from scratch"
+        "bridge-builder",
+        "asset-focused"
       ],
       "color": "#7D3C98",
       "emoji": "\ud83d\udd00",
@@ -102,10 +102,10 @@
       "status": "live",
       "filename": "career/diversity-inclusion-career-coach.md",
       "tags": [
-        "career",
-        "systemic-not-personal",
         "equity-aware",
+        "career",
         "strengths-first",
+        "systemic-not-personal",
         "structurally honest"
       ],
       "color": "#7D3C98",
@@ -120,10 +120,10 @@
       "status": "live",
       "filename": "career/executive-job-search-coach.md",
       "tags": [
-        "discretion-first",
-        "long-game strategist",
-        "board-aware",
         "career",
+        "discretion-first",
+        "board-aware",
+        "long-game strategist",
         "network-over-resume"
       ],
       "color": "#1C2833",
@@ -138,10 +138,10 @@
       "status": "live",
       "filename": "career/freelance-career-advisor.md",
       "tags": [
-        "client-quality-over-quantity",
         "anti-hustle-culture",
         "career",
         "business-first",
+        "client-quality-over-quantity",
         "income-predictability-obsessed"
       ],
       "color": "#117A65",
@@ -156,11 +156,11 @@
       "status": "live",
       "filename": "career/graduate-career-advisor.md",
       "tags": [
-        "strategy-before-volume",
         "career",
-        "honest about timelines",
+        "anti-panic",
         "first-job-focused",
-        "anti-panic"
+        "strategy-before-volume",
+        "honest about timelines"
       ],
       "color": "#884EA0",
       "emoji": "\ud83c\udfaf",
@@ -174,11 +174,11 @@
       "status": "live",
       "filename": "career/hr-interview-coach.md",
       "tags": [
-        "reassuring",
         "strategic",
-        "empathetic",
         "career",
-        "bluntly-honest"
+        "bluntly-honest",
+        "reassuring",
+        "empathetic"
       ],
       "color": "#6C4FA0",
       "emoji": "\ud83e\udd1d",
@@ -192,11 +192,11 @@
       "status": "live",
       "filename": "career/internship-application-strategist.md",
       "tags": [
-        "polished",
-        "opportunity-driven",
+        "student-focused",
         "strategic",
         "career",
-        "student-focused"
+        "polished",
+        "opportunity-driven"
       ],
       "color": "#2E86C1",
       "emoji": "\ud83e\uddf3",
@@ -210,11 +210,11 @@
       "status": "live",
       "filename": "career/internship-success-coach.md",
       "tags": [
-        "warm but results-driven",
-        "return-offer-obsessed",
-        "performance-first",
         "career",
-        "visibility-aware"
+        "return-offer-obsessed",
+        "visibility-aware",
+        "warm but results-driven",
+        "performance-first"
       ],
       "color": "#2471A3",
       "emoji": "\ud83c\udf93",
@@ -228,11 +228,11 @@
       "status": "live",
       "filename": "career/job-search-strategist.md",
       "tags": [
-        "results-focused",
-        "career",
-        "organized",
         "proactive",
-        "practical"
+        "career",
+        "results-focused",
+        "practical",
+        "organized"
       ],
       "color": "#2471A3",
       "emoji": "\ud83c\udfaf",
@@ -247,10 +247,10 @@
       "filename": "career/linkedin-growth-advisor.md",
       "tags": [
         "personable",
-        "evidence-driven",
         "tactical",
         "career",
-        "network-savvy"
+        "network-savvy",
+        "evidence-driven"
       ],
       "color": "#0077B5",
       "emoji": "\ud83d\udd17",
@@ -264,11 +264,11 @@
       "status": "live",
       "filename": "career/networking-coach.md",
       "tags": [
-        "warm-but-strategic",
-        "career",
-        "deeply human",
         "systems-thinker",
-        "anti-hustle"
+        "career",
+        "warm-but-strategic",
+        "anti-hustle",
+        "deeply human"
       ],
       "color": "#1A5276",
       "emoji": "\ud83e\udd1d",
@@ -283,10 +283,10 @@
       "filename": "career/offer-evaluation-advisor.md",
       "tags": [
         "career-aware",
-        "impartial",
         "career",
-        "structured",
-        "analytical"
+        "impartial",
+        "analytical",
+        "structured"
       ],
       "color": "#117A65",
       "emoji": "\ud83e\uddfe",
@@ -300,11 +300,11 @@
       "status": "live",
       "filename": "career/personal-branding-advisor.md",
       "tags": [
-        "evidence-over-aesthetics",
-        "consistency-obsessed",
-        "anti-performative",
         "career",
-        "identity-first"
+        "anti-performative",
+        "consistency-obsessed",
+        "identity-first",
+        "evidence-over-aesthetics"
       ],
       "color": "#C0392B",
       "emoji": "\ud83c\udfa8",
@@ -318,11 +318,11 @@
       "status": "live",
       "filename": "career/placement-coach.md",
       "tags": [
-        "blunt",
-        "quietly encouraging",
-        "data-driven",
         "relentlessly practical",
-        "career"
+        "career",
+        "quietly encouraging",
+        "blunt",
+        "data-driven"
       ],
       "color": "#1B4D3E",
       "emoji": "\ud83c\udfaf",
@@ -336,11 +336,11 @@
       "status": "live",
       "filename": "career/product-manager-coach.md",
       "tags": [
-        "frameworks-over-feelings",
+        "data-literate",
+        "execution-focused",
         "career",
         "user-obsessed",
-        "data-literate",
-        "execution-focused"
+        "frameworks-over-feelings"
       ],
       "color": "#C0392B",
       "emoji": "\ud83e\udded",
@@ -354,11 +354,11 @@
       "status": "live",
       "filename": "career/recruiter-outreach-specialist.md",
       "tags": [
-        "recruiter-aware",
-        "follow-up-savvy",
         "career",
+        "recruiter-aware",
+        "targeted",
         "professional",
-        "targeted"
+        "follow-up-savvy"
       ],
       "color": "#D35400",
       "emoji": "\u2709\ufe0f",
@@ -372,11 +372,11 @@
       "status": "live",
       "filename": "career/remote-work-advisor.md",
       "tags": [
-        "visibility-conscious",
-        "async-native",
-        "anti-isolation-as-default",
+        "systems-thinker",
         "career",
-        "systems-thinker"
+        "anti-isolation-as-default",
+        "visibility-conscious",
+        "async-native"
       ],
       "color": "#1F618D",
       "emoji": "\ud83c\udf0d",
@@ -391,10 +391,10 @@
       "filename": "career/resume-strategist.md",
       "tags": [
         "strategic",
-        "empathetic",
-        "evidence-rooted",
         "career",
-        "narrative-first"
+        "narrative-first",
+        "evidence-rooted",
+        "empathetic"
       ],
       "color": "#3B6EA5",
       "emoji": "\u270d\ufe0f",
@@ -408,11 +408,11 @@
       "status": "live",
       "filename": "career/returnship-coach.md",
       "tags": [
-        "gap-reframer",
-        "anti-stigma",
         "career",
+        "confidence-rebuilder",
         "full-experience-honoring",
-        "confidence-rebuilder"
+        "gap-reframer",
+        "anti-stigma"
       ],
       "color": "#BA4A00",
       "emoji": "\ud83d\udd04",
@@ -426,11 +426,11 @@
       "status": "live",
       "filename": "career/salary-benchmark-analyst.md",
       "tags": [
-        "zero tolerance for guesswork",
         "data-first",
+        "precision-obsessed",
+        "zero tolerance for guesswork",
         "career",
-        "unsentimental about money",
-        "precision-obsessed"
+        "unsentimental about money"
       ],
       "color": "#1A6B3C",
       "emoji": "\ud83d\udcb0",
@@ -445,10 +445,10 @@
       "filename": "career/salary-negotiation-coach.md",
       "tags": [
         "strategic",
-        "direct",
         "career",
-        "candidate-first",
-        "data-backed"
+        "direct",
+        "data-backed",
+        "candidate-first"
       ],
       "color": "#C0392B",
       "emoji": "\ud83d\udcb0",
@@ -463,9 +463,9 @@
       "filename": "career/technical-interview-coach.md",
       "tags": [
         "pragmatic",
+        "rigorous",
         "career",
         "mentor-forward",
-        "rigorous",
         "outcome-oriented"
       ],
       "color": "#1F8DD6",
@@ -481,10 +481,10 @@
       "filename": "company-interviews/adobe-interview-coach.md",
       "tags": [
         "craft-focused",
+        "technically rigorous",
         "company-interviews",
-        "detail-loving",
         "product-empathetic",
-        "technically rigorous"
+        "detail-loving"
       ],
       "color": "#FA0F00",
       "emoji": "\ud83c\udfa8",
@@ -498,10 +498,10 @@
       "status": "live",
       "filename": "company-interviews/amazon-interview-coach.md",
       "tags": [
-        "exacting on story structure",
+        "principle-obsessed",
         "bar-raiser mindset",
         "company-interviews",
-        "principle-obsessed"
+        "exacting on story structure"
       ],
       "color": "#FF9900",
       "emoji": "\ud83d\udce6",
@@ -515,11 +515,11 @@
       "status": "live",
       "filename": "company-interviews/atlassian-interview-coach.md",
       "tags": [
-        "practically minded",
-        "company-interviews",
-        "collaborative",
         "values-literate",
-        "transparent"
+        "collaborative",
+        "transparent",
+        "practically minded",
+        "company-interviews"
       ],
       "color": "#0052CC",
       "emoji": "\ud83e\udde9",
@@ -533,11 +533,11 @@
       "status": "live",
       "filename": "company-interviews/google-interview-coach.md",
       "tags": [
-        "company-interviews",
         "calmly demanding",
         "rigorous",
-        "structure-obsessed",
-        "precise"
+        "precise",
+        "company-interviews",
+        "structure-obsessed"
       ],
       "color": "#4285F4",
       "emoji": "\ud83d\udd0e",
@@ -552,10 +552,10 @@
       "filename": "company-interviews/meta-interview-coach.md",
       "tags": [
         "fast-paced",
-        "impact-driven",
-        "company-interviews",
+        "direct",
         "unsentimental about scope",
-        "direct"
+        "company-interviews",
+        "impact-driven"
       ],
       "color": "#0668E1",
       "emoji": "\ud83d\ude80",
@@ -569,10 +569,10 @@
       "status": "live",
       "filename": "company-interviews/microsoft-interview-coach.md",
       "tags": [
-        "company-interviews",
-        "quietly rigorous",
         "growth-minded",
         "collaborative",
+        "quietly rigorous",
+        "company-interviews",
         "structured"
       ],
       "color": "#00A4EF",
@@ -587,11 +587,11 @@
       "status": "live",
       "filename": "company-interviews/netflix-interview-coach.md",
       "tags": [
-        "company-interviews",
+        "high standards",
         "candid",
-        "unimpressed by hedging",
+        "company-interviews",
         "judgment-focused",
-        "high standards"
+        "unimpressed by hedging"
       ],
       "color": "#E50914",
       "emoji": "\ud83c\udfac",
@@ -605,10 +605,10 @@
       "status": "live",
       "filename": "company-interviews/oracle-interview-coach.md",
       "tags": [
-        "methodical",
-        "company-interviews",
         "fundamentals-obsessed",
         "no patience for shortcuts",
+        "methodical",
+        "company-interviews",
         "thorough"
       ],
       "color": "#F80000",
@@ -623,11 +623,11 @@
       "status": "live",
       "filename": "company-interviews/salesforce-interview-coach.md",
       "tags": [
-        "company-interviews",
-        "warm",
-        "customer-obsessed",
         "values-literate",
-        "relationship-focused"
+        "relationship-focused",
+        "customer-obsessed",
+        "warm",
+        "company-interviews"
       ],
       "color": "#00A1E0",
       "emoji": "\u2601\ufe0f",
@@ -641,11 +641,11 @@
       "status": "live",
       "filename": "company-interviews/uber-interview-coach.md",
       "tags": [
-        "company-interviews",
-        "operationally sharp",
+        "direct",
         "scale-minded",
         "ownership-obsessed",
-        "direct"
+        "company-interviews",
+        "operationally sharp"
       ],
       "color": "#000000",
       "emoji": "\ud83d\ude97",
@@ -659,11 +659,11 @@
       "status": "live",
       "filename": "engineering/backend-architect.md",
       "tags": [
+        "engineering",
         "skeptical of shortcuts",
         "methodical",
-        "long-term-thinking",
         "unflashy",
-        "engineering"
+        "long-term-thinking"
       ],
       "color": "#4A4A4A",
       "emoji": "\ud83e\uddf1",
@@ -677,11 +677,11 @@
       "status": "live",
       "filename": "engineering/code-reviewer.md",
       "tags": [
-        "unimpressed by cleverness",
-        "teaching-oriented",
         "rigorous",
         "engineering",
-        "fair"
+        "unimpressed by cleverness",
+        "fair",
+        "teaching-oriented"
       ],
       "color": "#5C6BC0",
       "emoji": "\ud83d\udd2c",
@@ -695,11 +695,11 @@
       "status": "live",
       "filename": "engineering/database-engineer.md",
       "tags": [
-        "plan-reading",
-        "quietly relentless about correctness",
-        "precise",
+        "patient teacher",
         "engineering",
-        "patient teacher"
+        "plan-reading",
+        "precise",
+        "quietly relentless about correctness"
       ],
       "color": "#336791",
       "emoji": "\ud83d\uddc4\ufe0f",
@@ -713,11 +713,11 @@
       "status": "live",
       "filename": "engineering/devops-engineer.md",
       "tags": [
-        "methodical",
-        "allergic to manual steps",
         "engineering",
+        "reliability-obsessed",
+        "allergic to manual steps",
         "calm in incidents",
-        "reliability-obsessed"
+        "methodical"
       ],
       "color": "#FF6B35",
       "emoji": "\ud83d\udd27",
@@ -732,10 +732,10 @@
       "filename": "engineering/mern-architect.md",
       "tags": [
         "pragmatic",
-        "allergic to over-engineering",
         "scalability-focused",
         "engineering",
-        "opinionated"
+        "opinionated",
+        "allergic to over-engineering"
       ],
       "color": "#00684A",
       "emoji": "\ud83c\udfd7\ufe0f",
@@ -749,11 +749,11 @@
       "status": "live",
       "filename": "engineering/nextjs-performance-engineer.md",
       "tags": [
-        "quietly intense",
+        "engineering",
         "measurement-obsessed",
         "precise",
         "impatient with guesswork",
-        "engineering"
+        "quietly intense"
       ],
       "color": "#000000",
       "emoji": "\u26a1",
@@ -767,11 +767,11 @@
       "status": "live",
       "filename": "interview/behavioral-interview-specialist.md",
       "tags": [
-        "authentic",
         "retrospective-driven",
-        "evidence-oriented",
+        "authentic",
+        "interview",
         "structure-focused",
-        "interview"
+        "evidence-oriented"
       ],
       "color": "#C0392B",
       "emoji": "\ud83d\udde3\ufe0f",
@@ -785,11 +785,11 @@
       "status": "live",
       "filename": "interview/group-discussion-coach.md",
       "tags": [
+        "interview",
         "consensus-oriented",
-        "collaborative",
         "assertive-polite",
-        "structured",
-        "interview"
+        "collaborative",
+        "structured"
       ],
       "color": "#8E44AD",
       "emoji": "\ud83d\udc65",
@@ -804,10 +804,10 @@
       "filename": "interview/leadership-interview-coach.md",
       "tags": [
         "vision-oriented",
-        "executive-mature",
+        "interview",
         "direct-honest",
         "organization-focused",
-        "interview"
+        "executive-mature"
       ],
       "color": "#117A65",
       "emoji": "\ud83d\udc51",
@@ -821,11 +821,11 @@
       "status": "live",
       "filename": "interview/mock-interviewer.md",
       "tags": [
-        "diagnostic-critical",
         "simulation-realistic",
-        "candidate-challenging",
         "interview",
-        "follow-up-active"
+        "follow-up-active",
+        "candidate-challenging",
+        "diagnostic-critical"
       ],
       "color": "#7B241C",
       "emoji": "\ud83c\udfad",
@@ -840,10 +840,10 @@
       "filename": "interview/system-design-coach.md",
       "tags": [
         "logic-driven",
-        "trade-off-centered",
+        "interview",
         "architect-level",
         "scalability-obsessed",
-        "interview"
+        "trade-off-centered"
       ],
       "color": "#1F618D",
       "emoji": "\ud83c\udfd7\ufe0f",
@@ -857,11 +857,11 @@
       "status": "live",
       "filename": "networking/alumni-networking-advisor.md",
       "tags": [
-        "curious",
         "supportive",
+        "networking",
         "relationship-first",
-        "affinity-driven",
-        "networking"
+        "curious",
+        "affinity-driven"
       ],
       "color": "#7D6608",
       "emoji": "\ud83c\udf93",
@@ -875,11 +875,11 @@
       "status": "live",
       "filename": "networking/cold-outreach-specialist.md",
       "tags": [
-        "conversion-oriented",
-        "direct",
-        "professional",
         "value-first",
-        "networking"
+        "conversion-oriented",
+        "networking",
+        "direct",
+        "professional"
       ],
       "color": "#7E5109",
       "emoji": "\ud83d\udce7",
@@ -894,10 +894,10 @@
       "filename": "networking/linkedin-outreach-specialist.md",
       "tags": [
         "network-strategic",
+        "networking",
         "professional",
         "connection-centric",
-        "high-conversion",
-        "networking"
+        "high-conversion"
       ],
       "color": "#0E66C2",
       "emoji": "\ud83d\udcac",
@@ -911,11 +911,11 @@
       "status": "live",
       "filename": "networking/recruiter-communication-coach.md",
       "tags": [
-        "responsive",
-        "recruitment-fluent",
+        "networking",
         "clear-headed",
         "professional",
-        "networking"
+        "responsive",
+        "recruitment-fluent"
       ],
       "color": "#B03A2E",
       "emoji": "\ud83d\udcde",
@@ -929,11 +929,11 @@
       "status": "live",
       "filename": "networking/referral-strategy-coach.md",
       "tags": [
-        "relationship-respectful",
         "strategic",
+        "networking",
         "conversion-focused",
         "advocacy-driven",
-        "networking"
+        "relationship-respectful"
       ],
       "color": "#1F618D",
       "emoji": "\ud83e\udd1d",
@@ -947,11 +947,11 @@
       "status": "live",
       "filename": "projects/documentation-specialist.md",
       "tags": [
+        "precise",
         "projects",
         "quality-driven",
-        "precise",
-        "reader-first",
-        "structured"
+        "structured",
+        "reader-first"
       ],
       "color": "#6A5DAD",
       "emoji": "\ud83d\udcdd",
@@ -965,11 +965,11 @@
       "status": "live",
       "filename": "projects/final-year-project-advisor.md",
       "tags": [
-        "projects",
-        "academic",
-        "deadline-aware",
         "mentor-led",
-        "practical"
+        "academic",
+        "practical",
+        "projects",
+        "deadline-aware"
       ],
       "color": "#3B2D6B",
       "emoji": "\ud83c\udf93",
@@ -983,11 +983,11 @@
       "status": "live",
       "filename": "projects/research-assistant.md",
       "tags": [
-        "projects",
+        "evidence-based",
         "methodological",
-        "precise",
         "systematic",
-        "evidence-based"
+        "precise",
+        "projects"
       ],
       "color": "#4A6FA5",
       "emoji": "\ud83d\udcda",
@@ -1001,10 +1001,10 @@
       "status": "live",
       "filename": "projects/viva-coach.md",
       "tags": [
-        "confidence-building",
-        "projects",
-        "precise",
         "calm",
+        "precise",
+        "projects",
+        "confidence-building",
         "exam-aware"
       ],
       "color": "#C058A0",
@@ -1019,11 +1019,11 @@
       "status": "live",
       "filename": "resume/executive-resume-advisor.md",
       "tags": [
-        "resume",
         "strategic",
+        "corporate",
+        "resume",
         "boardroom-ready",
-        "outcomes-first",
-        "corporate"
+        "outcomes-first"
       ],
       "color": "#2C3E50",
       "emoji": "\ud83d\udc54",
@@ -1038,10 +1038,10 @@
       "filename": "resume/portfolio-reviewer.md",
       "tags": [
         "critique-honest",
-        "structure-driven",
         "resume",
-        "detail-oriented",
-        "proof-obsessed"
+        "proof-obsessed",
+        "structure-driven",
+        "detail-oriented"
       ],
       "color": "#D35400",
       "emoji": "\ud83c\udfa8",
@@ -1055,11 +1055,11 @@
       "status": "live",
       "filename": "resume/resume-achievement-writer.md",
       "tags": [
-        "impact-driven",
+        "precision-first",
         "resume",
         "anti-bullet-list",
         "metric-obsessed",
-        "precision-first"
+        "impact-driven"
       ],
       "color": "#4A235A",
       "emoji": "\ud83d\udcdd",
@@ -1073,10 +1073,10 @@
       "status": "live",
       "filename": "resume/resume-formatting-specialist.md",
       "tags": [
-        "resume",
-        "minimalist",
         "typographically precise",
+        "resume",
         "detail-obsessed",
+        "minimalist",
         "layout-first"
       ],
       "color": "#28B463",
@@ -1091,11 +1091,11 @@
       "status": "live",
       "filename": "resume/resume-keyword-optimizer.md",
       "tags": [
-        "resume",
-        "keyword-aligned",
+        "semantic-match",
         "search-engine-focused",
+        "resume",
         "analytical",
-        "semantic-match"
+        "keyword-aligned"
       ],
       "color": "#1A5276",
       "emoji": "\ud83d\udd0d",
@@ -1109,11 +1109,11 @@
       "status": "live",
       "filename": "startup/founder-advisor.md",
       "tags": [
-        "genuinely rooting for you",
-        "blunt",
         "pattern-matching",
+        "blunt",
         "startup",
-        "allergic to founder self-delusion"
+        "allergic to founder self-delusion",
+        "genuinely rooting for you"
       ],
       "color": "#7B2D26",
       "emoji": "\ud83e\udded",
@@ -1127,11 +1127,11 @@
       "status": "live",
       "filename": "startup/growth-strategist.md",
       "tags": [
-        "retention-first",
-        "startup",
-        "metrics-driven",
         "no-nonsense",
-        "experimental"
+        "retention-first",
+        "experimental",
+        "startup",
+        "metrics-driven"
       ],
       "color": "#1A936F",
       "emoji": "\ud83d\udcc8",
@@ -1145,11 +1145,11 @@
       "status": "live",
       "filename": "startup/market-research-analyst.md",
       "tags": [
-        "methodical",
-        "commercially-minded",
+        "strategist-first",
         "startup",
+        "methodical",
         "forensic",
-        "strategist-first"
+        "commercially-minded"
       ],
       "color": "#0F4C81",
       "emoji": "\ud83d\udd0e",
@@ -1164,14 +1164,1034 @@
       "filename": "startup/product-manager.md",
       "tags": [
         "pragmatic",
-        "strategic",
+        "customer-focused",
         "data-informed",
-        "startup",
-        "customer-focused"
+        "strategic",
+        "startup"
       ],
       "color": "#E9724C",
       "emoji": "\ud83e\udded",
       "vibe": "strategic, customer-focused, data-informed, pragmatic"
+    },
+    {
+      "id": "ai-agent-architect",
+      "name": "AI Agent Architect",
+      "division": "ai-engineering",
+      "description": "Designs autonomous agent loops, tool bindings, planning algorithms, and multi-agent coordination layers.",
+      "status": "live",
+      "filename": "ai-engineering/ai-agent-architect.md",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "color": "#0284C7",
+      "emoji": "\ud83e\udd16",
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+    },
+    {
+      "id": "ai-engineer-career-coach",
+      "name": "AI Engineer Career Coach",
+      "division": "ai-engineering",
+      "description": "Coaches developers pivoting into artificial intelligence, structuring study plans, project portfolios, and technical interview prep.",
+      "status": "live",
+      "filename": "ai-engineering/ai-engineer-career-coach.md",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "color": "#0284C7",
+      "emoji": "\ud83e\udd16",
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+    },
+    {
+      "id": "ai-product-builder",
+      "name": "AI Product Builder",
+      "division": "ai-engineering",
+      "description": "Helps founders and product managers scope AI features, evaluate API costs, and design user-centric AI feedback loops.",
+      "status": "live",
+      "filename": "ai-engineering/ai-product-builder.md",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "color": "#0284C7",
+      "emoji": "\ud83e\udd16",
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+    },
+    {
+      "id": "computer-vision-engineer",
+      "name": "Computer Vision Engineer",
+      "division": "ai-engineering",
+      "description": "Advises on convolutional networks, object detection systems, segmentation pipelines, and edge device deployment.",
+      "status": "live",
+      "filename": "ai-engineering/computer-vision-engineer.md",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "color": "#0284C7",
+      "emoji": "\ud83e\udd16",
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+    },
+    {
+      "id": "generative-ai-consultant",
+      "name": "Generative AI Consultant",
+      "division": "ai-engineering",
+      "description": "Guides organizations through generative AI strategy, risk mitigation, compliance, and ROI analysis.",
+      "status": "live",
+      "filename": "ai-engineering/generative-ai-consultant.md",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "color": "#0284C7",
+      "emoji": "\ud83e\udd16",
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+    },
+    {
+      "id": "llm-engineer",
+      "name": "LLM Engineer",
+      "division": "ai-engineering",
+      "description": "Advises on model selection, context window optimization, fine-tuning pipelines, and inference efficiency.",
+      "status": "live",
+      "filename": "ai-engineering/llm-engineer.md",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "color": "#0284C7",
+      "emoji": "\ud83e\udd16",
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+    },
+    {
+      "id": "machine-learning-engineer",
+      "name": "Machine Learning Engineer",
+      "division": "ai-engineering",
+      "description": "Designs classical ML systems, feature stores, model training pipelines, and dataset validations.",
+      "status": "live",
+      "filename": "ai-engineering/machine-learning-engineer.md",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "color": "#0284C7",
+      "emoji": "\ud83e\udd16",
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+    },
+    {
+      "id": "mlops-engineer",
+      "name": "MLOps Engineer",
+      "division": "ai-engineering",
+      "description": "Sets up continuous training pipelines, model registries, monitoring systems, and containerized deployment infrastructure.",
+      "status": "live",
+      "filename": "ai-engineering/mlops-engineer.md",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "color": "#0284C7",
+      "emoji": "\ud83e\udd16",
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+    },
+    {
+      "id": "prompt-engineer",
+      "name": "Prompt Engineer",
+      "division": "ai-engineering",
+      "description": "Designs systematic prompt templates, Few-Shot examples, Chain-of-Thought flows, and system instructions.",
+      "status": "live",
+      "filename": "ai-engineering/prompt-engineer.md",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "color": "#0284C7",
+      "emoji": "\ud83e\udd16",
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+    },
+    {
+      "id": "rag-architect",
+      "name": "RAG Architect",
+      "division": "ai-engineering",
+      "description": "Designs semantic search architectures, vector databases, chunking strategies, and metadata indexing pipelines.",
+      "status": "live",
+      "filename": "ai-engineering/rag-architect.md",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "color": "#0284C7",
+      "emoji": "\ud83e\udd16",
+      "vibe": "Deep Technical, Research-Oriented, Cognitive-First"
+    },
+    {
+      "id": "aws-cloud-architect",
+      "name": "AWS Cloud Architect",
+      "division": "cloud",
+      "description": "Designs highly available, secure, and well-architected systems on AWS.",
+      "status": "live",
+      "filename": "cloud/aws-cloud-architect.md",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "color": "#0369A1",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+    },
+    {
+      "id": "azure-cloud-engineer",
+      "name": "Azure Cloud Engineer",
+      "division": "cloud",
+      "description": "Configures and manages enterprise cloud deployments on Microsoft Azure.",
+      "status": "live",
+      "filename": "cloud/azure-cloud-engineer.md",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "color": "#0369A1",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+    },
+    {
+      "id": "cloud-cost-optimizer",
+      "name": "Cloud Cost Optimizer",
+      "division": "cloud",
+      "description": "Audits cloud invoices, identifying wastage, reserved instance coverages, and autoscaling opportunities.",
+      "status": "live",
+      "filename": "cloud/cloud-cost-optimizer.md",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "color": "#0369A1",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+    },
+    {
+      "id": "cloud-migration-advisor",
+      "name": "Cloud Migration Advisor",
+      "division": "cloud",
+      "description": "Plans datacenter migrations to public clouds using Rehost, Replatform, and Refactor pathways.",
+      "status": "live",
+      "filename": "cloud/cloud-migration-advisor.md",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "color": "#0369A1",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+    },
+    {
+      "id": "cloud-security-advisor",
+      "name": "Cloud Security Advisor",
+      "division": "cloud",
+      "description": "Reviews cloud security configurations, ensuring compliance with ISO 27001, SOC2, and CIS benchmarks.",
+      "status": "live",
+      "filename": "cloud/cloud-security-advisor.md",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "color": "#0369A1",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+    },
+    {
+      "id": "gcp-cloud-engineer",
+      "name": "GCP Cloud Engineer",
+      "division": "cloud",
+      "description": "Designs scale-ready infrastructure on Google Cloud Platform using native services.",
+      "status": "live",
+      "filename": "cloud/gcp-cloud-engineer.md",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "color": "#0369A1",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+    },
+    {
+      "id": "kubernetes-specialist",
+      "name": "Kubernetes Specialist",
+      "division": "cloud",
+      "description": "Configures production Kubernetes clusters, pod scheduling, network policies, and ingress controllers.",
+      "status": "live",
+      "filename": "cloud/kubernetes-specialist.md",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "color": "#0369A1",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+    },
+    {
+      "id": "platform-engineer",
+      "name": "Platform Engineer",
+      "division": "cloud",
+      "description": "Builds developer self-service tooling, landing zones, and continuous delivery systems.",
+      "status": "live",
+      "filename": "cloud/platform-engineer.md",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "color": "#0369A1",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+    },
+    {
+      "id": "site-reliability-engineer",
+      "name": "Site Reliability Engineer",
+      "division": "cloud",
+      "description": "Defines service level objectives, error budgets, incident response playbooks, and disaster recovery strategies.",
+      "status": "live",
+      "filename": "cloud/site-reliability-engineer.md",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "color": "#0369A1",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+    },
+    {
+      "id": "terraform-specialist",
+      "name": "Terraform Specialist",
+      "division": "cloud",
+      "description": "Writes modular Terraform, structuring state files, workspace variables, and locks.",
+      "status": "live",
+      "filename": "cloud/terraform-specialist.md",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "color": "#0369A1",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust"
+    },
+    {
+      "id": "application-security-specialist",
+      "name": "Application Security Specialist",
+      "division": "cybersecurity",
+      "description": "Audits application source code for OWASP Top 10 vulnerabilities, configuring SAST/DAST pipelines.",
+      "status": "live",
+      "filename": "cybersecurity/application-security-specialist.md",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "color": "#DC2626",
+      "emoji": "\ud83d\udd12",
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+    },
+    {
+      "id": "cloud-security-engineer",
+      "name": "Cloud Security Engineer",
+      "division": "cybersecurity",
+      "description": "Implements IAM least privilege policies, cloud security posture monitoring, and secrets managers.",
+      "status": "live",
+      "filename": "cybersecurity/cloud-security-engineer.md",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "color": "#DC2626",
+      "emoji": "\ud83d\udd12",
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+    },
+    {
+      "id": "ethical-hacking-advisor",
+      "name": "Ethical Hacking Advisor",
+      "division": "cybersecurity",
+      "description": "Conducts threat simulations and red-team operations across human, network, and application boundaries.",
+      "status": "live",
+      "filename": "cybersecurity/ethical-hacking-advisor.md",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "color": "#DC2626",
+      "emoji": "\ud83d\udd12",
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+    },
+    {
+      "id": "governance-risk-compliance-advisor",
+      "name": "Governance Risk Compliance Advisor",
+      "division": "cybersecurity",
+      "description": "Audits processes and designs system configurations to satisfy compliance rules (SOC2, ISO 27001, GDPR).",
+      "status": "live",
+      "filename": "cybersecurity/governance-risk-compliance-advisor.md",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "color": "#DC2626",
+      "emoji": "\ud83d\udd12",
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+    },
+    {
+      "id": "identity-access-management-specialist",
+      "name": "Identity Access Management Specialist",
+      "division": "cybersecurity",
+      "description": "Designs directory service integrations, access management controls, and provisioning flows.",
+      "status": "live",
+      "filename": "cybersecurity/identity-access-management-specialist.md",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "color": "#DC2626",
+      "emoji": "\ud83d\udd12",
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+    },
+    {
+      "id": "incident-response-specialist",
+      "name": "Incident Response Specialist",
+      "division": "cybersecurity",
+      "description": "Triages active security breaches, structures containment strategies, and performs digital forensics.",
+      "status": "live",
+      "filename": "cybersecurity/incident-response-specialist.md",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "color": "#DC2626",
+      "emoji": "\ud83d\udd12",
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+    },
+    {
+      "id": "penetration-testing-coach",
+      "name": "Penetration Testing Coach",
+      "division": "cybersecurity",
+      "description": "Runs network-level vulnerability assessments and simulated penetration testing.",
+      "status": "live",
+      "filename": "cybersecurity/penetration-testing-coach.md",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "color": "#DC2626",
+      "emoji": "\ud83d\udd12",
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+    },
+    {
+      "id": "security-architect",
+      "name": "Security Architect",
+      "division": "cybersecurity",
+      "description": "Designs global zero-trust security frameworks, IAM directories, and endpoint controls.",
+      "status": "live",
+      "filename": "cybersecurity/security-architect.md",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "color": "#DC2626",
+      "emoji": "\ud83d\udd12",
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+    },
+    {
+      "id": "security-engineer",
+      "name": "Security Engineer",
+      "division": "cybersecurity",
+      "description": "Designs secure infrastructure boundaries, perimeter defense networks, and encryption strategies.",
+      "status": "live",
+      "filename": "cybersecurity/security-engineer.md",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "color": "#DC2626",
+      "emoji": "\ud83d\udd12",
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+    },
+    {
+      "id": "security-operations-analyst",
+      "name": "Security Operations Analyst",
+      "division": "cybersecurity",
+      "description": "Analyzes security telemetry logs, configure SIEM dashboards, and responds to alerts.",
+      "status": "live",
+      "filename": "cybersecurity/security-operations-analyst.md",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "color": "#DC2626",
+      "emoji": "\ud83d\udd12",
+      "vibe": "Zero-Trust, Red-Teaming, Risk-Averse"
+    },
+    {
+      "id": "community-builder",
+      "name": "Community Builder",
+      "division": "open-source",
+      "description": "Designs community portals, discord guidelines, online events, and contributor recognition models.",
+      "status": "live",
+      "filename": "open-source/community-builder.md",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "color": "#16A34A",
+      "emoji": "\ud83d\udcd6",
+      "vibe": "Collaborative, Community-Driven, Documentation-First"
+    },
+    {
+      "id": "developer-advocate",
+      "name": "Developer Advocate",
+      "division": "open-source",
+      "description": "Bridges developer feedback with core product roadmaps, producing workshops and api demos.",
+      "status": "live",
+      "filename": "open-source/developer-advocate.md",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "color": "#16A34A",
+      "emoji": "\ud83d\udcd6",
+      "vibe": "Collaborative, Community-Driven, Documentation-First"
+    },
+    {
+      "id": "devrel-strategist",
+      "name": "DevRel Strategist",
+      "division": "open-source",
+      "description": "Aligns developer programs with business metrics, tracking developer acquisitions and community ROI.",
+      "status": "live",
+      "filename": "open-source/devrel-strategist.md",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "color": "#16A34A",
+      "emoji": "\ud83d\udcd6",
+      "vibe": "Collaborative, Community-Driven, Documentation-First"
+    },
+    {
+      "id": "github-growth-advisor",
+      "name": "GitHub Growth Advisor",
+      "division": "open-source",
+      "description": "Advises on repository metadata, README copywriting, issue curation, and community visibility.",
+      "status": "live",
+      "filename": "open-source/github-growth-advisor.md",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "color": "#16A34A",
+      "emoji": "\ud83d\udcd6",
+      "vibe": "Collaborative, Community-Driven, Documentation-First"
+    },
+    {
+      "id": "maintainer-coach",
+      "name": "Maintainer Coach",
+      "division": "open-source",
+      "description": "Advises project leads on contributor onboarding, issue labeling, license compliance, and roadmap publishing.",
+      "status": "live",
+      "filename": "open-source/maintainer-coach.md",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "color": "#16A34A",
+      "emoji": "\ud83d\udcd6",
+      "vibe": "Collaborative, Community-Driven, Documentation-First"
+    },
+    {
+      "id": "open-source-funding-advisor",
+      "name": "Open Source Funding Advisor",
+      "division": "open-source",
+      "description": "Guides projects on sponsor directories (GitHub Sponsors, Open Collective) and grant applications.",
+      "status": "live",
+      "filename": "open-source/open-source-funding-advisor.md",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "color": "#16A34A",
+      "emoji": "\ud83d\udcd6",
+      "vibe": "Collaborative, Community-Driven, Documentation-First"
+    },
+    {
+      "id": "open-source-mentor",
+      "name": "Open Source Mentor",
+      "division": "open-source",
+      "description": "Coaches new contributors on git branches, repository issues, and pull request etiquette.",
+      "status": "live",
+      "filename": "open-source/open-source-mentor.md",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "color": "#16A34A",
+      "emoji": "\ud83d\udcd6",
+      "vibe": "Collaborative, Community-Driven, Documentation-First"
+    },
+    {
+      "id": "oss-contributor-coach",
+      "name": "OSS Contributor Coach",
+      "division": "open-source",
+      "description": "Helps developers scale contributions from single commits to regular maintainers of key libraries.",
+      "status": "live",
+      "filename": "open-source/oss-contributor-coach.md",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "color": "#16A34A",
+      "emoji": "\ud83d\udcd6",
+      "vibe": "Collaborative, Community-Driven, Documentation-First"
+    },
+    {
+      "id": "project-maintenance-specialist",
+      "name": "Project Maintenance Specialist",
+      "division": "open-source",
+      "description": "Automates project builds, configuring lint rules, tests, and publishing workflows.",
+      "status": "live",
+      "filename": "open-source/project-maintenance-specialist.md",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "color": "#16A34A",
+      "emoji": "\ud83d\udcd6",
+      "vibe": "Collaborative, Community-Driven, Documentation-First"
+    },
+    {
+      "id": "technical-writing-advisor",
+      "name": "Technical Writing Advisor",
+      "division": "open-source",
+      "description": "Guides developers in writing clean API guides, release notes, code reviews, and README docs.",
+      "status": "live",
+      "filename": "open-source/technical-writing-advisor.md",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "color": "#16A34A",
+      "emoji": "\ud83d\udcd6",
+      "vibe": "Collaborative, Community-Driven, Documentation-First"
+    },
+    {
+      "id": "analytics-engineer",
+      "name": "Analytics Engineer",
+      "division": "data-engineering",
+      "description": "Structures data transformation layers using dbt (data build tool), creating documentation and testing frameworks.",
+      "status": "live",
+      "filename": "data-engineering/analytics-engineer.md",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "color": "#7C3AED",
+      "emoji": "\ud83d\udcca",
+      "vibe": "Transactional, Data-Driven, Analytical"
+    },
+    {
+      "id": "business-intelligence-specialist",
+      "name": "Business Intelligence Specialist",
+      "division": "data-engineering",
+      "description": "Designs semantic datasets, dashboards, and analytical metrics using PowerBI or Tableau.",
+      "status": "live",
+      "filename": "data-engineering/business-intelligence-specialist.md",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "color": "#7C3AED",
+      "emoji": "\ud83d\udcca",
+      "vibe": "Transactional, Data-Driven, Analytical"
+    },
+    {
+      "id": "data-architect",
+      "name": "Data Architect",
+      "division": "data-engineering",
+      "description": "Designs corporate data strategies, data mesh architectures, and warehouse schemas.",
+      "status": "live",
+      "filename": "data-engineering/data-architect.md",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "color": "#7C3AED",
+      "emoji": "\ud83d\udcca",
+      "vibe": "Transactional, Data-Driven, Analytical"
+    },
+    {
+      "id": "data-engineer",
+      "name": "Data Engineer",
+      "division": "data-engineering",
+      "description": "Designs robust analytical pipeline systems, feature databases, and ingestion engines.",
+      "status": "live",
+      "filename": "data-engineering/data-engineer.md",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "color": "#7C3AED",
+      "emoji": "\ud83d\udcca",
+      "vibe": "Transactional, Data-Driven, Analytical"
+    },
+    {
+      "id": "data-governance-advisor",
+      "name": "Data Governance Advisor",
+      "division": "data-engineering",
+      "description": "Defines access control policies, data cataloging rules, and column-level masking models.",
+      "status": "live",
+      "filename": "data-engineering/data-governance-advisor.md",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "color": "#7C3AED",
+      "emoji": "\ud83d\udcca",
+      "vibe": "Transactional, Data-Driven, Analytical"
+    },
+    {
+      "id": "data-platform-engineer",
+      "name": "Data Platform Engineer",
+      "division": "data-engineering",
+      "description": "Deploys cloud-based data storage and analysis platforms using Snowflake, Databricks, or BigQuery.",
+      "status": "live",
+      "filename": "data-engineering/data-platform-engineer.md",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "color": "#7C3AED",
+      "emoji": "\ud83d\udcca",
+      "vibe": "Transactional, Data-Driven, Analytical"
+    },
+    {
+      "id": "data-quality-engineer",
+      "name": "Data Quality Engineer",
+      "division": "data-engineering",
+      "description": "Designs automated validation routines, alerting systems, and data drift dashboards.",
+      "status": "live",
+      "filename": "data-engineering/data-quality-engineer.md",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "color": "#7C3AED",
+      "emoji": "\ud83d\udcca",
+      "vibe": "Transactional, Data-Driven, Analytical"
+    },
+    {
+      "id": "database-performance-specialist",
+      "name": "Database Performance Specialist",
+      "division": "data-engineering",
+      "description": "Audits database resource consumption, index efficiency, and query logs to optimize latency.",
+      "status": "live",
+      "filename": "data-engineering/database-performance-specialist.md",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "color": "#7C3AED",
+      "emoji": "\ud83d\udcca",
+      "vibe": "Transactional, Data-Driven, Analytical"
+    },
+    {
+      "id": "etl-specialist",
+      "name": "ETL Specialist",
+      "division": "data-engineering",
+      "description": "Designs high-throughput batch ETL/ELT pipelines using Airflow, Prefect, or Dagster.",
+      "status": "live",
+      "filename": "data-engineering/etl-specialist.md",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "color": "#7C3AED",
+      "emoji": "\ud83d\udcca",
+      "vibe": "Transactional, Data-Driven, Analytical"
+    },
+    {
+      "id": "stream-processing-specialist",
+      "name": "Stream Processing Specialist",
+      "division": "data-engineering",
+      "description": "Designs high-velocity real-time analytical event flows using Kafka or Flink.",
+      "status": "live",
+      "filename": "data-engineering/stream-processing-specialist.md",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "color": "#7C3AED",
+      "emoji": "\ud83d\udcca",
+      "vibe": "Transactional, Data-Driven, Analytical"
+    },
+    {
+      "id": "api-adoption-consultant",
+      "name": "API Adoption Consultant",
+      "division": "devrel",
+      "description": "Reviews developer APIs, SDK structures, and documentation onboarding to reduce activation barriers.",
+      "status": "live",
+      "filename": "devrel/api-adoption-consultant.md",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "color": "#B45309",
+      "emoji": "\ud83d\udce3",
+      "vibe": "Engaging, Empathetic, Community-Centric"
+    },
+    {
+      "id": "community-growth-specialist",
+      "name": "Community Growth Specialist",
+      "division": "devrel",
+      "description": "Designs programmatic referral schemes, user acquisition initiatives, and event plans.",
+      "status": "live",
+      "filename": "devrel/community-growth-specialist.md",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "color": "#B45309",
+      "emoji": "\ud83d\udce3",
+      "vibe": "Engaging, Empathetic, Community-Centric"
+    },
+    {
+      "id": "conference-speaker-coach",
+      "name": "Conference Speaker Coach",
+      "division": "devrel",
+      "description": "Guides developers in preparing technical talk submissions, slide structures, and slide delivery.",
+      "status": "live",
+      "filename": "devrel/conference-speaker-coach.md",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "color": "#B45309",
+      "emoji": "\ud83d\udce3",
+      "vibe": "Engaging, Empathetic, Community-Centric"
+    },
+    {
+      "id": "content-strategy-advisor",
+      "name": "Content Strategy Advisor",
+      "division": "devrel",
+      "description": "Plans technical content calendars, writing schedules, and publication distributions.",
+      "status": "live",
+      "filename": "devrel/content-strategy-advisor.md",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "color": "#B45309",
+      "emoji": "\ud83d\udce3",
+      "vibe": "Engaging, Empathetic, Community-Centric"
+    },
+    {
+      "id": "developer-education-specialist",
+      "name": "Developer Education Specialist",
+      "division": "devrel",
+      "description": "Designs tutorials, structured learning paths, sample project repos, and technical documentation.",
+      "status": "live",
+      "filename": "devrel/developer-education-specialist.md",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "color": "#B45309",
+      "emoji": "\ud83d\udce3",
+      "vibe": "Engaging, Empathetic, Community-Centric"
+    },
+    {
+      "id": "developer-evangelist",
+      "name": "Developer Evangelist",
+      "division": "devrel",
+      "description": "Presents product value at developer conferences, online meetups, and key technical forums.",
+      "status": "live",
+      "filename": "devrel/developer-evangelist.md",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "color": "#B45309",
+      "emoji": "\ud83d\udce3",
+      "vibe": "Engaging, Empathetic, Community-Centric"
+    },
+    {
+      "id": "developer-experience-specialist",
+      "name": "Developer Experience Specialist",
+      "division": "devrel",
+      "description": "Reviews local developer environments, CLI ease-of-use, config errors, and initial setup steps.",
+      "status": "live",
+      "filename": "devrel/developer-experience-specialist.md",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "color": "#B45309",
+      "emoji": "\ud83d\udce3",
+      "vibe": "Engaging, Empathetic, Community-Centric"
+    },
+    {
+      "id": "developer-relations-manager",
+      "name": "Developer Relations Manager",
+      "division": "devrel",
+      "description": "Manages developer engagement programs, ambassador networks, and metric analysis.",
+      "status": "live",
+      "filename": "devrel/developer-relations-manager.md",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "color": "#B45309",
+      "emoji": "\ud83d\udce3",
+      "vibe": "Engaging, Empathetic, Community-Centric"
+    },
+    {
+      "id": "technical-community-builder",
+      "name": "Technical Community Builder",
+      "division": "devrel",
+      "description": "Moderates developer forums, discord/slack servers, and handles user onboarding strategies.",
+      "status": "live",
+      "filename": "devrel/technical-community-builder.md",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "color": "#B45309",
+      "emoji": "\ud83d\udce3",
+      "vibe": "Engaging, Empathetic, Community-Centric"
+    },
+    {
+      "id": "technical-marketing-advisor",
+      "name": "Technical Marketing Advisor",
+      "division": "devrel",
+      "description": "Aligns product positioning with developer interests, writing copy and analyzing competition.",
+      "status": "live",
+      "filename": "devrel/technical-marketing-advisor.md",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "color": "#B45309",
+      "emoji": "\ud83d\udce3",
+      "vibe": "Engaging, Empathetic, Community-Centric"
     }
   ]
 }
