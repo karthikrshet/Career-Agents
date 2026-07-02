@@ -394,6 +394,6 @@ This project is licensed under the [MIT License](./LICENSE).
 
 <div align="center">
 
-**Built by CodeMyFYP for students, technologists, and founders.**
+**Built by Karthik Rajesh Shet Founder of CodeMyFYP for students, technologists, and founders.**
 
 </div>
