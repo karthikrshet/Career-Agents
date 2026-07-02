@@ -104,13 +104,13 @@ python scripts/validate.py
 3. If install validation is supported for your platform, run it:
 
 ```powershell
-scripts/install.ps1 -ValidateOnly
+scripts/install.ps1 -DryRun
 ```
 
 or:
 
 ```bash
-scripts/install.sh --validate-only
+scripts/install.sh --dry-run
 ```
 
 4. Check JSON formatting for:

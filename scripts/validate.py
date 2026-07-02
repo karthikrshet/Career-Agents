@@ -5,7 +5,7 @@ import os
 import sys
 from pathlib import Path
 
-REQUIRED_DIRS = ['career', 'engineering', 'startup', 'projects']
+REQUIRED_DIRS = ['career', 'company-interviews', 'engineering', 'interview', 'networking', 'projects', 'resume', 'startup']
 REQUIRED_FIELDS = {'name', 'description', 'color', 'emoji', 'vibe'}
 REQUIRED_HEADINGS = [
     '## 🧠 Your Identity & Memory',

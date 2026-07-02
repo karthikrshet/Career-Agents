@@ -10,7 +10,7 @@ assignees: ''
 Provide a kebab-case identifier and a human-friendly display name.
 
 **Division**
-Which division should this agent belong to? (career, engineering, startup, projects)
+Which division should this agent belong to? (career, company-interviews, engineering, interview, networking, projects, resume, startup)
 
 **One-sentence description**
 What does this agent do and who is it for?

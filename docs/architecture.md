@@ -13,10 +13,15 @@ This architecture guide covers repository layout, file responsibilities, metadat
 ## Repository Map
 
 ```text
-career/          Career, placement, internship, job-search, resume, interview, and offer agents.
-engineering/     Developer and software engineering agents.
-startup/         Founder, product, market, and growth agents.
-projects/        Academic, final-year-project, research, documentation, and viva agents.
+career/          Career, placement, internship, job-search, and general career strategy agents.
+company-interviews/
+                 Target-company-specific interview coaches (FAANG+).
+engineering/     Developer and software engineering architects and performance specialists.
+interview/       Specialized interview drilling, mock interviewing, behavioral strategies, and group discussions.
+networking/      Alumni outreach, LinkedIn messaging, recruiter screening, and referral strategies.
+projects/        Academic, final-year-project, research, documentation, and viva defense agents.
+resume/          Technical resume achievements writing, keyword optimization, layout design, and portfolios.
+startup/         Founder strategy, validation, MVP scoping, growth loops, and competitor analysis.
 docs/            Maintainer and contributor documentation.
 workflows/       Repeatable operating systems that combine multiple agents for a goal.
 scripts/         Validation, conversion, and install tooling.

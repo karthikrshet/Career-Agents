@@ -1,233 +1,1177 @@
 {
   "$schema": "https://codemyfyp-agents.dev/schema/agent-registry.json",
   "repository": "Career-Agents",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "generated": "2026-07-02",
   "agents": [
     {
-      "id": "placement-coach",
-      "name": "Placement Coach",
-      "file": "career/placement-coach.md",
-      "division": "career",
-      "status": "live",
-      "version": "0.1.0",
-      "description": "End-to-end placement strategist covering readiness audits, application strategy, and offer negotiation."
-    },
-    {
       "id": "ats-resume-reviewer",
       "name": "ATS Resume Reviewer",
-      "file": "career/ats-resume-reviewer.md",
       "division": "career",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Line-by-line resume audits for ATS parsing survival and keyword alignment."
+      "description": "A focused, line-by-line resume auditor who optimizes resume structure, language, and keyword signaling to survive ATS parsing and convert recruiter skim-time into interview invites.",
+      "status": "live",
+      "filename": "career/ats-resume-reviewer.md",
+      "tags": [
+        "recruiter-aware",
+        "career",
+        "forensic",
+        "no-nonsense",
+        "exacting"
+      ],
+      "color": "#2A6F97",
+      "emoji": "\ud83e\uddfe",
+      "vibe": "forensic, exacting, recruiter-aware, no-nonsense"
     },
     {
-      "id": "resume-strategist",
-      "name": "Resume Strategist",
-      "file": "career/resume-strategist.md",
+      "id": "career-accountability-coach",
+      "name": "Career Accountability Coach",
       "division": "career",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Narrative and positioning strategy behind resume content and structure."
+      "description": "A structured, non-judgmental accountability partner who converts career goals into weekly commitments, tracks follow-through with honest data, diagnoses why execution is failing, and rebuilds momentum when it stalls \u2014 without letting candidates off the hook or crushing them with guilt.",
+      "status": "live",
+      "filename": "career/career-accountability-coach.md",
+      "tags": [
+        "career",
+        "structured",
+        "follow-through-obsessed",
+        "warmly relentless",
+        "non-judgmental"
+      ],
+      "color": "#D35400",
+      "emoji": "\ud83d\udccc",
+      "vibe": "structured, non-judgmental, follow-through-obsessed, warmly relentless"
     },
     {
-      "id": "linkedin-growth-advisor",
-      "name": "LinkedIn Growth Advisor",
-      "file": "career/linkedin-growth-advisor.md",
+      "id": "career-pivot-to-tech-advisor",
+      "name": "Career Pivot to Tech Advisor",
       "division": "career",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Profile optimization and recruiter-visibility growth strategy."
+      "description": "A transition strategist for non-technical professionals entering the tech industry \u2014 covering entry point selection (software engineering, product, data, UX, technical sales, DevRel, and more), learning path design, portfolio development, narrative construction, and the tactical job search mechanics specific to tech industry hiring.",
+      "status": "live",
+      "filename": "career/career-pivot-to-tech-advisor.md",
+      "tags": [
+        "path-specific",
+        "career",
+        "non-stem-background-affirming",
+        "transition-realistic",
+        "evidence-obsessed"
+      ],
+      "color": "#1E8449",
+      "emoji": "\u2699\ufe0f",
+      "vibe": "transition-realistic, path-specific, evidence-obsessed, non-STEM-background-affirming"
     },
     {
-      "id": "technical-interview-coach",
-      "name": "Technical Interview Coach",
-      "file": "career/technical-interview-coach.md",
+      "id": "career-roadmap-strategist",
+      "name": "Career Roadmap Strategist",
       "division": "career",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "DSA, system design, and technical interview drilling with structured feedback."
+      "description": "A long-horizon career architect who builds milestone-based, decade-spanning career roadmaps \u2014 turning vague ambitions into sequenced, evidence-gated development plans that compound skill, reputation, and leverage over time.",
+      "status": "live",
+      "filename": "career/career-roadmap-strategist.md",
+      "tags": [
+        "milestone-obsessed",
+        "compounding-minded",
+        "career",
+        "long-horizon",
+        "immune to short-term noise"
+      ],
+      "color": "#1E8449",
+      "emoji": "\ud83d\uddfa\ufe0f",
+      "vibe": "long-horizon, milestone-obsessed, compounding-minded, immune to short-term noise"
+    },
+    {
+      "id": "career-transition-coach",
+      "name": "Career Transition Coach",
+      "division": "career",
+      "description": "A decisive, pattern-aware career transition coach who helps professionals move from one field, function, or industry into another \u2014 by mapping transferable assets, designing bridge strategies, and turning \"I don't have the background for this\" into a concrete, evidence-backed plan that works.",
+      "status": "live",
+      "filename": "career/career-transition-coach.md",
+      "tags": [
+        "career",
+        "asset-focused",
+        "decisive",
+        "bridge-builder",
+        "allergic to \"start from scratch"
+      ],
+      "color": "#7D3C98",
+      "emoji": "\ud83d\udd00",
+      "vibe": "decisive, bridge-builder, asset-focused, allergic to \"start from scratch"
+    },
+    {
+      "id": "diversity-inclusion-career-coach",
+      "name": "Diversity & Inclusion Career Coach",
+      "division": "career",
+      "description": "A career strategist specializing in helping underrepresented professionals navigate systemic barriers, bias in hiring, and unequal advancement dynamics \u2014 providing concrete, evidence-informed strategies that turn awareness of barriers into actionable career architecture.",
+      "status": "live",
+      "filename": "career/diversity-inclusion-career-coach.md",
+      "tags": [
+        "strengths-first",
+        "career",
+        "structurally honest",
+        "equity-aware",
+        "systemic-not-personal"
+      ],
+      "color": "#7D3C98",
+      "emoji": "\ud83c\udf31",
+      "vibe": "equity-aware, structurally honest, strengths-first, systemic-not-personal"
+    },
+    {
+      "id": "executive-job-search-coach",
+      "name": "Executive Job Search Coach",
+      "division": "career",
+      "description": "A senior-level career strategist who helps VP, Director, and C-suite professionals navigate the fundamentally different world of executive hiring \u2014 where most roles never appear on job boards, where personal brand and reputation are the primary search vehicles, and where the quality of your board and peer network determines your access more than your resume.",
+      "status": "live",
+      "filename": "career/executive-job-search-coach.md",
+      "tags": [
+        "discretion-first",
+        "board-aware",
+        "career",
+        "long-game strategist",
+        "network-over-resume"
+      ],
+      "color": "#1C2833",
+      "emoji": "\ud83c\udfdb\ufe0f",
+      "vibe": "discretion-first, network-over-resume, board-aware, long-game strategist"
+    },
+    {
+      "id": "freelance-career-advisor",
+      "name": "Freelance Career Advisor",
+      "division": "career",
+      "description": "A pragmatic freelance business strategist who helps independent professionals build sustainable, client-diversified freelance careers \u2014 covering rate-setting, client acquisition, portfolio positioning, contract fundamentals, and the transition from feast-or-famine to predictable income.",
+      "status": "live",
+      "filename": "career/freelance-career-advisor.md",
+      "tags": [
+        "career",
+        "client-quality-over-quantity",
+        "business-first",
+        "anti-hustle-culture",
+        "income-predictability-obsessed"
+      ],
+      "color": "#117A65",
+      "emoji": "\ud83e\udde9",
+      "vibe": "business-first, income-predictability-obsessed, anti-hustle-culture, client-quality-over-quantity"
+    },
+    {
+      "id": "graduate-career-advisor",
+      "name": "Graduate Career Advisor",
+      "division": "career",
+      "description": "A strategic first-job advisor for recent graduates who cuts through the noise of \"apply everywhere\" and \"network more\" to build targeted, evidence-backed launch strategies that get new graduates into the right first role \u2014 not just any role \u2014 within a realistic timeline.",
+      "status": "live",
+      "filename": "career/graduate-career-advisor.md",
+      "tags": [
+        "anti-panic",
+        "first-job-focused",
+        "career",
+        "honest about timelines",
+        "strategy-before-volume"
+      ],
+      "color": "#884EA0",
+      "emoji": "\ud83c\udfaf",
+      "vibe": "first-job-focused, anti-panic, strategy-before-volume, honest about timelines"
     },
     {
       "id": "hr-interview-coach",
       "name": "HR Interview Coach",
-      "file": "career/hr-interview-coach.md",
       "division": "career",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Behavioral interview prep, salary negotiation, and offer conversations."
-    },
-    {
-      "id": "founder-advisor",
-      "name": "Founder Advisor",
-      "file": "startup/founder-advisor.md",
-      "division": "startup",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Early-stage founder judgment, decision-making, and idea stress-testing."
-    },
-    {
-      "id": "market-research-analyst",
-      "name": "Market Research Analyst",
-      "file": "startup/market-research-analyst.md",
-      "division": "startup",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Market sizing, competitor analysis, and idea validation."
-    },
-    {
-      "id": "product-manager",
-      "name": "Product Manager",
-      "file": "startup/product-manager.md",
-      "division": "startup",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Product strategy, roadmap prioritization, and MVP definition for early-stage startups."
-    },
-    {
-      "id": "growth-strategist",
-      "name": "Growth Strategist",
-      "file": "startup/growth-strategist.md",
-      "division": "startup",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Growth loops, customer acquisition, and retention planning for early-stage products."
-    },
-    {
-      "id": "mern-architect",
-      "name": "MERN Architect",
-      "file": "engineering/mern-architect.md",
-      "division": "engineering",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "MERN stack architecture review and scalability planning."
-    },
-    {
-      "id": "nextjs-performance-engineer",
-      "name": "Next.js Performance Engineer",
-      "file": "engineering/nextjs-performance-engineer.md",
-      "division": "engineering",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Structured Next.js performance audits and optimization plans."
-    },
-    {
-      "id": "backend-architect",
-      "name": "Backend Architect",
-      "file": "engineering/backend-architect.md",
-      "division": "engineering",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "API design, service boundaries, and backend system architecture."
-    },
-    {
-      "id": "database-engineer",
-      "name": "Database Engineer",
-      "file": "engineering/database-engineer.md",
-      "division": "engineering",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Schema design, indexing strategy, and query optimization."
-    },
-    {
-      "id": "devops-engineer",
-      "name": "DevOps Engineer",
-      "file": "engineering/devops-engineer.md",
-      "division": "engineering",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "CI/CD pipelines, containerization, and deployment strategy."
-    },
-    {
-      "id": "code-reviewer",
-      "name": "Code Reviewer",
-      "file": "engineering/code-reviewer.md",
-      "division": "engineering",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Senior-level code review and technical debt triage."
-    },
-    {
-      "id": "final-year-project-advisor",
-      "name": "Final Year Project Advisor",
-      "file": "projects/final-year-project-advisor.md",
-      "division": "projects",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "FYP scope, feasibility, and evaluation readiness guidance for final-year students."
-    },
-    {
-      "id": "research-assistant",
-      "name": "Research Assistant",
-      "file": "projects/research-assistant.md",
-      "division": "projects",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Research method support, literature review guidance, and data analysis planning."
-    },
-    {
-      "id": "documentation-specialist",
-      "name": "Documentation Specialist",
-      "file": "projects/documentation-specialist.md",
-      "division": "projects",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Project documentation, technical writing, and report structuring for academic submission."
-    },
-    {
-      "id": "viva-coach",
-      "name": "Viva Coach",
-      "file": "projects/viva-coach.md",
-      "division": "projects",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Viva preparation, examiner question prediction, and defense confidence coaching."
+      "description": "A behavioural and offer-readiness coach who prepares candidates for HR and cultural interviews, designs story-driven answers to behavioural prompts, and leads offer evaluation and negotiation prep with professional rigor.",
+      "status": "live",
+      "filename": "career/hr-interview-coach.md",
+      "tags": [
+        "bluntly-honest",
+        "career",
+        "strategic",
+        "empathetic",
+        "reassuring"
+      ],
+      "color": "#6C4FA0",
+      "emoji": "\ud83e\udd1d",
+      "vibe": "empathetic, bluntly-honest, strategic, reassuring"
     },
     {
       "id": "internship-application-strategist",
       "name": "Internship Application Strategist",
-      "file": "career/internship-application-strategist.md",
       "division": "career",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Resume and application strategy for internship candidates and campus placement rounds."
+      "description": "An internship application strategist who helps students package their skills, target hiring windows, and win sought-after internship roles.",
+      "status": "live",
+      "filename": "career/internship-application-strategist.md",
+      "tags": [
+        "polished",
+        "career",
+        "strategic",
+        "student-focused",
+        "opportunity-driven"
+      ],
+      "color": "#2E86C1",
+      "emoji": "\ud83e\uddf3",
+      "vibe": "student-focused, strategic, opportunity-driven, polished"
+    },
+    {
+      "id": "internship-success-coach",
+      "name": "Internship Success Coach",
+      "division": "career",
+      "description": "A hands-on internship performance coach who helps interns move from \"showing up\" to \"standing out\" \u2014 by building visibility, delivering meaningful work, converting internships into return offers, and treating every internship as a twelve-week audition with a clear performance plan.",
+      "status": "live",
+      "filename": "career/internship-success-coach.md",
+      "tags": [
+        "visibility-aware",
+        "career",
+        "warm but results-driven",
+        "return-offer-obsessed",
+        "performance-first"
+      ],
+      "color": "#2471A3",
+      "emoji": "\ud83c\udf93",
+      "vibe": "performance-first, visibility-aware, return-offer-obsessed, warm but results-driven"
     },
     {
       "id": "job-search-strategist",
       "name": "Job Search Strategist",
-      "file": "career/job-search-strategist.md",
       "division": "career",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Targeted job search planning, employer funnels, and application tracking."
+      "description": "A job search strategist who builds targeted application plans, opportunity funnels, and outreach systems for faster interview traction.",
+      "status": "live",
+      "filename": "career/job-search-strategist.md",
+      "tags": [
+        "organized",
+        "career",
+        "results-focused",
+        "practical",
+        "proactive"
+      ],
+      "color": "#2471A3",
+      "emoji": "\ud83c\udfaf",
+      "vibe": "organized, proactive, results-focused, practical"
     },
     {
-      "id": "salary-negotiation-coach",
-      "name": "Salary Negotiation Coach",
-      "file": "career/salary-negotiation-coach.md",
+      "id": "linkedin-growth-advisor",
+      "name": "LinkedIn Growth Advisor",
       "division": "career",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Salary ask strategy, compensation benchmarking, and negotiation readiness."
+      "description": "A tactical growth advisor for LinkedIn who optimizes profiles for recruiter discovery, builds content strategies that surface domain credibility, and converts passive profile views into active opportunities.",
+      "status": "live",
+      "filename": "career/linkedin-growth-advisor.md",
+      "tags": [
+        "personable",
+        "career",
+        "evidence-driven",
+        "tactical",
+        "network-savvy"
+      ],
+      "color": "#0077B5",
+      "emoji": "\ud83d\udd17",
+      "vibe": "tactical, network-savvy, evidence-driven, personable"
+    },
+    {
+      "id": "networking-coach",
+      "name": "Networking Coach",
+      "division": "career",
+      "description": "A strategic, relationship-first networking coach who transforms transactional connection requests into genuine professional relationships \u2014 helping candidates build the kind of network that surfaces hidden job market opportunities, generates warm referrals, and compounds in value over an entire career.",
+      "status": "live",
+      "filename": "career/networking-coach.md",
+      "tags": [
+        "warm-but-strategic",
+        "career",
+        "systems-thinker",
+        "deeply human",
+        "anti-hustle"
+      ],
+      "color": "#1A5276",
+      "emoji": "\ud83e\udd1d",
+      "vibe": "warm-but-strategic, systems-thinker, anti-hustle, deeply human"
     },
     {
       "id": "offer-evaluation-advisor",
       "name": "Offer Evaluation Advisor",
-      "file": "career/offer-evaluation-advisor.md",
       "division": "career",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Offer comparison, total compensation modeling, and acceptance framework."
+      "description": "An offer evaluation advisor who helps candidates compare multiple opportunities and choose the best role for their career goals.",
+      "status": "live",
+      "filename": "career/offer-evaluation-advisor.md",
+      "tags": [
+        "analytical",
+        "career",
+        "structured",
+        "career-aware",
+        "impartial"
+      ],
+      "color": "#117A65",
+      "emoji": "\ud83e\uddfe",
+      "vibe": "analytical, impartial, career-aware, structured"
+    },
+    {
+      "id": "personal-branding-advisor",
+      "name": "Personal Branding Advisor",
+      "division": "career",
+      "description": "A strategic personal brand architect who builds authentic, channel-consistent professional identities that attract the right opportunities \u2014 turning scattered professional presence into a coherent, searchable, memorable signal that does career work even when the candidate isn't actively job hunting.",
+      "status": "live",
+      "filename": "career/personal-branding-advisor.md",
+      "tags": [
+        "career",
+        "identity-first",
+        "consistency-obsessed",
+        "evidence-over-aesthetics",
+        "anti-performative"
+      ],
+      "color": "#C0392B",
+      "emoji": "\ud83c\udfa8",
+      "vibe": "identity-first, anti-performative, consistency-obsessed, evidence-over-aesthetics"
+    },
+    {
+      "id": "placement-coach",
+      "name": "Placement Coach",
+      "division": "career",
+      "description": "An end-to-end placement strategist who audits your readiness, builds a prioritized action plan, and drives you from \"applying blind\" to \"negotiating offers\" with the discipline of someone who has watched a thousand placement cycles play out.",
+      "status": "live",
+      "filename": "career/placement-coach.md",
+      "tags": [
+        "career",
+        "relentlessly practical",
+        "data-driven",
+        "quietly encouraging",
+        "blunt"
+      ],
+      "color": "#1B4D3E",
+      "emoji": "\ud83c\udfaf",
+      "vibe": "blunt, data-driven, relentlessly practical, quietly encouraging"
+    },
+    {
+      "id": "product-manager-coach",
+      "name": "Product Manager Coach",
+      "division": "career",
+      "description": "A rigorous PM career coach who helps aspiring and practicing product managers break into the discipline, ace PM interviews at any company tier, build product intuition through structured practice, and advance from APM to VP of Product \u2014 with frameworks grounded in how the best PMs actually think, not in what sounds good in a textbook.",
+      "status": "live",
+      "filename": "career/product-manager-coach.md",
+      "tags": [
+        "career",
+        "frameworks-over-feelings",
+        "execution-focused",
+        "user-obsessed",
+        "data-literate"
+      ],
+      "color": "#C0392B",
+      "emoji": "\ud83e\udded",
+      "vibe": "frameworks-over-feelings, user-obsessed, data-literate, execution-focused"
     },
     {
       "id": "recruiter-outreach-specialist",
       "name": "Recruiter Outreach Specialist",
-      "file": "career/recruiter-outreach-specialist.md",
       "division": "career",
-      "status": "planned",
-      "version": "0.1.0",
-      "description": "Recruiter message sequence and outreach strategy to drive hiring conversations."
+      "description": "A recruiter outreach specialist who crafts message sequences and outreach plans to get recruiters to respond and move candidates into hiring conversations.",
+      "status": "live",
+      "filename": "career/recruiter-outreach-specialist.md",
+      "tags": [
+        "professional",
+        "recruiter-aware",
+        "career",
+        "follow-up-savvy",
+        "targeted"
+      ],
+      "color": "#D35400",
+      "emoji": "\u2709\ufe0f",
+      "vibe": "targeted, professional, follow-up-savvy, recruiter-aware"
+    },
+    {
+      "id": "remote-work-advisor",
+      "name": "Remote Work Advisor",
+      "division": "career",
+      "description": "A strategic remote-work specialist who helps professionals find, land, and thrive in remote roles \u2014 covering remote-specific job search tactics, distributed team visibility, async communication mastery, home office optimization, and the specific career risks that remote work creates if not managed deliberately.",
+      "status": "live",
+      "filename": "career/remote-work-advisor.md",
+      "tags": [
+        "anti-isolation-as-default",
+        "career",
+        "visibility-conscious",
+        "systems-thinker",
+        "async-native"
+      ],
+      "color": "#1F618D",
+      "emoji": "\ud83c\udf0d",
+      "vibe": "async-native, visibility-conscious, systems-thinker, anti-isolation-as-default"
+    },
+    {
+      "id": "resume-strategist",
+      "name": "Resume Strategist",
+      "division": "career",
+      "description": "A narrative-focused resume strategist who crafts role-driven career stories, aligns achievements to hiring criteria, and builds resume ecosystems (resume, LinkedIn, portfolio) that consistently convert interest into interviews.",
+      "status": "live",
+      "filename": "career/resume-strategist.md",
+      "tags": [
+        "narrative-first",
+        "career",
+        "strategic",
+        "empathetic",
+        "evidence-rooted"
+      ],
+      "color": "#3B6EA5",
+      "emoji": "\u270d\ufe0f",
+      "vibe": "strategic, narrative-first, evidence-rooted, empathetic"
+    },
+    {
+      "id": "returnship-coach",
+      "name": "Returnship Coach",
+      "division": "career",
+      "description": "A re-entry specialist who helps professionals return to the workforce after a career break \u2014 reframing gaps, rebuilding confidence, refreshing skills, and designing targeted re-entry strategies that land roles that respect the candidate's full experience, not just their most recent role.",
+      "status": "live",
+      "filename": "career/returnship-coach.md",
+      "tags": [
+        "full-experience-honoring",
+        "career",
+        "confidence-rebuilder",
+        "anti-stigma",
+        "gap-reframer"
+      ],
+      "color": "#BA4A00",
+      "emoji": "\ud83d\udd04",
+      "vibe": "gap-reframer, confidence-rebuilder, full-experience-honoring, anti-stigma"
+    },
+    {
+      "id": "salary-benchmark-analyst",
+      "name": "Salary Benchmark Analyst",
+      "division": "career",
+      "description": "A rigorous, data-literate compensation analyst who builds evidence-based salary benchmarks, deconstructs total compensation packages, and arms candidates with the market intelligence and framing to negotiate from facts rather than hope.",
+      "status": "live",
+      "filename": "career/salary-benchmark-analyst.md",
+      "tags": [
+        "career",
+        "unsentimental about money",
+        "precision-obsessed",
+        "data-first",
+        "zero tolerance for guesswork"
+      ],
+      "color": "#1A6B3C",
+      "emoji": "\ud83d\udcb0",
+      "vibe": "data-first, unsentimental about money, precision-obsessed, zero tolerance for guesswork"
+    },
+    {
+      "id": "salary-negotiation-coach",
+      "name": "Salary Negotiation Coach",
+      "division": "career",
+      "description": "A salary negotiation specialist who prepares candidates to evaluate offers, build leverage, and negotiate compensation confidently.",
+      "status": "live",
+      "filename": "career/salary-negotiation-coach.md",
+      "tags": [
+        "data-backed",
+        "career",
+        "strategic",
+        "direct",
+        "candidate-first"
+      ],
+      "color": "#C0392B",
+      "emoji": "\ud83d\udcb0",
+      "vibe": "strategic, direct, data-backed, candidate-first"
+    },
+    {
+      "id": "technical-interview-coach",
+      "name": "Technical Interview Coach",
+      "division": "career",
+      "description": "A hands-on technical interview coach who prepares candidates for data structures & algorithms, system design, and role-specific coding rounds through targeted drills, rubric-based feedback, and measurable progression plans.",
+      "status": "live",
+      "filename": "career/technical-interview-coach.md",
+      "tags": [
+        "rigorous",
+        "outcome-oriented",
+        "career",
+        "mentor-forward",
+        "pragmatic"
+      ],
+      "color": "#1F8DD6",
+      "emoji": "\ud83e\udde9",
+      "vibe": "rigorous, pragmatic, mentor-forward, outcome-oriented"
+    },
+    {
+      "id": "adobe-interview-coach",
+      "name": "Adobe Interview Coach",
+      "division": "company-interviews",
+      "description": "A creativity-meets-engineering specialist who prepares candidates for Adobe's blend of technical rigor and genuine product-craft sensibility, where caring about the actual user experience of the tools you build is a real evaluation signal.",
+      "status": "live",
+      "filename": "company-interviews/adobe-interview-coach.md",
+      "tags": [
+        "product-empathetic",
+        "craft-focused",
+        "detail-loving",
+        "technically rigorous",
+        "company-interviews"
+      ],
+      "color": "#FA0F00",
+      "emoji": "\ud83c\udfa8",
+      "vibe": "craft-focused, technically rigorous, product-empathetic, detail-loving"
+    },
+    {
+      "id": "amazon-interview-coach",
+      "name": "Amazon Interview Coach",
+      "division": "company-interviews",
+      "description": "A Leadership Principles specialist who knows that Amazon interviews are won or lost on STAR-structured stories mapped precisely to specific principles, not generic behavioral answers with an Amazon logo pasted on top.",
+      "status": "live",
+      "filename": "company-interviews/amazon-interview-coach.md",
+      "tags": [
+        "exacting on story structure",
+        "principle-obsessed",
+        "company-interviews",
+        "bar-raiser mindset"
+      ],
+      "color": "#FF9900",
+      "emoji": "\ud83d\udce6",
+      "vibe": "principle-obsessed, exacting on story structure, bar-raiser mindset"
+    },
+    {
+      "id": "atlassian-interview-coach",
+      "name": "Atlassian Interview Coach",
+      "division": "company-interviews",
+      "description": "A values-driven collaboration specialist who prepares candidates for Atlassian's structured, values-mapped interview loop, where \"open company, no bullshit\" is an actual evaluation criterion, not just a wall poster.",
+      "status": "live",
+      "filename": "company-interviews/atlassian-interview-coach.md",
+      "tags": [
+        "transparent",
+        "values-literate",
+        "collaborative",
+        "practically minded",
+        "company-interviews"
+      ],
+      "color": "#0052CC",
+      "emoji": "\ud83e\udde9",
+      "vibe": "values-literate, collaborative, transparent, practically minded"
+    },
+    {
+      "id": "google-interview-coach",
+      "name": "Google Interview Coach",
+      "division": "company-interviews",
+      "description": "A structured-rigor specialist for Google's algorithm-heavy, googleyness-aware interview loop, who treats clean code communication and structured problem decomposition as non-negotiable, not optional polish.",
+      "status": "live",
+      "filename": "company-interviews/google-interview-coach.md",
+      "tags": [
+        "rigorous",
+        "structure-obsessed",
+        "calmly demanding",
+        "precise",
+        "company-interviews"
+      ],
+      "color": "#4285F4",
+      "emoji": "\ud83d\udd0e",
+      "vibe": "rigorous, structure-obsessed, precise, calmly demanding"
+    },
+    {
+      "id": "meta-interview-coach",
+      "name": "Meta Interview Coach",
+      "division": "company-interviews",
+      "description": "An execution-speed and impact-obsessed coach who prepares candidates for Meta's fast-paced technical bar and its distinct \"move fast, focus on impact\" behavioral evaluation.",
+      "status": "live",
+      "filename": "company-interviews/meta-interview-coach.md",
+      "tags": [
+        "impact-driven",
+        "fast-paced",
+        "unsentimental about scope",
+        "direct",
+        "company-interviews"
+      ],
+      "color": "#0668E1",
+      "emoji": "\ud83d\ude80",
+      "vibe": "fast-paced, impact-driven, direct, unsentimental about scope"
+    },
+    {
+      "id": "microsoft-interview-coach",
+      "name": "Microsoft Interview Coach",
+      "division": "company-interviews",
+      "description": "A growth-mindset and collaborative-problem-solving specialist who prepares candidates for Microsoft's blend of technical depth and \"how do you work with others\" evaluation, including the as-appropriate design/coding rounds.",
+      "status": "live",
+      "filename": "company-interviews/microsoft-interview-coach.md",
+      "tags": [
+        "structured",
+        "quietly rigorous",
+        "collaborative",
+        "growth-minded",
+        "company-interviews"
+      ],
+      "color": "#00A4EF",
+      "emoji": "\ud83e\ude9f",
+      "vibe": "collaborative, growth-minded, structured, quietly rigorous"
+    },
+    {
+      "id": "netflix-interview-coach",
+      "name": "Netflix Interview Coach",
+      "division": "company-interviews",
+      "description": "A radical-candor and high-judgment specialist who prepares candidates for Netflix's uniquely direct culture interviews, where \"would I fight to keep this person\" is the real question behind every round.",
+      "status": "live",
+      "filename": "company-interviews/netflix-interview-coach.md",
+      "tags": [
+        "judgment-focused",
+        "high standards",
+        "candid",
+        "unimpressed by hedging",
+        "company-interviews"
+      ],
+      "color": "#E50914",
+      "emoji": "\ud83c\udfac",
+      "vibe": "candid, judgment-focused, unimpressed by hedging, high standards"
+    },
+    {
+      "id": "oracle-interview-coach",
+      "name": "Oracle Interview Coach",
+      "division": "company-interviews",
+      "description": "A fundamentals-first specialist who prepares candidates for Oracle's traditionally rigorous CS-fundamentals and systems-depth interview style, where solid, unglamorous engineering knowledge is genuinely rewarded.",
+      "status": "live",
+      "filename": "company-interviews/oracle-interview-coach.md",
+      "tags": [
+        "no patience for shortcuts",
+        "fundamentals-obsessed",
+        "thorough",
+        "methodical",
+        "company-interviews"
+      ],
+      "color": "#F80000",
+      "emoji": "\ud83d\uddc3\ufe0f",
+      "vibe": "fundamentals-obsessed, methodical, no patience for shortcuts, thorough"
+    },
+    {
+      "id": "salesforce-interview-coach",
+      "name": "Salesforce Interview Coach",
+      "division": "company-interviews",
+      "description": "A trust-and-customer-success specialist who prepares candidates for Salesforce's values-and-relationship-driven interview culture, where \"trust is our #1 value\" is treated as a real evaluation lens, not a slogan.",
+      "status": "live",
+      "filename": "company-interviews/salesforce-interview-coach.md",
+      "tags": [
+        "customer-obsessed",
+        "values-literate",
+        "warm",
+        "relationship-focused",
+        "company-interviews"
+      ],
+      "color": "#00A1E0",
+      "emoji": "\u2601\ufe0f",
+      "vibe": "relationship-focused, values-literate, warm, customer-obsessed"
+    },
+    {
+      "id": "uber-interview-coach",
+      "name": "Uber Interview Coach",
+      "division": "company-interviews",
+      "description": "A scale-and-ownership specialist who prepares candidates for Uber's operationally intense, ownership-driven interview culture, where \"built for scale, obsessed with the details that break at scale\" is the actual bar.",
+      "status": "live",
+      "filename": "company-interviews/uber-interview-coach.md",
+      "tags": [
+        "ownership-obsessed",
+        "operationally sharp",
+        "scale-minded",
+        "direct",
+        "company-interviews"
+      ],
+      "color": "#000000",
+      "emoji": "\ud83d\ude97",
+      "vibe": "scale-minded, ownership-obsessed, operationally sharp, direct"
+    },
+    {
+      "id": "backend-architect",
+      "name": "Backend Architect",
+      "division": "engineering",
+      "description": "An API and service-design reviewer who evaluates backend architecture for the failure modes that don't show up until real load, real edge cases, and real time have all had a chance to find them.",
+      "status": "live",
+      "filename": "engineering/backend-architect.md",
+      "tags": [
+        "skeptical of shortcuts",
+        "engineering",
+        "unflashy",
+        "long-term-thinking",
+        "methodical"
+      ],
+      "color": "#4A4A4A",
+      "emoji": "\ud83e\uddf1",
+      "vibe": "methodical, skeptical of shortcuts, long-term-thinking, unflashy"
+    },
+    {
+      "id": "code-reviewer",
+      "name": "Code Reviewer",
+      "division": "engineering",
+      "description": "A senior-level code reviewer who triages real risk instead of nitpicking style, distinguishing \"this will break in production\" from \"this is a preference\" and never letting the two get confused.",
+      "status": "live",
+      "filename": "engineering/code-reviewer.md",
+      "tags": [
+        "rigorous",
+        "fair",
+        "unimpressed by cleverness",
+        "teaching-oriented",
+        "engineering"
+      ],
+      "color": "#5C6BC0",
+      "emoji": "\ud83d\udd2c",
+      "vibe": "rigorous, fair, unimpressed by cleverness, teaching-oriented"
+    },
+    {
+      "id": "database-engineer",
+      "name": "Database Engineer",
+      "division": "engineering",
+      "description": "A schema and query optimization specialist who reads execution plans instead of guessing, and treats indexing strategy as a precise discipline rather than a \"just add an index\" reflex.",
+      "status": "live",
+      "filename": "engineering/database-engineer.md",
+      "tags": [
+        "quietly relentless about correctness",
+        "patient teacher",
+        "plan-reading",
+        "engineering",
+        "precise"
+      ],
+      "color": "#336791",
+      "emoji": "\ud83d\uddc4\ufe0f",
+      "vibe": "precise, plan-reading, patient teacher, quietly relentless about correctness"
+    },
+    {
+      "id": "devops-engineer",
+      "name": "DevOps Engineer",
+      "division": "engineering",
+      "description": "A CI/CD and infrastructure reliability specialist who treats deployment pipelines as production systems in their own right, obsessed with reversibility, observability, and never being surprised by a failure.",
+      "status": "live",
+      "filename": "engineering/devops-engineer.md",
+      "tags": [
+        "engineering",
+        "calm in incidents",
+        "reliability-obsessed",
+        "methodical",
+        "allergic to manual steps"
+      ],
+      "color": "#FF6B35",
+      "emoji": "\ud83d\udd27",
+      "vibe": "reliability-obsessed, calm in incidents, allergic to manual steps, methodical"
+    },
+    {
+      "id": "mern-architect",
+      "name": "MERN Architect",
+      "division": "engineering",
+      "description": "A full-stack architecture reviewer for MongoDB/Express/React/Node applications who evaluates real scalability and maintainability tradeoffs instead of rubber-stamping whatever framework is trendy this year.",
+      "status": "live",
+      "filename": "engineering/mern-architect.md",
+      "tags": [
+        "opinionated",
+        "pragmatic",
+        "scalability-focused",
+        "engineering",
+        "allergic to over-engineering"
+      ],
+      "color": "#00684A",
+      "emoji": "\ud83c\udfd7\ufe0f",
+      "vibe": "pragmatic, opinionated, allergic to over-engineering, scalability-focused"
+    },
+    {
+      "id": "nextjs-performance-engineer",
+      "name": "Next.js Performance Engineer",
+      "division": "engineering",
+      "description": "A performance auditor obsessed with real Core Web Vitals and actual user-perceived speed, who diagnoses Next.js applications the way a profiler does \u2014 with numbers, not vibes.",
+      "status": "live",
+      "filename": "engineering/nextjs-performance-engineer.md",
+      "tags": [
+        "quietly intense",
+        "measurement-obsessed",
+        "impatient with guesswork",
+        "engineering",
+        "precise"
+      ],
+      "color": "#000000",
+      "emoji": "\u26a1",
+      "vibe": "measurement-obsessed, impatient with guesswork, precise, quietly intense"
+    },
+    {
+      "id": "behavioral-interview-specialist",
+      "name": "Behavioral Interview Specialist",
+      "division": "interview",
+      "description": "A behavioral interview drilling coach who helps candidates structure stories using STAR/STAR+ structures, handles high-pressure situational queries, and maps achievements to organizational leadership principles.",
+      "status": "live",
+      "filename": "interview/behavioral-interview-specialist.md",
+      "tags": [
+        "structure-focused",
+        "authentic",
+        "interview",
+        "retrospective-driven",
+        "evidence-oriented"
+      ],
+      "color": "#C0392B",
+      "emoji": "\ud83d\udde3\ufe0f",
+      "vibe": "structure-focused, evidence-oriented, retrospective-driven, authentic"
+    },
+    {
+      "id": "group-discussion-coach",
+      "name": "Group Discussion Coach",
+      "division": "interview",
+      "description": "A facilitation and group communication coach who prepares candidates for group discussions, case studies, and collaborative rounds by teaching moderation, active listening, structured entry, and collaborative leadership.",
+      "status": "live",
+      "filename": "interview/group-discussion-coach.md",
+      "tags": [
+        "structured",
+        "collaborative",
+        "interview",
+        "consensus-oriented",
+        "assertive-polite"
+      ],
+      "color": "#8E44AD",
+      "emoji": "\ud83d\udc65",
+      "vibe": "collaborative, structured, assertive-polite, consensus-oriented"
+    },
+    {
+      "id": "leadership-interview-coach",
+      "name": "Leadership Interview Coach",
+      "division": "interview",
+      "description": "A leadership coaching specialist who prepares senior candidates for executive, management, and leadership interviews \u2014 focusing on vision, organization building, decision-making, and organizational conflict.",
+      "status": "live",
+      "filename": "interview/leadership-interview-coach.md",
+      "tags": [
+        "executive-mature",
+        "interview",
+        "organization-focused",
+        "direct-honest",
+        "vision-oriented"
+      ],
+      "color": "#117A65",
+      "emoji": "\ud83d\udc51",
+      "vibe": "executive-mature, vision-oriented, organization-focused, direct-honest"
+    },
+    {
+      "id": "mock-interviewer",
+      "name": "Mock Interviewer",
+      "division": "interview",
+      "description": "A realistic, high-fidelity mock interviewer that conducts role-play simulations, dynamically probes candidate answers, handles follow-up queries, and provides rigorous feedback.",
+      "status": "live",
+      "filename": "interview/mock-interviewer.md",
+      "tags": [
+        "candidate-challenging",
+        "follow-up-active",
+        "simulation-realistic",
+        "interview",
+        "diagnostic-critical"
+      ],
+      "color": "#7B241C",
+      "emoji": "\ud83c\udfad",
+      "vibe": "simulation-realistic, diagnostic-critical, follow-up-active, candidate-challenging"
+    },
+    {
+      "id": "system-design-coach",
+      "name": "System Design Coach",
+      "division": "interview",
+      "description": "A technical interview coach specializing in distributed systems, scalability, and system design interviews \u2014 covering requirements gathering, API design, data modeling, high-level architecture, and deep-dive bottlenecks.",
+      "status": "live",
+      "filename": "interview/system-design-coach.md",
+      "tags": [
+        "trade-off-centered",
+        "architect-level",
+        "interview",
+        "scalability-obsessed",
+        "logic-driven"
+      ],
+      "color": "#1F618D",
+      "emoji": "\ud83c\udfd7\ufe0f",
+      "vibe": "architect-level, scalability-obsessed, logic-driven, trade-off-centered"
+    },
+    {
+      "id": "alumni-networking-advisor",
+      "name": "Alumni Networking Advisor",
+      "division": "networking",
+      "description": "A campus and school affinity networking strategist who helps candidates locate, re-engage, and leverage university and corporate alumni networks for career insights and referrals.",
+      "status": "live",
+      "filename": "networking/alumni-networking-advisor.md",
+      "tags": [
+        "networking",
+        "relationship-first",
+        "supportive",
+        "curious",
+        "affinity-driven"
+      ],
+      "color": "#7D6608",
+      "emoji": "\ud83c\udf93",
+      "vibe": "relationship-first, affinity-driven, curious, supportive"
+    },
+    {
+      "id": "cold-outreach-specialist",
+      "name": "Cold Outreach Specialist",
+      "division": "networking",
+      "description": "A cold communication copywriter and strategist who helps candidates write highly optimized cold emails and messages to hiring managers, founders, and leaders.",
+      "status": "live",
+      "filename": "networking/cold-outreach-specialist.md",
+      "tags": [
+        "value-first",
+        "professional",
+        "networking",
+        "direct",
+        "conversion-oriented"
+      ],
+      "color": "#7E5109",
+      "emoji": "\ud83d\udce7",
+      "vibe": "conversion-oriented, value-first, direct, professional"
+    },
+    {
+      "id": "linkedin-outreach-specialist",
+      "name": "LinkedIn Outreach Specialist",
+      "division": "networking",
+      "description": "A digital networking expert who helps candidates write highly customized, high-conversion LinkedIn messages for informational interviews, warm introductions, and job inquiries.",
+      "status": "live",
+      "filename": "networking/linkedin-outreach-specialist.md",
+      "tags": [
+        "high-conversion",
+        "professional",
+        "networking",
+        "connection-centric",
+        "network-strategic"
+      ],
+      "color": "#0E66C2",
+      "emoji": "\ud83d\udcac",
+      "vibe": "network-strategic, high-conversion, professional, connection-centric"
+    },
+    {
+      "id": "recruiter-communication-coach",
+      "name": "Recruiter Communication Coach",
+      "division": "networking",
+      "description": "A communication strategist who helps candidates manage recruiter channels, script outreach messages, prepare for screening calls, and negotiate communication touchpoints.",
+      "status": "live",
+      "filename": "networking/recruiter-communication-coach.md",
+      "tags": [
+        "responsive",
+        "professional",
+        "networking",
+        "recruitment-fluent",
+        "clear-headed"
+      ],
+      "color": "#B03A2E",
+      "emoji": "\ud83d\udcde",
+      "vibe": "professional, clear-headed, responsive, recruitment-fluent"
+    },
+    {
+      "id": "referral-strategy-coach",
+      "name": "Referral Strategy Coach",
+      "division": "networking",
+      "description": "A relationship monetization strategist who helps candidates turn casual professional interactions, alumni links, and warm networks into formal job referrals and active internal advocates.",
+      "status": "live",
+      "filename": "networking/referral-strategy-coach.md",
+      "tags": [
+        "networking",
+        "strategic",
+        "conversion-focused",
+        "relationship-respectful",
+        "advocacy-driven"
+      ],
+      "color": "#1F618D",
+      "emoji": "\ud83e\udd1d",
+      "vibe": "conversion-focused, relationship-respectful, advocacy-driven, strategic"
+    },
+    {
+      "id": "documentation-specialist",
+      "name": "Documentation Specialist",
+      "division": "projects",
+      "description": "A technical documentation agent that turns project outputs into clear reports, manuals, and presentation-ready artifacts.",
+      "status": "live",
+      "filename": "projects/documentation-specialist.md",
+      "tags": [
+        "projects",
+        "precise",
+        "structured",
+        "quality-driven",
+        "reader-first"
+      ],
+      "color": "#6A5DAD",
+      "emoji": "\ud83d\udcdd",
+      "vibe": "precise, structured, reader-first, quality-driven"
+    },
+    {
+      "id": "final-year-project-advisor",
+      "name": "Final Year Project Advisor",
+      "division": "projects",
+      "description": "A FYP coach who helps students select, scope, and defend academic projects with real-world structure and evaluation clarity.",
+      "status": "live",
+      "filename": "projects/final-year-project-advisor.md",
+      "tags": [
+        "projects",
+        "academic",
+        "deadline-aware",
+        "practical",
+        "mentor-led"
+      ],
+      "color": "#3B2D6B",
+      "emoji": "\ud83c\udf93",
+      "vibe": "academic, practical, deadline-aware, mentor-led"
+    },
+    {
+      "id": "research-assistant",
+      "name": "Research Assistant",
+      "division": "projects",
+      "description": "A structured research partner for literature reviews, methodology planning, and academic sourcing.",
+      "status": "live",
+      "filename": "projects/research-assistant.md",
+      "tags": [
+        "projects",
+        "methodological",
+        "evidence-based",
+        "precise",
+        "systematic"
+      ],
+      "color": "#4A6FA5",
+      "emoji": "\ud83d\udcda",
+      "vibe": "systematic, evidence-based, methodological, precise"
+    },
+    {
+      "id": "viva-coach",
+      "name": "Viva Coach",
+      "division": "projects",
+      "description": "A viva preparation coach that helps students structure defense responses, anticipate examiner questions, and present confidently.",
+      "status": "live",
+      "filename": "projects/viva-coach.md",
+      "tags": [
+        "projects",
+        "confidence-building",
+        "exam-aware",
+        "calm",
+        "precise"
+      ],
+      "color": "#C058A0",
+      "emoji": "\ud83c\udfa4",
+      "vibe": "calm, precise, confidence-building, exam-aware"
+    },
+    {
+      "id": "executive-resume-advisor",
+      "name": "Executive Resume Advisor",
+      "division": "resume",
+      "description": "A senior-level resume strategist who helps VPs, Directors, and C-suite executives structure their resumes to emphasize executive presence, strategic scope, P&L ownership, and board visibility.",
+      "status": "live",
+      "filename": "resume/executive-resume-advisor.md",
+      "tags": [
+        "strategic",
+        "corporate",
+        "boardroom-ready",
+        "resume",
+        "outcomes-first"
+      ],
+      "color": "#2C3E50",
+      "emoji": "\ud83d\udc54",
+      "vibe": "strategic, corporate, boardroom-ready, outcomes-first"
+    },
+    {
+      "id": "portfolio-reviewer",
+      "name": "Portfolio Reviewer",
+      "division": "resume",
+      "description": "A design and technical portfolio critic who helps designers, engineers, and product managers structure, document, and present their work through compelling case studies that prove competency.",
+      "status": "live",
+      "filename": "resume/portfolio-reviewer.md",
+      "tags": [
+        "detail-oriented",
+        "critique-honest",
+        "proof-obsessed",
+        "resume",
+        "structure-driven"
+      ],
+      "color": "#D35400",
+      "emoji": "\ud83c\udfa8",
+      "vibe": "critique-honest, structure-driven, detail-oriented, proof-obsessed"
+    },
+    {
+      "id": "resume-achievement-writer",
+      "name": "Resume Achievement Writer",
+      "division": "resume",
+      "description": "A metrics-focused resume achievement writer who helps candidates translate standard job duties into high-impact, outcome-oriented achievements using the STAR, Google X-Y-Z, and CAR frameworks.",
+      "status": "live",
+      "filename": "resume/resume-achievement-writer.md",
+      "tags": [
+        "impact-driven",
+        "precision-first",
+        "anti-bullet-list",
+        "resume",
+        "metric-obsessed"
+      ],
+      "color": "#4A235A",
+      "emoji": "\ud83d\udcdd",
+      "vibe": "metric-obsessed, impact-driven, anti-bullet-list, precision-first"
+    },
+    {
+      "id": "resume-formatting-specialist",
+      "name": "Resume Formatting Specialist",
+      "division": "resume",
+      "description": "A design and layout expert who ensures resumes are visually polished, perfectly aligned, typographically balanced, and structured for maximum scannability and ATS compatibility.",
+      "status": "live",
+      "filename": "resume/resume-formatting-specialist.md",
+      "tags": [
+        "minimalist",
+        "typographically precise",
+        "detail-obsessed",
+        "resume",
+        "layout-first"
+      ],
+      "color": "#28B463",
+      "emoji": "\ud83d\udcd0",
+      "vibe": "detail-obsessed, typographically precise, layout-first, minimalist"
+    },
+    {
+      "id": "resume-keyword-optimizer",
+      "name": "Resume Keyword Optimizer",
+      "division": "resume",
+      "description": "An ATS-oriented search optimization specialist who helps candidates align their resumes with target job descriptions using keyword mapping, context optimization, and phrase parsing strategies.",
+      "status": "live",
+      "filename": "resume/resume-keyword-optimizer.md",
+      "tags": [
+        "analytical",
+        "keyword-aligned",
+        "resume",
+        "semantic-match",
+        "search-engine-focused"
+      ],
+      "color": "#1A5276",
+      "emoji": "\ud83d\udd0d",
+      "vibe": "analytical, search-engine-focused, keyword-aligned, semantic-match"
+    },
+    {
+      "id": "founder-advisor",
+      "name": "Founder Advisor",
+      "division": "startup",
+      "description": "A blunt, experienced-feeling co-founder substitute who stress-tests ideas and decisions the way a real early-stage advisor would \u2014 before money, time, or credibility get spent finding out the hard way.",
+      "status": "live",
+      "filename": "startup/founder-advisor.md",
+      "tags": [
+        "genuinely rooting for you",
+        "pattern-matching",
+        "allergic to founder self-delusion",
+        "startup",
+        "blunt"
+      ],
+      "color": "#7B2D26",
+      "emoji": "\ud83e\udded",
+      "vibe": "blunt, pattern-matching, allergic to founder self-delusion, genuinely rooting for you"
+    },
+    {
+      "id": "growth-strategist",
+      "name": "Growth Strategist",
+      "division": "startup",
+      "description": "A growth specialist who designs acquisition, activation, retention, and monetization strategies for early-stage products.",
+      "status": "live",
+      "filename": "startup/growth-strategist.md",
+      "tags": [
+        "retention-first",
+        "experimental",
+        "metrics-driven",
+        "startup",
+        "no-nonsense"
+      ],
+      "color": "#1A936F",
+      "emoji": "\ud83d\udcc8",
+      "vibe": "experimental, metrics-driven, retention-first, no-nonsense"
+    },
+    {
+      "id": "market-research-analyst",
+      "name": "Market Research Analyst",
+      "division": "startup",
+      "description": "A rigorous market research specialist who turns ambiguous business questions into defensible market insights, go-to-market priorities, and evidence-backed decisions \u2014 built for founders, product teams, and early-stage PMs who need market clarity fast.",
+      "status": "live",
+      "filename": "startup/market-research-analyst.md",
+      "tags": [
+        "strategist-first",
+        "commercially-minded",
+        "forensic",
+        "startup",
+        "methodical"
+      ],
+      "color": "#0F4C81",
+      "emoji": "\ud83d\udd0e",
+      "vibe": "forensic, methodical, strategist-first, commercially-minded"
+    },
+    {
+      "id": "product-manager",
+      "name": "Product Manager",
+      "division": "startup",
+      "description": "A product strategy advisor who turns fuzzy feature requests into prioritized roadmaps, stakeholder-aligned outcomes, and execution-ready release plans.",
+      "status": "live",
+      "filename": "startup/product-manager.md",
+      "tags": [
+        "strategic",
+        "pragmatic",
+        "customer-focused",
+        "startup",
+        "data-informed"
+      ],
+      "color": "#E9724C",
+      "emoji": "\ud83e\udded",
+      "vibe": "strategic, customer-focused, data-informed, pragmatic"
     }
   ]
 }

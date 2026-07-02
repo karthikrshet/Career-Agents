@@ -119,7 +119,7 @@ python scripts/validate.py
 On Windows, use the repository's PowerShell install or validation commands if available:
 
 ```powershell
-scripts/install.ps1 -ValidateOnly
+scripts/install.ps1 -DryRun
 ```
 
 6. Review `git diff --stat` and confirm the changed files match your intent.
@@ -128,5 +128,47 @@ scripts/install.ps1 -ValidateOnly
    - why it changed
    - how it was validated
    - any follow-up work intentionally left out
+
+## Developer Onboarding Walkthrough
+
+New to contributing to Career-Agents? Follow this step-by-step onboarding walkthrough to set up your environment and verify your first change:
+
+### Step 1: Environment Setup
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/karthikrshet/Career-Agents.git
+   cd Career-Agents
+   ```
+2. **Install CLI Dependencies:**
+   ```bash
+   npm install
+   ```
+
+### Step 2: Verify Existing Setup
+Run the validation script to ensure your starting environment passes all checks:
+```bash
+python scripts/validate.py
+```
+You can also preview an installation to test the scripting runtime:
+```bash
+# On Linux/macOS
+./scripts/install.sh --dry-run
+# On Windows
+powershell -File scripts/install.ps1 -DryRun
+```
+
+### Step 3: Propose a Change or Add an Agent
+1. **Create a local branch:** `git checkout -b feat/my-new-agent`
+2. **Write the Agent:** Place the new agent in its relevant lowercase division folder (e.g., `career/`, `resume/`, `interview/`, `networking/`, `engineering/`, `startup/`, `projects/`, or `company-interviews/`). Refer to `docs/agent-standard.md` for section headings and word count limits.
+3. **Register the Agent:**
+   Every new agent must be logged in `divisions.json` and `agent-registry.json`. You can automatically generate these indices by executing the synchronization script:
+   ```bash
+   # Running the registry generation helper
+   python scripts/sync.py
+   ```
+4. **Re-run Validation:** Ensure `python scripts/validate.py` passes.
+
+### Step 4: Submit a Pull Request
+Commit your changes, push to your fork, and open a Pull Request using the checklist template.
 
 Maintainers should prioritize contributions that make the repository easier to use, easier to validate, and easier to extend. A small, excellent workflow improvement is more valuable than a broad, shallow rewrite.
