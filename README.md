@@ -5,8 +5,8 @@
 Career-Agents is a modular, multi-disciplinary Career Operating System designed to help developers, freshers, and founders navigate placement, internship, startup, and technical growth milestones. Not a one-line prompt. An operational partner.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
-[![Divisions](https://img.shields.io/badge/divisions-14-orange.svg)](#-division-overview)
-[![Agents](https://img.shields.io/badge/agents-125%2F100-blue.svg)](./divisions.json)
+[![Divisions](https://img.shields.io/badge/divisions-19-orange.svg)](#-division-overview)
+[![Agents](https://img.shields.io/badge/agents-135%2F100-blue.svg)](./divisions.json)
 
 [Why Career OS](#-why-career-agents-career-os) • [Divisions](#-division-overview) • [Agent Ecosystem](#-agent-ecosystem) • [Agent Roster](#-agent-roster) • [Workflows](#-career-workflows) • [Quick Start](#-quick-start) • [Integrations](#-multi-tool-integrations)
 </div>
@@ -29,8 +29,8 @@ Most agent repositories are prompt collections wrapped in specialist language. Y
 
 ## 📊 Repository Statistics
 
-- **Total Agents:** 125 (100% active, fully specified, and tested)
-- **Total Divisions:** 14 functional specialty areas
+- **Total Agents:** 135 (100% active, fully specified, and tested)
+- **Total Divisions:** 19 functional specialty areas
 - **Total Career Workflows:** 10 multi-agent operation guides
 - **Total Documentation Files:** 7 architectural standards & guides
 - **Total Scripts:** 6 local development and installation tools
@@ -42,7 +42,7 @@ Most agent repositories are prompt collections wrapped in specialist language. Y
 
 ## 🏛️ Division Overview
 
-The Career-Agents ecosystem is mapped across 14 divisions representing distinct phases of student, developer, and startup growth:
+The Career-Agents ecosystem is mapped across 19 divisions representing distinct phases of student, developer, and startup growth:
 
 ### 💼 Career
 - **Agent Count:** 26 Live Agents
@@ -113,6 +113,31 @@ The Career-Agents ecosystem is mapped across 14 divisions representing distinct 
 - **Agent Count:** 10 Live Agents
 - **Description:** Developer advocate strategies, technology education, community management, and developer experience.
 - **Coverage Area:** Technical content strategy, conference presentation loops, api adoption, community metrics.
+
+### 🤖 Job Automation
+- **Agent Count:** 2 Live Agents
+- **Description:** Automated job discovery, listing filters, pipeline trackers, email outreach cadences, and funnel optimization engines.
+- **Coverage Area:** Apify scraping, Notion/Airtable trackers, automated cold follow-ups, application queue metrics.
+
+### 🧠 FAANG & Top Tech
+- **Agent Count:** 2 Live Agents
+- **Description:** Specialized coaches for top-tier tech companies (FAANG+), AI labs, and high-growth platform engineering teams.
+- **Coverage Area:** OpenAI loops, deep learning math, PyTorch scripts, distributed systems architectures, safety alignment interviews.
+
+### 🚀 AI Business
+- **Agent Count:** 2 Live Agents
+- **Description:** Strategic builders, technical PMs, and business architects focusing on launching and scaling AI-first startups, SaaS MVPs, and proprietary data loops.
+- **Coverage Area:** Defensibility analysis, token unit economics, semantic caching architectures, model fallback routing.
+
+### ⚙️ Modern GTM
+- **Agent Count:** 2 Live Agents
+- **Description:** Outreach systems design, waterfall data enrichments, CRM synchronizations, webhooks, and programmatic pipeline automation.
+- **Coverage Area:** Clay workspaces, Apollo lists, Instantly/Smartlead warmup setup, Make.com webhook sync.
+
+### 💎 Freelancing
+- **Agent Count:** 2 Live Agents
+- **Description:** Productization, pricing advisory, retainer growth, client acquisition networks, and operation designs for independent consultants.
+- **Coverage Area:** Statement of Work templates, productized package tiers, cold outreach scripts, auto-billing setups.
 
 ---
 
@@ -321,6 +346,41 @@ Here is the complete roster of agents currently live and active in the repositor
 | [`Technical Community Builder`](./devrel/technical-community-builder.md) | ✅ Live | Moderates developer forums, discord/slack servers, and handles user onboarding strategies. |
 | [`Technical Marketing Advisor`](./devrel/technical-marketing-advisor.md) | ✅ Live | Aligns product positioning with developer interests, writing copy and analyzing competition. |
 
+### 🤖 Job Automation Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+| [`Job Hunter AI`](./job-automation/job-hunter-ai.md) | ✅ Live | An automated job discovery and application tracking companion that manages target queues. |
+| [`Job Application Optimizer`](./job-automation/job-application-optimizer.md) | ✅ Live | An AI context tailoring engine that customizes applications, resume bullets, and cover letters for specific job descriptions at scale. |
+
+### 🧠 FAANG & Top Tech Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+| [`Google SWE Coach`](./faang/google-swe-coach.md) | ✅ Live | A specialized technical coach for Google Software Engineering (SWE) loops, focusing on DS & Algorithms, complex complexity analysis, clean code structure, and Googleyness & Leadership (G&L). |
+| [`OpenAI Career Coach`](./faang/openai-career-coach.md) | ✅ Live | A specialized coach for OpenAI interview loops, engineering culture, and AI research/engineering positions. |
+
+### 🚀 AI Business Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+| [`AI Founder`](./ai-business/ai-founder.md) | ✅ Live | A strategic AI builder focused on scaling AI-first products, MVPs, and business models. |
+| [`AI Consultant`](./ai-business/ai-consultant.md) | ✅ Live | An enterprise AI strategist mapping company problems to LLM/RAG solutions, scoping APIs, drafting security/privacy architectures, and showing ROI. |
+
+### ⚙️ Modern GTM Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+| [`Clay Specialist`](./gtm/clay-specialist.md) | ✅ Live | A master of Clay workflows, waterfall search logic, AI enrichment prompting, data cleaning, and CSV normalization. |
+| [`GTM Engineer`](./gtm/gtm-engineer.md) | ✅ Live | An outreach systems architect who designs clay workflows, API enrichments, and automated cold inbound/outbound setup. |
+
+### 💎 Freelancing Division
+
+| Agent Name | Status | Purpose / Description |
+| :--- | :--- | :--- |
+| [`Freelance Founder`](./freelancing/freelance-founder.md) | ✅ Live | An independent consultant strategist driving retainer growth, pricing, and client acquisition channels. |
+| [`Upwork Specialist`](./freelancing/upwork-specialist.md) | ✅ Live | A profile positioning and proposal writing advisor focused on converting Upwork feeds into closed contracts. |
+
 ---
 
 ## 🔄 Career Workflows
@@ -440,6 +500,11 @@ Career-Agents/
 ├── projects/             # Final Year Project guidance, documentation, defense
 ├── resume/               # Resume achievement writing, keyword optimization, layouts
 ├── startup/              # Founder strategy, MVP scoping, growth loops, market research
+├── job-automation/       # Automated job discovery, application tracking, and follow-ups
+├── faang/                # FAANG, top-tech, and AI lab interview coaches
+├── ai-business/          # AI-first product builders, MVPs, and unit economics
+├── gtm/                  # Outreach systems design, Clay workflows, API enrichment
+├── freelancing/          # Productization, retainer design, and client acquisition
 ├── workflows/            # Multi-agent structured career pipelines
 ├── docs/                 # Architectural specifications, contributing guides
 ├── scripts/              # Environment CLI, installer, and converters
@@ -481,7 +546,7 @@ python scripts/validate.py
 ## 🗺️ Roadmap
 
 ### Current Stage
-- **Phase 2 — Growth (Current)**: We have completed the deployment of 65 active agents across 8 distinct divisions, exceeding foundational expectations.
+- **Phase 2 — Growth (Current)**: We are expanding the ecosystem with 50 new strategic agents across 5 new divisions (Job Automation, FAANG & Top Tech, AI Business, Modern GTM, and Freelancing), currently standing at 130 live agents across 19 divisions.
 
 ### Next Stage
 - **Phase 3 — Scale**: Multi-agent handoff workflows, CLI search improvements, and packaging scripts.
