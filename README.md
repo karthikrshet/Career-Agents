@@ -1,7 +1,11 @@
 <div align="center">
+  
 # 🚀 Career-Agents
+
 ### "The World's Largest Collection of Career, Placement, Internship, Startup, and Developer AI Agents."
+
 **Stop prompting. Start hiring.**
+
 Every agent in this repository is built like a real specialist — with workflows, deliverables, rules, and a clear mission. Not a one-line prompt. A hire.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
