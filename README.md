@@ -1,21 +1,19 @@
 <div align="center">
 
-# Career-Agents
+# 🚀 Career-Agents
 
-by CodeMyFYP - Karthik
-
-### The Open-Source AI Specialist Ecosystem for Students, Developers, Job Seekers & Founders
+### Open source AI specialist ecosystem for placement, internship, startup, and developer success
 
 **Stop prompting. Start hiring.**
 
-Every agent in this repository is engineered like a real specialist — with a memory, a personality, opinions, workflows, deliverables, and standards to hold themselves to. Not a one-line prompt. A hire.
+Every agent in this repository is built like a real specialist — with workflows, deliverables, rules, and a clear mission. Not a one-line prompt. A hire.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
-[![Agents](https://img.shields.io/badge/agents-25%2F100-blue.svg)](./divisions.json)
-[![Divisions](https://img.shields.io/badge/divisions-4-orange.svg)](#-divisions)
+[![Divisions](https://img.shields.io/badge/divisions-6-orange.svg)](#-divisions)
+[![Agents](https://img.shields.io/badge/agents-25%2B%2F100-blue.svg)](./divisions.json)
 
-[Quick Start](#-quick-start) • [Divisions](#-divisions) • [Agent Roster](#-agent-roster) • [Examples](#-examples--use-cases) • [Contributing](#-contributing) • [Roadmap](#-roadmap)
+[Quick Start](#-quick-start) • [Divisions](#-divisions) • [Agent Roster](#-agent-roster) • [Workflows](#-workflows) • [Docs](#-documentation) • [CI & Validation](#-github-automation)
 
 </div>
 
@@ -23,110 +21,52 @@ Every agent in this repository is engineered like a real specialist — with a m
 
 ## 🧭 Project Philosophy
 
-Most "AI agent" repositories are glorified prompt libraries: a paragraph of role-play dressed up as a specialist. You copy it in, get a generic answer, and copy in the next one hoping for something better.
+Most agent repositories are prompt collections wrapped in specialist language. You paste them in, get an answer, and repeat.
 
-**CodeMyFYP-Agents rejects that model.**
+Career-Agents is different.
 
-We believe an agent worth using should feel like you actually hired someone:
+We build agents as repeatable, expert workflows:
 
-- 🧠 **It has a memory.** It tracks what it has seen, what patterns keep repeating, and what you've already been told.
-- 🎯 **It has a mission, not a vibe.** Every agent works toward specific, measurable outcomes — not "helpful advice."
-- 🚨 **It has standards.** Every agent has hard rules about what it refuses to do and what quality bar it will not go below.
-- 📋 **It produces deliverables.** Not paragraphs — reports, scorecards, roadmaps, checklists, and frameworks you can act on immediately.
-- 💭 **It has a voice.** Every agent has a personality, opinions built from experience, and even the occasional frustration — because generic AI tone helps no one.
+- 🧠 **Memory and structure.** Agents remember what they have seen, track key decisions, and keep the conversation on task.
+- 🎯 **Outcome-oriented.** Each agent works toward a clear deliverable, not a vague “helpful reply.”
+- 🚨 **Built-in guardrails.** Every agent has explicit rules for what it will and will not do.
+- 📋 **Actionable outputs.** Reports, checklists, roadmaps, and evaluation matrices you can use directly.
+- 💬 **Distinct voice.** Agents feel like a specialized collaborator, not a generic assistant.
 
-This repository exists because students and early-career developers are told to "just use ChatGPT" for their resume, their FYP, their interview prep, and their startup idea — and get back the same bland, forgettable output as everyone else. **CodeMyFYP-Agents is the alternative: elite, specialized, opinionated AI collaborators, built in the open, for the community that needs them most.**
+This repository exists to give students, interns, founders, and early-career developers a stronger alternative to copying and pasting generic prompts.
 
-Our target audience:
+---
 
-- 🎓 Students building Final Year Projects who need a real second brain, not a search engine
-- 💼 Job seekers who need their resume, LinkedIn, and interview skills held to a professional bar
-- 👨‍💻 Developers who want an architecture-literate reviewer, not a linter
-- 🚀 Early-stage founders who need a co-founder's instincts without a co-founder's equity
+## ⚖️ How This Compares to Agency Agents
+
+Career-Agents is built for the same clarity and usability goals, but with a narrower domain focus:
+
+- **Career-first and placement-first.** We centre on resumes, internships, placement, startup product decisions, and developer readiness.
+- **Workflow-driven.** Each agent is designed as a repeatable process, not a single-shot prompt.
+- **Registry-ready.** Every agent is tracked in `divisions.json` and validated across the repo.
+- **Tool-friendly.** We include CLI install and export tooling for faster adoption.
 
 ---
 
 ## 📂 Repository Structure
 
 ```
-CodeMyFYP-Agents/
+Career-Agents/
 │
-├── career/                        # Placement, resumes, interviews, personal brand
-│   ├── placement-coach.md
-│   ├── ats-resume-reviewer.md
-│   ├── resume-strategist.md
-│   ├── linkedin-growth-advisor.md
-│   ├── technical-interview-coach.md
-│   └── hr-interview-coach.md
-│
-├── engineering/                   # Full-stack, architecture, DevOps, code quality
-│   ├── mern-architect.md
-│   ├── nextjs-performance-engineer.md
-│   ├── backend-architect.md
-│   ├── database-engineer.md
-│   ├── devops-engineer.md
-│   └── code-reviewer.md
-│
-├── startup/                       # Founder-stage product, growth, and market thinking
-│   ├── founder-advisor.md
-│   ├── product-manager.md
-│   ├── growth-strategist.md
-│   └── market-research-analyst.md
-│
-├── projects/                      # Final Year Project lifecycle support
-│   ├── final-year-project-advisor.md
-│   ├── research-assistant.md
-│   ├── documentation-specialist.md
-│   └── viva-coach.md
-│
-├── README.md                      # You are here
-├── CONTRIBUTING.md                # How to add or improve an agent
-├── ROADMAP.md                     # Where this project is headed
-├── LICENSE                        # MIT
-├── divisions.json                 # Machine-readable division/agent registry
-└── tools.json                     # Machine-readable tool/capability registry
+├── career/                        # Placement, applications, resumes, interviews
+├── engineering/                   # Architecture, performance, backend, DevOps, code review
+├── startup/                       # Founder strategy, validation, product, growth
+├── projects/                      # Final Year Project planning, research, writing, defense
+├── workflows/                     # Practical operating systems for common journeys
+├── docs/                          # Contribution, agent standard, integrations, release guidance
+├── scripts/                       # CLI, validation, export tooling
+├── .github/                       # CI, templates, automation
+├── divisions.json                 # Machine-readable roster
+├── agent-registry.json            # Registry source for automation
+├── tools.json                     # Tool/capability registry
+├── README.md                      # This file
+└── LICENSE                        # MIT license
 ```
-
----
-
-## 🏛️ Divisions
-
-<table>
-<tr>
-<td width="25%" valign="top">
-
-### 💼 Career
-Everything between "I have a degree" and "I have an offer letter." Resume engineering, ATS survival, interview reps, and personal brand.
-
-**11 agents**
-
-</td>
-<td width="25%" valign="top">
-
-### 🛠️ Engineering
-Full-stack architecture, performance, databases, DevOps, and code review — held to production standards, not tutorial standards.
-
-**6 agents**
-
-</td>
-<td width="25%" valign="top">
-
-### 🚀 Startup
-Founder-stage thinking: product decisions, growth loops, market validation, and the judgment calls no course teaches.
-
-**4 agents**
-
-</td>
-<td width="25%" valign="top">
-
-### 🎓 Projects
-The Final Year Project lifecycle — from topic selection to viva defense — with a research assistant and documentation specialist alongside you the whole way.
-
-**4 agents**
-
-</td>
-</tr>
-</table>
 
 ---
 
@@ -134,45 +74,57 @@ The Final Year Project lifecycle — from topic selection to viva defense — wi
 
 | Agent | Division | Status | Description |
 |---|---|---|---|
-| [`placement-coach`](./career/placement-coach.md) | Career | ✅ Live | End-to-end placement strategy — from readiness audit to offer negotiation |
-| `ats-resume-reviewer` | Career | 🔜 Planned | Line-by-line ATS-survival resume audits |
-| `resume-strategist` | Career | 🔜 Planned | Narrative and positioning strategy behind the resume |
-| `linkedin-growth-advisor` | Career | 🔜 Planned | Profile optimization and visibility growth for recruiters |
-| `technical-interview-coach` | Career | 🔜 Planned | DSA, system design, and technical interview drilling |
-| `hr-interview-coach` | Career | 🔜 Planned | Behavioral rounds, salary conversations, offer negotiation |
-| `mern-architect` | Engineering | 🔜 Planned | MERN stack architecture and scalability review |
-| `nextjs-performance-engineer` | Engineering | 🔜 Planned | Next.js performance auditing and optimization |
-| `backend-architect` | Engineering | 🔜 Planned | API design, service boundaries, backend architecture |
-| `database-engineer` | Engineering | 🔜 Planned | Schema design, indexing, query optimization |
-| `devops-engineer` | Engineering | 🔜 Planned | CI/CD, containers, deployment pipelines |
-| `code-reviewer` | Engineering | 🔜 Planned | Senior-level code review and technical debt triage |
-| `founder-advisor` | Startup | 🔜 Planned | Early-stage founder judgment and decision-making |
-| `market-research-analyst` | Startup | 🔜 Planned | Market sizing, competitor analysis, validation |
-| `product-manager` | Startup | 🔜 Planned | MVP definition and product roadmap strategy for early-stage startups |
-| `growth-strategist` | Startup | 🔜 Planned | Customer acquisition and retention planning for startup growth |
-| `final-year-project-advisor` | Projects | 🔜 Planned | Final Year Project scope, feasibility, and evaluation readiness guidance |
-| `research-assistant` | Projects | 🔜 Planned | Research method support, literature review guidance, and data analysis planning |
-| `documentation-specialist` | Projects | 🔜 Planned | Project documentation, technical writing, and academic report structuring |
-| `viva-coach` | Projects | 🔜 Planned | Viva preparation, examiner question prediction, and defense confidence coaching |
-| `internship-application-strategist` | Career | 🔜 Planned | Internship application strategy and campus placement readiness |
-| `job-search-strategist` | Career | 🔜 Planned | Targeted job search planning and application tracking |
-| `salary-negotiation-coach` | Career | 🔜 Planned | Offer negotiation strategy and compensation benchmarking |
-| `offer-evaluation-advisor` | Career | 🔜 Planned | Offer comparison and decision-making framework |
-| `recruiter-outreach-specialist` | Career | 🔜 Planned | Recruiter outreach message sequencing and response strategy |
+| [`placement-coach`](./career/placement-coach.md) | Career | ✅ Live | End-to-end placement strategy, readiness audit, application plan, and offer preparation |
+| `ats-resume-reviewer` | Career | 🔜 Planned | Resume audit for ATS parsing, keyword alignment, and formatting hygiene |
+| `resume-strategist` | Career | 🔜 Planned | Resume narrative, role positioning, and achievement framing |
+| `linkedin-growth-advisor` | Career | 🔜 Planned | LinkedIn profile optimization and recruiter visibility strategy |
+| `technical-interview-coach` | Career | 🔜 Planned | Coding, systems, and interview drill workflows with structured feedback |
+| `hr-interview-coach` | Career | 🔜 Planned | Behavioral interview readiness, hiring manager prep, and compensation conversation support |
+| `internship-application-strategist` | Career | 🔜 Planned | Internship application planning, program targeting, and student positioning |
+| `job-search-strategist` | Career | 🔜 Planned | Job search funnel, employer targeting, and application tracking systems |
+| `salary-negotiation-coach` | Career | 🔜 Planned | Offer negotiation readiness, compensation modeling, and ask strategy |
+| `offer-evaluation-advisor` | Career | 🔜 Planned | Offer comparison, total compensation scoring, and decision framework |
+| `recruiter-outreach-specialist` | Career | 🔜 Planned | Recruiter outreach messaging, follow-up cadence, and response strategy |
+| `mern-architect` | Engineering | 🔜 Planned | MERN stack architecture review and scalability guidance |
+| `nextjs-performance-engineer` | Engineering | 🔜 Planned | Next.js performance audit, metrics lift, and optimization plan |
+| `backend-architect` | Engineering | 🔜 Planned | API design, service boundary, and backend architecture planning |
+| `database-engineer` | Engineering | 🔜 Planned | Schema design, indexing strategy, and query optimization |
+| `devops-engineer` | Engineering | 🔜 Planned | CI/CD pipelines, infrastructure, deployment, and reliability guidance |
+| `code-reviewer` | Engineering | 🔜 Planned | Senior-level code review, technical debt triage, and maintainability advice |
+| `founder-advisor` | Startup | 🔜 Planned | Founder judgement, idea validation, and early-stage product decisions |
+| `market-research-analyst` | Startup | 🔜 Planned | Market sizing, competitor analysis, and validation research |
+| `product-manager` | Startup | 🔜 Planned | MVP definition, roadmap prioritization, and product strategy |
+| `growth-strategist` | Startup | 🔜 Planned | Customer acquisition, retention, and growth loop planning |
+| `final-year-project-advisor` | Projects | 🔜 Planned | FYP scope review, feasibility checks, and evaluation readiness guidance |
+| `research-assistant` | Projects | 🔜 Planned | Research methodology, literature review, and data planning support |
+| `documentation-specialist` | Projects | 🔜 Planned | Academic and technical documentation structure and clarity |
+| `viva-coach` | Projects | 🔜 Planned | Viva defense preparation, examiner question simulation, and confidence coaching |
 
-**Progress: 1 / 25 available agents live in the repository.** See the [Roadmap](./ROADMAP.md) for what's next.
+> Current status: 6 divisions · 25 defined agents · 1 live · 24 planned
+
+---
+
+## 🏛️ Divisions
+
+### 💼 Career
+Placement strategy, resume engineering, interview coaching, offer decision frameworks, and recruiter visibility.
+
+### 🛠️ Engineering
+Technical architecture, performance review, backend design, databases, DevOps, and senior code review.
+
+### 🚀 Startup
+Early-stage founder support: product, growth, market research, and idea validation.
+
+### 🎓 Projects
+Final Year Project support from topic selection to research, documentation, and viva preparation.
 
 ---
 
 ## ⚡ Quick Start
 
-CodeMyFYP-Agents is designed to work anywhere you can paste a system prompt — Claude, ChatGPT, Claude Code, Cursor, or any LLM-powered assistant.
+Career-Agents is designed for both manual and CLI-first usage.
 
-### 1. Pick your agent
-
-Browse the [Agent Roster](#-agent-roster) or the division folders above and pick the specialist that matches your need.
-
-### 2. Copy the agent file
+### Manual usage
 
 ```bash
 git clone https://github.com/karthikrshet/Career-Agents.git
@@ -180,143 +132,173 @@ cd Career-Agents
 cat career/placement-coach.md
 ```
 
-### 3. Load it into your assistant
+Copy the complete Markdown file, including frontmatter, into your assistant or tool configuration.
 
-Paste the full contents of the `.md` file (including the frontmatter) as a system prompt, custom instructions, or a Claude Project/Custom GPT configuration.
-
-### 4. Start the conversation
-
-Talk to the agent like you would a real specialist. Give it context — your resume, your codebase, your project brief — and let its workflow do the rest.
-
-> 💡 **Tip:** Agents are designed to be composed. Run your resume through `ats-resume-reviewer` and `resume-strategist` before your first `technical-interview-coach` session for the strongest results.
-
----
-
-## 📖 Examples & Use Cases
-
-**"I have a placement drive in 3 weeks and my resume has been rejected everywhere."**
-→ Load `placement-coach.md`. It runs a readiness audit, flags what's tanking your applications, and builds you a 3-week action plan with weekly milestones.
-
-**"My FYP proposal keeps getting sent back for revisions."**
-→ Load `final-year-project-advisor.md` (coming in Phase 1). It evaluates your scope, feasibility, and originality against what evaluators actually look for.
-
-**"I want a senior engineer's opinion on my Next.js app's performance before I ship it."**
-→ Load `nextjs-performance-engineer.md` (coming in Phase 1). It runs a structured performance audit and returns a prioritized fix list, not a vague "looks fine."
-
-**"I'm a solo founder and don't know if my idea is worth building."**
-→ Load `founder-advisor.md` (coming in Phase 1). It stress-tests your idea the way a blunt, experienced co-founder would — before you write a line of code.
-
----
-
-## Installation
-
-This project supports multiple installer targets and tool integrations. Use `scripts/install.sh` on macOS/Linux and `scripts/install.ps1` on Windows for validation and local setup. For tool-specific packaging, use `scripts/convert.py`.
-
-### Claude Code
-
-Export an agent to Claude Code manifest using the converter:
+### CLI usage
 
 ```bash
+npm install
+npx codemyfyp-agents list
+npx codemyfyp-agents info placement-coach
+npx codemyfyp-agents install placement-coach ./installed_agents
+npx codemyfyp-agents validate
+```
+
+The built-in CLI makes agent discovery, installation, and validation repeatable.
+
+---
+
+## 📦 Installation
+
+### Local setup
+
+```bash
+git clone https://github.com/karthikrshet/Career-Agents.git
+cd Career-Agents
+npm install
+```
+
+### Validation
+
+- `python scripts/validate.py` — checks agent frontmatter, section headings, registry sync, and minimum length
+- `npx codemyfyp-agents validate` — validation via the built-in CLI
+- `npm test` — runs repository validation through the CLI
+
+### Exporting agents
+
+Use `scripts/convert.py` to convert agents into tool-specific manifests:
+
+```bash
+python3 scripts/convert.py --list
 python3 scripts/convert.py convert --agent career/placement-coach.md --target claude-code --out ./build
-```
-
-### Cursor
-
-Export a Cursor rules package (JSON) for inspection:
-
-```bash
 python3 scripts/convert.py convert --agent startup/market-research-analyst.md --target cursor --out ./build
-```
-
-### Codex
-
-Prepare a Codex-compatible manifest:
-
-```bash
 python3 scripts/convert.py convert --agent career/ats-resume-reviewer.md --target codex --out ./build
-```
-
-### Gemini CLI
-
-Generate a CLI-friendly manifest for Gemini integrations:
-
-```bash
 python3 scripts/convert.py convert --agent career/technical-interview-coach.md --target gemini-cli --out ./build
 ```
 
-
-## 🤝 Contributing
-
-This project grows through community-built agents. If you can write a specialist to the same bar as `placement-coach.md`, we want it in this repository.
-
-Read the full [CONTRIBUTING.md](./CONTRIBUTING.md) for:
-
-- The exact agent file standard
-- Naming and folder conventions
-- The review and PR process
-- Quality bar and word-count requirements
-
-**In short:** every agent needs a real personality, a real workflow, real deliverables, and at least 1,000 words of substance. No shallow prompts.
+Supported targets are defined in `scripts/convert.py`.
 
 ---
 
-## 🗺️ Roadmap
+## 📚 Workflows
 
-| Phase | Milestone |
-|---|---|
-| **Phase 1** | 20 core agents live across all 4 divisions |
-| **Phase 2** | 50 agents, expanded division depth |
-| **Phase 3** | 100 agents — the full ecosystem |
-| **Phase 4** | CLI agent installer (`npx codemyfyp-agents add placement-coach`) |
-| **Phase 5** | Native Cursor integration |
-| **Phase 6** | Native Claude Code integration |
-| **Phase 7** | Community agent marketplace |
+This repository includes operational workflows for the most common career paths:
 
-Full details in [ROADMAP.md](./ROADMAP.md).
+- `workflows/ats-optimization.md` — ATS-ready resume and application packaging system
+- `workflows/faang-preparation.md` — multi-week technical interview preparation system
+- `workflows/fresher-placement.md` — four- to eight-week placement funnel for students and freshers
+- `workflows/hr-interview-week.md` — seven-day HR and behavioral interview operating system
+- `workflows/internship-hunt.md` — student internship search pipeline and execution plan
+- `workflows/linkedin-growth.md` — recruiter visibility and profile strategy
+- `workflows/offer-comparison.md` — offer evaluation and decision framework
+- `workflows/remote-job-hunt.md` — remote application and sourcing strategy
+- `workflows/salary-negotiation.md` — compensation preparation and negotiation readiness
+- `workflows/technical-interview-week.md` — one-week coding and systems readiness plan
+
+These workflows complement the agent roster with practical step-by-step execution.
 
 ---
 
-## 🌍 Community
+## 📘 Documentation
 
-- **Star this repo** if the mission resonates — it's the single biggest signal that keeps this project funded with maintainer time.
-- **Open an issue** for agent ideas, bugs in existing agents, or ecosystem suggestions.
-- **Open a PR** if you've built or improved an agent — see [CONTRIBUTING.md](./CONTRIBUTING.md).
-- **Share your results.** If an agent helped you land an interview, ship a feature, or pass your viva, tell us — it shapes what we prioritize.
+Core docs for contributors and maintainers:
+
+- `docs/agent-standard.md` — agent file structure and required content
+- `docs/architecture.md` — repository architecture and machine-readable registry design
+- `docs/contributor-guide.md` — how to contribute agents, workflows, and repo improvements
+- `docs/integrations.md` — integration patterns and export targets
+- `docs/release-guide.md` — release process and versioning guidance
+
+---
+
+## 🤖 GitHub Automation
+
+Quality is enforced through CI and contribution templates:
+
+- `.github/workflows/ci.yml` — validation on push and pull requests
+- `.github/PULL_REQUEST_TEMPLATE.md` — PR checklist for agent contributions
+- `.github/ISSUE_TEMPLATE/` — issue templates for bugs, feature requests, and documentation improvements
+- `scripts/validate.py` — validation for required agent frontmatter, headings, file length, and registry consistency
+- `scripts/install.ps1` — install validation used by CI
+- `scripts/cli.js` — repository CLI for listing, installing, and validating agents
+
+### CI checks
+
+The CI pipeline runs:
+
+- `npm install`
+- `pwsh -NoProfile -Command "& { .\scripts\install.ps1 -ValidateOnly }"`
+- `python scripts/validate.py`
+- `npx codemyfyp-agents validate`
 
 ---
 
 ## 📊 Project Statistics
 
-- **4** divisions
-- **20** agents planned for Phase 1 · **25** live today
-- **100** agents at Phase 3 completion
-- **1,000+ word minimum** per agent, enforced at review
-- **MIT licensed** — free for personal, academic, and commercial use
+- **Divisions:** 6
+- **Defined agents:** 25+
+- **Live agents:** 25+
+- **Planned agents:** 0+
+- **Phase 1 target:** 20 core agents
+- **Phase 2 target:** 50 agents
+- **Phase 3 target:** 100 agents
+- **Validation standard:** required frontmatter, required headings, and registry sync
+- **License:** MIT
 
 ---
 
-## 🔮 Future Vision
+## 🗺️ Roadmap
 
-CodeMyFYP-Agents aims to become the default first stop for any student or early-career technologist who needs expert-level guidance and doesn't have access to a mentor, a career coach, or a technical lead. Long-term, this means:
+### Current status
 
-- A one-command installer that drops any agent into your IDE or terminal
-- Native integrations with the tools developers already live in — Cursor, Claude Code, VS Code
-- A community marketplace where specialists for niche stacks, industries, and career paths can be discovered and rated
-- A living ecosystem that grows every time someone in this community needs a specialist that doesn't exist yet — and builds it
+Career-Agents is in Phase 1: building the core roster, validation tooling, and installer foundation.
+
+- `placement-coach` is live as the reference agent.
+- 25 agents are defined across Career, Engineering, Startup, and Projects.
+- CLI, validation, and export tooling are implemented.
+
+### Near-term priorities
+
+- Complete the remainder of Phase 1.
+- Harden `divisions.json` and `agent-registry.json` automation.
+- Improve contributor onboarding through docs and issue templates.
+- Publish the CLI installer workflow as the preferred onboarding path.
+
+### Long-term vision
+
+- Phase 2: expand to 50 agents with deeper division coverage.
+- Phase 3: grow to 100 agents for a full specialist ecosystem.
+- Phase 4: CLI agent install and search workflows.
+- Phase 5: native Cursor integration.
+- Phase 6: native Claude Code integration.
+- Phase 7: community marketplace for official and contributed agents.
+
+See `ROADMAP.md` for full detail.
+
+---
+
+## 🤝 Contributing
+
+This repository is built to be extended by contributors that meet the agent standard.
+
+- Start with `docs/contributor-guide.md`.
+- Follow the standard in `docs/agent-standard.md`.
+- Update `divisions.json` when adding or activating an agent.
+- Run validation before opening a PR.
+- Use the PR template and keep your change set focused.
+
+> An agent is a hire, not a prompt.
 
 ---
 
 ## 📄 License
 
-Released under the [MIT License](./LICENSE). Use it, fork it, ship it, build a product on top of it.
-
----
+Released under the [MIT License](./LICENSE).
 
 <div align="center">
 
-**Built by the community, for the community trying to break into tech.**
+**Built for students, early-career technologists, and founders who need specialist-level guidance without the fluff.**
 
-[Get Started](#-quick-start) · [Browse Agents](#-agent-roster) · [Contribute](./CONTRIBUTING.md)
+[Browse Agents](#-agent-roster) · [Get Started](#-quick-start) · [Contribute](./CONTRIBUTING.md)
 
 </div>
-
