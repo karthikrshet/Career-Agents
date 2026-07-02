@@ -27,8 +27,9 @@ CodeMyFYP-Agents grows in deliberate phases — depth before breadth, quality be
 - [x] **Interview Division:** behavioral drilling, system design walkthroughs, mock interviewing, group discussion facilitation, and leadership rounds.
 - [x] **Networking Division:** LinkedIn outreach messages, re-engagement templates, alumni Affinity sourcing, recruiter screening, and warm referral strategies.
 - [x] **Company Interviews Division:** Specialized FAANG+ interview prep (Google, Amazon, Meta, Apple, Microsoft, Netflix, Salesforce, Adobe, Uber, Atlassian).
+- [/] **Niche & Automation Expansion (Active):** Expanding the ecosystem with 50 new strategic agents across 5 new divisions (Job Automation, FAANG & Top Tech, AI Business, Modern GTM, and Freelancing) to capture modern tech pipelines.
 
-**Status:** Completed. Discovered and synchronized 65 active agents across 8 divisions.
+**Status:** In Progress. Expanded to 130 active agents across 19 divisions.
 
 ---
 

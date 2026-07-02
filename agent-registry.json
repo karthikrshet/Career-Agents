@@ -2,7 +2,7 @@
   "$schema": "https://codemyfyp-agents.dev/schema/agent-registry.json",
   "repository": "Career-Agents",
   "version": "0.2.0",
-  "generated": "2026-07-02",
+  "generated": "2026-07-03",
   "agents": [
     {
       "id": "ats-resume-reviewer",
@@ -2192,6 +2192,186 @@
       "color": "#B45309",
       "emoji": "\ud83d\udce3",
       "vibe": "Engaging, Empathetic, Community-Centric"
+    },
+    {
+      "id": "gtm-engineer",
+      "name": "GTM Engineer",
+      "division": "gtm",
+      "description": "An outreach systems architect who designs clay workflows, API enrichments, and automated cold inbound/outbound setup.",
+      "status": "live",
+      "filename": "gtm/gtm-engineer.md",
+      "tags": [
+        "gtm",
+        "clay",
+        "outbound",
+        "automation",
+        "systems"
+      ],
+      "color": "#8E44AD",
+      "emoji": "⚙️",
+      "vibe": "technical, automation-driven, pipeline-obsessed, detail-oriented"
+    },
+    {
+      "id": "openai-career-coach",
+      "name": "OpenAI Career Coach",
+      "division": "faang",
+      "description": "A specialized coach for OpenAI interview loops, engineering culture, and AI research/engineering positions.",
+      "status": "live",
+      "filename": "faang/openai-career-coach.md",
+      "tags": [
+        "openai",
+        "faang",
+        "ai-research",
+        "machine-learning",
+        "interview-prep"
+      ],
+      "color": "#10A37F",
+      "emoji": "🧠",
+      "vibe": "elite, research-focused, frontier-aware, rigorous"
+    },
+    {
+      "id": "job-hunter-ai",
+      "name": "Job Hunter AI",
+      "division": "job-automation",
+      "description": "An automated job discovery and application tracking companion that manages target queues.",
+      "status": "live",
+      "filename": "job-automation/job-hunter-ai.md",
+      "tags": [
+        "automation",
+        "career",
+        "job-search",
+        "tactical",
+        "pipeline"
+      ],
+      "color": "#2E86C1",
+      "emoji": "🎯",
+      "vibe": "structured, tactical, outcome-driven, organized"
+    },
+    {
+      "id": "ai-founder",
+      "name": "AI Founder",
+      "division": "ai-business",
+      "description": "A strategic AI builder focused on scaling AI-first products, MVPs, and business models.",
+      "status": "live",
+      "filename": "ai-business/ai-founder.md",
+      "tags": [
+        "ai-business",
+        "founder",
+        "mvp",
+        "moats",
+        "startup"
+      ],
+      "color": "#3498DB",
+      "emoji": "🚀",
+      "vibe": "visionary, execution-focused, analytical, product-minded"
+    },
+    {
+      "id": "freelance-founder",
+      "name": "Freelance Founder",
+      "division": "freelancing",
+      "description": "An independent consultant strategist driving retainer growth, pricing, and client acquisition channels.",
+      "status": "live",
+      "filename": "freelancing/freelance-founder.md",
+      "tags": [
+        "freelancing",
+        "consulting",
+        "retainers",
+        "proposals",
+        "sales"
+      ],
+      "color": "#F1C40F",
+      "emoji": "💎",
+      "vibe": "elite, high-value, business-minded, structured"
+    },
+    {
+      "id": "job-application-optimizer",
+      "name": "Job Application Optimizer",
+      "division": "job-automation",
+      "description": "An AI context tailoring engine that customizes applications, resume bullets, and cover letters for specific job descriptions at scale.",
+      "status": "live",
+      "filename": "job-automation/job-application-optimizer.md",
+      "tags": [
+        "automation",
+        "resume",
+        "cover-letter",
+        "context",
+        "surgical"
+      ],
+      "color": "#2E86C1",
+      "emoji": "⚡",
+      "vibe": "surgical, contextual, performance-minded, efficient"
+    },
+    {
+      "id": "google-swe-coach",
+      "name": "Google SWE Coach",
+      "division": "faang",
+      "description": "A specialized technical coach for Google Software Engineering (SWE) loops, focusing on DS & Algorithms, complex complexity analysis, clean code structure, and Googleyness & Leadership (G&L).",
+      "status": "live",
+      "filename": "faang/google-swe-coach.md",
+      "tags": [
+        "google",
+        "faang",
+        "algorithms",
+        "system-design",
+        "googleyness"
+      ],
+      "color": "#10A37F",
+      "emoji": "🟩",
+      "vibe": "algorithmic, analytical, Googley, structured"
+    },
+    {
+      "id": "ai-consultant",
+      "name": "AI Consultant",
+      "division": "ai-business",
+      "description": "An enterprise AI strategist mapping company problems to LLM/RAG solutions, scoping APIs, drafting security/privacy architectures, and showing ROI.",
+      "status": "live",
+      "filename": "ai-business/ai-consultant.md",
+      "tags": [
+        "ai-business",
+        "consultant",
+        "enterprise",
+        "security",
+        "roi"
+      ],
+      "color": "#3498DB",
+      "emoji": "👔",
+      "vibe": "advisory, enterprise-aware, risk-conscious, strategic"
+    },
+    {
+      "id": "clay-specialist",
+      "name": "Clay Specialist",
+      "division": "gtm",
+      "description": "A master of Clay workflows, waterfall search logic, AI enrichment prompting, data cleaning, and CSV normalization.",
+      "status": "live",
+      "filename": "gtm/clay-specialist.md",
+      "tags": [
+        "gtm",
+        "clay",
+        "waterfalls",
+        "data-enrichment",
+        "formulas"
+      ],
+      "color": "#8E44AD",
+      "emoji": "🧱",
+      "vibe": "structured, detail-oriented, pipeline-focused, data-obsessed"
+    },
+    {
+      "id": "upwork-specialist",
+      "name": "Upwork Specialist",
+      "division": "freelancing",
+      "description": "A profile positioning and proposal writing advisor focused on converting Upwork feeds into closed contracts.",
+      "status": "live",
+      "filename": "freelancing/upwork-specialist.md",
+      "tags": [
+        "freelancing",
+        "upwork",
+        "proposals",
+        "positioning",
+        "sales"
+      ],
+      "color": "#F1C40F",
+      "emoji": "🎯",
+      "vibe": "practical, persuasive, client-centric, result-oriented"
     }
   ]
 }
