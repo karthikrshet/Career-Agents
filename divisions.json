@@ -6,8 +6,8 @@
   "registry_source": "agent-registry.json",
   "stats": {
     "total_divisions": 14,
-    "agents_live": 65,
-    "agents_present": 65
+    "agents_live": 125,
+    "agents_present": 125
   },
   "divisions": [
     {
@@ -26,10 +26,10 @@
           "status": "live",
           "description": "A focused, line-by-line resume auditor who optimizes resume structure, language, and keyword signaling to survive ATS parsing and convert recruiter skim-time into interview invites.",
           "tags": [
+            "no-nonsense",
+            "career",
             "recruiter-aware",
             "forensic",
-            "career",
-            "no-nonsense",
             "exacting"
           ]
         },
@@ -40,11 +40,11 @@
           "status": "live",
           "description": "A structured, non-judgmental accountability partner who converts career goals into weekly commitments, tracks follow-through with honest data, diagnoses why execution is failing, and rebuilds momentum when it stalls \u2014 without letting candidates off the hook or crushing them with guilt.",
           "tags": [
-            "career",
             "follow-through-obsessed",
+            "career",
             "non-judgmental",
-            "structured",
-            "warmly relentless"
+            "warmly relentless",
+            "structured"
           ]
         },
         {
@@ -54,11 +54,11 @@
           "status": "live",
           "description": "A transition strategist for non-technical professionals entering the tech industry \u2014 covering entry point selection (software engineering, product, data, UX, technical sales, DevRel, and more), learning path design, portfolio development, narrative construction, and the tactical job search mechanics specific to tech industry hiring.",
           "tags": [
-            "non-stem-background-affirming",
-            "career",
             "path-specific",
+            "career",
             "transition-realistic",
-            "evidence-obsessed"
+            "evidence-obsessed",
+            "non-stem-background-affirming"
           ]
         },
         {
@@ -68,11 +68,11 @@
           "status": "live",
           "description": "A long-horizon career architect who builds milestone-based, decade-spanning career roadmaps \u2014 turning vague ambitions into sequenced, evidence-gated development plans that compound skill, reputation, and leverage over time.",
           "tags": [
-            "milestone-obsessed",
             "compounding-minded",
             "career",
-            "immune to short-term noise",
-            "long-horizon"
+            "milestone-obsessed",
+            "long-horizon",
+            "immune to short-term noise"
           ]
         },
         {
@@ -82,11 +82,11 @@
           "status": "live",
           "description": "A decisive, pattern-aware career transition coach who helps professionals move from one field, function, or industry into another \u2014 by mapping transferable assets, designing bridge strategies, and turning \"I don't have the background for this\" into a concrete, evidence-backed plan that works.",
           "tags": [
+            "allergic to \"start from scratch",
             "career",
-            "bridge-builder",
             "decisive",
-            "asset-focused",
-            "allergic to \"start from scratch"
+            "bridge-builder",
+            "asset-focused"
           ]
         },
         {
@@ -96,10 +96,10 @@
           "status": "live",
           "description": "A career strategist specializing in helping underrepresented professionals navigate systemic barriers, bias in hiring, and unequal advancement dynamics \u2014 providing concrete, evidence-informed strategies that turn awareness of barriers into actionable career architecture.",
           "tags": [
-            "career",
-            "systemic-not-personal",
             "equity-aware",
+            "career",
             "strengths-first",
+            "systemic-not-personal",
             "structurally honest"
           ]
         },
@@ -110,10 +110,10 @@
           "status": "live",
           "description": "A senior-level career strategist who helps VP, Director, and C-suite professionals navigate the fundamentally different world of executive hiring \u2014 where most roles never appear on job boards, where personal brand and reputation are the primary search vehicles, and where the quality of your board and peer network determines your access more than your resume.",
           "tags": [
-            "discretion-first",
-            "long-game strategist",
-            "board-aware",
             "career",
+            "discretion-first",
+            "board-aware",
+            "long-game strategist",
             "network-over-resume"
           ]
         },
@@ -124,10 +124,10 @@
           "status": "live",
           "description": "A pragmatic freelance business strategist who helps independent professionals build sustainable, client-diversified freelance careers \u2014 covering rate-setting, client acquisition, portfolio positioning, contract fundamentals, and the transition from feast-or-famine to predictable income.",
           "tags": [
-            "client-quality-over-quantity",
             "anti-hustle-culture",
             "career",
             "business-first",
+            "client-quality-over-quantity",
             "income-predictability-obsessed"
           ]
         },
@@ -138,11 +138,11 @@
           "status": "live",
           "description": "A strategic first-job advisor for recent graduates who cuts through the noise of \"apply everywhere\" and \"network more\" to build targeted, evidence-backed launch strategies that get new graduates into the right first role \u2014 not just any role \u2014 within a realistic timeline.",
           "tags": [
-            "strategy-before-volume",
             "career",
-            "honest about timelines",
+            "anti-panic",
             "first-job-focused",
-            "anti-panic"
+            "strategy-before-volume",
+            "honest about timelines"
           ]
         },
         {
@@ -152,11 +152,11 @@
           "status": "live",
           "description": "A behavioural and offer-readiness coach who prepares candidates for HR and cultural interviews, designs story-driven answers to behavioural prompts, and leads offer evaluation and negotiation prep with professional rigor.",
           "tags": [
-            "reassuring",
             "strategic",
-            "empathetic",
             "career",
-            "bluntly-honest"
+            "bluntly-honest",
+            "reassuring",
+            "empathetic"
           ]
         },
         {
@@ -166,11 +166,11 @@
           "status": "live",
           "description": "An internship application strategist who helps students package their skills, target hiring windows, and win sought-after internship roles.",
           "tags": [
-            "polished",
-            "opportunity-driven",
+            "student-focused",
             "strategic",
             "career",
-            "student-focused"
+            "polished",
+            "opportunity-driven"
           ]
         },
         {
@@ -180,11 +180,11 @@
           "status": "live",
           "description": "A hands-on internship performance coach who helps interns move from \"showing up\" to \"standing out\" \u2014 by building visibility, delivering meaningful work, converting internships into return offers, and treating every internship as a twelve-week audition with a clear performance plan.",
           "tags": [
-            "warm but results-driven",
-            "return-offer-obsessed",
-            "performance-first",
             "career",
-            "visibility-aware"
+            "return-offer-obsessed",
+            "visibility-aware",
+            "warm but results-driven",
+            "performance-first"
           ]
         },
         {
@@ -194,11 +194,11 @@
           "status": "live",
           "description": "A job search strategist who builds targeted application plans, opportunity funnels, and outreach systems for faster interview traction.",
           "tags": [
-            "results-focused",
-            "career",
-            "organized",
             "proactive",
-            "practical"
+            "career",
+            "results-focused",
+            "practical",
+            "organized"
           ]
         },
         {
@@ -209,10 +209,10 @@
           "description": "A tactical growth advisor for LinkedIn who optimizes profiles for recruiter discovery, builds content strategies that surface domain credibility, and converts passive profile views into active opportunities.",
           "tags": [
             "personable",
-            "evidence-driven",
             "tactical",
             "career",
-            "network-savvy"
+            "network-savvy",
+            "evidence-driven"
           ]
         },
         {
@@ -222,11 +222,11 @@
           "status": "live",
           "description": "A strategic, relationship-first networking coach who transforms transactional connection requests into genuine professional relationships \u2014 helping candidates build the kind of network that surfaces hidden job market opportunities, generates warm referrals, and compounds in value over an entire career.",
           "tags": [
-            "warm-but-strategic",
-            "career",
-            "deeply human",
             "systems-thinker",
-            "anti-hustle"
+            "career",
+            "warm-but-strategic",
+            "anti-hustle",
+            "deeply human"
           ]
         },
         {
@@ -237,10 +237,10 @@
           "description": "An offer evaluation advisor who helps candidates compare multiple opportunities and choose the best role for their career goals.",
           "tags": [
             "career-aware",
-            "impartial",
             "career",
-            "structured",
-            "analytical"
+            "impartial",
+            "analytical",
+            "structured"
           ]
         },
         {
@@ -250,11 +250,11 @@
           "status": "live",
           "description": "A strategic personal brand architect who builds authentic, channel-consistent professional identities that attract the right opportunities \u2014 turning scattered professional presence into a coherent, searchable, memorable signal that does career work even when the candidate isn't actively job hunting.",
           "tags": [
-            "evidence-over-aesthetics",
-            "consistency-obsessed",
-            "anti-performative",
             "career",
-            "identity-first"
+            "anti-performative",
+            "consistency-obsessed",
+            "identity-first",
+            "evidence-over-aesthetics"
           ]
         },
         {
@@ -264,11 +264,11 @@
           "status": "live",
           "description": "An end-to-end placement strategist who audits your readiness, builds a prioritized action plan, and drives you from \"applying blind\" to \"negotiating offers\" with the discipline of someone who has watched a thousand placement cycles play out.",
           "tags": [
-            "blunt",
-            "quietly encouraging",
-            "data-driven",
             "relentlessly practical",
-            "career"
+            "career",
+            "quietly encouraging",
+            "blunt",
+            "data-driven"
           ]
         },
         {
@@ -278,11 +278,11 @@
           "status": "live",
           "description": "A rigorous PM career coach who helps aspiring and practicing product managers break into the discipline, ace PM interviews at any company tier, build product intuition through structured practice, and advance from APM to VP of Product \u2014 with frameworks grounded in how the best PMs actually think, not in what sounds good in a textbook.",
           "tags": [
-            "frameworks-over-feelings",
+            "data-literate",
+            "execution-focused",
             "career",
             "user-obsessed",
-            "data-literate",
-            "execution-focused"
+            "frameworks-over-feelings"
           ]
         },
         {
@@ -292,11 +292,11 @@
           "status": "live",
           "description": "A recruiter outreach specialist who crafts message sequences and outreach plans to get recruiters to respond and move candidates into hiring conversations.",
           "tags": [
-            "recruiter-aware",
-            "follow-up-savvy",
             "career",
+            "recruiter-aware",
+            "targeted",
             "professional",
-            "targeted"
+            "follow-up-savvy"
           ]
         },
         {
@@ -306,11 +306,11 @@
           "status": "live",
           "description": "A strategic remote-work specialist who helps professionals find, land, and thrive in remote roles \u2014 covering remote-specific job search tactics, distributed team visibility, async communication mastery, home office optimization, and the specific career risks that remote work creates if not managed deliberately.",
           "tags": [
-            "visibility-conscious",
-            "async-native",
-            "anti-isolation-as-default",
+            "systems-thinker",
             "career",
-            "systems-thinker"
+            "anti-isolation-as-default",
+            "visibility-conscious",
+            "async-native"
           ]
         },
         {
@@ -321,10 +321,10 @@
           "description": "A narrative-focused resume strategist who crafts role-driven career stories, aligns achievements to hiring criteria, and builds resume ecosystems (resume, LinkedIn, portfolio) that consistently convert interest into interviews.",
           "tags": [
             "strategic",
-            "empathetic",
-            "evidence-rooted",
             "career",
-            "narrative-first"
+            "narrative-first",
+            "evidence-rooted",
+            "empathetic"
           ]
         },
         {
@@ -334,11 +334,11 @@
           "status": "live",
           "description": "A re-entry specialist who helps professionals return to the workforce after a career break \u2014 reframing gaps, rebuilding confidence, refreshing skills, and designing targeted re-entry strategies that land roles that respect the candidate's full experience, not just their most recent role.",
           "tags": [
-            "gap-reframer",
-            "anti-stigma",
             "career",
+            "confidence-rebuilder",
             "full-experience-honoring",
-            "confidence-rebuilder"
+            "gap-reframer",
+            "anti-stigma"
           ]
         },
         {
@@ -348,11 +348,11 @@
           "status": "live",
           "description": "A rigorous, data-literate compensation analyst who builds evidence-based salary benchmarks, deconstructs total compensation packages, and arms candidates with the market intelligence and framing to negotiate from facts rather than hope.",
           "tags": [
-            "zero tolerance for guesswork",
             "data-first",
+            "precision-obsessed",
+            "zero tolerance for guesswork",
             "career",
-            "unsentimental about money",
-            "precision-obsessed"
+            "unsentimental about money"
           ]
         },
         {
@@ -363,10 +363,10 @@
           "description": "A salary negotiation specialist who prepares candidates to evaluate offers, build leverage, and negotiate compensation confidently.",
           "tags": [
             "strategic",
-            "direct",
             "career",
-            "candidate-first",
-            "data-backed"
+            "direct",
+            "data-backed",
+            "candidate-first"
           ]
         },
         {
@@ -377,9 +377,9 @@
           "description": "A hands-on technical interview coach who prepares candidates for data structures & algorithms, system design, and role-specific coding rounds through targeted drills, rubric-based feedback, and measurable progression plans.",
           "tags": [
             "pragmatic",
+            "rigorous",
             "career",
             "mentor-forward",
-            "rigorous",
             "outcome-oriented"
           ]
         }
@@ -402,10 +402,10 @@
           "description": "A creativity-meets-engineering specialist who prepares candidates for Adobe's blend of technical rigor and genuine product-craft sensibility, where caring about the actual user experience of the tools you build is a real evaluation signal.",
           "tags": [
             "craft-focused",
+            "technically rigorous",
             "company-interviews",
-            "detail-loving",
             "product-empathetic",
-            "technically rigorous"
+            "detail-loving"
           ]
         },
         {
@@ -415,10 +415,10 @@
           "status": "live",
           "description": "A Leadership Principles specialist who knows that Amazon interviews are won or lost on STAR-structured stories mapped precisely to specific principles, not generic behavioral answers with an Amazon logo pasted on top.",
           "tags": [
-            "exacting on story structure",
+            "principle-obsessed",
             "bar-raiser mindset",
             "company-interviews",
-            "principle-obsessed"
+            "exacting on story structure"
           ]
         },
         {
@@ -428,11 +428,11 @@
           "status": "live",
           "description": "A values-driven collaboration specialist who prepares candidates for Atlassian's structured, values-mapped interview loop, where \"open company, no bullshit\" is an actual evaluation criterion, not just a wall poster.",
           "tags": [
-            "practically minded",
-            "company-interviews",
-            "collaborative",
             "values-literate",
-            "transparent"
+            "collaborative",
+            "transparent",
+            "practically minded",
+            "company-interviews"
           ]
         },
         {
@@ -442,11 +442,11 @@
           "status": "live",
           "description": "A structured-rigor specialist for Google's algorithm-heavy, googleyness-aware interview loop, who treats clean code communication and structured problem decomposition as non-negotiable, not optional polish.",
           "tags": [
-            "company-interviews",
             "calmly demanding",
             "rigorous",
-            "structure-obsessed",
-            "precise"
+            "precise",
+            "company-interviews",
+            "structure-obsessed"
           ]
         },
         {
@@ -457,10 +457,10 @@
           "description": "An execution-speed and impact-obsessed coach who prepares candidates for Meta's fast-paced technical bar and its distinct \"move fast, focus on impact\" behavioral evaluation.",
           "tags": [
             "fast-paced",
-            "impact-driven",
-            "company-interviews",
+            "direct",
             "unsentimental about scope",
-            "direct"
+            "company-interviews",
+            "impact-driven"
           ]
         },
         {
@@ -470,10 +470,10 @@
           "status": "live",
           "description": "A growth-mindset and collaborative-problem-solving specialist who prepares candidates for Microsoft's blend of technical depth and \"how do you work with others\" evaluation, including the as-appropriate design/coding rounds.",
           "tags": [
-            "company-interviews",
-            "quietly rigorous",
             "growth-minded",
             "collaborative",
+            "quietly rigorous",
+            "company-interviews",
             "structured"
           ]
         },
@@ -484,11 +484,11 @@
           "status": "live",
           "description": "A radical-candor and high-judgment specialist who prepares candidates for Netflix's uniquely direct culture interviews, where \"would I fight to keep this person\" is the real question behind every round.",
           "tags": [
-            "company-interviews",
+            "high standards",
             "candid",
-            "unimpressed by hedging",
+            "company-interviews",
             "judgment-focused",
-            "high standards"
+            "unimpressed by hedging"
           ]
         },
         {
@@ -498,10 +498,10 @@
           "status": "live",
           "description": "A fundamentals-first specialist who prepares candidates for Oracle's traditionally rigorous CS-fundamentals and systems-depth interview style, where solid, unglamorous engineering knowledge is genuinely rewarded.",
           "tags": [
-            "methodical",
-            "company-interviews",
             "fundamentals-obsessed",
             "no patience for shortcuts",
+            "methodical",
+            "company-interviews",
             "thorough"
           ]
         },
@@ -512,11 +512,11 @@
           "status": "live",
           "description": "A trust-and-customer-success specialist who prepares candidates for Salesforce's values-and-relationship-driven interview culture, where \"trust is our #1 value\" is treated as a real evaluation lens, not a slogan.",
           "tags": [
-            "company-interviews",
-            "warm",
-            "customer-obsessed",
             "values-literate",
-            "relationship-focused"
+            "relationship-focused",
+            "customer-obsessed",
+            "warm",
+            "company-interviews"
           ]
         },
         {
@@ -526,11 +526,11 @@
           "status": "live",
           "description": "A scale-and-ownership specialist who prepares candidates for Uber's operationally intense, ownership-driven interview culture, where \"built for scale, obsessed with the details that break at scale\" is the actual bar.",
           "tags": [
-            "company-interviews",
-            "operationally sharp",
+            "direct",
             "scale-minded",
             "ownership-obsessed",
-            "direct"
+            "company-interviews",
+            "operationally sharp"
           ]
         }
       ]
@@ -551,11 +551,11 @@
           "status": "live",
           "description": "An API and service-design reviewer who evaluates backend architecture for the failure modes that don't show up until real load, real edge cases, and real time have all had a chance to find them.",
           "tags": [
+            "engineering",
             "skeptical of shortcuts",
             "methodical",
-            "long-term-thinking",
             "unflashy",
-            "engineering"
+            "long-term-thinking"
           ]
         },
         {
@@ -565,11 +565,11 @@
           "status": "live",
           "description": "A senior-level code reviewer who triages real risk instead of nitpicking style, distinguishing \"this will break in production\" from \"this is a preference\" and never letting the two get confused.",
           "tags": [
-            "unimpressed by cleverness",
-            "teaching-oriented",
             "rigorous",
             "engineering",
-            "fair"
+            "unimpressed by cleverness",
+            "fair",
+            "teaching-oriented"
           ]
         },
         {
@@ -579,11 +579,11 @@
           "status": "live",
           "description": "A schema and query optimization specialist who reads execution plans instead of guessing, and treats indexing strategy as a precise discipline rather than a \"just add an index\" reflex.",
           "tags": [
-            "plan-reading",
-            "quietly relentless about correctness",
-            "precise",
+            "patient teacher",
             "engineering",
-            "patient teacher"
+            "plan-reading",
+            "precise",
+            "quietly relentless about correctness"
           ]
         },
         {
@@ -593,11 +593,11 @@
           "status": "live",
           "description": "A CI/CD and infrastructure reliability specialist who treats deployment pipelines as production systems in their own right, obsessed with reversibility, observability, and never being surprised by a failure.",
           "tags": [
-            "methodical",
-            "allergic to manual steps",
             "engineering",
+            "reliability-obsessed",
+            "allergic to manual steps",
             "calm in incidents",
-            "reliability-obsessed"
+            "methodical"
           ]
         },
         {
@@ -608,10 +608,10 @@
           "description": "A full-stack architecture reviewer for MongoDB/Express/React/Node applications who evaluates real scalability and maintainability tradeoffs instead of rubber-stamping whatever framework is trendy this year.",
           "tags": [
             "pragmatic",
-            "allergic to over-engineering",
             "scalability-focused",
             "engineering",
-            "opinionated"
+            "opinionated",
+            "allergic to over-engineering"
           ]
         },
         {
@@ -621,11 +621,11 @@
           "status": "live",
           "description": "A performance auditor obsessed with real Core Web Vitals and actual user-perceived speed, who diagnoses Next.js applications the way a profiler does \u2014 with numbers, not vibes.",
           "tags": [
-            "quietly intense",
+            "engineering",
             "measurement-obsessed",
             "precise",
             "impatient with guesswork",
-            "engineering"
+            "quietly intense"
           ]
         }
       ]
@@ -646,11 +646,11 @@
           "status": "live",
           "description": "A behavioral interview drilling coach who helps candidates structure stories using STAR/STAR+ structures, handles high-pressure situational queries, and maps achievements to organizational leadership principles.",
           "tags": [
-            "authentic",
             "retrospective-driven",
-            "evidence-oriented",
+            "authentic",
+            "interview",
             "structure-focused",
-            "interview"
+            "evidence-oriented"
           ]
         },
         {
@@ -660,11 +660,11 @@
           "status": "live",
           "description": "A facilitation and group communication coach who prepares candidates for group discussions, case studies, and collaborative rounds by teaching moderation, active listening, structured entry, and collaborative leadership.",
           "tags": [
+            "interview",
             "consensus-oriented",
-            "collaborative",
             "assertive-polite",
-            "structured",
-            "interview"
+            "collaborative",
+            "structured"
           ]
         },
         {
@@ -675,10 +675,10 @@
           "description": "A leadership coaching specialist who prepares senior candidates for executive, management, and leadership interviews \u2014 focusing on vision, organization building, decision-making, and organizational conflict.",
           "tags": [
             "vision-oriented",
-            "executive-mature",
+            "interview",
             "direct-honest",
             "organization-focused",
-            "interview"
+            "executive-mature"
           ]
         },
         {
@@ -688,11 +688,11 @@
           "status": "live",
           "description": "A realistic, high-fidelity mock interviewer that conducts role-play simulations, dynamically probes candidate answers, handles follow-up queries, and provides rigorous feedback.",
           "tags": [
-            "diagnostic-critical",
             "simulation-realistic",
-            "candidate-challenging",
             "interview",
-            "follow-up-active"
+            "follow-up-active",
+            "candidate-challenging",
+            "diagnostic-critical"
           ]
         },
         {
@@ -703,10 +703,10 @@
           "description": "A technical interview coach specializing in distributed systems, scalability, and system design interviews \u2014 covering requirements gathering, API design, data modeling, high-level architecture, and deep-dive bottlenecks.",
           "tags": [
             "logic-driven",
-            "trade-off-centered",
+            "interview",
             "architect-level",
             "scalability-obsessed",
-            "interview"
+            "trade-off-centered"
           ]
         }
       ]
@@ -727,11 +727,11 @@
           "status": "live",
           "description": "A campus and school affinity networking strategist who helps candidates locate, re-engage, and leverage university and corporate alumni networks for career insights and referrals.",
           "tags": [
-            "curious",
             "supportive",
+            "networking",
             "relationship-first",
-            "affinity-driven",
-            "networking"
+            "curious",
+            "affinity-driven"
           ]
         },
         {
@@ -741,11 +741,11 @@
           "status": "live",
           "description": "A cold communication copywriter and strategist who helps candidates write highly optimized cold emails and messages to hiring managers, founders, and leaders.",
           "tags": [
-            "conversion-oriented",
-            "direct",
-            "professional",
             "value-first",
-            "networking"
+            "conversion-oriented",
+            "networking",
+            "direct",
+            "professional"
           ]
         },
         {
@@ -756,10 +756,10 @@
           "description": "A digital networking expert who helps candidates write highly customized, high-conversion LinkedIn messages for informational interviews, warm introductions, and job inquiries.",
           "tags": [
             "network-strategic",
+            "networking",
             "professional",
             "connection-centric",
-            "high-conversion",
-            "networking"
+            "high-conversion"
           ]
         },
         {
@@ -769,11 +769,11 @@
           "status": "live",
           "description": "A communication strategist who helps candidates manage recruiter channels, script outreach messages, prepare for screening calls, and negotiate communication touchpoints.",
           "tags": [
-            "responsive",
-            "recruitment-fluent",
+            "networking",
             "clear-headed",
             "professional",
-            "networking"
+            "responsive",
+            "recruitment-fluent"
           ]
         },
         {
@@ -783,11 +783,11 @@
           "status": "live",
           "description": "A relationship monetization strategist who helps candidates turn casual professional interactions, alumni links, and warm networks into formal job referrals and active internal advocates.",
           "tags": [
-            "relationship-respectful",
             "strategic",
+            "networking",
             "conversion-focused",
             "advocacy-driven",
-            "networking"
+            "relationship-respectful"
           ]
         }
       ]
@@ -808,11 +808,11 @@
           "status": "live",
           "description": "A technical documentation agent that turns project outputs into clear reports, manuals, and presentation-ready artifacts.",
           "tags": [
+            "precise",
             "projects",
             "quality-driven",
-            "precise",
-            "reader-first",
-            "structured"
+            "structured",
+            "reader-first"
           ]
         },
         {
@@ -822,11 +822,11 @@
           "status": "live",
           "description": "A FYP coach who helps students select, scope, and defend academic projects with real-world structure and evaluation clarity.",
           "tags": [
-            "projects",
-            "academic",
-            "deadline-aware",
             "mentor-led",
-            "practical"
+            "academic",
+            "practical",
+            "projects",
+            "deadline-aware"
           ]
         },
         {
@@ -836,11 +836,11 @@
           "status": "live",
           "description": "A structured research partner for literature reviews, methodology planning, and academic sourcing.",
           "tags": [
-            "projects",
+            "evidence-based",
             "methodological",
-            "precise",
             "systematic",
-            "evidence-based"
+            "precise",
+            "projects"
           ]
         },
         {
@@ -850,10 +850,10 @@
           "status": "live",
           "description": "A viva preparation coach that helps students structure defense responses, anticipate examiner questions, and present confidently.",
           "tags": [
-            "confidence-building",
-            "projects",
-            "precise",
             "calm",
+            "precise",
+            "projects",
+            "confidence-building",
             "exam-aware"
           ]
         }
@@ -875,11 +875,11 @@
           "status": "live",
           "description": "A senior-level resume strategist who helps VPs, Directors, and C-suite executives structure their resumes to emphasize executive presence, strategic scope, P&L ownership, and board visibility.",
           "tags": [
-            "resume",
             "strategic",
+            "corporate",
+            "resume",
             "boardroom-ready",
-            "outcomes-first",
-            "corporate"
+            "outcomes-first"
           ]
         },
         {
@@ -890,10 +890,10 @@
           "description": "A design and technical portfolio critic who helps designers, engineers, and product managers structure, document, and present their work through compelling case studies that prove competency.",
           "tags": [
             "critique-honest",
-            "structure-driven",
             "resume",
-            "detail-oriented",
-            "proof-obsessed"
+            "proof-obsessed",
+            "structure-driven",
+            "detail-oriented"
           ]
         },
         {
@@ -903,11 +903,11 @@
           "status": "live",
           "description": "A metrics-focused resume achievement writer who helps candidates translate standard job duties into high-impact, outcome-oriented achievements using the STAR, Google X-Y-Z, and CAR frameworks.",
           "tags": [
-            "impact-driven",
+            "precision-first",
             "resume",
             "anti-bullet-list",
             "metric-obsessed",
-            "precision-first"
+            "impact-driven"
           ]
         },
         {
@@ -917,10 +917,10 @@
           "status": "live",
           "description": "A design and layout expert who ensures resumes are visually polished, perfectly aligned, typographically balanced, and structured for maximum scannability and ATS compatibility.",
           "tags": [
-            "resume",
-            "minimalist",
             "typographically precise",
+            "resume",
             "detail-obsessed",
+            "minimalist",
             "layout-first"
           ]
         },
@@ -931,11 +931,11 @@
           "status": "live",
           "description": "An ATS-oriented search optimization specialist who helps candidates align their resumes with target job descriptions using keyword mapping, context optimization, and phrase parsing strategies.",
           "tags": [
-            "resume",
-            "keyword-aligned",
+            "semantic-match",
             "search-engine-focused",
+            "resume",
             "analytical",
-            "semantic-match"
+            "keyword-aligned"
           ]
         }
       ]
@@ -956,11 +956,11 @@
           "status": "live",
           "description": "A blunt, experienced-feeling co-founder substitute who stress-tests ideas and decisions the way a real early-stage advisor would \u2014 before money, time, or credibility get spent finding out the hard way.",
           "tags": [
-            "genuinely rooting for you",
-            "blunt",
             "pattern-matching",
+            "blunt",
             "startup",
-            "allergic to founder self-delusion"
+            "allergic to founder self-delusion",
+            "genuinely rooting for you"
           ]
         },
         {
@@ -970,11 +970,11 @@
           "status": "live",
           "description": "A growth specialist who designs acquisition, activation, retention, and monetization strategies for early-stage products.",
           "tags": [
-            "retention-first",
-            "startup",
-            "metrics-driven",
             "no-nonsense",
-            "experimental"
+            "retention-first",
+            "experimental",
+            "startup",
+            "metrics-driven"
           ]
         },
         {
@@ -984,11 +984,11 @@
           "status": "live",
           "description": "A rigorous market research specialist who turns ambiguous business questions into defensible market insights, go-to-market priorities, and evidence-backed decisions \u2014 built for founders, product teams, and early-stage PMs who need market clarity fast.",
           "tags": [
-            "methodical",
-            "commercially-minded",
+            "strategist-first",
             "startup",
+            "methodical",
             "forensic",
-            "strategist-first"
+            "commercially-minded"
           ]
         },
         {
@@ -999,10 +999,10 @@
           "description": "A product strategy advisor who turns fuzzy feature requests into prioritized roadmaps, stakeholder-aligned outcomes, and execution-ready release plans.",
           "tags": [
             "pragmatic",
-            "strategic",
+            "customer-focused",
             "data-informed",
-            "startup",
-            "customer-focused"
+            "strategic",
+            "startup"
           ]
         }
       ]
@@ -1010,62 +1010,848 @@
     {
       "division": "ai-engineering",
       "description": "Language models, prompt engineering, retrieval-augmented generation (RAG), cognitive agents, and machine learning operations (MLOps).",
-      "count": 0,
+      "count": 10,
       "category": "AI Engineering",
       "emoji": "\ud83e\udd16",
       "name": "AI Engineering",
       "path": "ai-engineering/",
-      "agents": []
+      "agents": [
+        {
+          "id": "ai-agent-architect",
+          "file": "ai-engineering/ai-agent-architect.md",
+          "name": "AI Agent Architect",
+          "status": "live",
+          "description": "Designs autonomous agent loops, tool bindings, planning algorithms, and multi-agent coordination layers.",
+          "tags": [
+            "deep technical",
+            "research-oriented",
+            "cognitive-first",
+            "ai-engineering"
+          ]
+        },
+        {
+          "id": "ai-engineer-career-coach",
+          "file": "ai-engineering/ai-engineer-career-coach.md",
+          "name": "AI Engineer Career Coach",
+          "status": "live",
+          "description": "Coaches developers pivoting into artificial intelligence, structuring study plans, project portfolios, and technical interview prep.",
+          "tags": [
+            "deep technical",
+            "research-oriented",
+            "cognitive-first",
+            "ai-engineering"
+          ]
+        },
+        {
+          "id": "ai-product-builder",
+          "file": "ai-engineering/ai-product-builder.md",
+          "name": "AI Product Builder",
+          "status": "live",
+          "description": "Helps founders and product managers scope AI features, evaluate API costs, and design user-centric AI feedback loops.",
+          "tags": [
+            "deep technical",
+            "research-oriented",
+            "cognitive-first",
+            "ai-engineering"
+          ]
+        },
+        {
+          "id": "computer-vision-engineer",
+          "file": "ai-engineering/computer-vision-engineer.md",
+          "name": "Computer Vision Engineer",
+          "status": "live",
+          "description": "Advises on convolutional networks, object detection systems, segmentation pipelines, and edge device deployment.",
+          "tags": [
+            "deep technical",
+            "research-oriented",
+            "cognitive-first",
+            "ai-engineering"
+          ]
+        },
+        {
+          "id": "generative-ai-consultant",
+          "file": "ai-engineering/generative-ai-consultant.md",
+          "name": "Generative AI Consultant",
+          "status": "live",
+          "description": "Guides organizations through generative AI strategy, risk mitigation, compliance, and ROI analysis.",
+          "tags": [
+            "deep technical",
+            "research-oriented",
+            "cognitive-first",
+            "ai-engineering"
+          ]
+        },
+        {
+          "id": "llm-engineer",
+          "file": "ai-engineering/llm-engineer.md",
+          "name": "LLM Engineer",
+          "status": "live",
+          "description": "Advises on model selection, context window optimization, fine-tuning pipelines, and inference efficiency.",
+          "tags": [
+            "deep technical",
+            "research-oriented",
+            "cognitive-first",
+            "ai-engineering"
+          ]
+        },
+        {
+          "id": "machine-learning-engineer",
+          "file": "ai-engineering/machine-learning-engineer.md",
+          "name": "Machine Learning Engineer",
+          "status": "live",
+          "description": "Designs classical ML systems, feature stores, model training pipelines, and dataset validations.",
+          "tags": [
+            "deep technical",
+            "research-oriented",
+            "cognitive-first",
+            "ai-engineering"
+          ]
+        },
+        {
+          "id": "mlops-engineer",
+          "file": "ai-engineering/mlops-engineer.md",
+          "name": "MLOps Engineer",
+          "status": "live",
+          "description": "Sets up continuous training pipelines, model registries, monitoring systems, and containerized deployment infrastructure.",
+          "tags": [
+            "deep technical",
+            "research-oriented",
+            "cognitive-first",
+            "ai-engineering"
+          ]
+        },
+        {
+          "id": "prompt-engineer",
+          "file": "ai-engineering/prompt-engineer.md",
+          "name": "Prompt Engineer",
+          "status": "live",
+          "description": "Designs systematic prompt templates, Few-Shot examples, Chain-of-Thought flows, and system instructions.",
+          "tags": [
+            "deep technical",
+            "research-oriented",
+            "cognitive-first",
+            "ai-engineering"
+          ]
+        },
+        {
+          "id": "rag-architect",
+          "file": "ai-engineering/rag-architect.md",
+          "name": "RAG Architect",
+          "status": "live",
+          "description": "Designs semantic search architectures, vector databases, chunking strategies, and metadata indexing pipelines.",
+          "tags": [
+            "deep technical",
+            "research-oriented",
+            "cognitive-first",
+            "ai-engineering"
+          ]
+        }
+      ]
     },
     {
       "division": "cloud",
       "description": "Public cloud systems, platform engineers, kubernetes clusters, infrastructure security, and site reliability.",
-      "count": 0,
+      "count": 10,
       "category": "Cloud Engineering",
       "emoji": "\u2601\ufe0f",
       "name": "Cloud & Infrastructure",
       "path": "cloud/",
-      "agents": []
+      "agents": [
+        {
+          "id": "aws-cloud-architect",
+          "file": "cloud/aws-cloud-architect.md",
+          "name": "AWS Cloud Architect",
+          "status": "live",
+          "description": "Designs highly available, secure, and well-architected systems on AWS.",
+          "tags": [
+            "high availability",
+            "zero-trust",
+            "infrastructure-as-code",
+            "cloud"
+          ]
+        },
+        {
+          "id": "azure-cloud-engineer",
+          "file": "cloud/azure-cloud-engineer.md",
+          "name": "Azure Cloud Engineer",
+          "status": "live",
+          "description": "Configures and manages enterprise cloud deployments on Microsoft Azure.",
+          "tags": [
+            "high availability",
+            "zero-trust",
+            "infrastructure-as-code",
+            "cloud"
+          ]
+        },
+        {
+          "id": "cloud-cost-optimizer",
+          "file": "cloud/cloud-cost-optimizer.md",
+          "name": "Cloud Cost Optimizer",
+          "status": "live",
+          "description": "Audits cloud invoices, identifying wastage, reserved instance coverages, and autoscaling opportunities.",
+          "tags": [
+            "high availability",
+            "zero-trust",
+            "infrastructure-as-code",
+            "cloud"
+          ]
+        },
+        {
+          "id": "cloud-migration-advisor",
+          "file": "cloud/cloud-migration-advisor.md",
+          "name": "Cloud Migration Advisor",
+          "status": "live",
+          "description": "Plans datacenter migrations to public clouds using Rehost, Replatform, and Refactor pathways.",
+          "tags": [
+            "high availability",
+            "zero-trust",
+            "infrastructure-as-code",
+            "cloud"
+          ]
+        },
+        {
+          "id": "cloud-security-advisor",
+          "file": "cloud/cloud-security-advisor.md",
+          "name": "Cloud Security Advisor",
+          "status": "live",
+          "description": "Reviews cloud security configurations, ensuring compliance with ISO 27001, SOC2, and CIS benchmarks.",
+          "tags": [
+            "high availability",
+            "zero-trust",
+            "infrastructure-as-code",
+            "cloud"
+          ]
+        },
+        {
+          "id": "gcp-cloud-engineer",
+          "file": "cloud/gcp-cloud-engineer.md",
+          "name": "GCP Cloud Engineer",
+          "status": "live",
+          "description": "Designs scale-ready infrastructure on Google Cloud Platform using native services.",
+          "tags": [
+            "high availability",
+            "zero-trust",
+            "infrastructure-as-code",
+            "cloud"
+          ]
+        },
+        {
+          "id": "kubernetes-specialist",
+          "file": "cloud/kubernetes-specialist.md",
+          "name": "Kubernetes Specialist",
+          "status": "live",
+          "description": "Configures production Kubernetes clusters, pod scheduling, network policies, and ingress controllers.",
+          "tags": [
+            "high availability",
+            "zero-trust",
+            "infrastructure-as-code",
+            "cloud"
+          ]
+        },
+        {
+          "id": "platform-engineer",
+          "file": "cloud/platform-engineer.md",
+          "name": "Platform Engineer",
+          "status": "live",
+          "description": "Builds developer self-service tooling, landing zones, and continuous delivery systems.",
+          "tags": [
+            "high availability",
+            "zero-trust",
+            "infrastructure-as-code",
+            "cloud"
+          ]
+        },
+        {
+          "id": "site-reliability-engineer",
+          "file": "cloud/site-reliability-engineer.md",
+          "name": "Site Reliability Engineer",
+          "status": "live",
+          "description": "Defines service level objectives, error budgets, incident response playbooks, and disaster recovery strategies.",
+          "tags": [
+            "high availability",
+            "zero-trust",
+            "infrastructure-as-code",
+            "cloud"
+          ]
+        },
+        {
+          "id": "terraform-specialist",
+          "file": "cloud/terraform-specialist.md",
+          "name": "Terraform Specialist",
+          "status": "live",
+          "description": "Writes modular Terraform, structuring state files, workspace variables, and locks.",
+          "tags": [
+            "high availability",
+            "zero-trust",
+            "infrastructure-as-code",
+            "cloud"
+          ]
+        }
+      ]
     },
     {
       "division": "cybersecurity",
       "description": "Secure coding principles, network operations, penetration testing, compliance advisors, and risk auditing.",
-      "count": 0,
+      "count": 10,
       "category": "Cybersecurity",
       "emoji": "\ud83d\udd12",
       "name": "Cybersecurity",
       "path": "cybersecurity/",
-      "agents": []
+      "agents": [
+        {
+          "id": "application-security-specialist",
+          "file": "cybersecurity/application-security-specialist.md",
+          "name": "Application Security Specialist",
+          "status": "live",
+          "description": "Audits application source code for OWASP Top 10 vulnerabilities, configuring SAST/DAST pipelines.",
+          "tags": [
+            "cybersecurity",
+            "zero-trust",
+            "red-teaming",
+            "risk-averse"
+          ]
+        },
+        {
+          "id": "cloud-security-engineer",
+          "file": "cybersecurity/cloud-security-engineer.md",
+          "name": "Cloud Security Engineer",
+          "status": "live",
+          "description": "Implements IAM least privilege policies, cloud security posture monitoring, and secrets managers.",
+          "tags": [
+            "cybersecurity",
+            "zero-trust",
+            "red-teaming",
+            "risk-averse"
+          ]
+        },
+        {
+          "id": "ethical-hacking-advisor",
+          "file": "cybersecurity/ethical-hacking-advisor.md",
+          "name": "Ethical Hacking Advisor",
+          "status": "live",
+          "description": "Conducts threat simulations and red-team operations across human, network, and application boundaries.",
+          "tags": [
+            "cybersecurity",
+            "zero-trust",
+            "red-teaming",
+            "risk-averse"
+          ]
+        },
+        {
+          "id": "governance-risk-compliance-advisor",
+          "file": "cybersecurity/governance-risk-compliance-advisor.md",
+          "name": "Governance Risk Compliance Advisor",
+          "status": "live",
+          "description": "Audits processes and designs system configurations to satisfy compliance rules (SOC2, ISO 27001, GDPR).",
+          "tags": [
+            "cybersecurity",
+            "zero-trust",
+            "red-teaming",
+            "risk-averse"
+          ]
+        },
+        {
+          "id": "identity-access-management-specialist",
+          "file": "cybersecurity/identity-access-management-specialist.md",
+          "name": "Identity Access Management Specialist",
+          "status": "live",
+          "description": "Designs directory service integrations, access management controls, and provisioning flows.",
+          "tags": [
+            "cybersecurity",
+            "zero-trust",
+            "red-teaming",
+            "risk-averse"
+          ]
+        },
+        {
+          "id": "incident-response-specialist",
+          "file": "cybersecurity/incident-response-specialist.md",
+          "name": "Incident Response Specialist",
+          "status": "live",
+          "description": "Triages active security breaches, structures containment strategies, and performs digital forensics.",
+          "tags": [
+            "cybersecurity",
+            "zero-trust",
+            "red-teaming",
+            "risk-averse"
+          ]
+        },
+        {
+          "id": "penetration-testing-coach",
+          "file": "cybersecurity/penetration-testing-coach.md",
+          "name": "Penetration Testing Coach",
+          "status": "live",
+          "description": "Runs network-level vulnerability assessments and simulated penetration testing.",
+          "tags": [
+            "cybersecurity",
+            "zero-trust",
+            "red-teaming",
+            "risk-averse"
+          ]
+        },
+        {
+          "id": "security-architect",
+          "file": "cybersecurity/security-architect.md",
+          "name": "Security Architect",
+          "status": "live",
+          "description": "Designs global zero-trust security frameworks, IAM directories, and endpoint controls.",
+          "tags": [
+            "cybersecurity",
+            "zero-trust",
+            "red-teaming",
+            "risk-averse"
+          ]
+        },
+        {
+          "id": "security-engineer",
+          "file": "cybersecurity/security-engineer.md",
+          "name": "Security Engineer",
+          "status": "live",
+          "description": "Designs secure infrastructure boundaries, perimeter defense networks, and encryption strategies.",
+          "tags": [
+            "cybersecurity",
+            "zero-trust",
+            "red-teaming",
+            "risk-averse"
+          ]
+        },
+        {
+          "id": "security-operations-analyst",
+          "file": "cybersecurity/security-operations-analyst.md",
+          "name": "Security Operations Analyst",
+          "status": "live",
+          "description": "Analyzes security telemetry logs, configure SIEM dashboards, and responds to alerts.",
+          "tags": [
+            "cybersecurity",
+            "zero-trust",
+            "red-teaming",
+            "risk-averse"
+          ]
+        }
+      ]
     },
     {
       "division": "open-source",
       "description": "Collaborative repository design, developer community building, open-source documentation, and maintainer guidance.",
-      "count": 0,
+      "count": 10,
       "category": "Open Source",
       "emoji": "\ud83d\udcd6",
       "name": "Open Source",
       "path": "open-source/",
-      "agents": []
+      "agents": [
+        {
+          "id": "community-builder",
+          "file": "open-source/community-builder.md",
+          "name": "Community Builder",
+          "status": "live",
+          "description": "Designs community portals, discord guidelines, online events, and contributor recognition models.",
+          "tags": [
+            "documentation-first",
+            "community-driven",
+            "collaborative",
+            "open-source"
+          ]
+        },
+        {
+          "id": "developer-advocate",
+          "file": "open-source/developer-advocate.md",
+          "name": "Developer Advocate",
+          "status": "live",
+          "description": "Bridges developer feedback with core product roadmaps, producing workshops and api demos.",
+          "tags": [
+            "documentation-first",
+            "community-driven",
+            "collaborative",
+            "open-source"
+          ]
+        },
+        {
+          "id": "devrel-strategist",
+          "file": "open-source/devrel-strategist.md",
+          "name": "DevRel Strategist",
+          "status": "live",
+          "description": "Aligns developer programs with business metrics, tracking developer acquisitions and community ROI.",
+          "tags": [
+            "documentation-first",
+            "community-driven",
+            "collaborative",
+            "open-source"
+          ]
+        },
+        {
+          "id": "github-growth-advisor",
+          "file": "open-source/github-growth-advisor.md",
+          "name": "GitHub Growth Advisor",
+          "status": "live",
+          "description": "Advises on repository metadata, README copywriting, issue curation, and community visibility.",
+          "tags": [
+            "documentation-first",
+            "community-driven",
+            "collaborative",
+            "open-source"
+          ]
+        },
+        {
+          "id": "maintainer-coach",
+          "file": "open-source/maintainer-coach.md",
+          "name": "Maintainer Coach",
+          "status": "live",
+          "description": "Advises project leads on contributor onboarding, issue labeling, license compliance, and roadmap publishing.",
+          "tags": [
+            "documentation-first",
+            "community-driven",
+            "collaborative",
+            "open-source"
+          ]
+        },
+        {
+          "id": "open-source-funding-advisor",
+          "file": "open-source/open-source-funding-advisor.md",
+          "name": "Open Source Funding Advisor",
+          "status": "live",
+          "description": "Guides projects on sponsor directories (GitHub Sponsors, Open Collective) and grant applications.",
+          "tags": [
+            "documentation-first",
+            "community-driven",
+            "collaborative",
+            "open-source"
+          ]
+        },
+        {
+          "id": "open-source-mentor",
+          "file": "open-source/open-source-mentor.md",
+          "name": "Open Source Mentor",
+          "status": "live",
+          "description": "Coaches new contributors on git branches, repository issues, and pull request etiquette.",
+          "tags": [
+            "documentation-first",
+            "community-driven",
+            "collaborative",
+            "open-source"
+          ]
+        },
+        {
+          "id": "oss-contributor-coach",
+          "file": "open-source/oss-contributor-coach.md",
+          "name": "OSS Contributor Coach",
+          "status": "live",
+          "description": "Helps developers scale contributions from single commits to regular maintainers of key libraries.",
+          "tags": [
+            "documentation-first",
+            "community-driven",
+            "collaborative",
+            "open-source"
+          ]
+        },
+        {
+          "id": "project-maintenance-specialist",
+          "file": "open-source/project-maintenance-specialist.md",
+          "name": "Project Maintenance Specialist",
+          "status": "live",
+          "description": "Automates project builds, configuring lint rules, tests, and publishing workflows.",
+          "tags": [
+            "documentation-first",
+            "community-driven",
+            "collaborative",
+            "open-source"
+          ]
+        },
+        {
+          "id": "technical-writing-advisor",
+          "file": "open-source/technical-writing-advisor.md",
+          "name": "Technical Writing Advisor",
+          "status": "live",
+          "description": "Guides developers in writing clean API guides, release notes, code reviews, and README docs.",
+          "tags": [
+            "documentation-first",
+            "community-driven",
+            "collaborative",
+            "open-source"
+          ]
+        }
+      ]
     },
     {
       "division": "data-engineering",
       "description": "Analytical warehouse construction, stream processors, pipeline schedulers, and database optimizations.",
-      "count": 0,
+      "count": 10,
       "category": "Data Engineering",
       "emoji": "\ud83d\udcca",
       "name": "Data Engineering",
       "path": "data-engineering/",
-      "agents": []
+      "agents": [
+        {
+          "id": "analytics-engineer",
+          "file": "data-engineering/analytics-engineer.md",
+          "name": "Analytics Engineer",
+          "status": "live",
+          "description": "Structures data transformation layers using dbt (data build tool), creating documentation and testing frameworks.",
+          "tags": [
+            "transactional",
+            "data-engineering",
+            "analytical",
+            "data-driven"
+          ]
+        },
+        {
+          "id": "business-intelligence-specialist",
+          "file": "data-engineering/business-intelligence-specialist.md",
+          "name": "Business Intelligence Specialist",
+          "status": "live",
+          "description": "Designs semantic datasets, dashboards, and analytical metrics using PowerBI or Tableau.",
+          "tags": [
+            "transactional",
+            "data-engineering",
+            "analytical",
+            "data-driven"
+          ]
+        },
+        {
+          "id": "data-architect",
+          "file": "data-engineering/data-architect.md",
+          "name": "Data Architect",
+          "status": "live",
+          "description": "Designs corporate data strategies, data mesh architectures, and warehouse schemas.",
+          "tags": [
+            "transactional",
+            "data-engineering",
+            "analytical",
+            "data-driven"
+          ]
+        },
+        {
+          "id": "data-engineer",
+          "file": "data-engineering/data-engineer.md",
+          "name": "Data Engineer",
+          "status": "live",
+          "description": "Designs robust analytical pipeline systems, feature databases, and ingestion engines.",
+          "tags": [
+            "transactional",
+            "data-engineering",
+            "analytical",
+            "data-driven"
+          ]
+        },
+        {
+          "id": "data-governance-advisor",
+          "file": "data-engineering/data-governance-advisor.md",
+          "name": "Data Governance Advisor",
+          "status": "live",
+          "description": "Defines access control policies, data cataloging rules, and column-level masking models.",
+          "tags": [
+            "transactional",
+            "data-engineering",
+            "analytical",
+            "data-driven"
+          ]
+        },
+        {
+          "id": "data-platform-engineer",
+          "file": "data-engineering/data-platform-engineer.md",
+          "name": "Data Platform Engineer",
+          "status": "live",
+          "description": "Deploys cloud-based data storage and analysis platforms using Snowflake, Databricks, or BigQuery.",
+          "tags": [
+            "transactional",
+            "data-engineering",
+            "analytical",
+            "data-driven"
+          ]
+        },
+        {
+          "id": "data-quality-engineer",
+          "file": "data-engineering/data-quality-engineer.md",
+          "name": "Data Quality Engineer",
+          "status": "live",
+          "description": "Designs automated validation routines, alerting systems, and data drift dashboards.",
+          "tags": [
+            "transactional",
+            "data-engineering",
+            "analytical",
+            "data-driven"
+          ]
+        },
+        {
+          "id": "database-performance-specialist",
+          "file": "data-engineering/database-performance-specialist.md",
+          "name": "Database Performance Specialist",
+          "status": "live",
+          "description": "Audits database resource consumption, index efficiency, and query logs to optimize latency.",
+          "tags": [
+            "transactional",
+            "data-engineering",
+            "analytical",
+            "data-driven"
+          ]
+        },
+        {
+          "id": "etl-specialist",
+          "file": "data-engineering/etl-specialist.md",
+          "name": "ETL Specialist",
+          "status": "live",
+          "description": "Designs high-throughput batch ETL/ELT pipelines using Airflow, Prefect, or Dagster.",
+          "tags": [
+            "transactional",
+            "data-engineering",
+            "analytical",
+            "data-driven"
+          ]
+        },
+        {
+          "id": "stream-processing-specialist",
+          "file": "data-engineering/stream-processing-specialist.md",
+          "name": "Stream Processing Specialist",
+          "status": "live",
+          "description": "Designs high-velocity real-time analytical event flows using Kafka or Flink.",
+          "tags": [
+            "transactional",
+            "data-engineering",
+            "analytical",
+            "data-driven"
+          ]
+        }
+      ]
     },
     {
       "division": "devrel",
       "description": "Developer advocate strategies, technology education, community management, and developer experience.",
-      "count": 0,
+      "count": 10,
       "category": "Developer Relations",
       "emoji": "\ud83d\udce3",
       "name": "Developer Relations",
       "path": "devrel/",
-      "agents": []
+      "agents": [
+        {
+          "id": "api-adoption-consultant",
+          "file": "devrel/api-adoption-consultant.md",
+          "name": "API Adoption Consultant",
+          "status": "live",
+          "description": "Reviews developer APIs, SDK structures, and documentation onboarding to reduce activation barriers.",
+          "tags": [
+            "empathetic",
+            "community-centric",
+            "devrel",
+            "engaging"
+          ]
+        },
+        {
+          "id": "community-growth-specialist",
+          "file": "devrel/community-growth-specialist.md",
+          "name": "Community Growth Specialist",
+          "status": "live",
+          "description": "Designs programmatic referral schemes, user acquisition initiatives, and event plans.",
+          "tags": [
+            "empathetic",
+            "community-centric",
+            "devrel",
+            "engaging"
+          ]
+        },
+        {
+          "id": "conference-speaker-coach",
+          "file": "devrel/conference-speaker-coach.md",
+          "name": "Conference Speaker Coach",
+          "status": "live",
+          "description": "Guides developers in preparing technical talk submissions, slide structures, and slide delivery.",
+          "tags": [
+            "empathetic",
+            "community-centric",
+            "devrel",
+            "engaging"
+          ]
+        },
+        {
+          "id": "content-strategy-advisor",
+          "file": "devrel/content-strategy-advisor.md",
+          "name": "Content Strategy Advisor",
+          "status": "live",
+          "description": "Plans technical content calendars, writing schedules, and publication distributions.",
+          "tags": [
+            "empathetic",
+            "community-centric",
+            "devrel",
+            "engaging"
+          ]
+        },
+        {
+          "id": "developer-education-specialist",
+          "file": "devrel/developer-education-specialist.md",
+          "name": "Developer Education Specialist",
+          "status": "live",
+          "description": "Designs tutorials, structured learning paths, sample project repos, and technical documentation.",
+          "tags": [
+            "empathetic",
+            "community-centric",
+            "devrel",
+            "engaging"
+          ]
+        },
+        {
+          "id": "developer-evangelist",
+          "file": "devrel/developer-evangelist.md",
+          "name": "Developer Evangelist",
+          "status": "live",
+          "description": "Presents product value at developer conferences, online meetups, and key technical forums.",
+          "tags": [
+            "empathetic",
+            "community-centric",
+            "devrel",
+            "engaging"
+          ]
+        },
+        {
+          "id": "developer-experience-specialist",
+          "file": "devrel/developer-experience-specialist.md",
+          "name": "Developer Experience Specialist",
+          "status": "live",
+          "description": "Reviews local developer environments, CLI ease-of-use, config errors, and initial setup steps.",
+          "tags": [
+            "empathetic",
+            "community-centric",
+            "devrel",
+            "engaging"
+          ]
+        },
+        {
+          "id": "developer-relations-manager",
+          "file": "devrel/developer-relations-manager.md",
+          "name": "Developer Relations Manager",
+          "status": "live",
+          "description": "Manages developer engagement programs, ambassador networks, and metric analysis.",
+          "tags": [
+            "empathetic",
+            "community-centric",
+            "devrel",
+            "engaging"
+          ]
+        },
+        {
+          "id": "technical-community-builder",
+          "file": "devrel/technical-community-builder.md",
+          "name": "Technical Community Builder",
+          "status": "live",
+          "description": "Moderates developer forums, discord/slack servers, and handles user onboarding strategies.",
+          "tags": [
+            "empathetic",
+            "community-centric",
+            "devrel",
+            "engaging"
+          ]
+        },
+        {
+          "id": "technical-marketing-advisor",
+          "file": "devrel/technical-marketing-advisor.md",
+          "name": "Technical Marketing Advisor",
+          "status": "live",
+          "description": "Aligns product positioning with developer interests, writing copy and analyzing competition.",
+          "tags": [
+            "empathetic",
+            "community-centric",
+            "devrel",
+            "engaging"
+          ]
+        }
+      ]
     }
   ]
 }

@@ -20,40 +20,25 @@ graph LR
 
 ## 🛠️ Key Components & Features
 
-### 1. Submit Agent Form
-- Contributors can submit agents directly through the Desktop client or by opening a GitHub Pull Request.
-- **Payload Requirements:**
-  - Standard markdown agent file.
-  - Frontmatter properties: `name`, `description`, `color`, `emoji`, `vibe`.
-  - Target division directory assignment.
-  - Associated search tags.
+### 1. Publish Agent Portal
+- Contributors submit custom agents either through the Desktop app dashboard or by committing files via git.
+- The publishing portal parses frontmatter fields (`name`, `description`, `color`, `emoji`, `vibe`) and creates entries in the index.
 
-### 2. Automated Validation Pipeline (Linter)
-- Staged commits run through the repository's validation engine:
-  - Validates markdown headings structure.
-  - Verifies minimum word count threshold (1,500+ words).
-  - Checks JSON schemas of registries.
-  - Detects duplicate identifiers.
+### 2. Agent Verification States
+To maintain quality control, the marketplace classifies agents under three verification tiers:
+- **Official (Maintainer-Built):** Core agents built and maintained by CodeMyFYP. Guaranteed to follow all guidelines.
+- **Verified (Reviewed & Approved):** Community-submitted agents that have been manually reviewed, tested, and approved by project maintainers.
+- **Community:** Public submissions that pass automated validate checks but have not undergone manual review.
 
-### 3. Maintainer Verification Flow
-- Verified agents carry a distinct status badge in the UI:
-  - `official`: Built and maintained by CodeMyFYP.
-  - `verified`: Community-contributed but reviewed, tested, and approved by repository maintainers.
-  - `community`: General community submissions (subject to basic automated checks only).
+### 3. Agent Ratings & Feedback Loops
+- Users submit ratings (1 to 5 stars) and write evaluations.
+- Rating indices are calculated dynamically using a bayesian average formula:
+  $$\text{Bayesian Rating} = \frac{v \cdot R + m \cdot C}{v + m}$$
+  Where $v$ is user votes count, $R$ is average agent rating, $m$ is minimum votes threshold, and $C$ is repository-wide average score.
 
-### 4. Featured Agents & Ratings
-- **Ratings Engine:** Users rate agents based on performance, clarity, and effectiveness. Rating scores are aggregated dynamically.
-- **Featured Section:** Highlights top-performing, high-rated, or trending career coaches on the marketplace home screen.
+### 4. Featured & Trending Algorithmic Feeds
+- **Featured Agents:** Curated selection highlighting high-fidelity, maintainer-picked templates.
+- **Trending Feed:** Calculated weekly using a decay function based on downloads, ratings increase, and forum references.
 
----
-
-## 🏛️ Directory & Metadata Categorization
-
-Marketplace categories mirror the structured divisions registry:
-- **Career Strategy:** Comprehensive planning and job searches.
-- **Resume Engineering:** Achievements writing, design layouts, and ATS keywords.
-- **Interview Prep:** Mock interviewing, behavioral answers, and design review.
-- **Networking:** Digital relationships, referral templates, and outreach.
-- **Engineering:** Stack architectures and code audits.
-- **Startup & Product:** Founder mentoring, MVPs, and market loops.
-- **Projects & Research:** Final Year Projects, research methodologies, and defenses.
+### 5. Community Collections
+- Users group agents into custom lists (e.g. "My FAANG Prep Toolkit" containing `mock-interviewer`, `system-design-coach`, and `google-interview-coach`) and publish these collections for public download.
