@@ -1,8 +1,12 @@
 <div align="center">
+  
 # 🚀 Career-Agents
-### The Open-Source Career Operating System (Career OS)
+
+### "The World's Largest Collection of Career, Placement, Internship, Startup, and Developer AI Agents."
+
 **Stop prompting. Start hiring.**
-Career-Agents is a modular, multi-disciplinary Career Operating System designed to help developers, freshers, and founders navigate placement, internship, startup, and technical growth milestones. Not a one-line prompt. An operational partner.
+
+Every agent in this repository is built like a real specialist — with workflows, deliverables, rules, and a clear mission. Not a one-line prompt. A hire.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 [![Divisions](https://img.shields.io/badge/divisions-14-orange.svg)](#-division-overview)
@@ -450,6 +454,6 @@ This project is licensed under the [MIT License](./LICENSE).
 
 <div align="center">
 
-**Built by CodeMyFYP for students, technologists, and founders.**
+**Built by Karthik Rajesh Shet - Founder of CodeMyFYP for students, technologists, and founders.**
 
 </div>
