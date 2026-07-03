@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 [![Divisions](https://img.shields.io/badge/divisions-19-orange.svg)](#browse-by-division)
-[![Agents](https://img.shields.io/badge/agents-135%2F100-blue.svg)](./career-os.json)
+[![Agents](https://img.shields.io/badge/agents-135%2F200-blue.svg)](./career-os.json)
 
 ---
 
@@ -575,10 +575,17 @@ Workflows are repeatable pipelines guiding you step-by-step through career miles
 ## 🔗 Knowledge Graph
 
 Career-Agents compiles a complex, expanded **[knowledge-graph.json](./knowledge-graph.json)** mapping dependencies across:
-- **Agents** $ightarrow$ Belongs to **Divisions** $ightarrow$ Used in **Workflows**
-- **Career Paths** $ightarrow$ Requires **Skills** $ightarrow$ Uses **Agents**
-- **Companies** $ightarrow$ Requires **Skills** $ightarrow$ Prepped by **Workflows**
-- **Bundles** $ightarrow$ Packs **Agents**, **Career Paths**, and **Companies**
+- **Agents** $
+ightarrow$ Belongs to **Divisions** $
+ightarrow$ Used in **Workflows**
+- **Career Paths** $
+ightarrow$ Requires **Skills** $
+ightarrow$ Uses **Agents**
+- **Companies** $
+ightarrow$ Requires **Skills** $
+ightarrow$ Prepped by **Workflows**
+- **Bundles** $
+ightarrow$ Packs **Agents**, **Career Paths**, and **Companies**
 
 You can inspect nodes connectivity stats locally via:
 ```bash
