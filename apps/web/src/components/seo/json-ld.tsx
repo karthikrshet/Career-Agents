@@ -112,6 +112,69 @@ const websiteSchema = {
   },
 };
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'AI Resume ATS Audit & Career Intelligence Service',
+  provider: {
+    '@type': 'Organization',
+    name: 'Career Agents',
+    url: baseUrl,
+  },
+  areaServed: 'Worldwide',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Career Intelligence Services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Multi-Role ATS Resume Scoring',
+          description: 'Evaluates resume text against 15+ job role keyword taxonomies and custom job descriptions.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'STAR Accomplishment Audit',
+          description: 'Rewrites passive bullet points into Situation, Task, Action, Result framework achievements.',
+        },
+      },
+    ],
+  },
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Get a High ATS Resume Score for Any Role',
+  description: 'Step-by-step guide to scoring your resume against role-specific ATS keyword filters and optimizing accomplishments.',
+  step: [
+    {
+      '@type': 'HowToStep',
+      name: 'Select Target Job Role',
+      text: 'Choose your desired position (e.g. Software Engineer, Product Manager, Data Scientist, AI Engineer) or paste a custom Job Description.',
+    },
+    {
+      '@type': 'HowToStep',
+      name: 'Upload Resume File or Text',
+      text: 'Drag and drop your PDF, DOCX, TXT, or MD resume into the Resume Studio.',
+    },
+    {
+      '@type': 'HowToStep',
+      name: 'Review ATS Score & Missing Keywords',
+      text: 'Inspect your calculated ATS compatibility score and copy missing core competencies into your Skills section.',
+    },
+    {
+      '@type': 'HowToStep',
+      name: 'Apply AI Bullet Optimization',
+      text: 'Use the STAR accomplishment framework to rewrite passive verbs into quantified impact bullets.',
+    },
+  ],
+};
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -121,7 +184,15 @@ const faqSchema = {
       name: 'What is Career Agents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Career Agents is an AI-powered career intelligence platform featuring 146 specialized career agents that help engineers optimize their resume, GitHub portfolio, LinkedIn profile, and interview performance.',
+        text: 'Career Agents is an AI-powered career intelligence platform featuring 146 specialized career agents that help job seekers optimize their resume, GitHub portfolio, LinkedIn profile, and interview performance.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does Career Agents evaluate ATS resume scores across different job roles?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Career Agents uses role-specific keyword taxonomies (Software Engineering, Product Management, AI/ML, Data Science, Cybersecurity, DevOps, UX Design, Marketing, etc.) and optional custom Job Description parsing. The ATS score dynamically calculates keyword match ratio, section completeness, weak bullet penalties, and formatting quality.',
       },
     },
     {
@@ -148,11 +219,19 @@ const faqSchema = {
         text: 'MCP stands for Model Context Protocol. Career Agents exposes all 146 career agents as MCP tools, letting Cursor, Claude Desktop, VS Code, and other compatible AI clients connect directly to the agent registry.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'How do STAR bullet rewrites work in Resume Studio?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The STAR framework breaks accomplishment bullets into Situation, Task, Action, and Result. Career Agents identifies passive verbs and missing metrics, converting weak lines into high-impact, quantified bullets.',
+      },
+    },
   ],
 };
 
 export function JsonLd() {
-  const schemas = [organizationSchema, softwareSchema, websiteSchema, faqSchema, breadcrumbsSchema];
+  const schemas = [organizationSchema, softwareSchema, websiteSchema, serviceSchema, howToSchema, faqSchema, breadcrumbsSchema];
   return (
     <>
       {schemas.map((schema, i) => (
