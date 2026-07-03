@@ -1,0 +1,36 @@
+{
+  "id": "remote-job-bundle",
+  "name": "Remote Job Hunting Bundle",
+  "description": "Strategies, connection prompts, and automation tools for targeting remote-first global startups and distributed organizations.",
+  "agents": [
+    "remote-work-advisor",
+    "job-search-strategist",
+    "cold-outreach-specialist",
+    "linkedin-outreach-specialist",
+    "recruiter-communication-coach"
+  ],
+  "workflows": [
+    "remote-job-hunt",
+    "linkedin-growth",
+    "salary-negotiation"
+  ],
+  "career_paths": [
+    "software-engineer",
+    "full-stack-engineer",
+    "product-manager",
+    "startup-founder"
+  ],
+  "skills": [
+    "Async Communication",
+    "Remote Tooling",
+    "LinkedIn Branding",
+    "Cold Sourcing",
+    "Funnel Tracking"
+  ],
+  "companies": [
+    "Stripe",
+    "Atlassian",
+    "OpenAI",
+    "Databricks"
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "$schema": "https://codemyfyp-agents.dev/schema/companies.json",
+  "repository": "Career-Agents",
+  "version": "0.1.0",
+  "companies": [
+    {
+      "id": "google",
+      "name": "Google",
+      "description": "Renowned for deep algorithmic rigor, data structures expertise, distributed systems design, and Googliness/leadership qualities.",
+      "agents": [
+        "google-interview-coach",
+        "technical-interview-coach",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "faang-preparation",
+        "technical-interview-week"
+      ],
+      "skills": [
+        "Data Structures & Algorithms",
+        "Distributed System Design",
+        "Googliness (Cultural alignment)",
+        "Complexity Analysis"
+      ],
+      "resources": [
+        "Google Developers Blog",
+        "Site Reliability Engineering (SRE) Books",
+        "Google System Design guidelines"
+      ]
+    },
+    {
+      "id": "amazon",
+      "name": "Amazon",
+      "description": "Heavily focused on STAR-based behavioral stories demonstrating Amazon's 16 Leadership Principles, alongside practical coding and design.",
+      "agents": [
+        "amazon-interview-coach",
+        "behavioral-interview-specialist",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "faang-preparation",
+        "hr-interview-week"
+      ],
+      "skills": [
+        "16 Leadership Principles",
+        "Customer Obsession",
+        "System Architecture",
+        "STAR Interview Method"
+      ],
+      "resources": [
+        "Amazon Leadership Principles official document",
+        "Writing STAR stories guide",
+        "Amazon DynamoDB & S3 Whitepapers"
+      ]
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "description": "Known for extremely fast-paced coding/correctness interviews and performance-focused system design questions.",
+      "agents": [
+        "meta-interview-coach",
+        "technical-interview-coach",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "faang-preparation",
+        "technical-interview-week"
+      ],
+      "skills": [
+        "High-speed coding accuracy",
+        "Large-scale system design (e.g., Feed, Messenger)",
+        "Move Fast behavioral mindset",
+        "Data structures & scaling"
+      ],
+      "resources": [
+        "Meta Engineering Blog",
+        "Meta Open Source projects (React, PyTorch)",
+        "Meta system design patterns"
+      ]
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft",
+      "description": "Evaluates a blend of classical CS fundamentals, system scalability, and collaborative problem-solving using a Growth Mindset.",
+      "agents": [
+        "microsoft-interview-coach",
+        "technical-interview-coach",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "faang-preparation",
+        "technical-interview-week"
+      ],
+      "skills": [
+        "CS Fundamentals",
+        "Collaborative coding",
+        "Growth Mindset integration",
+        "Cloud design principles"
+      ],
+      "resources": [
+        "Microsoft Research Publications",
+        "Azure Architecture Center",
+        "Satya Nadella's Growth Mindset principles"
+      ]
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "description": "Focuses on deep model scaling math, PyTorch scripting, distributed ML system training, and safety alignment concepts.",
+      "agents": [
+        "llm-engineer",
+        "ai-agent-architect",
+        "ai-engineer-career-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "faang-preparation",
+        "technical-interview-week"
+      ],
+      "skills": [
+        "PyTorch distributed training",
+        "Transformer architecture mechanics",
+        "AI Safety & alignment",
+        "LLM cost engineering"
+      ],
+      "resources": [
+        "OpenAI Research Papers",
+        "Triton compiler guides",
+        "Scaling Laws for Neural Language Models"
+      ]
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "description": "Unique practical engineering interviews focused on API integration, debugging real-world library files, and clean code refactoring.",
+      "agents": [
+        "code-reviewer",
+        "backend-architect",
+        "technical-interview-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "technical-interview-week"
+      ],
+      "skills": [
+        "Practical API integration",
+        "Code refactoring & readability",
+        "Unit test writing",
+        "System integration debugging"
+      ],
+      "resources": [
+        "Stripe API Documentation",
+        "Stripe Engineering Blog",
+        "Stripe Developer Youtube channel"
+      ]
+    },
+    {
+      "id": "atlassian",
+      "name": "Atlassian",
+      "description": "Culture-heavy loop where the 'values fit' (e.g. Open Company, No Bullshit) is evaluated formally alongside technical skills.",
+      "agents": [
+        "atlassian-interview-coach",
+        "behavioral-interview-specialist",
+        "group-discussion-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "hr-interview-week",
+        "technical-interview-week"
+      ],
+      "skills": [
+        "Values alignment",
+        "Team collaboration patterns",
+        "Structured system design",
+        "Active listening & feedback"
+      ],
+      "resources": [
+        "Atlassian Team Playbook",
+        "Atlassian Values documentation",
+        "Confluence / Jira architecture writeups"
+      ]
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks",
+      "description": "Emphasizes deep database design, stream processing architectures, compiler knowledge, and distributed systems algorithms.",
+      "agents": [
+        "database-engineer",
+        "backend-architect",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "technical-interview-week"
+      ],
+      "skills": [
+        "Distributed query engines",
+        "ETL / ELT scaling",
+        "Spark and Delta Lake internals",
+        "Concurrency & systems programming"
+      ],
+      "resources": [
+        "Databricks Lakehouse whitepapers",
+        "Apache Spark internals guides",
+        "Databricks Engineering Blog"
+      ]
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "description": "Rigorous focus on their Freedom and Responsibility slide deck, alongside high-scale distributed systems and CDN architectures.",
+      "agents": [
+        "netflix-interview-coach",
+        "behavioral-interview-specialist",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "faang-preparation",
+        "hr-interview-week"
+      ],
+      "skills": [
+        "Freedom & Responsibility culture alignment",
+        "High-concurrency systems design",
+        "Microservices resiliency",
+        "Direct communication (Radical Candor)"
+      ],
+      "resources": [
+        "Netflix Tech Blog",
+        "Netflix Culture slide deck",
+        "Netflix Chaos Engineering papers"
+      ]
+    },
+    {
+      "id": "uber",
+      "name": "Uber",
+      "description": "Tests real-time distributed systems, geohashing systems (H3), stream scheduling, and architecture scalability under heavy concurrent load.",
+      "agents": [
+        "uber-interview-coach",
+        "system-design-coach",
+        "database-engineer",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "faang-preparation",
+        "technical-interview-week"
+      ],
+      "skills": [
+        "Geohashing & spatial indexing",
+        "Real-time stream architectures",
+        "High write concurrency",
+        "Disaster recovery modeling"
+      ],
+      "resources": [
+        "Uber Engineering Blog",
+        "Uber H3 Spatial Index documentation",
+        "Uber Ringpop/TChannel architecture papers"
+      ]
+    }
+  ]
+}

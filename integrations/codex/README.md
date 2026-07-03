@@ -1,30 +1,34 @@
-# Codex Integration Guide
+# Codex Integration
 
-This directory documents patterns and tools to integrate **Career-Agents** with **Codex**.
+Detailed developer integration patterns for the **Codex Agent Runtime**.
 
-## Usage
-
-### Option 1: System Prompts
-Copy the complete contents of an agent file (e.g., [`career/placement-coach.md`](../../career/placement-coach.md)) and paste it into the Codex system instructions block.
-
-### Option 2: CLI packaging
-You can export any agent directly as a Codex package using the converter script:
+## Installation
+Install Codex tools via python pip:
 ```bash
-./scripts/convert.sh --tool codex --agent career/placement-coach.md --out ./build
+pip install codex-agent-runtime
 ```
 
----
+## Usage
+Initialize Codex configurations in your workspace:
+```bash
+codex init
+```
 
-## Future Ready Runtimes
+## Agent Loading
+Codex reads JSON configurations for model parameters and instructions. Export the agent as JSON:
+```bash
+career-agents run google-interview-coach --export json
+```
+Load the exported JSON file inside your Codex agent setup path.
 
-The platform is designed to be compatible with:
-- GitHub Copilot
-- Antigravity
-- OpenCode
-- OpenClaw
-- Windsurf
-- Aider
-- Qwen
-- Kimi
-- Osaurus
-- Hermes
+## Prompt Injection
+Reference the JSON files in your Codex project settings to override model instructions:
+```json
+{
+  "system_instructions_file": "./exports/google-interview-coach.json"
+}
+```
+
+## Best Practices
+- **Linter Checks**: Run `career-agents doctor` prior to loading config files to ensure registry parsing matches Codex parameters.
+- **Context Boundaries**: Limit file system access tools for Codex in candidate folders to prevent data corruption.

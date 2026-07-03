@@ -1,0 +1,38 @@
+{
+  "id": "internship-bundle",
+  "name": "Internship Hunting Bundle",
+  "description": "Optimized pipeline for college students and recent grads seeking high-value internships, final-year project guidance, and return offers.",
+  "agents": [
+    "internship-application-strategist",
+    "internship-success-coach",
+    "ats-resume-reviewer",
+    "networking-coach",
+    "graduate-career-advisor",
+    "final-year-project-advisor"
+  ],
+  "workflows": [
+    "internship-hunt",
+    "fresher-placement",
+    "ats-optimization"
+  ],
+  "career_paths": [
+    "software-engineer",
+    "frontend-engineer",
+    "backend-engineer",
+    "full-stack-engineer"
+  ],
+  "skills": [
+    "Resume Formatting",
+    "Cold Outreach",
+    "Networking",
+    "Project Management",
+    "Academic Defense"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Atlassian",
+    "Stripe"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "career-switch-bundle",
+  "name": "Career Switcher & Pivot Bundle",
+  "description": "Guidance frameworks for mapping transferable skills, positioning resumes, and transitioning from non-technical/adjacent fields into tech.",
+  "agents": [
+    "career-pivot-to-tech-advisor",
+    "career-transition-coach",
+    "resume-strategist",
+    "personal-branding-advisor",
+    "placement-coach"
+  ],
+  "workflows": [
+    "ats-optimization",
+    "linkedin-growth",
+    "fresher-placement"
+  ],
+  "career_paths": [
+    "full-stack-engineer",
+    "product-manager",
+    "startup-founder"
+  ],
+  "skills": [
+    "Transferable Assets",
+    "Narrative Construction",
+    "Branding",
+    "Resume Revision",
+    "Interview Readiness"
+  ],
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Atlassian",
+    "Uber"
+  ]
+}

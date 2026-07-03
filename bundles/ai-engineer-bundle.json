@@ -1,0 +1,35 @@
+{
+  "id": "ai-engineer-bundle",
+  "name": "AI Engineer & Scientist Bundle",
+  "description": "System frameworks, fine-tuning scripts, MLOps orchestration, prompt formatting matrices, and RAG architectures for AI engineers.",
+  "agents": [
+    "ai-agent-architect",
+    "llm-engineer",
+    "rag-architect",
+    "prompt-engineer",
+    "ai-engineer-career-coach",
+    "mlops-engineer"
+  ],
+  "workflows": [
+    "technical-interview-week",
+    "faang-preparation"
+  ],
+  "career_paths": [
+    "ai-engineer",
+    "software-engineer"
+  ],
+  "skills": [
+    "Prompt Optimization",
+    "Vector Embeddings",
+    "Fine-Tuning",
+    "Agentic Loops",
+    "PyTorch Scale Training"
+  ],
+  "companies": [
+    "OpenAI",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Databricks"
+  ]
+}

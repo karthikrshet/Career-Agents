@@ -1,0 +1,28 @@
+{
+  "id": "startup-founder",
+  "name": "Startup Founder",
+  "description": "Building a business from scratch, scoping MVPs, testing market fit, structuring go-to-market strategies, and managing early unit economics.",
+  "core_skills": [
+    "MVP Scoping & Validation",
+    "Go-To-Market Execution",
+    "Unit Economics & Token Economics",
+    "Outreach Systems Design",
+    "Founder Pitching & Narrative"
+  ],
+  "recommended_divisions": [
+    "startup",
+    "ai-business",
+    "gtm",
+    "freelancing"
+  ],
+  "recommended_agents": [
+    "founder-advisor",
+    "growth-strategist",
+    "ai-product-builder",
+    "market-research-analyst"
+  ],
+  "recommended_workflows": [
+    "linkedin-growth",
+    "remote-job-hunt"
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "amazon": {
+    "name": "Amazon",
+    "agents": [
+      "amazon-interview-coach",
+      "behavioral-interview-specialist",
+      "system-design-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "16 Leadership Principles (Customer Obsession, Ownership, Bias for Action)",
+      "STAR Behavioral Storytelling",
+      "Data Structures & Algorithms",
+      "System Design & Database selections"
+    ]
+  },
+  "atlassian": {
+    "name": "Atlassian",
+    "agents": [
+      "atlassian-interview-coach",
+      "behavioral-interview-specialist",
+      "group-discussion-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "Atlassian core values (Open Company No Bullshit)",
+      "Collaborative system design structures",
+      "Active listening and giving structured feedback",
+      "Frontend UI performance and layout"
+    ]
+  },
+  "databricks": {
+    "name": "Databricks",
+    "agents": [
+      "database-engineer",
+      "backend-architect",
+      "system-design-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "Distributed computing algorithms",
+      "Database internals (caching, query planning, indexing)",
+      "Concurrency and systems performance",
+      "Spark/Delta Lake execution logic"
+    ]
+  },
+  "google": {
+    "name": "Google",
+    "agents": [
+      "google-interview-coach",
+      "technical-interview-coach",
+      "system-design-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "Data Structures & Algorithms (graphs, dynamic programming, trees)",
+      "System Design & Scalability",
+      "Googliness (cultural fit, collaboration, ambiguity navigation)",
+      "Space & Time Complexity Analysis"
+    ]
+  },
+  "meta": {
+    "name": "Meta",
+    "agents": [
+      "meta-interview-coach",
+      "technical-interview-coach",
+      "system-design-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "High-speed coding accuracy (solving 2 DSA questions in 35 minutes)",
+      "System Design scaling (focusing on caching, load balancing, message queues)",
+      "Meta core values (Focus on Impact, Move Fast)"
+    ]
+  },
+  "microsoft": {
+    "name": "Microsoft",
+    "agents": [
+      "microsoft-interview-coach",
+      "technical-interview-coach",
+      "system-design-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "CS Fundamentals (pointers, memory management, OOP)",
+      "Growth Mindset (learning from failure, collaboration)",
+      "Distributed Service Architecture"
+    ]
+  },
+  "netflix": {
+    "name": "Netflix",
+    "agents": [
+      "netflix-interview-coach",
+      "behavioral-interview-specialist",
+      "system-design-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "Freedom & Responsibility slide deck principles",
+      "High-throughput CDN architectures",
+      "Autonomy and direct feedback loops (Radical Candor)",
+      "Resilience engineering (Chaos Monkey)"
+    ]
+  },
+  "openai": {
+    "name": "OpenAI",
+    "agents": [
+      "llm-engineer",
+      "ai-agent-architect",
+      "ai-engineer-career-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "PyTorch scale training models",
+      "Transformer mechanics and scaling math",
+      "AI Safety & alignment criteria",
+      "GPU memory optimizations"
+    ]
+  },
+  "stripe": {
+    "name": "Stripe",
+    "agents": [
+      "code-reviewer",
+      "backend-architect",
+      "technical-interview-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "Practical API design and integration",
+      "Squashing bugs in large codebases",
+      "Clean code refactoring and design structures",
+      "Unit testing"
+    ]
+  },
+  "uber": {
+    "name": "Uber",
+    "agents": [
+      "uber-interview-coach",
+      "system-design-coach",
+      "database-engineer",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "Geohashing and spatial search coordinates index (H3, S2)",
+      "Real-time stream message scheduling",
+      "High write concurrency structures",
+      "Fault-tolerance modeling"
+    ]
+  }
+}

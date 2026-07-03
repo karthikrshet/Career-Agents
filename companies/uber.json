@@ -1,0 +1,27 @@
+{
+  "id": "uber",
+  "name": "Uber",
+  "interview_process": [
+    "Recruiter screen and online coding test",
+    "Technical phone interview: coding and systems baseline questions",
+    "Onsite loop: 2 coding rounds, 2 system architecture scaling rounds, 1 behavioral bar raiser round"
+  ],
+  "skills": [
+    "Geohashing and spatial search coordinates index (H3, S2)",
+    "Real-time stream message scheduling",
+    "High write concurrency structures",
+    "Fault-tolerance modeling"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "uber-interview-coach",
+    "system-design-coach",
+    "database-engineer",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Uber Engineering Blog",
+    "Uber H3 Geohashing spatial library guides",
+    "Uber ringpop/TChannel networking papers"
+  ]
+}
