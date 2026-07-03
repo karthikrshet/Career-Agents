@@ -770,7 +770,10 @@ def main():
     generate_knowledge_graph(agents, divisions_data, workflows_data, bundles, companies, paths)
     generate_discoverability_maps(agents, workflows_data, companies, paths)
     generate_llm_indexes(agents, workflows_data)
-    build_merged_readme(agents, divisions_data, workflows_data, bundles, companies, paths)
+    if not os.environ.get("CI"):
+        build_merged_readme(agents, divisions_data, workflows_data, bundles, companies, paths)
+    else:
+        print("Skipping README compilation in CI environment.")
     print("All Career Operating System databases generated successfully!")
 
 if __name__ == "__main__":
