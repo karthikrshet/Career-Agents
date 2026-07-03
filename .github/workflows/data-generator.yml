@@ -1,0 +1,32 @@
+name: Auto Generate Data & Stats
+
+on:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+
+jobs:
+  generate-data:
+    name: Compile Registry Indices & Stats
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run data generator script
+        run: python scripts/generate-data.py
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md career-os.json search-index.json knowledge-graph.json agent-map.json workflow-map.json company-map.json career-path-map.json llms.txt llms-full.txt career-agents-index.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-generate indices, search catalog, maps, and stats [skip ci]" && git push)

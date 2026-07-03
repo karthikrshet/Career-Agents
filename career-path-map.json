@@ -1,0 +1,112 @@
+{
+  "ai-engineer": {
+    "name": "AI Engineer",
+    "skills": [
+      "LLMs & Prompt Engineering",
+      "RAG & Semantic Search",
+      "Python & PyTorch",
+      "Agentic Architectures",
+      "Model Orchestration"
+    ],
+    "agents": [
+      "ai-agent-architect",
+      "llm-engineer",
+      "rag-architect",
+      "ai-engineer-career-coach"
+    ]
+  },
+  "cloud-engineer": {
+    "name": "Cloud Engineer",
+    "skills": [
+      "AWS / GCP / Azure",
+      "Terraform & IaC",
+      "Kubernetes & Containers",
+      "Networking & VPCs",
+      "Site Reliability (SRE)"
+    ],
+    "agents": [
+      "aws-cloud-architect",
+      "kubernetes-specialist",
+      "terraform-specialist",
+      "site-reliability-engineer"
+    ]
+  },
+  "cybersecurity-engineer": {
+    "name": "Cybersecurity Engineer",
+    "skills": [
+      "Application Security & OWASP",
+      "Identity & Access Management (IAM)",
+      "Threat Modeling & Pen Testing",
+      "Incident Response & Forensics",
+      "Regulatory Compliance (SOC2/GDPR)"
+    ],
+    "agents": [
+      "application-security-specialist",
+      "cloud-security-engineer",
+      "incident-response-specialist",
+      "governance-risk-compliance-advisor"
+    ]
+  },
+  "devops-engineer": {
+    "name": "DevOps Engineer",
+    "skills": [
+      "CI/CD Pipelines",
+      "Configuration Management",
+      "Infrastructure as Code",
+      "Monitoring & Logging",
+      "Build Tools & Packaging"
+    ],
+    "agents": [
+      "devops-engineer",
+      "platform-engineer",
+      "site-reliability-engineer"
+    ]
+  },
+  "product-manager": {
+    "name": "Product Manager",
+    "skills": [
+      "Product Roadmap Planning",
+      "User Interviewing & Feedback",
+      "Prioritization Frameworks",
+      "Market & Competitor Analysis",
+      "Data-Driven Decisions"
+    ],
+    "agents": [
+      "product-manager",
+      "product-manager-coach",
+      "market-research-analyst"
+    ]
+  },
+  "software-engineer": {
+    "name": "Software Engineer",
+    "skills": [
+      "Data Structures & Algorithms",
+      "Object Oriented Design",
+      "System Design",
+      "Version Control (Git)",
+      "Testing & Debugging"
+    ],
+    "agents": [
+      "google-interview-coach",
+      "technical-interview-coach",
+      "code-reviewer",
+      "mock-interviewer"
+    ]
+  },
+  "startup-founder": {
+    "name": "Startup Founder",
+    "skills": [
+      "MVP Scoping & Validation",
+      "Go-To-Market Execution",
+      "Unit Economics & Token Economics",
+      "Outreach Systems Design",
+      "Founder Pitching & Narrative"
+    ],
+    "agents": [
+      "founder-advisor",
+      "growth-strategist",
+      "ai-product-builder",
+      "market-research-analyst"
+    ]
+  }
+}

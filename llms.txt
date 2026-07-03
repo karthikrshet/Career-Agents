@@ -1,0 +1,729 @@
+# Career-Agents LLM Discovery Catalog
+This file contains the map of available agents and operational workflows for automated tools.
+
+## Agents Roster
+- ATS Resume Reviewer (ID: ats-resume-reviewer | Path: career/ats-resume-reviewer.md)
+  Description: A focused, line-by-line resume auditor who optimizes resume structure, language, and keyword signaling to survive ATS parsing and convert recruiter skim-time into interview invites.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Career Accountability Coach (ID: career-accountability-coach | Path: career/career-accountability-coach.md)
+  Description: A structured, non-judgmental accountability partner who converts career goals into weekly commitments, tracks follow-through with honest data, diagnoses why execution is failing, and rebuilds momentum when it stalls — without letting candidates off the hook or crushing them with guilt.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Career Pivot to Tech Advisor (ID: career-pivot-to-tech-advisor | Path: career/career-pivot-to-tech-advisor.md)
+  Description: A transition strategist for non-technical professionals entering the tech industry — covering entry point selection (software engineering, product, data, UX, technical sales, DevRel, and more), learning path design, portfolio development, narrative construction, and the tactical job search mechanics specific to tech industry hiring.
+  Stage: Transition | Level: Entry | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Career Roadmap Strategist (ID: career-roadmap-strategist | Path: career/career-roadmap-strategist.md)
+  Description: A long-horizon career architect who builds milestone-based, decade-spanning career roadmaps — turning vague ambitions into sequenced, evidence-gated development plans that compound skill, reputation, and leverage over time.
+  Stage: Transition | Level: Senior | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Career Transition Coach (ID: career-transition-coach | Path: career/career-transition-coach.md)
+  Description: A decisive, pattern-aware career transition coach who helps professionals move from one field, function, or industry into another — by mapping transferable assets, designing bridge strategies, and turning "I don't have the background for this" into a concrete, evidence-backed plan that works.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Diversity & Inclusion Career Coach (ID: diversity-inclusion-career-coach | Path: career/diversity-inclusion-career-coach.md)
+  Description: A career strategist specializing in helping underrepresented professionals navigate systemic barriers, bias in hiring, and unequal advancement dynamics — providing concrete, evidence-informed strategies that turn awareness of barriers into actionable career architecture.
+  Stage: Transition | Level: Senior | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Executive Job Search Coach (ID: executive-job-search-coach | Path: career/executive-job-search-coach.md)
+  Description: A senior-level career strategist who helps VP, Director, and C-suite professionals navigate the fundamentally different world of executive hiring — where most roles never appear on job boards, where personal brand and reputation are the primary search vehicles, and where the quality of your board and peer network determines your access more than your resume.
+  Stage: Transition | Level: Executive | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Freelance Career Advisor (ID: freelance-career-advisor | Path: career/freelance-career-advisor.md)
+  Description: A pragmatic freelance business strategist who helps independent professionals build sustainable, client-diversified freelance careers — covering rate-setting, client acquisition, portfolio positioning, contract fundamentals, and the transition from feast-or-famine to predictable income.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Graduate Career Advisor (ID: graduate-career-advisor | Path: career/graduate-career-advisor.md)
+  Description: A strategic first-job advisor for recent graduates who cuts through the noise of "apply everywhere" and "network more" to build targeted, evidence-backed launch strategies that get new graduates into the right first role — not just any role — within a realistic timeline.
+  Stage: Transition | Level: Entry | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- HR Interview Coach (ID: hr-interview-coach | Path: career/hr-interview-coach.md)
+  Description: A behavioural and offer-readiness coach who prepares candidates for HR and cultural interviews, designs story-driven answers to behavioural prompts, and leads offer evaluation and negotiation prep with professional rigor.
+  Stage: Transition | Level: Senior | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Internship Application Strategist (ID: internship-application-strategist | Path: career/internship-application-strategist.md)
+  Description: An internship application strategist who helps students package their skills, target hiring windows, and win sought-after internship roles.
+  Stage: Transition | Level: Entry | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Internship Success Coach (ID: internship-success-coach | Path: career/internship-success-coach.md)
+  Description: A hands-on internship performance coach who helps interns move from "showing up" to "standing out" — by building visibility, delivering meaningful work, converting internships into return offers, and treating every internship as a twelve-week audition with a clear performance plan.
+  Stage: Transition | Level: Entry | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Job Search Strategist (ID: job-search-strategist | Path: career/job-search-strategist.md)
+  Description: A job search strategist who builds targeted application plans, opportunity funnels, and outreach systems for faster interview traction.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- LinkedIn Growth Advisor (ID: linkedin-growth-advisor | Path: career/linkedin-growth-advisor.md)
+  Description: A tactical growth advisor for LinkedIn who optimizes profiles for recruiter discovery, builds content strategies that surface domain credibility, and converts passive profile views into active opportunities.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Networking Coach (ID: networking-coach | Path: career/networking-coach.md)
+  Description: A strategic, relationship-first networking coach who transforms transactional connection requests into genuine professional relationships — helping candidates build the kind of network that surfaces hidden job market opportunities, generates warm referrals, and compounds in value over an entire career.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Offer Evaluation Advisor (ID: offer-evaluation-advisor | Path: career/offer-evaluation-advisor.md)
+  Description: An offer evaluation advisor who helps candidates compare multiple opportunities and choose the best role for their career goals.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Personal Branding Advisor (ID: personal-branding-advisor | Path: career/personal-branding-advisor.md)
+  Description: A strategic personal brand architect who builds authentic, channel-consistent professional identities that attract the right opportunities — turning scattered professional presence into a coherent, searchable, memorable signal that does career work even when the candidate isn't actively job hunting.
+  Stage: Transition | Level: Senior | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Placement Coach (ID: placement-coach | Path: career/placement-coach.md)
+  Description: An end-to-end placement strategist who audits your readiness, builds a prioritized action plan, and drives you from "applying blind" to "negotiating offers" with the discipline of someone who has watched a thousand placement cycles play out.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Product Manager Coach (ID: product-manager-coach | Path: career/product-manager-coach.md)
+  Description: A rigorous PM career coach who helps aspiring and practicing product managers break into the discipline, ace PM interviews at any company tier, build product intuition through structured practice, and advance from APM to VP of Product — with frameworks grounded in how the best PMs actually think, not in what sounds good in a textbook.
+  Stage: Transition | Level: Executive | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Recruiter Outreach Specialist (ID: recruiter-outreach-specialist | Path: career/recruiter-outreach-specialist.md)
+  Description: A recruiter outreach specialist who crafts message sequences and outreach plans to get recruiters to respond and move candidates into hiring conversations.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Remote Work Advisor (ID: remote-work-advisor | Path: career/remote-work-advisor.md)
+  Description: A strategic remote-work specialist who helps professionals find, land, and thrive in remote roles — covering remote-specific job search tactics, distributed team visibility, async communication mastery, home office optimization, and the specific career risks that remote work creates if not managed deliberately.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Resume Strategist (ID: resume-strategist | Path: career/resume-strategist.md)
+  Description: A narrative-focused resume strategist who crafts role-driven career stories, aligns achievements to hiring criteria, and builds resume ecosystems (resume, LinkedIn, portfolio) that consistently convert interest into interviews.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Returnship Coach (ID: returnship-coach | Path: career/returnship-coach.md)
+  Description: A re-entry specialist who helps professionals return to the workforce after a career break — reframing gaps, rebuilding confidence, refreshing skills, and designing targeted re-entry strategies that land roles that respect the candidate's full experience, not just their most recent role.
+  Stage: Transition | Level: Entry | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Salary Benchmark Analyst (ID: salary-benchmark-analyst | Path: career/salary-benchmark-analyst.md)
+  Description: A rigorous, data-literate compensation analyst who builds evidence-based salary benchmarks, deconstructs total compensation packages, and arms candidates with the market intelligence and framing to negotiate from facts rather than hope.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Salary Negotiation Coach (ID: salary-negotiation-coach | Path: career/salary-negotiation-coach.md)
+  Description: A salary negotiation specialist who prepares candidates to evaluate offers, build leverage, and negotiate compensation confidently.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Technical Interview Coach (ID: technical-interview-coach | Path: career/technical-interview-coach.md)
+  Description: A hands-on technical interview coach who prepares candidates for data structures & algorithms, system design, and role-specific coding rounds through targeted drills, rubric-based feedback, and measurable progression plans.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Career Strategy, Professional Development, Career Growth, Career Milestones, No-nonsense, Career
+
+- Adobe Interview Coach (ID: adobe-interview-coach | Path: company-interviews/adobe-interview-coach.md)
+  Description: A creativity-meets-engineering specialist who prepares candidates for Adobe's blend of technical rigor and genuine product-craft sensibility, where caring about the actual user experience of the tools you build is a real evaluation signal.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
+
+- Amazon Interview Coach (ID: amazon-interview-coach | Path: company-interviews/amazon-interview-coach.md)
+  Description: A Leadership Principles specialist who knows that Amazon interviews are won or lost on STAR-structured stories mapped precisely to specific principles, not generic behavioral answers with an Amazon logo pasted on top.
+  Stage: Leadership | Level: Senior | Industry: All
+  Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
+
+- Atlassian Interview Coach (ID: atlassian-interview-coach | Path: company-interviews/atlassian-interview-coach.md)
+  Description: A values-driven collaboration specialist who prepares candidates for Atlassian's structured, values-mapped interview loop, where "open company, no bullshit" is an actual evaluation criterion, not just a wall poster.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
+
+- Google Interview Coach (ID: google-interview-coach | Path: company-interviews/google-interview-coach.md)
+  Description: A structured-rigor specialist for Google's algorithm-heavy, googleyness-aware interview loop, who treats clean code communication and structured problem decomposition as non-negotiable, not optional polish.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
+
+- Meta Interview Coach (ID: meta-interview-coach | Path: company-interviews/meta-interview-coach.md)
+  Description: An execution-speed and impact-obsessed coach who prepares candidates for Meta's fast-paced technical bar and its distinct "move fast, focus on impact" behavioral evaluation.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
+
+- Microsoft Interview Coach (ID: microsoft-interview-coach | Path: company-interviews/microsoft-interview-coach.md)
+  Description: A growth-mindset and collaborative-problem-solving specialist who prepares candidates for Microsoft's blend of technical depth and "how do you work with others" evaluation, including the as-appropriate design/coding rounds.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
+
+- Netflix Interview Coach (ID: netflix-interview-coach | Path: company-interviews/netflix-interview-coach.md)
+  Description: A radical-candor and high-judgment specialist who prepares candidates for Netflix's uniquely direct culture interviews, where "would I fight to keep this person" is the real question behind every round.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
+
+- Oracle Interview Coach (ID: oracle-interview-coach | Path: company-interviews/oracle-interview-coach.md)
+  Description: A fundamentals-first specialist who prepares candidates for Oracle's traditionally rigorous CS-fundamentals and systems-depth interview style, where solid, unglamorous engineering knowledge is genuinely rewarded.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
+
+- Salesforce Interview Coach (ID: salesforce-interview-coach | Path: company-interviews/salesforce-interview-coach.md)
+  Description: A trust-and-customer-success specialist who prepares candidates for Salesforce's values-and-relationship-driven interview culture, where "trust is our #1 value" is treated as a real evaluation lens, not a slogan.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
+
+- Uber Interview Coach (ID: uber-interview-coach | Path: company-interviews/uber-interview-coach.md)
+  Description: A scale-and-ownership specialist who prepares candidates for Uber's operationally intense, ownership-driven interview culture, where "built for scale, obsessed with the details that break at scale" is the actual bar.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
+
+- Backend Architect (ID: backend-architect | Path: engineering/backend-architect.md)
+  Description: An API and service-design reviewer who evaluates backend architecture for the failure modes that don't show up until real load, real edge cases, and real time have all had a chance to find them.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Software Engineering, System Design, Architecture, Code Review, Engineering, Skeptical of shortcuts
+
+- Code Reviewer (ID: code-reviewer | Path: engineering/code-reviewer.md)
+  Description: A senior-level code reviewer who triages real risk instead of nitpicking style, distinguishing "this will break in production" from "this is a preference" and never letting the two get confused.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Software Engineering, System Design, Architecture, Code Review, Engineering, Skeptical of shortcuts
+
+- Database Engineer (ID: database-engineer | Path: engineering/database-engineer.md)
+  Description: A schema and query optimization specialist who reads execution plans instead of guessing, and treats indexing strategy as a precise discipline rather than a "just add an index" reflex.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Software Engineering, System Design, Architecture, Code Review, Engineering, Skeptical of shortcuts
+
+- DevOps Engineer (ID: devops-engineer | Path: engineering/devops-engineer.md)
+  Description: A CI/CD and infrastructure reliability specialist who treats deployment pipelines as production systems in their own right, obsessed with reversibility, observability, and never being surprised by a failure.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Software Engineering, System Design, Architecture, Code Review, Engineering, Skeptical of shortcuts
+
+- MERN Architect (ID: mern-architect | Path: engineering/mern-architect.md)
+  Description: A full-stack architecture reviewer for MongoDB/Express/React/Node applications who evaluates real scalability and maintainability tradeoffs instead of rubber-stamping whatever framework is trendy this year.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Software Engineering, System Design, Architecture, Code Review, Engineering, Skeptical of shortcuts
+
+- Next.js Performance Engineer (ID: nextjs-performance-engineer | Path: engineering/nextjs-performance-engineer.md)
+  Description: A performance auditor obsessed with real Core Web Vitals and actual user-perceived speed, who diagnoses Next.js applications the way a profiler does — with numbers, not vibes.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Software Engineering, System Design, Architecture, Code Review, Engineering, Skeptical of shortcuts
+
+- Behavioral Interview Specialist (ID: behavioral-interview-specialist | Path: interview/behavioral-interview-specialist.md)
+  Description: A behavioral interview drilling coach who helps candidates structure stories using STAR/STAR+ structures, handles high-pressure situational queries, and maps achievements to organizational leadership principles.
+  Stage: Job Search | Level: Senior | Industry: All
+  Skills: Interviewing, Behavioral Questions, Mock Practice, System Design, Retrospective-driven, Authentic
+
+- Group Discussion Coach (ID: group-discussion-coach | Path: interview/group-discussion-coach.md)
+  Description: A facilitation and group communication coach who prepares candidates for group discussions, case studies, and collaborative rounds by teaching moderation, active listening, structured entry, and collaborative leadership.
+  Stage: Job Search | Level: Senior | Industry: All
+  Skills: Interviewing, Behavioral Questions, Mock Practice, System Design, Retrospective-driven, Authentic
+
+- Leadership Interview Coach (ID: leadership-interview-coach | Path: interview/leadership-interview-coach.md)
+  Description: A leadership coaching specialist who prepares senior candidates for executive, management, and leadership interviews — focusing on vision, organization building, decision-making, and organizational conflict.
+  Stage: Job Search | Level: Executive | Industry: All
+  Skills: Interviewing, Behavioral Questions, Mock Practice, System Design, Retrospective-driven, Authentic
+
+- Mock Interviewer (ID: mock-interviewer | Path: interview/mock-interviewer.md)
+  Description: A realistic, high-fidelity mock interviewer that conducts role-play simulations, dynamically probes candidate answers, handles follow-up queries, and provides rigorous feedback.
+  Stage: Job Search | Level: Mid | Industry: All
+  Skills: Interviewing, Behavioral Questions, Mock Practice, System Design, Retrospective-driven, Authentic
+
+- System Design Coach (ID: system-design-coach | Path: interview/system-design-coach.md)
+  Description: A technical interview coach specializing in distributed systems, scalability, and system design interviews — covering requirements gathering, API design, data modeling, high-level architecture, and deep-dive bottlenecks.
+  Stage: Job Search | Level: Senior | Industry: All
+  Skills: Interviewing, Behavioral Questions, Mock Practice, System Design, Retrospective-driven, Authentic
+
+- Alumni Networking Advisor (ID: alumni-networking-advisor | Path: networking/alumni-networking-advisor.md)
+  Description: A campus and school affinity networking strategist who helps candidates locate, re-engage, and leverage university and corporate alumni networks for career insights and referrals.
+  Stage: Job Search | Level: Mid | Industry: All
+  Skills: Professional Networking, LinkedIn Strategy, Outreach, Cold Emailing, Supportive, Networking
+
+- Cold Outreach Specialist (ID: cold-outreach-specialist | Path: networking/cold-outreach-specialist.md)
+  Description: A cold communication copywriter and strategist who helps candidates write highly optimized cold emails and messages to hiring managers, founders, and leaders.
+  Stage: Job Search | Level: Senior | Industry: All
+  Skills: Professional Networking, LinkedIn Strategy, Outreach, Cold Emailing, Supportive, Networking
+
+- LinkedIn Outreach Specialist (ID: linkedin-outreach-specialist | Path: networking/linkedin-outreach-specialist.md)
+  Description: A digital networking expert who helps candidates write highly customized, high-conversion LinkedIn messages for informational interviews, warm introductions, and job inquiries.
+  Stage: Job Search | Level: Mid | Industry: All
+  Skills: Professional Networking, LinkedIn Strategy, Outreach, Cold Emailing, Supportive, Networking
+
+- Recruiter Communication Coach (ID: recruiter-communication-coach | Path: networking/recruiter-communication-coach.md)
+  Description: A communication strategist who helps candidates manage recruiter channels, script outreach messages, prepare for screening calls, and negotiate communication touchpoints.
+  Stage: Job Search | Level: Mid | Industry: All
+  Skills: Professional Networking, LinkedIn Strategy, Outreach, Cold Emailing, Supportive, Networking
+
+- Referral Strategy Coach (ID: referral-strategy-coach | Path: networking/referral-strategy-coach.md)
+  Description: A relationship monetization strategist who helps candidates turn casual professional interactions, alumni links, and warm networks into formal job referrals and active internal advocates.
+  Stage: Job Search | Level: Entry | Industry: All
+  Skills: Professional Networking, LinkedIn Strategy, Outreach, Cold Emailing, Supportive, Networking
+
+- Documentation Specialist (ID: documentation-specialist | Path: projects/documentation-specialist.md)
+  Description: A technical documentation agent that turns project outputs into clear reports, manuals, and presentation-ready artifacts.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Project Management, Technical Writing, Academic Research, Viva Defense, Precise, Projects
+
+- Final Year Project Advisor (ID: final-year-project-advisor | Path: projects/final-year-project-advisor.md)
+  Description: A FYP coach who helps students select, scope, and defend academic projects with real-world structure and evaluation clarity.
+  Stage: Growth | Level: Entry | Industry: All
+  Skills: Project Management, Technical Writing, Academic Research, Viva Defense, Precise, Projects
+
+- Research Assistant (ID: research-assistant | Path: projects/research-assistant.md)
+  Description: A structured research partner for literature reviews, methodology planning, and academic sourcing.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Project Management, Technical Writing, Academic Research, Viva Defense, Precise, Projects
+
+- Viva Coach (ID: viva-coach | Path: projects/viva-coach.md)
+  Description: A viva preparation coach that helps students structure defense responses, anticipate examiner questions, and present confidently.
+  Stage: Growth | Level: Entry | Industry: All
+  Skills: Project Management, Technical Writing, Academic Research, Viva Defense, Precise, Projects
+
+- Executive Resume Advisor (ID: executive-resume-advisor | Path: resume/executive-resume-advisor.md)
+  Description: A senior-level resume strategist who helps VPs, Directors, and C-suite executives structure their resumes to emphasize executive presence, strategic scope, P&L ownership, and board visibility.
+  Stage: Job Search | Level: Executive | Industry: All
+  Skills: Resume Writing, ATS Optimization, STAR/XYZ Metrics, Portfolio Review, Strategic, Corporate
+
+- Portfolio Reviewer (ID: portfolio-reviewer | Path: resume/portfolio-reviewer.md)
+  Description: A design and technical portfolio critic who helps designers, engineers, and product managers structure, document, and present their work through compelling case studies that prove competency.
+  Stage: Job Search | Level: Mid | Industry: All
+  Skills: Resume Writing, ATS Optimization, STAR/XYZ Metrics, Portfolio Review, Strategic, Corporate
+
+- Resume Achievement Writer (ID: resume-achievement-writer | Path: resume/resume-achievement-writer.md)
+  Description: A metrics-focused resume achievement writer who helps candidates translate standard job duties into high-impact, outcome-oriented achievements using the STAR, Google X-Y-Z, and CAR frameworks.
+  Stage: Job Search | Level: Mid | Industry: All
+  Skills: Resume Writing, ATS Optimization, STAR/XYZ Metrics, Portfolio Review, Strategic, Corporate
+
+- Resume Formatting Specialist (ID: resume-formatting-specialist | Path: resume/resume-formatting-specialist.md)
+  Description: A design and layout expert who ensures resumes are visually polished, perfectly aligned, typographically balanced, and structured for maximum scannability and ATS compatibility.
+  Stage: Job Search | Level: Mid | Industry: All
+  Skills: Resume Writing, ATS Optimization, STAR/XYZ Metrics, Portfolio Review, Strategic, Corporate
+
+- Resume Keyword Optimizer (ID: resume-keyword-optimizer | Path: resume/resume-keyword-optimizer.md)
+  Description: An ATS-oriented search optimization specialist who helps candidates align their resumes with target job descriptions using keyword mapping, context optimization, and phrase parsing strategies.
+  Stage: Job Search | Level: Mid | Industry: All
+  Skills: Resume Writing, ATS Optimization, STAR/XYZ Metrics, Portfolio Review, Strategic, Corporate
+
+- Founder Advisor (ID: founder-advisor | Path: startup/founder-advisor.md)
+  Description: A blunt, experienced-feeling co-founder substitute who stress-tests ideas and decisions the way a real early-stage advisor would — before money, time, or credibility get spent finding out the hard way.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Product Management, MVP Scoping, Market Research, Growth Strategy, Pattern-matching, Blunt
+
+- Growth Strategist (ID: growth-strategist | Path: startup/growth-strategist.md)
+  Description: A growth specialist who designs acquisition, activation, retention, and monetization strategies for early-stage products.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Product Management, MVP Scoping, Market Research, Growth Strategy, Pattern-matching, Blunt
+
+- Market Research Analyst (ID: market-research-analyst | Path: startup/market-research-analyst.md)
+  Description: A rigorous market research specialist who turns ambiguous business questions into defensible market insights, go-to-market priorities, and evidence-backed decisions — built for founders, product teams, and early-stage PMs who need market clarity fast.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Product Management, MVP Scoping, Market Research, Growth Strategy, Pattern-matching, Blunt
+
+- Product Manager (ID: product-manager | Path: startup/product-manager.md)
+  Description: A product strategy advisor who turns fuzzy feature requests into prioritized roadmaps, stakeholder-aligned outcomes, and execution-ready release plans.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Product Management, MVP Scoping, Market Research, Growth Strategy, Pattern-matching, Blunt
+
+- AI Agent Architect (ID: ai-agent-architect | Path: ai-engineering/ai-agent-architect.md)
+  Description: Designs autonomous agent loops, tool bindings, planning algorithms, and multi-agent coordination layers.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Machine Learning, LLMs, RAG Architecture, Prompt Engineering, Deep technical, Research-oriented
+
+- AI Engineer Career Coach (ID: ai-engineer-career-coach | Path: ai-engineering/ai-engineer-career-coach.md)
+  Description: Coaches developers pivoting into artificial intelligence, structuring study plans, project portfolios, and technical interview prep.
+  Stage: Transition | Level: Mid | Industry: Tech
+  Skills: Machine Learning, LLMs, RAG Architecture, Prompt Engineering, Deep technical, Research-oriented
+
+- AI Product Builder (ID: ai-product-builder | Path: ai-engineering/ai-product-builder.md)
+  Description: Helps founders and product managers scope AI features, evaluate API costs, and design user-centric AI feedback loops.
+  Stage: Leadership | Level: Mid | Industry: Tech
+  Skills: Machine Learning, LLMs, RAG Architecture, Prompt Engineering, Deep technical, Research-oriented
+
+- Computer Vision Engineer (ID: computer-vision-engineer | Path: ai-engineering/computer-vision-engineer.md)
+  Description: Advises on convolutional networks, object detection systems, segmentation pipelines, and edge device deployment.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Machine Learning, LLMs, RAG Architecture, Prompt Engineering, Deep technical, Research-oriented
+
+- Generative AI Consultant (ID: generative-ai-consultant | Path: ai-engineering/generative-ai-consultant.md)
+  Description: Guides organizations through generative AI strategy, risk mitigation, compliance, and ROI analysis.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Machine Learning, LLMs, RAG Architecture, Prompt Engineering, Deep technical, Research-oriented
+
+- LLM Engineer (ID: llm-engineer | Path: ai-engineering/llm-engineer.md)
+  Description: Advises on model selection, context window optimization, fine-tuning pipelines, and inference efficiency.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Machine Learning, LLMs, RAG Architecture, Prompt Engineering, Deep technical, Research-oriented
+
+- Machine Learning Engineer (ID: machine-learning-engineer | Path: ai-engineering/machine-learning-engineer.md)
+  Description: Designs classical ML systems, feature stores, model training pipelines, and dataset validations.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Machine Learning, LLMs, RAG Architecture, Prompt Engineering, Deep technical, Research-oriented
+
+- MLOps Engineer (ID: mlops-engineer | Path: ai-engineering/mlops-engineer.md)
+  Description: Sets up continuous training pipelines, model registries, monitoring systems, and containerized deployment infrastructure.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Machine Learning, LLMs, RAG Architecture, Prompt Engineering, Deep technical, Research-oriented
+
+- Prompt Engineer (ID: prompt-engineer | Path: ai-engineering/prompt-engineer.md)
+  Description: Designs systematic prompt templates, Few-Shot examples, Chain-of-Thought flows, and system instructions.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Machine Learning, LLMs, RAG Architecture, Prompt Engineering, Deep technical, Research-oriented
+
+- RAG Architect (ID: rag-architect | Path: ai-engineering/rag-architect.md)
+  Description: Designs semantic search architectures, vector databases, chunking strategies, and metadata indexing pipelines.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Machine Learning, LLMs, RAG Architecture, Prompt Engineering, Deep technical, Research-oriented
+
+- AWS Cloud Architect (ID: aws-cloud-architect | Path: cloud/aws-cloud-architect.md)
+  Description: Designs highly available, secure, and well-architected systems on AWS.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Cloud Infrastructure, Terraform, Kubernetes, AWS/Azure/GCP, High availability, Zero-trust
+
+- Azure Cloud Engineer (ID: azure-cloud-engineer | Path: cloud/azure-cloud-engineer.md)
+  Description: Configures and manages enterprise cloud deployments on Microsoft Azure.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Cloud Infrastructure, Terraform, Kubernetes, AWS/Azure/GCP, High availability, Zero-trust
+
+- Cloud Cost Optimizer (ID: cloud-cost-optimizer | Path: cloud/cloud-cost-optimizer.md)
+  Description: Audits cloud invoices, identifying wastage, reserved instance coverages, and autoscaling opportunities.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Cloud Infrastructure, Terraform, Kubernetes, AWS/Azure/GCP, High availability, Zero-trust
+
+- Cloud Migration Advisor (ID: cloud-migration-advisor | Path: cloud/cloud-migration-advisor.md)
+  Description: Plans datacenter migrations to public clouds using Rehost, Replatform, and Refactor pathways.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Cloud Infrastructure, Terraform, Kubernetes, AWS/Azure/GCP, High availability, Zero-trust
+
+- Cloud Security Advisor (ID: cloud-security-advisor | Path: cloud/cloud-security-advisor.md)
+  Description: Reviews cloud security configurations, ensuring compliance with ISO 27001, SOC2, and CIS benchmarks.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Cloud Infrastructure, Terraform, Kubernetes, AWS/Azure/GCP, High availability, Zero-trust
+
+- GCP Cloud Engineer (ID: gcp-cloud-engineer | Path: cloud/gcp-cloud-engineer.md)
+  Description: Designs scale-ready infrastructure on Google Cloud Platform using native services.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Cloud Infrastructure, Terraform, Kubernetes, AWS/Azure/GCP, High availability, Zero-trust
+
+- Kubernetes Specialist (ID: kubernetes-specialist | Path: cloud/kubernetes-specialist.md)
+  Description: Configures production Kubernetes clusters, pod scheduling, network policies, and ingress controllers.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Cloud Infrastructure, Terraform, Kubernetes, AWS/Azure/GCP, High availability, Zero-trust
+
+- Platform Engineer (ID: platform-engineer | Path: cloud/platform-engineer.md)
+  Description: Builds developer self-service tooling, landing zones, and continuous delivery systems.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Cloud Infrastructure, Terraform, Kubernetes, AWS/Azure/GCP, High availability, Zero-trust
+
+- Site Reliability Engineer (ID: site-reliability-engineer | Path: cloud/site-reliability-engineer.md)
+  Description: Defines service level objectives, error budgets, incident response playbooks, and disaster recovery strategies.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Cloud Infrastructure, Terraform, Kubernetes, AWS/Azure/GCP, High availability, Zero-trust
+
+- Terraform Specialist (ID: terraform-specialist | Path: cloud/terraform-specialist.md)
+  Description: Writes modular Terraform, structuring state files, workspace variables, and locks.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Cloud Infrastructure, Terraform, Kubernetes, AWS/Azure/GCP, High availability, Zero-trust
+
+- Application Security Specialist (ID: application-security-specialist | Path: cybersecurity/application-security-specialist.md)
+  Description: Audits application source code for OWASP Top 10 vulnerabilities, configuring SAST/DAST pipelines.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Application Security, IAM, Vulnerability Assessment, Incident Response, Cybersecurity, Zero-trust
+
+- Cloud Security Engineer (ID: cloud-security-engineer | Path: cybersecurity/cloud-security-engineer.md)
+  Description: Implements IAM least privilege policies, cloud security posture monitoring, and secrets managers.
+  Stage: Leadership | Level: Mid | Industry: Tech
+  Skills: Application Security, IAM, Vulnerability Assessment, Incident Response, Cybersecurity, Zero-trust
+
+- Ethical Hacking Advisor (ID: ethical-hacking-advisor | Path: cybersecurity/ethical-hacking-advisor.md)
+  Description: Conducts threat simulations and red-team operations across human, network, and application boundaries.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Application Security, IAM, Vulnerability Assessment, Incident Response, Cybersecurity, Zero-trust
+
+- Governance Risk Compliance Advisor (ID: governance-risk-compliance-advisor | Path: cybersecurity/governance-risk-compliance-advisor.md)
+  Description: Audits processes and designs system configurations to satisfy compliance rules (SOC2, ISO 27001, GDPR).
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Application Security, IAM, Vulnerability Assessment, Incident Response, Cybersecurity, Zero-trust
+
+- Identity Access Management Specialist (ID: identity-access-management-specialist | Path: cybersecurity/identity-access-management-specialist.md)
+  Description: Designs directory service integrations, access management controls, and provisioning flows.
+  Stage: Growth | Level: Executive | Industry: Tech
+  Skills: Application Security, IAM, Vulnerability Assessment, Incident Response, Cybersecurity, Zero-trust
+
+- Incident Response Specialist (ID: incident-response-specialist | Path: cybersecurity/incident-response-specialist.md)
+  Description: Triages active security breaches, structures containment strategies, and performs digital forensics.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Application Security, IAM, Vulnerability Assessment, Incident Response, Cybersecurity, Zero-trust
+
+- Penetration Testing Coach (ID: penetration-testing-coach | Path: cybersecurity/penetration-testing-coach.md)
+  Description: Runs network-level vulnerability assessments and simulated penetration testing.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Application Security, IAM, Vulnerability Assessment, Incident Response, Cybersecurity, Zero-trust
+
+- Security Architect (ID: security-architect | Path: cybersecurity/security-architect.md)
+  Description: Designs global zero-trust security frameworks, IAM directories, and endpoint controls.
+  Stage: Growth | Level: Executive | Industry: Tech
+  Skills: Application Security, IAM, Vulnerability Assessment, Incident Response, Cybersecurity, Zero-trust
+
+- Security Engineer (ID: security-engineer | Path: cybersecurity/security-engineer.md)
+  Description: Designs secure infrastructure boundaries, perimeter defense networks, and encryption strategies.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Application Security, IAM, Vulnerability Assessment, Incident Response, Cybersecurity, Zero-trust
+
+- Security Operations Analyst (ID: security-operations-analyst | Path: cybersecurity/security-operations-analyst.md)
+  Description: Analyzes security telemetry logs, configure SIEM dashboards, and responds to alerts.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Application Security, IAM, Vulnerability Assessment, Incident Response, Cybersecurity, Zero-trust
+
+- Community Builder (ID: community-builder | Path: open-source/community-builder.md)
+  Description: Designs community portals, discord guidelines, online events, and contributor recognition models.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Open Source Contribution, Git Workflows, Community Building, Documentation, Documentation-first, Community-driven
+
+- Developer Advocate (ID: developer-advocate | Path: open-source/developer-advocate.md)
+  Description: Bridges developer feedback with core product roadmaps, producing workshops and api demos.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Open Source Contribution, Git Workflows, Community Building, Documentation, Documentation-first, Community-driven
+
+- DevRel Strategist (ID: devrel-strategist | Path: open-source/devrel-strategist.md)
+  Description: Aligns developer programs with business metrics, tracking developer acquisitions and community ROI.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Open Source Contribution, Git Workflows, Community Building, Documentation, Documentation-first, Community-driven
+
+- GitHub Growth Advisor (ID: github-growth-advisor | Path: open-source/github-growth-advisor.md)
+  Description: Advises on repository metadata, README copywriting, issue curation, and community visibility.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Open Source Contribution, Git Workflows, Community Building, Documentation, Documentation-first, Community-driven
+
+- Maintainer Coach (ID: maintainer-coach | Path: open-source/maintainer-coach.md)
+  Description: Advises project leads on contributor onboarding, issue labeling, license compliance, and roadmap publishing.
+  Stage: Growth | Level: Senior | Industry: All
+  Skills: Open Source Contribution, Git Workflows, Community Building, Documentation, Documentation-first, Community-driven
+
+- Open Source Funding Advisor (ID: open-source-funding-advisor | Path: open-source/open-source-funding-advisor.md)
+  Description: Guides projects on sponsor directories (GitHub Sponsors, Open Collective) and grant applications.
+  Stage: Growth | Level: Executive | Industry: All
+  Skills: Open Source Contribution, Git Workflows, Community Building, Documentation, Documentation-first, Community-driven
+
+- Open Source Mentor (ID: open-source-mentor | Path: open-source/open-source-mentor.md)
+  Description: Coaches new contributors on git branches, repository issues, and pull request etiquette.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Open Source Contribution, Git Workflows, Community Building, Documentation, Documentation-first, Community-driven
+
+- OSS Contributor Coach (ID: oss-contributor-coach | Path: open-source/oss-contributor-coach.md)
+  Description: Helps developers scale contributions from single commits to regular maintainers of key libraries.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Open Source Contribution, Git Workflows, Community Building, Documentation, Documentation-first, Community-driven
+
+- Project Maintenance Specialist (ID: project-maintenance-specialist | Path: open-source/project-maintenance-specialist.md)
+  Description: Automates project builds, configuring lint rules, tests, and publishing workflows.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Open Source Contribution, Git Workflows, Community Building, Documentation, Documentation-first, Community-driven
+
+- Technical Writing Advisor (ID: technical-writing-advisor | Path: open-source/technical-writing-advisor.md)
+  Description: Guides developers in writing clean API guides, release notes, code reviews, and README docs.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Open Source Contribution, Git Workflows, Community Building, Documentation, Documentation-first, Community-driven
+
+- Analytics Engineer (ID: analytics-engineer | Path: data-engineering/analytics-engineer.md)
+  Description: Structures data transformation layers using dbt (data build tool), creating documentation and testing frameworks.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Data Pipelines, ETL/ELT, Data Warehousing, Database Optimization, Transactional, Data-engineering
+
+- Business Intelligence Specialist (ID: business-intelligence-specialist | Path: data-engineering/business-intelligence-specialist.md)
+  Description: Designs semantic datasets, dashboards, and analytical metrics using PowerBI or Tableau.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Data Pipelines, ETL/ELT, Data Warehousing, Database Optimization, Transactional, Data-engineering
+
+- Data Architect (ID: data-architect | Path: data-engineering/data-architect.md)
+  Description: Designs corporate data strategies, data mesh architectures, and warehouse schemas.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Data Pipelines, ETL/ELT, Data Warehousing, Database Optimization, Transactional, Data-engineering
+
+- Data Engineer (ID: data-engineer | Path: data-engineering/data-engineer.md)
+  Description: Designs robust analytical pipeline systems, feature databases, and ingestion engines.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Data Pipelines, ETL/ELT, Data Warehousing, Database Optimization, Transactional, Data-engineering
+
+- Data Governance Advisor (ID: data-governance-advisor | Path: data-engineering/data-governance-advisor.md)
+  Description: Defines access control policies, data cataloging rules, and column-level masking models.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Data Pipelines, ETL/ELT, Data Warehousing, Database Optimization, Transactional, Data-engineering
+
+- Data Platform Engineer (ID: data-platform-engineer | Path: data-engineering/data-platform-engineer.md)
+  Description: Deploys cloud-based data storage and analysis platforms using Snowflake, Databricks, or BigQuery.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Data Pipelines, ETL/ELT, Data Warehousing, Database Optimization, Transactional, Data-engineering
+
+- Data Quality Engineer (ID: data-quality-engineer | Path: data-engineering/data-quality-engineer.md)
+  Description: Designs automated validation routines, alerting systems, and data drift dashboards.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Data Pipelines, ETL/ELT, Data Warehousing, Database Optimization, Transactional, Data-engineering
+
+- Database Performance Specialist (ID: database-performance-specialist | Path: data-engineering/database-performance-specialist.md)
+  Description: Audits database resource consumption, index efficiency, and query logs to optimize latency.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Data Pipelines, ETL/ELT, Data Warehousing, Database Optimization, Transactional, Data-engineering
+
+- ETL Specialist (ID: etl-specialist | Path: data-engineering/etl-specialist.md)
+  Description: Designs high-throughput batch ETL/ELT pipelines using Airflow, Prefect, or Dagster.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Data Pipelines, ETL/ELT, Data Warehousing, Database Optimization, Transactional, Data-engineering
+
+- Stream Processing Specialist (ID: stream-processing-specialist | Path: data-engineering/stream-processing-specialist.md)
+  Description: Designs high-velocity real-time analytical event flows using Kafka or Flink.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Data Pipelines, ETL/ELT, Data Warehousing, Database Optimization, Transactional, Data-engineering
+
+- API Adoption Consultant (ID: api-adoption-consultant | Path: devrel/api-adoption-consultant.md)
+  Description: Reviews developer APIs, SDK structures, and documentation onboarding to reduce activation barriers.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Developer Relations, Technical Content, Community Engagement, API Adoption, Empathetic, Community-centric
+
+- Community Growth Specialist (ID: community-growth-specialist | Path: devrel/community-growth-specialist.md)
+  Description: Designs programmatic referral schemes, user acquisition initiatives, and event plans.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Developer Relations, Technical Content, Community Engagement, API Adoption, Empathetic, Community-centric
+
+- Conference Speaker Coach (ID: conference-speaker-coach | Path: devrel/conference-speaker-coach.md)
+  Description: Guides developers in preparing technical talk submissions, slide structures, and slide delivery.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Developer Relations, Technical Content, Community Engagement, API Adoption, Empathetic, Community-centric
+
+- Content Strategy Advisor (ID: content-strategy-advisor | Path: devrel/content-strategy-advisor.md)
+  Description: Plans technical content calendars, writing schedules, and publication distributions.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Developer Relations, Technical Content, Community Engagement, API Adoption, Empathetic, Community-centric
+
+- Developer Education Specialist (ID: developer-education-specialist | Path: devrel/developer-education-specialist.md)
+  Description: Designs tutorials, structured learning paths, sample project repos, and technical documentation.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Developer Relations, Technical Content, Community Engagement, API Adoption, Empathetic, Community-centric
+
+- Developer Evangelist (ID: developer-evangelist | Path: devrel/developer-evangelist.md)
+  Description: Presents product value at developer conferences, online meetups, and key technical forums.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Developer Relations, Technical Content, Community Engagement, API Adoption, Empathetic, Community-centric
+
+- Developer Experience Specialist (ID: developer-experience-specialist | Path: devrel/developer-experience-specialist.md)
+  Description: Reviews local developer environments, CLI ease-of-use, config errors, and initial setup steps.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Developer Relations, Technical Content, Community Engagement, API Adoption, Empathetic, Community-centric
+
+- Developer Relations Manager (ID: developer-relations-manager | Path: devrel/developer-relations-manager.md)
+  Description: Manages developer engagement programs, ambassador networks, and metric analysis.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Developer Relations, Technical Content, Community Engagement, API Adoption, Empathetic, Community-centric
+
+- Technical Community Builder (ID: technical-community-builder | Path: devrel/technical-community-builder.md)
+  Description: Moderates developer forums, discord/slack servers, and handles user onboarding strategies.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Developer Relations, Technical Content, Community Engagement, API Adoption, Empathetic, Community-centric
+
+- Technical Marketing Advisor (ID: technical-marketing-advisor | Path: devrel/technical-marketing-advisor.md)
+  Description: Aligns product positioning with developer interests, writing copy and analyzing competition.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Developer Relations, Technical Content, Community Engagement, API Adoption, Empathetic, Community-centric
+
+- GTM Engineer (ID: gtm-engineer | Path: gtm/gtm-engineer.md)
+  Description: An outreach systems architect who designs clay workflows, API enrichments, and automated cold inbound/outbound setup.
+  Stage: Growth | Level: Senior | Industry: All
+  Skills: Outreach Automation, CRM Sync, Clay Workspaces, Sales Pipeline, Clay, Outbound
+
+- OpenAI Career Coach (ID: openai-career-coach | Path: faang/openai-career-coach.md)
+  Description: A specialized coach for OpenAI interview loops, engineering culture, and AI research/engineering positions.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Distributed Systems, Scaling, DSA, FAANG Interview, Openai, Faang
+
+- Job Hunter AI (ID: job-hunter-ai | Path: job-automation/job-hunter-ai.md)
+  Description: An automated job discovery and application tracking companion that manages target queues.
+  Stage: Job Search | Level: Mid | Industry: All
+  Skills: Job Scraping, Notion Databases, Pipeline Tracking, Cold Outreach, Automation, Career
+
+- AI Founder (ID: ai-founder | Path: ai-business/ai-founder.md)
+  Description: A strategic AI builder focused on scaling AI-first products, MVPs, and business models.
+  Stage: Growth | Level: Executive | Industry: All
+  Skills: AI Unit Economics, SaaS MVP, Semantic Caching, Defensibility, Ai-business, Founder
+
+- Freelance Founder (ID: freelance-founder | Path: freelancing/freelance-founder.md)
+  Description: An independent consultant strategist driving retainer growth, pricing, and client acquisition channels.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Freelancing, Productized Services, Client Acquisition, Retainers, Consulting, Proposals
+
+- Job Application Optimizer (ID: job-application-optimizer | Path: job-automation/job-application-optimizer.md)
+  Description: An AI context tailoring engine that customizes applications, resume bullets, and cover letters for specific job descriptions at scale.
+  Stage: Job Search | Level: Mid | Industry: All
+  Skills: Job Scraping, Notion Databases, Pipeline Tracking, Cold Outreach, Automation, Career
+
+- Google SWE Coach (ID: google-swe-coach | Path: faang/google-swe-coach.md)
+  Description: A specialized technical coach for Google Software Engineering (SWE) loops, focusing on DS & Algorithms, complex complexity analysis, clean code structure, and Googleyness & Leadership (G&L).
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: Distributed Systems, Scaling, DSA, FAANG Interview, Openai, Faang
+
+- AI Consultant (ID: ai-consultant | Path: ai-business/ai-consultant.md)
+  Description: An enterprise AI strategist mapping company problems to LLM/RAG solutions, scoping APIs, drafting security/privacy architectures, and showing ROI.
+  Stage: Growth | Level: Senior | Industry: All
+  Skills: AI Unit Economics, SaaS MVP, Semantic Caching, Defensibility, Ai-business, Founder
+
+- Clay Specialist (ID: clay-specialist | Path: gtm/clay-specialist.md)
+  Description: A master of Clay workflows, waterfall search logic, AI enrichment prompting, data cleaning, and CSV normalization.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Outreach Automation, CRM Sync, Clay Workspaces, Sales Pipeline, Clay, Outbound
+
+- Upwork Specialist (ID: upwork-specialist | Path: freelancing/upwork-specialist.md)
+  Description: A profile positioning and proposal writing advisor focused on converting Upwork feeds into closed contracts.
+  Stage: Growth | Level: Mid | Industry: All
+  Skills: Freelancing, Productized Services, Client Acquisition, Retainers, Consulting, Proposals
+
+## Workflows Roster
+- ATS Optimization (ID: ats-optimization | Path: workflows/ats-optimization.md)
+  Description: A repeatable resume operating system for candidates who apply through portals, campus systems, and enterprise hiring platforms. Optimizes resume structures, headings, and keyword mapping to survive ATS parsing.
+  Category: resume workflows
+  Prerequisites: Current resume in editable format, Target role family (e.g. backend developer, data analyst), At least three representative job descriptions
+
+- FAANG Preparation (ID: faang-preparation | Path: workflows/faang-preparation.md)
+  Description: Targeted preparation pipeline for high-tier tech companies (FAANG+), aligning algorithms, system design, and leadership principles prep.
+  Category: interview workflows
+  Prerequisites: Data structures & algorithms baseline knowledge, Target company list, STAR behavioral stories draft
+
+- Fresher Placement (ID: fresher-placement | Path: workflows/fresher-placement.md)
+  Description: Step-by-step guidance for college students and recent grads navigating their first job hunt and campus placement cycles.
+  Category: career workflows
+  Prerequisites: Target college graduation timeline, List of eligible companies visiting campus, Current draft resume
+
+- HR Interview Week (ID: hr-interview-week | Path: workflows/hr-interview-week.md)
+  Description: Intense behavioral prep week covering common HR screening, culture fit, and soft-skill evaluation challenges.
+  Category: interview workflows
+  Prerequisites: Upcoming behavioral or HR screening invitation, Understanding of target company values, Resume details aligned with story examples
+
+- Internship Hunt (ID: internship-hunt | Path: workflows/internship-hunt.md)
+  Description: Tactical action plan for finding, applying to, and landing summer/semester internships.
+  Category: job search workflows
+  Prerequisites: Target internship timeline (e.g. Summer 2027), Minimum qualifications checklist, List of target companies with active internship programs
+
+- LinkedIn Growth (ID: linkedin-growth | Path: workflows/linkedin-growth.md)
+  Description: Personal branding and network expansion strategy to attract recruiters, founders, and industry peers.
+  Category: networking workflows
+  Prerequisites: Created LinkedIn profile, Professional headshot or clean banner image, Clearly defined niche or industry focus
+
+- Offer Comparison (ID: offer-comparison | Path: workflows/offer-comparison.md)
+  Description: Analytical approach to evaluating multiple job offers across total compensation, equity, career growth, and work-life balance.
+  Category: job search workflows
+  Prerequisites: At least one active written or verbal job offer, Baseline budget or financial target, Long-term career progression goals
+
+- Remote Job Hunt (ID: remote-job-hunt | Path: workflows/remote-job-hunt.md)
+  Description: Navigating the specialized remote job market, optimizing for global companies, and establishing remote collaboration proof.
+  Category: job search workflows
+  Prerequisites: Stable internet setup and home office environment, Proof of async work or independent delivery capability, Resume updated with remote-relevant skills
+
+- Salary Negotiation (ID: salary-negotiation | Path: workflows/salary-negotiation.md)
+  Description: Tactics and script preparation for maximizing base salary, equity, and benefits during the offer stage.
+  Category: job search workflows
+  Prerequisites: Job offer details or expectation stage discussions, Market salary survey or benchmark data, List of high-value non-monetary items (e.g. remote days, sign-on bonus)
+
+- Technical Interview Week (ID: technical-interview-week | Path: workflows/technical-interview-week.md)
+  Description: High-intensity technical prep covering DSA drills, system design practice, and clean code principles.
+  Category: interview workflows
+  Prerequisites: Upcoming technical interview scheduled within 7-14 days, Selection of programming language for coding rounds, List of core system design patterns reviewed

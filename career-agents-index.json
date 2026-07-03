@@ -1,0 +1,2438 @@
+{
+  "repository": "Career-Agents",
+  "name": "The Career Operating System Index",
+  "total_agents": 135,
+  "total_workflows": 10,
+  "agents": [
+    {
+      "id": "ats-resume-reviewer",
+      "name": "ATS Resume Reviewer",
+      "filename": "career/ats-resume-reviewer.md",
+      "description": "A focused, line-by-line resume auditor who optimizes resume structure, language, and keyword signaling to survive ATS parsing and convert recruiter skim-time into interview invites.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Easy",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "career-accountability-coach",
+      "name": "Career Accountability Coach",
+      "filename": "career/career-accountability-coach.md",
+      "description": "A structured, non-judgmental accountability partner who converts career goals into weekly commitments, tracks follow-through with honest data, diagnoses why execution is failing, and rebuilds momentum when it stalls \u2014 without letting candidates off the hook or crushing them with guilt.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "career-pivot-to-tech-advisor",
+      "name": "Career Pivot to Tech Advisor",
+      "filename": "career/career-pivot-to-tech-advisor.md",
+      "description": "A transition strategist for non-technical professionals entering the tech industry \u2014 covering entry point selection (software engineering, product, data, UX, technical sales, DevRel, and more), learning path design, portfolio development, narrative construction, and the tactical job search mechanics specific to tech industry hiring.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Entry",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "career-roadmap-strategist",
+      "name": "Career Roadmap Strategist",
+      "filename": "career/career-roadmap-strategist.md",
+      "description": "A long-horizon career architect who builds milestone-based, decade-spanning career roadmaps \u2014 turning vague ambitions into sequenced, evidence-gated development plans that compound skill, reputation, and leverage over time.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "career-transition-coach",
+      "name": "Career Transition Coach",
+      "filename": "career/career-transition-coach.md",
+      "description": "A decisive, pattern-aware career transition coach who helps professionals move from one field, function, or industry into another \u2014 by mapping transferable assets, designing bridge strategies, and turning \"I don't have the background for this\" into a concrete, evidence-backed plan that works.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "diversity-inclusion-career-coach",
+      "name": "Diversity & Inclusion Career Coach",
+      "filename": "career/diversity-inclusion-career-coach.md",
+      "description": "A career strategist specializing in helping underrepresented professionals navigate systemic barriers, bias in hiring, and unequal advancement dynamics \u2014 providing concrete, evidence-informed strategies that turn awareness of barriers into actionable career architecture.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "executive-job-search-coach",
+      "name": "Executive Job Search Coach",
+      "filename": "career/executive-job-search-coach.md",
+      "description": "A senior-level career strategist who helps VP, Director, and C-suite professionals navigate the fundamentally different world of executive hiring \u2014 where most roles never appear on job boards, where personal brand and reputation are the primary search vehicles, and where the quality of your board and peer network determines your access more than your resume.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Executive",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "freelance-career-advisor",
+      "name": "Freelance Career Advisor",
+      "filename": "career/freelance-career-advisor.md",
+      "description": "A pragmatic freelance business strategist who helps independent professionals build sustainable, client-diversified freelance careers \u2014 covering rate-setting, client acquisition, portfolio positioning, contract fundamentals, and the transition from feast-or-famine to predictable income.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "graduate-career-advisor",
+      "name": "Graduate Career Advisor",
+      "filename": "career/graduate-career-advisor.md",
+      "description": "A strategic first-job advisor for recent graduates who cuts through the noise of \"apply everywhere\" and \"network more\" to build targeted, evidence-backed launch strategies that get new graduates into the right first role \u2014 not just any role \u2014 within a realistic timeline.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Entry",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "hr-interview-coach",
+      "name": "HR Interview Coach",
+      "filename": "career/hr-interview-coach.md",
+      "description": "A behavioural and offer-readiness coach who prepares candidates for HR and cultural interviews, designs story-driven answers to behavioural prompts, and leads offer evaluation and negotiation prep with professional rigor.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Hard",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "internship-application-strategist",
+      "name": "Internship Application Strategist",
+      "filename": "career/internship-application-strategist.md",
+      "description": "An internship application strategist who helps students package their skills, target hiring windows, and win sought-after internship roles.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Entry",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "internship-success-coach",
+      "name": "Internship Success Coach",
+      "filename": "career/internship-success-coach.md",
+      "description": "A hands-on internship performance coach who helps interns move from \"showing up\" to \"standing out\" \u2014 by building visibility, delivering meaningful work, converting internships into return offers, and treating every internship as a twelve-week audition with a clear performance plan.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Entry",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "job-search-strategist",
+      "name": "Job Search Strategist",
+      "filename": "career/job-search-strategist.md",
+      "description": "A job search strategist who builds targeted application plans, opportunity funnels, and outreach systems for faster interview traction.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "linkedin-growth-advisor",
+      "name": "LinkedIn Growth Advisor",
+      "filename": "career/linkedin-growth-advisor.md",
+      "description": "A tactical growth advisor for LinkedIn who optimizes profiles for recruiter discovery, builds content strategies that surface domain credibility, and converts passive profile views into active opportunities.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "networking-coach",
+      "name": "Networking Coach",
+      "filename": "career/networking-coach.md",
+      "description": "A strategic, relationship-first networking coach who transforms transactional connection requests into genuine professional relationships \u2014 helping candidates build the kind of network that surfaces hidden job market opportunities, generates warm referrals, and compounds in value over an entire career.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "offer-evaluation-advisor",
+      "name": "Offer Evaluation Advisor",
+      "filename": "career/offer-evaluation-advisor.md",
+      "description": "An offer evaluation advisor who helps candidates compare multiple opportunities and choose the best role for their career goals.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "personal-branding-advisor",
+      "name": "Personal Branding Advisor",
+      "filename": "career/personal-branding-advisor.md",
+      "description": "A strategic personal brand architect who builds authentic, channel-consistent professional identities that attract the right opportunities \u2014 turning scattered professional presence into a coherent, searchable, memorable signal that does career work even when the candidate isn't actively job hunting.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "placement-coach",
+      "name": "Placement Coach",
+      "filename": "career/placement-coach.md",
+      "description": "An end-to-end placement strategist who audits your readiness, builds a prioritized action plan, and drives you from \"applying blind\" to \"negotiating offers\" with the discipline of someone who has watched a thousand placement cycles play out.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "product-manager-coach",
+      "name": "Product Manager Coach",
+      "filename": "career/product-manager-coach.md",
+      "description": "A rigorous PM career coach who helps aspiring and practicing product managers break into the discipline, ace PM interviews at any company tier, build product intuition through structured practice, and advance from APM to VP of Product \u2014 with frameworks grounded in how the best PMs actually think, not in what sounds good in a textbook.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Executive",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "recruiter-outreach-specialist",
+      "name": "Recruiter Outreach Specialist",
+      "filename": "career/recruiter-outreach-specialist.md",
+      "description": "A recruiter outreach specialist who crafts message sequences and outreach plans to get recruiters to respond and move candidates into hiring conversations.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "remote-work-advisor",
+      "name": "Remote Work Advisor",
+      "filename": "career/remote-work-advisor.md",
+      "description": "A strategic remote-work specialist who helps professionals find, land, and thrive in remote roles \u2014 covering remote-specific job search tactics, distributed team visibility, async communication mastery, home office optimization, and the specific career risks that remote work creates if not managed deliberately.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "resume-strategist",
+      "name": "Resume Strategist",
+      "filename": "career/resume-strategist.md",
+      "description": "A narrative-focused resume strategist who crafts role-driven career stories, aligns achievements to hiring criteria, and builds resume ecosystems (resume, LinkedIn, portfolio) that consistently convert interest into interviews.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "returnship-coach",
+      "name": "Returnship Coach",
+      "filename": "career/returnship-coach.md",
+      "description": "A re-entry specialist who helps professionals return to the workforce after a career break \u2014 reframing gaps, rebuilding confidence, refreshing skills, and designing targeted re-entry strategies that land roles that respect the candidate's full experience, not just their most recent role.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Entry",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "salary-benchmark-analyst",
+      "name": "Salary Benchmark Analyst",
+      "filename": "career/salary-benchmark-analyst.md",
+      "description": "A rigorous, data-literate compensation analyst who builds evidence-based salary benchmarks, deconstructs total compensation packages, and arms candidates with the market intelligence and framing to negotiate from facts rather than hope.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "salary-negotiation-coach",
+      "name": "Salary Negotiation Coach",
+      "filename": "career/salary-negotiation-coach.md",
+      "description": "A salary negotiation specialist who prepares candidates to evaluate offers, build leverage, and negotiate compensation confidently.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "technical-interview-coach",
+      "name": "Technical Interview Coach",
+      "filename": "career/technical-interview-coach.md",
+      "description": "A hands-on technical interview coach who prepares candidates for data structures & algorithms, system design, and role-specific coding rounds through targeted drills, rubric-based feedback, and measurable progression plans.",
+      "division": "career",
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "adobe-interview-coach",
+      "name": "Adobe Interview Coach",
+      "filename": "company-interviews/adobe-interview-coach.md",
+      "description": "A creativity-meets-engineering specialist who prepares candidates for Adobe's blend of technical rigor and genuine product-craft sensibility, where caring about the actual user experience of the tools you build is a real evaluation signal.",
+      "division": "company-interviews",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "amazon-interview-coach",
+      "name": "Amazon Interview Coach",
+      "filename": "company-interviews/amazon-interview-coach.md",
+      "description": "A Leadership Principles specialist who knows that Amazon interviews are won or lost on STAR-structured stories mapped precisely to specific principles, not generic behavioral answers with an Amazon logo pasted on top.",
+      "division": "company-interviews",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Hard",
+      "career_stage": "Leadership"
+    },
+    {
+      "id": "atlassian-interview-coach",
+      "name": "Atlassian Interview Coach",
+      "filename": "company-interviews/atlassian-interview-coach.md",
+      "description": "A values-driven collaboration specialist who prepares candidates for Atlassian's structured, values-mapped interview loop, where \"open company, no bullshit\" is an actual evaluation criterion, not just a wall poster.",
+      "division": "company-interviews",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "google-interview-coach",
+      "name": "Google Interview Coach",
+      "filename": "company-interviews/google-interview-coach.md",
+      "description": "A structured-rigor specialist for Google's algorithm-heavy, googleyness-aware interview loop, who treats clean code communication and structured problem decomposition as non-negotiable, not optional polish.",
+      "division": "company-interviews",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "meta-interview-coach",
+      "name": "Meta Interview Coach",
+      "filename": "company-interviews/meta-interview-coach.md",
+      "description": "An execution-speed and impact-obsessed coach who prepares candidates for Meta's fast-paced technical bar and its distinct \"move fast, focus on impact\" behavioral evaluation.",
+      "division": "company-interviews",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "microsoft-interview-coach",
+      "name": "Microsoft Interview Coach",
+      "filename": "company-interviews/microsoft-interview-coach.md",
+      "description": "A growth-mindset and collaborative-problem-solving specialist who prepares candidates for Microsoft's blend of technical depth and \"how do you work with others\" evaluation, including the as-appropriate design/coding rounds.",
+      "division": "company-interviews",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "netflix-interview-coach",
+      "name": "Netflix Interview Coach",
+      "filename": "company-interviews/netflix-interview-coach.md",
+      "description": "A radical-candor and high-judgment specialist who prepares candidates for Netflix's uniquely direct culture interviews, where \"would I fight to keep this person\" is the real question behind every round.",
+      "division": "company-interviews",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "oracle-interview-coach",
+      "name": "Oracle Interview Coach",
+      "filename": "company-interviews/oracle-interview-coach.md",
+      "description": "A fundamentals-first specialist who prepares candidates for Oracle's traditionally rigorous CS-fundamentals and systems-depth interview style, where solid, unglamorous engineering knowledge is genuinely rewarded.",
+      "division": "company-interviews",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "salesforce-interview-coach",
+      "name": "Salesforce Interview Coach",
+      "filename": "company-interviews/salesforce-interview-coach.md",
+      "description": "A trust-and-customer-success specialist who prepares candidates for Salesforce's values-and-relationship-driven interview culture, where \"trust is our #1 value\" is treated as a real evaluation lens, not a slogan.",
+      "division": "company-interviews",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "uber-interview-coach",
+      "name": "Uber Interview Coach",
+      "filename": "company-interviews/uber-interview-coach.md",
+      "description": "A scale-and-ownership specialist who prepares candidates for Uber's operationally intense, ownership-driven interview culture, where \"built for scale, obsessed with the details that break at scale\" is the actual bar.",
+      "division": "company-interviews",
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "backend-architect",
+      "name": "Backend Architect",
+      "filename": "engineering/backend-architect.md",
+      "description": "An API and service-design reviewer who evaluates backend architecture for the failure modes that don't show up until real load, real edge cases, and real time have all had a chance to find them.",
+      "division": "engineering",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "code-reviewer",
+      "name": "Code Reviewer",
+      "filename": "engineering/code-reviewer.md",
+      "description": "A senior-level code reviewer who triages real risk instead of nitpicking style, distinguishing \"this will break in production\" from \"this is a preference\" and never letting the two get confused.",
+      "division": "engineering",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Easy",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "database-engineer",
+      "name": "Database Engineer",
+      "filename": "engineering/database-engineer.md",
+      "description": "A schema and query optimization specialist who reads execution plans instead of guessing, and treats indexing strategy as a precise discipline rather than a \"just add an index\" reflex.",
+      "division": "engineering",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "devops-engineer",
+      "name": "DevOps Engineer",
+      "filename": "engineering/devops-engineer.md",
+      "description": "A CI/CD and infrastructure reliability specialist who treats deployment pipelines as production systems in their own right, obsessed with reversibility, observability, and never being surprised by a failure.",
+      "division": "engineering",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "mern-architect",
+      "name": "MERN Architect",
+      "filename": "engineering/mern-architect.md",
+      "description": "A full-stack architecture reviewer for MongoDB/Express/React/Node applications who evaluates real scalability and maintainability tradeoffs instead of rubber-stamping whatever framework is trendy this year.",
+      "division": "engineering",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "nextjs-performance-engineer",
+      "name": "Next.js Performance Engineer",
+      "filename": "engineering/nextjs-performance-engineer.md",
+      "description": "A performance auditor obsessed with real Core Web Vitals and actual user-perceived speed, who diagnoses Next.js applications the way a profiler does \u2014 with numbers, not vibes.",
+      "division": "engineering",
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "behavioral-interview-specialist",
+      "name": "Behavioral Interview Specialist",
+      "filename": "interview/behavioral-interview-specialist.md",
+      "description": "A behavioral interview drilling coach who helps candidates structure stories using STAR/STAR+ structures, handles high-pressure situational queries, and maps achievements to organizational leadership principles.",
+      "division": "interview",
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Hard",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "group-discussion-coach",
+      "name": "Group Discussion Coach",
+      "filename": "interview/group-discussion-coach.md",
+      "description": "A facilitation and group communication coach who prepares candidates for group discussions, case studies, and collaborative rounds by teaching moderation, active listening, structured entry, and collaborative leadership.",
+      "division": "interview",
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Medium",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "leadership-interview-coach",
+      "name": "Leadership Interview Coach",
+      "filename": "interview/leadership-interview-coach.md",
+      "description": "A leadership coaching specialist who prepares senior candidates for executive, management, and leadership interviews \u2014 focusing on vision, organization building, decision-making, and organizational conflict.",
+      "division": "interview",
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "experience_level": "Executive",
+      "difficulty": "Hard",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "mock-interviewer",
+      "name": "Mock Interviewer",
+      "filename": "interview/mock-interviewer.md",
+      "description": "A realistic, high-fidelity mock interviewer that conducts role-play simulations, dynamically probes candidate answers, handles follow-up queries, and provides rigorous feedback.",
+      "division": "interview",
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "system-design-coach",
+      "name": "System Design Coach",
+      "filename": "interview/system-design-coach.md",
+      "description": "A technical interview coach specializing in distributed systems, scalability, and system design interviews \u2014 covering requirements gathering, API design, data modeling, high-level architecture, and deep-dive bottlenecks.",
+      "division": "interview",
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Hard",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "alumni-networking-advisor",
+      "name": "Alumni Networking Advisor",
+      "filename": "networking/alumni-networking-advisor.md",
+      "description": "A campus and school affinity networking strategist who helps candidates locate, re-engage, and leverage university and corporate alumni networks for career insights and referrals.",
+      "division": "networking",
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "cold-outreach-specialist",
+      "name": "Cold Outreach Specialist",
+      "filename": "networking/cold-outreach-specialist.md",
+      "description": "A cold communication copywriter and strategist who helps candidates write highly optimized cold emails and messages to hiring managers, founders, and leaders.",
+      "division": "networking",
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Hard",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "linkedin-outreach-specialist",
+      "name": "LinkedIn Outreach Specialist",
+      "filename": "networking/linkedin-outreach-specialist.md",
+      "description": "A digital networking expert who helps candidates write highly customized, high-conversion LinkedIn messages for informational interviews, warm introductions, and job inquiries.",
+      "division": "networking",
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "recruiter-communication-coach",
+      "name": "Recruiter Communication Coach",
+      "filename": "networking/recruiter-communication-coach.md",
+      "description": "A communication strategist who helps candidates manage recruiter channels, script outreach messages, prepare for screening calls, and negotiate communication touchpoints.",
+      "division": "networking",
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "referral-strategy-coach",
+      "name": "Referral Strategy Coach",
+      "filename": "networking/referral-strategy-coach.md",
+      "description": "A relationship monetization strategist who helps candidates turn casual professional interactions, alumni links, and warm networks into formal job referrals and active internal advocates.",
+      "division": "networking",
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "experience_level": "Entry",
+      "difficulty": "Medium",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "documentation-specialist",
+      "name": "Documentation Specialist",
+      "filename": "projects/documentation-specialist.md",
+      "description": "A technical documentation agent that turns project outputs into clear reports, manuals, and presentation-ready artifacts.",
+      "division": "projects",
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "final-year-project-advisor",
+      "name": "Final Year Project Advisor",
+      "filename": "projects/final-year-project-advisor.md",
+      "description": "A FYP coach who helps students select, scope, and defend academic projects with real-world structure and evaluation clarity.",
+      "division": "projects",
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "experience_level": "Entry",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "research-assistant",
+      "name": "Research Assistant",
+      "filename": "projects/research-assistant.md",
+      "description": "A structured research partner for literature reviews, methodology planning, and academic sourcing.",
+      "division": "projects",
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "viva-coach",
+      "name": "Viva Coach",
+      "filename": "projects/viva-coach.md",
+      "description": "A viva preparation coach that helps students structure defense responses, anticipate examiner questions, and present confidently.",
+      "division": "projects",
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "experience_level": "Entry",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "executive-resume-advisor",
+      "name": "Executive Resume Advisor",
+      "filename": "resume/executive-resume-advisor.md",
+      "description": "A senior-level resume strategist who helps VPs, Directors, and C-suite executives structure their resumes to emphasize executive presence, strategic scope, P&L ownership, and board visibility.",
+      "division": "resume",
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "experience_level": "Executive",
+      "difficulty": "Medium",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "portfolio-reviewer",
+      "name": "Portfolio Reviewer",
+      "filename": "resume/portfolio-reviewer.md",
+      "description": "A design and technical portfolio critic who helps designers, engineers, and product managers structure, document, and present their work through compelling case studies that prove competency.",
+      "division": "resume",
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Easy",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "resume-achievement-writer",
+      "name": "Resume Achievement Writer",
+      "filename": "resume/resume-achievement-writer.md",
+      "description": "A metrics-focused resume achievement writer who helps candidates translate standard job duties into high-impact, outcome-oriented achievements using the STAR, Google X-Y-Z, and CAR frameworks.",
+      "division": "resume",
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Easy",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "resume-formatting-specialist",
+      "name": "Resume Formatting Specialist",
+      "filename": "resume/resume-formatting-specialist.md",
+      "description": "A design and layout expert who ensures resumes are visually polished, perfectly aligned, typographically balanced, and structured for maximum scannability and ATS compatibility.",
+      "division": "resume",
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "resume-keyword-optimizer",
+      "name": "Resume Keyword Optimizer",
+      "filename": "resume/resume-keyword-optimizer.md",
+      "description": "An ATS-oriented search optimization specialist who helps candidates align their resumes with target job descriptions using keyword mapping, context optimization, and phrase parsing strategies.",
+      "division": "resume",
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "founder-advisor",
+      "name": "Founder Advisor",
+      "filename": "startup/founder-advisor.md",
+      "description": "A blunt, experienced-feeling co-founder substitute who stress-tests ideas and decisions the way a real early-stage advisor would \u2014 before money, time, or credibility get spent finding out the hard way.",
+      "division": "startup",
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "growth-strategist",
+      "name": "Growth Strategist",
+      "filename": "startup/growth-strategist.md",
+      "description": "A growth specialist who designs acquisition, activation, retention, and monetization strategies for early-stage products.",
+      "division": "startup",
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "market-research-analyst",
+      "name": "Market Research Analyst",
+      "filename": "startup/market-research-analyst.md",
+      "description": "A rigorous market research specialist who turns ambiguous business questions into defensible market insights, go-to-market priorities, and evidence-backed decisions \u2014 built for founders, product teams, and early-stage PMs who need market clarity fast.",
+      "division": "startup",
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "product-manager",
+      "name": "Product Manager",
+      "filename": "startup/product-manager.md",
+      "description": "A product strategy advisor who turns fuzzy feature requests into prioritized roadmaps, stakeholder-aligned outcomes, and execution-ready release plans.",
+      "division": "startup",
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "ai-agent-architect",
+      "name": "AI Agent Architect",
+      "filename": "ai-engineering/ai-agent-architect.md",
+      "description": "Designs autonomous agent loops, tool bindings, planning algorithms, and multi-agent coordination layers.",
+      "division": "ai-engineering",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "ai-engineer-career-coach",
+      "name": "AI Engineer Career Coach",
+      "filename": "ai-engineering/ai-engineer-career-coach.md",
+      "description": "Coaches developers pivoting into artificial intelligence, structuring study plans, project portfolios, and technical interview prep.",
+      "division": "ai-engineering",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Transition"
+    },
+    {
+      "id": "ai-product-builder",
+      "name": "AI Product Builder",
+      "filename": "ai-engineering/ai-product-builder.md",
+      "description": "Helps founders and product managers scope AI features, evaluate API costs, and design user-centric AI feedback loops.",
+      "division": "ai-engineering",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Leadership"
+    },
+    {
+      "id": "computer-vision-engineer",
+      "name": "Computer Vision Engineer",
+      "filename": "ai-engineering/computer-vision-engineer.md",
+      "description": "Advises on convolutional networks, object detection systems, segmentation pipelines, and edge device deployment.",
+      "division": "ai-engineering",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "generative-ai-consultant",
+      "name": "Generative AI Consultant",
+      "filename": "ai-engineering/generative-ai-consultant.md",
+      "description": "Guides organizations through generative AI strategy, risk mitigation, compliance, and ROI analysis.",
+      "division": "ai-engineering",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "llm-engineer",
+      "name": "LLM Engineer",
+      "filename": "ai-engineering/llm-engineer.md",
+      "description": "Advises on model selection, context window optimization, fine-tuning pipelines, and inference efficiency.",
+      "division": "ai-engineering",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "machine-learning-engineer",
+      "name": "Machine Learning Engineer",
+      "filename": "ai-engineering/machine-learning-engineer.md",
+      "description": "Designs classical ML systems, feature stores, model training pipelines, and dataset validations.",
+      "division": "ai-engineering",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "mlops-engineer",
+      "name": "MLOps Engineer",
+      "filename": "ai-engineering/mlops-engineer.md",
+      "description": "Sets up continuous training pipelines, model registries, monitoring systems, and containerized deployment infrastructure.",
+      "division": "ai-engineering",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "prompt-engineer",
+      "name": "Prompt Engineer",
+      "filename": "ai-engineering/prompt-engineer.md",
+      "description": "Designs systematic prompt templates, Few-Shot examples, Chain-of-Thought flows, and system instructions.",
+      "division": "ai-engineering",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "rag-architect",
+      "name": "RAG Architect",
+      "filename": "ai-engineering/rag-architect.md",
+      "description": "Designs semantic search architectures, vector databases, chunking strategies, and metadata indexing pipelines.",
+      "division": "ai-engineering",
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "aws-cloud-architect",
+      "name": "AWS Cloud Architect",
+      "filename": "cloud/aws-cloud-architect.md",
+      "description": "Designs highly available, secure, and well-architected systems on AWS.",
+      "division": "cloud",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "azure-cloud-engineer",
+      "name": "Azure Cloud Engineer",
+      "filename": "cloud/azure-cloud-engineer.md",
+      "description": "Configures and manages enterprise cloud deployments on Microsoft Azure.",
+      "division": "cloud",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "cloud-cost-optimizer",
+      "name": "Cloud Cost Optimizer",
+      "filename": "cloud/cloud-cost-optimizer.md",
+      "description": "Audits cloud invoices, identifying wastage, reserved instance coverages, and autoscaling opportunities.",
+      "division": "cloud",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "cloud-migration-advisor",
+      "name": "Cloud Migration Advisor",
+      "filename": "cloud/cloud-migration-advisor.md",
+      "description": "Plans datacenter migrations to public clouds using Rehost, Replatform, and Refactor pathways.",
+      "division": "cloud",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "cloud-security-advisor",
+      "name": "Cloud Security Advisor",
+      "filename": "cloud/cloud-security-advisor.md",
+      "description": "Reviews cloud security configurations, ensuring compliance with ISO 27001, SOC2, and CIS benchmarks.",
+      "division": "cloud",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "gcp-cloud-engineer",
+      "name": "GCP Cloud Engineer",
+      "filename": "cloud/gcp-cloud-engineer.md",
+      "description": "Designs scale-ready infrastructure on Google Cloud Platform using native services.",
+      "division": "cloud",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "kubernetes-specialist",
+      "name": "Kubernetes Specialist",
+      "filename": "cloud/kubernetes-specialist.md",
+      "description": "Configures production Kubernetes clusters, pod scheduling, network policies, and ingress controllers.",
+      "division": "cloud",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "platform-engineer",
+      "name": "Platform Engineer",
+      "filename": "cloud/platform-engineer.md",
+      "description": "Builds developer self-service tooling, landing zones, and continuous delivery systems.",
+      "division": "cloud",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "site-reliability-engineer",
+      "name": "Site Reliability Engineer",
+      "filename": "cloud/site-reliability-engineer.md",
+      "description": "Defines service level objectives, error budgets, incident response playbooks, and disaster recovery strategies.",
+      "division": "cloud",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "terraform-specialist",
+      "name": "Terraform Specialist",
+      "filename": "cloud/terraform-specialist.md",
+      "description": "Writes modular Terraform, structuring state files, workspace variables, and locks.",
+      "division": "cloud",
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "application-security-specialist",
+      "name": "Application Security Specialist",
+      "filename": "cybersecurity/application-security-specialist.md",
+      "description": "Audits application source code for OWASP Top 10 vulnerabilities, configuring SAST/DAST pipelines.",
+      "division": "cybersecurity",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "cloud-security-engineer",
+      "name": "Cloud Security Engineer",
+      "filename": "cybersecurity/cloud-security-engineer.md",
+      "description": "Implements IAM least privilege policies, cloud security posture monitoring, and secrets managers.",
+      "division": "cybersecurity",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Leadership"
+    },
+    {
+      "id": "ethical-hacking-advisor",
+      "name": "Ethical Hacking Advisor",
+      "filename": "cybersecurity/ethical-hacking-advisor.md",
+      "description": "Conducts threat simulations and red-team operations across human, network, and application boundaries.",
+      "division": "cybersecurity",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "governance-risk-compliance-advisor",
+      "name": "Governance Risk Compliance Advisor",
+      "filename": "cybersecurity/governance-risk-compliance-advisor.md",
+      "description": "Audits processes and designs system configurations to satisfy compliance rules (SOC2, ISO 27001, GDPR).",
+      "division": "cybersecurity",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "identity-access-management-specialist",
+      "name": "Identity Access Management Specialist",
+      "filename": "cybersecurity/identity-access-management-specialist.md",
+      "description": "Designs directory service integrations, access management controls, and provisioning flows.",
+      "division": "cybersecurity",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "experience_level": "Executive",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "incident-response-specialist",
+      "name": "Incident Response Specialist",
+      "filename": "cybersecurity/incident-response-specialist.md",
+      "description": "Triages active security breaches, structures containment strategies, and performs digital forensics.",
+      "division": "cybersecurity",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "penetration-testing-coach",
+      "name": "Penetration Testing Coach",
+      "filename": "cybersecurity/penetration-testing-coach.md",
+      "description": "Runs network-level vulnerability assessments and simulated penetration testing.",
+      "division": "cybersecurity",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "security-architect",
+      "name": "Security Architect",
+      "filename": "cybersecurity/security-architect.md",
+      "description": "Designs global zero-trust security frameworks, IAM directories, and endpoint controls.",
+      "division": "cybersecurity",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "experience_level": "Executive",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "security-engineer",
+      "name": "Security Engineer",
+      "filename": "cybersecurity/security-engineer.md",
+      "description": "Designs secure infrastructure boundaries, perimeter defense networks, and encryption strategies.",
+      "division": "cybersecurity",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "security-operations-analyst",
+      "name": "Security Operations Analyst",
+      "filename": "cybersecurity/security-operations-analyst.md",
+      "description": "Analyzes security telemetry logs, configure SIEM dashboards, and responds to alerts.",
+      "division": "cybersecurity",
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "community-builder",
+      "name": "Community Builder",
+      "filename": "open-source/community-builder.md",
+      "description": "Designs community portals, discord guidelines, online events, and contributor recognition models.",
+      "division": "open-source",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "developer-advocate",
+      "name": "Developer Advocate",
+      "filename": "open-source/developer-advocate.md",
+      "description": "Bridges developer feedback with core product roadmaps, producing workshops and api demos.",
+      "division": "open-source",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "devrel-strategist",
+      "name": "DevRel Strategist",
+      "filename": "open-source/devrel-strategist.md",
+      "description": "Aligns developer programs with business metrics, tracking developer acquisitions and community ROI.",
+      "division": "open-source",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "github-growth-advisor",
+      "name": "GitHub Growth Advisor",
+      "filename": "open-source/github-growth-advisor.md",
+      "description": "Advises on repository metadata, README copywriting, issue curation, and community visibility.",
+      "division": "open-source",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "maintainer-coach",
+      "name": "Maintainer Coach",
+      "filename": "open-source/maintainer-coach.md",
+      "description": "Advises project leads on contributor onboarding, issue labeling, license compliance, and roadmap publishing.",
+      "division": "open-source",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "open-source-funding-advisor",
+      "name": "Open Source Funding Advisor",
+      "filename": "open-source/open-source-funding-advisor.md",
+      "description": "Guides projects on sponsor directories (GitHub Sponsors, Open Collective) and grant applications.",
+      "division": "open-source",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "experience_level": "Executive",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "open-source-mentor",
+      "name": "Open Source Mentor",
+      "filename": "open-source/open-source-mentor.md",
+      "description": "Coaches new contributors on git branches, repository issues, and pull request etiquette.",
+      "division": "open-source",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "oss-contributor-coach",
+      "name": "OSS Contributor Coach",
+      "filename": "open-source/oss-contributor-coach.md",
+      "description": "Helps developers scale contributions from single commits to regular maintainers of key libraries.",
+      "division": "open-source",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "project-maintenance-specialist",
+      "name": "Project Maintenance Specialist",
+      "filename": "open-source/project-maintenance-specialist.md",
+      "description": "Automates project builds, configuring lint rules, tests, and publishing workflows.",
+      "division": "open-source",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "technical-writing-advisor",
+      "name": "Technical Writing Advisor",
+      "filename": "open-source/technical-writing-advisor.md",
+      "description": "Guides developers in writing clean API guides, release notes, code reviews, and README docs.",
+      "division": "open-source",
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "analytics-engineer",
+      "name": "Analytics Engineer",
+      "filename": "data-engineering/analytics-engineer.md",
+      "description": "Structures data transformation layers using dbt (data build tool), creating documentation and testing frameworks.",
+      "division": "data-engineering",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "business-intelligence-specialist",
+      "name": "Business Intelligence Specialist",
+      "filename": "data-engineering/business-intelligence-specialist.md",
+      "description": "Designs semantic datasets, dashboards, and analytical metrics using PowerBI or Tableau.",
+      "division": "data-engineering",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "data-architect",
+      "name": "Data Architect",
+      "filename": "data-engineering/data-architect.md",
+      "description": "Designs corporate data strategies, data mesh architectures, and warehouse schemas.",
+      "division": "data-engineering",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "data-engineer",
+      "name": "Data Engineer",
+      "filename": "data-engineering/data-engineer.md",
+      "description": "Designs robust analytical pipeline systems, feature databases, and ingestion engines.",
+      "division": "data-engineering",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "data-governance-advisor",
+      "name": "Data Governance Advisor",
+      "filename": "data-engineering/data-governance-advisor.md",
+      "description": "Defines access control policies, data cataloging rules, and column-level masking models.",
+      "division": "data-engineering",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "data-platform-engineer",
+      "name": "Data Platform Engineer",
+      "filename": "data-engineering/data-platform-engineer.md",
+      "description": "Deploys cloud-based data storage and analysis platforms using Snowflake, Databricks, or BigQuery.",
+      "division": "data-engineering",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "data-quality-engineer",
+      "name": "Data Quality Engineer",
+      "filename": "data-engineering/data-quality-engineer.md",
+      "description": "Designs automated validation routines, alerting systems, and data drift dashboards.",
+      "division": "data-engineering",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "database-performance-specialist",
+      "name": "Database Performance Specialist",
+      "filename": "data-engineering/database-performance-specialist.md",
+      "description": "Audits database resource consumption, index efficiency, and query logs to optimize latency.",
+      "division": "data-engineering",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "etl-specialist",
+      "name": "ETL Specialist",
+      "filename": "data-engineering/etl-specialist.md",
+      "description": "Designs high-throughput batch ETL/ELT pipelines using Airflow, Prefect, or Dagster.",
+      "division": "data-engineering",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "stream-processing-specialist",
+      "name": "Stream Processing Specialist",
+      "filename": "data-engineering/stream-processing-specialist.md",
+      "description": "Designs high-velocity real-time analytical event flows using Kafka or Flink.",
+      "division": "data-engineering",
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "api-adoption-consultant",
+      "name": "API Adoption Consultant",
+      "filename": "devrel/api-adoption-consultant.md",
+      "description": "Reviews developer APIs, SDK structures, and documentation onboarding to reduce activation barriers.",
+      "division": "devrel",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "community-growth-specialist",
+      "name": "Community Growth Specialist",
+      "filename": "devrel/community-growth-specialist.md",
+      "description": "Designs programmatic referral schemes, user acquisition initiatives, and event plans.",
+      "division": "devrel",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "conference-speaker-coach",
+      "name": "Conference Speaker Coach",
+      "filename": "devrel/conference-speaker-coach.md",
+      "description": "Guides developers in preparing technical talk submissions, slide structures, and slide delivery.",
+      "division": "devrel",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "content-strategy-advisor",
+      "name": "Content Strategy Advisor",
+      "filename": "devrel/content-strategy-advisor.md",
+      "description": "Plans technical content calendars, writing schedules, and publication distributions.",
+      "division": "devrel",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "developer-education-specialist",
+      "name": "Developer Education Specialist",
+      "filename": "devrel/developer-education-specialist.md",
+      "description": "Designs tutorials, structured learning paths, sample project repos, and technical documentation.",
+      "division": "devrel",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "developer-evangelist",
+      "name": "Developer Evangelist",
+      "filename": "devrel/developer-evangelist.md",
+      "description": "Presents product value at developer conferences, online meetups, and key technical forums.",
+      "division": "devrel",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "developer-experience-specialist",
+      "name": "Developer Experience Specialist",
+      "filename": "devrel/developer-experience-specialist.md",
+      "description": "Reviews local developer environments, CLI ease-of-use, config errors, and initial setup steps.",
+      "division": "devrel",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "developer-relations-manager",
+      "name": "Developer Relations Manager",
+      "filename": "devrel/developer-relations-manager.md",
+      "description": "Manages developer engagement programs, ambassador networks, and metric analysis.",
+      "division": "devrel",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "technical-community-builder",
+      "name": "Technical Community Builder",
+      "filename": "devrel/technical-community-builder.md",
+      "description": "Moderates developer forums, discord/slack servers, and handles user onboarding strategies.",
+      "division": "devrel",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "technical-marketing-advisor",
+      "name": "Technical Marketing Advisor",
+      "filename": "devrel/technical-marketing-advisor.md",
+      "description": "Aligns product positioning with developer interests, writing copy and analyzing competition.",
+      "division": "devrel",
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "gtm-engineer",
+      "name": "GTM Engineer",
+      "filename": "gtm/gtm-engineer.md",
+      "description": "An outreach systems architect who designs clay workflows, API enrichments, and automated cold inbound/outbound setup.",
+      "division": "gtm",
+      "skills": [
+        "Outreach Automation",
+        "CRM Sync",
+        "Clay Workspaces",
+        "Sales Pipeline",
+        "Clay",
+        "Outbound"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "openai-career-coach",
+      "name": "OpenAI Career Coach",
+      "filename": "faang/openai-career-coach.md",
+      "description": "A specialized coach for OpenAI interview loops, engineering culture, and AI research/engineering positions.",
+      "division": "faang",
+      "skills": [
+        "Distributed Systems",
+        "Scaling",
+        "DSA",
+        "FAANG Interview",
+        "Openai",
+        "Faang"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "job-hunter-ai",
+      "name": "Job Hunter AI",
+      "filename": "job-automation/job-hunter-ai.md",
+      "description": "An automated job discovery and application tracking companion that manages target queues.",
+      "division": "job-automation",
+      "skills": [
+        "Job Scraping",
+        "Notion Databases",
+        "Pipeline Tracking",
+        "Cold Outreach",
+        "Automation",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "ai-founder",
+      "name": "AI Founder",
+      "filename": "ai-business/ai-founder.md",
+      "description": "A strategic AI builder focused on scaling AI-first products, MVPs, and business models.",
+      "division": "ai-business",
+      "skills": [
+        "AI Unit Economics",
+        "SaaS MVP",
+        "Semantic Caching",
+        "Defensibility",
+        "Ai-business",
+        "Founder"
+      ],
+      "experience_level": "Executive",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "freelance-founder",
+      "name": "Freelance Founder",
+      "filename": "freelancing/freelance-founder.md",
+      "description": "An independent consultant strategist driving retainer growth, pricing, and client acquisition channels.",
+      "division": "freelancing",
+      "skills": [
+        "Freelancing",
+        "Productized Services",
+        "Client Acquisition",
+        "Retainers",
+        "Consulting",
+        "Proposals"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "job-application-optimizer",
+      "name": "Job Application Optimizer",
+      "filename": "job-automation/job-application-optimizer.md",
+      "description": "An AI context tailoring engine that customizes applications, resume bullets, and cover letters for specific job descriptions at scale.",
+      "division": "job-automation",
+      "skills": [
+        "Job Scraping",
+        "Notion Databases",
+        "Pipeline Tracking",
+        "Cold Outreach",
+        "Automation",
+        "Career"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Medium",
+      "career_stage": "Job Search"
+    },
+    {
+      "id": "google-swe-coach",
+      "name": "Google SWE Coach",
+      "filename": "faang/google-swe-coach.md",
+      "description": "A specialized technical coach for Google Software Engineering (SWE) loops, focusing on DS & Algorithms, complex complexity analysis, clean code structure, and Googleyness & Leadership (G&L).",
+      "division": "faang",
+      "skills": [
+        "Distributed Systems",
+        "Scaling",
+        "DSA",
+        "FAANG Interview",
+        "Openai",
+        "Faang"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Medium",
+      "career_stage": "Leadership"
+    },
+    {
+      "id": "ai-consultant",
+      "name": "AI Consultant",
+      "filename": "ai-business/ai-consultant.md",
+      "description": "An enterprise AI strategist mapping company problems to LLM/RAG solutions, scoping APIs, drafting security/privacy architectures, and showing ROI.",
+      "division": "ai-business",
+      "skills": [
+        "AI Unit Economics",
+        "SaaS MVP",
+        "Semantic Caching",
+        "Defensibility",
+        "Ai-business",
+        "Founder"
+      ],
+      "experience_level": "Senior",
+      "difficulty": "Medium",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "clay-specialist",
+      "name": "Clay Specialist",
+      "filename": "gtm/clay-specialist.md",
+      "description": "A master of Clay workflows, waterfall search logic, AI enrichment prompting, data cleaning, and CSV normalization.",
+      "division": "gtm",
+      "skills": [
+        "Outreach Automation",
+        "CRM Sync",
+        "Clay Workspaces",
+        "Sales Pipeline",
+        "Clay",
+        "Outbound"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    },
+    {
+      "id": "upwork-specialist",
+      "name": "Upwork Specialist",
+      "filename": "freelancing/upwork-specialist.md",
+      "description": "A profile positioning and proposal writing advisor focused on converting Upwork feeds into closed contracts.",
+      "division": "freelancing",
+      "skills": [
+        "Freelancing",
+        "Productized Services",
+        "Client Acquisition",
+        "Retainers",
+        "Consulting",
+        "Proposals"
+      ],
+      "experience_level": "Mid",
+      "difficulty": "Hard",
+      "career_stage": "Growth"
+    }
+  ]
+}

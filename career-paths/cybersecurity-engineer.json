@@ -1,0 +1,26 @@
+{
+  "id": "cybersecurity-engineer",
+  "name": "Cybersecurity Engineer",
+  "description": "Dedicated to securing software systems, identifying vulnerabilities, configuring access controls, and responding to security incidents.",
+  "core_skills": [
+    "Application Security & OWASP",
+    "Identity & Access Management (IAM)",
+    "Threat Modeling & Pen Testing",
+    "Incident Response & Forensics",
+    "Regulatory Compliance (SOC2/GDPR)"
+  ],
+  "recommended_divisions": [
+    "cybersecurity",
+    "cloud",
+    "engineering"
+  ],
+  "recommended_agents": [
+    "application-security-specialist",
+    "cloud-security-engineer",
+    "incident-response-specialist",
+    "governance-risk-compliance-advisor"
+  ],
+  "recommended_workflows": [
+    "technical-interview-week"
+  ]
+}

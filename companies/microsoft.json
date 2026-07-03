@@ -1,0 +1,25 @@
+{
+  "id": "microsoft",
+  "name": "Microsoft",
+  "interview_process": [
+    "Recruiter screen + initial technical screen",
+    "Onsite loop: 4 technical rounds covering coding, system design, and growth mindset scenarios"
+  ],
+  "skills": [
+    "CS Fundamentals (pointers, memory management, OOP)",
+    "Growth Mindset (learning from failure, collaboration)",
+    "Distributed Service Architecture"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "microsoft-interview-coach",
+    "technical-interview-coach",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Microsoft Engineering Blog",
+    "Azure Architecture Center",
+    "Microsoft Research Publications"
+  ]
+}

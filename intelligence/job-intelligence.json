@@ -1,0 +1,13 @@
+{
+  "category": "Job Intelligence",
+  "strategies": [
+    {
+      "area": "outreach_campaign",
+      "guideline": "Map custom email sequencers targeting hiring managers directly. Keep outreach short (under 100 words), focused on value, and end with a soft call-to-action."
+    },
+    {
+      "area": "funnel_conversion",
+      "guideline": "Track applications, cold outreaches, screening callbacks, and interview stages. Audit weekly. If application-to-screen callback rate is below 10%, review resume keywords."
+    }
+  ]
+}

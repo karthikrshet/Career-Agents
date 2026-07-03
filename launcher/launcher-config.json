@@ -1,0 +1,9 @@
+{
+  "default_platform": "claude",
+  "auto_clipboard_copy": true,
+  "fallback_strategy": "open_browser_only",
+  "open_browser_on_launch": true,
+  "api_endpoint_overrides": {
+    "openrouter": "https://openrouter.ai/api/v1"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "career-agents-vscode",
+  "displayName": "Career-Agents Integration",
+  "description": "Exposes Career-Agents search, run, and terminal prompt injection directly inside VS Code, Cursor, and Windsurf.",
+  "version": "0.1.0",
+  "publisher": "kartikrshet",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:career-agents.search",
+    "onCommand:career-agents.inject"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "career-agents.search",
+        "title": "Career-Agents: Search AI Catalog",
+        "category": "Career OS"
+      },
+      {
+        "command": "career-agents.inject",
+        "title": "Career-Agents: Inject Agent prompt into Workspace Rules",
+        "category": "Career OS"
+      }
+    ],
+    "configuration": {
+      "title": "Career-Agents Settings",
+      "properties": {
+        "careerAgents.apiUrl": {
+          "type": "string",
+          "default": "https://career-agents.dev",
+          "description": "Target server URL for fetching AI agents catalog."
+        }
+      }
+    }
+  }
+}

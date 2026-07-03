@@ -1,0 +1,28 @@
+{
+  "id": "software-engineer",
+  "name": "Software Engineer",
+  "description": "Generalist software engineer focused on building robust applications, CS fundamentals, algorithms, and collaborative team delivery.",
+  "core_skills": [
+    "Data Structures & Algorithms",
+    "Object Oriented Design",
+    "System Design",
+    "Version Control (Git)",
+    "Testing & Debugging"
+  ],
+  "recommended_divisions": [
+    "engineering",
+    "interview",
+    "career"
+  ],
+  "recommended_agents": [
+    "google-interview-coach",
+    "technical-interview-coach",
+    "code-reviewer",
+    "mock-interviewer"
+  ],
+  "recommended_workflows": [
+    "faang-preparation",
+    "technical-interview-week",
+    "fresher-placement"
+  ]
+}

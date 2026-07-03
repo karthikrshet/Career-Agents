@@ -10,8 +10,19 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ### Planned (Towards v1.0.0)
 - Desktop application release (Tauri + Webview container).
-- One-click installers for Copilot, Windsurf, Aider, and OpenCode.
 - Complete Community Agent Marketplace UI and rating client integration.
+
+## [v0.8.0] — 2026-07-03
+### Added
+- Created `workflow-registry.json` categorizing the 10 core career workflows.
+- Created `career-paths.json` mapping skills and prep tools to 10 primary developer and tech roles.
+- Created `companies.json` mapping Tier-1 companies (Google, Microsoft, Stripe, etc.) to interview coaches and workflows.
+- Created `search-index.json` and `knowledge-graph.json` indexes for high-speed client-side queries.
+- Created LLM discovery directories `llms.txt`, `llms-full.txt`, and `career-agents-index.json`.
+- Expanded CLI (`scripts/cli.js`) to support new commands: `workflows`, `companies`, `update`, `doctor`, and export formats (`yaml`, `json`, `prompt-bundle`).
+- Added complete Integration Guides in `docs/integrations/` for 10 top tools (Claude Code, Gemini CLI, Cursor, Windsurf, Aider, etc.).
+- Created GitHub Actions workflows: `ci.yml`, `data-generator.yml`, and `release.yml`.
+- Added governance documentation: `GOVERNANCE.md`, `COMMUNITY.md`, `SHOWCASE.md`, and `SUCCESS-STORIES.md`.
 
 ## [v0.7.0] — 2026-07-02
 ### Added

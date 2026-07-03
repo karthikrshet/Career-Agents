@@ -1,0 +1,27 @@
+{
+  "id": "databricks",
+  "name": "Databricks",
+  "interview_process": [
+    "Recruiter screen and algorithmic online assessment",
+    "Technical phone interview: distributed coding problem",
+    "Onsite loop: 2 database/systems design rounds, 2 systems coding rounds, 1 behavioral values round"
+  ],
+  "skills": [
+    "Distributed computing algorithms",
+    "Database internals (caching, query planning, indexing)",
+    "Concurrency and systems performance",
+    "Spark/Delta Lake execution logic"
+  ],
+  "preparation_workflow": "technical-interview-week",
+  "agents": [
+    "database-engineer",
+    "backend-architect",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Databricks Lakehouse architecture papers",
+    "Apache Spark internals guides",
+    "Databricks Engineering Blog"
+  ]
+}

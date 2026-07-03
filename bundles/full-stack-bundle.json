@@ -1,0 +1,36 @@
+{
+  "id": "full-stack-bundle",
+  "name": "Full Stack Developer Bundle",
+  "description": "Systems architectures, database optimizations, deployment validations, API patterns, and performance audits for full stack developers.",
+  "agents": [
+    "mern-architect",
+    "nextjs-performance-engineer",
+    "backend-architect",
+    "database-engineer",
+    "devops-engineer",
+    "code-reviewer"
+  ],
+  "workflows": [
+    "technical-interview-week",
+    "ats-optimization"
+  ],
+  "career_paths": [
+    "full-stack-engineer",
+    "frontend-engineer",
+    "backend-engineer"
+  ],
+  "skills": [
+    "React/Next.js",
+    "Node.js & Express",
+    "Schema Tuning",
+    "API Resiliency",
+    "CI/CD Pipelines"
+  ],
+  "companies": [
+    "Stripe",
+    "Meta",
+    "Netflix",
+    "Uber",
+    "Atlassian"
+  ]
+}

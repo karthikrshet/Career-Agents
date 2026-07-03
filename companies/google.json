@@ -1,0 +1,27 @@
+{
+  "id": "google",
+  "name": "Google",
+  "interview_process": [
+    "Recruiter screening phone call (30 min)",
+    "Technical phone screen: 1 DSA coding round (45 min)",
+    "Onsite loop: 3 DSA coding rounds, 1 System Design round, 1 Googliness & Leadership round (45 min each)"
+  ],
+  "skills": [
+    "Data Structures & Algorithms (graphs, dynamic programming, trees)",
+    "System Design & Scalability",
+    "Googliness (cultural fit, collaboration, ambiguity navigation)",
+    "Space & Time Complexity Analysis"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "google-interview-coach",
+    "technical-interview-coach",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Google Engineering Blog",
+    "Google SRE Books (sre.google)",
+    "Google Developers Channel"
+  ]
+}

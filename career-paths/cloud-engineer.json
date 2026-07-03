@@ -1,0 +1,26 @@
+{
+  "id": "cloud-engineer",
+  "name": "Cloud Engineer",
+  "description": "Focused on provisioning public cloud infrastructure, maintaining high availability, designing scalable networks, and managing containerized systems.",
+  "core_skills": [
+    "AWS / GCP / Azure",
+    "Terraform & IaC",
+    "Kubernetes & Containers",
+    "Networking & VPCs",
+    "Site Reliability (SRE)"
+  ],
+  "recommended_divisions": [
+    "cloud",
+    "engineering",
+    "cybersecurity"
+  ],
+  "recommended_agents": [
+    "aws-cloud-architect",
+    "kubernetes-specialist",
+    "terraform-specialist",
+    "site-reliability-engineer"
+  ],
+  "recommended_workflows": [
+    "technical-interview-week"
+  ]
+}

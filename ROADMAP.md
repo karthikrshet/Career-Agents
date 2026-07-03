@@ -62,3 +62,27 @@ CodeMyFYP-Agents grows in deliberate phases — depth before breadth, quality be
 - [ ] Web dashboard showing agent analytics and conversion success stories.
 - [ ] Automated validation pipeline for external pull requests.
 - [ ] Verified badges for maintainer-reviewed community agents.
+
+---
+
+## 📅 Monthly Release Milestones (2026)
+
+### July 2026: The Product Launch (v2.0)
+- **Goal**: Full local runtime execution CLI release.
+- **Tasks**:
+  - [x] Complete prompt pack export command (`career-agents export`).
+  - [x] Implement interactive scoring questionnaire (`career-agents score`).
+  - [x] Add path-specific execution maps.
+
+### August 2026: Multi-AI Ecosystems (v2.2)
+- **Goal**: Deeper AI assistant workflow integration.
+- **Tasks**:
+  - [ ] Launch IDE custom rules compiler settings for Cursor and Windsurf.
+  - [ ] Add auto-linting capabilities for database optimization agents.
+
+### September 2026: Community Marketplace (v2.5)
+- **Goal**: Establish community-contributed agents pipeline.
+- **Tasks**:
+  - [ ] Deploy online submission linter.
+  - [ ] Open GitHub pages dashboard displaying community success reviews.
+

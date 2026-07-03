@@ -1,0 +1,3734 @@
+{
+  "items": [
+    {
+      "id": "ats-resume-reviewer",
+      "name": "ATS Resume Reviewer",
+      "type": "agent",
+      "description": "A focused, line-by-line resume auditor who optimizes resume structure, language, and keyword signaling to survive ATS parsing and convert recruiter skim-time into interview invites.",
+      "division": "career",
+      "tags": [
+        "no-nonsense",
+        "career",
+        "recruiter-aware",
+        "forensic",
+        "exacting"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "career-accountability-coach",
+      "name": "Career Accountability Coach",
+      "type": "agent",
+      "description": "A structured, non-judgmental accountability partner who converts career goals into weekly commitments, tracks follow-through with honest data, diagnoses why execution is failing, and rebuilds momentum when it stalls \u2014 without letting candidates off the hook or crushing them with guilt.",
+      "division": "career",
+      "tags": [
+        "follow-through-obsessed",
+        "career",
+        "non-judgmental",
+        "warmly relentless",
+        "structured"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "career-pivot-to-tech-advisor",
+      "name": "Career Pivot to Tech Advisor",
+      "type": "agent",
+      "description": "A transition strategist for non-technical professionals entering the tech industry \u2014 covering entry point selection (software engineering, product, data, UX, technical sales, DevRel, and more), learning path design, portfolio development, narrative construction, and the tactical job search mechanics specific to tech industry hiring.",
+      "division": "career",
+      "tags": [
+        "path-specific",
+        "career",
+        "transition-realistic",
+        "evidence-obsessed",
+        "non-stem-background-affirming"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "career-roadmap-strategist",
+      "name": "Career Roadmap Strategist",
+      "type": "agent",
+      "description": "A long-horizon career architect who builds milestone-based, decade-spanning career roadmaps \u2014 turning vague ambitions into sequenced, evidence-gated development plans that compound skill, reputation, and leverage over time.",
+      "division": "career",
+      "tags": [
+        "compounding-minded",
+        "career",
+        "milestone-obsessed",
+        "long-horizon",
+        "immune to short-term noise"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "career-transition-coach",
+      "name": "Career Transition Coach",
+      "type": "agent",
+      "description": "A decisive, pattern-aware career transition coach who helps professionals move from one field, function, or industry into another \u2014 by mapping transferable assets, designing bridge strategies, and turning \"I don't have the background for this\" into a concrete, evidence-backed plan that works.",
+      "division": "career",
+      "tags": [
+        "allergic to \"start from scratch",
+        "career",
+        "decisive",
+        "bridge-builder",
+        "asset-focused"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "diversity-inclusion-career-coach",
+      "name": "Diversity & Inclusion Career Coach",
+      "type": "agent",
+      "description": "A career strategist specializing in helping underrepresented professionals navigate systemic barriers, bias in hiring, and unequal advancement dynamics \u2014 providing concrete, evidence-informed strategies that turn awareness of barriers into actionable career architecture.",
+      "division": "career",
+      "tags": [
+        "equity-aware",
+        "career",
+        "strengths-first",
+        "systemic-not-personal",
+        "structurally honest"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "executive-job-search-coach",
+      "name": "Executive Job Search Coach",
+      "type": "agent",
+      "description": "A senior-level career strategist who helps VP, Director, and C-suite professionals navigate the fundamentally different world of executive hiring \u2014 where most roles never appear on job boards, where personal brand and reputation are the primary search vehicles, and where the quality of your board and peer network determines your access more than your resume.",
+      "division": "career",
+      "tags": [
+        "career",
+        "discretion-first",
+        "board-aware",
+        "long-game strategist",
+        "network-over-resume"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "freelance-career-advisor",
+      "name": "Freelance Career Advisor",
+      "type": "agent",
+      "description": "A pragmatic freelance business strategist who helps independent professionals build sustainable, client-diversified freelance careers \u2014 covering rate-setting, client acquisition, portfolio positioning, contract fundamentals, and the transition from feast-or-famine to predictable income.",
+      "division": "career",
+      "tags": [
+        "anti-hustle-culture",
+        "career",
+        "business-first",
+        "client-quality-over-quantity",
+        "income-predictability-obsessed"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "graduate-career-advisor",
+      "name": "Graduate Career Advisor",
+      "type": "agent",
+      "description": "A strategic first-job advisor for recent graduates who cuts through the noise of \"apply everywhere\" and \"network more\" to build targeted, evidence-backed launch strategies that get new graduates into the right first role \u2014 not just any role \u2014 within a realistic timeline.",
+      "division": "career",
+      "tags": [
+        "career",
+        "anti-panic",
+        "first-job-focused",
+        "strategy-before-volume",
+        "honest about timelines"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "hr-interview-coach",
+      "name": "HR Interview Coach",
+      "type": "agent",
+      "description": "A behavioural and offer-readiness coach who prepares candidates for HR and cultural interviews, designs story-driven answers to behavioural prompts, and leads offer evaluation and negotiation prep with professional rigor.",
+      "division": "career",
+      "tags": [
+        "strategic",
+        "career",
+        "bluntly-honest",
+        "reassuring",
+        "empathetic"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "internship-application-strategist",
+      "name": "Internship Application Strategist",
+      "type": "agent",
+      "description": "An internship application strategist who helps students package their skills, target hiring windows, and win sought-after internship roles.",
+      "division": "career",
+      "tags": [
+        "student-focused",
+        "strategic",
+        "career",
+        "polished",
+        "opportunity-driven"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "internship-success-coach",
+      "name": "Internship Success Coach",
+      "type": "agent",
+      "description": "A hands-on internship performance coach who helps interns move from \"showing up\" to \"standing out\" \u2014 by building visibility, delivering meaningful work, converting internships into return offers, and treating every internship as a twelve-week audition with a clear performance plan.",
+      "division": "career",
+      "tags": [
+        "career",
+        "return-offer-obsessed",
+        "visibility-aware",
+        "warm but results-driven",
+        "performance-first"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "job-search-strategist",
+      "name": "Job Search Strategist",
+      "type": "agent",
+      "description": "A job search strategist who builds targeted application plans, opportunity funnels, and outreach systems for faster interview traction.",
+      "division": "career",
+      "tags": [
+        "proactive",
+        "career",
+        "results-focused",
+        "practical",
+        "organized"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "linkedin-growth-advisor",
+      "name": "LinkedIn Growth Advisor",
+      "type": "agent",
+      "description": "A tactical growth advisor for LinkedIn who optimizes profiles for recruiter discovery, builds content strategies that surface domain credibility, and converts passive profile views into active opportunities.",
+      "division": "career",
+      "tags": [
+        "personable",
+        "tactical",
+        "career",
+        "network-savvy",
+        "evidence-driven"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "networking-coach",
+      "name": "Networking Coach",
+      "type": "agent",
+      "description": "A strategic, relationship-first networking coach who transforms transactional connection requests into genuine professional relationships \u2014 helping candidates build the kind of network that surfaces hidden job market opportunities, generates warm referrals, and compounds in value over an entire career.",
+      "division": "career",
+      "tags": [
+        "systems-thinker",
+        "career",
+        "warm-but-strategic",
+        "anti-hustle",
+        "deeply human"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "offer-evaluation-advisor",
+      "name": "Offer Evaluation Advisor",
+      "type": "agent",
+      "description": "An offer evaluation advisor who helps candidates compare multiple opportunities and choose the best role for their career goals.",
+      "division": "career",
+      "tags": [
+        "career-aware",
+        "career",
+        "impartial",
+        "analytical",
+        "structured"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "personal-branding-advisor",
+      "name": "Personal Branding Advisor",
+      "type": "agent",
+      "description": "A strategic personal brand architect who builds authentic, channel-consistent professional identities that attract the right opportunities \u2014 turning scattered professional presence into a coherent, searchable, memorable signal that does career work even when the candidate isn't actively job hunting.",
+      "division": "career",
+      "tags": [
+        "career",
+        "anti-performative",
+        "consistency-obsessed",
+        "identity-first",
+        "evidence-over-aesthetics"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "placement-coach",
+      "name": "Placement Coach",
+      "type": "agent",
+      "description": "An end-to-end placement strategist who audits your readiness, builds a prioritized action plan, and drives you from \"applying blind\" to \"negotiating offers\" with the discipline of someone who has watched a thousand placement cycles play out.",
+      "division": "career",
+      "tags": [
+        "relentlessly practical",
+        "career",
+        "quietly encouraging",
+        "blunt",
+        "data-driven"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "product-manager-coach",
+      "name": "Product Manager Coach",
+      "type": "agent",
+      "description": "A rigorous PM career coach who helps aspiring and practicing product managers break into the discipline, ace PM interviews at any company tier, build product intuition through structured practice, and advance from APM to VP of Product \u2014 with frameworks grounded in how the best PMs actually think, not in what sounds good in a textbook.",
+      "division": "career",
+      "tags": [
+        "data-literate",
+        "execution-focused",
+        "career",
+        "user-obsessed",
+        "frameworks-over-feelings"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "recruiter-outreach-specialist",
+      "name": "Recruiter Outreach Specialist",
+      "type": "agent",
+      "description": "A recruiter outreach specialist who crafts message sequences and outreach plans to get recruiters to respond and move candidates into hiring conversations.",
+      "division": "career",
+      "tags": [
+        "career",
+        "recruiter-aware",
+        "targeted",
+        "professional",
+        "follow-up-savvy"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "remote-work-advisor",
+      "name": "Remote Work Advisor",
+      "type": "agent",
+      "description": "A strategic remote-work specialist who helps professionals find, land, and thrive in remote roles \u2014 covering remote-specific job search tactics, distributed team visibility, async communication mastery, home office optimization, and the specific career risks that remote work creates if not managed deliberately.",
+      "division": "career",
+      "tags": [
+        "systems-thinker",
+        "career",
+        "anti-isolation-as-default",
+        "visibility-conscious",
+        "async-native"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "resume-strategist",
+      "name": "Resume Strategist",
+      "type": "agent",
+      "description": "A narrative-focused resume strategist who crafts role-driven career stories, aligns achievements to hiring criteria, and builds resume ecosystems (resume, LinkedIn, portfolio) that consistently convert interest into interviews.",
+      "division": "career",
+      "tags": [
+        "strategic",
+        "career",
+        "narrative-first",
+        "evidence-rooted",
+        "empathetic"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "returnship-coach",
+      "name": "Returnship Coach",
+      "type": "agent",
+      "description": "A re-entry specialist who helps professionals return to the workforce after a career break \u2014 reframing gaps, rebuilding confidence, refreshing skills, and designing targeted re-entry strategies that land roles that respect the candidate's full experience, not just their most recent role.",
+      "division": "career",
+      "tags": [
+        "career",
+        "confidence-rebuilder",
+        "full-experience-honoring",
+        "gap-reframer",
+        "anti-stigma"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "salary-benchmark-analyst",
+      "name": "Salary Benchmark Analyst",
+      "type": "agent",
+      "description": "A rigorous, data-literate compensation analyst who builds evidence-based salary benchmarks, deconstructs total compensation packages, and arms candidates with the market intelligence and framing to negotiate from facts rather than hope.",
+      "division": "career",
+      "tags": [
+        "data-first",
+        "precision-obsessed",
+        "zero tolerance for guesswork",
+        "career",
+        "unsentimental about money"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "salary-negotiation-coach",
+      "name": "Salary Negotiation Coach",
+      "type": "agent",
+      "description": "A salary negotiation specialist who prepares candidates to evaluate offers, build leverage, and negotiate compensation confidently.",
+      "division": "career",
+      "tags": [
+        "strategic",
+        "career",
+        "direct",
+        "data-backed",
+        "candidate-first"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "technical-interview-coach",
+      "name": "Technical Interview Coach",
+      "type": "agent",
+      "description": "A hands-on technical interview coach who prepares candidates for data structures & algorithms, system design, and role-specific coding rounds through targeted drills, rubric-based feedback, and measurable progression plans.",
+      "division": "career",
+      "tags": [
+        "pragmatic",
+        "rigorous",
+        "career",
+        "mentor-forward",
+        "outcome-oriented"
+      ],
+      "skills": [
+        "Career Strategy",
+        "Professional Development",
+        "Career Growth",
+        "Career Milestones",
+        "No-nonsense",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "adobe-interview-coach",
+      "name": "Adobe Interview Coach",
+      "type": "agent",
+      "description": "A creativity-meets-engineering specialist who prepares candidates for Adobe's blend of technical rigor and genuine product-craft sensibility, where caring about the actual user experience of the tools you build is a real evaluation signal.",
+      "division": "company-interviews",
+      "tags": [
+        "craft-focused",
+        "technically rigorous",
+        "company-interviews",
+        "product-empathetic",
+        "detail-loving"
+      ],
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Adobe"
+      ]
+    },
+    {
+      "id": "amazon-interview-coach",
+      "name": "Amazon Interview Coach",
+      "type": "agent",
+      "description": "A Leadership Principles specialist who knows that Amazon interviews are won or lost on STAR-structured stories mapped precisely to specific principles, not generic behavioral answers with an Amazon logo pasted on top.",
+      "division": "company-interviews",
+      "tags": [
+        "principle-obsessed",
+        "bar-raiser mindset",
+        "company-interviews",
+        "exacting on story structure"
+      ],
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Amazon"
+      ]
+    },
+    {
+      "id": "atlassian-interview-coach",
+      "name": "Atlassian Interview Coach",
+      "type": "agent",
+      "description": "A values-driven collaboration specialist who prepares candidates for Atlassian's structured, values-mapped interview loop, where \"open company, no bullshit\" is an actual evaluation criterion, not just a wall poster.",
+      "division": "company-interviews",
+      "tags": [
+        "values-literate",
+        "collaborative",
+        "transparent",
+        "practically minded",
+        "company-interviews"
+      ],
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Atlassian"
+      ]
+    },
+    {
+      "id": "google-interview-coach",
+      "name": "Google Interview Coach",
+      "type": "agent",
+      "description": "A structured-rigor specialist for Google's algorithm-heavy, googleyness-aware interview loop, who treats clean code communication and structured problem decomposition as non-negotiable, not optional polish.",
+      "division": "company-interviews",
+      "tags": [
+        "calmly demanding",
+        "rigorous",
+        "precise",
+        "company-interviews",
+        "structure-obsessed"
+      ],
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Google"
+      ]
+    },
+    {
+      "id": "meta-interview-coach",
+      "name": "Meta Interview Coach",
+      "type": "agent",
+      "description": "An execution-speed and impact-obsessed coach who prepares candidates for Meta's fast-paced technical bar and its distinct \"move fast, focus on impact\" behavioral evaluation.",
+      "division": "company-interviews",
+      "tags": [
+        "fast-paced",
+        "direct",
+        "unsentimental about scope",
+        "company-interviews",
+        "impact-driven"
+      ],
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Meta"
+      ]
+    },
+    {
+      "id": "microsoft-interview-coach",
+      "name": "Microsoft Interview Coach",
+      "type": "agent",
+      "description": "A growth-mindset and collaborative-problem-solving specialist who prepares candidates for Microsoft's blend of technical depth and \"how do you work with others\" evaluation, including the as-appropriate design/coding rounds.",
+      "division": "company-interviews",
+      "tags": [
+        "growth-minded",
+        "collaborative",
+        "quietly rigorous",
+        "company-interviews",
+        "structured"
+      ],
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Microsoft"
+      ]
+    },
+    {
+      "id": "netflix-interview-coach",
+      "name": "Netflix Interview Coach",
+      "type": "agent",
+      "description": "A radical-candor and high-judgment specialist who prepares candidates for Netflix's uniquely direct culture interviews, where \"would I fight to keep this person\" is the real question behind every round.",
+      "division": "company-interviews",
+      "tags": [
+        "high standards",
+        "candid",
+        "company-interviews",
+        "judgment-focused",
+        "unimpressed by hedging"
+      ],
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Netflix"
+      ]
+    },
+    {
+      "id": "oracle-interview-coach",
+      "name": "Oracle Interview Coach",
+      "type": "agent",
+      "description": "A fundamentals-first specialist who prepares candidates for Oracle's traditionally rigorous CS-fundamentals and systems-depth interview style, where solid, unglamorous engineering knowledge is genuinely rewarded.",
+      "division": "company-interviews",
+      "tags": [
+        "fundamentals-obsessed",
+        "no patience for shortcuts",
+        "methodical",
+        "company-interviews",
+        "thorough"
+      ],
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Oracle"
+      ]
+    },
+    {
+      "id": "salesforce-interview-coach",
+      "name": "Salesforce Interview Coach",
+      "type": "agent",
+      "description": "A trust-and-customer-success specialist who prepares candidates for Salesforce's values-and-relationship-driven interview culture, where \"trust is our #1 value\" is treated as a real evaluation lens, not a slogan.",
+      "division": "company-interviews",
+      "tags": [
+        "values-literate",
+        "relationship-focused",
+        "customer-obsessed",
+        "warm",
+        "company-interviews"
+      ],
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Salesforce"
+      ]
+    },
+    {
+      "id": "uber-interview-coach",
+      "name": "Uber Interview Coach",
+      "type": "agent",
+      "description": "A scale-and-ownership specialist who prepares candidates for Uber's operationally intense, ownership-driven interview culture, where \"built for scale, obsessed with the details that break at scale\" is the actual bar.",
+      "division": "company-interviews",
+      "tags": [
+        "direct",
+        "scale-minded",
+        "ownership-obsessed",
+        "company-interviews",
+        "operationally sharp"
+      ],
+      "skills": [
+        "Interview Preparation",
+        "Technical Coding",
+        "System Design",
+        "Behavioral Interview",
+        "Craft-focused",
+        "Technically rigorous"
+      ],
+      "companies": [
+        "Uber"
+      ]
+    },
+    {
+      "id": "backend-architect",
+      "name": "Backend Architect",
+      "type": "agent",
+      "description": "An API and service-design reviewer who evaluates backend architecture for the failure modes that don't show up until real load, real edge cases, and real time have all had a chance to find them.",
+      "division": "engineering",
+      "tags": [
+        "engineering",
+        "skeptical of shortcuts",
+        "methodical",
+        "unflashy",
+        "long-term-thinking"
+      ],
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": []
+    },
+    {
+      "id": "code-reviewer",
+      "name": "Code Reviewer",
+      "type": "agent",
+      "description": "A senior-level code reviewer who triages real risk instead of nitpicking style, distinguishing \"this will break in production\" from \"this is a preference\" and never letting the two get confused.",
+      "division": "engineering",
+      "tags": [
+        "rigorous",
+        "engineering",
+        "unimpressed by cleverness",
+        "fair",
+        "teaching-oriented"
+      ],
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": []
+    },
+    {
+      "id": "database-engineer",
+      "name": "Database Engineer",
+      "type": "agent",
+      "description": "A schema and query optimization specialist who reads execution plans instead of guessing, and treats indexing strategy as a precise discipline rather than a \"just add an index\" reflex.",
+      "division": "engineering",
+      "tags": [
+        "patient teacher",
+        "engineering",
+        "plan-reading",
+        "precise",
+        "quietly relentless about correctness"
+      ],
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": []
+    },
+    {
+      "id": "devops-engineer",
+      "name": "DevOps Engineer",
+      "type": "agent",
+      "description": "A CI/CD and infrastructure reliability specialist who treats deployment pipelines as production systems in their own right, obsessed with reversibility, observability, and never being surprised by a failure.",
+      "division": "engineering",
+      "tags": [
+        "engineering",
+        "reliability-obsessed",
+        "allergic to manual steps",
+        "calm in incidents",
+        "methodical"
+      ],
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": []
+    },
+    {
+      "id": "mern-architect",
+      "name": "MERN Architect",
+      "type": "agent",
+      "description": "A full-stack architecture reviewer for MongoDB/Express/React/Node applications who evaluates real scalability and maintainability tradeoffs instead of rubber-stamping whatever framework is trendy this year.",
+      "division": "engineering",
+      "tags": [
+        "pragmatic",
+        "scalability-focused",
+        "engineering",
+        "opinionated",
+        "allergic to over-engineering"
+      ],
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": []
+    },
+    {
+      "id": "nextjs-performance-engineer",
+      "name": "Next.js Performance Engineer",
+      "type": "agent",
+      "description": "A performance auditor obsessed with real Core Web Vitals and actual user-perceived speed, who diagnoses Next.js applications the way a profiler does \u2014 with numbers, not vibes.",
+      "division": "engineering",
+      "tags": [
+        "engineering",
+        "measurement-obsessed",
+        "precise",
+        "impatient with guesswork",
+        "quietly intense"
+      ],
+      "skills": [
+        "Software Engineering",
+        "System Design",
+        "Architecture",
+        "Code Review",
+        "Engineering",
+        "Skeptical of shortcuts"
+      ],
+      "companies": []
+    },
+    {
+      "id": "behavioral-interview-specialist",
+      "name": "Behavioral Interview Specialist",
+      "type": "agent",
+      "description": "A behavioral interview drilling coach who helps candidates structure stories using STAR/STAR+ structures, handles high-pressure situational queries, and maps achievements to organizational leadership principles.",
+      "division": "interview",
+      "tags": [
+        "retrospective-driven",
+        "authentic",
+        "interview",
+        "structure-focused",
+        "evidence-oriented"
+      ],
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "companies": []
+    },
+    {
+      "id": "group-discussion-coach",
+      "name": "Group Discussion Coach",
+      "type": "agent",
+      "description": "A facilitation and group communication coach who prepares candidates for group discussions, case studies, and collaborative rounds by teaching moderation, active listening, structured entry, and collaborative leadership.",
+      "division": "interview",
+      "tags": [
+        "interview",
+        "consensus-oriented",
+        "assertive-polite",
+        "collaborative",
+        "structured"
+      ],
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "companies": []
+    },
+    {
+      "id": "leadership-interview-coach",
+      "name": "Leadership Interview Coach",
+      "type": "agent",
+      "description": "A leadership coaching specialist who prepares senior candidates for executive, management, and leadership interviews \u2014 focusing on vision, organization building, decision-making, and organizational conflict.",
+      "division": "interview",
+      "tags": [
+        "vision-oriented",
+        "interview",
+        "direct-honest",
+        "organization-focused",
+        "executive-mature"
+      ],
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "companies": []
+    },
+    {
+      "id": "mock-interviewer",
+      "name": "Mock Interviewer",
+      "type": "agent",
+      "description": "A realistic, high-fidelity mock interviewer that conducts role-play simulations, dynamically probes candidate answers, handles follow-up queries, and provides rigorous feedback.",
+      "division": "interview",
+      "tags": [
+        "simulation-realistic",
+        "interview",
+        "follow-up-active",
+        "candidate-challenging",
+        "diagnostic-critical"
+      ],
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "companies": []
+    },
+    {
+      "id": "system-design-coach",
+      "name": "System Design Coach",
+      "type": "agent",
+      "description": "A technical interview coach specializing in distributed systems, scalability, and system design interviews \u2014 covering requirements gathering, API design, data modeling, high-level architecture, and deep-dive bottlenecks.",
+      "division": "interview",
+      "tags": [
+        "logic-driven",
+        "interview",
+        "architect-level",
+        "scalability-obsessed",
+        "trade-off-centered"
+      ],
+      "skills": [
+        "Interviewing",
+        "Behavioral Questions",
+        "Mock Practice",
+        "System Design",
+        "Retrospective-driven",
+        "Authentic"
+      ],
+      "companies": []
+    },
+    {
+      "id": "alumni-networking-advisor",
+      "name": "Alumni Networking Advisor",
+      "type": "agent",
+      "description": "A campus and school affinity networking strategist who helps candidates locate, re-engage, and leverage university and corporate alumni networks for career insights and referrals.",
+      "division": "networking",
+      "tags": [
+        "supportive",
+        "networking",
+        "relationship-first",
+        "curious",
+        "affinity-driven"
+      ],
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "companies": []
+    },
+    {
+      "id": "cold-outreach-specialist",
+      "name": "Cold Outreach Specialist",
+      "type": "agent",
+      "description": "A cold communication copywriter and strategist who helps candidates write highly optimized cold emails and messages to hiring managers, founders, and leaders.",
+      "division": "networking",
+      "tags": [
+        "value-first",
+        "conversion-oriented",
+        "networking",
+        "direct",
+        "professional"
+      ],
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "companies": []
+    },
+    {
+      "id": "linkedin-outreach-specialist",
+      "name": "LinkedIn Outreach Specialist",
+      "type": "agent",
+      "description": "A digital networking expert who helps candidates write highly customized, high-conversion LinkedIn messages for informational interviews, warm introductions, and job inquiries.",
+      "division": "networking",
+      "tags": [
+        "network-strategic",
+        "networking",
+        "professional",
+        "connection-centric",
+        "high-conversion"
+      ],
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "companies": []
+    },
+    {
+      "id": "recruiter-communication-coach",
+      "name": "Recruiter Communication Coach",
+      "type": "agent",
+      "description": "A communication strategist who helps candidates manage recruiter channels, script outreach messages, prepare for screening calls, and negotiate communication touchpoints.",
+      "division": "networking",
+      "tags": [
+        "networking",
+        "clear-headed",
+        "professional",
+        "responsive",
+        "recruitment-fluent"
+      ],
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "companies": []
+    },
+    {
+      "id": "referral-strategy-coach",
+      "name": "Referral Strategy Coach",
+      "type": "agent",
+      "description": "A relationship monetization strategist who helps candidates turn casual professional interactions, alumni links, and warm networks into formal job referrals and active internal advocates.",
+      "division": "networking",
+      "tags": [
+        "strategic",
+        "networking",
+        "conversion-focused",
+        "advocacy-driven",
+        "relationship-respectful"
+      ],
+      "skills": [
+        "Professional Networking",
+        "LinkedIn Strategy",
+        "Outreach",
+        "Cold Emailing",
+        "Supportive",
+        "Networking"
+      ],
+      "companies": []
+    },
+    {
+      "id": "documentation-specialist",
+      "name": "Documentation Specialist",
+      "type": "agent",
+      "description": "A technical documentation agent that turns project outputs into clear reports, manuals, and presentation-ready artifacts.",
+      "division": "projects",
+      "tags": [
+        "precise",
+        "projects",
+        "quality-driven",
+        "structured",
+        "reader-first"
+      ],
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "companies": []
+    },
+    {
+      "id": "final-year-project-advisor",
+      "name": "Final Year Project Advisor",
+      "type": "agent",
+      "description": "A FYP coach who helps students select, scope, and defend academic projects with real-world structure and evaluation clarity.",
+      "division": "projects",
+      "tags": [
+        "mentor-led",
+        "academic",
+        "practical",
+        "projects",
+        "deadline-aware"
+      ],
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "companies": []
+    },
+    {
+      "id": "research-assistant",
+      "name": "Research Assistant",
+      "type": "agent",
+      "description": "A structured research partner for literature reviews, methodology planning, and academic sourcing.",
+      "division": "projects",
+      "tags": [
+        "evidence-based",
+        "methodological",
+        "systematic",
+        "precise",
+        "projects"
+      ],
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "companies": []
+    },
+    {
+      "id": "viva-coach",
+      "name": "Viva Coach",
+      "type": "agent",
+      "description": "A viva preparation coach that helps students structure defense responses, anticipate examiner questions, and present confidently.",
+      "division": "projects",
+      "tags": [
+        "calm",
+        "precise",
+        "projects",
+        "confidence-building",
+        "exam-aware"
+      ],
+      "skills": [
+        "Project Management",
+        "Technical Writing",
+        "Academic Research",
+        "Viva Defense",
+        "Precise",
+        "Projects"
+      ],
+      "companies": []
+    },
+    {
+      "id": "executive-resume-advisor",
+      "name": "Executive Resume Advisor",
+      "type": "agent",
+      "description": "A senior-level resume strategist who helps VPs, Directors, and C-suite executives structure their resumes to emphasize executive presence, strategic scope, P&L ownership, and board visibility.",
+      "division": "resume",
+      "tags": [
+        "strategic",
+        "corporate",
+        "resume",
+        "boardroom-ready",
+        "outcomes-first"
+      ],
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "companies": []
+    },
+    {
+      "id": "portfolio-reviewer",
+      "name": "Portfolio Reviewer",
+      "type": "agent",
+      "description": "A design and technical portfolio critic who helps designers, engineers, and product managers structure, document, and present their work through compelling case studies that prove competency.",
+      "division": "resume",
+      "tags": [
+        "critique-honest",
+        "resume",
+        "proof-obsessed",
+        "structure-driven",
+        "detail-oriented"
+      ],
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "companies": []
+    },
+    {
+      "id": "resume-achievement-writer",
+      "name": "Resume Achievement Writer",
+      "type": "agent",
+      "description": "A metrics-focused resume achievement writer who helps candidates translate standard job duties into high-impact, outcome-oriented achievements using the STAR, Google X-Y-Z, and CAR frameworks.",
+      "division": "resume",
+      "tags": [
+        "precision-first",
+        "resume",
+        "anti-bullet-list",
+        "metric-obsessed",
+        "impact-driven"
+      ],
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "companies": []
+    },
+    {
+      "id": "resume-formatting-specialist",
+      "name": "Resume Formatting Specialist",
+      "type": "agent",
+      "description": "A design and layout expert who ensures resumes are visually polished, perfectly aligned, typographically balanced, and structured for maximum scannability and ATS compatibility.",
+      "division": "resume",
+      "tags": [
+        "typographically precise",
+        "resume",
+        "detail-obsessed",
+        "minimalist",
+        "layout-first"
+      ],
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "companies": []
+    },
+    {
+      "id": "resume-keyword-optimizer",
+      "name": "Resume Keyword Optimizer",
+      "type": "agent",
+      "description": "An ATS-oriented search optimization specialist who helps candidates align their resumes with target job descriptions using keyword mapping, context optimization, and phrase parsing strategies.",
+      "division": "resume",
+      "tags": [
+        "semantic-match",
+        "search-engine-focused",
+        "resume",
+        "analytical",
+        "keyword-aligned"
+      ],
+      "skills": [
+        "Resume Writing",
+        "ATS Optimization",
+        "STAR/XYZ Metrics",
+        "Portfolio Review",
+        "Strategic",
+        "Corporate"
+      ],
+      "companies": []
+    },
+    {
+      "id": "founder-advisor",
+      "name": "Founder Advisor",
+      "type": "agent",
+      "description": "A blunt, experienced-feeling co-founder substitute who stress-tests ideas and decisions the way a real early-stage advisor would \u2014 before money, time, or credibility get spent finding out the hard way.",
+      "division": "startup",
+      "tags": [
+        "pattern-matching",
+        "blunt",
+        "startup",
+        "allergic to founder self-delusion",
+        "genuinely rooting for you"
+      ],
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "companies": []
+    },
+    {
+      "id": "growth-strategist",
+      "name": "Growth Strategist",
+      "type": "agent",
+      "description": "A growth specialist who designs acquisition, activation, retention, and monetization strategies for early-stage products.",
+      "division": "startup",
+      "tags": [
+        "no-nonsense",
+        "retention-first",
+        "experimental",
+        "startup",
+        "metrics-driven"
+      ],
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "companies": []
+    },
+    {
+      "id": "market-research-analyst",
+      "name": "Market Research Analyst",
+      "type": "agent",
+      "description": "A rigorous market research specialist who turns ambiguous business questions into defensible market insights, go-to-market priorities, and evidence-backed decisions \u2014 built for founders, product teams, and early-stage PMs who need market clarity fast.",
+      "division": "startup",
+      "tags": [
+        "strategist-first",
+        "startup",
+        "methodical",
+        "forensic",
+        "commercially-minded"
+      ],
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "companies": []
+    },
+    {
+      "id": "product-manager",
+      "name": "Product Manager",
+      "type": "agent",
+      "description": "A product strategy advisor who turns fuzzy feature requests into prioritized roadmaps, stakeholder-aligned outcomes, and execution-ready release plans.",
+      "division": "startup",
+      "tags": [
+        "pragmatic",
+        "customer-focused",
+        "data-informed",
+        "strategic",
+        "startup"
+      ],
+      "skills": [
+        "Product Management",
+        "MVP Scoping",
+        "Market Research",
+        "Growth Strategy",
+        "Pattern-matching",
+        "Blunt"
+      ],
+      "companies": []
+    },
+    {
+      "id": "ai-agent-architect",
+      "name": "AI Agent Architect",
+      "type": "agent",
+      "description": "Designs autonomous agent loops, tool bindings, planning algorithms, and multi-agent coordination layers.",
+      "division": "ai-engineering",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": []
+    },
+    {
+      "id": "ai-engineer-career-coach",
+      "name": "AI Engineer Career Coach",
+      "type": "agent",
+      "description": "Coaches developers pivoting into artificial intelligence, structuring study plans, project portfolios, and technical interview prep.",
+      "division": "ai-engineering",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": []
+    },
+    {
+      "id": "ai-product-builder",
+      "name": "AI Product Builder",
+      "type": "agent",
+      "description": "Helps founders and product managers scope AI features, evaluate API costs, and design user-centric AI feedback loops.",
+      "division": "ai-engineering",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": []
+    },
+    {
+      "id": "computer-vision-engineer",
+      "name": "Computer Vision Engineer",
+      "type": "agent",
+      "description": "Advises on convolutional networks, object detection systems, segmentation pipelines, and edge device deployment.",
+      "division": "ai-engineering",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": []
+    },
+    {
+      "id": "generative-ai-consultant",
+      "name": "Generative AI Consultant",
+      "type": "agent",
+      "description": "Guides organizations through generative AI strategy, risk mitigation, compliance, and ROI analysis.",
+      "division": "ai-engineering",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": []
+    },
+    {
+      "id": "llm-engineer",
+      "name": "LLM Engineer",
+      "type": "agent",
+      "description": "Advises on model selection, context window optimization, fine-tuning pipelines, and inference efficiency.",
+      "division": "ai-engineering",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": []
+    },
+    {
+      "id": "machine-learning-engineer",
+      "name": "Machine Learning Engineer",
+      "type": "agent",
+      "description": "Designs classical ML systems, feature stores, model training pipelines, and dataset validations.",
+      "division": "ai-engineering",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": []
+    },
+    {
+      "id": "mlops-engineer",
+      "name": "MLOps Engineer",
+      "type": "agent",
+      "description": "Sets up continuous training pipelines, model registries, monitoring systems, and containerized deployment infrastructure.",
+      "division": "ai-engineering",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": []
+    },
+    {
+      "id": "prompt-engineer",
+      "name": "Prompt Engineer",
+      "type": "agent",
+      "description": "Designs systematic prompt templates, Few-Shot examples, Chain-of-Thought flows, and system instructions.",
+      "division": "ai-engineering",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": []
+    },
+    {
+      "id": "rag-architect",
+      "name": "RAG Architect",
+      "type": "agent",
+      "description": "Designs semantic search architectures, vector databases, chunking strategies, and metadata indexing pipelines.",
+      "division": "ai-engineering",
+      "tags": [
+        "deep technical",
+        "research-oriented",
+        "cognitive-first",
+        "ai-engineering"
+      ],
+      "skills": [
+        "Machine Learning",
+        "LLMs",
+        "RAG Architecture",
+        "Prompt Engineering",
+        "Deep technical",
+        "Research-oriented"
+      ],
+      "companies": []
+    },
+    {
+      "id": "aws-cloud-architect",
+      "name": "AWS Cloud Architect",
+      "type": "agent",
+      "description": "Designs highly available, secure, and well-architected systems on AWS.",
+      "division": "cloud",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "azure-cloud-engineer",
+      "name": "Azure Cloud Engineer",
+      "type": "agent",
+      "description": "Configures and manages enterprise cloud deployments on Microsoft Azure.",
+      "division": "cloud",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "cloud-cost-optimizer",
+      "name": "Cloud Cost Optimizer",
+      "type": "agent",
+      "description": "Audits cloud invoices, identifying wastage, reserved instance coverages, and autoscaling opportunities.",
+      "division": "cloud",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "cloud-migration-advisor",
+      "name": "Cloud Migration Advisor",
+      "type": "agent",
+      "description": "Plans datacenter migrations to public clouds using Rehost, Replatform, and Refactor pathways.",
+      "division": "cloud",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "cloud-security-advisor",
+      "name": "Cloud Security Advisor",
+      "type": "agent",
+      "description": "Reviews cloud security configurations, ensuring compliance with ISO 27001, SOC2, and CIS benchmarks.",
+      "division": "cloud",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "gcp-cloud-engineer",
+      "name": "GCP Cloud Engineer",
+      "type": "agent",
+      "description": "Designs scale-ready infrastructure on Google Cloud Platform using native services.",
+      "division": "cloud",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "kubernetes-specialist",
+      "name": "Kubernetes Specialist",
+      "type": "agent",
+      "description": "Configures production Kubernetes clusters, pod scheduling, network policies, and ingress controllers.",
+      "division": "cloud",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": [
+        "Uber"
+      ]
+    },
+    {
+      "id": "platform-engineer",
+      "name": "Platform Engineer",
+      "type": "agent",
+      "description": "Builds developer self-service tooling, landing zones, and continuous delivery systems.",
+      "division": "cloud",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "site-reliability-engineer",
+      "name": "Site Reliability Engineer",
+      "type": "agent",
+      "description": "Defines service level objectives, error budgets, incident response playbooks, and disaster recovery strategies.",
+      "division": "cloud",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "terraform-specialist",
+      "name": "Terraform Specialist",
+      "type": "agent",
+      "description": "Writes modular Terraform, structuring state files, workspace variables, and locks.",
+      "division": "cloud",
+      "tags": [
+        "high availability",
+        "zero-trust",
+        "infrastructure-as-code",
+        "cloud"
+      ],
+      "skills": [
+        "Cloud Infrastructure",
+        "Terraform",
+        "Kubernetes",
+        "AWS/Azure/GCP",
+        "High availability",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "application-security-specialist",
+      "name": "Application Security Specialist",
+      "type": "agent",
+      "description": "Audits application source code for OWASP Top 10 vulnerabilities, configuring SAST/DAST pipelines.",
+      "division": "cybersecurity",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "cloud-security-engineer",
+      "name": "Cloud Security Engineer",
+      "type": "agent",
+      "description": "Implements IAM least privilege policies, cloud security posture monitoring, and secrets managers.",
+      "division": "cybersecurity",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "ethical-hacking-advisor",
+      "name": "Ethical Hacking Advisor",
+      "type": "agent",
+      "description": "Conducts threat simulations and red-team operations across human, network, and application boundaries.",
+      "division": "cybersecurity",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "governance-risk-compliance-advisor",
+      "name": "Governance Risk Compliance Advisor",
+      "type": "agent",
+      "description": "Audits processes and designs system configurations to satisfy compliance rules (SOC2, ISO 27001, GDPR).",
+      "division": "cybersecurity",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "identity-access-management-specialist",
+      "name": "Identity Access Management Specialist",
+      "type": "agent",
+      "description": "Designs directory service integrations, access management controls, and provisioning flows.",
+      "division": "cybersecurity",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "incident-response-specialist",
+      "name": "Incident Response Specialist",
+      "type": "agent",
+      "description": "Triages active security breaches, structures containment strategies, and performs digital forensics.",
+      "division": "cybersecurity",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "penetration-testing-coach",
+      "name": "Penetration Testing Coach",
+      "type": "agent",
+      "description": "Runs network-level vulnerability assessments and simulated penetration testing.",
+      "division": "cybersecurity",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "security-architect",
+      "name": "Security Architect",
+      "type": "agent",
+      "description": "Designs global zero-trust security frameworks, IAM directories, and endpoint controls.",
+      "division": "cybersecurity",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "security-engineer",
+      "name": "Security Engineer",
+      "type": "agent",
+      "description": "Designs secure infrastructure boundaries, perimeter defense networks, and encryption strategies.",
+      "division": "cybersecurity",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "security-operations-analyst",
+      "name": "Security Operations Analyst",
+      "type": "agent",
+      "description": "Analyzes security telemetry logs, configure SIEM dashboards, and responds to alerts.",
+      "division": "cybersecurity",
+      "tags": [
+        "cybersecurity",
+        "zero-trust",
+        "red-teaming",
+        "risk-averse"
+      ],
+      "skills": [
+        "Application Security",
+        "IAM",
+        "Vulnerability Assessment",
+        "Incident Response",
+        "Cybersecurity",
+        "Zero-trust"
+      ],
+      "companies": []
+    },
+    {
+      "id": "community-builder",
+      "name": "Community Builder",
+      "type": "agent",
+      "description": "Designs community portals, discord guidelines, online events, and contributor recognition models.",
+      "division": "open-source",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": []
+    },
+    {
+      "id": "developer-advocate",
+      "name": "Developer Advocate",
+      "type": "agent",
+      "description": "Bridges developer feedback with core product roadmaps, producing workshops and api demos.",
+      "division": "open-source",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": []
+    },
+    {
+      "id": "devrel-strategist",
+      "name": "DevRel Strategist",
+      "type": "agent",
+      "description": "Aligns developer programs with business metrics, tracking developer acquisitions and community ROI.",
+      "division": "open-source",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": []
+    },
+    {
+      "id": "github-growth-advisor",
+      "name": "GitHub Growth Advisor",
+      "type": "agent",
+      "description": "Advises on repository metadata, README copywriting, issue curation, and community visibility.",
+      "division": "open-source",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": []
+    },
+    {
+      "id": "maintainer-coach",
+      "name": "Maintainer Coach",
+      "type": "agent",
+      "description": "Advises project leads on contributor onboarding, issue labeling, license compliance, and roadmap publishing.",
+      "division": "open-source",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": []
+    },
+    {
+      "id": "open-source-funding-advisor",
+      "name": "Open Source Funding Advisor",
+      "type": "agent",
+      "description": "Guides projects on sponsor directories (GitHub Sponsors, Open Collective) and grant applications.",
+      "division": "open-source",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": []
+    },
+    {
+      "id": "open-source-mentor",
+      "name": "Open Source Mentor",
+      "type": "agent",
+      "description": "Coaches new contributors on git branches, repository issues, and pull request etiquette.",
+      "division": "open-source",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": []
+    },
+    {
+      "id": "oss-contributor-coach",
+      "name": "OSS Contributor Coach",
+      "type": "agent",
+      "description": "Helps developers scale contributions from single commits to regular maintainers of key libraries.",
+      "division": "open-source",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": []
+    },
+    {
+      "id": "project-maintenance-specialist",
+      "name": "Project Maintenance Specialist",
+      "type": "agent",
+      "description": "Automates project builds, configuring lint rules, tests, and publishing workflows.",
+      "division": "open-source",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": []
+    },
+    {
+      "id": "technical-writing-advisor",
+      "name": "Technical Writing Advisor",
+      "type": "agent",
+      "description": "Guides developers in writing clean API guides, release notes, code reviews, and README docs.",
+      "division": "open-source",
+      "tags": [
+        "documentation-first",
+        "community-driven",
+        "collaborative",
+        "open-source"
+      ],
+      "skills": [
+        "Open Source Contribution",
+        "Git Workflows",
+        "Community Building",
+        "Documentation",
+        "Documentation-first",
+        "Community-driven"
+      ],
+      "companies": []
+    },
+    {
+      "id": "analytics-engineer",
+      "name": "Analytics Engineer",
+      "type": "agent",
+      "description": "Structures data transformation layers using dbt (data build tool), creating documentation and testing frameworks.",
+      "division": "data-engineering",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": []
+    },
+    {
+      "id": "business-intelligence-specialist",
+      "name": "Business Intelligence Specialist",
+      "type": "agent",
+      "description": "Designs semantic datasets, dashboards, and analytical metrics using PowerBI or Tableau.",
+      "division": "data-engineering",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": []
+    },
+    {
+      "id": "data-architect",
+      "name": "Data Architect",
+      "type": "agent",
+      "description": "Designs corporate data strategies, data mesh architectures, and warehouse schemas.",
+      "division": "data-engineering",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": []
+    },
+    {
+      "id": "data-engineer",
+      "name": "Data Engineer",
+      "type": "agent",
+      "description": "Designs robust analytical pipeline systems, feature databases, and ingestion engines.",
+      "division": "data-engineering",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": []
+    },
+    {
+      "id": "data-governance-advisor",
+      "name": "Data Governance Advisor",
+      "type": "agent",
+      "description": "Defines access control policies, data cataloging rules, and column-level masking models.",
+      "division": "data-engineering",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": []
+    },
+    {
+      "id": "data-platform-engineer",
+      "name": "Data Platform Engineer",
+      "type": "agent",
+      "description": "Deploys cloud-based data storage and analysis platforms using Snowflake, Databricks, or BigQuery.",
+      "division": "data-engineering",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": []
+    },
+    {
+      "id": "data-quality-engineer",
+      "name": "Data Quality Engineer",
+      "type": "agent",
+      "description": "Designs automated validation routines, alerting systems, and data drift dashboards.",
+      "division": "data-engineering",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": []
+    },
+    {
+      "id": "database-performance-specialist",
+      "name": "Database Performance Specialist",
+      "type": "agent",
+      "description": "Audits database resource consumption, index efficiency, and query logs to optimize latency.",
+      "division": "data-engineering",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": []
+    },
+    {
+      "id": "etl-specialist",
+      "name": "ETL Specialist",
+      "type": "agent",
+      "description": "Designs high-throughput batch ETL/ELT pipelines using Airflow, Prefect, or Dagster.",
+      "division": "data-engineering",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": []
+    },
+    {
+      "id": "stream-processing-specialist",
+      "name": "Stream Processing Specialist",
+      "type": "agent",
+      "description": "Designs high-velocity real-time analytical event flows using Kafka or Flink.",
+      "division": "data-engineering",
+      "tags": [
+        "transactional",
+        "data-engineering",
+        "analytical",
+        "data-driven"
+      ],
+      "skills": [
+        "Data Pipelines",
+        "ETL/ELT",
+        "Data Warehousing",
+        "Database Optimization",
+        "Transactional",
+        "Data-engineering"
+      ],
+      "companies": []
+    },
+    {
+      "id": "api-adoption-consultant",
+      "name": "API Adoption Consultant",
+      "type": "agent",
+      "description": "Reviews developer APIs, SDK structures, and documentation onboarding to reduce activation barriers.",
+      "division": "devrel",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": []
+    },
+    {
+      "id": "community-growth-specialist",
+      "name": "Community Growth Specialist",
+      "type": "agent",
+      "description": "Designs programmatic referral schemes, user acquisition initiatives, and event plans.",
+      "division": "devrel",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": []
+    },
+    {
+      "id": "conference-speaker-coach",
+      "name": "Conference Speaker Coach",
+      "type": "agent",
+      "description": "Guides developers in preparing technical talk submissions, slide structures, and slide delivery.",
+      "division": "devrel",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": []
+    },
+    {
+      "id": "content-strategy-advisor",
+      "name": "Content Strategy Advisor",
+      "type": "agent",
+      "description": "Plans technical content calendars, writing schedules, and publication distributions.",
+      "division": "devrel",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": []
+    },
+    {
+      "id": "developer-education-specialist",
+      "name": "Developer Education Specialist",
+      "type": "agent",
+      "description": "Designs tutorials, structured learning paths, sample project repos, and technical documentation.",
+      "division": "devrel",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": []
+    },
+    {
+      "id": "developer-evangelist",
+      "name": "Developer Evangelist",
+      "type": "agent",
+      "description": "Presents product value at developer conferences, online meetups, and key technical forums.",
+      "division": "devrel",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": []
+    },
+    {
+      "id": "developer-experience-specialist",
+      "name": "Developer Experience Specialist",
+      "type": "agent",
+      "description": "Reviews local developer environments, CLI ease-of-use, config errors, and initial setup steps.",
+      "division": "devrel",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": []
+    },
+    {
+      "id": "developer-relations-manager",
+      "name": "Developer Relations Manager",
+      "type": "agent",
+      "description": "Manages developer engagement programs, ambassador networks, and metric analysis.",
+      "division": "devrel",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": []
+    },
+    {
+      "id": "technical-community-builder",
+      "name": "Technical Community Builder",
+      "type": "agent",
+      "description": "Moderates developer forums, discord/slack servers, and handles user onboarding strategies.",
+      "division": "devrel",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": []
+    },
+    {
+      "id": "technical-marketing-advisor",
+      "name": "Technical Marketing Advisor",
+      "type": "agent",
+      "description": "Aligns product positioning with developer interests, writing copy and analyzing competition.",
+      "division": "devrel",
+      "tags": [
+        "empathetic",
+        "community-centric",
+        "devrel",
+        "engaging"
+      ],
+      "skills": [
+        "Developer Relations",
+        "Technical Content",
+        "Community Engagement",
+        "API Adoption",
+        "Empathetic",
+        "Community-centric"
+      ],
+      "companies": []
+    },
+    {
+      "id": "gtm-engineer",
+      "name": "GTM Engineer",
+      "type": "agent",
+      "description": "An outreach systems architect who designs clay workflows, API enrichments, and automated cold inbound/outbound setup.",
+      "division": "gtm",
+      "tags": [
+        "gtm",
+        "clay",
+        "outbound",
+        "automation",
+        "systems"
+      ],
+      "skills": [
+        "Outreach Automation",
+        "CRM Sync",
+        "Clay Workspaces",
+        "Sales Pipeline",
+        "Clay",
+        "Outbound"
+      ],
+      "companies": []
+    },
+    {
+      "id": "openai-career-coach",
+      "name": "OpenAI Career Coach",
+      "type": "agent",
+      "description": "A specialized coach for OpenAI interview loops, engineering culture, and AI research/engineering positions.",
+      "division": "faang",
+      "tags": [
+        "openai",
+        "faang",
+        "ai-research",
+        "machine-learning",
+        "interview-prep"
+      ],
+      "skills": [
+        "Distributed Systems",
+        "Scaling",
+        "DSA",
+        "FAANG Interview",
+        "Openai",
+        "Faang"
+      ],
+      "companies": [
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "job-hunter-ai",
+      "name": "Job Hunter AI",
+      "type": "agent",
+      "description": "An automated job discovery and application tracking companion that manages target queues.",
+      "division": "job-automation",
+      "tags": [
+        "automation",
+        "career",
+        "job-search",
+        "tactical",
+        "pipeline"
+      ],
+      "skills": [
+        "Job Scraping",
+        "Notion Databases",
+        "Pipeline Tracking",
+        "Cold Outreach",
+        "Automation",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "ai-founder",
+      "name": "AI Founder",
+      "type": "agent",
+      "description": "A strategic AI builder focused on scaling AI-first products, MVPs, and business models.",
+      "division": "ai-business",
+      "tags": [
+        "ai-business",
+        "founder",
+        "mvp",
+        "moats",
+        "startup"
+      ],
+      "skills": [
+        "AI Unit Economics",
+        "SaaS MVP",
+        "Semantic Caching",
+        "Defensibility",
+        "Ai-business",
+        "Founder"
+      ],
+      "companies": []
+    },
+    {
+      "id": "freelance-founder",
+      "name": "Freelance Founder",
+      "type": "agent",
+      "description": "An independent consultant strategist driving retainer growth, pricing, and client acquisition channels.",
+      "division": "freelancing",
+      "tags": [
+        "freelancing",
+        "consulting",
+        "retainers",
+        "proposals",
+        "sales"
+      ],
+      "skills": [
+        "Freelancing",
+        "Productized Services",
+        "Client Acquisition",
+        "Retainers",
+        "Consulting",
+        "Proposals"
+      ],
+      "companies": []
+    },
+    {
+      "id": "job-application-optimizer",
+      "name": "Job Application Optimizer",
+      "type": "agent",
+      "description": "An AI context tailoring engine that customizes applications, resume bullets, and cover letters for specific job descriptions at scale.",
+      "division": "job-automation",
+      "tags": [
+        "automation",
+        "resume",
+        "cover-letter",
+        "context",
+        "surgical"
+      ],
+      "skills": [
+        "Job Scraping",
+        "Notion Databases",
+        "Pipeline Tracking",
+        "Cold Outreach",
+        "Automation",
+        "Career"
+      ],
+      "companies": []
+    },
+    {
+      "id": "google-swe-coach",
+      "name": "Google SWE Coach",
+      "type": "agent",
+      "description": "A specialized technical coach for Google Software Engineering (SWE) loops, focusing on DS & Algorithms, complex complexity analysis, clean code structure, and Googleyness & Leadership (G&L).",
+      "division": "faang",
+      "tags": [
+        "google",
+        "faang",
+        "algorithms",
+        "system-design",
+        "googleyness"
+      ],
+      "skills": [
+        "Distributed Systems",
+        "Scaling",
+        "DSA",
+        "FAANG Interview",
+        "Openai",
+        "Faang"
+      ],
+      "companies": [
+        "Google"
+      ]
+    },
+    {
+      "id": "ai-consultant",
+      "name": "AI Consultant",
+      "type": "agent",
+      "description": "An enterprise AI strategist mapping company problems to LLM/RAG solutions, scoping APIs, drafting security/privacy architectures, and showing ROI.",
+      "division": "ai-business",
+      "tags": [
+        "ai-business",
+        "consultant",
+        "enterprise",
+        "security",
+        "roi"
+      ],
+      "skills": [
+        "AI Unit Economics",
+        "SaaS MVP",
+        "Semantic Caching",
+        "Defensibility",
+        "Ai-business",
+        "Founder"
+      ],
+      "companies": []
+    },
+    {
+      "id": "clay-specialist",
+      "name": "Clay Specialist",
+      "type": "agent",
+      "description": "A master of Clay workflows, waterfall search logic, AI enrichment prompting, data cleaning, and CSV normalization.",
+      "division": "gtm",
+      "tags": [
+        "gtm",
+        "clay",
+        "waterfalls",
+        "data-enrichment",
+        "formulas"
+      ],
+      "skills": [
+        "Outreach Automation",
+        "CRM Sync",
+        "Clay Workspaces",
+        "Sales Pipeline",
+        "Clay",
+        "Outbound"
+      ],
+      "companies": []
+    },
+    {
+      "id": "upwork-specialist",
+      "name": "Upwork Specialist",
+      "type": "agent",
+      "description": "A profile positioning and proposal writing advisor focused on converting Upwork feeds into closed contracts.",
+      "division": "freelancing",
+      "tags": [
+        "freelancing",
+        "upwork",
+        "proposals",
+        "positioning",
+        "sales"
+      ],
+      "skills": [
+        "Freelancing",
+        "Productized Services",
+        "Client Acquisition",
+        "Retainers",
+        "Consulting",
+        "Proposals"
+      ],
+      "companies": []
+    },
+    {
+      "id": "career",
+      "name": "Career",
+      "type": "division",
+      "description": "Placement strategy, resume engineering, interview coaching, and personal brand growth for students and job seekers.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "company-interviews",
+      "name": "Company Interviews",
+      "type": "division",
+      "description": "Target-company-specific interview coaches for FAANG, tier-1 product companies, and tech giants.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "engineering",
+      "name": "Engineering",
+      "type": "division",
+      "description": "Software architecture, database design, Next.js performance tuning, DevOps infrastructure, and senior-level code reviews.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "interview",
+      "name": "Interview",
+      "type": "division",
+      "description": "Specialized interview coaching, system design, mock interviewing, behavioral strategies, and group discussions.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "networking",
+      "name": "Networking",
+      "type": "division",
+      "description": "LinkedIn outreach, alumni networking, cold email strategies, recruiter communications, and referral acquisition.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "projects",
+      "name": "Projects",
+      "type": "division",
+      "description": "Final Year Project lifecycle support from topic selection and research planning to documentation and viva defense.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "resume",
+      "name": "Resume",
+      "type": "division",
+      "description": "Technical resume writing, achievement optimization, ATS formatting, design portfolios, and executive resumes.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "startup",
+      "name": "Startup",
+      "type": "division",
+      "description": "Founder decision support, MVP definition, growth marketing strategy, and competitive market research.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "ai-engineering",
+      "name": "AI Engineering",
+      "type": "division",
+      "description": "Language models, prompt engineering, retrieval-augmented generation (RAG), cognitive agents, and machine learning operations (MLOps).",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud & Infrastructure",
+      "type": "division",
+      "description": "Public cloud systems, platform engineers, kubernetes clusters, infrastructure security, and site reliability.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "cybersecurity",
+      "name": "Cybersecurity",
+      "type": "division",
+      "description": "Secure coding principles, network operations, penetration testing, compliance advisors, and risk auditing.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "open-source",
+      "name": "Open Source",
+      "type": "division",
+      "description": "Collaborative repository design, developer community building, open-source documentation, and maintainer guidance.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "data-engineering",
+      "name": "Data Engineering",
+      "type": "division",
+      "description": "Analytical warehouse construction, stream processors, pipeline schedulers, and database optimizations.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "devrel",
+      "name": "Developer Relations",
+      "type": "division",
+      "description": "Developer advocate strategies, technology education, community management, and developer experience.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "job-automation",
+      "name": "Job Automation",
+      "type": "division",
+      "description": "Automated job discovery, listing filters, pipeline trackers, email outreach cadences, and funnel optimization engines.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "faang",
+      "name": "FAANG & Top Tech",
+      "type": "division",
+      "description": "Specialized coaches for top-tier tech companies (FAANG+), AI labs, and high-growth platform engineering teams.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "ai-business",
+      "name": "AI Business",
+      "type": "division",
+      "description": "Strategic builders, technical PMs, and business architects focusing on launching and scaling AI-first startups, SaaS MVPs, and proprietary data loops.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "gtm",
+      "name": "Modern GTM",
+      "type": "division",
+      "description": "Outreach systems design, waterfall data enrichments, CRM synchronizations, webhooks, and programmatic pipeline automation.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "freelancing",
+      "name": "Freelancing",
+      "type": "division",
+      "description": "Productization, pricing advisory, retainer growth, client acquisition networks, and operation designs for independent consultants.",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "ats-optimization",
+      "name": "ATS Optimization",
+      "type": "workflow",
+      "description": "A repeatable resume operating system for candidates who apply through portals, campus systems, and enterprise hiring platforms. Optimizes resume structures, headings, and keyword mapping to survive ATS parsing.",
+      "division": "resume workflows",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "faang-preparation",
+      "name": "FAANG Preparation",
+      "type": "workflow",
+      "description": "Targeted preparation pipeline for high-tier tech companies (FAANG+), aligning algorithms, system design, and leadership principles prep.",
+      "division": "interview workflows",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "fresher-placement",
+      "name": "Fresher Placement",
+      "type": "workflow",
+      "description": "Step-by-step guidance for college students and recent grads navigating their first job hunt and campus placement cycles.",
+      "division": "career workflows",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "hr-interview-week",
+      "name": "HR Interview Week",
+      "type": "workflow",
+      "description": "Intense behavioral prep week covering common HR screening, culture fit, and soft-skill evaluation challenges.",
+      "division": "interview workflows",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "internship-hunt",
+      "name": "Internship Hunt",
+      "type": "workflow",
+      "description": "Tactical action plan for finding, applying to, and landing summer/semester internships.",
+      "division": "job search workflows",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "linkedin-growth",
+      "name": "LinkedIn Growth",
+      "type": "workflow",
+      "description": "Personal branding and network expansion strategy to attract recruiters, founders, and industry peers.",
+      "division": "networking workflows",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "offer-comparison",
+      "name": "Offer Comparison",
+      "type": "workflow",
+      "description": "Analytical approach to evaluating multiple job offers across total compensation, equity, career growth, and work-life balance.",
+      "division": "job search workflows",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "remote-job-hunt",
+      "name": "Remote Job Hunt",
+      "type": "workflow",
+      "description": "Navigating the specialized remote job market, optimizing for global companies, and establishing remote collaboration proof.",
+      "division": "job search workflows",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "salary-negotiation",
+      "name": "Salary Negotiation",
+      "type": "workflow",
+      "description": "Tactics and script preparation for maximizing base salary, equity, and benefits during the offer stage.",
+      "division": "job search workflows",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "technical-interview-week",
+      "name": "Technical Interview Week",
+      "type": "workflow",
+      "description": "High-intensity technical prep covering DSA drills, system design practice, and clean code principles.",
+      "division": "interview workflows",
+      "tags": [],
+      "skills": [],
+      "companies": []
+    },
+    {
+      "id": "ai-engineer-bundle",
+      "name": "AI Engineer & Scientist Bundle",
+      "type": "bundle",
+      "description": "System frameworks, fine-tuning scripts, MLOps orchestration, prompt formatting matrices, and RAG architectures for AI engineers.",
+      "tags": [],
+      "skills": [
+        "Prompt Optimization",
+        "Vector Embeddings",
+        "Fine-Tuning",
+        "Agentic Loops",
+        "PyTorch Scale Training"
+      ],
+      "companies": [
+        "OpenAI",
+        "Google",
+        "Meta",
+        "Microsoft",
+        "Databricks"
+      ]
+    },
+    {
+      "id": "career-switch-bundle",
+      "name": "Career Switcher & Pivot Bundle",
+      "type": "bundle",
+      "description": "Guidance frameworks for mapping transferable skills, positioning resumes, and transitioning from non-technical/adjacent fields into tech.",
+      "tags": [],
+      "skills": [
+        "Transferable Assets",
+        "Narrative Construction",
+        "Branding",
+        "Resume Revision",
+        "Interview Readiness"
+      ],
+      "companies": [
+        "Amazon",
+        "Microsoft",
+        "Atlassian",
+        "Uber"
+      ]
+    },
+    {
+      "id": "faang-bundle",
+      "name": "FAANG & Top Tech Prep Bundle",
+      "type": "bundle",
+      "description": "Pre-packaged prep assets and workflows optimized for passing high-bar coding, system design, and behavioral loops at FAANG and tier-1 companies.",
+      "tags": [],
+      "skills": [
+        "Data Structures & Algorithms",
+        "System Design",
+        "STAR Behavioral Method",
+        "Scalability",
+        "Concurrency"
+      ],
+      "companies": [
+        "Google",
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Netflix",
+        "Uber"
+      ]
+    },
+    {
+      "id": "full-stack-bundle",
+      "name": "Full Stack Developer Bundle",
+      "type": "bundle",
+      "description": "Systems architectures, database optimizations, deployment validations, API patterns, and performance audits for full stack developers.",
+      "tags": [],
+      "skills": [
+        "React/Next.js",
+        "Node.js & Express",
+        "Schema Tuning",
+        "API Resiliency",
+        "CI/CD Pipelines"
+      ],
+      "companies": [
+        "Stripe",
+        "Meta",
+        "Netflix",
+        "Uber",
+        "Atlassian"
+      ]
+    },
+    {
+      "id": "internship-bundle",
+      "name": "Internship Hunting Bundle",
+      "type": "bundle",
+      "description": "Optimized pipeline for college students and recent grads seeking high-value internships, final-year project guidance, and return offers.",
+      "tags": [],
+      "skills": [
+        "Resume Formatting",
+        "Cold Outreach",
+        "Networking",
+        "Project Management",
+        "Academic Defense"
+      ],
+      "companies": [
+        "Google",
+        "Amazon",
+        "Microsoft",
+        "Atlassian",
+        "Stripe"
+      ]
+    },
+    {
+      "id": "remote-job-bundle",
+      "name": "Remote Job Hunting Bundle",
+      "type": "bundle",
+      "description": "Strategies, connection prompts, and automation tools for targeting remote-first global startups and distributed organizations.",
+      "tags": [],
+      "skills": [
+        "Async Communication",
+        "Remote Tooling",
+        "LinkedIn Branding",
+        "Cold Sourcing",
+        "Funnel Tracking"
+      ],
+      "companies": [
+        "Stripe",
+        "Atlassian",
+        "OpenAI",
+        "Databricks"
+      ]
+    },
+    {
+      "id": "startup-founder-bundle",
+      "name": "Startup Founder & Builder Bundle",
+      "type": "bundle",
+      "description": "Decision support configs, MVP definitions, GTM waterfall enrichment, pricing structures, and competitive metrics for early-stage builders.",
+      "tags": [],
+      "skills": [
+        "MVP Scoping",
+        "Competitor Audit",
+        "Growth Marketing",
+        "Unit Economics",
+        "GTM Waterfall Sourcing"
+      ],
+      "companies": [
+        "OpenAI",
+        "Stripe",
+        "Databricks"
+      ]
+    },
+    {
+      "id": "ai-engineer",
+      "name": "AI Engineer",
+      "type": "career-path",
+      "description": "Specialist in integrating machine learning, large language models, retrieval augmented generation, and cognitive agents into product architectures.",
+      "tags": [],
+      "skills": [
+        "LLMs & Prompt Engineering",
+        "RAG & Semantic Search",
+        "Python & PyTorch",
+        "Agentic Architectures",
+        "Model Orchestration"
+      ],
+      "companies": []
+    },
+    {
+      "id": "cloud-engineer",
+      "name": "Cloud Engineer",
+      "type": "career-path",
+      "description": "Focused on provisioning public cloud infrastructure, maintaining high availability, designing scalable networks, and managing containerized systems.",
+      "tags": [],
+      "skills": [
+        "AWS / GCP / Azure",
+        "Terraform & IaC",
+        "Kubernetes & Containers",
+        "Networking & VPCs",
+        "Site Reliability (SRE)"
+      ],
+      "companies": []
+    },
+    {
+      "id": "cybersecurity-engineer",
+      "name": "Cybersecurity Engineer",
+      "type": "career-path",
+      "description": "Dedicated to securing software systems, identifying vulnerabilities, configuring access controls, and responding to security incidents.",
+      "tags": [],
+      "skills": [
+        "Application Security & OWASP",
+        "Identity & Access Management (IAM)",
+        "Threat Modeling & Pen Testing",
+        "Incident Response & Forensics",
+        "Regulatory Compliance (SOC2/GDPR)"
+      ],
+      "companies": []
+    },
+    {
+      "id": "devops-engineer",
+      "name": "DevOps Engineer",
+      "type": "career-path",
+      "description": "Bridging development and operations to automate software delivery pipelines, manage configuration state, and ensure infrastructure reliability.",
+      "tags": [],
+      "skills": [
+        "CI/CD Pipelines",
+        "Configuration Management",
+        "Infrastructure as Code",
+        "Monitoring & Logging",
+        "Build Tools & Packaging"
+      ],
+      "companies": []
+    },
+    {
+      "id": "product-manager",
+      "name": "Product Manager",
+      "type": "career-path",
+      "description": "Connecting technology, business, and design to define product features, scope releases, prioritize roadmaps, and align cross-functional teams.",
+      "tags": [],
+      "skills": [
+        "Product Roadmap Planning",
+        "User Interviewing & Feedback",
+        "Prioritization Frameworks",
+        "Market & Competitor Analysis",
+        "Data-Driven Decisions"
+      ],
+      "companies": []
+    },
+    {
+      "id": "software-engineer",
+      "name": "Software Engineer",
+      "type": "career-path",
+      "description": "Generalist software engineer focused on building robust applications, CS fundamentals, algorithms, and collaborative team delivery.",
+      "tags": [],
+      "skills": [
+        "Data Structures & Algorithms",
+        "Object Oriented Design",
+        "System Design",
+        "Version Control (Git)",
+        "Testing & Debugging"
+      ],
+      "companies": []
+    },
+    {
+      "id": "startup-founder",
+      "name": "Startup Founder",
+      "type": "career-path",
+      "description": "Building a business from scratch, scoping MVPs, testing market fit, structuring go-to-market strategies, and managing early unit economics.",
+      "tags": [],
+      "skills": [
+        "MVP Scoping & Validation",
+        "Go-To-Market Execution",
+        "Unit Economics & Token Economics",
+        "Outreach Systems Design",
+        "Founder Pitching & Narrative"
+      ],
+      "companies": []
+    },
+    {
+      "id": "amazon",
+      "name": "Amazon",
+      "type": "company",
+      "description": "Amazon interview preparation track.",
+      "tags": [],
+      "skills": [
+        "16 Leadership Principles (Customer Obsession, Ownership, Bias for Action)",
+        "STAR Behavioral Storytelling",
+        "Data Structures & Algorithms",
+        "System Design & Database selections"
+      ],
+      "companies": []
+    },
+    {
+      "id": "atlassian",
+      "name": "Atlassian",
+      "type": "company",
+      "description": "Atlassian interview preparation track.",
+      "tags": [],
+      "skills": [
+        "Atlassian core values (Open Company No Bullshit)",
+        "Collaborative system design structures",
+        "Active listening and giving structured feedback",
+        "Frontend UI performance and layout"
+      ],
+      "companies": []
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks",
+      "type": "company",
+      "description": "Databricks interview preparation track.",
+      "tags": [],
+      "skills": [
+        "Distributed computing algorithms",
+        "Database internals (caching, query planning, indexing)",
+        "Concurrency and systems performance",
+        "Spark/Delta Lake execution logic"
+      ],
+      "companies": []
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "type": "company",
+      "description": "Google interview preparation track.",
+      "tags": [],
+      "skills": [
+        "Data Structures & Algorithms (graphs, dynamic programming, trees)",
+        "System Design & Scalability",
+        "Googliness (cultural fit, collaboration, ambiguity navigation)",
+        "Space & Time Complexity Analysis"
+      ],
+      "companies": []
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "type": "company",
+      "description": "Meta interview preparation track.",
+      "tags": [],
+      "skills": [
+        "High-speed coding accuracy (solving 2 DSA questions in 35 minutes)",
+        "System Design scaling (focusing on caching, load balancing, message queues)",
+        "Meta core values (Focus on Impact, Move Fast)"
+      ],
+      "companies": []
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft",
+      "type": "company",
+      "description": "Microsoft interview preparation track.",
+      "tags": [],
+      "skills": [
+        "CS Fundamentals (pointers, memory management, OOP)",
+        "Growth Mindset (learning from failure, collaboration)",
+        "Distributed Service Architecture"
+      ],
+      "companies": []
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "type": "company",
+      "description": "Netflix interview preparation track.",
+      "tags": [],
+      "skills": [
+        "Freedom & Responsibility slide deck principles",
+        "High-throughput CDN architectures",
+        "Autonomy and direct feedback loops (Radical Candor)",
+        "Resilience engineering (Chaos Monkey)"
+      ],
+      "companies": []
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "type": "company",
+      "description": "OpenAI interview preparation track.",
+      "tags": [],
+      "skills": [
+        "PyTorch scale training models",
+        "Transformer mechanics and scaling math",
+        "AI Safety & alignment criteria",
+        "GPU memory optimizations"
+      ],
+      "companies": []
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "type": "company",
+      "description": "Stripe interview preparation track.",
+      "tags": [],
+      "skills": [
+        "Practical API design and integration",
+        "Squashing bugs in large codebases",
+        "Clean code refactoring and design structures",
+        "Unit testing"
+      ],
+      "companies": []
+    },
+    {
+      "id": "uber",
+      "name": "Uber",
+      "type": "company",
+      "description": "Uber interview preparation track.",
+      "tags": [],
+      "skills": [
+        "Geohashing and spatial search coordinates index (H3, S2)",
+        "Real-time stream message scheduling",
+        "High write concurrency structures",
+        "Fault-tolerance modeling"
+      ],
+      "companies": []
+    }
+  ],
+  "version": "1.0.0",
+  "total": 188
+}

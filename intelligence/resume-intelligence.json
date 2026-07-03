@@ -1,0 +1,17 @@
+{
+  "category": "Resume Intelligence",
+  "parsing_rules": [
+    {
+      "rule": "ats_parser_structure",
+      "definition": "Use single-column layouts. Avoid tables, text box shapes, graphics, or custom icons within body content. Use standard section headings (Skills, Experience, Education, Projects)."
+    },
+    {
+      "rule": "achievement_metric_signal",
+      "definition": "Format experience bullets using the Google XYZ formula: Accomplished [X], as measured by [Y], by doing [Z]. Put the outcome/impact first."
+    },
+    {
+      "rule": "keyword_contextualization",
+      "definition": "Distribute target keywords (e.g. PyTorch, Kubernetes) naturally inside experience bullet descriptions rather than just listing them in a flat skills block."
+    }
+  ]
+}

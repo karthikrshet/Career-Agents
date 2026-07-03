@@ -1,30 +1,23 @@
-# Cursor Integration Guide
+# Cursor Integration
 
-This directory documents patterns and tools to integrate **Career-Agents** with **Cursor**.
+Detailed developer integration patterns for the **Cursor** IDE.
+
+## Installation
+Download Cursor from [cursor.com](https://www.cursor.com/).
 
 ## Usage
+Open your local repository in Cursor. Use the AI Chat sidebar (Ctrl+L / Cmd+L) or inline compiler (Ctrl+K / Cmd+K) to generate and edit files.
 
-### Option 1: Workspace Cursor Rules (.cursorrules)
-Copy the complete contents of an agent file (e.g., [`career/placement-coach.md`](../../career/placement-coach.md)) and paste it into the `.cursorrules` file at the root of your workspace.
-
-### Option 2: CLI packaging
-You can export any agent directly as a Cursor custom rule package using the converter script:
+## Agent Loading
+Load any agent prompt as your workspace-level instructions:
 ```bash
-./scripts/convert.sh --tool cursor --agent career/placement-coach.md --out ./build
+career-agents use ats-resume-reviewer cursor
 ```
+This writes the full instructions to `.cursorrules` in your project root.
 
----
+## Prompt Injection
+To inject multiple agents, create a `.cursorrules` file and append custom instructions sections. Mention `@.cursorrules` in the Cursor Chat to ensure the ruleset is loaded.
 
-## Future Ready Runtimes
-
-The platform is designed to be compatible with:
-- GitHub Copilot
-- Antigravity
-- OpenCode
-- OpenClaw
-- Windsurf
-- Aider
-- Qwen
-- Kimi
-- Osaurus
-- Hermes
+## Best Practices
+- **Switching Contexts**: Remember to clear or rename `.cursorrules` when transitioning from career coaching to normal repository code writing.
+- **Reference Files**: Use the `@` symbol in chat to reference specific folders or files (e.g. `@resume.md`) for more contextual responses.

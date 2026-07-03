@@ -1,0 +1,269 @@
+{
+  "$schema": "https://codemyfyp-agents.dev/schema/career-paths.json",
+  "repository": "Career-Agents",
+  "version": "0.1.0",
+  "career_paths": [
+    {
+      "id": "software-engineer",
+      "name": "Software Engineer",
+      "description": "Generalist software engineer focused on building robust applications, CS fundamentals, algorithms, and collaborative team delivery.",
+      "core_skills": [
+        "Data Structures & Algorithms",
+        "Object Oriented Design",
+        "System Design",
+        "Version Control (Git)",
+        "Testing & Debugging"
+      ],
+      "recommended_divisions": [
+        "engineering",
+        "interview",
+        "career"
+      ],
+      "recommended_agents": [
+        "google-interview-coach",
+        "technical-interview-coach",
+        "code-reviewer",
+        "mock-interviewer"
+      ],
+      "recommended_workflows": [
+        "faang-preparation",
+        "technical-interview-week",
+        "fresher-placement"
+      ]
+    },
+    {
+      "id": "frontend-engineer",
+      "name": "Frontend Engineer",
+      "description": "Specialized engineer focused on client-side applications, user interfaces, performance optimization, and modern web frameworks.",
+      "core_skills": [
+        "JavaScript / TypeScript",
+        "React / Next.js",
+        "CSS & Styling",
+        "Web Vitals & Performance",
+        "API Integration"
+      ],
+      "recommended_divisions": [
+        "engineering",
+        "resume",
+        "career"
+      ],
+      "recommended_agents": [
+        "nextjs-performance-engineer",
+        "portfolio-reviewer",
+        "ats-resume-reviewer"
+      ],
+      "recommended_workflows": [
+        "ats-optimization",
+        "technical-interview-week"
+      ]
+    },
+    {
+      "id": "backend-engineer",
+      "name": "Backend Engineer",
+      "description": "Specialized engineer focused on server-side logic, API design, database structures, security, caching, and scalability.",
+      "core_skills": [
+        "API Design (REST/GraphQL)",
+        "Database Architecture & Indexing",
+        "Distributed Systems",
+        "Server-Side Languages (Go, Python, Java, Node.js)",
+        "Performance Engineering"
+      ],
+      "recommended_divisions": [
+        "engineering",
+        "data-engineering",
+        "interview"
+      ],
+      "recommended_agents": [
+        "backend-architect",
+        "database-engineer",
+        "system-design-coach"
+      ],
+      "recommended_workflows": [
+        "technical-interview-week"
+      ]
+    },
+    {
+      "id": "full-stack-engineer",
+      "name": "Full Stack Engineer",
+      "description": "Versatile engineer capable of building and maintaining both client-side and server-side components of modern web applications.",
+      "core_skills": [
+        "Frontend Frameworks",
+        "Backend APIs",
+        "Database Design",
+        "Cloud Deployments",
+        "End-to-End Testing"
+      ],
+      "recommended_divisions": [
+        "engineering",
+        "cloud",
+        "career"
+      ],
+      "recommended_agents": [
+        "mern-architect",
+        "code-reviewer",
+        "placement-coach"
+      ],
+      "recommended_workflows": [
+        "fresher-placement",
+        "ats-optimization"
+      ]
+    },
+    {
+      "id": "ai-engineer",
+      "name": "AI Engineer",
+      "description": "Specialist in integrating machine learning, large language models, retrieval augmented generation, and cognitive agents into product architectures.",
+      "core_skills": [
+        "LLMs & Prompt Engineering",
+        "RAG & Semantic Search",
+        "Python & PyTorch",
+        "Agentic Architectures",
+        "Model Orchestration"
+      ],
+      "recommended_divisions": [
+        "ai-engineering",
+        "ai-business",
+        "cloud"
+      ],
+      "recommended_agents": [
+        "ai-agent-architect",
+        "llm-engineer",
+        "rag-architect",
+        "ai-engineer-career-coach"
+      ],
+      "recommended_workflows": [
+        "technical-interview-week"
+      ]
+    },
+    {
+      "id": "cloud-engineer",
+      "name": "Cloud Engineer",
+      "description": "Focused on provisioning public cloud infrastructure, maintaining high availability, designing scalable networks, and managing containerized systems.",
+      "core_skills": [
+        "AWS / GCP / Azure",
+        "Terraform & IaC",
+        "Kubernetes & Containers",
+        "Networking & VPCs",
+        "Site Reliability (SRE)"
+      ],
+      "recommended_divisions": [
+        "cloud",
+        "engineering",
+        "cybersecurity"
+      ],
+      "recommended_agents": [
+        "aws-cloud-architect",
+        "kubernetes-specialist",
+        "terraform-specialist",
+        "site-reliability-engineer"
+      ],
+      "recommended_workflows": [
+        "technical-interview-week"
+      ]
+    },
+    {
+      "id": "devops-engineer",
+      "name": "DevOps Engineer",
+      "description": "Bridging development and operations to automate software delivery pipelines, manage configuration state, and ensure infrastructure reliability.",
+      "core_skills": [
+        "CI/CD Pipelines",
+        "Configuration Management",
+        "Infrastructure as Code",
+        "Monitoring & Logging",
+        "Build Tools & Packaging"
+      ],
+      "recommended_divisions": [
+        "cloud",
+        "engineering",
+        "cybersecurity"
+      ],
+      "recommended_agents": [
+        "devops-engineer",
+        "platform-engineer",
+        "site-reliability-engineer"
+      ],
+      "recommended_workflows": [
+        "technical-interview-week"
+      ]
+    },
+    {
+      "id": "cybersecurity-engineer",
+      "name": "Cybersecurity Engineer",
+      "description": "Dedicated to securing software systems, identifying vulnerabilities, configuring access controls, and responding to security incidents.",
+      "core_skills": [
+        "Application Security & OWASP",
+        "Identity & Access Management (IAM)",
+        "Threat Modeling & Pen Testing",
+        "Incident Response & Forensics",
+        "Regulatory Compliance (SOC2/GDPR)"
+      ],
+      "recommended_divisions": [
+        "cybersecurity",
+        "cloud",
+        "engineering"
+      ],
+      "recommended_agents": [
+        "application-security-specialist",
+        "cloud-security-engineer",
+        "incident-response-specialist",
+        "governance-risk-compliance-advisor"
+      ],
+      "recommended_workflows": [
+        "technical-interview-week"
+      ]
+    },
+    {
+      "id": "product-manager",
+      "name": "Product Manager",
+      "description": "Connecting technology, business, and design to define product features, scope releases, prioritize roadmaps, and align cross-functional teams.",
+      "core_skills": [
+        "Product Roadmap Planning",
+        "User Interviewing & Feedback",
+        "Prioritization Frameworks",
+        "Market & Competitor Analysis",
+        "Data-Driven Decisions"
+      ],
+      "recommended_divisions": [
+        "startup",
+        "career",
+        "networking"
+      ],
+      "recommended_agents": [
+        "product-manager",
+        "product-manager-coach",
+        "market-research-analyst"
+      ],
+      "recommended_workflows": [
+        "ats-optimization",
+        "salary-negotiation"
+      ]
+    },
+    {
+      "id": "startup-founder",
+      "name": "Startup Founder",
+      "description": "Building a business from scratch, scoping MVPs, testing market fit, structuring go-to-market strategies, and managing early unit economics.",
+      "core_skills": [
+        "MVP Scoping & Validation",
+        "Go-To-Market Execution",
+        "Unit Economics & Token Economics",
+        "Outreach Systems Design",
+        "Founder Pitching & Narrative"
+      ],
+      "recommended_divisions": [
+        "startup",
+        "ai-business",
+        "gtm",
+        "freelancing"
+      ],
+      "recommended_agents": [
+        "founder-advisor",
+        "growth-strategist",
+        "ai-product-builder",
+        "market-research-analyst"
+      ],
+      "recommended_workflows": [
+        "linkedin-growth",
+        "remote-job-hunt"
+      ]
+    }
+  ]
+}

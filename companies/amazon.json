@@ -1,0 +1,27 @@
+{
+  "id": "amazon",
+  "name": "Amazon",
+  "interview_process": [
+    "Online Assessment: coding test + system simulation (90 min)",
+    "Recruiter screen",
+    "Onsite Loop (The Loop): 3-4 coding/system design rounds, with each round dedicating 20+ minutes to behavioral questions testing the 16 Leadership Principles"
+  ],
+  "skills": [
+    "16 Leadership Principles (Customer Obsession, Ownership, Bias for Action)",
+    "STAR Behavioral Storytelling",
+    "Data Structures & Algorithms",
+    "System Design & Database selections"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "amazon-interview-coach",
+    "behavioral-interview-specialist",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Amazon Leadership Principles official guides",
+    "Amazon Science Blog",
+    "Amazon DynamoDB whitepapers"
+  ]
+}

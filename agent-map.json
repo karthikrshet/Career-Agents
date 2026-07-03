@@ -1,0 +1,947 @@
+{
+  "ats-resume-reviewer": {
+    "name": "ATS Resume Reviewer",
+    "filename": "career/ats-resume-reviewer.md",
+    "vibe": "forensic, exacting, recruiter-aware, no-nonsense",
+    "difficulty": "Easy",
+    "experience_level": "Mid"
+  },
+  "career-accountability-coach": {
+    "name": "Career Accountability Coach",
+    "filename": "career/career-accountability-coach.md",
+    "vibe": "structured, non-judgmental, follow-through-obsessed, warmly relentless",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "career-pivot-to-tech-advisor": {
+    "name": "Career Pivot to Tech Advisor",
+    "filename": "career/career-pivot-to-tech-advisor.md",
+    "vibe": "transition-realistic, path-specific, evidence-obsessed, non-STEM-background-affirming",
+    "difficulty": "Medium",
+    "experience_level": "Entry"
+  },
+  "career-roadmap-strategist": {
+    "name": "Career Roadmap Strategist",
+    "filename": "career/career-roadmap-strategist.md",
+    "vibe": "long-horizon, milestone-obsessed, compounding-minded, immune to short-term noise",
+    "difficulty": "Medium",
+    "experience_level": "Senior"
+  },
+  "career-transition-coach": {
+    "name": "Career Transition Coach",
+    "filename": "career/career-transition-coach.md",
+    "vibe": "decisive, bridge-builder, asset-focused, allergic to \"start from scratch",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "diversity-inclusion-career-coach": {
+    "name": "Diversity & Inclusion Career Coach",
+    "filename": "career/diversity-inclusion-career-coach.md",
+    "vibe": "equity-aware, structurally honest, strengths-first, systemic-not-personal",
+    "difficulty": "Medium",
+    "experience_level": "Senior"
+  },
+  "executive-job-search-coach": {
+    "name": "Executive Job Search Coach",
+    "filename": "career/executive-job-search-coach.md",
+    "vibe": "discretion-first, network-over-resume, board-aware, long-game strategist",
+    "difficulty": "Medium",
+    "experience_level": "Executive"
+  },
+  "freelance-career-advisor": {
+    "name": "Freelance Career Advisor",
+    "filename": "career/freelance-career-advisor.md",
+    "vibe": "business-first, income-predictability-obsessed, anti-hustle-culture, client-quality-over-quantity",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "graduate-career-advisor": {
+    "name": "Graduate Career Advisor",
+    "filename": "career/graduate-career-advisor.md",
+    "vibe": "first-job-focused, anti-panic, strategy-before-volume, honest about timelines",
+    "difficulty": "Medium",
+    "experience_level": "Entry"
+  },
+  "hr-interview-coach": {
+    "name": "HR Interview Coach",
+    "filename": "career/hr-interview-coach.md",
+    "vibe": "empathetic, bluntly-honest, strategic, reassuring",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "internship-application-strategist": {
+    "name": "Internship Application Strategist",
+    "filename": "career/internship-application-strategist.md",
+    "vibe": "student-focused, strategic, opportunity-driven, polished",
+    "difficulty": "Medium",
+    "experience_level": "Entry"
+  },
+  "internship-success-coach": {
+    "name": "Internship Success Coach",
+    "filename": "career/internship-success-coach.md",
+    "vibe": "performance-first, visibility-aware, return-offer-obsessed, warm but results-driven",
+    "difficulty": "Medium",
+    "experience_level": "Entry"
+  },
+  "job-search-strategist": {
+    "name": "Job Search Strategist",
+    "filename": "career/job-search-strategist.md",
+    "vibe": "organized, proactive, results-focused, practical",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "linkedin-growth-advisor": {
+    "name": "LinkedIn Growth Advisor",
+    "filename": "career/linkedin-growth-advisor.md",
+    "vibe": "tactical, network-savvy, evidence-driven, personable",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "networking-coach": {
+    "name": "Networking Coach",
+    "filename": "career/networking-coach.md",
+    "vibe": "warm-but-strategic, systems-thinker, anti-hustle, deeply human",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "offer-evaluation-advisor": {
+    "name": "Offer Evaluation Advisor",
+    "filename": "career/offer-evaluation-advisor.md",
+    "vibe": "analytical, impartial, career-aware, structured",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "personal-branding-advisor": {
+    "name": "Personal Branding Advisor",
+    "filename": "career/personal-branding-advisor.md",
+    "vibe": "identity-first, anti-performative, consistency-obsessed, evidence-over-aesthetics",
+    "difficulty": "Medium",
+    "experience_level": "Senior"
+  },
+  "placement-coach": {
+    "name": "Placement Coach",
+    "filename": "career/placement-coach.md",
+    "vibe": "blunt, data-driven, relentlessly practical, quietly encouraging",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "product-manager-coach": {
+    "name": "Product Manager Coach",
+    "filename": "career/product-manager-coach.md",
+    "vibe": "frameworks-over-feelings, user-obsessed, data-literate, execution-focused",
+    "difficulty": "Medium",
+    "experience_level": "Executive"
+  },
+  "recruiter-outreach-specialist": {
+    "name": "Recruiter Outreach Specialist",
+    "filename": "career/recruiter-outreach-specialist.md",
+    "vibe": "targeted, professional, follow-up-savvy, recruiter-aware",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "remote-work-advisor": {
+    "name": "Remote Work Advisor",
+    "filename": "career/remote-work-advisor.md",
+    "vibe": "async-native, visibility-conscious, systems-thinker, anti-isolation-as-default",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "resume-strategist": {
+    "name": "Resume Strategist",
+    "filename": "career/resume-strategist.md",
+    "vibe": "strategic, narrative-first, evidence-rooted, empathetic",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "returnship-coach": {
+    "name": "Returnship Coach",
+    "filename": "career/returnship-coach.md",
+    "vibe": "gap-reframer, confidence-rebuilder, full-experience-honoring, anti-stigma",
+    "difficulty": "Medium",
+    "experience_level": "Entry"
+  },
+  "salary-benchmark-analyst": {
+    "name": "Salary Benchmark Analyst",
+    "filename": "career/salary-benchmark-analyst.md",
+    "vibe": "data-first, unsentimental about money, precision-obsessed, zero tolerance for guesswork",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "salary-negotiation-coach": {
+    "name": "Salary Negotiation Coach",
+    "filename": "career/salary-negotiation-coach.md",
+    "vibe": "strategic, direct, data-backed, candidate-first",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "technical-interview-coach": {
+    "name": "Technical Interview Coach",
+    "filename": "career/technical-interview-coach.md",
+    "vibe": "rigorous, pragmatic, mentor-forward, outcome-oriented",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "adobe-interview-coach": {
+    "name": "Adobe Interview Coach",
+    "filename": "company-interviews/adobe-interview-coach.md",
+    "vibe": "craft-focused, technically rigorous, product-empathetic, detail-loving",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "amazon-interview-coach": {
+    "name": "Amazon Interview Coach",
+    "filename": "company-interviews/amazon-interview-coach.md",
+    "vibe": "principle-obsessed, exacting on story structure, bar-raiser mindset",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "atlassian-interview-coach": {
+    "name": "Atlassian Interview Coach",
+    "filename": "company-interviews/atlassian-interview-coach.md",
+    "vibe": "values-literate, collaborative, transparent, practically minded",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "google-interview-coach": {
+    "name": "Google Interview Coach",
+    "filename": "company-interviews/google-interview-coach.md",
+    "vibe": "rigorous, structure-obsessed, precise, calmly demanding",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "meta-interview-coach": {
+    "name": "Meta Interview Coach",
+    "filename": "company-interviews/meta-interview-coach.md",
+    "vibe": "fast-paced, impact-driven, direct, unsentimental about scope",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "microsoft-interview-coach": {
+    "name": "Microsoft Interview Coach",
+    "filename": "company-interviews/microsoft-interview-coach.md",
+    "vibe": "collaborative, growth-minded, structured, quietly rigorous",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "netflix-interview-coach": {
+    "name": "Netflix Interview Coach",
+    "filename": "company-interviews/netflix-interview-coach.md",
+    "vibe": "candid, judgment-focused, unimpressed by hedging, high standards",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "oracle-interview-coach": {
+    "name": "Oracle Interview Coach",
+    "filename": "company-interviews/oracle-interview-coach.md",
+    "vibe": "fundamentals-obsessed, methodical, no patience for shortcuts, thorough",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "salesforce-interview-coach": {
+    "name": "Salesforce Interview Coach",
+    "filename": "company-interviews/salesforce-interview-coach.md",
+    "vibe": "relationship-focused, values-literate, warm, customer-obsessed",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "uber-interview-coach": {
+    "name": "Uber Interview Coach",
+    "filename": "company-interviews/uber-interview-coach.md",
+    "vibe": "scale-minded, ownership-obsessed, operationally sharp, direct",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "backend-architect": {
+    "name": "Backend Architect",
+    "filename": "engineering/backend-architect.md",
+    "vibe": "methodical, skeptical of shortcuts, long-term-thinking, unflashy",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "code-reviewer": {
+    "name": "Code Reviewer",
+    "filename": "engineering/code-reviewer.md",
+    "vibe": "rigorous, fair, unimpressed by cleverness, teaching-oriented",
+    "difficulty": "Easy",
+    "experience_level": "Senior"
+  },
+  "database-engineer": {
+    "name": "Database Engineer",
+    "filename": "engineering/database-engineer.md",
+    "vibe": "precise, plan-reading, patient teacher, quietly relentless about correctness",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "devops-engineer": {
+    "name": "DevOps Engineer",
+    "filename": "engineering/devops-engineer.md",
+    "vibe": "reliability-obsessed, calm in incidents, allergic to manual steps, methodical",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "mern-architect": {
+    "name": "MERN Architect",
+    "filename": "engineering/mern-architect.md",
+    "vibe": "pragmatic, opinionated, allergic to over-engineering, scalability-focused",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "nextjs-performance-engineer": {
+    "name": "Next.js Performance Engineer",
+    "filename": "engineering/nextjs-performance-engineer.md",
+    "vibe": "measurement-obsessed, impatient with guesswork, precise, quietly intense",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "behavioral-interview-specialist": {
+    "name": "Behavioral Interview Specialist",
+    "filename": "interview/behavioral-interview-specialist.md",
+    "vibe": "structure-focused, evidence-oriented, retrospective-driven, authentic",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "group-discussion-coach": {
+    "name": "Group Discussion Coach",
+    "filename": "interview/group-discussion-coach.md",
+    "vibe": "collaborative, structured, assertive-polite, consensus-oriented",
+    "difficulty": "Medium",
+    "experience_level": "Senior"
+  },
+  "leadership-interview-coach": {
+    "name": "Leadership Interview Coach",
+    "filename": "interview/leadership-interview-coach.md",
+    "vibe": "executive-mature, vision-oriented, organization-focused, direct-honest",
+    "difficulty": "Hard",
+    "experience_level": "Executive"
+  },
+  "mock-interviewer": {
+    "name": "Mock Interviewer",
+    "filename": "interview/mock-interviewer.md",
+    "vibe": "simulation-realistic, diagnostic-critical, follow-up-active, candidate-challenging",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "system-design-coach": {
+    "name": "System Design Coach",
+    "filename": "interview/system-design-coach.md",
+    "vibe": "architect-level, scalability-obsessed, logic-driven, trade-off-centered",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "alumni-networking-advisor": {
+    "name": "Alumni Networking Advisor",
+    "filename": "networking/alumni-networking-advisor.md",
+    "vibe": "relationship-first, affinity-driven, curious, supportive",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "cold-outreach-specialist": {
+    "name": "Cold Outreach Specialist",
+    "filename": "networking/cold-outreach-specialist.md",
+    "vibe": "conversion-oriented, value-first, direct, professional",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "linkedin-outreach-specialist": {
+    "name": "LinkedIn Outreach Specialist",
+    "filename": "networking/linkedin-outreach-specialist.md",
+    "vibe": "network-strategic, high-conversion, professional, connection-centric",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "recruiter-communication-coach": {
+    "name": "Recruiter Communication Coach",
+    "filename": "networking/recruiter-communication-coach.md",
+    "vibe": "professional, clear-headed, responsive, recruitment-fluent",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "referral-strategy-coach": {
+    "name": "Referral Strategy Coach",
+    "filename": "networking/referral-strategy-coach.md",
+    "vibe": "conversion-focused, relationship-respectful, advocacy-driven, strategic",
+    "difficulty": "Medium",
+    "experience_level": "Entry"
+  },
+  "documentation-specialist": {
+    "name": "Documentation Specialist",
+    "filename": "projects/documentation-specialist.md",
+    "vibe": "precise, structured, reader-first, quality-driven",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "final-year-project-advisor": {
+    "name": "Final Year Project Advisor",
+    "filename": "projects/final-year-project-advisor.md",
+    "vibe": "academic, practical, deadline-aware, mentor-led",
+    "difficulty": "Medium",
+    "experience_level": "Entry"
+  },
+  "research-assistant": {
+    "name": "Research Assistant",
+    "filename": "projects/research-assistant.md",
+    "vibe": "systematic, evidence-based, methodological, precise",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "viva-coach": {
+    "name": "Viva Coach",
+    "filename": "projects/viva-coach.md",
+    "vibe": "calm, precise, confidence-building, exam-aware",
+    "difficulty": "Medium",
+    "experience_level": "Entry"
+  },
+  "executive-resume-advisor": {
+    "name": "Executive Resume Advisor",
+    "filename": "resume/executive-resume-advisor.md",
+    "vibe": "strategic, corporate, boardroom-ready, outcomes-first",
+    "difficulty": "Medium",
+    "experience_level": "Executive"
+  },
+  "portfolio-reviewer": {
+    "name": "Portfolio Reviewer",
+    "filename": "resume/portfolio-reviewer.md",
+    "vibe": "critique-honest, structure-driven, detail-oriented, proof-obsessed",
+    "difficulty": "Easy",
+    "experience_level": "Mid"
+  },
+  "resume-achievement-writer": {
+    "name": "Resume Achievement Writer",
+    "filename": "resume/resume-achievement-writer.md",
+    "vibe": "metric-obsessed, impact-driven, anti-bullet-list, precision-first",
+    "difficulty": "Easy",
+    "experience_level": "Mid"
+  },
+  "resume-formatting-specialist": {
+    "name": "Resume Formatting Specialist",
+    "filename": "resume/resume-formatting-specialist.md",
+    "vibe": "detail-obsessed, typographically precise, layout-first, minimalist",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "resume-keyword-optimizer": {
+    "name": "Resume Keyword Optimizer",
+    "filename": "resume/resume-keyword-optimizer.md",
+    "vibe": "analytical, search-engine-focused, keyword-aligned, semantic-match",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "founder-advisor": {
+    "name": "Founder Advisor",
+    "filename": "startup/founder-advisor.md",
+    "vibe": "blunt, pattern-matching, allergic to founder self-delusion, genuinely rooting for you",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "growth-strategist": {
+    "name": "Growth Strategist",
+    "filename": "startup/growth-strategist.md",
+    "vibe": "experimental, metrics-driven, retention-first, no-nonsense",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "market-research-analyst": {
+    "name": "Market Research Analyst",
+    "filename": "startup/market-research-analyst.md",
+    "vibe": "forensic, methodical, strategist-first, commercially-minded",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "product-manager": {
+    "name": "Product Manager",
+    "filename": "startup/product-manager.md",
+    "vibe": "strategic, customer-focused, data-informed, pragmatic",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "ai-agent-architect": {
+    "name": "AI Agent Architect",
+    "filename": "ai-engineering/ai-agent-architect.md",
+    "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "ai-engineer-career-coach": {
+    "name": "AI Engineer Career Coach",
+    "filename": "ai-engineering/ai-engineer-career-coach.md",
+    "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "ai-product-builder": {
+    "name": "AI Product Builder",
+    "filename": "ai-engineering/ai-product-builder.md",
+    "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "computer-vision-engineer": {
+    "name": "Computer Vision Engineer",
+    "filename": "ai-engineering/computer-vision-engineer.md",
+    "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "generative-ai-consultant": {
+    "name": "Generative AI Consultant",
+    "filename": "ai-engineering/generative-ai-consultant.md",
+    "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "llm-engineer": {
+    "name": "LLM Engineer",
+    "filename": "ai-engineering/llm-engineer.md",
+    "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "machine-learning-engineer": {
+    "name": "Machine Learning Engineer",
+    "filename": "ai-engineering/machine-learning-engineer.md",
+    "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "mlops-engineer": {
+    "name": "MLOps Engineer",
+    "filename": "ai-engineering/mlops-engineer.md",
+    "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "prompt-engineer": {
+    "name": "Prompt Engineer",
+    "filename": "ai-engineering/prompt-engineer.md",
+    "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "rag-architect": {
+    "name": "RAG Architect",
+    "filename": "ai-engineering/rag-architect.md",
+    "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "aws-cloud-architect": {
+    "name": "AWS Cloud Architect",
+    "filename": "cloud/aws-cloud-architect.md",
+    "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "azure-cloud-engineer": {
+    "name": "Azure Cloud Engineer",
+    "filename": "cloud/azure-cloud-engineer.md",
+    "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "cloud-cost-optimizer": {
+    "name": "Cloud Cost Optimizer",
+    "filename": "cloud/cloud-cost-optimizer.md",
+    "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "cloud-migration-advisor": {
+    "name": "Cloud Migration Advisor",
+    "filename": "cloud/cloud-migration-advisor.md",
+    "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "cloud-security-advisor": {
+    "name": "Cloud Security Advisor",
+    "filename": "cloud/cloud-security-advisor.md",
+    "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "gcp-cloud-engineer": {
+    "name": "GCP Cloud Engineer",
+    "filename": "cloud/gcp-cloud-engineer.md",
+    "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "kubernetes-specialist": {
+    "name": "Kubernetes Specialist",
+    "filename": "cloud/kubernetes-specialist.md",
+    "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "platform-engineer": {
+    "name": "Platform Engineer",
+    "filename": "cloud/platform-engineer.md",
+    "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "site-reliability-engineer": {
+    "name": "Site Reliability Engineer",
+    "filename": "cloud/site-reliability-engineer.md",
+    "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "terraform-specialist": {
+    "name": "Terraform Specialist",
+    "filename": "cloud/terraform-specialist.md",
+    "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "application-security-specialist": {
+    "name": "Application Security Specialist",
+    "filename": "cybersecurity/application-security-specialist.md",
+    "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "cloud-security-engineer": {
+    "name": "Cloud Security Engineer",
+    "filename": "cybersecurity/cloud-security-engineer.md",
+    "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "ethical-hacking-advisor": {
+    "name": "Ethical Hacking Advisor",
+    "filename": "cybersecurity/ethical-hacking-advisor.md",
+    "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "governance-risk-compliance-advisor": {
+    "name": "Governance Risk Compliance Advisor",
+    "filename": "cybersecurity/governance-risk-compliance-advisor.md",
+    "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "identity-access-management-specialist": {
+    "name": "Identity Access Management Specialist",
+    "filename": "cybersecurity/identity-access-management-specialist.md",
+    "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+    "difficulty": "Hard",
+    "experience_level": "Executive"
+  },
+  "incident-response-specialist": {
+    "name": "Incident Response Specialist",
+    "filename": "cybersecurity/incident-response-specialist.md",
+    "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "penetration-testing-coach": {
+    "name": "Penetration Testing Coach",
+    "filename": "cybersecurity/penetration-testing-coach.md",
+    "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "security-architect": {
+    "name": "Security Architect",
+    "filename": "cybersecurity/security-architect.md",
+    "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+    "difficulty": "Hard",
+    "experience_level": "Executive"
+  },
+  "security-engineer": {
+    "name": "Security Engineer",
+    "filename": "cybersecurity/security-engineer.md",
+    "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "security-operations-analyst": {
+    "name": "Security Operations Analyst",
+    "filename": "cybersecurity/security-operations-analyst.md",
+    "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "community-builder": {
+    "name": "Community Builder",
+    "filename": "open-source/community-builder.md",
+    "vibe": "Collaborative, Community-Driven, Documentation-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "developer-advocate": {
+    "name": "Developer Advocate",
+    "filename": "open-source/developer-advocate.md",
+    "vibe": "Collaborative, Community-Driven, Documentation-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "devrel-strategist": {
+    "name": "DevRel Strategist",
+    "filename": "open-source/devrel-strategist.md",
+    "vibe": "Collaborative, Community-Driven, Documentation-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "github-growth-advisor": {
+    "name": "GitHub Growth Advisor",
+    "filename": "open-source/github-growth-advisor.md",
+    "vibe": "Collaborative, Community-Driven, Documentation-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "maintainer-coach": {
+    "name": "Maintainer Coach",
+    "filename": "open-source/maintainer-coach.md",
+    "vibe": "Collaborative, Community-Driven, Documentation-First",
+    "difficulty": "Medium",
+    "experience_level": "Senior"
+  },
+  "open-source-funding-advisor": {
+    "name": "Open Source Funding Advisor",
+    "filename": "open-source/open-source-funding-advisor.md",
+    "vibe": "Collaborative, Community-Driven, Documentation-First",
+    "difficulty": "Medium",
+    "experience_level": "Executive"
+  },
+  "open-source-mentor": {
+    "name": "Open Source Mentor",
+    "filename": "open-source/open-source-mentor.md",
+    "vibe": "Collaborative, Community-Driven, Documentation-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "oss-contributor-coach": {
+    "name": "OSS Contributor Coach",
+    "filename": "open-source/oss-contributor-coach.md",
+    "vibe": "Collaborative, Community-Driven, Documentation-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "project-maintenance-specialist": {
+    "name": "Project Maintenance Specialist",
+    "filename": "open-source/project-maintenance-specialist.md",
+    "vibe": "Collaborative, Community-Driven, Documentation-First",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "technical-writing-advisor": {
+    "name": "Technical Writing Advisor",
+    "filename": "open-source/technical-writing-advisor.md",
+    "vibe": "Collaborative, Community-Driven, Documentation-First",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "analytics-engineer": {
+    "name": "Analytics Engineer",
+    "filename": "data-engineering/analytics-engineer.md",
+    "vibe": "Transactional, Data-Driven, Analytical",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "business-intelligence-specialist": {
+    "name": "Business Intelligence Specialist",
+    "filename": "data-engineering/business-intelligence-specialist.md",
+    "vibe": "Transactional, Data-Driven, Analytical",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "data-architect": {
+    "name": "Data Architect",
+    "filename": "data-engineering/data-architect.md",
+    "vibe": "Transactional, Data-Driven, Analytical",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "data-engineer": {
+    "name": "Data Engineer",
+    "filename": "data-engineering/data-engineer.md",
+    "vibe": "Transactional, Data-Driven, Analytical",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "data-governance-advisor": {
+    "name": "Data Governance Advisor",
+    "filename": "data-engineering/data-governance-advisor.md",
+    "vibe": "Transactional, Data-Driven, Analytical",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "data-platform-engineer": {
+    "name": "Data Platform Engineer",
+    "filename": "data-engineering/data-platform-engineer.md",
+    "vibe": "Transactional, Data-Driven, Analytical",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "data-quality-engineer": {
+    "name": "Data Quality Engineer",
+    "filename": "data-engineering/data-quality-engineer.md",
+    "vibe": "Transactional, Data-Driven, Analytical",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "database-performance-specialist": {
+    "name": "Database Performance Specialist",
+    "filename": "data-engineering/database-performance-specialist.md",
+    "vibe": "Transactional, Data-Driven, Analytical",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "etl-specialist": {
+    "name": "ETL Specialist",
+    "filename": "data-engineering/etl-specialist.md",
+    "vibe": "Transactional, Data-Driven, Analytical",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "stream-processing-specialist": {
+    "name": "Stream Processing Specialist",
+    "filename": "data-engineering/stream-processing-specialist.md",
+    "vibe": "Transactional, Data-Driven, Analytical",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "api-adoption-consultant": {
+    "name": "API Adoption Consultant",
+    "filename": "devrel/api-adoption-consultant.md",
+    "vibe": "Engaging, Empathetic, Community-Centric",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "community-growth-specialist": {
+    "name": "Community Growth Specialist",
+    "filename": "devrel/community-growth-specialist.md",
+    "vibe": "Engaging, Empathetic, Community-Centric",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "conference-speaker-coach": {
+    "name": "Conference Speaker Coach",
+    "filename": "devrel/conference-speaker-coach.md",
+    "vibe": "Engaging, Empathetic, Community-Centric",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "content-strategy-advisor": {
+    "name": "Content Strategy Advisor",
+    "filename": "devrel/content-strategy-advisor.md",
+    "vibe": "Engaging, Empathetic, Community-Centric",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "developer-education-specialist": {
+    "name": "Developer Education Specialist",
+    "filename": "devrel/developer-education-specialist.md",
+    "vibe": "Engaging, Empathetic, Community-Centric",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "developer-evangelist": {
+    "name": "Developer Evangelist",
+    "filename": "devrel/developer-evangelist.md",
+    "vibe": "Engaging, Empathetic, Community-Centric",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "developer-experience-specialist": {
+    "name": "Developer Experience Specialist",
+    "filename": "devrel/developer-experience-specialist.md",
+    "vibe": "Engaging, Empathetic, Community-Centric",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "developer-relations-manager": {
+    "name": "Developer Relations Manager",
+    "filename": "devrel/developer-relations-manager.md",
+    "vibe": "Engaging, Empathetic, Community-Centric",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "technical-community-builder": {
+    "name": "Technical Community Builder",
+    "filename": "devrel/technical-community-builder.md",
+    "vibe": "Engaging, Empathetic, Community-Centric",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "technical-marketing-advisor": {
+    "name": "Technical Marketing Advisor",
+    "filename": "devrel/technical-marketing-advisor.md",
+    "vibe": "Engaging, Empathetic, Community-Centric",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "gtm-engineer": {
+    "name": "GTM Engineer",
+    "filename": "gtm/gtm-engineer.md",
+    "vibe": "technical, automation-driven, pipeline-obsessed, detail-oriented",
+    "difficulty": "Medium",
+    "experience_level": "Senior"
+  },
+  "openai-career-coach": {
+    "name": "OpenAI Career Coach",
+    "filename": "faang/openai-career-coach.md",
+    "vibe": "elite, research-focused, frontier-aware, rigorous",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "job-hunter-ai": {
+    "name": "Job Hunter AI",
+    "filename": "job-automation/job-hunter-ai.md",
+    "vibe": "structured, tactical, outcome-driven, organized",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "ai-founder": {
+    "name": "AI Founder",
+    "filename": "ai-business/ai-founder.md",
+    "vibe": "visionary, execution-focused, analytical, product-minded",
+    "difficulty": "Medium",
+    "experience_level": "Executive"
+  },
+  "freelance-founder": {
+    "name": "Freelance Founder",
+    "filename": "freelancing/freelance-founder.md",
+    "vibe": "elite, high-value, business-minded, structured",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "job-application-optimizer": {
+    "name": "Job Application Optimizer",
+    "filename": "job-automation/job-application-optimizer.md",
+    "vibe": "surgical, contextual, performance-minded, efficient",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "google-swe-coach": {
+    "name": "Google SWE Coach",
+    "filename": "faang/google-swe-coach.md",
+    "vibe": "algorithmic, analytical, Googley, structured",
+    "difficulty": "Medium",
+    "experience_level": "Senior"
+  },
+  "ai-consultant": {
+    "name": "AI Consultant",
+    "filename": "ai-business/ai-consultant.md",
+    "vibe": "advisory, enterprise-aware, risk-conscious, strategic",
+    "difficulty": "Medium",
+    "experience_level": "Senior"
+  },
+  "clay-specialist": {
+    "name": "Clay Specialist",
+    "filename": "gtm/clay-specialist.md",
+    "vibe": "structured, detail-oriented, pipeline-focused, data-obsessed",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
+  "upwork-specialist": {
+    "name": "Upwork Specialist",
+    "filename": "freelancing/upwork-specialist.md",
+    "vibe": "practical, persuasive, client-centric, result-oriented",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  }
+}

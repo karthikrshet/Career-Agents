@@ -1,0 +1,52 @@
+{
+  "ats-optimization": {
+    "name": "ATS Optimization",
+    "filename": "workflows/ats-optimization.md",
+    "category": "resume workflows"
+  },
+  "faang-preparation": {
+    "name": "FAANG Preparation",
+    "filename": "workflows/faang-preparation.md",
+    "category": "interview workflows"
+  },
+  "fresher-placement": {
+    "name": "Fresher Placement",
+    "filename": "workflows/fresher-placement.md",
+    "category": "career workflows"
+  },
+  "hr-interview-week": {
+    "name": "HR Interview Week",
+    "filename": "workflows/hr-interview-week.md",
+    "category": "interview workflows"
+  },
+  "internship-hunt": {
+    "name": "Internship Hunt",
+    "filename": "workflows/internship-hunt.md",
+    "category": "job search workflows"
+  },
+  "linkedin-growth": {
+    "name": "LinkedIn Growth",
+    "filename": "workflows/linkedin-growth.md",
+    "category": "networking workflows"
+  },
+  "offer-comparison": {
+    "name": "Offer Comparison",
+    "filename": "workflows/offer-comparison.md",
+    "category": "job search workflows"
+  },
+  "remote-job-hunt": {
+    "name": "Remote Job Hunt",
+    "filename": "workflows/remote-job-hunt.md",
+    "category": "job search workflows"
+  },
+  "salary-negotiation": {
+    "name": "Salary Negotiation",
+    "filename": "workflows/salary-negotiation.md",
+    "category": "job search workflows"
+  },
+  "technical-interview-week": {
+    "name": "Technical Interview Week",
+    "filename": "workflows/technical-interview-week.md",
+    "category": "interview workflows"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "devops-engineer",
+  "name": "DevOps Engineer",
+  "description": "Bridging development and operations to automate software delivery pipelines, manage configuration state, and ensure infrastructure reliability.",
+  "core_skills": [
+    "CI/CD Pipelines",
+    "Configuration Management",
+    "Infrastructure as Code",
+    "Monitoring & Logging",
+    "Build Tools & Packaging"
+  ],
+  "recommended_divisions": [
+    "cloud",
+    "engineering",
+    "cybersecurity"
+  ],
+  "recommended_agents": [
+    "devops-engineer",
+    "platform-engineer",
+    "site-reliability-engineer"
+  ],
+  "recommended_workflows": [
+    "technical-interview-week"
+  ]
+}

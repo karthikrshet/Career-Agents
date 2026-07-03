@@ -1,0 +1,41 @@
+{
+  "id": "faang-bundle",
+  "name": "FAANG & Top Tech Prep Bundle",
+  "description": "Pre-packaged prep assets and workflows optimized for passing high-bar coding, system design, and behavioral loops at FAANG and tier-1 companies.",
+  "agents": [
+    "google-interview-coach",
+    "amazon-interview-coach",
+    "meta-interview-coach",
+    "microsoft-interview-coach",
+    "system-design-coach",
+    "technical-interview-coach",
+    "behavioral-interview-specialist",
+    "mock-interviewer"
+  ],
+  "workflows": [
+    "faang-preparation",
+    "technical-interview-week",
+    "hr-interview-week"
+  ],
+  "career_paths": [
+    "software-engineer",
+    "ai-engineer",
+    "cloud-engineer",
+    "backend-engineer"
+  ],
+  "skills": [
+    "Data Structures & Algorithms",
+    "System Design",
+    "STAR Behavioral Method",
+    "Scalability",
+    "Concurrency"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Netflix",
+    "Uber"
+  ]
+}

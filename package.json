@@ -1,11 +1,14 @@
 {
-  "name": "codemyfyp-agents",
+  "name": "career-agents",
   "version": "0.1.0",
-  "description": "CLI installer and tool integration helper for CodeMyFYP-Agents.",
-  "main": "scripts/cli.js",
+  "description": "CLI installer and tool integration helper for Career-Agents.",
+  "main": "scripts/sdk.js",
   "type": "module",
   "bin": {
-    "codemyfyp-agents": "./scripts/cli.js"
+    "career-agents": "./scripts/cli.js"
+  },
+  "exports": {
+    ".": "./scripts/sdk.js"
   },
   "scripts": {
     "test": "node ./scripts/cli.js validate"

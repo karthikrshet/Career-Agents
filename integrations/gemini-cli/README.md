@@ -1,30 +1,36 @@
-# Gemini CLI Integration Guide
+# Gemini CLI Integration
 
-This directory documents patterns and tools to integrate **Career-Agents** with **Gemini CLI**.
+Detailed developer integration patterns for the **Gemini CLI**.
 
-## Usage
-
-### Option 1: Direct Prompt Loading
-Copy the complete contents of an agent file (e.g., [`career/placement-coach.md`](../../career/placement-coach.md)) and pipe or pass it as system instructions when invoking the Gemini CLI.
-
-### Option 2: CLI packaging
-You can export any agent directly as a Gemini CLI config template using the converter script:
+## Installation
+Run the npm install command globally:
 ```bash
-./scripts/convert.sh --tool gemini-cli --agent career/placement-coach.md --out ./build
+npm install -g @google/gemini-cli
+```
+Add your key to the environment variables:
+```bash
+export GEMINI_API_KEY="your-api-key"
 ```
 
----
+## Usage
+Query the CLI from your terminal:
+```bash
+gemini "How do I optimize SQL queries for Databricks?"
+```
 
-## Future Ready Runtimes
+## Agent Loading
+Pass the agent prompt file contents using shell expansion:
+```bash
+gemini --system "$(cat engineering/database-engineer.md)" "Review schema.sql"
+```
 
-The platform is designed to be compatible with:
-- GitHub Copilot
-- Antigravity
-- OpenCode
-- OpenClaw
-- Windsurf
-- Aider
-- Qwen
-- Kimi
-- Osaurus
-- Hermes
+## Prompt Injection
+Redirect agent prompt exports directly to the CLI command inputs:
+```bash
+career-agents run database-engineer --export txt
+gemini --system "$(cat exports/database-engineer.txt)" "Analyze query plans"
+```
+
+## Best Practices
+- **Output Redirection**: Pipe Gemini CLI reports to files for offline review: `gemini ... > audit-report.md`.
+- **Model Parameters**: Adjust model temperature parameters depending on coding checks vs system design scenarios.

@@ -1,0 +1,26 @@
+{
+  "id": "atlassian",
+  "name": "Atlassian",
+  "interview_process": [
+    "Recruiter screen and interactive coding challenge",
+    "Onsite loop: 1 system design round, 1 coding round, 1 values fit round, 1 management/behavioral round"
+  ],
+  "skills": [
+    "Atlassian core values (Open Company No Bullshit)",
+    "Collaborative system design structures",
+    "Active listening and giving structured feedback",
+    "Frontend UI performance and layout"
+  ],
+  "preparation_workflow": "technical-interview-week",
+  "agents": [
+    "atlassian-interview-coach",
+    "behavioral-interview-specialist",
+    "group-discussion-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Atlassian Team Playbook",
+    "Atlassian core values slide deck",
+    "Jira & Confluence architecture scaling articles"
+  ]
+}

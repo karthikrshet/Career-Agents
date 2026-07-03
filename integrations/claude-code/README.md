@@ -1,30 +1,36 @@
-# Claude Code Integration Guide
+# Claude Code Integration
 
-This directory documents patterns and tools to integrate **Career-Agents** with **Claude Code**.
+Detailed developer integration patterns for **Claude Code CLI**.
 
-## Usage
-
-### Option 1: Importing as Custom Project Instructions
-Copy the complete contents of an agent file (e.g., [`career/placement-coach.md`](../../career/placement-coach.md)) and paste it into the project's instructions directory or append it as system prompts.
-
-### Option 2: CLI packaging
-You can export any agent directly as a Claude Code JSON subagent manifest using the converter script:
+## Installation
+Run the npm install command globally:
 ```bash
-./scripts/convert.sh --tool claude-code --agent career/placement-coach.md --out ./build
+npm install -g @anthropic-ai/claude-code
+```
+Authenticate with Anthropic:
+```bash
+claude keys set
 ```
 
----
+## Usage
+Initiate Claude Code in your project root:
+```bash
+claude
+```
 
-## Future Ready Runtimes
+## Agent Loading
+To load an agent into a Claude Code session, ask Claude directly to read the agent markdown file:
+```text
+Please read career/ats-resume-reviewer.md and act as the ATS Resume Reviewer agent.
+```
 
-The platform is designed to be compatible with:
-- GitHub Copilot
-- Antigravity
-- OpenCode
-- OpenClaw
-- Windsurf
-- Aider
-- Qwen
-- Kimi
-- Osaurus
-- Hermes
+## Prompt Injection
+Use the CLI tool to inject the agent guidelines as a project instructions config file:
+```bash
+career-agents use google-interview-coach claude
+```
+This writes the instructions to `.claudecode.instructions.md`.
+
+## Best Practices
+- **Rules Reference**: Periodically remind Claude of the Critical Rules section during conversation.
+- **Save Context Tokens**: Reference only the specific agent file relevant to your active task.
