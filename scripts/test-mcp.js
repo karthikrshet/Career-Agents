@@ -243,8 +243,8 @@ async function runTests() {
     report.push(`- **Passed tests**: ${passedCount}`);
     report.push(`- **Failed tests**: ${totalCount - passedCount}`);
     
-    fs.writeFileSync(path.join(root, 'MCP_TEST_REPORT.md'), report.join('\n'), 'utf8');
-    console.log('\n--- TESTS COMPLETED. REPORT GENERATED AT MCP_TEST_REPORT.md ---');
+    fs.writeFileSync(path.join(root, 'docs', 'reports', 'MCP_TEST_REPORT.md'), report.join('\n'), 'utf8');
+    console.log('\n--- TESTS COMPLETED. REPORT GENERATED AT docs/reports/MCP_TEST_REPORT.md ---');
     process.exit(totalCount === passedCount ? 0 : 1);
   }
 }

@@ -25,4 +25,4 @@ Welcome! This guide provides a step-by-step onboarding walkthrough for new membe
 ---
 
 ## 🤝 Code of Conduct
-We are committed to maintaining a welcoming and supportive environment. Please respect the standards outlined in [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) during all chats, code reviews, and meetings.
+We are committed to maintaining a welcoming and supportive environment. Please respect the standards outlined in [CODE_OF_CONDUCT.md](../../CODE_OF_CONDUCT.md) during all chats, code reviews, and meetings.

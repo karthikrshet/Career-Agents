@@ -24,7 +24,7 @@
 **RECOMMENDATION: YES**
 
 The Career-Agents repository is in **excellent, production-grade health**. All initial audit blockers have been resolved:
-- All 10 career paths now have active configuration files in [career-paths/](./career-paths).
+- All 10 career paths now have active configuration files in [career-paths/](../../career-paths).
 - The documented `use` command is fully implemented in the local CLI and supports dry-runs.
 - Contributing guidelines, security disclosure policies, and Code of Conduct directories have been corrected to adopt safe, private industry standards.
 - Validation checks verify referential integrity across workflows, paths, companies, bundles, and relative links, completely preventing configuration anomalies from entering the main codebase.
