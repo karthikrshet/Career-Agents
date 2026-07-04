@@ -2,30 +2,45 @@
 
 ## Our Pledge
 
-In the interest of fostering an open and welcoming community, we pledge to make participation in CodeMyFYP-Agents a harassment-free experience for everyone.
+In the interest of fostering an open and welcoming community, we pledge to make participation in CodeMyFYP-Agents a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, religion, or sexual identity and orientation.
+
+We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
+
+---
 
 ## Our Standards
 
-Examples of behavior that contributes to a positive environment for our project include:
+Examples of behavior that contributes to a positive environment for our community include:
+*   Using welcoming and inclusive language.
+*   Being respectful of differing viewpoints and experiences.
+*   Gracefully accepting constructive criticism.
+*   Focusing on what is best for the community.
+*   Showing empathy towards other community members.
 
-- Using welcoming and inclusive language.
-- Being respectful of differing viewpoints and experiences.
-- Gracefully accepting constructive criticism.
-- Focusing on what is best for the community.
+Examples of unacceptable behavior include:
+*   The use of sexualized language or imagery, and unwelcome sexual attention or advances.
+*   Trolling, insulting or derogatory comments, and personal or political attacks.
+*   Public or private harassment in any form.
+*   Publishing others' private information, such as a physical or email address, without explicit permission.
+*   Other conduct which could reasonably be considered inappropriate in a professional setting.
 
-Examples of unacceptable behavior by participants include:
+---
 
-- Harassment, intimidation, or discrimination in any form.
-- Derogatory language or personal attacks.
-- Publishing private information without explicit permission.
-- Disruption of discussion or workflow.
+## 🔒 Enforcement & Private Reporting Process
 
-## Enforcement
+Project maintainers are responsible for clarifying and enforcing our standards of acceptable behavior.
 
-Project maintainers are responsible for clarifying standards and enforcing the Code of Conduct.
+> [!IMPORTANT]
+> **Code of Conduct violations must NOT be reported publicly.** Do not open issues or start public discussions regarding conduct violations.
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the maintainers through the repository issue tracker.
+### How to Report an Incident
+If you experience or witness behavior that violates this Code of Conduct, please report it privately to our Lead Maintainer:
+- **Contact:** Kartik Rajesh Shet
+- **Email:** **kartikrshet@gmail.com**
 
-## Attribution
-
-This Code of Conduct is adapted from the Contributor Covenant version 2.1.
+### Resolution Process
+All reports will be reviewed and investigated promptly:
+1. **Acknowledgement:** We will acknowledge receipt of your report within **24 hours**.
+2. **Review:** The maintainer will investigate the details of the reported incident.
+3. **Action:** If a violation is confirmed, appropriate action will be taken, ranging from a private warning to temporary suspension or permanent expulsion from community spaces.
+4. **Confidentiality:** All reports and resolution details will be kept strictly **confidential** to protect the privacy and safety of the reporter and any victims involved. Only maintaining staff with a need-to-know will have access to report details.
