@@ -24,6 +24,8 @@ jobs:
         run: npm install
       - name: Run validate script
         run: python scripts/validate.py
+      - name: Run CLI integration tests
+        run: npm test
 
   validate-frontmatter:
     name: Validate Agent Frontmatter
