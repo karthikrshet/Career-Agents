@@ -1,7 +1,7 @@
 {
   "name": "career-agents",
   "version": "1.1.0",
-  "description": "The Open-Source Career Operating System: Resume, Interview, Job Search & AI Agent Ecosystem.",
+  "description": "The Open Source Career Operating System",
   "main": "scripts/sdk.js",
   "type": "module",
   "bin": {
@@ -19,16 +19,24 @@
   "preferGlobal": true,
   "keywords": [
     "career",
-    "ai-agents",
-    "resume-builder",
-    "ats-resume",
-    "interview-preparation",
+    "resume",
+    "ats",
+    "interview",
     "job-search",
-    "career-development",
-    "typescript",
-    "open-source",
-    "developer-tools"
+    "career-coach",
+    "career-agents",
+    "mcp",
+    "career-operating-system",
+    "ai-agents"
   ],
+  "homepage": "https://github.com/karthikrshet/Career-Agents#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karthikrshet/Career-Agents.git"
+  },
+  "bugs": {
+    "url": "https://github.com/karthikrshet/Career-Agents/issues"
+  },
   "author": "Karthik Rajesh Shet",
   "license": "MIT",
   "files": [
