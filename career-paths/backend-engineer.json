@@ -1,0 +1,25 @@
+{
+  "id": "backend-engineer",
+  "name": "Backend Engineer",
+  "description": "Specialized engineer focused on server-side logic, API design, database structures, security, caching, and scalability.",
+  "core_skills": [
+    "API Design (REST/GraphQL)",
+    "Database Architecture & Indexing",
+    "Distributed Systems",
+    "Server-Side Languages (Go, Python, Java, Node.js)",
+    "Performance Engineering"
+  ],
+  "recommended_divisions": [
+    "engineering",
+    "data-engineering",
+    "interview"
+  ],
+  "recommended_agents": [
+    "backend-architect",
+    "database-engineer",
+    "system-design-coach"
+  ],
+  "recommended_workflows": [
+    "technical-interview-week"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "frontend-engineer",
+  "name": "Frontend Engineer",
+  "description": "Specialized engineer focused on client-side applications, user interfaces, performance optimization, and modern web frameworks.",
+  "core_skills": [
+    "JavaScript / TypeScript",
+    "React / Next.js",
+    "CSS & Styling",
+    "Web Vitals & Performance",
+    "API Integration"
+  ],
+  "recommended_divisions": [
+    "engineering",
+    "resume",
+    "career"
+  ],
+  "recommended_agents": [
+    "nextjs-performance-engineer",
+    "portfolio-reviewer",
+    "ats-resume-reviewer"
+  ],
+  "recommended_workflows": [
+    "ats-optimization",
+    "technical-interview-week"
+  ]
+}
