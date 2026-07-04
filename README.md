@@ -60,11 +60,20 @@ Unlike standard job boards or simple prompting guides, Career-Agents treats care
 
 ---
 
-## 💖 Support & Sponsorship
+## Support Career-Agents
 
-Help us expand the Career Operating System! Sponsoring the project enables us to keep prompt registries updated, support community mock panels, and write more integrations for IDEs.
+Career-Agents is an open-source Career Operating System.
 
-👉 **Learn more about sponsorship benefits in [SPONSORSHIP.md](./SPONSORSHIP.md)**
+If the project helps your career journey, consider supporting development.
+
+GitHub Sponsors:
+https://github.com/sponsors/karthikrshet
+
+Benefits:
+- Support new agent development
+- Support Career OS growth
+- Support Resume Studio improvements
+- Support MCP ecosystem expansion
 
 ---
 
