@@ -1050,6 +1050,7 @@ async function main() {
       handlePaths(args[1]);
       break;
     case 'company':
+    case 'companies':
       handleCompanies(args[1]);
       break;
     case 'launcher':
