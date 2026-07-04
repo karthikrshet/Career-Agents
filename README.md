@@ -151,7 +151,7 @@ Use the local Node.js command engine to interact with registries:
 | `company` | Inspect target company interview loop tracks | `career-agents company stripe` |
 | `launcher` | Copy prompts and launch AI browser interface | `career-agents launcher mock-interviewer` |
 | `export` | Package bundles/companies/paths prompts | `career-agents export path ai-engineer yaml` |
-| `use` | Inject instructions directly into Cursor/Copilot | `career-agents use ats-resume-reviewer cursor` |
+| `use` | Inject agent instructions directly into target IDE/tool | `career-agents use ats-resume-reviewer cursor` |
 | `recommend` | Interactive profile target recommendations | `career-agents recommend` |
 | `score` | Interactive career readiness report card | `career-agents score` |
 | `graph` | Display knowledge graph dimensions summary | `career-agents graph` |
