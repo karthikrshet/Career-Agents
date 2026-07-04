@@ -24,5 +24,5 @@ Here is how you can connect with us, get support, and collaborate.
 ## 🚀 Showcasing Your Work
 
 Have you built a wrapper, automated application tracker, or custom LLM dashboard using our agents or search index?
-- Open a PR to add it to [SHOWCASE.md](./SHOWCASE.md).
-- Share your landing role success stories in [SUCCESS_STORIES.md](./SUCCESS_STORIES.md).
+- Open a PR to add it to [SHOWCASE.md](../../SHOWCASE.md).
+- Share your landing role success stories in [SUCCESS_STORIES.md](../case-studies/SUCCESS_STORIES.md).
