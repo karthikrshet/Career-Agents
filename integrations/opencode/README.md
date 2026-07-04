@@ -1,33 +1,32 @@
-# OpenCode Integration
+# OpenCode Integration Guide
 
-Detailed developer integration patterns for the **OpenCode CLI**.
+This guide details how to integrate the **Career-Agents MCP Server** directly into your **OpenCode** IDE configuration to support agent discovery, career assessments, and resume score diagnostics.
 
-## Installation
-Clone the OpenCode repository and install the CLI globally:
-```bash
-git clone https://github.com/opencode-dev/opencode-cli
-cd opencode-cli && npm install -g .
-```
+---
 
-## Usage
-Initiate OpenCode server in your project folder:
-```bash
-opencode start
-```
+## 🛠️ Step-by-Step Configuration
 
-## Agent Loading
-Export the agent instructions in text format:
-```bash
-career-agents run ats-resume-reviewer --export txt
-```
-Move the txt file to `.opencode/instructions/`:
-```bash
-cp exports/ats-resume-reviewer.txt .opencode/instructions/
-```
+1.  **Open OpenCode Configuration:**
+    Navigate to the OpenCode editor's extension workspace settings or configuration panel.
+2.  **Add MCP Server Configuration:**
+    Configure a command transporter for the local binary execution:
+    - **Name:** `career-agents`
+    - **Type:** `command`
+    - **Command:** `node`
+    - **Arguments:** `["d:/CodeMyFYP-Agents/scripts/cli.js", "mcp"]`
+    *(Note: Replace `d:/CodeMyFYP-Agents` with the absolute path of your local repository clones).*
+3.  **Confirm Activation:**
+    Restart the editor process and check the logs tab to verify successful handshake.
 
-## Prompt Injection
-OpenCode will read all files inside `.opencode/instructions/` and append them as context-level system rules.
+---
 
-## Best Practices
-- **File Naming**: Keep filenames clean (e.g. `ats-resume-reviewer.txt`) so OpenCode logs them clearly in its console.
-- **Rule Isolation**: Do not load multiple contradictory agents under `.opencode/instructions/` simultaneously.
+## 🚀 Usage & Examples
+
+Query the OpenCode assistant window for career optimization:
+
+-   **Query:** *"Audit my current resume using the MCP tools."*
+-   **Execution Flow:**
+    - OpenCode reads the file and invokes `resume_score` to output recommendations.
+-   **Query:** *"What AI agents are available for data engineering?"*
+-   **Execution Flow:**
+    - OpenCode invokes `search_agents` with query `data-engineering` and returns a list.
