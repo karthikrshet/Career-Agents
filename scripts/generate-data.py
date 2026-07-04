@@ -451,18 +451,34 @@ def build_merged_readme(agents, divisions_data, workflows, bundles, companies, p
 ### The Open-Source Career Operating System (Career OS)
 **The most complete open-source career workspace, featuring {num_agents}+ specialized AI agents and structured execution roadmaps.**
 
-<p align="center">
-  <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/github/stars/karthikrshet/Career-Agents.svg?style=social" alt="GitHub stars"></a>
-  <a href="https://github.com/karthikrshet/Career-Agents/network"><img src="https://img.shields.io/github/forks/karthikrshet/Career-Agents.svg?style=social" alt="GitHub forks"></a>
-  <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/v/career-agents.svg" alt="npm version"></a>
-  <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/dm/career-agents.svg" alt="npm downloads"></a>
-  <a href="https://github.com/karthikrshet/Career-Agents/graphs/contributors"><img src="https://img.shields.io/github/contributors/karthikrshet/Career-Agents.svg" alt="GitHub contributors"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
-</p>
+[![npm version](https://img.shields.io/npm/v/career-agents)](https://www.npmjs.com/package/career-agents)
+[![npm downloads](https://img.shields.io/npm/dm/career-agents)](https://www.npmjs.com/package/career-agents)
+[![GitHub stars](https://img.shields.io/github/stars/karthikrshet/Career-Agents?style=social)](https://github.com/karthikrshet/Career-Agents)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/karthikrshet)](https://github.com/sponsors/karthikrshet)
 
 <p align="center">
   <img src="./docs/images/career_os_dashboard.png" alt="Career OS Dashboard" width="800">
 </p>
+
+---
+
+## Install
+
+```bash
+npm install -g career-agents
+```
+
+---
+
+## Quick Start
+
+```bash
+career-agents doctor
+career-agents assess
+career-agents recommend
+career-agents company google
+career-agents resume templates
+```
 
 ---
 
@@ -490,75 +506,6 @@ Unlike standard job boards or simple prompting guides, Career-Agents treats care
 - **Developers & Engineers**: Pivot roles (e.g. Frontend to AI/ML Engineering) and optimize technical profiles.
 - **Students & Graduates**: Access placement structures, final-year project checklists, and internship pipelines.
 - **Founders & Consultants**: Scope MVPs, construct pricing models, and direct growth strategies.
-
----
-
-## 📥 Global Installation
-
-Install the CLI tool globally via NPM:
-```bash
-npm install -g career-agents
-```
-
-Verify your local environment health:
-```bash
-career-agents doctor
-```
-
----
-
-## ⚡ Quick Start
-
-A new visitor can configure, assess, run, and export prompts out-of-the-box:
-
-```
-  1. INSTALL              2. SCORE                3. RECOMMEND
-+---------------+       +---------------+       +---------------+
-|  npm install  | ----> |  npx ... score| ----> | npx ... recom |
-+---------------+       +---------------+       +---------------+
-                                                        |
-                                                        v
-  6. EXPORT               5. LAUNCH               4. RUN (EXECUTE)
-+---------------+       +---------------+       +---------------+
-| npx ... export| <---- | npx ... launch| <---- | npx ... run   |
-+---------------+       +---------------+       +---------------+
-```
-
-### 1. Doctor / Self-Check
-Audit your repository and registry files structure:
-```bash
-career-agents doctor
-```
-
-### 2. Score (`career-agents assess`)
-Audit your standing. Run the interactive terminal questionnaire to calculate your scores across 5 dimensions:
-```bash
-career-agents assess
-```
-
-### 3. Recommend (`career-agents recommend`)
-Receive personalized matching assets. Input your skills, experience, and target goals to get matched with specialized agents, paths, and company prep guides:
-```bash
-career-agents recommend
-```
-
-### 4. Run (`career-agents run <agent-id>`)
-Execute agents directly in your terminal:
-```bash
-career-agents run ats-resume-reviewer
-```
-
-### 5. Launch (`career-agents launcher <agent-id> <platform>`)
-Deploy agents on target AI chat clients:
-```bash
-career-agents launcher google-interview-coach claude
-```
-
-### 6. Export (`career-agents export <type> <id> <format>`)
-Consolidate and package prompt assets for external tools:
-```bash
-career-agents export bundle faang-bundle json
-```
 
 ---
 
