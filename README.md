@@ -106,8 +106,14 @@ Direct browser redirection launcher hooks (`launcher/launcher-registry.json`) th
 ### 2. Career CLI
 Complete command utility that allows developers to run prompt packages, diagnose environments, assess profile scores, and get matched recommendations.
 
-### 3. Resume Intelligence
-Dedicated agents (`resume/`) specializing in keyword optimization, Google XYZ formulas, formatting reviews, and ATS parsing validations.
+### 3. Resume Intelligence & ATS Resume Studio
+An integrated suite providing automated tools to build, score, and optimize resumes for ATS filters and company-specific rubrics.
+*   **ATS Resume Templates:** 20 production-ready templates.
+*   **Resume Builder:** CLI wizard compiling JSON/Markdown/TXT formats.
+*   **ATS Scoring:** 0-100 scoring based on layout, formatting, skills density, and impact metrics.
+*   **Job Match Analysis:** Match % and suggested optimizations against job descriptions.
+*   **FAANG Optimization:** Specific rubrics for Google, Meta, OpenAI, etc.
+*   **Career Recommendations:** Matches workflows and paths.
 
 ### 4. Interview Intelligence
 Advanced mock interview loops, STAR behavioral storytelling drills, and scalable distributed system design coaching.
@@ -151,7 +157,8 @@ Use the local Node.js command engine to interact with registries:
 | `company` | Inspect target company interview loop tracks | `career-agents company stripe` |
 | `launcher` | Copy prompts and launch AI browser interface | `career-agents launcher mock-interviewer` |
 | `export` | Package bundles/companies/paths prompts | `career-agents export path ai-engineer yaml` |
-| `use` | Inject agent instructions directly into target IDE/tool | `career-agents use ats-resume-reviewer cursor` |
+| `use` | Inject instructions directly into Cursor/Copilot | `career-agents use ats-resume-reviewer cursor` |
+| `resume` | Launch the ATS Resume Studio tools suite | `career-agents resume build` |
 | `recommend` | Interactive profile target recommendations | `career-agents recommend` |
 | `score` | Interactive career readiness report card | `career-agents score` |
 | `graph` | Display knowledge graph dimensions summary | `career-agents graph` |
