@@ -6,11 +6,26 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ---
 
-## [Unreleased]
+## [v1.1.0] — 2026-07-05
+### Added
+- Created Issue templates (`agent_proposal.md`, `documentation_improvement.md`) and Pull Request template (`PULL_REQUEST_TEMPLATE.md`) with explicit label guidelines.
+- Created `SPONSORSHIP.md` program, funding roadmap, and sponsorship tiers.
+- Created `WEBSITE_ROADMAP.md` mapping page structures, layouts, and target SEO keywords for the future web app.
+- Created `docs/npm-publishing.md` guide and `NPM_RELEASE_CHECKLIST.md` checklist in root.
+- Created `docs/reports/` and `docs/community/` and `docs/case-studies/` folders to clean up repository clutter.
 
-### Planned (Towards v1.0.0)
-- Desktop application release (Tauri + Webview container).
-- Complete Community Agent Marketplace UI and rating client integration.
+### Changed
+- Relocated 12 release reports, audits, and checks from root to `docs/reports/`.
+- Relocated 8 community guides, ambassador programs, and milestones documents from root to `docs/community/`.
+- Relocated 3 case studies and usage guides from root to `docs/case-studies/`.
+- Redesigned `README.md` layout featuring premium badges, full architecture tree diagram, "Why Career-Agents?" value propositions, and direct sponsorship links.
+- Updated `scripts/test-mcp.js` to output reports to `docs/reports/` directly.
+
+## [v1.0.0] — 2026-07-04
+### Added
+- Initial stable release of Career-Agents CLI and MCP server transport.
+- Configured 135+ AI Career Agents prompt assets.
+- Implemented directory traversal safeties, rate limiting, and caching controls in MCP.
 
 ## [v0.8.0] — 2026-07-03
 ### Added
