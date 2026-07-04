@@ -922,6 +922,66 @@ function runMCPServer() {
   });
 }
 
+function handleUse(agentId, tool, dryRun) {
+  if (!agentId || !tool) {
+    console.error(`${c.red}Usage: career-agents use <agent-id> <tool> [--dry-run]${c.reset}`);
+    console.error(`E.g., career-agents use ats-resume-reviewer cursor`);
+    return;
+  }
+
+  const supportedTools = ['claude-code', 'cursor', 'copilot', 'gemini-cli', 'aider', 'windsurf', 'codex', 'opencode', 'qwen'];
+  const normalizedTool = tool.toLowerCase();
+
+  if (!supportedTools.includes(normalizedTool)) {
+    console.error(`${c.red}Unsupported tool '${tool}'. Choose from: ${supportedTools.join(', ')}${c.reset}`);
+    return;
+  }
+
+  const registry = loadJSON(registryPath);
+  const agent = registry.agents.find(a => a.id === agentId);
+  if (!agent) {
+    console.error(`${c.red}Agent '${agentId}' not found in registry.${c.reset}`);
+    return;
+  }
+
+  const agentFilePath = path.join(root, agent.filename);
+  if (!fs.existsSync(agentFilePath)) {
+    console.error(`${c.red}Agent file not found: ${agent.filename}${c.reset}`);
+    return;
+  }
+
+  const systemPrompt = fs.readFileSync(agentFilePath, 'utf8');
+
+  // Map tool-specific JSON layout keys
+  let toolType = `${normalizedTool}-instructions`;
+  if (normalizedTool === 'claude-code') toolType = 'claude-code-manifest';
+  else if (normalizedTool === 'cursor') toolType = 'cursor-rules';
+  else if (normalizedTool === 'codex') toolType = 'codex-agent';
+  else if (normalizedTool === 'gemini-cli') toolType = 'gemini-cli-manifest';
+  else if (normalizedTool === 'windsurf') toolType = 'windsurf-rules';
+
+  const manifest = {
+    type: toolType,
+    source: path.basename(agent.filename),
+    content: systemPrompt
+  };
+
+  const outputJSON = JSON.stringify(manifest, null, 2);
+
+  if (dryRun) {
+    console.log(`\n${c.yellow}=== DRY RUN: Prompt Bundle Manifest for ${normalizedTool} ===${c.reset}`);
+    console.log(outputJSON);
+    console.log(`==========================================\n`);
+  } else {
+    const outDir = path.join(root, 'exports', 'use');
+    fs.mkdirSync(outDir, { recursive: true });
+    const outFile = path.join(outDir, `${agent.id}.${normalizedTool}.json`);
+    fs.writeFileSync(outFile, outputJSON, 'utf8');
+    console.log(`\n${c.green}[Success] Prompt bundle successfully exported to configuration!${c.reset}`);
+    console.log(`=> Output path: ${c.bold}${outFile}${c.reset}`);
+  }
+}
+
 function printHelp() {
   printBanner();
   console.log(`Usage: career-agents <command> [args]
@@ -937,6 +997,7 @@ Commands:
   company [company-id]           Inspect target company preparation tracks
   launcher <agent/bundle> [plat] Copy prompts and launch AI browser interface
   export <type> <id> <format>    Consolidate and export bundle/company/path prompt packs
+  use <agent-id> <tool>          Export prompt configuration bundle for target IDE/tool
   recommend                      Interactive profile target recommendations
   score / assess                 Interactive questionnaire compliance score
   graph                          Display knowledge graph network dimensions
@@ -996,6 +1057,12 @@ async function main() {
       break;
     case 'export':
       handlePackExport(args[1], args[2], args[3]);
+      break;
+    case 'use':
+      const useAgentId = args[1];
+      const useTool = args[2];
+      const dryRun = args.indexOf('--dry-run') !== -1 || args.indexOf('-d') !== -1;
+      handleUse(useAgentId, useTool, dryRun);
       break;
     case 'recommend':
       handleRecommendation();

@@ -1651,6 +1651,31 @@
       "type": "skill"
     },
     {
+      "id": "backend-engineer",
+      "name": "Backend Engineer",
+      "type": "career-path"
+    },
+    {
+      "id": "skill-api-design-(rest/graphql)",
+      "name": "API Design (REST/GraphQL)",
+      "type": "skill"
+    },
+    {
+      "id": "skill-database-architecture-&-indexing",
+      "name": "Database Architecture & Indexing",
+      "type": "skill"
+    },
+    {
+      "id": "skill-server-side-languages-(go,-python,-java,-node.js)",
+      "name": "Server-Side Languages (Go, Python, Java, Node.js)",
+      "type": "skill"
+    },
+    {
+      "id": "skill-performance-engineering",
+      "name": "Performance Engineering",
+      "type": "skill"
+    },
+    {
       "id": "cloud-engineer",
       "name": "Cloud Engineer",
       "type": "career-path"
@@ -1728,6 +1753,66 @@
     {
       "id": "skill-build-tools-&-packaging",
       "name": "Build Tools & Packaging",
+      "type": "skill"
+    },
+    {
+      "id": "frontend-engineer",
+      "name": "Frontend Engineer",
+      "type": "career-path"
+    },
+    {
+      "id": "skill-javascript-/-typescript",
+      "name": "JavaScript / TypeScript",
+      "type": "skill"
+    },
+    {
+      "id": "skill-react-/-next.js",
+      "name": "React / Next.js",
+      "type": "skill"
+    },
+    {
+      "id": "skill-css-&-styling",
+      "name": "CSS & Styling",
+      "type": "skill"
+    },
+    {
+      "id": "skill-web-vitals-&-performance",
+      "name": "Web Vitals & Performance",
+      "type": "skill"
+    },
+    {
+      "id": "skill-api-integration",
+      "name": "API Integration",
+      "type": "skill"
+    },
+    {
+      "id": "full-stack-engineer",
+      "name": "Full Stack Engineer",
+      "type": "career-path"
+    },
+    {
+      "id": "skill-frontend-frameworks",
+      "name": "Frontend Frameworks",
+      "type": "skill"
+    },
+    {
+      "id": "skill-backend-apis",
+      "name": "Backend APIs",
+      "type": "skill"
+    },
+    {
+      "id": "skill-database-design",
+      "name": "Database Design",
+      "type": "skill"
+    },
+    {
+      "id": "skill-cloud-deployments",
+      "name": "Cloud Deployments",
+      "type": "skill"
+    },
+    {
+      "id": "skill-end-to-end-testing",
+      "name": "End-to-End Testing",
       "type": "skill"
     },
     {
@@ -9743,6 +9828,66 @@
       "relation": "uses_workflow"
     },
     {
+      "source": "backend-engineer",
+      "target": "skill-api-design-(rest/graphql)",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "skill-database-architecture-&-indexing",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "skill-distributed-systems",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "skill-server-side-languages-(go,-python,-java,-node.js)",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "skill-performance-engineering",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "engineering",
+      "relation": "uses_division"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "data-engineering",
+      "relation": "uses_division"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "interview",
+      "relation": "uses_division"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "backend-architect",
+      "relation": "uses_agent"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "database-engineer",
+      "relation": "uses_agent"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "system-design-coach",
+      "relation": "uses_agent"
+    },
+    {
+      "source": "backend-engineer",
+      "target": "technical-interview-week",
+      "relation": "uses_workflow"
+    },
+    {
       "source": "cloud-engineer",
       "target": "skill-aws-/-gcp-/-azure",
       "relation": "requires_skill"
@@ -9930,6 +10075,136 @@
     {
       "source": "devops-engineer",
       "target": "technical-interview-week",
+      "relation": "uses_workflow"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "skill-javascript-/-typescript",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "skill-react-/-next.js",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "skill-css-&-styling",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "skill-web-vitals-&-performance",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "skill-api-integration",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "engineering",
+      "relation": "uses_division"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "resume",
+      "relation": "uses_division"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "career",
+      "relation": "uses_division"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "nextjs-performance-engineer",
+      "relation": "uses_agent"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "portfolio-reviewer",
+      "relation": "uses_agent"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "ats-resume-reviewer",
+      "relation": "uses_agent"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "ats-optimization",
+      "relation": "uses_workflow"
+    },
+    {
+      "source": "frontend-engineer",
+      "target": "technical-interview-week",
+      "relation": "uses_workflow"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "skill-frontend-frameworks",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "skill-backend-apis",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "skill-database-design",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "skill-cloud-deployments",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "skill-end-to-end-testing",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "engineering",
+      "relation": "uses_division"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "cloud",
+      "relation": "uses_division"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "career",
+      "relation": "uses_division"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "mern-architect",
+      "relation": "uses_agent"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "code-reviewer",
+      "relation": "uses_agent"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "placement-coach",
+      "relation": "uses_agent"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "fresher-placement",
+      "relation": "uses_workflow"
+    },
+    {
+      "source": "full-stack-engineer",
+      "target": "ats-optimization",
       "relation": "uses_workflow"
     },
     {
