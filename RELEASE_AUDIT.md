@@ -63,7 +63,7 @@
 - [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 - [COMMUNITY.md](./COMMUNITY.md)
 - [scripts/validate.py](./scripts/validate.py)
-- [.github/workflows/ci.yml]((./.github/workflows/ci.yml))
+- [.github/workflows/ci.yml](./.github/workflows/ci.yml)
 - [README.md](./README.md)
 - [.github/CODEOWNERS](./.github/CODEOWNERS)
 - [.github/FUNDING.yml](./.github/FUNDING.yml)

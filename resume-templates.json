@@ -11,7 +11,7 @@
       "experience_level": "Entry",
       "industry": "All",
       "ats_score_target": 85,
-      "recommended_companies": ["Infosys", "TCS", "Wipro"],
+      "recommended_companies": ["amazon", "microsoft"],
       "recommended_agents": ["placement-coach", "ats-resume-reviewer"],
       "recommended_workflows": ["fresher-placement"]
     },
@@ -23,7 +23,7 @@
       "experience_level": "Entry",
       "industry": "All",
       "ats_score_target": 85,
-      "recommended_companies": ["Cognizant", "Capgemini", "Accenture"],
+      "recommended_companies": ["meta", "atlassian"],
       "recommended_agents": ["placement-coach", "ats-resume-reviewer"],
       "recommended_workflows": ["fresher-placement", "ats-optimization"]
     },
@@ -35,7 +35,7 @@
       "experience_level": "Entry",
       "industry": "All",
       "ats_score_target": 90,
-      "recommended_companies": ["Google", "Microsoft", "Amazon"],
+      "recommended_companies": ["google", "microsoft", "amazon"],
       "recommended_agents": ["internship-application-strategist", "technical-interview-coach"],
       "recommended_workflows": ["internship-hunt", "technical-interview-week"]
     },
@@ -47,7 +47,7 @@
       "experience_level": "Entry",
       "industry": "All",
       "ats_score_target": 90,
-      "recommended_companies": ["Atlassian", "Stripe", "Salesforce"],
+      "recommended_companies": ["atlassian", "stripe"],
       "recommended_agents": ["internship-application-strategist", "code-reviewer"],
       "recommended_workflows": ["internship-hunt"]
     },
@@ -59,7 +59,7 @@
       "experience_level": "Mid",
       "industry": "Software",
       "ats_score_target": 95,
-      "recommended_companies": ["Stripe", "Uber", "Netflix"],
+      "recommended_companies": ["stripe", "uber", "netflix"],
       "recommended_agents": ["technical-interview-coach", "system-design-coach"],
       "recommended_workflows": ["technical-interview-week", "salary-negotiation"]
     },
@@ -71,7 +71,7 @@
       "experience_level": "Senior",
       "industry": "Software",
       "ats_score_target": 95,
-      "recommended_companies": ["Google", "Databricks", "Netflix"],
+      "recommended_companies": ["google", "databricks", "netflix"],
       "recommended_agents": ["system-design-coach", "backend-architect"],
       "recommended_workflows": ["faang-preparation", "offer-comparison"]
     },
@@ -83,7 +83,7 @@
       "experience_level": "Mid",
       "industry": "Software",
       "ats_score_target": 92,
-      "recommended_companies": ["Meta", "Vercel", "Stripe"],
+      "recommended_companies": ["meta", "stripe"],
       "recommended_agents": ["nextjs-performance-engineer", "portfolio-reviewer"],
       "recommended_workflows": ["ats-optimization", "technical-interview-week"]
     },
@@ -95,7 +95,7 @@
       "experience_level": "Mid",
       "industry": "Software",
       "ats_score_target": 92,
-      "recommended_companies": ["Uber", "Databricks", "Amazon"],
+      "recommended_companies": ["uber", "databricks", "amazon"],
       "recommended_agents": ["backend-architect", "database-engineer"],
       "recommended_workflows": ["technical-interview-week"]
     },
@@ -107,7 +107,7 @@
       "experience_level": "Mid",
       "industry": "Software",
       "ats_score_target": 92,
-      "recommended_companies": ["Atlassian", "Stripe", "Airbnb"],
+      "recommended_companies": ["atlassian", "stripe"],
       "recommended_agents": ["mern-architect", "code-reviewer"],
       "recommended_workflows": ["fresher-placement", "ats-optimization"]
     },
@@ -119,7 +119,7 @@
       "experience_level": "Mid",
       "industry": "Artificial Intelligence",
       "ats_score_target": 95,
-      "recommended_companies": ["OpenAI", "Anthropic", "Google"],
+      "recommended_companies": ["openai", "google"],
       "recommended_agents": ["llm-engineer", "ai-agent-architect"],
       "recommended_workflows": ["technical-interview-week"]
     },
@@ -131,7 +131,7 @@
       "experience_level": "Senior",
       "industry": "Artificial Intelligence",
       "ats_score_target": 95,
-      "recommended_companies": ["OpenAI", "Cohere", "Microsoft"],
+      "recommended_companies": ["openai", "microsoft"],
       "recommended_agents": ["rag-architect", "ai-engineer-career-coach"],
       "recommended_workflows": ["technical-interview-week", "offer-comparison"]
     },
@@ -143,7 +143,7 @@
       "experience_level": "Mid",
       "industry": "Software",
       "ats_score_target": 90,
-      "recommended_companies": ["Databricks", "Snowflake", "Uber"],
+      "recommended_companies": ["databricks", "uber"],
       "recommended_agents": ["database-engineer", "backend-architect"],
       "recommended_workflows": ["technical-interview-week"]
     },
@@ -155,7 +155,7 @@
       "experience_level": "Mid",
       "industry": "Software",
       "ats_score_target": 90,
-      "recommended_companies": ["Amazon", "Microsoft", "HashiCorp"],
+      "recommended_companies": ["amazon", "microsoft"],
       "recommended_agents": ["devops-engineer", "site-reliability-engineer"],
       "recommended_workflows": ["technical-interview-week"]
     },
@@ -167,7 +167,7 @@
       "experience_level": "Mid",
       "industry": "Cybersecurity",
       "ats_score_target": 90,
-      "recommended_companies": ["CrowdStrike", "Cloudflare", "Palantir"],
+      "recommended_companies": ["google", "microsoft"],
       "recommended_agents": ["cloud-security-engineer", "application-security-specialist"],
       "recommended_workflows": ["technical-interview-week"]
     },
@@ -179,7 +179,7 @@
       "experience_level": "Mid",
       "industry": "Product Management",
       "ats_score_target": 95,
-      "recommended_companies": ["Meta", "Atlassian", "Google"],
+      "recommended_companies": ["meta", "atlassian", "google"],
       "recommended_agents": ["product-manager", "product-manager-coach"],
       "recommended_workflows": ["ats-optimization", "salary-negotiation"]
     },
@@ -191,7 +191,7 @@
       "experience_level": "Senior",
       "industry": "Product Management",
       "ats_score_target": 95,
-      "recommended_companies": ["Amazon", "Stripe", "Microsoft"],
+      "recommended_companies": ["amazon", "stripe", "microsoft"],
       "recommended_agents": ["product-manager-coach", "system-design-coach"],
       "recommended_workflows": ["salary-negotiation", "offer-comparison"]
     },
@@ -203,7 +203,7 @@
       "experience_level": "Mid",
       "industry": "Design",
       "ats_score_target": 90,
-      "recommended_companies": ["Figma", "Airbnb", "Meta"],
+      "recommended_companies": ["meta", "google"],
       "recommended_agents": ["portfolio-reviewer", "personal-branding-advisor"],
       "recommended_workflows": ["ats-optimization"]
     },
@@ -215,7 +215,7 @@
       "experience_level": "Mid",
       "industry": "All",
       "ats_score_target": 90,
-      "recommended_companies": ["Y Combinator", "Stripe", "OpenAI"],
+      "recommended_companies": ["stripe", "openai"],
       "recommended_agents": ["founder-advisor", "growth-strategist"],
       "recommended_workflows": ["linkedin-growth", "remote-job-hunt"]
     },
@@ -227,7 +227,7 @@
       "experience_level": "Mid",
       "industry": "All",
       "ats_score_target": 88,
-      "recommended_companies": ["Cognizant", "Wipro", "TCS"],
+      "recommended_companies": ["amazon", "microsoft"],
       "recommended_agents": ["career-pivot-to-tech-advisor", "career-transition-coach"],
       "recommended_workflows": ["ats-optimization", "fresher-placement"]
     },
@@ -239,7 +239,7 @@
       "experience_level": "Mid",
       "industry": "Finance",
       "ats_score_target": 88,
-      "recommended_companies": ["Stripe", "Bloomberg", "Goldman Sachs"],
+      "recommended_companies": ["stripe", "google"],
       "recommended_agents": ["career-pivot-to-tech-advisor", "database-engineer"],
       "recommended_workflows": ["ats-optimization", "technical-interview-week"]
     }
