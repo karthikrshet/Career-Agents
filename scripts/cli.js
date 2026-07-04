@@ -982,6 +982,68 @@ function handleUse(agentId, tool, dryRun) {
   }
 }
 
+async function handleResume(args) {
+  const sub = args[0];
+  if (!sub || sub === 'help' || sub === '--help' || sub === '-h') {
+    console.log(`\nUsage: career-agents resume <command> [args]
+
+Commands:
+  templates                      List all available ATS resume templates
+  build [--template <id>]        Launch interactive console builder
+  score <resume-json-path>       Run ATS resume compliance audit (0-100 score)
+  match <resume-json> <jd>       Compare resume against a target job description
+  faang <resume-json> <company>  Audit resume against target company rubric
+`);
+    return;
+  }
+
+  switch (sub) {
+    case 'templates': {
+      const templateRegistryPath = path.join(root, 'resume-templates.json');
+      if (fs.existsSync(templateRegistryPath)) {
+        const reg = JSON.parse(fs.readFileSync(templateRegistryPath, 'utf8'));
+        console.log(`\n=== Available ATS Resume Templates ===\n`);
+        reg.templates.forEach(t => {
+          console.log(`• ${c.bold}${t.id}${c.reset} - ${t.name}`);
+          console.log(`  Role: ${t.role} | Experience: ${t.experience_level}`);
+          console.log(`  Industry: ${t.industry} | ATS Score Target: ${t.ats_score_target}`);
+          console.log(`  File Slug: ${t.slug}\n`);
+        });
+      } else {
+        console.error(`${c.red}Resume templates registry not found.${c.reset}`);
+      }
+      break;
+    }
+    case 'build': {
+      const tFlagIndex = args.indexOf('--template');
+      let templateId = null;
+      if (tFlagIndex !== -1 && args[tFlagIndex + 1]) {
+        templateId = args[tFlagIndex + 1];
+      }
+      const { runInteractiveBuilder } = await import('../resume-engine/builder.js');
+      await runInteractiveBuilder(templateId);
+      break;
+    }
+    case 'score': {
+      const { runScorerCLI } = await import('../resume-engine/scorer.js');
+      runScorerCLI(args[1]);
+      break;
+    }
+    case 'match': {
+      const { runJobMatchCLI } = await import('../resume-engine/job-match.js');
+      runJobMatchCLI(args[1], args[2]);
+      break;
+    }
+    case 'faang': {
+      const { runFaangCLI } = await import('../resume-engine/faang.js');
+      runFaangCLI(args[1], args[2]);
+      break;
+    }
+    default:
+      console.error(`${c.red}Unknown resume subcommand '${sub}'. Run 'career-agents resume help'.${c.reset}`);
+  }
+}
+
 function printHelp() {
   printBanner();
   console.log(`Usage: career-agents <command> [args]
@@ -998,6 +1060,7 @@ Commands:
   launcher <agent/bundle> [plat] Copy prompts and launch AI browser interface
   export <type> <id> <format>    Consolidate and export bundle/company/path prompt packs
   use <agent-id> <tool>          Export prompt configuration bundle for target IDE/tool
+  resume <command>               Launch the ATS Resume Studio tools suite
   recommend                      Interactive profile target recommendations
   score / assess                 Interactive questionnaire compliance score
   graph                          Display knowledge graph network dimensions
@@ -1064,6 +1127,9 @@ async function main() {
       const useTool = args[2];
       const dryRun = args.indexOf('--dry-run') !== -1 || args.indexOf('-d') !== -1;
       handleUse(useAgentId, useTool, dryRun);
+      break;
+    case 'resume':
+      await handleResume(args.slice(1));
       break;
     case 'recommend':
       handleRecommendation();
