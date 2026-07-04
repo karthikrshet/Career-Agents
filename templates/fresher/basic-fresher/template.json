@@ -1,0 +1,69 @@
+{
+  "header": {
+    "name": "Jane Basic Fresher Doe",
+    "phone": "+1-555-0199",
+    "email": "jane.doe.basic-fresher@example.com",
+    "linkedin": "linkedin.com/in/jane-doe-basic-fresher",
+    "github": "github.com/janedoe-basic-fresher"
+  },
+  "summary": "Detail-oriented computer science graduate with strong foundational knowledge in data structures, algorithms, and object-oriented programming. Passionate about software engineering and building responsive web applications.",
+  "experience": [
+    {
+      "role": "Senior Software Engineer (Fresher)",
+      "company": "Tech Solutions Corp",
+      "location": "San Francisco, CA",
+      "duration": "2023 - Present",
+      "bullets": [
+        "Designed and shipped new scalable cloud subsystems, resulting in a 25% reduction in page latency metrics.",
+        "Collaborated with cross-functional partners to deploy secure microservices, lowering incident triage time by 40%.",
+        "Led team of 4 engineers, introducing weekly code reviews that improved unit test coverage to 92%."
+      ]
+    },
+    {
+      "role": "Software Engineer (Fresher)",
+      "company": "Innovative Systems Inc",
+      "location": "Boston, MA",
+      "duration": "2021 - 2023",
+      "bullets": [
+        "Built robust REST API integration layers supporting 10k+ concurrent active users daily.",
+        "Optimized database queries and added indexing, reducing average response latency by 150ms."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Open-Source Basic Fresher Portal",
+      "tech_stack": "Python, Java, HTML/CSS, JavaScript",
+      "description": "Collaborative project mapping distributed architecture patterns to clean client interfaces.",
+      "bullets": [
+        "Scaled application from scratch, acquiring 500+ stars on GitHub within three weeks of launch.",
+        "Integrated automated CI/CD pipeline steps, reducing deployment time from 15 minutes to 3 minutes."
+      ]
+    }
+  ],
+  "skills": [
+    "Python",
+    "Java",
+    "HTML/CSS",
+    "JavaScript",
+    "SQL",
+    "Git"
+  ],
+  "education": [
+    {
+      "degree": "B.S. in Computer Science",
+      "institution": "State Technical University",
+      "location": "Austin, TX",
+      "duration": "2017 - 2021",
+      "gpa": "3.8 / 4.0"
+    }
+  ],
+  "certifications": [
+    "Certified Basic Fresher Professional",
+    "AWS Certified Cloud Practitioner"
+  ],
+  "achievements": [
+    "1st Place in University Annual Hackathon (200+ competitors)",
+    "Published technical writeup on distributed scaling in a major developer publication"
+  ]
+}

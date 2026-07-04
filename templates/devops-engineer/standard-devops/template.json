@@ -1,0 +1,70 @@
+{
+  "header": {
+    "name": "Jane Standard Devops Doe",
+    "phone": "+1-555-0199",
+    "email": "jane.doe.standard-devops@example.com",
+    "linkedin": "linkedin.com/in/jane-doe-standard-devops",
+    "github": "github.com/janedoe-standard-devops"
+  },
+  "summary": "Operations specialist focused on automating cloud deployments, container orchestration networks, and maintaining CI/CD stability metrics.",
+  "experience": [
+    {
+      "role": "Senior DevOps / Platform Engineer",
+      "company": "Tech Solutions Corp",
+      "location": "San Francisco, CA",
+      "duration": "2023 - Present",
+      "bullets": [
+        "Designed and shipped new scalable cloud subsystems, resulting in a 25% reduction in page latency metrics.",
+        "Collaborated with cross-functional partners to deploy secure microservices, lowering incident triage time by 40%.",
+        "Led team of 4 engineers, introducing weekly code reviews that improved unit test coverage to 92%."
+      ]
+    },
+    {
+      "role": "DevOps / Platform Engineer",
+      "company": "Innovative Systems Inc",
+      "location": "Boston, MA",
+      "duration": "2021 - 2023",
+      "bullets": [
+        "Built robust REST API integration layers supporting 10k+ concurrent active users daily.",
+        "Optimized database queries and added indexing, reducing average response latency by 150ms."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Open-Source Standard Devops Portal",
+      "tech_stack": "Terraform, Kubernetes, Docker, AWS",
+      "description": "Collaborative project mapping distributed architecture patterns to clean client interfaces.",
+      "bullets": [
+        "Scaled application from scratch, acquiring 500+ stars on GitHub within three weeks of launch.",
+        "Integrated automated CI/CD pipeline steps, reducing deployment time from 15 minutes to 3 minutes."
+      ]
+    }
+  ],
+  "skills": [
+    "Terraform",
+    "Kubernetes",
+    "Docker",
+    "AWS",
+    "GitHub Actions",
+    "Linux",
+    "Bash"
+  ],
+  "education": [
+    {
+      "degree": "B.S. in Computer Science",
+      "institution": "State Technical University",
+      "location": "Austin, TX",
+      "duration": "2017 - 2021",
+      "gpa": "3.8 / 4.0"
+    }
+  ],
+  "certifications": [
+    "Certified Standard Devops Professional",
+    "AWS Certified Cloud Practitioner"
+  ],
+  "achievements": [
+    "1st Place in University Annual Hackathon (200+ competitors)",
+    "Published technical writeup on distributed scaling in a major developer publication"
+  ]
+}
