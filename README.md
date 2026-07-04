@@ -7,9 +7,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/karthikrshet/Career-Agents?style=social)](https://github.com/karthikrshet/Career-Agents)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/karthikrshet)](https://github.com/sponsors/karthikrshet)
 
-<p align="center">
-  <img src="./docs/images/career_os_dashboard.png" alt="Career OS Dashboard" width="800">
-</p>
+
 
 ---
 
@@ -607,10 +605,17 @@ Workflows are repeatable pipelines guiding you step-by-step through career miles
 ## 🔗 Knowledge Graph
 
 Career-Agents compiles a complex, expanded **[knowledge-graph.json](./knowledge-graph.json)** mapping dependencies across:
-- **Agents** $ightarrow$ Belongs to **Divisions** $ightarrow$ Used in **Workflows**
-- **Career Paths** $ightarrow$ Requires **Skills** $ightarrow$ Uses **Agents**
-- **Companies** $ightarrow$ Requires **Skills** $ightarrow$ Prepped by **Workflows**
-- **Bundles** $ightarrow$ Packs **Agents**, **Career Paths**, and **Companies**
+- **Agents** $
+ightarrow$ Belongs to **Divisions** $
+ightarrow$ Used in **Workflows**
+- **Career Paths** $
+ightarrow$ Requires **Skills** $
+ightarrow$ Uses **Agents**
+- **Companies** $
+ightarrow$ Requires **Skills** $
+ightarrow$ Prepped by **Workflows**
+- **Bundles** $
+ightarrow$ Packs **Agents**, **Career Paths**, and **Companies**
 
 You can inspect nodes connectivity stats locally via:
 ```bash
