@@ -12,23 +12,26 @@ export async function POST(req: NextRequest) {
     const limitResponse = enforceRequestLimits(req, clientIp);
     if (limitResponse) return limitResponse;
 
-    const { text, config }: { text: string; config: AIProviderConfig } = await req.json();
+    const { text, config, targetRole = "Software Engineer", jobDescription = "" }: { text: string; config: AIProviderConfig; targetRole?: string; jobDescription?: string } = await req.json();
+
+    const rolePromptContext = `Target Role: ${targetRole}${jobDescription ? `\nJob Description Context: ${jobDescription.slice(0, 300)}` : ""}`;
 
     const messages = [
       {
         role: "system" as const,
-        content: `You are a professional resume writing expert. You will be given a resume and must rewrite it in a professional, achievement-focused style.
+        content: `You are a professional resume writing expert specializing in tailoring resumes for ${targetRole}.
 Rules:
 - Start every bullet with a strong action verb
-- Include quantified results wherever possible (%, time saved, users impacted)
+- Include quantified results wherever possible (%, time saved, users/revenue impacted)
+- Highlight core skills and competencies relevant to ${targetRole}
 - Use XYZ format: Accomplished [X] as measured by [Y] by doing [Z]
 - Remove passive language (was responsible for, helped, assisted)
-- Keep it concise and ATS-friendly
+- Keep it concise, professional, and ATS-friendly
 Return only the improved resume text, no explanations.`,
       },
       {
         role: "user" as const,
-        content: `Rewrite this resume:\n\n${text}`,
+        content: `${rolePromptContext}\n\nRewrite this resume:\n\n${text}`,
       },
     ];
 
