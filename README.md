@@ -629,16 +629,16 @@ Integration configurations are structured under the `integrations/` directory, c
 
 Explore guidelines, case logs, and programs to contribute to our open ecosystem:
 - [Contributing Guidelines](./CONTRIBUTING.md)
-- [Contributor Recognition Levels](./CONTRIBUTOR_LEVELS.md)
-- [Ambassador Program](./AMBASSADOR_PROGRAM.md)
-- [Hall of Fame](./HALL_OF_FAME.md)
-- [Maintainers Code Owners](./MAINTAINERS.md)
-- [Community Onboarding Guide](./COMMUNITY_GUIDE.md)
+- [Contributor Recognition Levels](./docs/community/CONTRIBUTOR_LEVELS.md)
+- [Ambassador Program](./docs/community/AMBASSADOR_PROGRAM.md)
+- [Hall of Fame](./docs/community/HALL_OF_FAME.md)
+- [Maintainers Code Owners](./docs/community/MAINTAINERS.md)
+- [Community Onboarding Guide](./docs/community/COMMUNITY_GUIDE.md)
 - [Certification Program](./docs/CERTIFICATION.md)
 - [Ecosystem Asset Guide](./docs/ASSETS.md)
-- [Who Uses Career OS](./WHO_USES_CAREER_OS.md)
-- [Ecosystem Case Studies](./CASE_STUDIES.md)
-- [Ecosystem Success Stories](./SUCCESS_STORIES.md)
+- [Who Uses Career OS](./docs/case-studies/WHO_USES_CAREER_OS.md)
+- [Ecosystem Case Studies](./docs/case-studies/CASE_STUDIES.md)
+- [Ecosystem Success Stories](./docs/case-studies/SUCCESS_STORIES.md)
 - [Code of Conduct](./CODE_OF_CONDUCT.md)
 - [Security Policy](./SECURITY.md)
 
@@ -653,7 +653,7 @@ This repository is maintained and expanded by:
 
 ## 🗺️ Roadmap
 
-Check out the full release timeline in [RELEASE_MILESTONES.md](./RELEASE_MILESTONES.md).
+Check out the full release timeline in [RELEASE_MILESTONES.md](./docs/community/RELEASE_MILESTONES.md).
 
 - **v1.0.0**: Core structural registries and configuration compilation system. (Completed)
 - **v1.5.0**: Career Paths, target Company Tracks, and Category Intelligences. (Completed)
