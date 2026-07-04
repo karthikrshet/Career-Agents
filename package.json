@@ -59,6 +59,7 @@
     "scripts",
     "launcher",
     "mcp",
+    "career-agents-mcp",
     "agent-registry.json",
     "divisions.json",
     "workflow-registry.json",
