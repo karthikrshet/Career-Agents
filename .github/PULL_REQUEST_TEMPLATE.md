@@ -1,22 +1,27 @@
+# Pull Request Description
+
+## 📋 Checklist
+
+- [ ] I have run `python scripts/validate.py` and it passes.
+- [ ] I have run `python scripts/generate-data.py` to regenerate `README.md` and database registries.
+- [ ] The PR title follows conventional commit formats: `feat(...)`, `fix(...)`, `docs(...)`.
+- [ ] For career agents edits, the prompt format follows `docs/agent-standard.md`.
+
 ---
-name: Feature or fix
-about: Use this template for pull requests adding or improving agents
+
+## 🏷️ Tagging & Labeling Guidelines
+
+Please suggest appropriate labels based on the scope of your contribution:
+- **`good first issue` / `help wanted`**: For beginner-friendly fixes or community issues.
+- **`documentation`**: For improvements to guides under `docs/` or `README.md`.
+- **`career-agent`**: For proposals or additions of specialized prompt agent files.
+- **`resume`**: For templates additions or modifications inside `templates/` or `resume-templates.json`.
+- **`company-track`**: For company-specific interview structures inside `companies/`.
+
 ---
 
-# Pull Request Checklist
+## 📝 Summary of Changes
+*Provide a concise summary of what this PR does and why:*
 
-- [ ] Title follows: `feat(agent): add <agent-id>` or `fix(agent): ...`
-- [ ] Updated `divisions.json` and `agent-registry.json` if adding or modifying an agent
-- [ ] Ran `python scripts/sync.py` to regenerate registry metadata
-- [ ] Agent file follows the Agent File Standard in `docs/agent-standard.md`
-- [ ] Self-reviewed against the Quality Bar (length, deliverables, structure)
-- [ ] Tests or manual validation steps included where applicable (validation script passed)
-
-## Summary
-Short description of changes and who benefits from them.
-
-## Files Changed
-List of new or updated files.
-
-## Review Notes
-Anything maintainers should pay attention to during review.
+## 📂 Files Modified
+*List the files added or updated by this contribution:*
