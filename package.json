@@ -1,6 +1,6 @@
 {
   "name": "career-agents",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "The Open Source Career Operating System",
   "main": "scripts/sdk.js",
   "type": "module",
