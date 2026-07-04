@@ -6,6 +6,18 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ---
 
+## [v1.1.1] — 2026-07-05
+### Added
+- Created `NPM_LAUNCH_REPORT.md` detailing the npm registry details, available CLI commands, and links.
+- Created `RELEASE_v1.1.0_NPM.md` release notes highlighting the official launch.
+- Created `GROWTH_PLAN_2026.md` documenting targets and execution roadmaps for 2026.
+- Created `NPM_POST_LAUNCH_AUDIT.md` verifying the release state and package footprint.
+
+### Changed
+- Redesigned `README.md` to include NPM launch badges directly under the title, simplified `Install` instructions, and basic `Quick Start` commands.
+- Configured a dedicated `Support Career-Agents` section in the README highlighting GitHub Sponsors info and benefits.
+- Updated `package.json` with optimized metadata (description, keywords, repository, homepage, and bugs fields).
+
 ## [v1.1.0] — 2026-07-05
 ### Added
 - Created Issue templates (`agent_proposal.md`, `documentation_improvement.md`) and Pull Request template (`PULL_REQUEST_TEMPLATE.md`) with explicit label guidelines.
