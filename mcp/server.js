@@ -459,21 +459,119 @@ async function handleToolsCall(id, params) {
       });
       break;
     }
-    case 'company_track':
-      sendResult(id, { content: [{ type: 'text', text: 'Stub for company_track tool' }] });
+    case 'company_track': {
+      const coId = (toolArgs.company || '').toLowerCase().trim();
+      const coFile = path.join(root, 'companies', `${coId}.json`);
+      if (!fs.existsSync(coFile)) {
+        sendError(id, -32602, `Company track '${coId}' not found`);
+        return;
+      }
+      const data = loadJSON(coFile);
+      sendResult(id, {
+        content: [{
+          type: 'text',
+          text: JSON.stringify(data, null, 2)
+        }]
+      });
       break;
-    case 'career_path':
-      sendResult(id, { content: [{ type: 'text', text: 'Stub for career_path tool' }] });
+    }
+    case 'career_path': {
+      const pId = (toolArgs.careerPath || '').toLowerCase().trim();
+      const pFile = path.join(root, 'career-paths', `${pId}.json`);
+      if (!fs.existsSync(pFile)) {
+        sendError(id, -32602, `Career path '${pId}' not found`);
+        return;
+      }
+      const data = loadJSON(pFile);
+      sendResult(id, {
+        content: [{
+          type: 'text',
+          text: JSON.stringify(data, null, 2)
+        }]
+      });
       break;
-    case 'workflow_lookup':
-      sendResult(id, { content: [{ type: 'text', text: 'Stub for workflow_lookup tool' }] });
+    }
+    case 'workflow_lookup': {
+      const wId = (toolArgs.workflow || '').toLowerCase().trim();
+      const wReg = loadJSON(workflowsPath);
+      if (!wReg) {
+        sendError(id, -32603, 'Failed to load workflow registry');
+        return;
+      }
+      const wf = wReg.workflows.find(x => x.id === wId);
+      if (!wf) {
+        sendError(id, -32602, `Workflow '${wId}' not found`);
+        return;
+      }
+      const wFile = path.join(root, wf.filename);
+      let content = '';
+      if (fs.existsSync(wFile)) {
+        content = fs.readFileSync(wFile, 'utf8');
+      }
+      sendResult(id, {
+        content: [{
+          type: 'text',
+          text: JSON.stringify({ metadata: wf, prompt_checklist: content }, null, 2)
+        }]
+      });
       break;
-    case 'agent_details':
-      sendResult(id, { content: [{ type: 'text', text: 'Stub for agent_details tool' }] });
+    }
+    case 'agent_details': {
+      const aId = (toolArgs.agentId || '').trim();
+      const aReg = loadJSON(registryPath);
+      if (!aReg) {
+        sendError(id, -32603, 'Failed to load agent registry');
+        return;
+      }
+      const agent = aReg.agents.find(x => x.id === aId);
+      if (!agent) {
+        sendError(id, -32602, `Agent '${aId}' not found in registry`);
+        return;
+      }
+      const aFile = path.join(root, agent.filename);
+      let content = '';
+      if (fs.existsSync(aFile)) {
+        content = fs.readFileSync(aFile, 'utf8');
+      }
+      sendResult(id, {
+        content: [{
+          type: 'text',
+          text: JSON.stringify({ metadata: agent, system_prompt: content }, null, 2)
+        }]
+      });
       break;
-    case 'knowledge_graph':
-      sendResult(id, { content: [{ type: 'text', text: 'Stub for knowledge_graph tool' }] });
+    }
+    case 'knowledge_graph': {
+      const ent = (toolArgs.entity || '').toLowerCase().trim();
+      const gPath = path.join(root, 'knowledge-graph.json');
+      const graph = loadJSON(gPath);
+      if (!graph) {
+        sendError(id, -32603, 'Failed to load knowledge graph');
+        return;
+      }
+      const matchingNodes = graph.nodes.filter(n => 
+        n.id.toLowerCase().includes(ent) || 
+        n.name.toLowerCase().includes(ent)
+      );
+      const nodeIds = new Set(matchingNodes.map(n => n.id));
+      const connectedEdges = graph.edges.filter(e => 
+        nodeIds.has(e.source) || nodeIds.has(e.target)
+      );
+      const connectedNodeIds = new Set();
+      connectedEdges.forEach(e => {
+        connectedNodeIds.add(e.source);
+        connectedNodeIds.add(e.target);
+      });
+      const connectedNodes = graph.nodes.filter(n => connectedNodeIds.has(n.id));
+
+      sendResult(id, {
+        content: [{
+          type: 'text',
+          text: JSON.stringify({ nodes: connectedNodes, edges: connectedEdges }, null, 2)
+        }]
+      });
       break;
+    }
 
     default:
       sendError(id, -32601, `Tool not found: ${toolName}`);
