@@ -37,3 +37,16 @@
 {"timestamp":"2026-07-04T22:18:10.559Z","method":"resources/read","client":"unknown","success":true,"error":""}
 {"timestamp":"2026-07-04T22:18:10.564Z","method":"tools/call/non_existent_tool","client":"unknown","success":false,"error":"Tool not found: non_existent_tool"}
 {"timestamp":"2026-07-04T22:18:10.565Z","method":"resources/read","client":"unknown","success":false,"error":"Resource not found: career-agents://registry/../../package.json"}
+{"timestamp":"2026-07-04T22:26:45.153Z","method":"tools/call/search_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.161Z","method":"tools/call/recommend_agents","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.165Z","method":"tools/call/career_assessment","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.171Z","method":"tools/call/resume_score","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.177Z","method":"tools/call/job_match","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.181Z","method":"tools/call/company_track","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.189Z","method":"tools/call/career_path","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.196Z","method":"tools/call/workflow_lookup","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.200Z","method":"tools/call/agent_details","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.206Z","method":"tools/call/knowledge_graph","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.215Z","method":"resources/read","client":"unknown","success":true,"error":""}
+{"timestamp":"2026-07-04T22:26:45.221Z","method":"tools/call/non_existent_tool","client":"unknown","success":false,"error":"Tool not found: non_existent_tool"}
+{"timestamp":"2026-07-04T22:26:45.222Z","method":"resources/read","client":"unknown","success":false,"error":"Resource not found: career-agents://registry/../../package.json"}
