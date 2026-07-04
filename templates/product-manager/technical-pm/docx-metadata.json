@@ -1,0 +1,21 @@
+{
+  "font_family": "Arial",
+  "font_size": 10,
+  "margins": {
+    "top": 1.0,
+    "bottom": 1.0,
+    "left": 1.0,
+    "right": 1.0
+  },
+  "section_order": [
+    "header",
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "certifications",
+    "achievements"
+  ],
+  "page_limit": 2
+}
