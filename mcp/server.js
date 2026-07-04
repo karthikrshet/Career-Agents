@@ -578,10 +578,91 @@ async function handleToolsCall(id, params) {
   }
 }
 
+const MCP_RESOURCES = [
+  {
+    uri: 'career-agents://registry/agents',
+    name: 'Agent Registry',
+    mimeType: 'application/json',
+    description: 'Dynamic database catalog of all 135 specialized AI career agents.'
+  },
+  {
+    uri: 'career-agents://registry/paths',
+    name: 'Career Paths Registry',
+    mimeType: 'application/json',
+    description: 'Sequenced milestone roadmaps for engineering, PM, and founder positions.'
+  },
+  {
+    uri: 'career-agents://registry/companies',
+    name: 'Companies Prep Tracks Registry',
+    mimeType: 'application/json',
+    description: 'Interview loops and required competencies for top-tier companies.'
+  },
+  {
+    uri: 'career-agents://registry/workflows',
+    name: 'Workflows Registry',
+    mimeType: 'application/json',
+    description: 'Multi-agent checklists and repeatable operation workflows.'
+  },
+  {
+    uri: 'career-agents://registry/templates',
+    name: 'Resume Templates Registry',
+    mimeType: 'application/json',
+    description: 'Schedules and scores mappings for the 20 resume studio templates.'
+  },
+  {
+    uri: 'career-agents://registry/graph',
+    name: 'Career OS Knowledge Graph',
+    mimeType: 'application/json',
+    description: 'Complete relational nodes and connections coordinate map.'
+  },
+  {
+    uri: 'career-agents://registry/search-index',
+    name: 'Search Discovery Index',
+    mimeType: 'application/json',
+    description: 'Unified search optimization weights catalog database.'
+  }
+];
+
 function handleResourcesList(id) {
-  sendResult(id, { resources: [] });
+  sendResult(id, { resources: MCP_RESOURCES });
 }
 
 function handleResourcesRead(id, params) {
-  sendError(id, -32601, `Resource read not implemented in core server foundation`);
+  const { uri } = params;
+  log(`Reading resource: ${uri}`);
+  const resource = MCP_RESOURCES.find(r => r.uri === uri);
+  if (!resource) {
+    sendError(id, -32602, `Resource not found: ${uri}`);
+    return;
+  }
+
+  let filename = '';
+  switch (uri) {
+    case 'career-agents://registry/agents': filename = 'agent-registry.json'; break;
+    case 'career-agents://registry/paths': filename = 'career-paths.json'; break;
+    case 'career-agents://registry/companies': filename = 'companies.json'; break;
+    case 'career-agents://registry/workflows': filename = 'workflow-registry.json'; break;
+    case 'career-agents://registry/templates': filename = 'resume-templates.json'; break;
+    case 'career-agents://registry/graph': filename = 'knowledge-graph.json'; break;
+    case 'career-agents://registry/search-index': filename = 'search-index.json'; break;
+  }
+
+  const fpath = path.join(root, filename);
+  if (!fs.existsSync(fpath)) {
+    sendError(id, -32603, `Resource file missing on disk: ${filename}`);
+    return;
+  }
+
+  try {
+    const text = fs.readFileSync(fpath, 'utf8');
+    sendResult(id, {
+      contents: [{
+        uri,
+        mimeType: 'application/json',
+        text
+      }]
+    });
+  } catch (err) {
+    sendError(id, -32603, `Error reading resource: ${err.message}`);
+  }
 }
