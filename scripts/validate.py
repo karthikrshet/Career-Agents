@@ -206,6 +206,52 @@ def validate_registries(agent_ids, workflow_ids, path_ids, company_ids):
                     raise ValueError(f"Bundle '{bid}' references non-existent company: '{cid}'")
 
 
+def validate_resume_ecosystem(agent_ids, workflow_ids, company_ids):
+    print('Checking resume studio templates and command registration...')
+    
+    reg_path = ROOT / 'resume-templates.json'
+    if not reg_path.exists():
+        raise ValueError("resume-templates.json registry is missing")
+    
+    reg_data = load_json(reg_path)
+    templates = reg_data.get('templates', [])
+    if not templates:
+        raise ValueError("resume-templates.json contains no templates")
+        
+    for t in templates:
+        required = {'id', 'name', 'slug', 'role', 'experience_level', 'industry', 'ats_score_target'}
+        missing = required - set(t.keys())
+        if missing:
+            raise ValueError(f"Template '{t.get('id')}' is missing fields: {missing}")
+            
+        slug_dir = ROOT / 'templates' / t['slug']
+        if not slug_dir.is_dir():
+            raise ValueError(f"Template slug directory does not exist: {slug_dir}")
+            
+        for f in ['template.json', 'template.md', 'docx-metadata.json']:
+            fpath = slug_dir / f
+            if not fpath.exists():
+                raise ValueError(f"Template file '{f}' is missing under {slug_dir}")
+                
+        for aid in t.get('recommended_agents', []):
+            if aid not in agent_ids:
+                raise ValueError(f"Template '{t['id']}' recommends non-existent agent: '{aid}'")
+        for wid in t.get('recommended_workflows', []):
+            if wid not in workflow_ids:
+                raise ValueError(f"Template '{t['id']}' recommends non-existent workflow: '{wid}'")
+        for cid in t.get('recommended_companies', []):
+            if cid.lower() not in company_ids:
+                raise ValueError(f"Template '{t['id']}' recommends non-existent company: '{cid}'")
+
+    cli_path = ROOT / 'scripts' / 'cli.js'
+    if not cli_path.exists():
+        raise ValueError("scripts/cli.js is missing")
+    
+    cli_text = cli_path.read_text(encoding='utf-8')
+    if "case 'resume':" not in cli_text:
+        raise ValueError("Resume command is not registered under switch-case inside scripts/cli.js")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--list', action='store_true', help='List all markdown files discovered')
@@ -244,6 +290,9 @@ def main():
 
     # Validate registry referential integrity and file mapping existence
     validate_registries(agent_ids, workflow_ids, path_ids, company_ids)
+
+    # Validate Resume Studio Ecosystem
+    validate_resume_ecosystem(agent_ids, workflow_ids, company_ids)
 
     print('Validation passed.')
 
