@@ -5,7 +5,7 @@
   "main": "scripts/sdk.js",
   "type": "module",
   "bin": {
-    "career-agents": "./scripts/cli.js"
+    "career-agents": "scripts/cli.js"
   },
   "exports": {
     ".": "./scripts/sdk.js"
@@ -70,7 +70,6 @@
     "search-index.json",
     "knowledge-graph.json",
     "llms.txt",
-    "llms-full.txt",
     "README.md",
     "LICENSE"
   ]
