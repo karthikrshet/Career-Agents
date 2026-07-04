@@ -451,10 +451,59 @@ def build_merged_readme(agents, divisions_data, workflows, bundles, companies, p
 ### The Open-Source Career Operating System (Career OS)
 **The most complete open-source career workspace, featuring {num_agents}+ specialized AI agents and structured execution roadmaps.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
-[![Divisions](https://img.shields.io/badge/divisions-{num_divs}-orange.svg)](#browse-by-division)
-[![Agents](https://img.shields.io/badge/agents-{num_agents}%2F100-blue.svg)](./career-os.json)
+<p align="center">
+  <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/github/stars/karthikrshet/Career-Agents.svg?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/karthikrshet/Career-Agents/network"><img src="https://img.shields.io/github/forks/karthikrshet/Career-Agents.svg?style=social" alt="GitHub forks"></a>
+  <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/v/career-agents.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/dm/career-agents.svg" alt="npm downloads"></a>
+  <a href="https://github.com/karthikrshet/Career-Agents/graphs/contributors"><img src="https://img.shields.io/github/contributors/karthikrshet/Career-Agents.svg" alt="GitHub contributors"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+</p>
+
+<p align="center">
+  <img src="./docs/images/career_os_dashboard.png" alt="Career OS Dashboard" width="800">
+</p>
+
+---
+
+## 🗺️ Architecture Overview
+
+```
+Career OS
+├── Career Agents
+├── ATS Resume Studio
+├── Career CLI
+├── MCP Server
+├── Company Tracks
+├── Career Paths
+└── Knowledge Graph
+```
+
+---
+
+## 🤔 Why Career-Agents?
+
+### What makes it different?
+Unlike standard job boards or simple prompting guides, Career-Agents treats career advancement as an operational pipeline. It compiles specialized expert logic, ATS compliance patterns, and interview roadmaps into a unified system that integrates directly with developer workflows and AI coding editors.
+
+### Who should use it?
+- **Developers & Engineers**: Pivot roles (e.g. Frontend to AI/ML Engineering) and optimize technical profiles.
+- **Students & Graduates**: Access placement structures, final-year project checklists, and internship pipelines.
+- **Founders & Consultants**: Scope MVPs, construct pricing models, and direct growth strategies.
+
+---
+
+## 📥 Global Installation
+
+Install the CLI tool globally via NPM:
+```bash
+npm install -g career-agents
+```
+
+Verify your local environment health:
+```bash
+career-agents doctor
+```
 
 ---
 
@@ -475,19 +524,16 @@ A new visitor can configure, assess, run, and export prompts out-of-the-box:
 +---------------+       +---------------+       +---------------+
 ```
 
-### 1. Install
-Clone the repository and install dependencies:
+### 1. Doctor / Self-Check
+Audit your repository and registry files structure:
 ```bash
-git clone https://github.com/karthikrshet/Career-Agents.git
-cd Career-Agents
-npm install
-npm link
+career-agents doctor
 ```
 
-### 2. Score (`career-agents score`)
+### 2. Score (`career-agents assess`)
 Audit your standing. Run the interactive terminal questionnaire to calculate your scores across 5 dimensions:
 ```bash
-career-agents score
+career-agents assess
 ```
 
 ### 3. Recommend (`career-agents recommend`)
@@ -497,13 +543,13 @@ career-agents recommend
 ```
 
 ### 4. Run (`career-agents run <agent-id>`)
-Execute agents directly in your terminal. Start a local live chat session (connects via `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`, or `OPENAI_API_KEY`) or run in simulated sandbox mode:
+Execute agents directly in your terminal:
 ```bash
 career-agents run ats-resume-reviewer
 ```
 
 ### 5. Launch (`career-agents launcher <agent-id> <platform>`)
-Deploy agents on target AI chat clients. Copy system prompts to your clipboard automatically and open Claude, Gemini, ChatGPT, or Perplexity browser portals:
+Deploy agents on target AI chat clients:
 ```bash
 career-agents launcher google-interview-coach claude
 ```
@@ -513,6 +559,14 @@ Consolidate and package prompt assets for external tools:
 ```bash
 career-agents export bundle faang-bundle json
 ```
+
+---
+
+## 💖 Support & Sponsorship
+
+Help us expand the Career Operating System! Sponsoring the project enables us to keep prompt registries updated, support community mock panels, and write more integrations for IDEs.
+
+👉 **Learn more about sponsorship benefits in [SPONSORSHIP.md](./SPONSORSHIP.md)**
 
 ---
 
