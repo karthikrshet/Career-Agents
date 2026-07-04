@@ -17,13 +17,97 @@ function log(msg) {
   fs.appendFileSync(LOG_FILE, `[${timestamp}] ${msg}\n`, 'utf8');
 }
 
+const fileCache = {};
+let requestCount = 0;
+const RATE_LIMIT_MAX = 200; // max 200 requests per minute
+let lastReset = Date.now();
+
+const AUDIT_LOG_FILE = path.join(root, 'exports', 'logs', 'mcp_audit.log');
+fs.mkdirSync(path.dirname(AUDIT_LOG_FILE), { recursive: true });
+
+function auditLog(method, params, success, errorMsg = '') {
+  const timestamp = new Date().toISOString();
+  const entry = {
+    timestamp,
+    method,
+    client: params?.clientInfo?.name || 'unknown',
+    success,
+    error: errorMsg
+  };
+  try {
+    fs.appendFileSync(AUDIT_LOG_FILE, JSON.stringify(entry) + '\n', 'utf8');
+  } catch (err) {
+    // Ignore log write errors
+  }
+}
+
+function checkRateLimit() {
+  const now = Date.now();
+  if (now - lastReset > 60000) {
+    requestCount = 0;
+    lastReset = now;
+  }
+  requestCount++;
+  return requestCount <= RATE_LIMIT_MAX;
+}
+
+function validateRegistryJSON(filename, parsed) {
+  if (!parsed || typeof parsed !== 'object') {
+    throw new Error('Invalid JSON structure (not an object/array)');
+  }
+  switch (filename) {
+    case 'agent-registry.json':
+      if (!Array.isArray(parsed.agents)) throw new Error('Missing agents array');
+      break;
+    case 'career-paths.json':
+      if (!Array.isArray(parsed.career_paths)) throw new Error('Missing career_paths array');
+      break;
+    case 'companies.json':
+      if (!Array.isArray(parsed.companies)) throw new Error('Missing companies array');
+      break;
+    case 'workflow-registry.json':
+      if (!Array.isArray(parsed.workflows)) throw new Error('Missing workflows array');
+      break;
+    case 'resume-templates.json':
+      if (!Array.isArray(parsed.templates)) throw new Error('Missing templates array');
+      break;
+    case 'knowledge-graph.json':
+      if (!Array.isArray(parsed.nodes) || !Array.isArray(parsed.edges)) throw new Error('Missing nodes or edges array');
+      break;
+    case 'search-index.json':
+      if (!Array.isArray(parsed.items)) throw new Error('Missing items array');
+      break;
+  }
+}
+
 function loadJSON(filePath) {
   try {
     if (!fs.existsSync(filePath)) return null;
-    const raw = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(raw);
+
+    const resolvedPath = path.resolve(filePath);
+    const resolvedRoot = path.resolve(root);
+    if (!resolvedPath.startsWith(resolvedRoot)) {
+      log(`Security Warning: Prevented safe access bypass attempt to ${filePath}`);
+      return null;
+    }
+
+    const stats = fs.statSync(resolvedPath);
+    const cacheKey = resolvedPath;
+    if (fileCache[cacheKey] && fileCache[cacheKey].mtime >= stats.mtimeMs) {
+      return fileCache[cacheKey].data;
+    }
+
+    const raw = fs.readFileSync(resolvedPath, 'utf8');
+    const parsed = JSON.parse(raw);
+    validateRegistryJSON(path.basename(resolvedPath), parsed);
+
+    fileCache[cacheKey] = {
+      data: parsed,
+      mtime: stats.mtimeMs
+    };
+    return parsed;
   } catch (err) {
-    log(`Failed to load JSON file ${filePath}: ${err.message}`);
+    log(`Failed to load/validate JSON file ${filePath}: ${err.message}`);
     return null;
   }
 }
@@ -40,6 +124,11 @@ export function startMcpServer() {
   rl.on('line', async (line) => {
     try {
       if (!line.trim()) return;
+      if (!checkRateLimit()) {
+        log('Rate limit exceeded!');
+        sendError(null, -32001, 'Rate limit exceeded');
+        return;
+      }
       log(`Received request raw: ${line}`);
       const request = JSON.parse(line);
       const { jsonrpc, id, method, params } = request;
@@ -264,317 +353,459 @@ async function handleToolsCall(id, params) {
   const workflowsPath = path.join(root, 'workflow-registry.json');
   const careerOsPath = path.join(root, 'career-os.json');
 
-  switch (toolName) {
-    case 'search_agents': {
-      const query = (toolArgs.query || '').toLowerCase();
-      const registry = loadJSON(registryPath);
-      if (!registry) {
-        sendError(id, -32603, 'Failed to load agent registry');
-        return;
-      }
-      const matches = registry.agents.filter(a => 
-        a.id.includes(query) || 
-        a.name.toLowerCase().includes(query) || 
-        a.description.toLowerCase().includes(query) ||
-        (a.tags || []).some(t => t.toLowerCase().includes(query))
-      );
-      sendResult(id, {
-        content: [{
-          type: 'text',
-          text: JSON.stringify(matches, null, 2)
-        }]
-      });
-      break;
-    }
+  let success = true;
+  let errorMsg = '';
 
-    case 'recommend_agents': {
-      const { skills, experience, role, company } = toolArgs;
-      if (!fs.existsSync(careerOsPath)) {
-        sendError(id, -32603, 'career-os.json not found. Run update first.');
-        return;
-      }
-      const osData = loadJSON(careerOsPath);
-      const inputSkills = (skills || '').split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
-      const companyQuery = (company || '').trim().toLowerCase();
-      const roleQuery = (role || '').trim().toLowerCase();
-      const expQuery = (experience || 'mid').trim().toLowerCase();
-
-      // Recommend Agents
-      const matchedAgents = [];
-      for (const agent of osData.agents) {
-        let score = 0;
-        const agentSkills = agent.skills.map(s => s.toLowerCase());
-        const skillOverlap = inputSkills.filter(s => agentSkills.includes(s));
-        score += skillOverlap.length * 5;
-        if (agent.experience_level.toLowerCase() === expQuery) score += 3;
-        if (companyQuery && agent.companies.map(co => co.toLowerCase()).includes(companyQuery)) score += 10;
-        if (roleQuery && (agent.id.includes(roleQuery) || agent.name.toLowerCase().includes(roleQuery))) score += 8;
-
-        if (score > 0 || matchedAgents.length < 3) {
-          matchedAgents.push({ agent, score });
+  try {
+    switch (toolName) {
+      case 'search_agents': {
+        const query = (toolArgs.query || '').toLowerCase();
+        const registry = loadJSON(registryPath);
+        if (!registry) {
+          success = false;
+          errorMsg = 'Failed to load agent registry';
+          sendError(id, -32603, errorMsg);
+          return;
         }
+        const matches = registry.agents.filter(a => 
+          a.id.includes(query) || 
+          a.name.toLowerCase().includes(query) || 
+          a.description.toLowerCase().includes(query) ||
+          (a.tags || []).some(t => t.toLowerCase().includes(query))
+        );
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(matches, null, 2)
+          }]
+        });
+        break;
       }
-      matchedAgents.sort((a, b) => b.score - a.score);
-      const topAgents = matchedAgents.slice(0, 3).map(x => x.agent);
 
-      // Recommend Workflows
-      const matchedWorkflows = [];
-      for (const wf of osData.workflows) {
-        let score = 0;
-        const desc = wf.description.toLowerCase();
-        if (roleQuery && desc.includes(roleQuery)) score += 5;
-        if (companyQuery && desc.includes(companyQuery)) score += 8;
+      case 'recommend_agents': {
+        const { skills, experience, role, company } = toolArgs;
+        if (!fs.existsSync(careerOsPath)) {
+          success = false;
+          errorMsg = 'career-os.json not found. Run update first.';
+          sendError(id, -32603, errorMsg);
+          return;
+        }
+        const osData = loadJSON(careerOsPath);
+        const inputSkills = (skills || '').split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+        const companyQuery = (company || '').trim().toLowerCase();
+        const roleQuery = (role || '').trim().toLowerCase();
+        const expQuery = (experience || 'mid').trim().toLowerCase();
 
-        const wfAgents = wf.recommended_agents;
-        const topAgentIds = topAgents.map(ta => ta.id);
-        const agentOverlap = topAgentIds.filter(id => wfAgents.includes(id));
-        score += agentOverlap.length * 3;
+        // Recommend Agents
+        const matchedAgents = [];
+        for (const agent of osData.agents) {
+          let score = 0;
+          const agentSkills = agent.skills.map(s => s.toLowerCase());
+          const skillOverlap = inputSkills.filter(s => agentSkills.includes(s));
+          score += skillOverlap.length * 5;
+          if (agent.experience_level.toLowerCase() === expQuery) score += 3;
+          if (companyQuery && agent.companies.map(co => co.toLowerCase()).includes(companyQuery)) score += 10;
+          if (roleQuery && (agent.id.includes(roleQuery) || agent.name.toLowerCase().includes(roleQuery))) score += 8;
 
-        matchedWorkflows.push({ wf, score });
+          if (score > 0 || matchedAgents.length < 3) {
+            matchedAgents.push({ agent, score });
+          }
+        }
+        matchedAgents.sort((a, b) => b.score - a.score);
+        const topAgents = matchedAgents.slice(0, 3).map(x => x.agent);
+
+        // Recommend Workflows
+        const matchedWorkflows = [];
+        for (const wf of osData.workflows) {
+          let score = 0;
+          const desc = wf.description.toLowerCase();
+          if (roleQuery && desc.includes(roleQuery)) score += 5;
+          if (companyQuery && desc.includes(companyQuery)) score += 8;
+
+          const wfAgents = wf.recommended_agents;
+          const topAgentIds = topAgents.map(ta => ta.id);
+          const agentOverlap = topAgentIds.filter(id => wfAgents.includes(id));
+          score += agentOverlap.length * 3;
+
+          matchedWorkflows.push({ wf, score });
+        }
+        matchedWorkflows.sort((a, b) => b.score - a.score);
+        const topWorkflows = matchedWorkflows.slice(0, 2).map(x => x.wf);
+
+        // Recommend Bundles
+        const matchedBundles = [];
+        for (const b of osData.bundles) {
+          let score = 0;
+          const bundleSkills = b.skills.map(s => s.toLowerCase());
+          const skillOverlap = inputSkills.filter(s => bundleSkills.includes(s));
+          score += skillOverlap.length * 3;
+          if (companyQuery && b.companies.map(co => co.toLowerCase()).includes(companyQuery)) score += 10;
+          if (roleQuery && b.career_paths.map(p => p.toLowerCase()).includes(roleQuery)) score += 8;
+
+          matchedBundles.push({ b, score });
+        }
+        matchedBundles.sort((a, b) => b.score - a.score);
+        const topBundles = matchedBundles.slice(0, 2).map(x => x.b);
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              recommended_agents: topAgents,
+              recommended_workflows: topWorkflows,
+              recommended_bundles: topBundles
+            }, null, 2)
+          }]
+        });
+        break;
       }
-      matchedWorkflows.sort((a, b) => b.score - a.score);
-      const topWorkflows = matchedWorkflows.slice(0, 2).map(x => x.wf);
 
-      // Recommend Bundles
-      const matchedBundles = [];
-      for (const b of osData.bundles) {
-        let score = 0;
-        const bundleSkills = b.skills.map(s => s.toLowerCase());
-        const skillOverlap = inputSkills.filter(s => bundleSkills.includes(s));
-        score += skillOverlap.length * 3;
-        if (companyQuery && b.companies.map(co => co.toLowerCase()).includes(companyQuery)) score += 10;
-        if (roleQuery && b.career_paths.map(p => p.toLowerCase()).includes(roleQuery)) score += 8;
+      case 'career_assessment': {
+        let { roadmapScore, resumeScore, interviewScore, networkingScore, portfolioScore } = toolArgs;
+        if (toolArgs.careerProfile && typeof toolArgs.careerProfile === 'object') {
+          const profile = toolArgs.careerProfile;
+          roadmapScore = roadmapScore ?? profile.roadmapScore ?? profile.roadmap_score;
+          resumeScore = resumeScore ?? profile.resumeScore ?? profile.resume_score;
+          interviewScore = interviewScore ?? profile.interviewScore ?? profile.interview_score;
+          networkingScore = networkingScore ?? profile.networkingScore ?? profile.networking_score;
+          portfolioScore = portfolioScore ?? profile.portfolioScore ?? profile.portfolio_score;
+        }
 
-        matchedBundles.push({ b, score });
-      }
-      matchedBundles.sort((a, b) => b.score - a.score);
-      const topBundles = matchedBundles.slice(0, 2).map(x => x.b);
+        roadmapScore = roadmapScore ?? 2;
+        resumeScore = resumeScore ?? 2;
+        interviewScore = interviewScore ?? 2;
+        networkingScore = networkingScore ?? 2;
+        portfolioScore = portfolioScore ?? 2;
 
-      sendResult(id, {
-        content: [{
-          type: 'text',
-          text: JSON.stringify({
-            recommended_agents: topAgents,
-            recommended_workflows: topWorkflows,
-            recommended_bundles: topBundles
-          }, null, 2)
-        }]
-      });
-      break;
-    }
-
-    case 'career_assessment': {
-      const { roadmapScore, resumeScore, interviewScore, networkingScore, portfolioScore } = toolArgs;
-      const getSubscore = (val) => {
-        if (val === 1) return 20;
-        if (val === 2) return 60;
-        return 100;
-      };
-
-      const career = getSubscore(roadmapScore);
-      const resume = getSubscore(resumeScore);
-      const interview = getSubscore(interviewScore);
-      const networking = getSubscore(networkingScore);
-      const portfolio = getSubscore(portfolioScore);
-
-      const combinedScore = Math.round((career + resume + interview + networking + portfolio) / 5);
-
-      const recommendations = [];
-      if (career < 80) recommendations.push('Define clear long-term career roadmaps using: career_path software-engineer');
-      if (resume < 80) recommendations.push('Format and check ATS compliance by running: resume_score tool');
-      if (interview < 80) recommendations.push('Schedule mock interview loop preparation via: company_track google');
-      if (networking < 80) recommendations.push('Review outbound outreach strategy blueprints in: workflow_lookup remote-job-hunt');
-
-      sendResult(id, {
-        content: [{
-          type: 'text',
-          text: JSON.stringify({
-            overallScore: combinedScore,
-            subscores: {
-              careerStrategy: career,
-              resumeFormatting: resume,
-              interviewPrep: interview,
-              networkingOutreach: networking,
-              portfolioProofOfWork: portfolio
-            },
-            recommendations
-          }, null, 2)
-        }]
-      });
-      break;
-    }
-
-    case 'resume_score': {
-      const { resumeText } = toolArgs;
-      let resumeData;
-      try {
-        resumeData = JSON.parse(resumeText);
-      } catch (e) {
-        resumeData = {
-          header: { name: 'Audit Candidate', email: 'audit@example.com', phone: '+1-555-0100' },
-          summary: resumeText.slice(0, 300),
-          skills: resumeText.match(/\b(React|Next\.js|Node\.js|Express|Python|Go|Java|SQL|AWS|Docker|Kubernetes|Git)\b/gi) || [],
-          experience: [
-            {
-              role: 'Developer',
-              company: 'Sample Corp',
-              duration: '2023 - Present',
-              bullets: resumeText.split('\n').filter(l => l.trim().startsWith('-') || l.trim().startsWith('*')).slice(0, 5)
-            }
-          ],
-          education: [{ degree: 'Degree', institution: 'University', duration: '2019-2023' }]
+        const getSubscore = (val) => {
+          if (val === 1) return 20;
+          if (val === 2) return 60;
+          return 100;
         };
-      }
-      const { scoreResumeData } = await import('../resume-engine/scorer.js');
-      const scoreResult = scoreResumeData(resumeData);
-      sendResult(id, {
-        content: [{
-          type: 'text',
-          text: JSON.stringify(scoreResult, null, 2)
-        }]
-      });
-      break;
-    }
-    case 'job_match': {
-      const { resume, jobDescription } = toolArgs;
-      let resumeData;
-      try {
-        resumeData = JSON.parse(resume);
-      } catch (e) {
-        resumeData = {
-          header: { name: 'Audit Candidate', email: 'audit@example.com', phone: '+1-555-0100' },
-          summary: resume.slice(0, 300),
-          skills: resume.match(/\b(React|Next\.js|Node\.js|Express|Python|Go|Java|SQL|AWS|Docker|Kubernetes|Git)\b/gi) || [],
-          experience: [],
-          education: []
-        };
-      }
-      const { analyzeJobMatch } = await import('../resume-engine/job-match.js');
-      const matchResult = analyzeJobMatch(resumeData, jobDescription);
-      sendResult(id, {
-        content: [{
-          type: 'text',
-          text: JSON.stringify(matchResult, null, 2)
-        }]
-      });
-      break;
-    }
-    case 'company_track': {
-      const coId = (toolArgs.company || '').toLowerCase().trim();
-      const coFile = path.join(root, 'companies', `${coId}.json`);
-      if (!fs.existsSync(coFile)) {
-        sendError(id, -32602, `Company track '${coId}' not found`);
-        return;
-      }
-      const data = loadJSON(coFile);
-      sendResult(id, {
-        content: [{
-          type: 'text',
-          text: JSON.stringify(data, null, 2)
-        }]
-      });
-      break;
-    }
-    case 'career_path': {
-      const pId = (toolArgs.careerPath || '').toLowerCase().trim();
-      const pFile = path.join(root, 'career-paths', `${pId}.json`);
-      if (!fs.existsSync(pFile)) {
-        sendError(id, -32602, `Career path '${pId}' not found`);
-        return;
-      }
-      const data = loadJSON(pFile);
-      sendResult(id, {
-        content: [{
-          type: 'text',
-          text: JSON.stringify(data, null, 2)
-        }]
-      });
-      break;
-    }
-    case 'workflow_lookup': {
-      const wId = (toolArgs.workflow || '').toLowerCase().trim();
-      const wReg = loadJSON(workflowsPath);
-      if (!wReg) {
-        sendError(id, -32603, 'Failed to load workflow registry');
-        return;
-      }
-      const wf = wReg.workflows.find(x => x.id === wId);
-      if (!wf) {
-        sendError(id, -32602, `Workflow '${wId}' not found`);
-        return;
-      }
-      const wFile = path.join(root, wf.filename);
-      let content = '';
-      if (fs.existsSync(wFile)) {
-        content = fs.readFileSync(wFile, 'utf8');
-      }
-      sendResult(id, {
-        content: [{
-          type: 'text',
-          text: JSON.stringify({ metadata: wf, prompt_checklist: content }, null, 2)
-        }]
-      });
-      break;
-    }
-    case 'agent_details': {
-      const aId = (toolArgs.agentId || '').trim();
-      const aReg = loadJSON(registryPath);
-      if (!aReg) {
-        sendError(id, -32603, 'Failed to load agent registry');
-        return;
-      }
-      const agent = aReg.agents.find(x => x.id === aId);
-      if (!agent) {
-        sendError(id, -32602, `Agent '${aId}' not found in registry`);
-        return;
-      }
-      const aFile = path.join(root, agent.filename);
-      let content = '';
-      if (fs.existsSync(aFile)) {
-        content = fs.readFileSync(aFile, 'utf8');
-      }
-      sendResult(id, {
-        content: [{
-          type: 'text',
-          text: JSON.stringify({ metadata: agent, system_prompt: content }, null, 2)
-        }]
-      });
-      break;
-    }
-    case 'knowledge_graph': {
-      const ent = (toolArgs.entity || '').toLowerCase().trim();
-      const gPath = path.join(root, 'knowledge-graph.json');
-      const graph = loadJSON(gPath);
-      if (!graph) {
-        sendError(id, -32603, 'Failed to load knowledge graph');
-        return;
-      }
-      const matchingNodes = graph.nodes.filter(n => 
-        n.id.toLowerCase().includes(ent) || 
-        n.name.toLowerCase().includes(ent)
-      );
-      const nodeIds = new Set(matchingNodes.map(n => n.id));
-      const connectedEdges = graph.edges.filter(e => 
-        nodeIds.has(e.source) || nodeIds.has(e.target)
-      );
-      const connectedNodeIds = new Set();
-      connectedEdges.forEach(e => {
-        connectedNodeIds.add(e.source);
-        connectedNodeIds.add(e.target);
-      });
-      const connectedNodes = graph.nodes.filter(n => connectedNodeIds.has(n.id));
 
-      sendResult(id, {
-        content: [{
-          type: 'text',
-          text: JSON.stringify({ nodes: connectedNodes, edges: connectedEdges }, null, 2)
-        }]
-      });
-      break;
-    }
+        const career = getSubscore(roadmapScore);
+        const resume = getSubscore(resumeScore);
+        const interview = getSubscore(interviewScore);
+        const networking = getSubscore(networkingScore);
+        const portfolio = getSubscore(portfolioScore);
 
-    default:
-      sendError(id, -32601, `Tool not found: ${toolName}`);
+        const combinedScore = Math.round((career + resume + interview + networking + portfolio) / 5);
+
+        const recommendations = [];
+        const roadmap = [];
+        if (career < 80) {
+          recommendations.push('Define clear long-term career roadmaps using: career_path software-engineer');
+          roadmap.push('career_path: software-engineer (Define milestone-based roadmap)');
+        }
+        if (resume < 80) {
+          recommendations.push('Format and check ATS compliance by running: resume_score tool');
+          roadmap.push('workflow: ats-optimization (Check ATS compliance)');
+        }
+        if (interview < 80) {
+          recommendations.push('Schedule mock interview loop preparation via: company_track google');
+          roadmap.push('company_track: google (Practice mock interview loops)');
+        }
+        if (networking < 80) {
+          recommendations.push('Review outbound outreach strategy blueprints in: workflow_lookup remote-job-hunt');
+          roadmap.push('workflow: remote-job-hunt (Build referral pipeline)');
+        }
+
+        if (roadmap.length === 0) {
+          roadmap.push('Maintain current state. Continue to execute high-impact project loops.');
+        }
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              career_score: combinedScore,
+              recommendations,
+              roadmap
+            }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'resume_score': {
+        const { resumeText } = toolArgs;
+        let resumeData;
+        try {
+          resumeData = JSON.parse(resumeText);
+        } catch (e) {
+          resumeData = {
+            header: { name: 'Audit Candidate', email: 'audit@example.com', phone: '+1-555-0100' },
+            summary: resumeText.slice(0, 300),
+            skills: resumeText.match(/\b(React|Next\.js|Node\.js|Express|Python|Go|Java|SQL|AWS|Docker|Kubernetes|Git|CI\/CD|Agile|Scrum)\b/gi) || [],
+            experience: [
+              {
+                role: 'Developer',
+                company: 'Sample Corp',
+                duration: '2023 - Present',
+                bullets: resumeText.split('\n').filter(l => l.trim().startsWith('-') || l.trim().startsWith('*')).slice(0, 5)
+              }
+            ],
+            education: [{ degree: 'Degree', institution: 'University', duration: '2019-2023' }]
+          };
+        }
+        const { scoreResumeData } = await import('../resume-engine/scorer.js');
+        const scoreResult = scoreResumeData(resumeData);
+
+        const missingKeywords = [];
+        const resumeTextLower = resumeText.toLowerCase();
+        const COMMON_KEYWORDS = ['git', 'docker', 'aws', 'kubernetes', 'ci/cd', 'agile', 'scrum', 'testing', 'apis', 'sql'];
+        COMMON_KEYWORDS.forEach(kw => {
+          if (!resumeTextLower.includes(kw)) {
+            missingKeywords.push(kw);
+          }
+        });
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              ats_score: scoreResult.overall_score,
+              missing_keywords: missingKeywords,
+              recommendations: scoreResult.recommendations
+            }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'job_match': {
+        const { resume, jobDescription } = toolArgs;
+        let resumeData;
+        try {
+          resumeData = JSON.parse(resume);
+        } catch (e) {
+          resumeData = {
+            header: { name: 'Audit Candidate', email: 'audit@example.com', phone: '+1-555-0100' },
+            summary: resume.slice(0, 300),
+            skills: resume.match(/\b(React|Next\.js|Node\.js|Express|Python|Go|Java|SQL|AWS|Docker|Kubernetes|Git)\b/gi) || [],
+            experience: [],
+            education: []
+          };
+        }
+        const { analyzeJobMatch } = await import('../resume-engine/job-match.js');
+        const matchResult = analyzeJobMatch(resumeData, jobDescription);
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              match_score: matchResult.matchPercentage,
+              gaps: matchResult.missingKeywords,
+              recommended_agents: matchResult.recommendations.agents,
+              strengths: matchResult.strengths,
+              weaknesses: matchResult.weaknesses,
+              suggestions: matchResult.suggestions
+            }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'company_track': {
+        const coId = (toolArgs.company || '').toLowerCase().trim();
+        const coFile = path.join(root, 'companies', `${coId}.json`);
+        if (!fs.existsSync(coFile)) {
+          success = false;
+          errorMsg = `Company track '${coId}' not found`;
+          sendError(id, -32602, errorMsg);
+          return;
+        }
+        const data = loadJSON(coFile);
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              interview_process: data.interview_process,
+              required_skills: data.skills,
+              roadmap: `Workflow: ${data.preparation_workflow}`,
+              recommended_agents: data.agents,
+              resources: data.resources
+            }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'career_path': {
+        const pId = (toolArgs.careerPath || toolArgs.career_path || '').toLowerCase().trim();
+        const pFile = path.join(root, 'career-paths', `${pId}.json`);
+        if (!fs.existsSync(pFile)) {
+          success = false;
+          errorMsg = `Career path '${pId}' not found`;
+          sendError(id, -32602, errorMsg);
+          return;
+        }
+        const data = loadJSON(pFile);
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              skills: data.core_skills,
+              milestones: [
+                "Entry Level Core Competency Integration",
+                "Mid Level System Refactoring & Collaboration",
+                "Senior Level Architecture & Delivery Leadership"
+              ],
+              learning_plan: data.recommended_workflows.map(wf => `Execute workflow: ${wf}`),
+              recommended_agents: data.recommended_agents
+            }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'workflow_lookup': {
+        const wId = (toolArgs.workflow || toolArgs.workflow_id || '').toLowerCase().trim();
+        const wReg = loadJSON(workflowsPath);
+        if (!wReg) {
+          success = false;
+          errorMsg = 'Failed to load workflow registry';
+          sendError(id, -32603, errorMsg);
+          return;
+        }
+        const wf = wReg.workflows.find(x => x.id === wId);
+        if (!wf) {
+          success = false;
+          errorMsg = `Workflow '${wId}' not found`;
+          sendError(id, -32602, errorMsg);
+          return;
+        }
+        const wFile = path.join(root, wf.filename);
+        let content = '';
+        if (fs.existsSync(wFile)) {
+          content = fs.readFileSync(wFile, 'utf8');
+        }
+
+        let steps = [];
+        const stepMatch = content.match(/#+ Step-by-Step Execution Plan([\s\S]*?)(?:#+|$)/i);
+        if (stepMatch && stepMatch[1]) {
+          steps = stepMatch[1]
+            .split('\n')
+            .map(line => line.trim())
+            .filter(line => /^\d+\./.test(line))
+            .map(line => line.replace(/^\d+\.\s*/, ''));
+        }
+        if (steps.length === 0) {
+          steps = wf.prerequisites || [];
+        }
+
+        let estimatedTime = "2-3 weeks";
+        if (content.toLowerCase().includes("week 1") && content.toLowerCase().includes("week 3")) {
+          estimatedTime = "3 weeks";
+        } else if (content.toLowerCase().includes("prep week") || content.toLowerCase().includes("1 week")) {
+          estimatedTime = "1 week";
+        }
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              steps,
+              agents: wf.recommended_agents,
+              estimated_time: estimatedTime,
+              prerequisites: wf.prerequisites
+            }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'agent_details': {
+        const aId = (toolArgs.agentId || toolArgs.agent_id || '').trim();
+        const aReg = loadJSON(registryPath);
+        if (!aReg) {
+          success = false;
+          errorMsg = 'Failed to load agent registry';
+          sendError(id, -32603, errorMsg);
+          return;
+        }
+        const agent = aReg.agents.find(x => x.id === aId);
+        if (!agent) {
+          success = false;
+          errorMsg = `Agent '${aId}' not found in registry`;
+          sendError(id, -32602, errorMsg);
+          return;
+        }
+        const aFile = path.join(root, agent.filename);
+        let content = '';
+        if (fs.existsSync(aFile)) {
+          content = fs.readFileSync(aFile, 'utf8');
+        }
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              full_metadata: agent,
+              prompt: content,
+              related_agents: agent.related_agents
+            }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'knowledge_graph': {
+        const ent = (toolArgs.entity || '').toLowerCase().trim();
+        const gPath = path.join(root, 'knowledge-graph.json');
+        const graph = loadJSON(gPath);
+        if (!graph) {
+          success = false;
+          errorMsg = 'Failed to load knowledge graph';
+          sendError(id, -32603, errorMsg);
+          return;
+        }
+        const matchingNodes = graph.nodes.filter(n => 
+          n.id.toLowerCase().includes(ent) || 
+          n.name.toLowerCase().includes(ent)
+        );
+        const nodeIds = new Set(matchingNodes.map(n => n.id));
+        const connectedEdges = graph.edges.filter(e => 
+          nodeIds.has(e.source) || nodeIds.has(e.target)
+        );
+        const connectedNodeIds = new Set();
+        connectedEdges.forEach(e => {
+          connectedNodeIds.add(e.source);
+          connectedNodeIds.add(e.target);
+        });
+        const connectedNodes = graph.nodes.filter(n => connectedNodeIds.has(n.id));
+
+        const agents = connectedNodes.filter(n => n.type === 'agent' || n.type === 'division').map(n => n.name);
+        const companies = connectedNodes.filter(n => n.type === 'company').map(n => n.name);
+        const paths = connectedNodes.filter(n => n.type === 'career-path').map(n => n.name);
+        const skills = connectedNodes.filter(n => n.type === 'skill').map(n => n.name);
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              connected_agents: agents,
+              companies,
+              paths,
+              skills
+            }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      default:
+        success = false;
+        errorMsg = `Tool not found: ${toolName}`;
+        sendError(id, -32601, errorMsg);
+    }
+    auditLog('tools/call/' + toolName, toolArgs, success, errorMsg);
+  } catch (err) {
+    success = false;
+    errorMsg = err.message;
+    sendError(id, -32603, `Execution error: ${err.message}`);
+    auditLog('tools/call/' + toolName, toolArgs, success, errorMsg);
   }
 }
 
@@ -632,6 +863,7 @@ function handleResourcesRead(id, params) {
   log(`Reading resource: ${uri}`);
   const resource = MCP_RESOURCES.find(r => r.uri === uri);
   if (!resource) {
+    auditLog('resources/read', params, false, `Resource not found: ${uri}`);
     sendError(id, -32602, `Resource not found: ${uri}`);
     return;
   }
@@ -649,12 +881,35 @@ function handleResourcesRead(id, params) {
 
   const fpath = path.join(root, filename);
   if (!fs.existsSync(fpath)) {
+    auditLog('resources/read', params, false, `Resource file missing on disk: ${filename}`);
     sendError(id, -32603, `Resource file missing on disk: ${filename}`);
     return;
   }
 
   try {
-    const text = fs.readFileSync(fpath, 'utf8');
+    const resolvedPath = path.resolve(fpath);
+    const resolvedRoot = path.resolve(root);
+    if (!resolvedPath.startsWith(resolvedRoot)) {
+      auditLog('resources/read', params, false, `Traversal protection triggered`);
+      sendError(id, -32603, `Access denied: Traversal protection triggered.`);
+      return;
+    }
+
+    const stats = fs.statSync(resolvedPath);
+    let text;
+    const cacheKey = resolvedPath;
+    if (fileCache[cacheKey] && fileCache[cacheKey].mtime >= stats.mtimeMs) {
+      text = JSON.stringify(fileCache[cacheKey].data, null, 2);
+    } else {
+      text = fs.readFileSync(resolvedPath, 'utf8');
+      const parsed = JSON.parse(text);
+      validateRegistryJSON(filename, parsed);
+      fileCache[cacheKey] = {
+        data: parsed,
+        mtime: stats.mtimeMs
+      };
+    }
+
     sendResult(id, {
       contents: [{
         uri,
@@ -662,7 +917,9 @@ function handleResourcesRead(id, params) {
         text
       }]
     });
+    auditLog('resources/read', params, true);
   } catch (err) {
+    auditLog('resources/read', params, false, err.message);
     sendError(id, -32603, `Error reading resource: ${err.message}`);
   }
 }
