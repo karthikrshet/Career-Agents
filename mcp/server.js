@@ -564,7 +564,7 @@ async function handleToolsCall(id, params) {
           content: [{
             type: 'text',
             text: JSON.stringify({
-              ats_score: scoreResult.overall_score,
+              ats_score: scoreResult.overallScore,
               missing_keywords: missingKeywords,
               recommendations: scoreResult.recommendations
             }, null, 2)
