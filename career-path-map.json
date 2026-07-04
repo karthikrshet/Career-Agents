@@ -15,6 +15,21 @@
       "ai-engineer-career-coach"
     ]
   },
+  "backend-engineer": {
+    "name": "Backend Engineer",
+    "skills": [
+      "API Design (REST/GraphQL)",
+      "Database Architecture & Indexing",
+      "Distributed Systems",
+      "Server-Side Languages (Go, Python, Java, Node.js)",
+      "Performance Engineering"
+    ],
+    "agents": [
+      "backend-architect",
+      "database-engineer",
+      "system-design-coach"
+    ]
+  },
   "cloud-engineer": {
     "name": "Cloud Engineer",
     "skills": [
@@ -60,6 +75,36 @@
       "devops-engineer",
       "platform-engineer",
       "site-reliability-engineer"
+    ]
+  },
+  "frontend-engineer": {
+    "name": "Frontend Engineer",
+    "skills": [
+      "JavaScript / TypeScript",
+      "React / Next.js",
+      "CSS & Styling",
+      "Web Vitals & Performance",
+      "API Integration"
+    ],
+    "agents": [
+      "nextjs-performance-engineer",
+      "portfolio-reviewer",
+      "ats-resume-reviewer"
+    ]
+  },
+  "full-stack-engineer": {
+    "name": "Full Stack Engineer",
+    "skills": [
+      "Frontend Frameworks",
+      "Backend APIs",
+      "Database Design",
+      "Cloud Deployments",
+      "End-to-End Testing"
+    ],
+    "agents": [
+      "mern-architect",
+      "code-reviewer",
+      "placement-coach"
     ]
   },
   "product-manager": {

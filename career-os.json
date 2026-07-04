@@ -8,7 +8,7 @@
     "division_count": 19,
     "workflow_count": 10,
     "company_count": 10,
-    "career_path_count": 7,
+    "career_path_count": 10,
     "bundle_count": 7,
     "integration_count": 18
   },
@@ -8170,6 +8170,31 @@
       ]
     },
     {
+      "id": "backend-engineer",
+      "name": "Backend Engineer",
+      "description": "Specialized engineer focused on server-side logic, API design, database structures, security, caching, and scalability.",
+      "core_skills": [
+        "API Design (REST/GraphQL)",
+        "Database Architecture & Indexing",
+        "Distributed Systems",
+        "Server-Side Languages (Go, Python, Java, Node.js)",
+        "Performance Engineering"
+      ],
+      "recommended_divisions": [
+        "engineering",
+        "data-engineering",
+        "interview"
+      ],
+      "recommended_agents": [
+        "backend-architect",
+        "database-engineer",
+        "system-design-coach"
+      ],
+      "recommended_workflows": [
+        "technical-interview-week"
+      ]
+    },
+    {
       "id": "cloud-engineer",
       "name": "Cloud Engineer",
       "description": "Focused on provisioning public cloud infrastructure, maintaining high availability, designing scalable networks, and managing containerized systems.",
@@ -8244,6 +8269,58 @@
       ],
       "recommended_workflows": [
         "technical-interview-week"
+      ]
+    },
+    {
+      "id": "frontend-engineer",
+      "name": "Frontend Engineer",
+      "description": "Specialized engineer focused on client-side applications, user interfaces, performance optimization, and modern web frameworks.",
+      "core_skills": [
+        "JavaScript / TypeScript",
+        "React / Next.js",
+        "CSS & Styling",
+        "Web Vitals & Performance",
+        "API Integration"
+      ],
+      "recommended_divisions": [
+        "engineering",
+        "resume",
+        "career"
+      ],
+      "recommended_agents": [
+        "nextjs-performance-engineer",
+        "portfolio-reviewer",
+        "ats-resume-reviewer"
+      ],
+      "recommended_workflows": [
+        "ats-optimization",
+        "technical-interview-week"
+      ]
+    },
+    {
+      "id": "full-stack-engineer",
+      "name": "Full Stack Engineer",
+      "description": "Versatile engineer capable of building and maintaining both client-side and server-side components of modern web applications.",
+      "core_skills": [
+        "Frontend Frameworks",
+        "Backend APIs",
+        "Database Design",
+        "Cloud Deployments",
+        "End-to-End Testing"
+      ],
+      "recommended_divisions": [
+        "engineering",
+        "cloud",
+        "career"
+      ],
+      "recommended_agents": [
+        "mern-architect",
+        "code-reviewer",
+        "placement-coach"
+      ],
+      "recommended_workflows": [
+        "fresher-placement",
+        "ats-optimization"
       ]
     },
     {
