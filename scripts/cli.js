@@ -730,7 +730,7 @@ function runDoctor() {
   }
 
   console.log(`\n${c.bold}[2/3] Verifying Directories integrity...${c.reset}`);
-  const dirs = [bundlesDir, companiesDir, pathsDir, intelligenceDir];
+  const dirs = [bundlesDir, companiesDir, pathsDir];
   for (const d of dirs) {
     if (fs.existsSync(d)) {
       console.log(`  [${c.green}✓ OK${c.reset}] ${path.basename(d)}/ exists.`);
