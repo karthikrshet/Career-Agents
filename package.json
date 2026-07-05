@@ -65,6 +65,8 @@
     "workflows",
     "templates",
     "scripts",
+    "recommendation-engine",
+    "resume-engine",
     "runtime",
     "launcher",
     "mcp",
