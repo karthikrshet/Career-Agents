@@ -16,9 +16,7 @@ The Open-Source Career Operating System
   <strong>🚀 135+ AI Agents</strong> | <strong>📄 20 ATS Templates</strong> | <strong>📁 19 Divisions</strong> | <strong>⚡ MCP Server</strong> | <strong>💻 Global CLI</strong> | <strong>🎓 Career Paths</strong> | <strong>🏢 Company Tracks</strong>
 </p>
 
-<p align="center">
-  <img src="./docs/images/career_os_dashboard.png" alt="Career OS Dashboard" width="800">
-</p>
+
 
 ---
 
@@ -581,10 +579,17 @@ Workflows are repeatable pipelines guiding you step-by-step through career miles
 ## 🔗 Knowledge Graph
 
 Career-Agents compiles a complex, expanded **[knowledge-graph.json](./knowledge-graph.json)** mapping dependencies across:
-- **Agents** $ightarrow$ Belongs to **Divisions** $ightarrow$ Used in **Workflows**
-- **Career Paths** $ightarrow$ Requires **Skills** $ightarrow$ Uses **Agents**
-- **Companies** $ightarrow$ Requires **Skills** $ightarrow$ Prepped by **Workflows**
-- **Bundles** $ightarrow$ Packs **Agents**, **Career Paths**, and **Companies**
+- **Agents** $
+ightarrow$ Belongs to **Divisions** $
+ightarrow$ Used in **Workflows**
+- **Career Paths** $
+ightarrow$ Requires **Skills** $
+ightarrow$ Uses **Agents**
+- **Companies** $
+ightarrow$ Requires **Skills** $
+ightarrow$ Prepped by **Workflows**
+- **Bundles** $
+ightarrow$ Packs **Agents**, **Career Paths**, and **Companies**
 
 You can inspect nodes connectivity stats locally via:
 ```bash
