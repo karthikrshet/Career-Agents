@@ -1,11 +1,20 @@
-# 🚀 Career-Agents
-### The Open-Source Career Operating System (Career OS)
-**The most complete open-source career workspace, featuring 135+ specialized AI agents and structured execution roadmaps.**
+# Career-Agents
 
-[![npm version](https://img.shields.io/npm/v/career-agents)](https://www.npmjs.com/package/career-agents)
-[![npm downloads](https://img.shields.io/npm/dm/career-agents)](https://www.npmjs.com/package/career-agents)
-[![GitHub stars](https://img.shields.io/github/stars/karthikrshet/Career-Agents?style=social)](https://github.com/karthikrshet/Career-Agents)
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/karthikrshet)](https://github.com/sponsors/karthikrshet)
+The Open-Source Career Operating System
+
+<p align="center">
+  <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/github/stars/karthikrshet/Career-Agents?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/karthikrshet/Career-Agents/network"><img src="https://img.shields.io/github/forks/karthikrshet/Career-Agents.svg?style=social" alt="GitHub forks"></a>
+  <a href="https://github.com/karthikrshet/Career-Agents/graphs/contributors"><img src="https://img.shields.io/github/contributors/karthikrshet/Career-Agents.svg" alt="GitHub contributors"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/v/career-agents" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/dm/career-agents" alt="npm downloads"></a>
+  <img src="https://komarev.com/ghpvc/?username=karthikrshet-career-agents&color=blue" alt="Profile Views">
+</p>
+
+<p align="center">
+  <strong>🚀 135+ AI Agents</strong> | <strong>📄 20 ATS Templates</strong> | <strong>📁 19 Divisions</strong> | <strong>⚡ MCP Server</strong> | <strong>💻 Global CLI</strong> | <strong>🎓 Career Paths</strong> | <strong>🏢 Company Tracks</strong>
+</p>
 
 <p align="center">
   <img src="./docs/images/career_os_dashboard.png" alt="Career OS Dashboard" width="800">
@@ -13,23 +22,15 @@
 
 ---
 
-## Install
+## 🤔 Why Career-Agents?
 
-```bash
-npm install -g career-agents
-```
+### What makes it different?
+Unlike standard job boards or simple prompting guides, Career-Agents treats career advancement as an operational pipeline. It compiles specialized expert logic, ATS compliance patterns, and interview roadmaps into a unified system that integrates directly with developer workflows and AI coding editors.
 
----
-
-## Quick Start
-
-```bash
-career-agents doctor
-career-agents assess
-career-agents recommend
-career-agents company google
-career-agents resume templates
-```
+### Who should use it?
+- **Developers & Engineers**: Pivot roles (e.g. Frontend to AI/ML Engineering) and optimize technical profiles.
+- **Students & Graduates**: Access placement structures, final-year project checklists, and internship pipelines.
+- **Founders & Consultants**: Scope MVPs, construct pricing models, and direct growth strategies.
 
 ---
 
@@ -48,15 +49,99 @@ Career OS
 
 ---
 
-## 🤔 Why Career-Agents?
+## 📥 Install
 
-### What makes it different?
-Unlike standard job boards or simple prompting guides, Career-Agents treats career advancement as an operational pipeline. It compiles specialized expert logic, ATS compliance patterns, and interview roadmaps into a unified system that integrates directly with developer workflows and AI coding editors.
+```bash
+npm install -g career-agents
+```
 
-### Who should use it?
-- **Developers & Engineers**: Pivot roles (e.g. Frontend to AI/ML Engineering) and optimize technical profiles.
-- **Students & Graduates**: Access placement structures, final-year project checklists, and internship pipelines.
-- **Founders & Consultants**: Scope MVPs, construct pricing models, and direct growth strategies.
+---
+
+## ⚡ Quick Start
+
+Verify setup health, assess your readiness, and explore matching tools out-of-the-box:
+
+```bash
+career-agents doctor
+career-agents assess
+career-agents recommend
+career-agents company google
+career-agents resume templates
+```
+
+---
+
+## 💻 CLI Examples
+
+Interact with the registries and prompt compilations directly from your terminal:
+
+```bash
+# Run a specific agent in interactive chat mode
+career-agents run ats-resume-reviewer
+
+# Export a career path roadmap in YAML format
+career-agents export path ai-engineer yaml
+
+# Calculate your strategic readiness score card
+career-agents score
+```
+
+---
+
+## ⚡ MCP Examples
+
+Expose specialized career tools and resource indices to your LLMs:
+
+- **Resource URIs**: Expose entities like `career-agents://registry/agents` or `career-agents://registry/workflows`.
+- **Tool APIs**: Execute schema calls like `recommend_agents`, `resume_score`, or `company_track` dynamically.
+
+---
+
+## 🔌 Editor MCP Setup
+
+### 1. Claude Desktop Setup
+Add the configuration block under `%APPDATA%/Claude/claude_desktop_config.json`:
+```json
+{
+  "mcpServers": {
+    "career-agents": {
+      "command": "npx",
+      "args": ["-y", "career-agents", "mcp"]
+    }
+  }
+}
+```
+
+### 2. Cursor Setup
+Go to **Settings** $ightarrow$ **Features** $ightarrow$ **MCP** $ightarrow$ **Add New MCP Server**:
+- **Name**: `career-agents`
+- **Type**: `stdio`
+- **Command**: `npx -y career-agents mcp`
+
+### 3. Windsurf Setup
+Add configuration to `~/.codeium/windsurf/mcp_config.json`:
+```json
+{
+  "mcpServers": {
+    "career-agents": {
+      "command": "npx",
+      "args": ["-y", "career-agents", "mcp"]
+    }
+  }
+}
+```
+
+### 4. OpenCode Setup
+Configure a `stdio` MCP server pointing to the global command:
+- **Command**: `npx -y career-agents mcp`
+
+---
+
+## 🤝 Contributing
+
+We welcome community proposals, corrections, and additions!
+- **Issue Templates**: Check out issue templates under `.github/ISSUE_TEMPLATE/` for new agent proposals or company track requests.
+- **PR Workflow**: Read our [Contributing Guidelines](./CONTRIBUTING.md) and submit a pull request matching our conventional commit styles.
 
 ---
 
@@ -74,117 +159,6 @@ Benefits:
 - Support Career OS growth
 - Support Resume Studio improvements
 - Support MCP ecosystem expansion
-
----
-
-## 📊 Repository Statistics
-
-- **Total Agents:** 135 (100% active, fully specified, and tested)
-- **Total Divisions:** 19 functional specialty areas
-- **Total Career Workflows:** 10 multi-agent operation guides
-- **Total Career Bundles:** 7 pre-packaged bundles
-- **Total Career Paths:** 10 engineering/PM/founder paths
-- **Total Target Companies:** 10 tier-1 track prep databases
-- **Total Integrations:** 10 supported configurations
-- **Total Supported Platforms:** 10 runtimes
-- **Total Contributors:** 1 (Karthik Rajesh Shet)
-
----
-
-## 🆚 Why Career-Agents (Career OS)
-
-| Capability / Feature | Agency Agents | Career-Ops | Career-Agents (Career OS) |
-| :--- | :---: | :---: | :---: |
-| **Agent Roster Depth** | ❌ Basic | ❌ None | ✅ **135+ Specialist Agents** |
-| **Modular Divisions** | ❌ Flat | ❌ Flat | ✅ **19 Categorized Divisions** |
-| **Multi-Agent Workflows** | ❌ Manual | ✅ Job Search | ✅ **10 Cross-Disciplinary Workflows** |
-| **Ecosystem Bundles** | ❌ None | ❌ None | ✅ **7 Target Milestones Bundles** |
-| **Tier-1 Company Hubs** | ❌ General | ❌ General | ✅ **10 Detailed Company Guides** |
-| **CLI & Exporters** | ❌ None | ❌ Python Script | ✅ **Career CLI + 6 Export Formats** |
-| **IDE Prompts Injection** | ❌ Manual | ❌ Manual | ✅ **Cursor/Aider/Claude Code Injector** |
-| **LLM Discovery Index** | ❌ None | ❌ None | ✅ **llms.txt, Maps, & Knowledge Graph** |
-
----
-
-## ⚙️ Career Operating System Features
-
-Career-Agents integrates several distinct layers to help candidates optimize their careers:
-
-### 1. Agent Launcher
-Direct browser redirection launcher hooks (`launcher/launcher-registry.json`) that copy prompts to clipboard and load target AI portals.
-
-### 2. Career CLI
-Complete command utility that allows developers to run prompt packages, diagnose environments, assess profile scores, and get matched recommendations.
-
-### 3. Resume Intelligence & ATS Resume Studio
-An integrated suite providing automated tools to build, score, and optimize resumes for ATS filters and company-specific rubrics.
-*   **ATS Resume Templates:** 20 production-ready templates.
-*   **Resume Builder:** CLI wizard compiling JSON/Markdown/TXT formats.
-*   **ATS Scoring:** 0-100 scoring based on layout, formatting, skills density, and impact metrics.
-*   **Job Match Analysis:** Match % and suggested optimizations against job descriptions.
-*   **FAANG Optimization:** Specific rubrics for Google, Meta, OpenAI, etc.
-*   **Career Recommendations:** Matches workflows and paths.
-
-### 4. Interview Intelligence
-Advanced mock interview loops, STAR behavioral storytelling drills, and scalable distributed system design coaching.
-
-### 5. Job Intelligence
-Structured workflows and scrapers targeting remote listings, referral outreach messages, and recruiter communications.
-
-### 6. Career Intelligence
-Path progressions mapping skills to core milestones, and company tracks mapping candidate prep to tier-1 loops.
-
----
-
-## 🚀 Agent Launcher
-
-The launcher maps local agent instructions to web-based AI clients (Claude, Gemini, ChatGPT, Perplexity, DeepSeek, Qwen, OpenRouter).
-
-### Usage:
-```bash
-career-agents launcher <agent-id-or-bundle-id> <platform>
-```
-*Example:*
-```bash
-career-agents launcher google-interview-coach claude
-```
-This will copy the agent instructions to your clipboard and launch the Claude browser window automatically.
-
----
-
-## 💻 Career CLI
-
-Use the local Node.js command engine to interact with registries:
-
-| Command | Action | Example |
-| :--- | :--- | :--- |
-| `list` | Show divisions, paths, and companies counts | `career-agents list` |
-| `search` | Filter agents, workflows, and paths by keyword | `career-agents search google` |
-| `run` | Execute local interactive terminal agent | `career-agents run google-interview-coach` |
-| `bundles` | List or inspect pre-packaged bundles | `career-agents bundles faang-bundle` |
-| `bundle run` | Run interactive bundle execution menu | `career-agents bundle run internship-bundle` |
-| `path` | View career path details and prep tools | `career-agents path software-engineer` |
-| `company` | Inspect target company interview loop tracks | `career-agents company stripe` |
-| `launcher` | Copy prompts and launch AI browser interface | `career-agents launcher mock-interviewer` |
-| `export` | Package bundles/companies/paths prompts | `career-agents export path ai-engineer yaml` |
-| `use` | Inject instructions directly into Cursor/Copilot | `career-agents use ats-resume-reviewer cursor` |
-| `resume` | Launch the ATS Resume Studio tools suite | `career-agents resume build` |
-| `recommend` | Interactive profile target recommendations | `career-agents recommend` |
-| `score` | Interactive career readiness report card | `career-agents score` |
-| `graph` | Display knowledge graph dimensions summary | `career-agents graph` |
-| `doctor` | Execute diagnostic environmental health checks | `career-agents doctor` |
-| `update` | Recompile local indices and metrics | `career-agents update` |
-
----
-
-## 🌟 Featured Agents
-
-Here are a few high-value agents recommended for daily developer routines:
-- **`ats-resume-reviewer`**: Line-by-line resume structural auditor.
-- **`mock-interviewer`**: Simulates live tech and behavioural interview loops.
-- **`google-interview-coach`**: Technical algorithms and Googleyness specialist.
-- **`founder-advisor`**: Co-founder substitute that stress-tests MVP assumptions.
-- **`ai-engineer-career-coach`**: Learning roadmap guide for ML/RAG developers.
 
 ---
 
@@ -619,22 +593,6 @@ node scripts/cli.js graph
 
 ---
 
-## 🔌 Multi-Tool Integrations
-
-Integration configurations are structured under the `integrations/` directory, complete with usage READMEs:
-
-- [**integrations/claude-code/**](./integrations/claude-code/README.md): Claude Code subagents.
-- [**integrations/cursor/**](./integrations/cursor/README.md): Cursor Rules custom modes.
-- [**integrations/codex/**](./integrations/codex/README.md): Codex packages.
-- [**integrations/gemini-cli/**](./integrations/gemini-cli/README.md): Gemini CLI templates.
-- [**integrations/aider/**](./integrations/aider/README.md): Aider instructions.
-- [**integrations/copilot/**](./integrations/copilot/README.md): GitHub Copilot rules.
-- [**integrations/windsurf/**](./integrations/windsurf/README.md): Windsurf rulesets.
-- [**integrations/qwen/**](./integrations/qwen/README.md): Qwen agent bundles.
-- [**integrations/openrouter/**](./integrations/openrouter/README.md): OpenRouter payload formats.
-
----
-
 ## 🤝 Community
 
 Explore guidelines, case logs, and programs to contribute to our open ecosystem:
@@ -666,35 +624,6 @@ This repository is maintained and expanded by:
 Check out the full release timeline in [RELEASE_MILESTONES.md](./docs/community/RELEASE_MILESTONES.md).
 
 - **v1.0.0**: Core structural registries and configuration compilation system. (Completed)
-- **v1.5.0**: Career Paths, target Company Tracks, and Category Intelligences. (Completed)
-- **v2.0.0**: Local Agent Executor runtime CLI and profile scoring checks. (Completed)
-- **v2.5.0**: Community PR automated linter submission verification. (Planned)
-- **v3.0.0**: Peer-to-peer mock panels matching calendars. (Planned)
-
----
-
-## 📦 Installation
-
-Use the CLI command utility directly, or leverage PowerShell or Bash setup installers to selectively copy agent prompt assets to build targets:
-
-### Option A: Local CLI Installation
-```bash
-npm install
-npm link
-```
-
-### Option B: PowerShell Setup (Windows)
-```powershell
-# List available agents
-powershell -File scripts/install.ps1 -List agents
-
-# Dry run to preview what will be installed
-powershell -File scripts/install.ps1 -Agent placement-coach -DryRun
-```
-
-### Option C: Bash Setup (macOS/Linux)
-```bash
-chmod +x scripts/install.sh
-# List active divisions
-./scripts/install.sh --list divisions
-```
+- **v1.1.0**: Reorganize documentation, templates, and sponsorship options. (Completed)
+- **v1.2.0**: Community templates, root cleanup, better onboarding, open-source health. (Completed)
+- **v2.0.0**: Peer-to-peer mock panels matching calendars. (Planned)
