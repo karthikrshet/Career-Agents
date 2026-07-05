@@ -1,22 +1,16 @@
 ---
-name: Feature request
-about: Suggest an improvement or new feature for the repository
-title: "[FEATURE] Short summary"
+name: Feature Request
+about: Suggest a new CLI command, exporter layout, or MCP server integration tool
+title: "[FEATURE] "
 labels: enhancement
 assignees: ''
 ---
 
-**Summary**
-A short description of the feature or enhancement.
+## 💡 Feature Description
+*What is the problem or user need you want to address?*
 
-**Motivation**
-Why is this important? Who does it help and what problem does it solve?
+## 🛠️ Proposed Solution
+*Describe the feature behavior, flag arguments, or MCP schemas:*
 
-**Proposed solution**
-High-level description of the proposed change. Include examples or mockups if helpful.
-
-**Alternatives considered**
-Other options that were considered and why they were rejected.
-
-**Additional context**
-Any other context or screenshots.
+## 🎯 Value Proposition
+*How does this improve the developer career operating system experience?*

@@ -1,26 +1,23 @@
 ---
-name: Bug report
-about: Report validation check errors, installer script failures, or registry bugs
-title: "[BUG] Issue summary"
+name: Bug Report
+about: Report validation errors, installer failures, or CLI/MCP registry bugs
+title: "[BUG] "
 labels: bug
 assignees: ''
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## 📋 Bug Description
+*Provide a clear and concise description of the bug:*
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Run command `python scripts/...` or `./scripts/install.sh ...`
-2. See error message
+## ⚡ To Reproduce
+1. Execute command: `career-agents ...`
+2. Environment configuration:
+3. Error logs / stack trace:
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## 🎯 Expected Behavior
+*What should have happened?*
 
-**Screenshots/Logs**
-Add error logs or terminal printouts to help explain your problem.
-
-**Desktop/OS Info:**
-- OS: [e.g. Windows 11, macOS, Ubuntu]
-- Shell: [e.g. PowerShell, bash, zsh]
-- Python Version: [e.g. 3.10]
+## 💻 Environment Info
+- **OS**: Windows / macOS / Linux
+- **Node.js Version**: 
+- **CLI Version**: 
