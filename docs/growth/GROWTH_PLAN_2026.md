@@ -29,7 +29,7 @@ This roadmap details key objectives, execution milestones, and metric targets fo
 
 ### 1. Developer Engagement & Contributors
 -   Create a "good first issue" tag labeling 10+ entry-level tasks (e.g. adding new company interview tracks, fixing typos in prompts).
--   Publish a formal [CONTRIBUTING.md](./CONTRIBUTING.md) detailing local development setup.
+-   Publish a formal [CONTRIBUTING.md](../../CONTRIBUTING.md) detailing local development setup.
 
 ### 2. Sponsorships
 -   Publish the first community newsletter showing how backer funding is spent.
