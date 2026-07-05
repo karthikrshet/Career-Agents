@@ -6,6 +6,17 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ---
 
+## [v1.2.0] — 2026-07-05
+### Added
+- Created `REPOSITORY_HEALTH_AUDIT.md`, `NPM_HEALTH_REPORT.md`, `OPEN_SOURCE_HEALTH_SCORE.md` reports under `docs/reports/`.
+- Created `.github/ISSUE_TEMPLATE/` folder with bug report, feature request, agent request, and company track request schemas.
+- Created `docs/releases/GITHUB_RELEASE_v1.2.0.md` release highlights document.
+- Created `docs/SHOWCASE.md` community projects directory page.
+
+### Changed
+- Reorganized root directory clutter. Relocated 8 reports/releases/roadmaps files into subfolders inside `docs/` and deleted 6 duplicate/obsolete guides.
+- Refactored `README.md` layout, adding badge indicators, Profile Views tracker, Quick Statistics metrics, and editor setup guides.
+
 ## [v1.1.1] — 2026-07-05
 ### Added
 - Created `NPM_LAUNCH_REPORT.md` detailing the npm registry details, available CLI commands, and links.
