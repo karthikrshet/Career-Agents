@@ -111,6 +111,10 @@ export interface ResumeAnalysis {
   rawText: string;
   overallScore: number;
   atsScore: number;
+  targetRole?: string;
+  targetRoleName?: string;
+  jobDescription?: string;
+  agentId?: string;
   sections: {
     hasExperience: boolean;
     hasEducation: boolean;

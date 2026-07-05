@@ -9,13 +9,12 @@
 <br />
 
 <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Live_Deployment-career--agents.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white" height="32" alt="Vercel Deployment" /></a>
-<a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Production_App-career--agents-2563eb?style=for-the-badge&logo=rocket&logoColor=white" height="32" alt="Production App" /></a>
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Registry-career--agents-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="32" alt="NPM Registry" /></a>
 <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" height="32" alt="GitHub Repo" /></a>
 
 <br /><br />
 
-<img src="https://img.shields.io/badge/Release-v16.1.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v16.1.0" />
+<img src="https://img.shields.io/badge/Release-v16.2.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v16.2.0" />
 <img src="https://img.shields.io/badge/Agents-146_Specialized-0284c7?style=flat-square&logo=openai&logoColor=white" height="26" alt="146 Agents" />
 <img src="https://img.shields.io/badge/Divisions-19_Domains-7c3aed?style=flat-square&logo=diagram&logoColor=white" height="26" alt="19 Divisions" />
 <img src="https://img.shields.io/badge/AI_Gateways-18_Providers-d97706?style=flat-square&logo=cpu&logoColor=white" height="26" alt="18 Providers" />
@@ -1041,7 +1040,7 @@ This project is licensed under the **MIT License** — see [LICENSE](./LICENSE) 
 
 <h3>Let's elevate your tech career.</h3>
 
-<p><b>[ <a href="https://career-agents.vercel.app">Live Vercel App</a> · <a href="https://career-os.dev">Production Platform</a> · <a href="https://github.com/karthikrshet/Career-Agents">GitHub Repository</a> · <a href="https://www.npmjs.com/package/career-agents">NPM Package</a> ]</b></p>
+<p><b>[ <a href="https://career-agents.vercel.app">Live Vercel App</a> · <a href="https://github.com/karthikrshet/Career-Agents">GitHub Repository</a> · <a href="https://www.npmjs.com/package/career-agents">NPM Package</a> ]</b></p>
 
 <sub>Career Agents Operating System · Synced via GitHub API &amp; Agent Registries · &copy; 2026</sub>
 
