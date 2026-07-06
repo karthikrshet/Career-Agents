@@ -352,8 +352,15 @@ export async function GET(req: NextRequest) {
     }
 
     if (domainParam !== "all") {
-      if (job.domainCategory !== domainParam && !job.title.toLowerCase().includes(domainParam.replace("-engineer", "").replace("-", " "))) {
-        return false;
+      if (domainParam === "software-engineer") {
+        const isSoft = /software|engineer|developer|fullstack|backend|frontend|systems|architect|code/i.test(job.title + " " + (job.domainCategory || ""));
+        if (!isSoft) return false;
+      } else {
+        const domKey = domainParam.replace("-engineer", "").replace("-manager", "").replace("-designer", "").replace("-", " ");
+        const matchDom = job.domainCategory === domainParam ||
+                         job.title.toLowerCase().includes(domKey) ||
+                         (job.description && job.description.toLowerCase().includes(domKey));
+        if (!matchDom) return false;
       }
     }
 
