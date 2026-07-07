@@ -16,7 +16,9 @@ The Open-Source Career Operating System
   <strong>🚀 135+ AI Agents</strong> | <strong>📄 20 ATS Templates</strong> | <strong>📁 19 Divisions</strong> | <strong>⚡ MCP Server</strong> | <strong>💻 Global CLI</strong> | <strong>🎓 Career Paths</strong> | <strong>🏢 Company Tracks</strong>
 </p>
 
-
+<p align="center">
+  <img src="./docs/images/career_os_dashboard.png" alt="Career OS Dashboard" width="800">
+</p>
 
 ---
 
@@ -194,6 +196,13 @@ Our agents are grouped into 19 functional specialty divisions:
 | [`Returnship Coach`](./career/returnship-coach.md) | ✅ Live | A re-entry specialist who helps professionals return to the workforce after a career break — reframing gaps, rebuilding confidence, refreshing skills, and designing targeted re-entry strategies that land roles that respect the candidate's full experience, not just their most recent role. |
 | [`Salary Benchmark Analyst`](./career/salary-benchmark-analyst.md) | ✅ Live | A rigorous, data-literate compensation analyst who builds evidence-based salary benchmarks, deconstructs total compensation packages, and arms candidates with the market intelligence and framing to negotiate from facts rather than hope. |
 | [`Salary Negotiation Coach`](./career/salary-negotiation-coach.md) | ✅ Live | A salary negotiation specialist who prepares candidates to evaluate offers, build leverage, and negotiate compensation confidently. |
+| [`Performance Review Advisor`](./career/performance-review-advisor.md) | ✅ Live | A feedback strategy specialist who coaches professionals to design pre-review evidence campaigns, write compelling self-assessments, and conduct productive review conversations. |
+| [`Career Risk Assessor`](./career/career-risk-assessor.md) | ✅ Live | A strategic career risk analyst who identifies threats to long-term professional growth, evaluates market vulnerability, and designs mitigation plans to improve career resilience. |
+| [`Executive Presence Coach`](./career/executive-presence-coach.md) | ✅ Live | A leadership communication specialist who develops executive presence, stakeholder influence, decision-making confidence, and organizational visibility. |
+| [`Graduate School vs Industry Advisor`](./career/graduate-school-vs-industry-advisor.md) | ✅ Live | A career decision strategist who helps professionals evaluate graduate education versus direct industry experience using ROI, opportunity cost, and long-term career outcomes. |
+| [`International Job Search Coach`](./career/international-job-search-coach.md) | ✅ Live | A global mobility specialist who guides professionals through international hiring markets, relocation planning, visa considerations, and cross-border career transitions. |
+| [`Promotion Readiness Coach`](./career/promotion-readiness-coach.md) | ✅ Live | A career advancement advisor who evaluates promotion readiness, identifies competency gaps, and develops evidence-backed advancement strategies. |
+| [`Relocation Strategy Advisor`](./career/relocation-strategy-advisor.md) | ✅ Live | A relocation planning specialist who helps professionals evaluate geographic moves, compensation adjustments, lifestyle tradeoffs, and long-term career impact. |
 | [`Technical Interview Coach`](./career/technical-interview-coach.md) | ✅ Live | A hands-on technical interview coach who prepares candidates for data structures & algorithms, system design, and role-specific coding rounds through targeted drills, rubric-based feedback, and measurable progression plans. |
 
 
@@ -271,6 +280,11 @@ Our agents are grouped into 19 functional specialty divisions:
 | [`Portfolio Reviewer`](./resume/portfolio-reviewer.md) | ✅ Live | A design and technical portfolio critic who helps designers, engineers, and product managers structure, document, and present their work through compelling case studies that prove competency. |
 | [`Resume Achievement Writer`](./resume/resume-achievement-writer.md) | ✅ Live | A metrics-focused resume achievement writer who helps candidates translate standard job duties into high-impact, outcome-oriented achievements using the STAR, Google X-Y-Z, and CAR frameworks. |
 | [`Resume Formatting Specialist`](./resume/resume-formatting-specialist.md) | ✅ Live | A design and layout expert who ensures resumes are visually polished, perfectly aligned, typographically balanced, and structured for maximum scannability and ATS compatibility. |
+| [`Achievement Quantification Coach`](./resume/achievement-quantification-coach.md) | ✅ Live | A resume impact specialist who transforms vague accomplishments into quantified, metric-driven achievements that demonstrate measurable business value. |
+| [`Executive Resume Advisor`](./resume/executive-resume-advisor.md) | ✅ Live | A senior-level resume strategist specializing in leadership branding, executive storytelling, board-facing communication, and high-level career positioning. |
+| [`Resume Bullet Generator`](./resume/resume-bullet-generator.md) | ✅ Live | A resume writing assistant that converts projects, responsibilities, and achievements into concise, ATS-friendly, action-oriented resume bullets. |
+| [`Resume Gap Strategist`](./resume/resume-gap-strategist.md) | ✅ Live | A career narrative specialist who helps candidates address employment gaps, academic breaks, career transitions, and non-traditional experiences with confidence. |
+| [`Technical Project Positioning Advisor`](./resume/technical-project-positioning-advisor.md) | ✅ Live | A portfolio and resume strategist who helps engineers showcase technical projects, open-source contributions, and product impact for maximum recruiter appeal. |
 | [`Resume Keyword Optimizer`](./resume/resume-keyword-optimizer.md) | ✅ Live | An ATS-oriented search optimization specialist who helps candidates align their resumes with target job descriptions using keyword mapping, context optimization, and phrase parsing strategies. |
 
 
@@ -579,17 +593,10 @@ Workflows are repeatable pipelines guiding you step-by-step through career miles
 ## 🔗 Knowledge Graph
 
 Career-Agents compiles a complex, expanded **[knowledge-graph.json](./knowledge-graph.json)** mapping dependencies across:
-- **Agents** $
-ightarrow$ Belongs to **Divisions** $
-ightarrow$ Used in **Workflows**
-- **Career Paths** $
-ightarrow$ Requires **Skills** $
-ightarrow$ Uses **Agents**
-- **Companies** $
-ightarrow$ Requires **Skills** $
-ightarrow$ Prepped by **Workflows**
-- **Bundles** $
-ightarrow$ Packs **Agents**, **Career Paths**, and **Companies**
+- **Agents** $ightarrow$ Belongs to **Divisions** $ightarrow$ Used in **Workflows**
+- **Career Paths** $ightarrow$ Requires **Skills** $ightarrow$ Uses **Agents**
+- **Companies** $ightarrow$ Requires **Skills** $ightarrow$ Prepped by **Workflows**
+- **Bundles** $ightarrow$ Packs **Agents**, **Career Paths**, and **Companies**
 
 You can inspect nodes connectivity stats locally via:
 ```bash
