@@ -621,6 +621,27 @@ We welcome community proposals, corrections, and additions!
 
 ---
 
+## 🤖 Contributing with AI
+
+We explicitly welcome and support contributions made using AI-assisted development tools and agents.
+
+### Supported Tools
+- **Claude Code**
+- **OpenAI Codex**
+- **Cursor**
+- **Gemini CLI**
+- **Windsurf**
+- **Aider**
+
+### Expectations & Requirements
+- **AI Guidelines**: Coding agents should review our dedicated [AI Contributor Guide](./AGENTS.md) before making edits.
+- **Validation**: All AI-assisted PRs must pass repository checks. Run `python scripts/generate-data.py` followed by `python scripts/validate.py` before committing.
+- **Quality**: Avoid AI hallucinations, verify all relative links, and maintain schema integrity.
+
+For detailed steps, refer to our [Contributing Guidelines](./CONTRIBUTING.md) and [AI Contributor Guide](./AGENTS.md).
+
+---
+
 ## Support Career-Agents
 
 Career-Agents is an open-source Career Operating System.
