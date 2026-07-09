@@ -6,6 +6,20 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ---
 
+## [v1.2.5] — 2026-07-09
+### Fixed
+- Completed 11 incomplete agent files that were missing required structural sections (`## 🔄 Workflow Process`, `## 💭 Communication Style`, `## 🔄 Learning & Memory`, `## 🎯 Success Metrics`, `## 🚀 Advanced Capabilities`): `career-risk-assessor.md`, `executive-presence-coach.md`, `graduate-school-vs-industry-advisor.md`, `international-job-search-coach.md`, `performance-review-advisor.md`, `promotion-readiness-coach.md`, `relocation-strategy-advisor.md`, `achievement-quantification-coach.md`, `resume-bullet-generator.md`, `resume-gap-strategist.md`, `technical-project-positioning-advisor.md`.
+- Added 11 missing agent entries to `agent-registry.json` (count: 135 → 146).
+- Updated `career-agents-index.json` `total_agents` count from 135 to 146.
+- Updated `README.md` agent count badge from `135+` to `146+`.
+- `scripts/validate.py` now exits 0 (`Validation passed.`) with no failures.
+
+### Added
+- `docs/reports/REPOSITORY_AUDIT.md` — full audit of all 146 agents, registry state, and repairs applied.
+- `docs/reports/AGENT_VALIDATION_REPORT.md` — pre/post validation comparison for all 11 fixed agents.
+- `docs/reports/REGISTRY_HEALTH_REPORT.md` — registry file synchronization report.
+- `docs/releases/GITHUB_RELEASE_v1.2.5.md` — GitHub release notes.
+
 ## [v1.2.0] — 2026-07-05
 ### Added
 - Created `REPOSITORY_HEALTH_AUDIT.md`, `NPM_HEALTH_REPORT.md`, `OPEN_SOURCE_HEALTH_SCORE.md` reports under `docs/reports/`.
