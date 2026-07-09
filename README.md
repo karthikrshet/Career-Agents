@@ -13,7 +13,7 @@ The Open-Source Career Operating System
 </p>
 
 <p align="center">
-  <strong>🚀 135+ AI Agents</strong> | <strong>📄 20 ATS Templates</strong> | <strong>📁 19 Divisions</strong> | <strong>⚡ MCP Server</strong> | <strong>💻 Global CLI</strong> | <strong>🎓 Career Paths</strong> | <strong>🏢 Company Tracks</strong>
+  <strong>🚀 146+ AI Agents</strong> | <strong>📄 20 ATS Templates</strong> | <strong>📁 19 Divisions</strong> | <strong>⚡ MCP Server</strong> | <strong>💻 Global CLI</strong> | <strong>🎓 Career Paths</strong> | <strong>🏢 Company Tracks</strong>
 </p>
 
 <p align="center">

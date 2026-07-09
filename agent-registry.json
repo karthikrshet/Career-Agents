@@ -19,7 +19,7 @@
         "exacting"
       ],
       "color": "#2A6F97",
-      "emoji": "\ud83e\uddfe",
+      "emoji": "🧾",
       "vibe": "forensic, exacting, recruiter-aware, no-nonsense",
       "difficulty": "Easy",
       "experience_level": "Mid",
@@ -49,7 +49,7 @@
       "id": "career-accountability-coach",
       "name": "Career Accountability Coach",
       "division": "career",
-      "description": "A structured, non-judgmental accountability partner who converts career goals into weekly commitments, tracks follow-through with honest data, diagnoses why execution is failing, and rebuilds momentum when it stalls \u2014 without letting candidates off the hook or crushing them with guilt.",
+      "description": "A structured, non-judgmental accountability partner who converts career goals into weekly commitments, tracks follow-through with honest data, diagnoses why execution is failing, and rebuilds momentum when it stalls — without letting candidates off the hook or crushing them with guilt.",
       "status": "live",
       "filename": "career/career-accountability-coach.md",
       "tags": [
@@ -60,7 +60,7 @@
         "structured"
       ],
       "color": "#D35400",
-      "emoji": "\ud83d\udccc",
+      "emoji": "📌",
       "vibe": "structured, non-judgmental, follow-through-obsessed, warmly relentless",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -90,7 +90,7 @@
       "id": "career-pivot-to-tech-advisor",
       "name": "Career Pivot to Tech Advisor",
       "division": "career",
-      "description": "A transition strategist for non-technical professionals entering the tech industry \u2014 covering entry point selection (software engineering, product, data, UX, technical sales, DevRel, and more), learning path design, portfolio development, narrative construction, and the tactical job search mechanics specific to tech industry hiring.",
+      "description": "A transition strategist for non-technical professionals entering the tech industry — covering entry point selection (software engineering, product, data, UX, technical sales, DevRel, and more), learning path design, portfolio development, narrative construction, and the tactical job search mechanics specific to tech industry hiring.",
       "status": "live",
       "filename": "career/career-pivot-to-tech-advisor.md",
       "tags": [
@@ -101,7 +101,7 @@
         "non-stem-background-affirming"
       ],
       "color": "#1E8449",
-      "emoji": "\u2699\ufe0f",
+      "emoji": "⚙️",
       "vibe": "transition-realistic, path-specific, evidence-obsessed, non-STEM-background-affirming",
       "difficulty": "Medium",
       "experience_level": "Entry",
@@ -131,7 +131,7 @@
       "id": "career-roadmap-strategist",
       "name": "Career Roadmap Strategist",
       "division": "career",
-      "description": "A long-horizon career architect who builds milestone-based, decade-spanning career roadmaps \u2014 turning vague ambitions into sequenced, evidence-gated development plans that compound skill, reputation, and leverage over time.",
+      "description": "A long-horizon career architect who builds milestone-based, decade-spanning career roadmaps — turning vague ambitions into sequenced, evidence-gated development plans that compound skill, reputation, and leverage over time.",
       "status": "live",
       "filename": "career/career-roadmap-strategist.md",
       "tags": [
@@ -142,7 +142,7 @@
         "immune to short-term noise"
       ],
       "color": "#1E8449",
-      "emoji": "\ud83d\uddfa\ufe0f",
+      "emoji": "🗺️",
       "vibe": "long-horizon, milestone-obsessed, compounding-minded, immune to short-term noise",
       "difficulty": "Medium",
       "experience_level": "Senior",
@@ -172,7 +172,7 @@
       "id": "career-transition-coach",
       "name": "Career Transition Coach",
       "division": "career",
-      "description": "A decisive, pattern-aware career transition coach who helps professionals move from one field, function, or industry into another \u2014 by mapping transferable assets, designing bridge strategies, and turning \"I don't have the background for this\" into a concrete, evidence-backed plan that works.",
+      "description": "A decisive, pattern-aware career transition coach who helps professionals move from one field, function, or industry into another — by mapping transferable assets, designing bridge strategies, and turning \"I don't have the background for this\" into a concrete, evidence-backed plan that works.",
       "status": "live",
       "filename": "career/career-transition-coach.md",
       "tags": [
@@ -183,7 +183,7 @@
         "asset-focused"
       ],
       "color": "#7D3C98",
-      "emoji": "\ud83d\udd00",
+      "emoji": "🔀",
       "vibe": "decisive, bridge-builder, asset-focused, allergic to \"start from scratch",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -213,7 +213,7 @@
       "id": "diversity-inclusion-career-coach",
       "name": "Diversity & Inclusion Career Coach",
       "division": "career",
-      "description": "A career strategist specializing in helping underrepresented professionals navigate systemic barriers, bias in hiring, and unequal advancement dynamics \u2014 providing concrete, evidence-informed strategies that turn awareness of barriers into actionable career architecture.",
+      "description": "A career strategist specializing in helping underrepresented professionals navigate systemic barriers, bias in hiring, and unequal advancement dynamics — providing concrete, evidence-informed strategies that turn awareness of barriers into actionable career architecture.",
       "status": "live",
       "filename": "career/diversity-inclusion-career-coach.md",
       "tags": [
@@ -224,7 +224,7 @@
         "structurally honest"
       ],
       "color": "#7D3C98",
-      "emoji": "\ud83c\udf31",
+      "emoji": "🌱",
       "vibe": "equity-aware, structurally honest, strengths-first, systemic-not-personal",
       "difficulty": "Medium",
       "experience_level": "Senior",
@@ -254,7 +254,7 @@
       "id": "executive-job-search-coach",
       "name": "Executive Job Search Coach",
       "division": "career",
-      "description": "A senior-level career strategist who helps VP, Director, and C-suite professionals navigate the fundamentally different world of executive hiring \u2014 where most roles never appear on job boards, where personal brand and reputation are the primary search vehicles, and where the quality of your board and peer network determines your access more than your resume.",
+      "description": "A senior-level career strategist who helps VP, Director, and C-suite professionals navigate the fundamentally different world of executive hiring — where most roles never appear on job boards, where personal brand and reputation are the primary search vehicles, and where the quality of your board and peer network determines your access more than your resume.",
       "status": "live",
       "filename": "career/executive-job-search-coach.md",
       "tags": [
@@ -265,7 +265,7 @@
         "network-over-resume"
       ],
       "color": "#1C2833",
-      "emoji": "\ud83c\udfdb\ufe0f",
+      "emoji": "🏛️",
       "vibe": "discretion-first, network-over-resume, board-aware, long-game strategist",
       "difficulty": "Medium",
       "experience_level": "Executive",
@@ -295,7 +295,7 @@
       "id": "freelance-career-advisor",
       "name": "Freelance Career Advisor",
       "division": "career",
-      "description": "A pragmatic freelance business strategist who helps independent professionals build sustainable, client-diversified freelance careers \u2014 covering rate-setting, client acquisition, portfolio positioning, contract fundamentals, and the transition from feast-or-famine to predictable income.",
+      "description": "A pragmatic freelance business strategist who helps independent professionals build sustainable, client-diversified freelance careers — covering rate-setting, client acquisition, portfolio positioning, contract fundamentals, and the transition from feast-or-famine to predictable income.",
       "status": "live",
       "filename": "career/freelance-career-advisor.md",
       "tags": [
@@ -306,7 +306,7 @@
         "income-predictability-obsessed"
       ],
       "color": "#117A65",
-      "emoji": "\ud83e\udde9",
+      "emoji": "🧩",
       "vibe": "business-first, income-predictability-obsessed, anti-hustle-culture, client-quality-over-quantity",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -336,7 +336,7 @@
       "id": "graduate-career-advisor",
       "name": "Graduate Career Advisor",
       "division": "career",
-      "description": "A strategic first-job advisor for recent graduates who cuts through the noise of \"apply everywhere\" and \"network more\" to build targeted, evidence-backed launch strategies that get new graduates into the right first role \u2014 not just any role \u2014 within a realistic timeline.",
+      "description": "A strategic first-job advisor for recent graduates who cuts through the noise of \"apply everywhere\" and \"network more\" to build targeted, evidence-backed launch strategies that get new graduates into the right first role — not just any role — within a realistic timeline.",
       "status": "live",
       "filename": "career/graduate-career-advisor.md",
       "tags": [
@@ -347,7 +347,7 @@
         "honest about timelines"
       ],
       "color": "#884EA0",
-      "emoji": "\ud83c\udfaf",
+      "emoji": "🎯",
       "vibe": "first-job-focused, anti-panic, strategy-before-volume, honest about timelines",
       "difficulty": "Medium",
       "experience_level": "Entry",
@@ -388,7 +388,7 @@
         "empathetic"
       ],
       "color": "#6C4FA0",
-      "emoji": "\ud83e\udd1d",
+      "emoji": "🤝",
       "vibe": "empathetic, bluntly-honest, strategic, reassuring",
       "difficulty": "Hard",
       "experience_level": "Senior",
@@ -429,7 +429,7 @@
         "opportunity-driven"
       ],
       "color": "#2E86C1",
-      "emoji": "\ud83e\uddf3",
+      "emoji": "🧳",
       "vibe": "student-focused, strategic, opportunity-driven, polished",
       "difficulty": "Medium",
       "experience_level": "Entry",
@@ -459,7 +459,7 @@
       "id": "internship-success-coach",
       "name": "Internship Success Coach",
       "division": "career",
-      "description": "A hands-on internship performance coach who helps interns move from \"showing up\" to \"standing out\" \u2014 by building visibility, delivering meaningful work, converting internships into return offers, and treating every internship as a twelve-week audition with a clear performance plan.",
+      "description": "A hands-on internship performance coach who helps interns move from \"showing up\" to \"standing out\" — by building visibility, delivering meaningful work, converting internships into return offers, and treating every internship as a twelve-week audition with a clear performance plan.",
       "status": "live",
       "filename": "career/internship-success-coach.md",
       "tags": [
@@ -470,7 +470,7 @@
         "performance-first"
       ],
       "color": "#2471A3",
-      "emoji": "\ud83c\udf93",
+      "emoji": "🎓",
       "vibe": "performance-first, visibility-aware, return-offer-obsessed, warm but results-driven",
       "difficulty": "Medium",
       "experience_level": "Entry",
@@ -511,7 +511,7 @@
         "organized"
       ],
       "color": "#2471A3",
-      "emoji": "\ud83c\udfaf",
+      "emoji": "🎯",
       "vibe": "organized, proactive, results-focused, practical",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -552,7 +552,7 @@
         "evidence-driven"
       ],
       "color": "#0077B5",
-      "emoji": "\ud83d\udd17",
+      "emoji": "🔗",
       "vibe": "tactical, network-savvy, evidence-driven, personable",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -582,7 +582,7 @@
       "id": "networking-coach",
       "name": "Networking Coach",
       "division": "career",
-      "description": "A strategic, relationship-first networking coach who transforms transactional connection requests into genuine professional relationships \u2014 helping candidates build the kind of network that surfaces hidden job market opportunities, generates warm referrals, and compounds in value over an entire career.",
+      "description": "A strategic, relationship-first networking coach who transforms transactional connection requests into genuine professional relationships — helping candidates build the kind of network that surfaces hidden job market opportunities, generates warm referrals, and compounds in value over an entire career.",
       "status": "live",
       "filename": "career/networking-coach.md",
       "tags": [
@@ -593,7 +593,7 @@
         "deeply human"
       ],
       "color": "#1A5276",
-      "emoji": "\ud83e\udd1d",
+      "emoji": "🤝",
       "vibe": "warm-but-strategic, systems-thinker, anti-hustle, deeply human",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -634,7 +634,7 @@
         "structured"
       ],
       "color": "#117A65",
-      "emoji": "\ud83e\uddfe",
+      "emoji": "🧾",
       "vibe": "analytical, impartial, career-aware, structured",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -664,7 +664,7 @@
       "id": "personal-branding-advisor",
       "name": "Personal Branding Advisor",
       "division": "career",
-      "description": "A strategic personal brand architect who builds authentic, channel-consistent professional identities that attract the right opportunities \u2014 turning scattered professional presence into a coherent, searchable, memorable signal that does career work even when the candidate isn't actively job hunting.",
+      "description": "A strategic personal brand architect who builds authentic, channel-consistent professional identities that attract the right opportunities — turning scattered professional presence into a coherent, searchable, memorable signal that does career work even when the candidate isn't actively job hunting.",
       "status": "live",
       "filename": "career/personal-branding-advisor.md",
       "tags": [
@@ -675,7 +675,7 @@
         "evidence-over-aesthetics"
       ],
       "color": "#C0392B",
-      "emoji": "\ud83c\udfa8",
+      "emoji": "🎨",
       "vibe": "identity-first, anti-performative, consistency-obsessed, evidence-over-aesthetics",
       "difficulty": "Medium",
       "experience_level": "Senior",
@@ -716,7 +716,7 @@
         "data-driven"
       ],
       "color": "#1B4D3E",
-      "emoji": "\ud83c\udfaf",
+      "emoji": "🎯",
       "vibe": "blunt, data-driven, relentlessly practical, quietly encouraging",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -746,7 +746,7 @@
       "id": "product-manager-coach",
       "name": "Product Manager Coach",
       "division": "career",
-      "description": "A rigorous PM career coach who helps aspiring and practicing product managers break into the discipline, ace PM interviews at any company tier, build product intuition through structured practice, and advance from APM to VP of Product \u2014 with frameworks grounded in how the best PMs actually think, not in what sounds good in a textbook.",
+      "description": "A rigorous PM career coach who helps aspiring and practicing product managers break into the discipline, ace PM interviews at any company tier, build product intuition through structured practice, and advance from APM to VP of Product — with frameworks grounded in how the best PMs actually think, not in what sounds good in a textbook.",
       "status": "live",
       "filename": "career/product-manager-coach.md",
       "tags": [
@@ -757,7 +757,7 @@
         "frameworks-over-feelings"
       ],
       "color": "#C0392B",
-      "emoji": "\ud83e\udded",
+      "emoji": "🧭",
       "vibe": "frameworks-over-feelings, user-obsessed, data-literate, execution-focused",
       "difficulty": "Medium",
       "experience_level": "Executive",
@@ -798,7 +798,7 @@
         "follow-up-savvy"
       ],
       "color": "#D35400",
-      "emoji": "\u2709\ufe0f",
+      "emoji": "✉️",
       "vibe": "targeted, professional, follow-up-savvy, recruiter-aware",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -828,7 +828,7 @@
       "id": "remote-work-advisor",
       "name": "Remote Work Advisor",
       "division": "career",
-      "description": "A strategic remote-work specialist who helps professionals find, land, and thrive in remote roles \u2014 covering remote-specific job search tactics, distributed team visibility, async communication mastery, home office optimization, and the specific career risks that remote work creates if not managed deliberately.",
+      "description": "A strategic remote-work specialist who helps professionals find, land, and thrive in remote roles — covering remote-specific job search tactics, distributed team visibility, async communication mastery, home office optimization, and the specific career risks that remote work creates if not managed deliberately.",
       "status": "live",
       "filename": "career/remote-work-advisor.md",
       "tags": [
@@ -839,7 +839,7 @@
         "async-native"
       ],
       "color": "#1F618D",
-      "emoji": "\ud83c\udf0d",
+      "emoji": "🌍",
       "vibe": "async-native, visibility-conscious, systems-thinker, anti-isolation-as-default",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -880,7 +880,7 @@
         "empathetic"
       ],
       "color": "#3B6EA5",
-      "emoji": "\u270d\ufe0f",
+      "emoji": "✍️",
       "vibe": "strategic, narrative-first, evidence-rooted, empathetic",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -910,7 +910,7 @@
       "id": "returnship-coach",
       "name": "Returnship Coach",
       "division": "career",
-      "description": "A re-entry specialist who helps professionals return to the workforce after a career break \u2014 reframing gaps, rebuilding confidence, refreshing skills, and designing targeted re-entry strategies that land roles that respect the candidate's full experience, not just their most recent role.",
+      "description": "A re-entry specialist who helps professionals return to the workforce after a career break — reframing gaps, rebuilding confidence, refreshing skills, and designing targeted re-entry strategies that land roles that respect the candidate's full experience, not just their most recent role.",
       "status": "live",
       "filename": "career/returnship-coach.md",
       "tags": [
@@ -921,7 +921,7 @@
         "anti-stigma"
       ],
       "color": "#BA4A00",
-      "emoji": "\ud83d\udd04",
+      "emoji": "🔄",
       "vibe": "gap-reframer, confidence-rebuilder, full-experience-honoring, anti-stigma",
       "difficulty": "Medium",
       "experience_level": "Entry",
@@ -962,7 +962,7 @@
         "unsentimental about money"
       ],
       "color": "#1A6B3C",
-      "emoji": "\ud83d\udcb0",
+      "emoji": "💰",
       "vibe": "data-first, unsentimental about money, precision-obsessed, zero tolerance for guesswork",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -1003,7 +1003,7 @@
         "candidate-first"
       ],
       "color": "#C0392B",
-      "emoji": "\ud83d\udcb0",
+      "emoji": "💰",
       "vibe": "strategic, direct, data-backed, candidate-first",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -1044,7 +1044,7 @@
         "outcome-oriented"
       ],
       "color": "#1F8DD6",
-      "emoji": "\ud83e\udde9",
+      "emoji": "🧩",
       "vibe": "rigorous, pragmatic, mentor-forward, outcome-oriented",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -1085,7 +1085,7 @@
         "detail-loving"
       ],
       "color": "#FA0F00",
-      "emoji": "\ud83c\udfa8",
+      "emoji": "🎨",
       "vibe": "craft-focused, technically rigorous, product-empathetic, detail-loving",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -1126,7 +1126,7 @@
         "exacting on story structure"
       ],
       "color": "#FF9900",
-      "emoji": "\ud83d\udce6",
+      "emoji": "📦",
       "vibe": "principle-obsessed, exacting on story structure, bar-raiser mindset",
       "difficulty": "Hard",
       "experience_level": "Senior",
@@ -1168,7 +1168,7 @@
         "company-interviews"
       ],
       "color": "#0052CC",
-      "emoji": "\ud83e\udde9",
+      "emoji": "🧩",
       "vibe": "values-literate, collaborative, transparent, practically minded",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -1210,7 +1210,7 @@
         "structure-obsessed"
       ],
       "color": "#4285F4",
-      "emoji": "\ud83d\udd0e",
+      "emoji": "🔎",
       "vibe": "rigorous, structure-obsessed, precise, calmly demanding",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -1252,7 +1252,7 @@
         "impact-driven"
       ],
       "color": "#0668E1",
-      "emoji": "\ud83d\ude80",
+      "emoji": "🚀",
       "vibe": "fast-paced, impact-driven, direct, unsentimental about scope",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -1294,7 +1294,7 @@
         "structured"
       ],
       "color": "#00A4EF",
-      "emoji": "\ud83e\ude9f",
+      "emoji": "🪟",
       "vibe": "collaborative, growth-minded, structured, quietly rigorous",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -1336,7 +1336,7 @@
         "unimpressed by hedging"
       ],
       "color": "#E50914",
-      "emoji": "\ud83c\udfac",
+      "emoji": "🎬",
       "vibe": "candid, judgment-focused, unimpressed by hedging, high standards",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -1378,7 +1378,7 @@
         "thorough"
       ],
       "color": "#F80000",
-      "emoji": "\ud83d\uddc3\ufe0f",
+      "emoji": "🗃️",
       "vibe": "fundamentals-obsessed, methodical, no patience for shortcuts, thorough",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -1420,7 +1420,7 @@
         "company-interviews"
       ],
       "color": "#00A1E0",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "relationship-focused, values-literate, warm, customer-obsessed",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -1462,7 +1462,7 @@
         "operationally sharp"
       ],
       "color": "#000000",
-      "emoji": "\ud83d\ude97",
+      "emoji": "🚗",
       "vibe": "scale-minded, ownership-obsessed, operationally sharp, direct",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -1504,7 +1504,7 @@
         "long-term-thinking"
       ],
       "color": "#4A4A4A",
-      "emoji": "\ud83e\uddf1",
+      "emoji": "🧱",
       "vibe": "methodical, skeptical of shortcuts, long-term-thinking, unflashy",
       "difficulty": "Hard",
       "experience_level": "Senior",
@@ -1544,7 +1544,7 @@
         "teaching-oriented"
       ],
       "color": "#5C6BC0",
-      "emoji": "\ud83d\udd2c",
+      "emoji": "🔬",
       "vibe": "rigorous, fair, unimpressed by cleverness, teaching-oriented",
       "difficulty": "Easy",
       "experience_level": "Senior",
@@ -1584,7 +1584,7 @@
         "quietly relentless about correctness"
       ],
       "color": "#336791",
-      "emoji": "\ud83d\uddc4\ufe0f",
+      "emoji": "🗄️",
       "vibe": "precise, plan-reading, patient teacher, quietly relentless about correctness",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -1624,7 +1624,7 @@
         "methodical"
       ],
       "color": "#FF6B35",
-      "emoji": "\ud83d\udd27",
+      "emoji": "🔧",
       "vibe": "reliability-obsessed, calm in incidents, allergic to manual steps, methodical",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -1664,7 +1664,7 @@
         "allergic to over-engineering"
       ],
       "color": "#00684A",
-      "emoji": "\ud83c\udfd7\ufe0f",
+      "emoji": "🏗️",
       "vibe": "pragmatic, opinionated, allergic to over-engineering, scalability-focused",
       "difficulty": "Hard",
       "experience_level": "Senior",
@@ -1693,7 +1693,7 @@
       "id": "nextjs-performance-engineer",
       "name": "Next.js Performance Engineer",
       "division": "engineering",
-      "description": "A performance auditor obsessed with real Core Web Vitals and actual user-perceived speed, who diagnoses Next.js applications the way a profiler does \u2014 with numbers, not vibes.",
+      "description": "A performance auditor obsessed with real Core Web Vitals and actual user-perceived speed, who diagnoses Next.js applications the way a profiler does — with numbers, not vibes.",
       "status": "live",
       "filename": "engineering/nextjs-performance-engineer.md",
       "tags": [
@@ -1704,7 +1704,7 @@
         "quietly intense"
       ],
       "color": "#000000",
-      "emoji": "\u26a1",
+      "emoji": "⚡",
       "vibe": "measurement-obsessed, impatient with guesswork, precise, quietly intense",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -1744,7 +1744,7 @@
         "evidence-oriented"
       ],
       "color": "#C0392B",
-      "emoji": "\ud83d\udde3\ufe0f",
+      "emoji": "🗣️",
       "vibe": "structure-focused, evidence-oriented, retrospective-driven, authentic",
       "difficulty": "Hard",
       "experience_level": "Senior",
@@ -1785,7 +1785,7 @@
         "structured"
       ],
       "color": "#8E44AD",
-      "emoji": "\ud83d\udc65",
+      "emoji": "👥",
       "vibe": "collaborative, structured, assertive-polite, consensus-oriented",
       "difficulty": "Medium",
       "experience_level": "Senior",
@@ -1815,7 +1815,7 @@
       "id": "leadership-interview-coach",
       "name": "Leadership Interview Coach",
       "division": "interview",
-      "description": "A leadership coaching specialist who prepares senior candidates for executive, management, and leadership interviews \u2014 focusing on vision, organization building, decision-making, and organizational conflict.",
+      "description": "A leadership coaching specialist who prepares senior candidates for executive, management, and leadership interviews — focusing on vision, organization building, decision-making, and organizational conflict.",
       "status": "live",
       "filename": "interview/leadership-interview-coach.md",
       "tags": [
@@ -1826,7 +1826,7 @@
         "executive-mature"
       ],
       "color": "#117A65",
-      "emoji": "\ud83d\udc51",
+      "emoji": "👑",
       "vibe": "executive-mature, vision-oriented, organization-focused, direct-honest",
       "difficulty": "Hard",
       "experience_level": "Executive",
@@ -1867,7 +1867,7 @@
         "diagnostic-critical"
       ],
       "color": "#7B241C",
-      "emoji": "\ud83c\udfad",
+      "emoji": "🎭",
       "vibe": "simulation-realistic, diagnostic-critical, follow-up-active, candidate-challenging",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -1897,7 +1897,7 @@
       "id": "system-design-coach",
       "name": "System Design Coach",
       "division": "interview",
-      "description": "A technical interview coach specializing in distributed systems, scalability, and system design interviews \u2014 covering requirements gathering, API design, data modeling, high-level architecture, and deep-dive bottlenecks.",
+      "description": "A technical interview coach specializing in distributed systems, scalability, and system design interviews — covering requirements gathering, API design, data modeling, high-level architecture, and deep-dive bottlenecks.",
       "status": "live",
       "filename": "interview/system-design-coach.md",
       "tags": [
@@ -1908,7 +1908,7 @@
         "trade-off-centered"
       ],
       "color": "#1F618D",
-      "emoji": "\ud83c\udfd7\ufe0f",
+      "emoji": "🏗️",
       "vibe": "architect-level, scalability-obsessed, logic-driven, trade-off-centered",
       "difficulty": "Hard",
       "experience_level": "Senior",
@@ -1949,7 +1949,7 @@
         "affinity-driven"
       ],
       "color": "#7D6608",
-      "emoji": "\ud83c\udf93",
+      "emoji": "🎓",
       "vibe": "relationship-first, affinity-driven, curious, supportive",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -1989,7 +1989,7 @@
         "professional"
       ],
       "color": "#7E5109",
-      "emoji": "\ud83d\udce7",
+      "emoji": "📧",
       "vibe": "conversion-oriented, value-first, direct, professional",
       "difficulty": "Hard",
       "experience_level": "Senior",
@@ -2029,7 +2029,7 @@
         "high-conversion"
       ],
       "color": "#0E66C2",
-      "emoji": "\ud83d\udcac",
+      "emoji": "💬",
       "vibe": "network-strategic, high-conversion, professional, connection-centric",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -2069,7 +2069,7 @@
         "recruitment-fluent"
       ],
       "color": "#B03A2E",
-      "emoji": "\ud83d\udcde",
+      "emoji": "📞",
       "vibe": "professional, clear-headed, responsive, recruitment-fluent",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2109,7 +2109,7 @@
         "relationship-respectful"
       ],
       "color": "#1F618D",
-      "emoji": "\ud83e\udd1d",
+      "emoji": "🤝",
       "vibe": "conversion-focused, relationship-respectful, advocacy-driven, strategic",
       "difficulty": "Medium",
       "experience_level": "Entry",
@@ -2149,7 +2149,7 @@
         "reader-first"
       ],
       "color": "#6A5DAD",
-      "emoji": "\ud83d\udcdd",
+      "emoji": "📝",
       "vibe": "precise, structured, reader-first, quality-driven",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -2189,7 +2189,7 @@
         "deadline-aware"
       ],
       "color": "#3B2D6B",
-      "emoji": "\ud83c\udf93",
+      "emoji": "🎓",
       "vibe": "academic, practical, deadline-aware, mentor-led",
       "difficulty": "Medium",
       "experience_level": "Entry",
@@ -2229,7 +2229,7 @@
         "projects"
       ],
       "color": "#4A6FA5",
-      "emoji": "\ud83d\udcda",
+      "emoji": "📚",
       "vibe": "systematic, evidence-based, methodological, precise",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2269,7 +2269,7 @@
         "exam-aware"
       ],
       "color": "#C058A0",
-      "emoji": "\ud83c\udfa4",
+      "emoji": "🎤",
       "vibe": "calm, precise, confidence-building, exam-aware",
       "difficulty": "Medium",
       "experience_level": "Entry",
@@ -2309,7 +2309,7 @@
         "outcomes-first"
       ],
       "color": "#2C3E50",
-      "emoji": "\ud83d\udc54",
+      "emoji": "👔",
       "vibe": "strategic, corporate, boardroom-ready, outcomes-first",
       "difficulty": "Medium",
       "experience_level": "Executive",
@@ -2349,7 +2349,7 @@
         "detail-oriented"
       ],
       "color": "#D35400",
-      "emoji": "\ud83c\udfa8",
+      "emoji": "🎨",
       "vibe": "critique-honest, structure-driven, detail-oriented, proof-obsessed",
       "difficulty": "Easy",
       "experience_level": "Mid",
@@ -2389,7 +2389,7 @@
         "impact-driven"
       ],
       "color": "#4A235A",
-      "emoji": "\ud83d\udcdd",
+      "emoji": "📝",
       "vibe": "metric-obsessed, impact-driven, anti-bullet-list, precision-first",
       "difficulty": "Easy",
       "experience_level": "Mid",
@@ -2429,7 +2429,7 @@
         "layout-first"
       ],
       "color": "#28B463",
-      "emoji": "\ud83d\udcd0",
+      "emoji": "📐",
       "vibe": "detail-obsessed, typographically precise, layout-first, minimalist",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -2469,7 +2469,7 @@
         "keyword-aligned"
       ],
       "color": "#1A5276",
-      "emoji": "\ud83d\udd0d",
+      "emoji": "🔍",
       "vibe": "analytical, search-engine-focused, keyword-aligned, semantic-match",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2498,7 +2498,7 @@
       "id": "founder-advisor",
       "name": "Founder Advisor",
       "division": "startup",
-      "description": "A blunt, experienced-feeling co-founder substitute who stress-tests ideas and decisions the way a real early-stage advisor would \u2014 before money, time, or credibility get spent finding out the hard way.",
+      "description": "A blunt, experienced-feeling co-founder substitute who stress-tests ideas and decisions the way a real early-stage advisor would — before money, time, or credibility get spent finding out the hard way.",
       "status": "live",
       "filename": "startup/founder-advisor.md",
       "tags": [
@@ -2509,7 +2509,7 @@
         "genuinely rooting for you"
       ],
       "color": "#7B2D26",
-      "emoji": "\ud83e\udded",
+      "emoji": "🧭",
       "vibe": "blunt, pattern-matching, allergic to founder self-delusion, genuinely rooting for you",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2550,7 +2550,7 @@
         "metrics-driven"
       ],
       "color": "#1A936F",
-      "emoji": "\ud83d\udcc8",
+      "emoji": "📈",
       "vibe": "experimental, metrics-driven, retention-first, no-nonsense",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2580,7 +2580,7 @@
       "id": "market-research-analyst",
       "name": "Market Research Analyst",
       "division": "startup",
-      "description": "A rigorous market research specialist who turns ambiguous business questions into defensible market insights, go-to-market priorities, and evidence-backed decisions \u2014 built for founders, product teams, and early-stage PMs who need market clarity fast.",
+      "description": "A rigorous market research specialist who turns ambiguous business questions into defensible market insights, go-to-market priorities, and evidence-backed decisions — built for founders, product teams, and early-stage PMs who need market clarity fast.",
       "status": "live",
       "filename": "startup/market-research-analyst.md",
       "tags": [
@@ -2591,7 +2591,7 @@
         "commercially-minded"
       ],
       "color": "#0F4C81",
-      "emoji": "\ud83d\udd0e",
+      "emoji": "🔎",
       "vibe": "forensic, methodical, strategist-first, commercially-minded",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2632,7 +2632,7 @@
         "startup"
       ],
       "color": "#E9724C",
-      "emoji": "\ud83e\udded",
+      "emoji": "🧭",
       "vibe": "strategic, customer-focused, data-informed, pragmatic",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2672,7 +2672,7 @@
         "ai-engineering"
       ],
       "color": "#0284C7",
-      "emoji": "\ud83e\udd16",
+      "emoji": "🤖",
       "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -2711,7 +2711,7 @@
         "ai-engineering"
       ],
       "color": "#0284C7",
-      "emoji": "\ud83e\udd16",
+      "emoji": "🤖",
       "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2750,7 +2750,7 @@
         "ai-engineering"
       ],
       "color": "#0284C7",
-      "emoji": "\ud83e\udd16",
+      "emoji": "🤖",
       "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2789,7 +2789,7 @@
         "ai-engineering"
       ],
       "color": "#0284C7",
-      "emoji": "\ud83e\udd16",
+      "emoji": "🤖",
       "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2828,7 +2828,7 @@
         "ai-engineering"
       ],
       "color": "#0284C7",
-      "emoji": "\ud83e\udd16",
+      "emoji": "🤖",
       "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2867,7 +2867,7 @@
         "ai-engineering"
       ],
       "color": "#0284C7",
-      "emoji": "\ud83e\udd16",
+      "emoji": "🤖",
       "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2906,7 +2906,7 @@
         "ai-engineering"
       ],
       "color": "#0284C7",
-      "emoji": "\ud83e\udd16",
+      "emoji": "🤖",
       "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2945,7 +2945,7 @@
         "ai-engineering"
       ],
       "color": "#0284C7",
-      "emoji": "\ud83e\udd16",
+      "emoji": "🤖",
       "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -2984,7 +2984,7 @@
         "ai-engineering"
       ],
       "color": "#0284C7",
-      "emoji": "\ud83e\udd16",
+      "emoji": "🤖",
       "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3023,7 +3023,7 @@
         "ai-engineering"
       ],
       "color": "#0284C7",
-      "emoji": "\ud83e\udd16",
+      "emoji": "🤖",
       "vibe": "Deep Technical, Research-Oriented, Cognitive-First",
       "difficulty": "Hard",
       "experience_level": "Senior",
@@ -3062,7 +3062,7 @@
         "cloud"
       ],
       "color": "#0369A1",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
       "difficulty": "Hard",
       "experience_level": "Senior",
@@ -3101,7 +3101,7 @@
         "cloud"
       ],
       "color": "#0369A1",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3140,7 +3140,7 @@
         "cloud"
       ],
       "color": "#0369A1",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3179,7 +3179,7 @@
         "cloud"
       ],
       "color": "#0369A1",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3218,7 +3218,7 @@
         "cloud"
       ],
       "color": "#0369A1",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3257,7 +3257,7 @@
         "cloud"
       ],
       "color": "#0369A1",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3296,7 +3296,7 @@
         "cloud"
       ],
       "color": "#0369A1",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -3337,7 +3337,7 @@
         "cloud"
       ],
       "color": "#0369A1",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3376,7 +3376,7 @@
         "cloud"
       ],
       "color": "#0369A1",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3415,7 +3415,7 @@
         "cloud"
       ],
       "color": "#0369A1",
-      "emoji": "\u2601\ufe0f",
+      "emoji": "☁️",
       "vibe": "High Availability, Infrastructure-as-Code, Zero-Trust",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -3454,7 +3454,7 @@
         "risk-averse"
       ],
       "color": "#DC2626",
-      "emoji": "\ud83d\udd12",
+      "emoji": "🔒",
       "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -3493,7 +3493,7 @@
         "risk-averse"
       ],
       "color": "#DC2626",
-      "emoji": "\ud83d\udd12",
+      "emoji": "🔒",
       "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3532,7 +3532,7 @@
         "risk-averse"
       ],
       "color": "#DC2626",
-      "emoji": "\ud83d\udd12",
+      "emoji": "🔒",
       "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3571,7 +3571,7 @@
         "risk-averse"
       ],
       "color": "#DC2626",
-      "emoji": "\ud83d\udd12",
+      "emoji": "🔒",
       "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3610,7 +3610,7 @@
         "risk-averse"
       ],
       "color": "#DC2626",
-      "emoji": "\ud83d\udd12",
+      "emoji": "🔒",
       "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
       "difficulty": "Hard",
       "experience_level": "Executive",
@@ -3649,7 +3649,7 @@
         "risk-averse"
       ],
       "color": "#DC2626",
-      "emoji": "\ud83d\udd12",
+      "emoji": "🔒",
       "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -3688,7 +3688,7 @@
         "risk-averse"
       ],
       "color": "#DC2626",
-      "emoji": "\ud83d\udd12",
+      "emoji": "🔒",
       "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3727,7 +3727,7 @@
         "risk-averse"
       ],
       "color": "#DC2626",
-      "emoji": "\ud83d\udd12",
+      "emoji": "🔒",
       "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
       "difficulty": "Hard",
       "experience_level": "Executive",
@@ -3766,7 +3766,7 @@
         "risk-averse"
       ],
       "color": "#DC2626",
-      "emoji": "\ud83d\udd12",
+      "emoji": "🔒",
       "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3805,7 +3805,7 @@
         "risk-averse"
       ],
       "color": "#DC2626",
-      "emoji": "\ud83d\udd12",
+      "emoji": "🔒",
       "vibe": "Zero-Trust, Red-Teaming, Risk-Averse",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3844,7 +3844,7 @@
         "open-source"
       ],
       "color": "#16A34A",
-      "emoji": "\ud83d\udcd6",
+      "emoji": "📖",
       "vibe": "Collaborative, Community-Driven, Documentation-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3883,7 +3883,7 @@
         "open-source"
       ],
       "color": "#16A34A",
-      "emoji": "\ud83d\udcd6",
+      "emoji": "📖",
       "vibe": "Collaborative, Community-Driven, Documentation-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3922,7 +3922,7 @@
         "open-source"
       ],
       "color": "#16A34A",
-      "emoji": "\ud83d\udcd6",
+      "emoji": "📖",
       "vibe": "Collaborative, Community-Driven, Documentation-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -3961,7 +3961,7 @@
         "open-source"
       ],
       "color": "#16A34A",
-      "emoji": "\ud83d\udcd6",
+      "emoji": "📖",
       "vibe": "Collaborative, Community-Driven, Documentation-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4000,7 +4000,7 @@
         "open-source"
       ],
       "color": "#16A34A",
-      "emoji": "\ud83d\udcd6",
+      "emoji": "📖",
       "vibe": "Collaborative, Community-Driven, Documentation-First",
       "difficulty": "Medium",
       "experience_level": "Senior",
@@ -4039,7 +4039,7 @@
         "open-source"
       ],
       "color": "#16A34A",
-      "emoji": "\ud83d\udcd6",
+      "emoji": "📖",
       "vibe": "Collaborative, Community-Driven, Documentation-First",
       "difficulty": "Medium",
       "experience_level": "Executive",
@@ -4078,7 +4078,7 @@
         "open-source"
       ],
       "color": "#16A34A",
-      "emoji": "\ud83d\udcd6",
+      "emoji": "📖",
       "vibe": "Collaborative, Community-Driven, Documentation-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4117,7 +4117,7 @@
         "open-source"
       ],
       "color": "#16A34A",
-      "emoji": "\ud83d\udcd6",
+      "emoji": "📖",
       "vibe": "Collaborative, Community-Driven, Documentation-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4156,7 +4156,7 @@
         "open-source"
       ],
       "color": "#16A34A",
-      "emoji": "\ud83d\udcd6",
+      "emoji": "📖",
       "vibe": "Collaborative, Community-Driven, Documentation-First",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -4195,7 +4195,7 @@
         "open-source"
       ],
       "color": "#16A34A",
-      "emoji": "\ud83d\udcd6",
+      "emoji": "📖",
       "vibe": "Collaborative, Community-Driven, Documentation-First",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4234,7 +4234,7 @@
         "data-driven"
       ],
       "color": "#7C3AED",
-      "emoji": "\ud83d\udcca",
+      "emoji": "📊",
       "vibe": "Transactional, Data-Driven, Analytical",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4273,7 +4273,7 @@
         "data-driven"
       ],
       "color": "#7C3AED",
-      "emoji": "\ud83d\udcca",
+      "emoji": "📊",
       "vibe": "Transactional, Data-Driven, Analytical",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -4312,7 +4312,7 @@
         "data-driven"
       ],
       "color": "#7C3AED",
-      "emoji": "\ud83d\udcca",
+      "emoji": "📊",
       "vibe": "Transactional, Data-Driven, Analytical",
       "difficulty": "Hard",
       "experience_level": "Senior",
@@ -4351,7 +4351,7 @@
         "data-driven"
       ],
       "color": "#7C3AED",
-      "emoji": "\ud83d\udcca",
+      "emoji": "📊",
       "vibe": "Transactional, Data-Driven, Analytical",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4390,7 +4390,7 @@
         "data-driven"
       ],
       "color": "#7C3AED",
-      "emoji": "\ud83d\udcca",
+      "emoji": "📊",
       "vibe": "Transactional, Data-Driven, Analytical",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4429,7 +4429,7 @@
         "data-driven"
       ],
       "color": "#7C3AED",
-      "emoji": "\ud83d\udcca",
+      "emoji": "📊",
       "vibe": "Transactional, Data-Driven, Analytical",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4468,7 +4468,7 @@
         "data-driven"
       ],
       "color": "#7C3AED",
-      "emoji": "\ud83d\udcca",
+      "emoji": "📊",
       "vibe": "Transactional, Data-Driven, Analytical",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4507,7 +4507,7 @@
         "data-driven"
       ],
       "color": "#7C3AED",
-      "emoji": "\ud83d\udcca",
+      "emoji": "📊",
       "vibe": "Transactional, Data-Driven, Analytical",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -4546,7 +4546,7 @@
         "data-driven"
       ],
       "color": "#7C3AED",
-      "emoji": "\ud83d\udcca",
+      "emoji": "📊",
       "vibe": "Transactional, Data-Driven, Analytical",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -4585,7 +4585,7 @@
         "data-driven"
       ],
       "color": "#7C3AED",
-      "emoji": "\ud83d\udcca",
+      "emoji": "📊",
       "vibe": "Transactional, Data-Driven, Analytical",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -4624,7 +4624,7 @@
         "engaging"
       ],
       "color": "#B45309",
-      "emoji": "\ud83d\udce3",
+      "emoji": "📣",
       "vibe": "Engaging, Empathetic, Community-Centric",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4663,7 +4663,7 @@
         "engaging"
       ],
       "color": "#B45309",
-      "emoji": "\ud83d\udce3",
+      "emoji": "📣",
       "vibe": "Engaging, Empathetic, Community-Centric",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -4702,7 +4702,7 @@
         "engaging"
       ],
       "color": "#B45309",
-      "emoji": "\ud83d\udce3",
+      "emoji": "📣",
       "vibe": "Engaging, Empathetic, Community-Centric",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4741,7 +4741,7 @@
         "engaging"
       ],
       "color": "#B45309",
-      "emoji": "\ud83d\udce3",
+      "emoji": "📣",
       "vibe": "Engaging, Empathetic, Community-Centric",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4780,7 +4780,7 @@
         "engaging"
       ],
       "color": "#B45309",
-      "emoji": "\ud83d\udce3",
+      "emoji": "📣",
       "vibe": "Engaging, Empathetic, Community-Centric",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -4819,7 +4819,7 @@
         "engaging"
       ],
       "color": "#B45309",
-      "emoji": "\ud83d\udce3",
+      "emoji": "📣",
       "vibe": "Engaging, Empathetic, Community-Centric",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4858,7 +4858,7 @@
         "engaging"
       ],
       "color": "#B45309",
-      "emoji": "\ud83d\udce3",
+      "emoji": "📣",
       "vibe": "Engaging, Empathetic, Community-Centric",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -4897,7 +4897,7 @@
         "engaging"
       ],
       "color": "#B45309",
-      "emoji": "\ud83d\udce3",
+      "emoji": "📣",
       "vibe": "Engaging, Empathetic, Community-Centric",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4936,7 +4936,7 @@
         "engaging"
       ],
       "color": "#B45309",
-      "emoji": "\ud83d\udce3",
+      "emoji": "📣",
       "vibe": "Engaging, Empathetic, Community-Centric",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -4975,7 +4975,7 @@
         "engaging"
       ],
       "color": "#B45309",
-      "emoji": "\ud83d\udce3",
+      "emoji": "📣",
       "vibe": "Engaging, Empathetic, Community-Centric",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -5015,7 +5015,7 @@
         "systems"
       ],
       "color": "#8E44AD",
-      "emoji": "\u2699\ufe0f",
+      "emoji": "⚙️",
       "vibe": "technical, automation-driven, pipeline-obsessed, detail-oriented",
       "difficulty": "Medium",
       "experience_level": "Senior",
@@ -5053,7 +5053,7 @@
         "interview-prep"
       ],
       "color": "#10A37F",
-      "emoji": "\ud83e\udde0",
+      "emoji": "🧠",
       "vibe": "elite, research-focused, frontier-aware, rigorous",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -5093,7 +5093,7 @@
         "pipeline"
       ],
       "color": "#2E86C1",
-      "emoji": "\ud83c\udfaf",
+      "emoji": "🎯",
       "vibe": "structured, tactical, outcome-driven, organized",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -5131,7 +5131,7 @@
         "startup"
       ],
       "color": "#3498DB",
-      "emoji": "\ud83d\ude80",
+      "emoji": "🚀",
       "vibe": "visionary, execution-focused, analytical, product-minded",
       "difficulty": "Medium",
       "experience_level": "Executive",
@@ -5169,7 +5169,7 @@
         "sales"
       ],
       "color": "#F1C40F",
-      "emoji": "\ud83d\udc8e",
+      "emoji": "💎",
       "vibe": "elite, high-value, business-minded, structured",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -5207,7 +5207,7 @@
         "surgical"
       ],
       "color": "#2E86C1",
-      "emoji": "\u26a1",
+      "emoji": "⚡",
       "vibe": "surgical, contextual, performance-minded, efficient",
       "difficulty": "Medium",
       "experience_level": "Mid",
@@ -5245,7 +5245,7 @@
         "googleyness"
       ],
       "color": "#10A37F",
-      "emoji": "\ud83d\udfe9",
+      "emoji": "🟩",
       "vibe": "algorithmic, analytical, Googley, structured",
       "difficulty": "Medium",
       "experience_level": "Senior",
@@ -5285,7 +5285,7 @@
         "roi"
       ],
       "color": "#3498DB",
-      "emoji": "\ud83d\udc54",
+      "emoji": "👔",
       "vibe": "advisory, enterprise-aware, risk-conscious, strategic",
       "difficulty": "Medium",
       "experience_level": "Senior",
@@ -5323,7 +5323,7 @@
         "formulas"
       ],
       "color": "#8E44AD",
-      "emoji": "\ud83e\uddf1",
+      "emoji": "🧱",
       "vibe": "structured, detail-oriented, pipeline-focused, data-obsessed",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -5361,7 +5361,7 @@
         "sales"
       ],
       "color": "#F1C40F",
-      "emoji": "\ud83c\udfaf",
+      "emoji": "🎯",
       "vibe": "practical, persuasive, client-centric, result-oriented",
       "difficulty": "Hard",
       "experience_level": "Mid",
@@ -5383,6 +5383,193 @@
         "remote-job-hunt"
       ],
       "popularity_score": 93
+    },
+    {
+      "id": "performance-review-advisor",
+      "name": "Performance Review Advisor",
+      "division": null,
+      "description": "A feedback strategy specialist who coaches professionals to",
+      "status": "live",
+      "filename": "career/performance-review-advisor.md",
+      "tags": [
+        "structured",
+        "evidence-forward",
+        "communication-sharp",
+        "outcome-focused"
+      ],
+      "color": "#00695C",
+      "emoji": "📋",
+      "vibe": "structured, evidence-forward, communication-sharp, outcome-focused"
+    },
+    {
+      "id": "career-risk-assessor",
+      "name": "Career Risk Assessor",
+      "division": null,
+      "description": "A strategic risk analyst who evaluates the stability of a",
+      "status": "live",
+      "filename": "career/career-risk-assessor.md",
+      "tags": [
+        "forensic",
+        "scenario-planning",
+        "proactive",
+        "unsentimental"
+      ],
+      "color": "#B71C1C",
+      "emoji": "⚠️",
+      "vibe": "forensic, scenario-planning, proactive, unsentimental"
+    },
+    {
+      "id": "executive-presence-coach",
+      "name": "Executive Presence Coach",
+      "division": null,
+      "description": "A senior leadership communication specialist who helps directors,",
+      "status": "live",
+      "filename": "career/executive-presence-coach.md",
+      "tags": [
+        "polished",
+        "gravitas-first",
+        "strategic",
+        "high-stakes-aware"
+      ],
+      "color": "#1A237E",
+      "emoji": "🎙️",
+      "vibe": "polished, gravitas-first, strategic, high-stakes-aware"
+    },
+    {
+      "id": "graduate-school-vs-industry-advisor",
+      "name": "Graduate School vs. Industry Advisor",
+      "division": null,
+      "description": "A decision-science consultant who helps early- and mid-career",
+      "status": "live",
+      "filename": "career/graduate-school-vs-industry-advisor.md",
+      "tags": [
+        "analytical",
+        "objective",
+        "data-driven",
+        "decision-focused"
+      ],
+      "color": "#4E342E",
+      "emoji": "🎓",
+      "vibe": "analytical, objective, data-driven, decision-focused"
+    },
+    {
+      "id": "international-job-search-coach",
+      "name": "International Job Search Coach",
+      "division": null,
+      "description": "A cross-border career strategist who guides professionals through",
+      "status": "live",
+      "filename": "career/international-job-search-coach.md",
+      "tags": [
+        "globally aware",
+        "compliance-conscious",
+        "culturally intelligent",
+        "strategic"
+      ],
+      "color": "#0D47A1",
+      "emoji": "🌐",
+      "vibe": "globally aware, compliance-conscious, culturally intelligent, strategic"
+    },
+    {
+      "id": "promotion-readiness-coach",
+      "name": "Promotion Readiness Coach",
+      "division": null,
+      "description": "A leadership development specialist who prepares mid- to senior-",
+      "status": "live",
+      "filename": "career/promotion-readiness-coach.md",
+      "tags": [
+        "strategic",
+        "evidence-driven",
+        "stakeholder-aware",
+        "forward-projecting"
+      ],
+      "color": "#1A237E",
+      "emoji": "📈",
+      "vibe": "strategic, evidence-driven, stakeholder-aware, forward-projecting"
+    },
+    {
+      "id": "relocation-strategy-advisor",
+      "name": "Relocation Strategy Advisor",
+      "division": null,
+      "description": "A cross-market logistics and compensation consultant who helps",
+      "status": "live",
+      "filename": "career/relocation-strategy-advisor.md",
+      "tags": [
+        "pragmatic",
+        "detail-oriented",
+        "logistics-first",
+        "financially grounded"
+      ],
+      "color": "#4A235A",
+      "emoji": "🗺️",
+      "vibe": "pragmatic, detail-oriented, logistics-first, financially grounded"
+    },
+    {
+      "id": "achievement-quantification-coach",
+      "name": "Achievement Quantification Coach",
+      "division": null,
+      "description": "A data-forensics coach who helps professionals excavate,",
+      "status": "live",
+      "filename": "resume/achievement-quantification-coach.md",
+      "tags": [
+        "forensic",
+        "relentless",
+        "evidence-obsessed",
+        "empowering"
+      ],
+      "color": "#1B5E20",
+      "emoji": "📊",
+      "vibe": "forensic, relentless, evidence-obsessed, empowering"
+    },
+    {
+      "id": "resume-bullet-generator",
+      "name": "Resume Bullet Generator",
+      "division": null,
+      "description": "A high-velocity achievement writer who transforms raw job",
+      "status": "live",
+      "filename": "resume/resume-bullet-generator.md",
+      "tags": [
+        "punchy",
+        "outcome-first",
+        "metrics-obsessed",
+        "speed-focused"
+      ],
+      "color": "#4A235A",
+      "emoji": "✍️",
+      "vibe": "punchy, outcome-first, metrics-obsessed, speed-focused"
+    },
+    {
+      "id": "resume-gap-strategist",
+      "name": "Resume Gap Strategist",
+      "division": null,
+      "description": "A candid career narrative advisor who helps professionals",
+      "status": "live",
+      "filename": "resume/resume-gap-strategist.md",
+      "tags": [
+        "candid",
+        "reframing-expert",
+        "confidence-building",
+        "narrative-driven"
+      ],
+      "color": "#37474F",
+      "emoji": "🗓️",
+      "vibe": "candid, reframing-expert, confidence-building, narrative-driven"
+    },
+    {
+      "id": "technical-project-positioning-advisor",
+      "name": "Technical Project Positioning Advisor",
+      "division": null,
+      "description": "A technical narrative strategist who helps engineers,",
+      "status": "live",
+      "filename": "resume/technical-project-positioning-advisor.md",
+      "tags": [
+        "technical",
+        "narrative-bridging",
+        "impact-forward",
+        "dual-audience-aware"
+      ],
+      "color": "#004D40",
+      "emoji": "🔧",
+      "vibe": "technical, narrative-bridging, impact-forward, dual-audience-aware"
     }
   ]
 }
