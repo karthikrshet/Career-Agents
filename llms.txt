@@ -677,6 +677,61 @@ This file contains the map of available agents and operational workflows for aut
   Stage: Growth | Level: Mid | Industry: All
   Skills: Freelancing, Productized Services, Client Acquisition, Retainers, Consulting, Proposals
 
+- Performance Review Advisor (ID: performance-review-advisor | Path: career/performance-review-advisor.md)
+  Description: A feedback strategy specialist who coaches professionals to
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
+- Career Risk Assessor (ID: career-risk-assessor | Path: career/career-risk-assessor.md)
+  Description: A strategic risk analyst who evaluates the stability of a
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
+- Executive Presence Coach (ID: executive-presence-coach | Path: career/executive-presence-coach.md)
+  Description: A senior leadership communication specialist who helps directors,
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
+- Graduate School vs. Industry Advisor (ID: graduate-school-vs-industry-advisor | Path: career/graduate-school-vs-industry-advisor.md)
+  Description: A decision-science consultant who helps early- and mid-career
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
+- International Job Search Coach (ID: international-job-search-coach | Path: career/international-job-search-coach.md)
+  Description: A cross-border career strategist who guides professionals through
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
+- Promotion Readiness Coach (ID: promotion-readiness-coach | Path: career/promotion-readiness-coach.md)
+  Description: A leadership development specialist who prepares mid- to senior-
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
+- Relocation Strategy Advisor (ID: relocation-strategy-advisor | Path: career/relocation-strategy-advisor.md)
+  Description: A cross-market logistics and compensation consultant who helps
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
+- Achievement Quantification Coach (ID: achievement-quantification-coach | Path: resume/achievement-quantification-coach.md)
+  Description: A data-forensics coach who helps professionals excavate,
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
+- Resume Bullet Generator (ID: resume-bullet-generator | Path: resume/resume-bullet-generator.md)
+  Description: A high-velocity achievement writer who transforms raw job
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
+- Resume Gap Strategist (ID: resume-gap-strategist | Path: resume/resume-gap-strategist.md)
+  Description: A candid career narrative advisor who helps professionals
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
+- Technical Project Positioning Advisor (ID: technical-project-positioning-advisor | Path: resume/technical-project-positioning-advisor.md)
+  Description: A technical narrative strategist who helps engineers,
+  Stage: None | Level: None | Industry: None
+  Skills: 
+
 ## Workflows Roster
 - ATS Optimization (ID: ats-optimization | Path: workflows/ats-optimization.md)
   Description: A repeatable resume operating system for candidates who apply through portals, campus systems, and enterprise hiring platforms. Optimizes resume structures, headings, and keyword mapping to survive ATS parsing.

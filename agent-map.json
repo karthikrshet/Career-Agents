@@ -943,5 +943,82 @@
     "vibe": "practical, persuasive, client-centric, result-oriented",
     "difficulty": "Hard",
     "experience_level": "Mid"
+  },
+  "performance-review-advisor": {
+    "name": "Performance Review Advisor",
+    "filename": "career/performance-review-advisor.md",
+    "vibe": "structured, evidence-forward, communication-sharp, outcome-focused",
+    "difficulty": null,
+    "experience_level": null
+  },
+  "career-risk-assessor": {
+    "name": "Career Risk Assessor",
+    "filename": "career/career-risk-assessor.md",
+    "vibe": "forensic, scenario-planning, proactive, unsentimental",
+    "difficulty": null,
+    "experience_level": null
+  },
+  "executive-presence-coach": {
+    "name": "Executive Presence Coach",
+    "filename": "career/executive-presence-coach.md",
+    "vibe": "polished, gravitas-first, strategic, high-stakes-aware",
+    "difficulty": null,
+    "experience_level": null
+  },
+  "graduate-school-vs-industry-advisor": {
+    "name": "Graduate School vs. Industry Advisor",
+    "filename": "career/graduate-school-vs-industry-advisor.md",
+    "vibe": "analytical, objective, data-driven, decision-focused",
+    "difficulty": null,
+    "experience_level": null
+  },
+  "international-job-search-coach": {
+    "name": "International Job Search Coach",
+    "filename": "career/international-job-search-coach.md",
+    "vibe": "globally aware, compliance-conscious, culturally intelligent, strategic",
+    "difficulty": null,
+    "experience_level": null
+  },
+  "promotion-readiness-coach": {
+    "name": "Promotion Readiness Coach",
+    "filename": "career/promotion-readiness-coach.md",
+    "vibe": "strategic, evidence-driven, stakeholder-aware, forward-projecting",
+    "difficulty": null,
+    "experience_level": null
+  },
+  "relocation-strategy-advisor": {
+    "name": "Relocation Strategy Advisor",
+    "filename": "career/relocation-strategy-advisor.md",
+    "vibe": "pragmatic, detail-oriented, logistics-first, financially grounded",
+    "difficulty": null,
+    "experience_level": null
+  },
+  "achievement-quantification-coach": {
+    "name": "Achievement Quantification Coach",
+    "filename": "resume/achievement-quantification-coach.md",
+    "vibe": "forensic, relentless, evidence-obsessed, empowering",
+    "difficulty": null,
+    "experience_level": null
+  },
+  "resume-bullet-generator": {
+    "name": "Resume Bullet Generator",
+    "filename": "resume/resume-bullet-generator.md",
+    "vibe": "punchy, outcome-first, metrics-obsessed, speed-focused",
+    "difficulty": null,
+    "experience_level": null
+  },
+  "resume-gap-strategist": {
+    "name": "Resume Gap Strategist",
+    "filename": "resume/resume-gap-strategist.md",
+    "vibe": "candid, reframing-expert, confidence-building, narrative-driven",
+    "difficulty": null,
+    "experience_level": null
+  },
+  "technical-project-positioning-advisor": {
+    "name": "Technical Project Positioning Advisor",
+    "filename": "resume/technical-project-positioning-advisor.md",
+    "vibe": "technical, narrative-bridging, impact-forward, dual-audience-aware",
+    "difficulty": null,
+    "experience_level": null
   }
 }
