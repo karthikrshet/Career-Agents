@@ -6,6 +6,24 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ---
 
+## [v1.2.6] — 2026-07-09
+### Fixed
+- Patched LaTeX arrow escapes (`$\rightarrow$`) inside `scripts/generate-data.py` to compile correctly as Unicode arrows (`→`) in README.md, resolving `$ightarrow$` formatting bugs.
+- Embedded a fast-failing `validate_agents()` pre-flight division validator in `scripts/generate-data.py` to raise actionable errors on invalid/null/empty divisions.
+- Updated hardcoded agent count description from 135 to 146 in `mcp/server.js`.
+- Fixed hardcoded badge count in `scripts/generate-data.py` to compile the count dynamically (`{num_agents}+`).
+
+### Removed
+- Deleted the orphaned, unreferenced `developer-growth` directory of draft agents to minimize published NPM package size.
+
+### Added
+- Created `SUPPORT.md` to document troubleshooting paths and discussions channel links.
+- Created `docs/reports/POST_RELEASE_HEALTH_AUDIT.md`, `NPM_PRODUCTION_AUDIT.md`, `MCP_PRODUCTION_AUDIT.md`, `README_IMPROVEMENTS.md`, `GITHUB_HEALTH_REPORT.md`, `GROWTH_CONVERSION_REPORT.md`, and `QUALITY_AUDIT.md`.
+- Created `docs/releases/GITHUB_RELEASE_v1.2.6.md`.
+
+### Changed
+- Moved redundant and stale reports under `docs/reports/` to `docs/reports/archive/`.
+
 ## [v1.2.5] — 2026-07-09
 ### Fixed
 - Completed 11 incomplete agent files that were missing required structural sections (`## 🔄 Workflow Process`, `## 💭 Communication Style`, `## 🔄 Learning & Memory`, `## 🎯 Success Metrics`, `## 🚀 Advanced Capabilities`): `career-risk-assessor.md`, `executive-presence-coach.md`, `graduate-school-vs-industry-advisor.md`, `international-job-search-coach.md`, `performance-review-advisor.md`, `promotion-readiness-coach.md`, `relocation-strategy-advisor.md`, `achievement-quantification-coach.md`, `resume-bullet-generator.md`, `resume-gap-strategist.md`, `technical-project-positioning-advisor.md`.

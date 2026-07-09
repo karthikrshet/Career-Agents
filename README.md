@@ -113,7 +113,7 @@ Add the configuration block under `%APPDATA%/Claude/claude_desktop_config.json`:
 ```
 
 ### 2. Cursor Setup
-Go to **Settings** $ightarrow$ **Features** $ightarrow$ **MCP** $ightarrow$ **Add New MCP Server**:
+Go to **Settings** → **Features** → **MCP** → **Add New MCP Server**:
 - **Name**: `career-agents`
 - **Type**: `stdio`
 - **Command**: `npx -y career-agents mcp`
@@ -593,10 +593,10 @@ Workflows are repeatable pipelines guiding you step-by-step through career miles
 ## 🔗 Knowledge Graph
 
 Career-Agents compiles a complex, expanded **[knowledge-graph.json](./knowledge-graph.json)** mapping dependencies across:
-- **Agents** $ightarrow$ Belongs to **Divisions** $ightarrow$ Used in **Workflows**
-- **Career Paths** $ightarrow$ Requires **Skills** $ightarrow$ Uses **Agents**
-- **Companies** $ightarrow$ Requires **Skills** $ightarrow$ Prepped by **Workflows**
-- **Bundles** $ightarrow$ Packs **Agents**, **Career Paths**, and **Companies**
+- **Agents** → Belongs to **Divisions** → Used in **Workflows**
+- **Career Paths** → Requires **Skills** → Uses **Agents**
+- **Companies** → Requires **Skills** → Prepped by **Workflows**
+- **Bundles** → Packs **Agents**, **Career Paths**, and **Companies**
 
 You can inspect nodes connectivity stats locally via:
 ```bash
