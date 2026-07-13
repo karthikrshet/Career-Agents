@@ -6,6 +6,19 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ---
 
+## [v1.3.1] — 2026-07-14
+### Added
+- Created missing company prep tracks for Adobe (`companies/adobe.json`), Oracle (`companies/oracle.json`), and Salesforce (`companies/salesforce.json`).
+- Registered Salesforce, Adobe, and Oracle prep tracks under the master `companies.json` catalog.
+
+### Fixed
+- Prevented crashes in the profile recommendation CLI engine (`recommender.js`) and MCP `recommend_agents` tool call handler by providing fallback safe navigation arrays (`|| []`) for agent/bundle properties.
+- Enhanced HTTP API response validation checks in `runtime/executor.js` for Anthropic, Gemini, and OpenAI requests to cleanly trigger simulated fallback mode on errors.
+
+## [v1.3.0] — 2026-07-14
+### Added
+- Initialized core runtime executor and integrated MCP protocol handlers with Claude Desktop configuration compatibility.
+
 ## [v1.2.6] — 2026-07-09
 ### Fixed
 - Patched LaTeX arrow escapes (`$\rightarrow$`) inside `scripts/generate-data.py` to compile correctly as Unicode arrows (`→`) in README.md, resolving `$ightarrow$` formatting bugs.
