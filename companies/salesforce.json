@@ -1,0 +1,26 @@
+{
+  "id": "salesforce",
+  "name": "Salesforce",
+  "interview_process": [
+    "Recruiter screening phone call (30 min)",
+    "Technical screening: 1 coding round / portfolio review (45-60 min)",
+    "Onsite loop: 2 technical coding rounds, 1 system architecture round, 1 core values & trust-alignment round (45 min each)"
+  ],
+  "skills": [
+    "Core Values & Trust Alignment",
+    "Customer Success Orientation",
+    "System Architecture & SaaS Scaling",
+    "Data Structures & Algorithms"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "salesforce-interview-coach",
+    "mock-interviewer",
+    "system-design-coach"
+  ],
+  "resources": [
+    "Salesforce Core Values & Culture documentation",
+    "Salesforce Engineering Blog",
+    "SaaS Architecture and Multi-tenant design patterns"
+  ]
+}

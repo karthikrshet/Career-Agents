@@ -3801,6 +3801,20 @@
       "companies": []
     },
     {
+      "id": "adobe",
+      "name": "Adobe",
+      "type": "company",
+      "description": "Adobe interview preparation track.",
+      "tags": [],
+      "skills": [
+        "Technical Depth & Product Framing",
+        "Product-Craft Story Development",
+        "Attention-to-Detail & UX Polish",
+        "Cross-Functional Collaboration"
+      ],
+      "companies": []
+    },
+    {
       "id": "amazon",
       "name": "Amazon",
       "type": "company",
@@ -3911,6 +3925,34 @@
       "companies": []
     },
     {
+      "id": "oracle",
+      "name": "Oracle",
+      "type": "company",
+      "description": "Oracle interview preparation track.",
+      "tags": [],
+      "skills": [
+        "CS Fundamentals (OS, Networking)",
+        "Database Internals & SQL Design",
+        "Algorithmic Problem-Solving",
+        "Multi-Round Endurance"
+      ],
+      "companies": []
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "type": "company",
+      "description": "Salesforce interview preparation track.",
+      "tags": [],
+      "skills": [
+        "Core Values & Trust Alignment",
+        "Customer Success Orientation",
+        "System Architecture & SaaS Scaling",
+        "Data Structures & Algorithms"
+      ],
+      "companies": []
+    },
+    {
       "id": "stripe",
       "name": "Stripe",
       "type": "company",
@@ -3940,5 +3982,5 @@
     }
   ],
   "version": "1.0.0",
-  "total": 202
+  "total": 205
 }

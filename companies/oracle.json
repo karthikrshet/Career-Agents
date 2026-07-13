@@ -1,0 +1,27 @@
+{
+  "id": "oracle",
+  "name": "Oracle",
+  "interview_process": [
+    "Recruiter phone screen",
+    "Technical screening: 1-2 CS fundamentals and database queries rounds (45-60 min)",
+    "Onsite Loop: 3-4 rounds focused on CS fundamentals, database design, networking protocols, and systems design (45 min each)"
+  ],
+  "skills": [
+    "CS Fundamentals (OS, Networking)",
+    "Database Internals & SQL Design",
+    "Algorithmic Problem-Solving",
+    "Multi-Round Endurance"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "oracle-interview-coach",
+    "mock-interviewer",
+    "database-engineer",
+    "system-design-coach"
+  ],
+  "resources": [
+    "Oracle Database Concepts Manual",
+    "Oracle Architecture Blogs",
+    "Database indexing and transaction isolation level patterns"
+  ]
+}

@@ -260,6 +260,79 @@
         "Uber H3 Spatial Index documentation",
         "Uber Ringpop/TChannel architecture papers"
       ]
+    },
+    {
+      "id": "adobe",
+      "name": "Adobe",
+      "description": "Renowned for product craft, creative empathy, and user-experience engineering, where design-and-engineering crossover thinking is highly evaluated.",
+      "agents": [
+        "adobe-interview-coach",
+        "mock-interviewer",
+        "system-design-coach"
+      ],
+      "workflows": [
+        "faang-preparation"
+      ],
+      "skills": [
+        "Technical Depth & Product Framing",
+        "Product-Craft Story Development",
+        "Attention-to-Detail & UX Polish",
+        "Cross-Functional Collaboration"
+      ],
+      "resources": [
+        "Adobe Tech Blog (blog.developer.adobe.com)",
+        "Adobe Creative Cloud / Document Cloud architecture publications",
+        "Autosaving and multi-device sync patterns"
+      ]
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "description": "Emphasizes deep computer science fundamentals, methodical systems-level knowledge, and database architecture depth.",
+      "agents": [
+        "oracle-interview-coach",
+        "mock-interviewer",
+        "database-engineer",
+        "system-design-coach"
+      ],
+      "workflows": [
+        "faang-preparation"
+      ],
+      "skills": [
+        "CS Fundamentals (OS, Networking)",
+        "Database Internals & SQL Design",
+        "Algorithmic Problem-Solving",
+        "Multi-Round Endurance"
+      ],
+      "resources": [
+        "Oracle Database Concepts Manual",
+        "Oracle Architecture Blogs",
+        "Database indexing and transaction isolation level patterns"
+      ]
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "description": "Focuses heavily on trust, customer success, SaaS scaling architectures, and relationship-driven culture alignment.",
+      "agents": [
+        "salesforce-interview-coach",
+        "mock-interviewer",
+        "system-design-coach"
+      ],
+      "workflows": [
+        "faang-preparation"
+      ],
+      "skills": [
+        "Core Values & Trust Alignment",
+        "Customer Success Orientation",
+        "System Architecture & SaaS Scaling",
+        "Data Structures & Algorithms"
+      ],
+      "resources": [
+        "Salesforce Core Values & Culture documentation",
+        "Salesforce Engineering Blog",
+        "SaaS Architecture and Multi-tenant design patterns"
+      ]
     }
   ]
 }
