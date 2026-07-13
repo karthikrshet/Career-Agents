@@ -17,7 +17,8 @@ import {
   Terminal,
   GraduationCap,
   Users,
-  ExternalLink
+  ExternalLink,
+  Volume2
 } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
@@ -83,6 +84,7 @@ export function MarketingNavbar() {
     { title: "Resume Studio", desc: "ATS auditing & bullet rewriter", href: "/resume", icon: FileText },
     { title: "AI Copilot", desc: "Context-aware reasoning streams", href: "/copilot", icon: Bot },
     { title: "Interview Lab", desc: "STAR method voice mock sessions", href: "/interview", icon: Mic },
+    { title: "Voice Agent Lab", desc: "Real-time 1-on-1 spoken AI sessions", href: "/interview/voice", icon: Volume2 },
     { title: "GitHub Auditor", desc: "Code architecture & test analysis", href: "/github", icon: GitBranch },
     { title: "Job Hub Tracker", desc: "Kanban applications pipeline", href: "/tracker", icon: Briefcase },
   ];
