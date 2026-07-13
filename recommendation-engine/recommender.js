@@ -39,17 +39,17 @@ export function recommendProfile(skillsStr, experience, targetCompany, targetRol
     let score = 0;
     
     // Skill overlap
-    const agentSkills = agent.skills.map(s => s.toLowerCase());
+    const agentSkills = (agent.skills || []).map(s => s.toLowerCase());
     const skillOverlap = inputSkills.filter(s => agentSkills.includes(s));
     score += skillOverlap.length * 5;
 
     // Experience match
-    if (agent.experience_level.toLowerCase() === expQuery) {
+    if (agent.experience_level && agent.experience_level.toLowerCase() === expQuery) {
       score += 3;
     }
 
     // Company match
-    if (companyQuery && agent.companies.map(co => co.toLowerCase()).includes(companyQuery)) {
+    if (companyQuery && (agent.companies || []).map(co => co.toLowerCase()).includes(companyQuery)) {
       score += 10;
     }
 
@@ -90,14 +90,14 @@ export function recommendProfile(skillsStr, experience, targetCompany, targetRol
   const matchedBundles = [];
   for (const b of osData.bundles) {
     let score = 0;
-    const bundleSkills = b.skills.map(s => s.toLowerCase());
+    const bundleSkills = (b.skills || []).map(s => s.toLowerCase());
     const skillOverlap = inputSkills.filter(s => bundleSkills.includes(s));
     score += skillOverlap.length * 3;
 
-    if (companyQuery && b.companies.map(co => co.toLowerCase()).includes(companyQuery)) {
+    if (companyQuery && (b.companies || []).map(co => co.toLowerCase()).includes(companyQuery)) {
       score += 10;
     }
-    if (roleQuery && b.career_paths.map(p => p.toLowerCase()).includes(roleQuery)) {
+    if (roleQuery && (b.career_paths || []).map(p => p.toLowerCase()).includes(roleQuery)) {
       score += 8;
     }
 
@@ -113,7 +113,7 @@ export function recommendProfile(skillsStr, experience, targetCompany, targetRol
     if (companyQuery && co.id === companyQuery) {
       score += 20;
     }
-    const coSkills = co.skills.map(s => s.toLowerCase());
+    const coSkills = (co.skills || []).map(s => s.toLowerCase());
     const skillOverlap = inputSkills.filter(s => coSkills.includes(s));
     score += skillOverlap.length * 2;
 

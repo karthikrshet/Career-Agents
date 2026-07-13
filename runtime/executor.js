@@ -99,6 +99,10 @@ export async function executeAgent(agentData, agentFilePath) {
                 messages: formattedHistory
               })
             });
+            if (!res.ok) {
+              const errBody = await res.json().catch(() => ({}));
+              throw new Error(`Anthropic API returned status ${res.status}: ${JSON.stringify(errBody)}`);
+            }
             const data = await res.json();
             agentReply = data.content?.[0]?.text || 'No response text received.';
           } else if (provider === 'gemini') {
@@ -119,6 +123,10 @@ export async function executeAgent(agentData, agentFilePath) {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ contents })
             });
+            if (!res.ok) {
+              const errBody = await res.json().catch(() => ({}));
+              throw new Error(`Gemini API returned status ${res.status}: ${JSON.stringify(errBody)}`);
+            }
             const data = await res.json();
             agentReply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No response text received.';
           } else if (provider === 'openai') {
@@ -137,6 +145,10 @@ export async function executeAgent(agentData, agentFilePath) {
                 messages
               })
             });
+            if (!res.ok) {
+              const errBody = await res.json().catch(() => ({}));
+              throw new Error(`OpenAI API returned status ${res.status}: ${JSON.stringify(errBody)}`);
+            }
             const data = await res.json();
             agentReply = data.choices?.[0]?.message?.content || 'No response text received.';
           }

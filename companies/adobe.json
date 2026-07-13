@@ -1,0 +1,26 @@
+{
+  "id": "adobe",
+  "name": "Adobe",
+  "interview_process": [
+    "Recruiter screen",
+    "Technical phone screen: 1-2 coding and product-craft rounds (45-60 min)",
+    "Onsite loop: 3 technical coding/systems design rounds, 1 cross-functional collaboration round, 1 product craft/manager round (45 min each)"
+  ],
+  "skills": [
+    "Technical Depth & Product Framing",
+    "Product-Craft Story Development",
+    "Attention-to-Detail & UX Polish",
+    "Cross-Functional Collaboration"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "adobe-interview-coach",
+    "mock-interviewer",
+    "system-design-coach"
+  ],
+  "resources": [
+    "Adobe Tech Blog (blog.developer.adobe.com)",
+    "Adobe Creative Cloud / Document Cloud architecture publications",
+    "Autosaving and multi-device sync patterns"
+  ]
+}

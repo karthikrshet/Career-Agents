@@ -7,7 +7,7 @@
     "agent_count": 146,
     "division_count": 19,
     "workflow_count": 10,
-    "company_count": 10,
+    "company_count": 13,
     "career_path_count": 10,
     "bundle_count": 7,
     "integration_count": 18
@@ -8234,6 +8234,32 @@
   ],
   "companies": [
     {
+      "id": "adobe",
+      "name": "Adobe",
+      "interview_process": [
+        "Recruiter screen",
+        "Technical phone screen: 1-2 coding and product-craft rounds (45-60 min)",
+        "Onsite loop: 3 technical coding/systems design rounds, 1 cross-functional collaboration round, 1 product craft/manager round (45 min each)"
+      ],
+      "skills": [
+        "Technical Depth & Product Framing",
+        "Product-Craft Story Development",
+        "Attention-to-Detail & UX Polish",
+        "Cross-Functional Collaboration"
+      ],
+      "preparation_workflow": "faang-preparation",
+      "agents": [
+        "adobe-interview-coach",
+        "mock-interviewer",
+        "system-design-coach"
+      ],
+      "resources": [
+        "Adobe Tech Blog (blog.developer.adobe.com)",
+        "Adobe Creative Cloud / Document Cloud architecture publications",
+        "Autosaving and multi-device sync patterns"
+      ]
+    },
+    {
       "id": "amazon",
       "name": "Amazon",
       "interview_process": [
@@ -8441,6 +8467,59 @@
         "OpenAI Research Papers",
         "Triton Compiler tutorials",
         "Scaling Laws papers"
+      ]
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "interview_process": [
+        "Recruiter phone screen",
+        "Technical screening: 1-2 CS fundamentals and database queries rounds (45-60 min)",
+        "Onsite Loop: 3-4 rounds focused on CS fundamentals, database design, networking protocols, and systems design (45 min each)"
+      ],
+      "skills": [
+        "CS Fundamentals (OS, Networking)",
+        "Database Internals & SQL Design",
+        "Algorithmic Problem-Solving",
+        "Multi-Round Endurance"
+      ],
+      "preparation_workflow": "faang-preparation",
+      "agents": [
+        "oracle-interview-coach",
+        "mock-interviewer",
+        "database-engineer",
+        "system-design-coach"
+      ],
+      "resources": [
+        "Oracle Database Concepts Manual",
+        "Oracle Architecture Blogs",
+        "Database indexing and transaction isolation level patterns"
+      ]
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "interview_process": [
+        "Recruiter screening phone call (30 min)",
+        "Technical screening: 1 coding round / portfolio review (45-60 min)",
+        "Onsite loop: 2 technical coding rounds, 1 system architecture round, 1 core values & trust-alignment round (45 min each)"
+      ],
+      "skills": [
+        "Core Values & Trust Alignment",
+        "Customer Success Orientation",
+        "System Architecture & SaaS Scaling",
+        "Data Structures & Algorithms"
+      ],
+      "preparation_workflow": "faang-preparation",
+      "agents": [
+        "salesforce-interview-coach",
+        "mock-interviewer",
+        "system-design-coach"
+      ],
+      "resources": [
+        "Salesforce Core Values & Culture documentation",
+        "Salesforce Engineering Blog",
+        "SaaS Architecture and Multi-tenant design patterns"
       ]
     },
     {

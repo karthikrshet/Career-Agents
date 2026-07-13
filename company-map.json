@@ -1,4 +1,19 @@
 {
+  "adobe": {
+    "name": "Adobe",
+    "agents": [
+      "adobe-interview-coach",
+      "mock-interviewer",
+      "system-design-coach"
+    ],
+    "workflows": [],
+    "skills": [
+      "Technical Depth & Product Framing",
+      "Product-Craft Story Development",
+      "Attention-to-Detail & UX Polish",
+      "Cross-Functional Collaboration"
+    ]
+  },
   "amazon": {
     "name": "Amazon",
     "agents": [
@@ -123,6 +138,37 @@
       "Transformer mechanics and scaling math",
       "AI Safety & alignment criteria",
       "GPU memory optimizations"
+    ]
+  },
+  "oracle": {
+    "name": "Oracle",
+    "agents": [
+      "oracle-interview-coach",
+      "mock-interviewer",
+      "database-engineer",
+      "system-design-coach"
+    ],
+    "workflows": [],
+    "skills": [
+      "CS Fundamentals (OS, Networking)",
+      "Database Internals & SQL Design",
+      "Algorithmic Problem-Solving",
+      "Multi-Round Endurance"
+    ]
+  },
+  "salesforce": {
+    "name": "Salesforce",
+    "agents": [
+      "salesforce-interview-coach",
+      "mock-interviewer",
+      "system-design-coach"
+    ],
+    "workflows": [],
+    "skills": [
+      "Core Values & Trust Alignment",
+      "Customer Success Orientation",
+      "System Architecture & SaaS Scaling",
+      "Data Structures & Algorithms"
     ]
   },
   "stripe": {

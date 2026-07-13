@@ -531,6 +531,11 @@ Explore our pre-mapped career growth roadmaps detailing core competencies:
 
 Target and clear Tier-1 interviews with company-specific tracks:
 
+#### 🏢 [Adobe](./companies/adobe.json)
+- **Interview Rounds**: Recruiter screen, Technical phone screen: 1-2 coding and product-craft rounds (45-60 min), Onsite loop: 3 technical coding/systems design rounds, 1 cross-functional collaboration round, 1 product craft/manager round (45 min each)
+- **Key Competency Focus**: Technical Depth & Product Framing, Product-Craft Story Development, Attention-to-Detail & UX Polish, Cross-Functional Collaboration
+- **Recommended Coaches**: adobe-interview-coach, mock-interviewer, system-design-coach
+
 #### 🏢 [Amazon](./companies/amazon.json)
 - **Interview Rounds**: Online Assessment: coding test + system simulation (90 min), Recruiter screen, Onsite Loop (The Loop): 3-4 coding/system design rounds, with each round dedicating 20+ minutes to behavioral questions testing the 16 Leadership Principles
 - **Key Competency Focus**: 16 Leadership Principles (Customer Obsession, Ownership, Bias for Action), STAR Behavioral Storytelling, Data Structures & Algorithms, System Design & Database selections
@@ -570,6 +575,16 @@ Target and clear Tier-1 interviews with company-specific tracks:
 - **Interview Rounds**: Recruiter screen and take-home practical engineering assignment, Technical phone screen: review take-home assignment and coding test, Onsite loop: 4-5 rounds covering PyTorch coding, distributed training systems, AI safety/alignment, and executive values
 - **Key Competency Focus**: PyTorch scale training models, Transformer mechanics and scaling math, AI Safety & alignment criteria, GPU memory optimizations
 - **Recommended Coaches**: llm-engineer, ai-agent-architect, ai-engineer-career-coach, mock-interviewer
+
+#### 🏢 [Oracle](./companies/oracle.json)
+- **Interview Rounds**: Recruiter phone screen, Technical screening: 1-2 CS fundamentals and database queries rounds (45-60 min), Onsite Loop: 3-4 rounds focused on CS fundamentals, database design, networking protocols, and systems design (45 min each)
+- **Key Competency Focus**: CS Fundamentals (OS, Networking), Database Internals & SQL Design, Algorithmic Problem-Solving, Multi-Round Endurance
+- **Recommended Coaches**: oracle-interview-coach, mock-interviewer, database-engineer, system-design-coach
+
+#### 🏢 [Salesforce](./companies/salesforce.json)
+- **Interview Rounds**: Recruiter screening phone call (30 min), Technical screening: 1 coding round / portfolio review (45-60 min), Onsite loop: 2 technical coding rounds, 1 system architecture round, 1 core values & trust-alignment round (45 min each)
+- **Key Competency Focus**: Core Values & Trust Alignment, Customer Success Orientation, System Architecture & SaaS Scaling, Data Structures & Algorithms
+- **Recommended Coaches**: salesforce-interview-coach, mock-interviewer, system-design-coach
 
 #### 🏢 [Stripe](./companies/stripe.json)
 - **Interview Rounds**: Recruiter screen and phone interview (coding/debugging), Onsite loop: 1 practical integration coding round, 1 bug squash debugging round, 1 system architecture round, 1 leadership/behavioral round

@@ -400,11 +400,11 @@ async function handleToolsCall(id, params) {
         const matchedAgents = [];
         for (const agent of osData.agents) {
           let score = 0;
-          const agentSkills = agent.skills.map(s => s.toLowerCase());
+          const agentSkills = (agent.skills || []).map(s => s.toLowerCase());
           const skillOverlap = inputSkills.filter(s => agentSkills.includes(s));
           score += skillOverlap.length * 5;
-          if (agent.experience_level.toLowerCase() === expQuery) score += 3;
-          if (companyQuery && agent.companies.map(co => co.toLowerCase()).includes(companyQuery)) score += 10;
+          if (agent.experience_level && agent.experience_level.toLowerCase() === expQuery) score += 3;
+          if (companyQuery && (agent.companies || []).map(co => co.toLowerCase()).includes(companyQuery)) score += 10;
           if (roleQuery && (agent.id.includes(roleQuery) || agent.name.toLowerCase().includes(roleQuery))) score += 8;
 
           if (score > 0 || matchedAgents.length < 3) {
@@ -436,11 +436,11 @@ async function handleToolsCall(id, params) {
         const matchedBundles = [];
         for (const b of osData.bundles) {
           let score = 0;
-          const bundleSkills = b.skills.map(s => s.toLowerCase());
+          const bundleSkills = (b.skills || []).map(s => s.toLowerCase());
           const skillOverlap = inputSkills.filter(s => bundleSkills.includes(s));
           score += skillOverlap.length * 3;
-          if (companyQuery && b.companies.map(co => co.toLowerCase()).includes(companyQuery)) score += 10;
-          if (roleQuery && b.career_paths.map(p => p.toLowerCase()).includes(roleQuery)) score += 8;
+          if (companyQuery && (b.companies || []).map(co => co.toLowerCase()).includes(companyQuery)) score += 10;
+          if (roleQuery && (b.career_paths || []).map(p => p.toLowerCase()).includes(roleQuery)) score += 8;
 
           matchedBundles.push({ b, score });
         }
@@ -653,7 +653,7 @@ async function handleToolsCall(id, params) {
                 "Mid Level System Refactoring & Collaboration",
                 "Senior Level Architecture & Delivery Leadership"
               ],
-              learning_plan: data.recommended_workflows.map(wf => `Execute workflow: ${wf}`),
+              learning_plan: (data.recommended_workflows || []).map(wf => `Execute workflow: ${wf}`),
               recommended_agents: data.recommended_agents
             }, null, 2)
           }]

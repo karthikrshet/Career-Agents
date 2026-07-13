@@ -1946,6 +1946,26 @@
       "type": "skill"
     },
     {
+      "id": "skill-technical-depth-&-product-framing",
+      "name": "Technical Depth & Product Framing",
+      "type": "skill"
+    },
+    {
+      "id": "skill-product-craft-story-development",
+      "name": "Product-Craft Story Development",
+      "type": "skill"
+    },
+    {
+      "id": "skill-attention-to-detail-&-ux-polish",
+      "name": "Attention-to-Detail & UX Polish",
+      "type": "skill"
+    },
+    {
+      "id": "skill-cross-functional-collaboration",
+      "name": "Cross-Functional Collaboration",
+      "type": "skill"
+    },
+    {
       "id": "skill-16-leadership-principles-(customer-obsession,-ownership,-bias-for-action)",
       "name": "16 Leadership Principles (Customer Obsession, Ownership, Bias for Action)",
       "type": "skill"
@@ -2088,6 +2108,41 @@
     {
       "id": "skill-gpu-memory-optimizations",
       "name": "GPU memory optimizations",
+      "type": "skill"
+    },
+    {
+      "id": "skill-cs-fundamentals-(os,-networking)",
+      "name": "CS Fundamentals (OS, Networking)",
+      "type": "skill"
+    },
+    {
+      "id": "skill-database-internals-&-sql-design",
+      "name": "Database Internals & SQL Design",
+      "type": "skill"
+    },
+    {
+      "id": "skill-algorithmic-problem-solving",
+      "name": "Algorithmic Problem-Solving",
+      "type": "skill"
+    },
+    {
+      "id": "skill-multi-round-endurance",
+      "name": "Multi-Round Endurance",
+      "type": "skill"
+    },
+    {
+      "id": "skill-core-values-&-trust-alignment",
+      "name": "Core Values & Trust Alignment",
+      "type": "skill"
+    },
+    {
+      "id": "skill-customer-success-orientation",
+      "name": "Customer Success Orientation",
+      "type": "skill"
+    },
+    {
+      "id": "skill-system-architecture-&-saas-scaling",
+      "name": "System Architecture & SaaS Scaling",
       "type": "skill"
     },
     {
@@ -10533,6 +10588,41 @@
       "relation": "uses_workflow"
     },
     {
+      "source": "adobe",
+      "target": "adobe-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "adobe",
+      "target": "mock-interviewer",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "adobe",
+      "target": "system-design-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "adobe",
+      "target": "skill-technical-depth-&-product-framing",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "adobe",
+      "target": "skill-product-craft-story-development",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "adobe",
+      "target": "skill-attention-to-detail-&-ux-polish",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "adobe",
+      "target": "skill-cross-functional-collaboration",
+      "relation": "requires_skill"
+    },
+    {
       "source": "amazon",
       "target": "amazon-interview-coach",
       "relation": "requires_agent"
@@ -10840,6 +10930,81 @@
     {
       "source": "openai",
       "target": "skill-gpu-memory-optimizations",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "oracle",
+      "target": "oracle-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "oracle",
+      "target": "mock-interviewer",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "oracle",
+      "target": "database-engineer",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "oracle",
+      "target": "system-design-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "oracle",
+      "target": "skill-cs-fundamentals-(os,-networking)",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "oracle",
+      "target": "skill-database-internals-&-sql-design",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "oracle",
+      "target": "skill-algorithmic-problem-solving",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "oracle",
+      "target": "skill-multi-round-endurance",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "salesforce",
+      "target": "salesforce-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "salesforce",
+      "target": "mock-interviewer",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "salesforce",
+      "target": "system-design-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "salesforce",
+      "target": "skill-core-values-&-trust-alignment",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "salesforce",
+      "target": "skill-customer-success-orientation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "salesforce",
+      "target": "skill-system-architecture-&-saas-scaling",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "salesforce",
+      "target": "skill-data-structures-&-algorithms",
       "relation": "requires_skill"
     },
     {
