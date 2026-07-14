@@ -14,8 +14,9 @@
 
 <br /><br />
 
-<img src="https://img.shields.io/badge/Release-v16.2.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v16.2.0" />
+<img src="https://img.shields.io/badge/Release-v16.3.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v16.3.0" />
 <img src="https://img.shields.io/badge/Agents-146_Specialized-0284c7?style=flat-square&logo=openai&logoColor=white" height="26" alt="146 Agents" />
+<img src="https://img.shields.io/badge/Voice_AI-146_Voice_Agents-06b6d4?style=flat-square&logo=google-cloud&logoColor=white" height="26" alt="146 Voice Agents" />
 <img src="https://img.shields.io/badge/Divisions-19_Domains-7c3aed?style=flat-square&logo=diagram&logoColor=white" height="26" alt="19 Divisions" />
 <img src="https://img.shields.io/badge/AI_Gateways-18_Providers-d97706?style=flat-square&logo=cpu&logoColor=white" height="26" alt="18 Providers" />
 <img src="https://img.shields.io/badge/MCP-Stdio_Protocol-4f46e5?style=flat-square&logo=lightning&logoColor=white" height="26" alt="MCP Server" />
@@ -284,6 +285,12 @@ node scripts/cli.js mock google behavioral
 ### 19. 🔌 Model Context Protocol (MCP) Stdio Server
 *Exposes 25 career tools directly to local IDE environments including Cursor, Claude Desktop, VS Code, and Windsurf.*
 ![MCP Protocol Server Setup](./apps/web/public/images/mcp_protocol_server.png)
+
+<br />
+
+### 20. 🎙️ AI Voice Agent Mock Interview Lab v1.0 (`/interview/voice`)
+*1-on-1 real-time spoken mock interviews with 146 specialized AI agents, 27 BCP-47 languages, Web Speech API integration, reactive interviewer orb visualizers, dynamic follow-up questions, evidence-based STAR scorecards, and Vercel AI Key resolution.*
+![AI Voice Agent Lab](./apps/web/public/images/star_interview_lab.png)
 
 <br />
 
