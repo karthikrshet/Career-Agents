@@ -240,9 +240,26 @@ export function InterviewScorecard({ session, onNewSession }: InterviewScorecard
       {/* Export and Navigation Toolbar */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
         <ExportInterviewReport session={session} />
-        <Button onClick={onNewSession} className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold text-sm px-6 py-5 rounded-xl border-0">
-          Start New Interview Session
-        </Button>
+        <div className="flex items-center gap-2.5">
+          <Button
+            variant="outline"
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                window.history.pushState(null, "", "/interview/voice");
+              }
+              onNewSession();
+            }}
+            className="border-white/10 bg-white/5 text-slate-300 hover:text-white"
+          >
+            ← Back to Launcher
+          </Button>
+          <Button
+            onClick={onNewSession}
+            className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold text-sm px-6 py-5 rounded-xl border-0"
+          >
+            Start New Interview Session
+          </Button>
+        </div>
       </div>
     </div>
   );
