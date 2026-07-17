@@ -1,0 +1,68 @@
+{
+  "javascript": [
+    "javascript",
+    "js",
+    "node.js",
+    "nodejs",
+    "next.js",
+    "nextjs",
+    "react",
+    "react.js",
+    "reactjs",
+    "typescript",
+    "ts",
+    "es6",
+    "express",
+    "expressjs",
+    "express.js",
+    "mern",
+    "vue",
+    "vuejs",
+    "vue.js",
+    "angular",
+    "angularjs",
+    "angular.js"
+  ],
+  "sql": [
+    "sql",
+    "postgresql",
+    "postgres",
+    "mysql",
+    "sqlite",
+    "mariadb",
+    "oracle sql",
+    "t-sql",
+    "pl/sql",
+    "database design",
+    "database optimization"
+  ],
+  "ai": [
+    "ai agents",
+    "ai",
+    "llm",
+    "openai",
+    "langchain",
+    "agentforce",
+    "mcp",
+    "rag",
+    "system design"
+  ],
+  "salesforce": [
+    "apex",
+    "agentforce",
+    "crm",
+    "salesforce",
+    "lwc",
+    "visualforce",
+    "salesforce core values & trust alignment",
+    "customer success orientation",
+    "system architecture & saas scaling"
+  ],
+  "graphql": [
+    "graphql",
+    "apollo client",
+    "rest api",
+    "apis",
+    "api design"
+  ]
+}

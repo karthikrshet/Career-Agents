@@ -83,5 +83,10 @@
     "llms.txt",
     "README.md",
     "LICENSE"
-  ]
+  ],
+  "dependencies": {
+    "docx": "^9.7.1",
+    "exceljs": "^4.4.0",
+    "pdf-lib": "^1.17.1"
+  }
 }
