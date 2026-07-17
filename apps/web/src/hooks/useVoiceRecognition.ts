@@ -45,9 +45,11 @@ export function useVoiceRecognition({
           const errorType = e.error || "unknown";
 
           if (errorType === "not-allowed" || errorType === "service-not-allowed") {
-            toast.info("Microphone permission blocked. Switched to Text Mode so you can type your answers.");
             setPermissionGranted(false);
-          } else if (errorType !== "no-speech") {
+            if (isListening) {
+              toast.info("Microphone access denied. Switched to Text Mode.");
+            }
+          } else if (errorType !== "no-speech" && isListening) {
             toast.error(`Microphone notice: ${errorType}`);
           }
 
