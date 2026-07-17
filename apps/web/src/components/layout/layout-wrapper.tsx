@@ -68,7 +68,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
       <Suspense fallback={null}>
         <Sidebar />
       </Suspense>
-      <main className="flex-1 overflow-hidden flex flex-col min-w-0">
+      <main className="flex-1 overflow-y-auto flex flex-col min-w-0">
         {children}
       </main>
     </div>
