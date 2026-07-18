@@ -77,6 +77,19 @@ export interface VoiceScorecard {
   structure: number;
   behavioralReasoning: number;
   roleFit: number;
+  scores?: {
+    overall?: number;
+    technicalKnowledge?: number;
+    problemSolving?: number;
+    communication?: number;
+    clarity?: number;
+    confidence?: number;
+    depth?: number;
+    correctness?: number;
+    structure?: number;
+    behavioralReasoning?: number;
+    roleFit?: number;
+  };
   feedback: string;
   strengths: string[];
   weaknesses: string[];

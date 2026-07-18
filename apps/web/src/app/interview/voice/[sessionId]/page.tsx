@@ -12,7 +12,7 @@ export default function DynamicVoiceInterviewPage() {
   return (
     <div className="flex flex-col w-full min-h-full bg-[#03060f] text-slate-100 font-sans pb-16">
       <Topbar
-        title={`AI Voice Session · ${sessionId ? sessionId.slice(0, 16) : "Live"}`}
+        title={`AI Voice Session · ${sessionId || "Live"}`}
         subtitle="1-on-1 spoken mock interview with specialized AI interviewer"
       />
       <div className="flex-1 p-3 sm:p-5 w-full">
