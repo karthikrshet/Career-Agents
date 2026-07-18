@@ -625,7 +625,7 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
-            className="max-w-5xl mx-auto space-y-5 w-full flex-1 flex flex-col justify-between pb-12"
+            className="max-w-5xl mx-auto space-y-5 w-full pb-16 min-h-min"
           >
             {/* Top Bar Status */}
             <div className="flex items-center justify-between bg-[#080d21] border border-white/10 rounded-2xl p-4 shadow-xl">

@@ -51,6 +51,94 @@ function generateFallbackQuestion(agentName: string, role: string, company: stri
   return followups[index];
 }
 
+function generateDynamicScorecard(history: Array<{ speaker: string; content: string }>, role: string, company: string, mode: string, difficulty: string) {
+  const candidateMsgs = (history || []).filter((h) => h.speaker === "candidate");
+  const totalAnswers = candidateMsgs.length;
+  const totalWords = candidateMsgs.reduce((acc, m) => acc + (m.content || "").trim().split(/\s+/).filter(Boolean).length, 0);
+
+  if (totalAnswers === 0 || totalWords < 8) {
+    return {
+      scores: {
+        overall: 20,
+        technicalKnowledge: 2,
+        problemSolving: 2,
+        communication: 2,
+        clarity: 2,
+        confidence: 2,
+        depth: 1,
+        correctness: 2,
+        structure: 1,
+        behavioralReasoning: 2,
+        roleFit: 2,
+      },
+      feedback: `Incomplete session for ${role} at ${company}. Minimal or no candidate responses were recorded to evaluate performance.`,
+      strengths: ["Initiated mock interview session"],
+      weaknesses: ["No substantial candidate answers provided during the interview session"],
+      recommendations: ["Attempt the interview using Voice or Text mode and provide detailed answers"],
+      questionFeedback: [],
+      starBreakdown: {
+        situation: "Insufficient data to evaluate Situation.",
+        task: "Insufficient data to evaluate Task.",
+        action: "Insufficient data to evaluate Action.",
+        result: "Insufficient data to evaluate Result.",
+      },
+      isDemoMode: true,
+    };
+  }
+
+  const avgWords = Math.round(totalWords / totalAnswers);
+  const techScore = Math.min(10, Math.max(3, Math.floor(avgWords / 15) + (totalAnswers >= 3 ? 3 : 1)));
+  const probScore = Math.min(10, Math.max(3, Math.floor(avgWords / 18) + 3));
+  const commScore = Math.min(10, Math.max(4, Math.floor(avgWords / 12) + 2));
+  const clarityScore = Math.min(10, Math.max(4, Math.floor(avgWords / 15) + 3));
+  const confScore = Math.min(10, Math.max(3, Math.floor(avgWords / 20) + 4));
+  const depthScore = Math.min(10, Math.max(2, Math.floor(avgWords / 22) + 2));
+  const corrScore = Math.min(10, Math.max(4, Math.floor(avgWords / 16) + 3));
+  const structScore = Math.min(10, Math.max(3, totalWords > 100 ? 8 : 4));
+  const behScore = Math.min(10, Math.max(3, totalAnswers >= 2 ? 7 : 4));
+  const roleFitScore = Math.min(10, Math.max(4, Math.floor((techScore + probScore) / 2)));
+
+  const overall = Math.min(98, Math.max(25, Math.round((techScore + probScore + commScore + clarityScore + confScore + depthScore + corrScore + structScore + behScore + roleFitScore) * 1.0)));
+
+  return {
+    scores: {
+      overall,
+      technicalKnowledge: techScore,
+      problemSolving: probScore,
+      communication: commScore,
+      clarity: clarityScore,
+      confidence: confScore,
+      depth: depthScore,
+      correctness: corrScore,
+      structure: structScore,
+      behavioralReasoning: behScore,
+      roleFit: roleFitScore,
+    },
+    feedback: `Evaluated ${totalAnswers} response(s) (${totalWords} total words) for ${role} at ${company} (${difficulty} ${mode}). Candidate provided ${avgWords > 40 ? "detailed" : "concise"} explanations across the session.`,
+    strengths: [
+      totalWords > 80 ? "Detailed candidate responses provided" : "Clear initial response",
+      totalAnswers >= 2 ? "Consistent engagement throughout session" : "Direct response to interviewer prompt",
+      "Good structure in communicated ideas",
+    ],
+    weaknesses: [
+      totalWords < 120 ? "Explanations could be expanded with more architectural depth" : "Elaborate further on trade-offs under high concurrency",
+      "Include more quantitative metrics (KPIs, latency %, memory usage) in STAR responses",
+    ],
+    recommendations: [
+      "Practice breaking down technical solutions using the STAR framework",
+      "Highlight specific system design trade-offs and edge case handling",
+    ],
+    questionFeedback: [],
+    starBreakdown: {
+      situation: "Context framed based on candidate response transcript.",
+      task: "Responsibilities outlined during interaction.",
+      action: "Technical approach explained across answers.",
+      result: "Outcomes and performance metrics discussed.",
+    },
+    isDemoMode: true,
+  };
+}
+
 export async function POST(req: Request) {
   try {
     const session = await getServerSession(authOptions);
@@ -149,7 +237,6 @@ Behavior Rules:
         const fallbackText = generateFallbackQuestion(agent.name, role, company, mode, difficulty, history.length);
         return NextResponse.json({ question: fallbackText, isDemoMode: true });
       }
-
     } else if (action === "evaluate") {
       const parsed = EvaluateSessionSchema.safeParse(rawBody);
       if (!parsed.success) {
@@ -161,36 +248,10 @@ Behavior Rules:
 
       const { agent, company, role, mode, difficulty, language, history, aiConfig } = parsed.data;
 
-      const defaultScorecard = {
-        scores: {
-          overall: 88,
-          technicalKnowledge: 9,
-          problemSolving: 9,
-          communication: 8,
-          clarity: 9,
-          confidence: 8,
-          depth: 8,
-          correctness: 9,
-          structure: 9,
-          behavioralReasoning: 8,
-          roleFit: 9,
-        },
-        feedback: `Strong performance in this ${difficulty} ${mode} interview for ${role} at ${company}. Answers demonstrated clear technical reasoning and structured communication.`,
-        strengths: ["Structured problem-solving approach", "Clear communication of complex concepts", "Good awareness of edge cases"],
-        weaknesses: ["Could provide deeper quantitative metrics in STAR scenarios", "Elaborate further on system design trade-offs"],
-        recommendations: ["Practice quantifying project results with specific KPIs", "Review distributed caching strategies for sub-millisecond response times"],
-        questionFeedback: [],
-        starBreakdown: {
-          situation: "Clearly framed initial project problem and scope.",
-          task: "Defined individual responsibilities and architectural constraints.",
-          action: "Explained technical implementation choices and debugging procedures.",
-          result: "Achieved measurable improvements in system performance and reliability."
-        },
-        isDemoMode: true,
-      };
+      const dynamicScorecard = generateDynamicScorecard(history, role, company, mode, difficulty);
 
       if (isDemoMode) {
-        return NextResponse.json(defaultScorecard);
+        return NextResponse.json(dynamicScorecard);
       }
 
       const providerName = (aiConfig?.provider || "gemini") as import("packages/ai/provider").AIProviderName;
@@ -198,7 +259,7 @@ Behavior Rules:
       const model = aiConfig?.model || (providerName === "gemini" ? "gemini-1.5-pro" : providerName === "groq" ? "llama3-70b-8192" : "gpt-4o");
 
       if (!apiKey) {
-        return NextResponse.json(defaultScorecard);
+        return NextResponse.json(dynamicScorecard);
       }
 
       const activeConfig: import("packages/ai/provider").AIProviderConfig = {
@@ -223,28 +284,31 @@ Target Role: ${role} at ${company}
 Interview Mode: ${mode} (Difficulty: ${difficulty})
 Language: ${language}
 
-Evaluate the transcript evidence strictly.
-Assign ratings out of 10 for technicalKnowledge, problemSolving, communication, clarity, confidence, depth, correctness, structure, behavioralReasoning, roleFit, and overall score out of 100.
+STRICT EVALUATION INSTRUCTIONS:
+1. Evaluate ONLY the candidate's actual responses present in the transcript provided below.
+2. If the candidate provided 0 answers, empty responses, or very short answers (<10 words), assign low scores (under 30/100) reflecting an incomplete interview.
+3. Do NOT generate generic placeholder feedback or high scores (e.g. 88+) unless the candidate's answers explicitly justify them.
+4. Derive all strengths, weaknesses, recommendations, and STAR breakdown points directly from the candidate's spoken text.
 
 Return ONLY a valid JSON object without markdown fences:
 {
   "scores": {
-    "overall": 88,
-    "technicalKnowledge": 9,
-    "problemSolving": 9,
+    "overall": 80,
+    "technicalKnowledge": 8,
+    "problemSolving": 8,
     "communication": 8,
-    "clarity": 9,
+    "clarity": 8,
     "confidence": 8,
     "depth": 8,
-    "correctness": 9,
-    "structure": 9,
+    "correctness": 8,
+    "structure": 8,
     "behavioralReasoning": 8,
-    "roleFit": 9
+    "roleFit": 8
   },
-  "feedback": "...",
-  "strengths": ["..."],
-  "weaknesses": ["..."],
-  "recommendations": ["..."],
+  "feedback": "Strict evaluation based on transcript",
+  "strengths": ["Evidence-based strength 1", "Evidence-based strength 2"],
+  "weaknesses": ["Evidence-based weakness 1", "Evidence-based weakness 2"],
+  "recommendations": ["Actionable advice 1", "Actionable advice 2"],
   "questionFeedback": [],
   "starBreakdown": { "situation": "...", "task": "...", "action": "...", "result": "..." }
 }`;
@@ -263,7 +327,7 @@ Return ONLY a valid JSON object without markdown fences:
         return NextResponse.json(parsedEval);
       } catch (evalErr) {
         console.warn("AI Evaluation failed, returning structured fallback scorecard:", evalErr);
-        return NextResponse.json(defaultScorecard);
+        return NextResponse.json(dynamicScorecard);
       }
     } else if (action === "end" || action === "save" || action === "resume") {
       return NextResponse.json({ success: true, action, message: `Session action '${action}' recorded.` });
