@@ -50,9 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
       activeTabDesc.textContent = `Active page: ${host}`;
       
       // Auto-detect supported platforms and prompt scan
-      if (activeTabUrl.includes("linkedin.com/jobs") || activeTabUrl.includes("lever.co") || activeTabUrl.includes("greenhouse.io")) {
-        activeTabDesc.textContent = `Active page: Supported Job Site (${host})`;
-      }
+      try {
+        const parsedHost = new URL(activeTabUrl).hostname;
+        if (parsedHost.endsWith("linkedin.com") || parsedHost.endsWith("lever.co") || parsedHost.endsWith("greenhouse.io")) {
+          activeTabDesc.textContent = `Active page: Supported Job Site (${host})`;
+        }
+      } catch (_) {}
     }
   });
 

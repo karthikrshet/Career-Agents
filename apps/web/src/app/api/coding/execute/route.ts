@@ -32,10 +32,15 @@ export async function POST(req: NextRequest) {
         const { secureFetch } = await import("packages/security");
         const headers: Record<string, string> = { "Content-Type": "application/json" };
         if (judge0Key) {
-          if (judge0Url.includes("rapidapi.com")) {
-            headers["X-RapidAPI-Key"] = judge0Key;
-            headers["X-RapidAPI-Host"] = new URL(judge0Url).hostname;
-          } else {
+          try {
+            const jHostname = new URL(judge0Url).hostname;
+            if (jHostname.endsWith("rapidapi.com")) {
+              headers["X-RapidAPI-Key"] = judge0Key;
+              headers["X-RapidAPI-Host"] = jHostname;
+            } else {
+              headers["X-Auth-Token"] = judge0Key;
+            }
+          } catch (_) {
             headers["X-Auth-Token"] = judge0Key;
           }
         }
@@ -152,7 +157,7 @@ export async function POST(req: NextRequest) {
             for (const t of tests) {
               try {
                 const argsStr = JSON.stringify(t.args || []);
-                const method = t.method || "twoSum";
+                const method = String(t.method || "twoSum").replace(/[^\w$]/g, "");
                 const testScript = new vm.Script(`${method}.apply(null, ${argsStr})`);
                 const actual = testScript.runInContext(sandbox, { timeout: 2500 });
                 const passed = JSON.stringify(actual) === JSON.stringify(t.expected);
