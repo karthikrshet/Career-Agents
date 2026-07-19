@@ -18,14 +18,19 @@ export function LiveTranscript({
   agentEmoji,
   isProcessing,
 }: LiveTranscriptProps) {
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   }, [history, isProcessing]);
 
   return (
-    <div className="flex-1 overflow-y-auto space-y-3.5 p-4 no-scrollbar text-sm text-left min-h-[120px]">
+    <div ref={containerRef} className="flex-1 overflow-y-auto space-y-3.5 p-4 no-scrollbar text-sm text-left min-h-[120px]">
       {history.length === 0 && !isProcessing && (
         <div className="py-8 text-center text-slate-400 text-xs italic">
           Spoken questions and candidate answers will appear live in this transcript log.
@@ -73,8 +78,6 @@ export function LiveTranscript({
           </span>
         </div>
       )}
-
-      <div ref={bottomRef} />
     </div>
   );
 }
