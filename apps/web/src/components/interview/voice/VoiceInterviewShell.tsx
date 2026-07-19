@@ -127,6 +127,14 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const recognitionRef = useRef<any>(null);
+  const isListeningRef = useRef(false);
+  const shouldKeepListeningRef = useRef(false);
+  const baseTextRef = useRef("");
+  const currentResponseRef = useRef("");
+
+  useEffect(() => {
+    currentResponseRef.current = currentResponse;
+  }, [currentResponse]);
 
   // Feature detection
   useEffect(() => {
@@ -179,12 +187,25 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
       rec.lang = language;
 
       rec.onresult = (event: any) => {
-        let text = "";
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          text += event.results[i][0].transcript;
+        let finalTranscript = "";
+        let interimTranscript = "";
+
+        for (let i = 0; i < event.results.length; i++) {
+          const res = event.results[i];
+          const transcript = res[0]?.transcript || "";
+          if (res.isFinal) {
+            finalTranscript += transcript + " ";
+          } else {
+            interimTranscript += transcript;
+          }
         }
-        if (text.trim() !== "") {
-          setCurrentResponse(text);
+
+        const base = baseTextRef.current.trim();
+        const combined = (base ? base + " " : "") + (finalTranscript + interimTranscript).trim();
+        const cleaned = combined.replace(/\s+/g, " ").trim();
+
+        if (cleaned) {
+          setCurrentResponse(cleaned);
         }
       };
 
@@ -192,21 +213,32 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
         console.error("Speech Recognition error:", e);
         const errType = e.error || "";
         if (errType === "not-allowed" || errType === "service-not-allowed") {
+          shouldKeepListeningRef.current = false;
           setPermissionGranted(false);
           setIsListening(false);
-          // Only show toast if user was actively trying to record/listen
-          if (isListening || fsmState === "LISTENING") {
+          isListeningRef.current = false;
+          if (isListeningRef.current || fsmState === "LISTENING") {
             toast.info("Microphone access denied. Switched to Text Mode.");
             setVoiceMode("text");
             setFsmState("WAITING_FOR_NEXT_QUESTION");
           }
-        } else if (errType !== "no-speech" && (isListening || fsmState === "LISTENING")) {
+        } else if (errType !== "no-speech" && (isListeningRef.current || fsmState === "LISTENING")) {
           toast.error(`Speech input notice: ${errType}`);
         }
       };
 
       rec.onend = () => {
+        if (shouldKeepListeningRef.current) {
+          baseTextRef.current = currentResponseRef.current;
+          try {
+            rec.start();
+            return;
+          } catch (err) {
+            console.warn("Auto-restart of speech recognition failed:", err);
+          }
+        }
         setIsListening(false);
+        isListeningRef.current = false;
         if (fsmState === "LISTENING") {
           setFsmState("WAITING_FOR_NEXT_QUESTION");
         }
@@ -269,15 +301,21 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
     }
 
     if (isListening) {
-      recognitionRef.current.stop();
+      shouldKeepListeningRef.current = false;
+      try {
+        recognitionRef.current.stop();
+      } catch (err) {}
       setIsListening(false);
+      isListeningRef.current = false;
       setFsmState("WAITING_FOR_NEXT_QUESTION");
     } else {
       stopSpeaking();
-      setCurrentResponse("");
+      baseTextRef.current = currentResponse;
+      shouldKeepListeningRef.current = true;
       try {
         recognitionRef.current.start();
         setIsListening(true);
+        isListeningRef.current = true;
         setFsmState("LISTENING");
       } catch (err) {
         console.error("Mic start failed:", err);
@@ -286,6 +324,14 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
   };
 
   const startSession = async (overrideId?: any) => {
+    shouldKeepListeningRef.current = false;
+    if (recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch (err) {}
+    }
+    setIsListening(false);
+    isListeningRef.current = false;
+    baseTextRef.current = "";
+
     const validStringId = typeof overrideId === "string" && overrideId.trim() !== "" ? overrideId : null;
     const rawId = generateId();
     const cleanRoleSlug = (role || "role").toLowerCase().replace(/[^a-z0-9]/g, "-");
@@ -353,10 +399,14 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
     const text = currentResponse.trim();
     if (!text) return;
 
-    if (isListening && recognitionRef.current) {
-      recognitionRef.current.stop();
-      setIsListening(false);
+    shouldKeepListeningRef.current = false;
+    if (recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch (err) {}
     }
+    setIsListening(false);
+    isListeningRef.current = false;
+    baseTextRef.current = "";
+
     stopSpeaking();
 
     const userMsg: TranscriptMessage = {
@@ -420,10 +470,14 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
   };
 
   const finishAndEvaluate = async () => {
-    if (isListening && recognitionRef.current) {
-      recognitionRef.current.stop();
-      setIsListening(false);
+    shouldKeepListeningRef.current = false;
+    if (recognitionRef.current) {
+      try { recognitionRef.current.stop(); } catch (err) {}
     }
+    setIsListening(false);
+    isListeningRef.current = false;
+    baseTextRef.current = "";
+
     stopSpeaking();
 
     setFsmState("PROCESSING");
