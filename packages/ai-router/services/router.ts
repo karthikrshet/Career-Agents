@@ -89,10 +89,10 @@ export async function routeCompletion(
 ): Promise<string> {
   const startTime = Date.now();
   const query = messages[messages.length - 1]?.content || "";
-  
+
   // 1. Resolve Primary Provider based on selected Mode
   let primaryProvider = MODE_PRIMARY_PROVIDERS[config.mode] || "openai";
-  
+
   // Custom keyword heuristics overrides for "auto" mode
   if (config.mode === "auto") {
     const lq = query.toLowerCase();
@@ -164,7 +164,7 @@ export async function routeCompletion(
 
     // 1. Resolve key list with priority: Client-saved keys -> Alias keys -> Env vars -> Provider Disabled (Empty)
     let keyList = (config.keys[providerId] || []).filter(k => k && k.trim() !== "");
-    
+
     if (keyList.length === 0) {
       if (providerId === "grok" && config.keys["xai"]?.length) keyList = config.keys["xai"].filter(k => k && k.trim() !== "");
       if (providerId === "xai" && config.keys["grok"]?.length) keyList = config.keys["grok"].filter(k => k && k.trim() !== "");
@@ -178,20 +178,20 @@ export async function routeCompletion(
       if (!envKey && providerId === "grok") envKey = process.env.GROK_API_KEY || process.env.XAI_API_KEY;
       if (!envKey && providerId === "xai") envKey = process.env.XAI_API_KEY || process.env.GROK_API_KEY;
       if (!envKey) envKey = process.env[`${providerId.toUpperCase()}_API_KEY`];
-      
+
       if (envKey && envKey.trim() !== "") {
         keyList = [envKey.trim()];
       }
     }
 
     const model = config.modelNames?.[providerId] || DEFAULT_MODEL_NAMES[providerId] || "default";
-    
+
     // Ignore config.baseUrls endpoint overrides unless it's azure, ollama, or lmstudio
     let endpoint = registry.apiEndpoint;
     if (["azure", "ollama", "lmstudio"].includes(providerId) && config.baseUrls?.[providerId]) {
       endpoint = config.baseUrls[providerId];
     }
-    
+
     // If key list is empty and provider requires authentication (is not local/ollama)
     const requiresAuth = registry.authType !== "none";
     if (requiresAuth && keyList.length === 0) {
@@ -222,65 +222,65 @@ export async function routeCompletion(
           const headers: Record<string, string> = {
             "Content-Type": "application/json",
           };
-  
+
           let responseText = "";
 
-        if (providerId === "gemini") {
-          // Google Gemini endpoint compilation
-          const url = `${endpoint}/models/${model.includes("gemini") ? model : "gemini-2.5-flash"}:generateContent?key=${activeKey}`;
-          const res = await secureFetch(url, {
-            method: "POST",
-            headers,
-            body: JSON.stringify({
-              contents: [{ parts: [{ text: messages.map((m) => `${m.role}: ${m.content}`).join("\n") }] }],
-              generationConfig: {
-                temperature: config.temperature ?? 0.7,
-                maxOutputTokens: config.maxTokens || 4096,
-              },
-            }),
-            signal,
-            timeout: 4000,
-            allowedProvider: "gemini",
-          });
+          if (providerId === "gemini") {
+            // Google Gemini endpoint compilation
+            const url = `${endpoint}/models/${model.includes("gemini") ? model : "gemini-2.5-flash"}:generateContent?key=${activeKey}`;
+            const res = await secureFetch(url, {
+              method: "POST",
+              headers,
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: messages.map((m) => `${m.role}: ${m.content}`).join("\n") }] }],
+                generationConfig: {
+                  temperature: config.temperature ?? 0.7,
+                  maxOutputTokens: config.maxTokens || 4096,
+                },
+              }),
+              signal,
+              timeout: 4000,
+              allowedProvider: "gemini",
+            });
 
-          if (!res.ok) {
-            const err = await res.text();
-            let errorMessage = `API Gateway connection failed. The remote server returned status code ${res.status}.`;
-            if (res.status === 429 || err.toLowerCase().includes("quota") || err.toLowerCase().includes("exhausted")) {
-              errorMessage = "Your API quota has been exceeded. Please retry in a few minutes or switch your model settings.";
+            if (!res.ok) {
+              const err = await res.text();
+              let errorMessage = `API Gateway connection failed. The remote server returned status code ${res.status}.`;
+              if (res.status === 429 || err.toLowerCase().includes("quota") || err.toLowerCase().includes("exhausted")) {
+                errorMessage = "Your API quota has been exceeded. Please retry in a few minutes or switch your model settings.";
+              }
+              throw new Error(errorMessage);
             }
-            throw new Error(errorMessage);
-          }
 
-          const json = await res.json();
-          responseText = json.candidates?.[0]?.content?.parts?.[0]?.text || "";
-          if (onChunk) {
-            onChunk(responseText);
-          }
-        } else {
-          // Standard OpenAI / OpenCompat endpoint execution
-          if (registry.authType === "bearer") {
-            headers["Authorization"] = `Bearer ${activeKey}`;
-          } else if (providerId === "claude" || providerId === "anthropic") {
-            headers["x-api-key"] = activeKey;
-            headers["anthropic-version"] = "2023-06-01";
-            headers["dangerously-allow-browser"] = "true";
-          }
+            const json = await res.json();
+            responseText = json.candidates?.[0]?.content?.parts?.[0]?.text || "";
+            if (onChunk) {
+              onChunk(responseText);
+            }
+          } else {
+            // Standard OpenAI / OpenCompat endpoint execution
+            if (registry.authType === "bearer") {
+              headers["Authorization"] = `Bearer ${activeKey}`;
+            } else if (providerId === "claude" || providerId === "anthropic") {
+              headers["x-api-key"] = activeKey;
+              headers["anthropic-version"] = "2023-06-01";
+              headers["dangerously-allow-browser"] = "true";
+            }
 
-          const isStreaming = !!onChunk && config.streaming;
-          const url = providerId === "claude" || providerId === "anthropic" 
-            ? `${endpoint}/messages`
-            : `${endpoint}/chat/completions`;
+            const isStreaming = !!onChunk && config.streaming;
+            const url = providerId === "claude" || providerId === "anthropic"
+              ? `${endpoint}/messages`
+              : `${endpoint}/chat/completions`;
 
-          const body = providerId === "claude" || providerId === "anthropic"
-            ? {
+            const body = providerId === "claude" || providerId === "anthropic"
+              ? {
                 model,
                 messages: messages.map((m) => ({ role: m.role === "system" ? "user" : m.role, content: m.content })),
                 max_tokens: config.maxTokens || 4096,
                 temperature: config.temperature ?? 0.7,
                 stream: isStreaming,
               }
-            : {
+              : {
                 model,
                 messages,
                 temperature: config.temperature ?? 0.7,
@@ -288,103 +288,104 @@ export async function routeCompletion(
                 stream: isStreaming,
               };
 
-          const res = await secureFetch(url, {
-            method: "POST",
-            headers,
-            body: JSON.stringify(body),
-            signal,
-            timeout: 4000,
-            allowedProvider: providerId,
-          });
+            const res = await secureFetch(url, {
+              method: "POST",
+              headers,
+              body: JSON.stringify(body),
+              signal,
+              timeout: 4000,
+              allowedProvider: providerId,
+            });
 
-          if (!res.ok) {
-            const err = await res.text();
-            let errorMessage = `API Gateway connection failed. The remote server returned status code ${res.status}.`;
-            if (res.status === 429 || err.toLowerCase().includes("quota") || err.toLowerCase().includes("exhausted")) {
-              errorMessage = "Your API quota has been exceeded. Please retry in a few minutes or switch your model settings.";
+            if (!res.ok) {
+              const err = await res.text();
+              let errorMessage = `API Gateway connection failed. The remote server returned status code ${res.status}.`;
+              if (res.status === 429 || err.toLowerCase().includes("quota") || err.toLowerCase().includes("exhausted")) {
+                errorMessage = "Your API quota has been exceeded. Please retry in a few minutes or switch your model settings.";
+              }
+              throw new Error(errorMessage);
             }
-            throw new Error(errorMessage);
-          }
 
-          if (isStreaming) {
-            const reader = res.body!.getReader();
-            const decoder = new TextDecoder();
-            let done = false;
+            if (isStreaming) {
+              const reader = res.body!.getReader();
+              const decoder = new TextDecoder();
+              let done = false;
 
-            while (!done) {
-              const { value, done: doneReading } = await reader.read();
-              done = doneReading;
-              const chunkValue = decoder.decode(value, { stream: !done });
-              
-              if (providerId === "claude" || providerId === "anthropic") {
-                const lines = chunkValue.split("\n");
-                for (const line of lines) {
-                  if (line.startsWith("data: ")) {
-                    const dataStr = line.slice(6).trim();
-                    if (dataStr === "[DONE]") continue;
-                    try {
-                      const eventObj = JSON.parse(dataStr);
-                      if (eventObj.type === "content_block_delta" && eventObj.delta?.text) {
-                        responseText += eventObj.delta.text;
-                        if (onChunk) onChunk(eventObj.delta.text);
-                      }
-                    } catch {}
+              while (!done) {
+                const { value, done: doneReading } = await reader.read();
+                done = doneReading;
+                const chunkValue = decoder.decode(value, { stream: !done });
+
+                if (providerId === "claude" || providerId === "anthropic") {
+                  const lines = chunkValue.split("\n");
+                  for (const line of lines) {
+                    if (line.startsWith("data: ")) {
+                      const dataStr = line.slice(6).trim();
+                      if (dataStr === "[DONE]") continue;
+                      try {
+                        const eventObj = JSON.parse(dataStr);
+                        if (eventObj.type === "content_block_delta" && eventObj.delta?.text) {
+                          responseText += eventObj.delta.text;
+                          if (onChunk) onChunk(eventObj.delta.text);
+                        }
+                      } catch { }
+                    }
                   }
-                }
-              } else {
-                const lines = chunkValue.split("\n");
-                for (const line of lines) {
-                  if (line.startsWith("data: ")) {
-                    const dataStr = line.slice(6).trim();
-                    if (dataStr === "[DONE]") continue;
-                    try {
-                      const json = JSON.parse(dataStr);
-                      const deltaText = json.choices?.[0]?.delta?.content || "";
-                      if (deltaText) {
-                        responseText += deltaText;
-                        if (onChunk) onChunk(deltaText);
-                      }
-                    } catch {}
+                } else {
+                  const lines = chunkValue.split("\n");
+                  for (const line of lines) {
+                    if (line.startsWith("data: ")) {
+                      const dataStr = line.slice(6).trim();
+                      if (dataStr === "[DONE]") continue;
+                      try {
+                        const json = JSON.parse(dataStr);
+                        const deltaText = json.choices?.[0]?.delta?.content || "";
+                        if (deltaText) {
+                          responseText += deltaText;
+                          if (onChunk) onChunk(deltaText);
+                        }
+                      } catch { }
+                    }
                   }
                 }
               }
-            }
-          } else {
-            const json = await res.json();
-            if (providerId === "claude" || providerId === "anthropic") {
-              responseText = json.content?.[0]?.text || "";
             } else {
-              responseText = json.choices?.[0]?.message?.content || "";
-            }
-            if (onChunk) {
-              onChunk(responseText);
+              const json = await res.json();
+              if (providerId === "claude" || providerId === "anthropic") {
+                responseText = json.content?.[0]?.text || "";
+              } else {
+                responseText = json.choices?.[0]?.message?.content || "";
+              }
+              if (onChunk) {
+                onChunk(responseText);
+              }
             }
           }
-        }
 
-        finalContent = responseText;
-        finalProvider = providerId;
-        finalModel = model;
-        completed = true;
-        break;
-      } catch (err: any) {
-        lastError = err;
-        safeLogger.warn(`Provider ${providerId} attempt ${attempt + 1} failed:`, err.message);
-        if (attempt < maxRetries - 1) {
-          await sleep(retryDelay);
+          finalContent = responseText;
+          finalProvider = providerId;
+          finalModel = model;
+          completed = true;
+          break;
+        } catch (err: any) {
+          lastError = err;
+          safeLogger.warn(`Provider ${providerId} attempt ${attempt + 1} failed:`, err.message);
+          if (attempt < maxRetries - 1) {
+            await sleep(retryDelay);
+          }
         }
       }
+
+      if (completed) break;
+
+      executionChain.push({
+        provider: providerId,
+        model,
+        latencyMs: Date.now() - runStart,
+        status: "failed",
+        error: lastError ? (lastError?.message || String(lastError)) : "Provider failed to respond",
+      });
     }
-
-    if (completed) break;
-
-    executionChain.push({
-      provider: providerId,
-      model,
-      latencyMs: Date.now() - runStart,
-      status: "failed",
-      error: lastError ? classifyGatewayError(lastError) : "Provider failed to respond",
-    });
   }
 
   const durationMs = Date.now() - startTime;
@@ -413,7 +414,7 @@ export async function routeCompletion(
   if (!completed) {
     finalProvider = "openai";
     finalModel = "career-copilot-engine";
-    
+
     // Extract context details from system message
     let candidateName = "";
     let targetRole = "";
@@ -458,7 +459,7 @@ export async function routeCompletion(
     } else {
       mockResponse = `**Career Operating System Copilot**\n\nHello${candidateName ? " **" + candidateName + "**" : ""}! I am your AI Career Copilot. I'm connected to the Career Agents ecosystem, including the **Resume Studio**, **GitHub Analyzer**, **Job Hub**, and **STAR Interview Lab**.\n\nHow can I help you accelerate your tech career today? I can review your resume, suggest optimizations, generate outreach messages, or guide you through mock interviews.`;
     }
-    
+
     if (onChunk) {
       const words = mockResponse.split(" ");
       let currentText = "";
@@ -476,4 +477,4 @@ export async function routeCompletion(
   }
 
   return finalContent;
-}
+}
