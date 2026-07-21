@@ -1,0 +1,23 @@
+{
+  "name": "@career-agents/pipeline",
+  "version": "1.0.0",
+  "description": "Career-Agents Native Job Search & Application Pipeline Engine",
+  "type": "module",
+  "main": "index.js",
+  "author": "Karthik Rajesh Shet",
+  "homepage": "https://github.com/karthikrshet/Career-Agents",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karthikrshet/Career-Agents"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "tracker": "node cli.js tracker",
+    "scan": "node cli.js scan",
+    "stats": "node cli.js stats"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
