@@ -429,35 +429,76 @@ export async function routeCompletion(
       }
       const roleMatch = systemMsg.match(/(?:Target Role|Role):\s*([^\n]+)/i);
       if (roleMatch) targetRole = roleMatch[1].trim();
-
       const scoreMatch = systemMsg.match(/(?:Resume ATS Score|Score):\s*(\d+%?)/i) || systemMsg.match(/Dashboard to\s*(\d+%?)/i);
       if (scoreMatch) resumeScore = scoreMatch[1].trim();
-
       const skillsMatch = systemMsg.match(/Tracked Skills:\s*([^\n]+)/i) || systemMsg.match(/Identified Skills:\s*([^\n]+)/i);
       if (skillsMatch) trackedSkills = skillsMatch[1].trim();
     }
 
     const lowerQuery = query.toLowerCase().trim();
-    const isGreeting = /^(hi|hii|hiii|hello|hey|greetings|good morning|good evening)$/i.test(lowerQuery);
-    const isResume = /resum|resueme|ats|cv|curriculum|bullet|quantif|evalu|analy/i.test(lowerQuery);
-    const isJob = /job|work|career|hire|apply|get job|find job|opportunity|position|role|want job/i.test(lowerQuery);
-    const isInterview = /interview|intervew|mock|prep|star|behavioral|question|dsa|leetcode/i.test(lowerQuery);
-    const isGithub = /github|code|repo|git|portfolio|commit|project/i.test(lowerQuery);
+    const isGreeting = /^(hi+|hello+|hey+|greetings?|good\s+(morning|evening|afternoon|night))\.?$/i.test(lowerQuery);
 
     let mockResponse = "";
 
     if (isGreeting) {
-      mockResponse = `Hello${candidateName ? " **" + candidateName + "**" : ""}! How can I assist you today with your software engineering goals, resume optimization, or interview prep?`;
-    } else if (isResume) {
-      mockResponse = `**ATS Resume Optimization Analysis**\n\n${candidateName ? `Candidate: **${candidateName}**\n` : ""}${targetRole ? `Target Role: **${targetRole}**\n` : ""}${resumeScore ? `ATS Match Score: **${resumeScore}**\n` : ""}I've analyzed your resume details context${trackedSkills ? ` (Detected skills: ${trackedSkills})` : ""}. Here are STAR-focused recommendations to optimize your resume for applicant tracking systems:\n\n1. **Quantify Achievements**: Instead of *"Responsible for writing code"*, use: *"Engineered a scalable microservices architecture using Node.js and Go, reducing API latency by 45% and supporting 10k+ concurrent requests."*\n2. **Align with Job Keywords**: Inject missing technical keywords such as *React*, *Next.js*, *TypeScript*, and *System Design* to pass the semantic scanner.\n3. **Improve STAR Format**: Ensure each bullet clearly states the **Situation/Task**, **Action**, and measurable **Result**.\n\nWould you like me to rewrite specific resume bullets or generate a tailored cover letter?`;
-    } else if (isJob) {
-      mockResponse = `**Actionable Guide to Securing a Software Engineering Job**\n\n${candidateName ? `Hello **${candidateName}**! ` : ""}Here is a structured, step-by-step roadmap to land target software engineering roles${targetRole ? ` (${targetRole})` : ""}:\n\n1. **Optimize Your Resume**: Quantify your engineering impact using the STAR method (Situation, Task, Action, Result). Highlight key skills matching job descriptions (e.g., React, Node.js, TypeScript, Distributed Systems).\n2. **Build FAANG-Ready Projects**: Develop 2-3 full-stack projects showcasing clean architecture, CI/CD pipelines, automated testing, and comprehensive documentation on GitHub.\n3. **Master Technical Interviews**: Practice DSA problems on LeetCode (focus on Arrays, Trees, Dynamic Programming, and Graphs) and practice System Design fundamentals.\n4. **Targeted Applications & Networking**: Engage directly with recruiters, request referrals on LinkedIn, and customize outreach messages tailored to target company tech stacks.\n5. **Practice STAR Interviewing**: Structure behavioral answers using clear Situation, Task, Action, and measurable Results.\n\nFeel free to ask me to analyze your resume, review your GitHub portfolio, or conduct a mock interview session!`;
-    } else if (isInterview) {
-      mockResponse = `**STAR Behavioral Interview Guidelines**\n\nWhen responding to behavioral questions (e.g., *"Tell me about a time you solved a complex bug"*), structure your response using the STAR framework:\n\n- **Situation**: Contextualize the bug, its business impact (e.g. site checkout down).\n- **Task**: Describe your specific responsibility in resolving it.\n- **Action**: Outline the exact steps, debug methodologies, and profiling tools you utilized.\n- **Result**: Highlight the outcome, latency reduction, and preventive measures implemented.`;
-    } else if (isGithub) {
-      mockResponse = `**GitHub Profile & Code Quality Report**\n\nYour GitHub profile demonstrates a solid foundation. Here are 3 areas of improvement for FAANG-level positioning:\n\n1. **Consistent Contributions**: Maintain a steady green commit grid. It signals active learning and delivery capability.\n2. **Comprehensive documentation**: Ensure all projects contain clean READMEs, screenshots, configuration guides, and architecture diagrams.\n3. **Automated Testing & CI/CD**: Integrate GitHub Actions, testing frameworks (Vitest/Jest), and linting tools to demonstrate enterprise code readiness.`;
+      mockResponse = `Hello${candidateName ? " **" + candidateName + "**" : ""}! I'm your AI Career Copilot, backed by **146 specialist career agents**.\n\nI can help you with:\n- 📄 **Resume & ATS optimization** — bullet rewrites, keyword injection, scoring\n- 💼 **Job search strategy** — targeting companies, outreach templates, referrals\n- 🎤 **Interview preparation** — STAR method, mock sessions, DSA practice\n- 🐙 **GitHub portfolio review** — code quality, CI/CD, documentation\n- 🔗 **LinkedIn optimization** — headline, summary, recruiter outreach\n- 🗺️ **Career roadmap** — 30/60/90-day plans, salary negotiation, promotion paths\n\nWhat would you like to work on today?`;
     } else {
-      mockResponse = `**Career Operating System Copilot**\n\nHello${candidateName ? " **" + candidateName + "**" : ""}! I am your AI Career Copilot. I'm connected to the Career Agents ecosystem, including the **Resume Studio**, **GitHub Analyzer**, **Job Hub**, and **STAR Interview Lab**.\n\nHow can I help you accelerate your tech career today? I can review your resume, suggest optimizations, generate outreach messages, or guide you through mock interviews.`;
+      // Agent-aware response engine: match query against the 146-agent registry
+      let agentInsights = "";
+      let intentLabel = "";
+
+      try {
+        // Dynamic import to avoid circular dep at module load time
+        const { findMatchingAgents, getCachedAgentPrompt } = await import("../../brain/router");
+        const { detectUserIntent } = await import("../../brain/intent");
+
+        const intentResult = detectUserIntent(query);
+        intentLabel = intentResult.intent;
+
+        const matchedAgents = findMatchingAgents(query, 3);
+
+        if (matchedAgents.length > 0) {
+          const agentSections = matchedAgents.map((agent) => {
+            const fullPrompt = getCachedAgentPrompt(agent.filename);
+            // Extract actionable guidance from the agent's prompt (first 600 chars, clean markdown)
+            const guidance = fullPrompt
+              ? fullPrompt.replace(/#+\s*/g, "").replace(/\*\*/g, "").slice(0, 600).trim()
+              : agent.description;
+
+            return `**${agent.emoji || "🤖"} ${agent.name}** *(${agent.division})*\n${guidance}`;
+          }).join("\n\n---\n\n");
+
+          agentInsights = agentSections;
+        }
+      } catch (importErr) {
+        safeLogger.warn("Agent registry import failed in fallback:", importErr);
+      }
+
+      // Build context prefix
+      const contextLines: string[] = [];
+      if (candidateName) contextLines.push(`Candidate: **${candidateName}**`);
+      if (targetRole) contextLines.push(`Target Role: **${targetRole}**`);
+      if (resumeScore) contextLines.push(`ATS Score: **${resumeScore}**`);
+      if (trackedSkills) contextLines.push(`Skills: ${trackedSkills}`);
+      const contextPrefix = contextLines.length > 0 ? contextLines.join(" · ") + "\n\n" : "";
+
+      if (agentInsights) {
+        mockResponse = `${contextPrefix}Here's what our specialist agents recommend for: *"${query}"*\n\n${agentInsights}\n\n---\n💡 **Tip:** Add a Groq or Gemini API key in **Settings → API Keys** to get live, personalised AI responses from our full Career Agent ecosystem.`;
+      } else {
+        // Broad intent-based responses when no specific agent matches
+        const intentResponses: Record<string, string> = {
+          resume: `**Resume Optimization Guidance**\n\n${contextPrefix}To land interviews at top tech companies, your resume needs:\n\n1. **Quantified STAR bullets** — *"Reduced API latency by 45% by refactoring to async microservices (Node.js + Go), supporting 10k concurrent users"*\n2. **ATS keyword alignment** — Mirror exact terms from job descriptions: React, TypeScript, System Design, CI/CD, REST APIs\n3. **Strong Summary** — One punchy paragraph: role + years + top 3 skills + biggest win\n4. **Project Impact** — Every project needs a metric: users, revenue, uptime, performance gain\n\nShare your resume or a job description and I'll provide a detailed ATS analysis.`,
+          job_search: `**Job Search Strategy for Software Engineers**\n\n${contextPrefix}${targetRole ? `For **${targetRole}** roles, here's your action plan:\n\n` : ""}1. **Target companies by tier** — Dream (FAANG+), Realistic (Series B-D), Safe (stable mid-size)\n2. **Referral-first approach** — 70% of hires come via referrals. Find connections on LinkedIn who work at target companies\n3. **Optimise application materials** — ATS-friendly resume + tailored cover letter per company\n4. **Technical preparation** — LeetCode (Arrays, Trees, DP, Graphs), 2 system design problems/week\n5. **Timeline** — Applications → Phone screens (1-2 weeks) → Technical interviews (2-4 weeks) → Offer\n\n*Which companies are you targeting? I can help craft personalised outreach messages.*`,
+          interview: `**Interview Preparation Roadmap**\n\n${contextPrefix}For software engineering interviews, master these areas:\n\n**Behavioral (STAR Method)**\n- Structure every answer: *Situation → Task → Action → Result*\n- Prepare 8-10 stories covering leadership, conflict, failure, success\n- Key questions: "Tell me about a time you disagreed with your manager", "Describe a technically complex project"\n\n**Technical (DSA)**\n- Arrays/Strings, Hash Maps, Trees/Graphs, Dynamic Programming, Sliding Window\n- Practice 2-3 LeetCode problems daily (Easy → Medium → Hard progression)\n\n**System Design**\n- URL shortener, Twitter feed, Uber, WhatsApp — know these cold\n- Master: load balancers, caching (Redis), databases (sharding/indexing), message queues\n\n*Would you like a mock interview session or a 30-day preparation plan?*`,
+          github: `**GitHub Portfolio Optimisation**\n\n${contextPrefix}To pass technical recruiter reviews:\n\n1. **Pin 4-6 impressive projects** — Full-stack apps with real users or metrics\n2. **READMEs that sell** — Problem statement, tech stack badge row, screenshots, live demo link, setup guide\n3. **Consistent green grid** — Aim for daily commits; even documentation updates count\n4. **CI/CD pipelines** — Add GitHub Actions for lint, test, and deploy — shows production mindset\n5. **Code quality signals** — Tests (>60% coverage), TypeScript, ESLint, proper error handling\n\nShare your GitHub URL for a detailed audit.`,
+          linkedin: `**LinkedIn Profile Optimisation**\n\n${contextPrefix}Key areas to maximise recruiter visibility:\n\n1. **Headline** — *"Software Engineer | React · Node.js · System Design | Open to Opportunities"*\n2. **About section** — 3 paragraphs: who you are, what you build, what you're looking for\n3. **Experience bullets** — STAR format with metrics, same as your resume\n4. **Skills section** — Add 50 skills, get endorsements for top 10\n5. **Activity** — Post 1-2 technical articles/week to appear in recruiter feeds\n6. **Connection strategy** — 20 targeted connection requests/day to engineers and recruiters at target companies`,
+          salary: `**Salary Negotiation Framework**\n\n${contextPrefix}Data-driven negotiation approach:\n\n1. **Know your market rate** — Check levels.fyi, Glassdoor, Blind, and LinkedIn Salary for your role + YoE + location\n2. **Always negotiate** — 85% of offers have flexibility; never accept the first number\n3. **Script** — *"I'm very excited about this offer. Based on my research and experience, I was expecting something closer to [$X]. Is there flexibility there?"*\n4. **Negotiate the full package** — Base + equity (RSUs) + signing bonus + PTO + remote flexibility\n5. **Use competing offers** — Even a recruiter call generates leverage\n\n*Share the offer details and your YoE for personalised negotiation advice.*`,
+          roadmap: `**Career Roadmap Planning**\n\n${contextPrefix}${targetRole ? `For **${targetRole}**, here's a structured progression:\n\n` : ""}**30-Day Sprint**\n- Audit resume and LinkedIn profile\n- Apply to 5-10 companies/week\n- Solve 3 LeetCode problems daily\n\n**60-Day Milestone**\n- Complete 2 technical phone screens\n- Build or polish 1 major portfolio project\n- Reach out to 50 relevant connections\n\n**90-Day Goal**\n- Land 2-3 final round interviews\n- Have competing offers for negotiation leverage\n- Secure and sign target offer\n\n*Want me to build a personalised weekly plan based on your target companies?*`,
+        };
+
+        const response = intentResponses[intentLabel] || intentResponses["job_search"];
+        mockResponse = response + `\n\n---\n💡 **Tip:** Add a Groq or Gemini API key in **Settings → API Keys** to unlock live, personalised AI responses from the full 146-agent Career ecosystem.`;
+      }
     }
 
     if (onChunk) {
@@ -477,4 +518,5 @@ export async function routeCompletion(
   }
 
   return finalContent;
-}
+}
+
