@@ -2,26 +2,27 @@
   "id": "openai",
   "name": "OpenAI",
   "interview_process": [
-    "Recruiter screen and take-home practical engineering assignment",
-    "Technical phone screen: review take-home assignment and coding test",
-    "Onsite loop: 4-5 rounds covering PyTorch coding, distributed training systems, AI safety/alignment, and executive values"
+    "Recruiter screen & domain alignment call (30 min)",
+    "Technical phone screen: PyTorch / Distributed Coding or Systems Deep Dive (60 min)",
+    "Onsite loop: 4-5 rounds covering Neural Network Coding / Autograd, Distributed ML Systems Architecture, Applied AI / Infrastructure, and Mission & Safety Alignment (60 min each)"
   ],
   "skills": [
-    "PyTorch scale training models",
-    "Transformer mechanics and scaling math",
-    "AI Safety & alignment criteria",
-    "GPU memory optimizations"
+    "PyTorch & Triton Distributed Training Mechanics",
+    "Transformer Architecture & KV Cache Optimizations",
+    "Frontier AI Infrastructure & LLM Serving",
+    "AI Safety, Alignment & Scaling Laws"
   ],
-  "preparation_workflow": "technical-interview-week",
+  "preparation_workflow": "faang-preparation",
   "agents": [
-    "llm-engineer",
-    "ai-agent-architect",
-    "ai-engineer-career-coach",
+    "openai-interview-coach",
+    "openai-career-coach",
+    "technical-interview-coach",
+    "system-design-coach",
     "mock-interviewer"
   ],
   "resources": [
-    "OpenAI Research Papers",
-    "Triton Compiler tutorials",
-    "Scaling Laws papers"
+    "OpenAI Research Publications & Blog",
+    "Triton GPU Compiler Guides",
+    "Scaling Laws for Neural Language Models Papers"
   ]
 }

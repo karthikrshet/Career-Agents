@@ -2,25 +2,27 @@
   "id": "netflix",
   "name": "Netflix",
   "interview_process": [
-    "Recruiter screen and phone technical interview",
-    "Onsite loop: 2 technical coding/system design rounds, 2 culture/behavioral rounds evaluating feedback loops and the culture slide deck"
+    "Recruiter screening phone call (30 min)",
+    "Technical phone screen: High-concurrency systems / Senior coding (60 min)",
+    "Onsite loop: 4-5 rounds covering Senior Distributed System Design, Microservices Resilience & Chaos Engineering, Technical Deep-Dive, and Freedom & Responsibility Culture"
   ],
   "skills": [
-    "Freedom & Responsibility slide deck principles",
-    "High-throughput CDN architectures",
-    "Autonomy and direct feedback loops (Radical Candor)",
-    "Resilience engineering (Chaos Monkey)"
+    "Freedom & Responsibility Culture Alignment",
+    "High-Concurrency Distributed Microservices",
+    "Chaos Engineering & Fault Isolation",
+    "Global Streaming & Edge CDN Architectures"
   ],
   "preparation_workflow": "faang-preparation",
   "agents": [
     "netflix-interview-coach",
+    "netflix-swe-coach",
     "behavioral-interview-specialist",
     "system-design-coach",
     "mock-interviewer"
   ],
   "resources": [
-    "Netflix Tech Blog",
-    "Netflix Culture Slide Deck",
-    "Netflix Chaos Engineering research papers"
+    "Netflix Tech Blog (netflixtechblog.com)",
+    "Netflix Culture Memo (jobs.netflix.com/culture)",
+    "Netflix Chaos Engineering Principles"
   ]
 }

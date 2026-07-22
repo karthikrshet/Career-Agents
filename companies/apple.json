@@ -1,0 +1,28 @@
+{
+  "id": "apple",
+  "name": "Apple",
+  "interview_process": [
+    "Recruiter screening phone call (30 min)",
+    "Technical phone screen / Domain deep-dive (45-60 min)",
+    "Onsite loop: 4-6 rounds covering Systems Programming / DSA, Software Architecture, Domain Specialty, and Cross-functional Culture & Craft (45-60 min each)"
+  ],
+  "skills": [
+    "Swift, SwiftUI & Objective-C / C++ Architecture",
+    "Systems Programming & Memory Management (RAII, ARC, Pointers)",
+    "Hardware-Software Integration & OS Design Fundamentals",
+    "Product Craft, Privacy Principles & Attention to Detail"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "apple-interview-coach",
+    "apple-swe-coach",
+    "technical-interview-coach",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Apple Developer Documentation (developer.apple.com)",
+    "WWDC Technical Sessions & Design Guidelines",
+    "Swift Evolution Proposals & Open Source Repositories"
+  ]
+}
