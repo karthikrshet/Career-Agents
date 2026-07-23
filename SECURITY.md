@@ -3,11 +3,11 @@
 We take the security of Career-Agents seriously. We appreciate your efforts to report vulnerabilities responsibly.
 
 > [!IMPORTANT]
-> **Security vulnerabilities MUST NOT be reported publicly.** Do NOT open public issues or pull requests containing exploit code or outlining active security flaws.
+> Security vulnerabilities MUST NOT be reported publicly. Do NOT open public issues or pull requests containing exploit code or outlining active security flaws.
 
 ---
 
-## 🔒 Private Disclosure Process
+## Private Disclosure Process
 
 If you discover a security vulnerability, please report it through one of the following private channels:
 
@@ -21,7 +21,7 @@ If you discover a security vulnerability, please report it through one of the fo
 
 ---
 
-## 🚨 Severity Levels & Triage SLA
+## Severity Levels and Triage SLA
 
 Upon receiving a report, we triage issues according to the following severity definitions:
 
@@ -34,7 +34,7 @@ Upon receiving a report, we triage issues according to the following severity de
 
 ---
 
-## 📅 Response & Triage SLA
+## Response and Triage Timeline
 
 1. **Acknowledgement:** We will acknowledge receipt of your vulnerability report within **48 hours**.
 2. **Triage:** We will work with you to analyze and confirm the issue.

@@ -4,25 +4,24 @@ Welcome to the Career-Agents support guide! If you are experiencing issues with 
 
 ---
 
-## 🛠️ Support Channels
+## Support Channels
 
 ### 1. GitHub Discussions (Preferred)
 For questions, configuration guides, integration walkthroughs, and architecture discussions:
 - **Link:** [GitHub Discussions](https://github.com/karthikrshet/Career-Agents/discussions)
-- **Use cases:** "How do I sync this with Cursor?", "Configuring standard-ai templates", sharing ideas.
+- **Use cases:** Configuration guides, editor integrations, and sharing ideas.
 
 ### 2. GitHub Issues
 To report bugs, CLI runtime crashes, validation failures, or incorrect registry entries:
 - **Link:** [GitHub Issues](https://github.com/karthikrshet/Career-Agents/issues)
 - **Use cases:** Bug reports, command errors, formatting or registry mismatch requests.
 
-### 3. Community Discord / Slack
-For real-time chats and collaborating with other contributors, please refer to:
-- **Link:** Mentioned in our community announcements on the repo.
+### 3. Community Outlets
+For real-time chats and collaborating with other contributors, please refer to the community announcements on the repository.
 
 ---
 
-## ⚡ Troubleshooting Quick Reference
+## Troubleshooting Quick Reference
 
 ### CLI Diagnostic Command
 If something isn't working, start by running the doctor check:
@@ -57,5 +56,5 @@ node scripts/cli.js doctor
 
 ---
 
-## 🚀 Professional Support
+## Professional Support
 If you need personalized assistance or enterprise-level integration support, please contact the maintainers or open an inquiry on GitHub.

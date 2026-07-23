@@ -430,43 +430,43 @@ def build_merged_readme(agents, divisions_data, workflows, bundles, companies, p
     # Build divisions listing
     divisions_markdown = []
     for div in divisions_data.get("divisions", []):
-        div_name = div.get("name")
-        div_id = div.get("division")
-        div_desc = div.get("description")
-        div_agents = div.get("agents", [])
-        
-        divisions_markdown.append(f"### 📁 {div_name} Division (`{div_id}`)")
-        divisions_markdown.append(f"*{div_desc}*\n")
-        divisions_markdown.append("| Agent Name | Status | Purpose / Description |")
-        divisions_markdown.append("| :--- | :---: | :--- |")
-        for a in div_agents:
-            file_link = f"./{a.get('file')}"
-            divisions_markdown.append(f"| [`{a.get('name')}`]({file_link}) | ✅ Live | {a.get('description')} |")
-        divisions_markdown.append("\n")
-        
+      div_name = div.get("name")
+      div_id = div.get("division")
+      div_desc = div.get("description")
+      div_agents = div.get("agents", [])
+      
+      divisions_markdown.append(f"### {div_name} Division (`{div_id}`)")
+      divisions_markdown.append(f"*{div_desc}*\n")
+      divisions_markdown.append("| Agent Name | Status | Purpose / Description |")
+      divisions_markdown.append("| :--- | :---: | :--- |")
+      for a in div_agents:
+        file_link = f"./{a.get('file')}"
+        divisions_markdown.append(f"| [`{a.get('name')}`]({file_link}) | Live | {a.get('description')} |")
+      divisions_markdown.append("\n")
+      
     # Build career paths listing
     paths_markdown = []
     for p in paths:
-        paths_markdown.append(f"#### 🎓 [{p.get('name')}](./career-paths/{p.get('id')}.json)")
-        paths_markdown.append(f"- **Focus**: {p.get('description')}")
-        paths_markdown.append(f"- **Core Skills Required**: {', '.join(p.get('core_skills', []))}")
-        paths_markdown.append(f"- **Associated Coaches**: {', '.join(p.get('recommended_agents', []))}")
-        paths_markdown.append("")
+      paths_markdown.append(f"#### [{p.get('name')}](./career-paths/{p.get('id')}.json)")
+      paths_markdown.append(f"- **Focus**: {p.get('description')}")
+      paths_markdown.append(f"- **Core Skills Required**: {', '.join(p.get('core_skills', []))}")
+      paths_markdown.append(f"- **Associated Coaches**: {', '.join(p.get('recommended_agents', []))}")
+      paths_markdown.append("")
 
     # Build company tracks listing
     companies_markdown = []
     for co in companies:
-        companies_markdown.append(f"#### 🏢 [{co.get('name')}](./companies/{co.get('id')}.json)")
-        companies_markdown.append(f"- **Interview Rounds**: {', '.join(co.get('interview_process', []))}")
-        companies_markdown.append(f"- **Key Competency Focus**: {', '.join(co.get('skills', []))}")
-        companies_markdown.append(f"- **Recommended Coaches**: {', '.join(co.get('agents', []))}")
-        companies_markdown.append("")
+      companies_markdown.append(f"#### [{co.get('name')}](./companies/{co.get('id')}.json)")
+      companies_markdown.append(f"- **Interview Rounds**: {', '.join(co.get('interview_process', []))}")
+      companies_markdown.append(f"- **Key Competency Focus**: {', '.join(co.get('skills', []))}")
+      companies_markdown.append(f"- **Recommended Coaches**: {', '.join(co.get('agents', []))}")
+      companies_markdown.append("")
 
     # Build workflows listing
     workflows_markdown = []
     for w in workflows.get("workflows", []):
-        workflows_markdown.append(f"- [**{w.get('name')}**](./{w.get('filename')}): {w.get('description')}")
-        workflows_markdown.append(f"  - **Recommended Agents**: {', '.join(w.get('recommended_agents', []))}")
+      workflows_markdown.append(f"- [**{w.get('name')}**](./{w.get('filename')}): {w.get('description')}")
+      workflows_markdown.append(f"  - **Recommended Agents**: {', '.join(w.get('recommended_agents', []))}")
 
     divisions_str = "\n".join(divisions_markdown)
     paths_str = "\n".join(paths_markdown)
@@ -476,278 +476,31 @@ def build_merged_readme(agents, divisions_data, workflows, bundles, companies, p
     # Main README Assembly
     readme_content = f"""# Career-Agents
 
-The Open-Source Career Operating System
-
-<p align="center">
-  <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/github/stars/karthikrshet/Career-Agents?style=social" alt="GitHub stars"></a>
-  <a href="https://github.com/karthikrshet/Career-Agents/network"><img src="https://img.shields.io/github/forks/karthikrshet/Career-Agents.svg?style=social" alt="GitHub forks"></a>
-  <a href="https://github.com/karthikrshet/Career-Agents/graphs/contributors"><img src="https://img.shields.io/github/contributors/karthikrshet/Career-Agents.svg" alt="GitHub contributors"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
-  <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/v/career-agents" alt="npm version"></a>
-  <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/dm/career-agents" alt="npm downloads"></a>
-  <img src="https://komarev.com/ghpvc/?username=karthikrshet-career-agents&color=blue" alt="Profile Views">
-</p>
-
-<p align="center">
-  <strong>🚀 {num_agents}+ AI Agents</strong> | <strong>📄 20 ATS Templates</strong> | <strong>📁 {num_divs} Divisions</strong> | <strong>⚡ MCP Server</strong> | <strong>💻 Global CLI</strong> | <strong>🎓 Career Paths</strong> | <strong>🏢 Company Tracks</strong>
-</p>
-
-<p align="center">
-  <img src="./docs/images/career_os_dashboard.png" alt="Career OS Dashboard" width="800">
-</p>
-
----
-
-## 🤔 Why Career-Agents?
-
-### What makes it different?
-Unlike standard job boards or simple prompting guides, Career-Agents treats career advancement as an operational pipeline. It compiles specialized expert logic, ATS compliance patterns, and interview roadmaps into a unified system that integrates directly with developer workflows and AI coding editors.
-
-### Who should use it?
-- **Developers & Engineers**: Pivot roles (e.g. Frontend to AI/ML Engineering) and optimize technical profiles.
-- **Students & Graduates**: Access placement structures, final-year project checklists, and internship pipelines.
-- **Founders & Consultants**: Scope MVPs, construct pricing models, and direct growth strategies.
-
----
-
-## 🗺️ Architecture Overview
-
-```
-Career OS
-├── Career Agents
-├── ATS Resume Studio
-├── Career CLI
-├── MCP Server
-├── Company Tracks
-├── Career Paths
-└── Knowledge Graph
-```
-
----
-
-## 📥 Install
-
-```bash
-npm install -g career-agents
-```
-
-## ⚡ Quick Start
-
-Verify setup health, assess your readiness, and explore matching tools out-of-the-box:
-
-```bash
-career-agents doctor
-career-agents dashboard
-career-agents review resume.pdf
-career-agents github karthikrshet
-career-agents mock stripe
-```
-
----
-
-## 💻 CLI Examples
-
-Interact with the registries, run audits, and launch mock interviews directly from your terminal:
-
-```bash
-# Ecosystem Dashboard
-career-agents dashboard
-
-# Resume Studio
-career-agents review resume.pdf
-career-agents score resume.pdf
-career-agents improve resume.pdf
-career-agents ats resume.pdf
-
-# Portfolio & Fit Analyzers
-career-agents github karthikrshet
-career-agents linkedin linkedin_profile.txt
-career-agents jobs resume.pdf
-
-# Interactive mock panels
-career-agents mock google coding
-career-agents mock stripe technical
-
-# Custom 30-60-90 Day Roadmaps
-career-agents roadmap stripe
-
-# Project skeletons generator
-career-agents project ai-engineer
-```
-
----
-
-## ⚡ MCP Examples
-
-Expose specialized career tools and resource indices to your LLMs:
-
-- **Resource URIs**: Expose entities like `career-agents://registry/agents` or `career-agents://registry/workflows`.
-- **Tool APIs**: Execute schema calls like `recommend_agents`, `resume_review`, `github_review`, `linkedin_review`, `career_dashboard`, `mock_interview`, or `roadmap` dynamically.
-
----
-
-## 🔌 Editor MCP Setup
-
-### 1. Claude Desktop Setup
-Add the configuration block under `%APPDATA%/Claude/claude_desktop_config.json`:
-```json
-{{
-  "mcpServers": {{
-    "career-agents": {{
-      "command": "npx",
-      "args": ["-y", "career-agents", "mcp"]
-    }}
-  }}
-}}
-```
-
-### 2. Cursor Setup
-Go to **Settings** → **Features** → **MCP** → **Add New MCP Server**:
-- **Name**: `career-agents`
-- **Type**: `stdio`
-- **Command**: `npx -y career-agents mcp`
-
-### 3. Windsurf Setup
-Add configuration to `~/.codeium/windsurf/mcp_config.json`:
-```json
-{{
-  "mcpServers": {{
-    "career-agents": {{
-      "command": "npx",
-      "args": ["-y", "career-agents", "mcp"]
-    }}
-  }}
-}}
-```
-
-### 4. OpenCode Setup
-Configure a `stdio` MCP server pointing to the global command:
-- **Command**: `npx -y career-agents mcp`
-
----
-
-## 🤝 Contributing
-
-We welcome community proposals, corrections, and additions!
-- **Issue Templates**: Check out issue templates under `.github/ISSUE_TEMPLATE/` for new agent proposals or company track requests.
-- **PR Workflow**: Read our [Contributing Guidelines](./CONTRIBUTING.md) and submit a pull request matching our conventional commit styles.
-
----
-
-## 🤖 Contributing with AI
-
-We explicitly welcome and support contributions made using AI-assisted development tools and agents.
-
-### Supported Tools
-- **Claude Code**
-- **OpenAI Codex**
-- **Cursor**
-- **Gemini CLI**
-- **Windsurf**
-- **Aider**
-
-### Expectations & Requirements
-- **AI Guidelines**: Coding agents should review our dedicated [AI Contributor Guide](./AGENTS.md) before making edits.
-- **Validation**: All AI-assisted PRs must pass repository checks. Run `python scripts/generate-data.py` followed by `python scripts/validate.py` before committing.
-- **Quality**: Avoid AI hallucinations, verify all relative links, and maintain schema integrity.
-
-For detailed steps, refer to our [Contributing Guidelines](./CONTRIBUTING.md) and [AI Contributor Guide](./AGENTS.md).
-
----
-
-## Support Career-Agents
-
-Career-Agents is an open-source Career Operating System.
-
-If the project helps your career journey, consider supporting development.
-
-GitHub Sponsors:
-https://github.com/sponsors/karthikrshet
-
-Benefits:
-- Support new agent development
-- Support Career OS growth
-- Support Resume Studio improvements
-- Support MCP ecosystem expansion
-
----
-
-## 📁 Browse By Division
-
-Our agents are grouped into {num_divs} functional specialty divisions:
-
-{divisions_str}
-
----
-
-## 🎓 Browse By Career Path
-
-Explore our pre-mapped career growth roadmaps detailing core competencies:
-
-{paths_str}
-
----
-
-## 🏢 Browse By Company
-
-Target and clear Tier-1 interviews with company-specific tracks:
-
-{companies_str}
-
----
-
-## 🔄 Workflows
-
-Workflows are repeatable pipelines guiding you step-by-step through career milestones:
-
-{workflows_str}
-
----
-
-## 🔗 Knowledge Graph
-
-Career-Agents compiles a complex, expanded **[knowledge-graph.json](./knowledge-graph.json)** mapping dependencies across:
-- **Agents** → Belongs to **Divisions** → Used in **Workflows**
-- **Career Paths** → Requires **Skills** → Uses **Agents**
-- **Companies** → Requires **Skills** → Prepped by **Workflows**
-- **Bundles** → Packs **Agents**, **Career Paths**, and **Companies**
-
-You can inspect nodes connectivity stats locally via:
-```bash
-node scripts/cli.js graph
-```
-
----
-
-## 🤝 Community
-
-Explore guidelines, case logs, and programs to contribute to our open ecosystem:
-- [Contributing Guidelines](./CONTRIBUTING.md)
-- [Contributor Recognition Levels](./docs/community/CONTRIBUTOR_LEVELS.md)
-- [Ambassador Program](./docs/community/AMBASSADOR_PROGRAM.md)
-- [Hall of Fame](./docs/community/HALL_OF_FAME.md)
-- [Maintainers Code Owners](./docs/community/MAINTAINERS.md)
-- [Community Onboarding Guide](./docs/community/COMMUNITY_GUIDE.md)
-- [Certification Program](./docs/CERTIFICATION.md)
-- [Ecosystem Asset Guide](./docs/ASSETS.md)
-- [Who Uses Career OS](./docs/case-studies/WHO_USES_CAREER_OS.md)
-- [Ecosystem Case Studies](./docs/case-studies/CASE_STUDIES.md)
-- [Ecosystem Success Stories](./docs/case-studies/SUCCESS_STORIES.md)
-- [Code of Conduct](./CODE_OF_CONDUCT.md)
-- [Security Policy](./SECURITY.md)
-
----
-
-## 🎖️ Project Contributors
-
-This repository is maintained and expanded by:
-- **Karthik Rajesh Shet** ([@karthikrshet](https://github.com/karthikrshet)) - Founder & Core Architect
-
----
-
-## 🗺️ Architecture & Modular Layout
-
-Career OS uses a modular monorepo structure. Core logics, analyzers, and integrations are split into self-contained packages under `packages/`:
+The Open Source Career Operating System
+
+Career-Agents is an extensible, modular software suite designed to treat professional development and job search execution as an operational pipeline. Rather than relying on unstructured text guides or isolated prompts, the system compiles specialized career agent logic, ATS parsing rules, and company preparation guidelines into a unified interface.
+
+The package is built for software engineers, product architects, and tech professionals looking to pivot roles, audit portfolio traction, and prepare for technical loops. By automating resume verification, indexing GitHub profiles, and providing interactive coaching loops, it aligns profiles with industry standards.
+
+With dynamic CLI command routing and a native Model Context Protocol (MCP) server integration, Career-Agents fits directly into developer environments and AI-assisted IDEs.
+
+## Features
+
+- **Resume Studio**: Core parser supporting Markdown, JSON, Text, and PDF files. Identifies weak bullet points and formats output checklist targets.
+- **Career Agents**: A catalog of {num_agents}+ specialized prompt configurations categorized across {num_divs} divisions.
+- **Interview Preparation**: Interactive command-line mock panels evaluating response structures against Tier-1 rubrics.
+- **Career Roadmaps**: Dynamic 30-60-90 day readiness checklists for company and path targets.
+- **Company Preparation**: Pre-mapped interview structures for target firms.
+- **MCP Server**: Stdio transport protocol exposing tools and resources directly to LLMs.
+- **CLI**: Global command utility routing modules execution.
+- **Plugin Architecture**: Custom commands loading module scans plugins directory.
+- **Career Dashboard**: Personal progress checkmarks tracking.
+- **GitHub Portfolio Analysis**: Grade repository descriptions, readme clarity, and traction indicators.
+- **LinkedIn Analysis**: Tagline signaling checks and narrative rewrites.
+- **Job Matching**: Fit calculation comparing resumes with active vacancies.
+- **Report Generation**: Consolidate checks into JSON, Markdown, and style-rich HTML formats.
+
+## System Architecture
 
 ```mermaid
 graph TD
@@ -769,18 +522,119 @@ graph TD
     MCP --> Dashboard
 ```
 
----
+## Installation
 
-## 🛠️ Developer & Plugin Guides
+Install the CLI globally using npm:
 
-Check out our technical guidelines to contribute or extend command utilities:
-- **[Technical Developer Guide](./docs/DEVELOPMENT_GUIDE.md)**: Coding standards, folder structures, and testing guidelines.
-- **[Developer Plugin Guide](./docs/plugin-guide.md)**: Extending global commands dynamically inside `plugins/`.
-- **[MCP Integration Guide](./docs/mcp-guide.md)**: Connecting LLMs and desktop interfaces over study protocols.
+```bash
+npm install -g career-agents
+```
 
----
+## Quick Start
 
-## 🗺️ Roadmap & Milestones
+Verify setup health and run your first resume review:
+
+```bash
+career-agents doctor
+career-agents list
+career-agents recommend
+career-agents review resume.pdf
+```
+
+## CLI Reference
+
+| Command | Description | Example |
+| :--- | :--- | :--- |
+| `career-agents dashboard` | Render personal metrics dashboard | `career-agents dashboard` |
+| `career-agents review <file>` | Audit section completeness and formatting | `career-agents review resume.pdf` |
+| `career-agents score <file>` | Compute overall ATS score | `career-agents score resume.pdf` |
+| `career-agents improve <file>` | Detect weak bullets and suggest rewrites | `career-agents improve resume.pdf` |
+| `career-agents ats <file>` | Audit layout structures for parsing blockers | `career-agents ats resume.pdf` |
+| `career-agents github <user>` | Evaluate repository star and readme metrics | `career-agents github karthikrshet` |
+| `career-agents linkedin <file>` | Critique taglines and summaries keyword hooks | `career-agents linkedin profile.txt` |
+| `career-agents jobs <file>` | Match profile skills with active vacancies | `career-agents jobs resume.pdf` |
+| `career-agents mock <co> [mode]` | Launch interactive coaching loop session | `career-agents mock stripe technical` |
+| `career-agents roadmap <company>` | Compile target preparation roadmap | `career-agents roadmap google` |
+| `career-agents project <type>` | Generate skeleton showcase code directories | `career-agents project backend` |
+| `career-agents list` | List available divisions and agent counts | `career-agents list` |
+| `career-agents doctor` | Execute environment validation checks | `career-agents doctor` |
+| `career-agents mcp` | Launch Model Context Protocol stdio server | `career-agents mcp` |
+
+## Model Context Protocol (MCP) Support
+
+Career-Agents integrates natively with standard MCP clients:
+- **Claude Desktop**: Set up standard stdio config.
+- **Cursor**: Configure study command triggers.
+- **Windsurf**: Add tool endpoint.
+- **Gemini CLI / OpenAI Codex / VS Code**: Integrates with any compliant client.
+
+See [MCP Guide](./docs/MCP_GUIDE.md) for full config structures.
+
+## Feature Matrix
+
+| Feature | CLI | MCP | Web | Status |
+| :--- | :---: | :---: | :---: | :---: |
+| Resume Studio | Yes | Yes | Yes | Live |
+| GitHub Analyzer | Yes | Yes | Yes | Milestone 2 |
+| LinkedIn Analyzer | Yes | Yes | Yes | Milestone 3 |
+| Mock Interview | Yes | Yes | Yes | Milestone 4 |
+| Career Dashboard | Yes | Yes | Yes | Milestone 5 |
+| Plugins | Yes | No | No | Milestone 6 |
+| Web Portal | No | No | Yes | Milestone 7 |
+
+## Repository Structure
+
+| Directory | Purpose |
+| :--- | :--- |
+| `packages/core/` | Common runtimes, roadmaps, and project skeleton templates |
+| `packages/resume/` | Resume parsers, scoring calculations, and job fit matchers |
+| `packages/github/` | Repository grading and user statistics connections |
+| `packages/linkedin/` | Profile tagline checks and outline suggestion tools |
+| `packages/interview/` | Interactive mock panels console coach loops |
+| `packages/dashboard/` | Personal checklists and metrics state manager |
+| `packages/reports/` | Consolidated HTML/JSON shareable report outputs |
+| `packages/plugins/` | Dynamic command extension and loading |
+| `packages/telemetry/` | Opt-in command execution metrics logging |
+| `packages/mcp/` | Model Context Protocol stdio adapters |
+| `apps/web/` | React Next.js visual dashboard UI |
+| `scripts/` | Entry points and automated verification tests |
+
+## Development
+
+Set up a local development workspace:
+
+```bash
+# Clone the repository
+git clone https://github.com/karthikrshet/Career-Agents.git
+cd Career-Agents
+
+# Install dependencies
+npm install
+
+# Compile indexing maps
+python scripts/generate-data.py
+
+# Run validation checks
+python scripts/validate.py
+
+# Run tests
+node scripts/test-cli.js
+node scripts/test-resume.js
+```
+
+## Contributing
+
+Review the following manuals before submitting changes:
+- [Contributing Guidelines](./CONTRIBUTING.md)
+- [AI Contributor Guidelines](./AGENTS.md)
+
+## Community
+
+- **Discussions**: Share ideas on GitHub Discussions.
+- **Issues**: Report bugs or request company tracks in GitHub Issues.
+- **Support**: Read the Support guide for contacts.
+
+## Roadmap & Milestones
 
 Check out the full release timeline in [V2_DEVELOPMENT_PLAN.md](./docs/roadmap/V2_DEVELOPMENT_PLAN.md).
 
@@ -790,6 +644,69 @@ Check out the full release timeline in [V2_DEVELOPMENT_PLAN.md](./docs/roadmap/V
 - **v1.6.0 (Milestone 3)**: Expose LinkedIn headline tagline auditors. (Planned)
 - **v1.7.0 (Milestone 4)**: Expose interactive mock interview simulator loop consoles. (Planned)
 - **v2.0.0 (Milestone 5-7)**: Expose full Next.js dynamic visual Web UI Dashboard. (Planned)
+
+## Browse By Division
+
+Our agents are grouped into {num_divs} functional specialty divisions:
+
+{divisions_str}
+
+## Browse By Career Path
+
+Explore our pre-mapped career growth roadmaps detailing core competencies:
+
+{paths_str}
+
+## Browse By Company
+
+Target and clear Tier-1 interviews with company-specific tracks:
+
+{companies_str}
+
+## Workflows
+
+Workflows are repeatable pipelines guiding you step-by-step through career milestones:
+
+{workflows_str}
+
+## Knowledge Graph
+
+Career-Agents compiles a complex, expanded **[knowledge-graph.json](./knowledge-graph.json)** mapping dependencies across:
+- **Agents** -> Belongs to **Divisions** -> Used in **Workflows**
+- **Career Paths** -> Requires **Skills** -> Uses **Agents**
+- **Companies** -> Requires **Skills** -> Prepped by **Workflows**
+- **Bundles** -> Packs **Agents**, **Career Paths**, and **Companies**
+
+You can inspect nodes connectivity stats locally via:
+```bash
+node scripts/cli.js graph
+```
+
+## Community References
+
+Explore guidelines, case logs, and programs to contribute to our open ecosystem:
+- [Contributing Guidelines](./CONTRIBUTING.md)
+- [Contributor Recognition Levels](./docs/community/CONTRIBUTOR_LEVELS.md)
+- [Ambassador Program](./docs/community/AMBASSADOR_PROGRAM.md)
+- [Hall of Fame](./docs/community/HALL_OF_FAME.md)
+- [Maintainers Code Owners](./docs/community/MAINTAINERS.md)
+- [Community Onboarding Guide](./docs/community/COMMUNITY_GUIDE.md)
+- [Certification Program](./docs/CERTIFICATION.md)
+- [Ecosystem Asset Guide](./docs/ASSETS.md)
+- [Who Uses Career OS](./docs/case-studies/WHO_USES_CAREER_OS.md)
+- [Ecosystem Case Studies](./docs/case-studies/CASE_STUDIES.md)
+- [Ecosystem Success Stories](./docs/case-studies/SUCCESS_STORIES.md)
+- [Code of Conduct](./CODE_OF_CONDUCT.md)
+- [Security Policy](./SECURITY.md)
+
+## Project Maintainers
+
+This repository is maintained and expanded by:
+- **Karthik Rajesh Shet** ([@karthikrshet](https://github.com/karthikrshet)) - Founder & Core Architect
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 """
 
     with open(README_PATH, "w", encoding="utf-8") as f:

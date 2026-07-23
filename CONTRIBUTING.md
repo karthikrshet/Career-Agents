@@ -4,7 +4,7 @@ Welcome! We are excited that you want to contribute to the Open-Source Career Op
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 To set up the repository locally for development, follow these steps:
 
@@ -28,7 +28,7 @@ To set up the repository locally for development, follow these steps:
 
 ---
 
-## 🚨 Validation Requirements
+## Validation Requirements
 
 Before submitting any Pull Request, you must run the data generator and the validator scripts locally. **Both commands must pass successfully** with zero errors or warnings:
 
@@ -42,7 +42,7 @@ python scripts/validate.py
 
 ---
 
-## 📋 Registry Rules
+## Registry Rules
 
 To maintain the system's structural integrity, the following rules are strictly enforced:
 
@@ -59,14 +59,14 @@ To maintain the system's structural integrity, the following rules are strictly 
 
 ---
 
-## 📂 Repository Structure & Divisions
+## Repository Structure and Divisions
 
 All AI agent prompts are written in Markdown format and grouped into one of the **19 functional divisions** based on their domain:
 
-*   `career/` — Placement strategy, resume engineering, and networking.
-*   `engineering/` — Software architecture, devops, database, and front/backend specs.
-*   `interview/` — Behavior drills, system design, mock coaching, and leadership loops.
-*   `company-interviews/` — Target-company-specific interview coaches.
+*   `career/` - Placement strategy, resume engineering, and networking.
+*   `engineering/` - Software architecture, devops, database, and front/backend specs.
+*   `interview/` - Behavior drills, system design, mock coaching, and leadership loops.
+*   `company-interviews/` - Target-company-specific interview coaches.
 *   ... (and 15 other specialty directories like `ai-engineering`, `cloud`, `cybersecurity`).
 
 > [!WARNING]
@@ -74,21 +74,21 @@ All AI agent prompts are written in Markdown format and grouped into one of the 
 
 ---
 
-## 🤖 Adding a New Agent
+## Adding a New Agent
 
 To add a new career coach or reviewer agent, follow this step-by-step registration flow:
 
 ### 1. Create the Prompt File
 Create your markdown file in the correct division folder (e.g., `engineering/graphql-api-architect.md`). Your agent prompt MUST use the standard sections defined in [docs/agent-standard.md](docs/agent-standard.md), including:
-*   `## 🧠 Your Identity & Memory`
-*   `## 🎯 Your Core Mission`
-*   `## 🚨 Critical Rules You Must Follow`
-*   `## 📋 Technical Deliverables`
-*   `## 🔄 Workflow Process`
-*   `## 💭 Communication Style`
-*   `## 🔄 Learning & Memory`
-*   `## 🎯 Success Metrics`
-*   `## 🚀 Advanced Capabilities`
+*   `## Your Identity & Memory`
+*   `## Your Core Mission`
+*   `## Critical Rules You Must Follow`
+*   `## Technical Deliverables`
+*   `## Workflow Process`
+*   `## Communication Style`
+*   `## Learning & Memory`
+*   `## Success Metrics`
+*   `## Advanced Capabilities`
 
 *Ensure your agent prompt text has at least 300 words.*
 
@@ -128,13 +128,13 @@ Find the matching division object in `divisions.json` and append your agent to t
 }
 ```
 
-### 4. Recompile Databases & Indexing
+### 4. Recompile Databases and Indexing
 Run the compiler script to regenerate `career-os.json`, `search-index.json`, and search maps:
 ```bash
 python scripts/generate-data.py
 ```
 
-### 5. Verify local health
+### 5. Verify Local Health
 Run the diagnostics check to verify that your frontmatter, schemas, and directories align perfectly:
 ```bash
 npm test
@@ -143,7 +143,7 @@ npm test
 
 ---
 
-## 🔄 Adding or Updating Workflows
+## Adding or Updating Workflows
 
 Multi-agent sequence blueprints are stored in the `workflows/` directory as markdown checklists, and registered in `workflow-registry.json`:
 - **Workflow File:** Create `workflows/your-workflow-id.md`.
@@ -151,7 +151,7 @@ Multi-agent sequence blueprints are stored in the `workflows/` directory as mark
 
 ---
 
-## 🪵 Branch Naming & Commit Conventions
+## Branch Naming and Commit Conventions
 
 To maintain a clean and reviewable git history, we follow standard conventions:
 
@@ -171,7 +171,7 @@ We follow the [Conventional Commits](https://www.conventionalcommits.org/) speci
 
 ---
 
-## 📜 Pull Request (PR) Checklist
+## Pull Request (PR) Checklist
 
 Before submitting a Pull Request, ensure that your contribution satisfies the following requirements:
 

@@ -26,12 +26,12 @@ Examples of unacceptable behavior include:
 
 ---
 
-## 🔒 Enforcement & Private Reporting Process
+## Enforcement and Private Reporting Process
 
 Project maintainers are responsible for clarifying and enforcing our standards of acceptable behavior.
 
 > [!IMPORTANT]
-> **Code of Conduct violations must NOT be reported publicly.** Do not open issues or start public discussions regarding conduct violations.
+> Code of Conduct violations must NOT be reported publicly. Do not open issues or start public discussions regarding conduct violations.
 
 ### How to Report an Incident
 If you experience or witness behavior that violates this Code of Conduct, please report it privately to our Lead Maintainer:
