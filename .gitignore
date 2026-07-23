@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+*.log
+logs/
+exports/
+generated-projects/
+.career-profile.json
+career-agents-*.tgz
