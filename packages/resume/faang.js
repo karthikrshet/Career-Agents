@@ -155,13 +155,13 @@ export function runFaangCLI(filePath, companyKey) {
     }
 
     console.log(`\n${c.bold}=== FAANG LAUNCH READINESS AUDIT ===${c.reset}`);
-    console.log(`Target Company: ${c.cyan}${evaluation.companyName}${c.reset}\n`);
+    console.log("Target Company: " + c.cyan + evaluation.companyName + c.reset + "\n");
 
     const scoreColor = evaluation.readinessScore >= 85 ? c.green : evaluation.readinessScore >= 65 ? c.yellow : c.red;
-    console.log(`  ${c.bold}READINESS INDEX: ${scoreColor}${evaluation.readinessScore} / 100${c.reset}`);
+    console.log("  " + c.bold + "READINESS INDEX: " + scoreColor + evaluation.readinessScore + " / 100" + c.reset);
     console.log(`  ----------------------------------`);
-    console.log(`  • Matched Indicators: ${c.green}${evaluation.matchedKeywords.join(', ') || 'None'}${c.reset}`);
-    console.log(`  • Missing Indicators: ${c.red}${evaluation.missingKeywords.join(', ') || 'None'}${c.reset}\n`);
+    console.log("  • Matched Indicators: " + c.green + (evaluation.matchedKeywords.join(', ') || 'None') + c.reset);
+    console.log("  • Missing Indicators: " + c.red + (evaluation.missingKeywords.join(', ') || 'None') + c.reset + "\n");
 
     console.log(`${c.bold}Suggested Interview Optimization Tips:${c.reset}`);
     evaluation.tips.forEach(t => console.log(`  • ${t}`));

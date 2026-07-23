@@ -55,35 +55,48 @@ Career OS
 npm install -g career-agents
 ```
 
----
-
 ## ⚡ Quick Start
 
 Verify setup health, assess your readiness, and explore matching tools out-of-the-box:
 
 ```bash
 career-agents doctor
-career-agents assess
-career-agents recommend
-career-agents company google
-career-agents resume templates
+career-agents dashboard
+career-agents review resume.pdf
+career-agents github karthikrshet
+career-agents mock stripe
 ```
 
 ---
 
 ## 💻 CLI Examples
 
-Interact with the registries and prompt compilations directly from your terminal:
+Interact with the registries, run audits, and launch mock interviews directly from your terminal:
 
 ```bash
-# Run a specific agent in interactive chat mode
-career-agents run ats-resume-reviewer
+# Ecosystem Dashboard
+career-agents dashboard
 
-# Export a career path roadmap in YAML format
-career-agents export path ai-engineer yaml
+# Resume Studio
+career-agents review resume.pdf
+career-agents score resume.pdf
+career-agents improve resume.pdf
+career-agents ats resume.pdf
 
-# Calculate your strategic readiness score card
-career-agents score
+# Portfolio & Fit Analyzers
+career-agents github karthikrshet
+career-agents linkedin linkedin_profile.txt
+career-agents jobs resume.pdf
+
+# Interactive mock panels
+career-agents mock google coding
+career-agents mock stripe technical
+
+# Custom 30-60-90 Day Roadmaps
+career-agents roadmap stripe
+
+# Project skeletons generator
+career-agents project ai-engineer
 ```
 
 ---
@@ -93,7 +106,7 @@ career-agents score
 Expose specialized career tools and resource indices to your LLMs:
 
 - **Resource URIs**: Expose entities like `career-agents://registry/agents` or `career-agents://registry/workflows`.
-- **Tool APIs**: Execute schema calls like `recommend_agents`, `resume_score`, or `company_track` dynamically.
+- **Tool APIs**: Execute schema calls like `recommend_agents`, `resume_review`, `github_review`, `linkedin_review`, `career_dashboard`, `mock_interview`, or `roadmap` dynamically.
 
 ---
 
@@ -667,11 +680,48 @@ This repository is maintained and expanded by:
 
 ---
 
-## 🗺️ Roadmap
+## 🗺️ Architecture & Modular Layout
 
-Check out the full release timeline in [RELEASE_MILESTONES.md](./docs/community/RELEASE_MILESTONES.md).
+Career OS uses a modular monorepo structure. Core logics, analyzers, and integrations are split into self-contained packages under `packages/`:
 
-- **v1.0.0**: Core structural registries and configuration compilation system. (Completed)
-- **v1.1.0**: Reorganize documentation, templates, and sponsorship options. (Completed)
-- **v1.2.0**: Community templates, root cleanup, better onboarding, open-source health. (Completed)
-- **v2.0.0**: Peer-to-peer mock panels matching calendars. (Planned)
+```mermaid
+graph TD
+    CLI[scripts/cli.js] --> Core[packages/core/]
+    CLI --> Resume[packages/resume/]
+    CLI --> GitHub[packages/github/]
+    CLI --> LinkedIn[packages/linkedin/]
+    CLI --> Interview[packages/interview/]
+    CLI --> Dashboard[packages/dashboard/]
+    CLI --> Reports[packages/reports/]
+    CLI --> Plugins[packages/plugins/]
+    CLI --> Telemetry[packages/telemetry/]
+    CLI --> MCP[packages/mcp/]
+    
+    MCP --> Resume
+    MCP --> GitHub
+    MCP --> LinkedIn
+    MCP --> Interview
+    MCP --> Dashboard
+```
+
+---
+
+## 🛠️ Developer & Plugin Guides
+
+Check out our technical guidelines to contribute or extend command utilities:
+- **[Technical Developer Guide](./docs/DEVELOPMENT_GUIDE.md)**: Coding standards, folder structures, and testing guidelines.
+- **[Developer Plugin Guide](./docs/plugin-guide.md)**: Extending global commands dynamically inside `plugins/`.
+- **[MCP Integration Guide](./docs/mcp-guide.md)**: Connecting LLMs and desktop interfaces over study protocols.
+
+---
+
+## 🗺️ Roadmap & Milestones
+
+Check out the full release timeline in [V2_DEVELOPMENT_PLAN.md](./docs/roadmap/V2_DEVELOPMENT_PLAN.md).
+
+- **v1.3.1**: Target preparation tracks configurations. (Completed)
+- **v1.4.0 (Milestone 1)**: Refactored modular `packages/` layout, added `features.json` flags system, and published the **Resume Studio** review scoring engines. (Current)
+- **v1.5.0 (Milestone 2)**: Expose public GitHub analyzer grading engines. (Planned)
+- **v1.6.0 (Milestone 3)**: Expose LinkedIn headline tagline auditors. (Planned)
+- **v1.7.0 (Milestone 4)**: Expose interactive mock interview simulator loop consoles. (Planned)
+- **v2.0.0 (Milestone 5-7)**: Expose full Next.js dynamic visual Web UI Dashboard. (Planned)

@@ -17,7 +17,6 @@ export function scoreResumeData(data) {
   let scoreImpact = 0;
 
   // 1. Formatting & Section Completeness (Max 25)
-  // Check if core sections exist
   const coreSections = ['header', 'summary', 'experience', 'skills', 'education'];
   coreSections.forEach(s => {
     if (data[s]) {
@@ -27,7 +26,6 @@ export function scoreResumeData(data) {
     }
   });
 
-  // Verify header properties
   if (data.header) {
     const contactKeys = ['phone', 'email', 'linkedin', 'github'];
     contactKeys.forEach(k => {
@@ -74,11 +72,9 @@ export function scoreResumeData(data) {
 
   const checkText = (text) => {
     totalBulletsChecked++;
-    // Check for metrics (digits, percentages, dollar signs)
     if (/\b\d+\b|%|\$/.test(text)) {
       metricBulletsCount++;
     }
-    // Check for action verbs
     const words = text.toLowerCase().split(/\s+/);
     if (words.some(w => ACTION_VERBS.includes(w))) {
       actionVerbCount++;
@@ -125,59 +121,4 @@ export function scoreResumeData(data) {
     },
     recommendations: recommendations.length > 0 ? recommendations : ['Excellent! Your resume complies with high-performance ATS indexing rules.']
   };
-}
-
-export function runScorerCLI(filePath) {
-  const c = {
-    reset: '\x1b[0m',
-    bold: '\x1b[1m',
-    green: '\x1b[32m',
-    cyan: '\x1b[36m',
-    yellow: '\x1b[33m',
-    red: '\x1b[31m',
-    gray: '\x1b[90m'
-  };
-
-  if (!filePath) {
-    console.error(`${c.red}Please provide a target resume JSON file path to score.${c.reset}`);
-    console.error(`E.g., career-agents resume score exports/resumes/jane-doe.json`);
-    return;
-  }
-
-  const resolved = path.resolve(filePath);
-  if (!fs.existsSync(resolved)) {
-    console.error(`${c.red}File not found: ${filePath}${c.reset}`);
-    return;
-  }
-
-  try {
-    const data = JSON.parse(fs.readFileSync(resolved, 'utf8'));
-    const report = scoreResumeData(data);
-
-    if (!report) {
-      console.error(`${c.red}Failed to compute scoring analytics for the file.${c.reset}`);
-      return;
-    }
-
-    console.log(`\n${c.bold}=== ATS RESUME COMPLIANCE AUDIT ===${c.reset}`);
-    console.log(`File: ${c.gray}${filePath}${c.reset}\n`);
-
-    const scoreColor = report.overallScore >= 90 ? c.green : report.overallScore >= 75 ? c.yellow : c.red;
-    console.log(`  ${c.bold}OVERALL ATS SCORE : ${scoreColor}${report.overallScore} / 100${c.reset}`);
-    console.log(`  ----------------------------------`);
-    console.log(`  • Layout & Formatting: ${report.subscores.formatting} / 25`);
-    console.log(`  • Keywords Density   : ${report.subscores.keywords} / 25`);
-    console.log(`  • Experience Detail  : ${report.subscores.experience} / 25`);
-    console.log(`  • Metrics & Impact   : ${report.subscores.impact} / 25`);
-    console.log(`  ----------------------------------\n`);
-
-    console.log(`${c.bold}Actionable Optimization Recommendations:${c.reset}`);
-    report.recommendations.forEach((rec, idx) => {
-      console.log(`  ${idx + 1}. [${c.yellow}!${c.reset}] ${rec}`);
-    });
-    console.log('');
-
-  } catch (err) {
-    console.error(`${c.red}Error parsing or scoring file: ${err.message}${c.reset}`);
-  }
 }
