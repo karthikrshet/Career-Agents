@@ -2,11 +2,21 @@
 
 The Open Source Career Operating System
 
+![Career-Agents Banner](./branding/banner.svg)
+
 Career-Agents is an extensible, modular software suite designed to treat professional development and job search execution as an operational pipeline. Rather than relying on unstructured text guides or isolated prompts, the system compiles specialized career agent logic, ATS parsing rules, and company preparation guidelines into a unified interface.
 
 The package is built for software engineers, product architects, and tech professionals looking to pivot roles, audit portfolio traction, and prepare for technical loops. By automating resume verification, indexing GitHub profiles, and providing interactive coaching loops, it aligns profiles with industry standards.
 
 With dynamic CLI command routing and a native Model Context Protocol (MCP) server integration, Career-Agents fits directly into developer environments and AI-assisted IDEs.
+
+## Installation
+
+Install the CLI globally using npm:
+
+```bash
+npm install -g career-agents
+```
 
 ## Features
 
@@ -46,15 +56,7 @@ graph TD
     MCP --> Dashboard
 ```
 
-## Installation
-
-Install the CLI globally using npm:
-
-```bash
-npm install -g career-agents
-```
-
-## Quick Start
+## Quick Start and CLI Reference
 
 Verify setup health and run your first resume review:
 
@@ -64,8 +66,6 @@ career-agents list
 career-agents recommend
 career-agents review resume.pdf
 ```
-
-## CLI Reference
 
 | Command | Description | Example |
 | :--- | :--- | :--- |
@@ -106,68 +106,22 @@ See [MCP Guide](./docs/MCP_GUIDE.md) for full config structures.
 | Plugins | Yes | No | No | Milestone 6 |
 | Web Portal | No | No | Yes | Milestone 7 |
 
-## Repository Structure
+## Examples
 
-| Directory | Purpose |
-| :--- | :--- |
-| `packages/core/` | Common runtimes, roadmaps, and project skeleton templates |
-| `packages/resume/` | Resume parsers, scoring calculations, and job fit matchers |
-| `packages/github/` | Repository grading and user statistics connections |
-| `packages/linkedin/` | Profile tagline checks and outline suggestion tools |
-| `packages/interview/` | Interactive mock panels console coach loops |
-| `packages/dashboard/` | Personal checklists and metrics state manager |
-| `packages/reports/` | Consolidated HTML/JSON shareable report outputs |
-| `packages/plugins/` | Dynamic command extension and loading |
-| `packages/telemetry/` | Opt-in command execution metrics logging |
-| `packages/mcp/` | Model Context Protocol stdio adapters |
-| `apps/web/` | React Next.js visual dashboard UI |
-| `scripts/` | Entry points and automated verification tests |
-
-## Development
-
-Set up a local development workspace:
-
+### Custom 30-60-90 Day Roadmaps
 ```bash
-# Clone the repository
-git clone https://github.com/karthikrshet/Career-Agents.git
-cd Career-Agents
-
-# Install dependencies
-npm install
-
-# Compile indexing maps
-python scripts/generate-data.py
-
-# Run validation checks
-python scripts/validate.py
-
-# Run tests
-node scripts/test-cli.js
-node scripts/test-resume.js
+career-agents roadmap google
 ```
 
-## Contributing
+### Project Skeletons Generator
+```bash
+career-agents project backend
+```
 
-Review the following manuals before submitting changes:
-- [Contributing Guidelines](./CONTRIBUTING.md)
-- [AI Contributor Guidelines](./AGENTS.md)
-
-## Community
-
-- **Discussions**: Share ideas on GitHub Discussions.
-- **Issues**: Report bugs or request company tracks in GitHub Issues.
-- **Support**: Read the Support guide for contacts.
-
-## Roadmap & Milestones
-
-Check out the full release timeline in [V2_DEVELOPMENT_PLAN.md](./docs/roadmap/V2_DEVELOPMENT_PLAN.md).
-
-- **v1.3.1**: Target preparation tracks configurations. (Completed)
-- **v1.4.0 (Milestone 1)**: Refactored modular `packages/` layout, added `features.json` flags system, and published the **Resume Studio** review scoring engines. (Current)
-- **v1.5.0 (Milestone 2)**: Expose public GitHub analyzer grading engines. (Planned)
-- **v1.6.0 (Milestone 3)**: Expose LinkedIn headline tagline auditors. (Planned)
-- **v1.7.0 (Milestone 4)**: Expose interactive mock interview simulator loop consoles. (Planned)
-- **v2.0.0 (Milestone 5-7)**: Expose full Next.js dynamic visual Web UI Dashboard. (Planned)
+### Interactive Mock Interview Lab
+```bash
+career-agents mock stripe technical
+```
 
 ## Browse By Division
 
@@ -604,40 +558,22 @@ Workflows are repeatable pipelines guiding you step-by-step through career miles
 - [**Technical Interview Week**](./workflows/technical-interview-week.md): High-intensity technical prep covering DSA drills, system design practice, and clean code principles.
   - **Recommended Agents**: technical-interview-coach, system-design-coach, mock-interviewer, code-reviewer
 
-## Knowledge Graph
+## Roadmap
 
-Career-Agents compiles a complex, expanded **[knowledge-graph.json](./knowledge-graph.json)** mapping dependencies across:
-- **Agents** -> Belongs to **Divisions** -> Used in **Workflows**
-- **Career Paths** -> Requires **Skills** -> Uses **Agents**
-- **Companies** -> Requires **Skills** -> Prepped by **Workflows**
-- **Bundles** -> Packs **Agents**, **Career Paths**, and **Companies**
+Check out the full release timeline in [V2_DEVELOPMENT_PLAN.md](./docs/roadmap/V2_DEVELOPMENT_PLAN.md).
 
-You can inspect nodes connectivity stats locally via:
-```bash
-node scripts/cli.js graph
-```
+- **v1.3.1**: Target preparation tracks configurations. (Completed)
+- **v1.4.0 (Milestone 1)**: Refactored modular `packages/` layout, added `features.json` flags system, and published the **Resume Studio** review scoring engines. (Current)
+- **v1.5.0 (Milestone 2)**: Expose public GitHub analyzer grading engines. (Planned)
+- **v1.6.0 (Milestone 3)**: Expose LinkedIn headline tagline auditors. (Planned)
+- **v1.7.0 (Milestone 4)**: Expose interactive mock interview simulator loop consoles. (Planned)
+- **v2.0.0 (Milestone 5-7)**: Expose full Next.js dynamic visual Web UI Dashboard. (Planned)
 
-## Community References
+## Contributing
 
-Explore guidelines, case logs, and programs to contribute to our open ecosystem:
+Review the following manuals before submitting changes:
 - [Contributing Guidelines](./CONTRIBUTING.md)
-- [Contributor Recognition Levels](./docs/community/CONTRIBUTOR_LEVELS.md)
-- [Ambassador Program](./docs/community/AMBASSADOR_PROGRAM.md)
-- [Hall of Fame](./docs/community/HALL_OF_FAME.md)
-- [Maintainers Code Owners](./docs/community/MAINTAINERS.md)
-- [Community Onboarding Guide](./docs/community/COMMUNITY_GUIDE.md)
-- [Certification Program](./docs/CERTIFICATION.md)
-- [Ecosystem Asset Guide](./docs/ASSETS.md)
-- [Who Uses Career OS](./docs/case-studies/WHO_USES_CAREER_OS.md)
-- [Ecosystem Case Studies](./docs/case-studies/CASE_STUDIES.md)
-- [Ecosystem Success Stories](./docs/case-studies/SUCCESS_STORIES.md)
-- [Code of Conduct](./CODE_OF_CONDUCT.md)
-- [Security Policy](./SECURITY.md)
-
-## Project Maintainers
-
-This repository is maintained and expanded by:
-- **Karthik Rajesh Shet** ([@karthikrshet](https://github.com/karthikrshet)) - Founder & Core Architect
+- [AI Contributor Guidelines](./AGENTS.md)
 
 ## License
 
