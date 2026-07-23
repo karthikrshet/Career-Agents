@@ -6,20 +6,15 @@ The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ---
 
-## [v2.0.0] — 2026-07-24
+## [v1.4.0] — 2026-07-24
 ### Added
-- Created a complete **Resume Studio** supporting `review`, `score`, `improve`, and `ats` subcommands for resume JSON, Markdown, Text, and PDF files.
-- Built **GitHub Portfolio Analyzer** to evaluate repository traction, stars, forks, and README quality metrics.
-- Developed **LinkedIn Auditor** to critique tagline keyword density and summaries.
-- Implemented **Interactive Mock Interview Engine** with context-aware technical, behavioral, system design, and coding modes.
-- Added **Job Match Engine** to analyze profile readiness indexes and gap checklist configurations.
-- Integrated **Ecosystem Dashboard** for personal metrics tracking.
-- Created **Company Roadmaps** generating custom 30-60-90 Day learning plans.
-- Established **Project skeleton generator** templates (AI engineering, Frontend, and Backend structures).
-- Introduced **Plugin Architecture** allowing custom command extensions in `plugins/`.
-- Configured anonymous opt-in **Telemetry** logging.
-- Deployed React Next.js-based **Web Dashboard** under `apps/web/`.
-- Exposed new **MCP tools** (`resume_review`, `github_review`, `linkedin_review`, `career_dashboard`, `mock_interview`, `roadmap`).
+- Monorepo package restructuring: relocated monolithic engines to encapsulated modules under `packages/` (`packages/resume/`, `packages/core/`, `packages/github/`, `packages/linkedin/`, `packages/interview/`, `packages/dashboard/`, `packages/reports/`, `packages/plugins/`, `packages/telemetry/`, `packages/mcp/`).
+- Exposed the completed **Resume Studio** supporting `review`, `score`, `improve`, and `ats` subcommands for resume PDF/JSON/Text/MD files.
+- Implemented **Feature Flags** controller configuration (`features.json`) to control CLI command execution and MCP server tool list registrations.
+- Fully overhauled repository documentation (`README.md`, `CONTRIBUTING.md`, `AGENTS.md`, `SUPPORT.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `DEVELOPMENT_GUIDE.md`, `V2_DEVELOPMENT_PLAN.md`) to establish a consistent, emoji-free technical writing style.
+- Created detailed developer guides (`docs/ARCHITECTURE.md`, `docs/CLI_REFERENCE.md`, `docs/MCP_GUIDE.md`, `docs/PLUGIN_GUIDE.md`).
+- Added comprehensive testing suites (`scripts/test-cli.js`, `scripts/test-resume.js`, `scripts/test-github.js`, `scripts/test-dashboard.js`).
+- Cleaned up packaging manifest file definitions inside `package.json`.
 
 ## [v1.3.1] — 2026-07-14
 ### Added

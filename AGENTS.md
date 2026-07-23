@@ -4,7 +4,7 @@ Welcome, AI Contributor! This guide is designed for Claude Code, OpenAI Codex, C
 
 ---
 
-## 🔄 Pre-Development Checklist
+## Pre-Development Checklist
 
 Before making any changes to the codebase, prompts, or configurations:
 
@@ -28,7 +28,7 @@ Before making any changes to the codebase, prompts, or configurations:
 
 ---
 
-## 🚨 Strict Rules for AI Agents
+## Strict Rules for AI Agents
 
 To avoid registry corruption, broken references, or validation failures, you must adhere to these rules:
 
@@ -49,7 +49,7 @@ To avoid registry corruption, broken references, or validation failures, you mus
 
 ---
 
-## 🧪 Required Validation Pipeline
+## Required Validation Pipeline
 
 Before committing your changes or reporting completion, you must execute:
 
