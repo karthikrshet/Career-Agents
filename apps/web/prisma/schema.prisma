@@ -1,0 +1,146 @@
+// Career OS - Prisma Schema
+// Run: npx prisma db push to sync with PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(cuid())
+  name            String
+  email           String   @unique
+  emailVerified   DateTime?
+  image           String?
+  githubUsername  String?
+  linkedinUrl     String?
+  targetRole      String?
+  targetCompany   String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  resumeAnalyses  ResumeAnalysis[]
+  githubAnalyses  GitHubAnalysis[]
+  interviewSessions InterviewSession[]
+  jobApplications JobApplication[]
+  copilotSessions CopilotSession[]
+  metrics         CareerMetrics?
+  settings        UserSettings?
+
+  @@map("users")
+}
+
+model CareerMetrics {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  careerScore     Int      @default(0)
+  resumeScore     Int      @default(0)
+  githubScore     Int      @default(0)
+  linkedinScore   Int      @default(0)
+  interviewScore  Int      @default(0)
+  applicationScore Int     @default(0)
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("career_metrics")
+}
+
+model ResumeAnalysis {
+  id               String   @id @default(cuid())
+  userId           String
+  fileName         String
+  rawText          String   @db.Text
+  overallScore     Int
+  atsScore         Int
+  sections         Json
+  weakBullets      Json
+  missingKeywords  String[]
+  detectedKeywords String[]
+  recommendations  String[]
+  aiRewrite        String?  @db.Text
+  analyzedAt       DateTime @default(now())
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("resume_analyses")
+}
+
+model GitHubAnalysis {
+  id               String   @id @default(cuid())
+  userId           String
+  username         String
+  portfolioScore   Int
+  data             Json
+  analyzedAt       DateTime @default(now())
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("github_analyses")
+}
+
+model InterviewSession {
+  id          String   @id @default(cuid())
+  userId      String
+  company     String
+  role        String
+  mode        String
+  difficulty  String
+  round       String
+  questions   Json
+  responses   Json
+  scorecard   Json?
+  startedAt   DateTime @default(now())
+  completedAt DateTime?
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("interview_sessions")
+}
+
+model JobApplication {
+  id          String   @id @default(cuid())
+  userId      String
+  company     String
+  role        String
+  status      String
+  location    String?
+  salary      String?
+  referral    String?
+  recruiter   String?
+  notes       String?
+  url         String?
+  tags        String[]
+  appliedDate DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("job_applications")
+}
+
+model CopilotSession {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  messages  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("copilot_sessions")
+}
+
+model UserSettings {
+  id           String   @id @default(cuid())
+  userId       String   @unique
+  aiProvider   String   @default("groq")
+  aiModel      String   @default("llama3-70b-8192")
+  temperature  Float    @default(0.7)
+  theme        String   @default("dark")
+  notifications Boolean @default(true)
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_settings")
+}
