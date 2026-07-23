@@ -1,0 +1,41 @@
+{
+  "profile": {
+    "username": "johndoe",
+    "updatedAt": "2026-07-24T03:10:00Z"
+  },
+  "metrics": {
+    "careerScore": 79,
+    "resumeScore: ": 85,
+    "githubScore": 88,
+    "linkedinScore": 82,
+    "interviewReadiness": 60
+  },
+  "goals": [
+    { "id": 1, "title": "Rewrite weak resume bullet points with metrics", "done": true },
+    { "id": 2, "title": "Audit public GitHub repository counts", "done": true },
+    { "id": 3, "title": "Analyze tagline keywords density", "done": true },
+    { "id": 4, "title": "Practice distributed cache interview loop", "done": false }
+  ],
+  "jobApplications": [
+    {
+      "company": "Google",
+      "role": "Software Engineer III",
+      "status": "Interview Scheduled",
+      "salary": "$165,000",
+      "location": "Mountain View, CA",
+      "date": "2026-07-20"
+    },
+    {
+      "company": "Stripe",
+      "role": "Frontend Architect",
+      "status": "OA Pending",
+      "salary": "$180,000",
+      "location": "Remote",
+      "date": "2026-07-22"
+    }
+  ],
+  "companyProgress": {
+    "google": { "dsa": true, "systemDesign": false, "behavioral": true, "mock": false, "resume": true },
+    "stripe": { "dsa": false, "systemDesign": true, "behavioral": false, "mock": false, "resume": false }
+  }
+}
