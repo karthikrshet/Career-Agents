@@ -26,7 +26,18 @@ const COMPANY_STACKS = {
   google: ['algorithms', 'distributed systems', 'go', 'c++', 'python', 'system design', 'scalability', 'java'],
   stripe: ['apis', 'ruby', 'typescript', 'pci compliance', 'react', 'node.js', 'postgresql', 'testing'],
   meta: ['react', 'graphql', 'system design', 'algorithms', 'c++', 'python', 'distributed systems'],
-  amazon: ['aws', 'java', 'c++', 'system design', 'algorithms', 'scalability', 'cloud architecture']
+  amazon: ['aws', 'java', 'c++', 'system design', 'algorithms', 'scalability', 'cloud architecture'],
+  apple: ['swift', 'swiftui', 'objective-c', 'c++', 'metal', 'coreml', 'systems programming', 'privacy', 'hardware-software'],
+  netflix: ['java', 'spring boot', 'microservices', 'distributed systems', 'system design', 'aws', 'cdn', 'chaos engineering'],
+  microsoft: ['c#', '.net', 'azure', 'typescript', 'c++', 'system design', 'distributed systems', 'growth mindset'],
+  openai: ['python', 'pytorch', 'triton', 'distributed training', 'llms', 'cuda', 'transformers', 'ai safety'],
+  anthropic: ['python', 'pytorch', 'constitutional ai', 'llms', 'ai safety', 'transformers', 'distributed training'],
+  nvidia: ['c++', 'cuda', 'gpu architecture', 'parallel computing', 'tensorrt', 'deep learning acceleration', 'systems programming'],
+  databricks: ['scala', 'python', 'spark', 'delta lake', 'distributed query engines', 'c++', 'concurrency', 'etl'],
+  uber: ['go', 'java', 'geohashing', 'h3', 'distributed systems', 'real-time streaming', 'system design', 'kafka'],
+  adobe: ['c++', 'javascript', 'typescript', 'react', 'cloud architecture', 'creative cloud', 'system design'],
+  atlassian: ['java', 'react', 'typescript', 'microservices', 'aws', 'confluence', 'jira', 'system design'],
+  oracle: ['java', 'c++', 'sql', 'database internals', 'operating systems', 'cloud infrastructure', 'networking']
 };
 
 function hasWord(text, term) {
@@ -2498,7 +2509,7 @@ const MCP_RESOURCES = [
     uri: 'career-agents://registry/agents',
     name: 'Agent Registry',
     mimeType: 'application/json',
-    description: 'Dynamic database catalog of all 146 specialized AI career agents.'
+    description: 'Dynamic database catalog of all specialized AI career agents across 19 divisions.'
   },
   {
     uri: 'career-agents://registry/paths',
