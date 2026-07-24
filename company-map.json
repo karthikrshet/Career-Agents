@@ -18,32 +18,51 @@
     "name": "Amazon",
     "agents": [
       "amazon-interview-coach",
+      "amazon-swe-coach",
       "behavioral-interview-specialist",
       "system-design-coach",
       "mock-interviewer"
     ],
     "workflows": [],
     "skills": [
-      "16 Leadership Principles (Customer Obsession, Ownership, Bias for Action)",
-      "STAR Behavioral Storytelling",
-      "Data Structures & Algorithms",
-      "System Design & Database selections"
+      "16 Leadership Principles (STAR method)",
+      "Customer Obsession & Operational Excellence",
+      "Distributed System Design (AWS Primitives)",
+      "Object-Oriented Design & DSA"
     ]
   },
   "anthropic": {
     "name": "Anthropic",
     "agents": [
-      "openai-career-coach",
+      "anthropic-interview-coach",
+      "anthropic-ai-coach",
       "technical-interview-coach",
       "system-design-coach",
       "mock-interviewer"
     ],
     "workflows": [],
     "skills": [
-      "Data Structures & Algorithms",
-      "Generative AI & LLM Fine-Tuning",
-      "Alignment & Safety Principles",
-      "System Design & Scalability"
+      "AI Safety & Constitutional AI Frameworks",
+      "Transformer Scaling & Memory Bandwidth Profiling",
+      "PyTorch & Distributed Training Mechanics (FSDP)",
+      "Empirical Research & Experiment Design"
+    ]
+  },
+  "apple": {
+    "name": "Apple",
+    "agents": [
+      "apple-interview-coach",
+      "apple-swe-coach",
+      "technical-interview-coach",
+      "system-design-coach",
+      "mock-interviewer"
+    ],
+    "workflows": [],
+    "skills": [
+      "Swift, SwiftUI & Objective-C / C++ Architecture",
+      "Systems Programming & Memory Management (RAII, ARC, Pointers)",
+      "Hardware-Software Integration & OS Design Fundamentals",
+      "Product Craft, Privacy Principles & Attention to Detail"
     ]
   },
   "atlassian": {
@@ -65,6 +84,7 @@
   "databricks": {
     "name": "Databricks",
     "agents": [
+      "databricks-interview-coach",
       "database-engineer",
       "backend-architect",
       "system-design-coach",
@@ -72,16 +92,17 @@
     ],
     "workflows": [],
     "skills": [
-      "Distributed computing algorithms",
-      "Database internals (caching, query planning, indexing)",
-      "Concurrency and systems performance",
-      "Spark/Delta Lake execution logic"
+      "Distributed Query Engines & Vectorized Execution",
+      "Database Internals (LSM-trees, MVCC, Concurrency)",
+      "Apache Spark & Delta Lake Internals",
+      "Systems Programming & Memory Management"
     ]
   },
   "google": {
     "name": "Google",
     "agents": [
       "google-interview-coach",
+      "google-swe-coach",
       "technical-interview-coach",
       "system-design-coach",
       "mock-interviewer"
@@ -98,78 +119,85 @@
     "name": "Meta",
     "agents": [
       "meta-interview-coach",
+      "meta-swe-coach",
       "technical-interview-coach",
       "system-design-coach",
       "mock-interviewer"
     ],
     "workflows": [],
     "skills": [
-      "High-speed coding accuracy (solving 2 DSA questions in 35 minutes)",
-      "System Design scaling (focusing on caching, load balancing, message queues)",
-      "Meta core values (Focus on Impact, Move Fast)"
+      "High-speed coding execution & accuracy",
+      "Meta-scale System Design (Feed, Messenger, TAO Caching)",
+      "Move Fast & Focus on Impact behavioral alignment",
+      "Social Graph & Distributed Systems"
     ]
   },
   "microsoft": {
     "name": "Microsoft",
     "agents": [
       "microsoft-interview-coach",
+      "microsoft-swe-coach",
       "technical-interview-coach",
       "system-design-coach",
       "mock-interviewer"
     ],
     "workflows": [],
     "skills": [
-      "CS Fundamentals (pointers, memory management, OOP)",
-      "Growth Mindset (learning from failure, collaboration)",
-      "Distributed Service Architecture"
+      "Computer Science Fundamentals (OS, Networking, Data Structures)",
+      "Enterprise & Cloud System Architecture (Azure)",
+      "Collaborative Problem Solving & Growth Mindset",
+      "Multi-tenant SaaS & Identity Management"
     ]
   },
   "netflix": {
     "name": "Netflix",
     "agents": [
       "netflix-interview-coach",
+      "netflix-swe-coach",
       "behavioral-interview-specialist",
       "system-design-coach",
       "mock-interviewer"
     ],
     "workflows": [],
     "skills": [
-      "Freedom & Responsibility slide deck principles",
-      "High-throughput CDN architectures",
-      "Autonomy and direct feedback loops (Radical Candor)",
-      "Resilience engineering (Chaos Monkey)"
+      "Freedom & Responsibility Culture Alignment",
+      "High-Concurrency Distributed Microservices",
+      "Chaos Engineering & Fault Isolation",
+      "Global Streaming & Edge CDN Architectures"
     ]
   },
   "nvidia": {
     "name": "Nvidia",
     "agents": [
+      "nvidia-interview-coach",
+      "nvidia-ai-coach",
       "technical-interview-coach",
       "system-design-coach",
-      "machine-learning-engineer",
       "mock-interviewer"
     ],
     "workflows": [],
     "skills": [
-      "Systems Programming (C/C++, CUDA)",
-      "Parallel Computing & GPU Architecture",
-      "Data Structures & Algorithms",
-      "Deep Learning & Computer Vision"
+      "C++ Systems Programming & Memory Alignment",
+      "CUDA Parallel Computing & SIMT Execution Model",
+      "GPU Hardware Architecture & NVLink Topology",
+      "Deep Learning Acceleration & TensorRT Quantization"
     ]
   },
   "openai": {
     "name": "OpenAI",
     "agents": [
-      "llm-engineer",
-      "ai-agent-architect",
-      "ai-engineer-career-coach",
+      "openai-interview-coach",
+      "openai-career-coach",
+      "technical-interview-coach",
+      "system-design-coach",
       "mock-interviewer"
     ],
     "workflows": [],
     "skills": [
-      "PyTorch scale training models",
-      "Transformer mechanics and scaling math",
-      "AI Safety & alignment criteria",
-      "GPU memory optimizations"
+      "PyTorch & Triton Distributed Training Mechanics",
+      "Transformer Architecture & KV Cache Optimizations",
+      "Frontier AI Infrastructure & LLM Serving",
+      "AI Safety, Alignment & Scaling Laws"
     ]
   },
   "oracle": {
@@ -206,6 +234,7 @@
   "stripe": {
     "name": "Stripe",
     "agents": [
+      "stripe-interview-coach",
       "code-reviewer",
       "backend-architect",
       "technical-interview-coach",
@@ -213,10 +242,10 @@
     ],
     "workflows": [],
     "skills": [
-      "Practical API design and integration",
-      "Squashing bugs in large codebases",
-      "Clean code refactoring and design structures",
-      "Unit testing"
+      "Practical API & SDK Ergonomics Design",
+      "Codebase Refactoring & Defensive Error Handling",
+      "Financial System Design & Idempotency",
+      "Backward Compatibility & Integration Testing"
     ]
   },
   "uber": {

@@ -251,6 +251,48 @@
     "difficulty": "Hard",
     "experience_level": "Mid"
   },
+  "apple-interview-coach": {
+    "name": "Apple Interview Coach",
+    "filename": "company-interviews/apple-interview-coach.md",
+    "vibe": "precise, craft-obsessed, low-level focused, privacy-conscious",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "anthropic-interview-coach": {
+    "name": "Anthropic Interview Coach",
+    "filename": "company-interviews/anthropic-interview-coach.md",
+    "vibe": "academic, safety-focused, rigorous, research-forward",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "databricks-interview-coach": {
+    "name": "Databricks Interview Coach",
+    "filename": "company-interviews/databricks-interview-coach.md",
+    "vibe": "systems-heavy, algorithmic, data-engine focused, performance-driven",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "nvidia-interview-coach": {
+    "name": "Nvidia Interview Coach",
+    "filename": "company-interviews/nvidia-interview-coach.md",
+    "vibe": "low-level, hardware-aware, performance-obsessed, mathematical",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "openai-interview-coach": {
+    "name": "OpenAI Interview Coach",
+    "filename": "company-interviews/openai-interview-coach.md",
+    "vibe": "cutting-edge, mathematical, infrastructure-heavy, mission-driven",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "stripe-interview-coach": {
+    "name": "Stripe Interview Coach",
+    "filename": "company-interviews/stripe-interview-coach.md",
+    "vibe": "practical, craft-oriented, meticulous, API-obsessed",
+    "difficulty": "Hard",
+    "experience_level": "Mid"
+  },
   "backend-architect": {
     "name": "Backend Architect",
     "filename": "engineering/backend-architect.md",
@@ -923,6 +965,55 @@
     "difficulty": "Medium",
     "experience_level": "Senior"
   },
+  "meta-swe-coach": {
+    "name": "Meta SWE Coach",
+    "filename": "faang/meta-swe-coach.md",
+    "vibe": "fast-paced, high-throughput, impact-driven, architectural",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "apple-swe-coach": {
+    "name": "Apple SWE Coach",
+    "filename": "faang/apple-swe-coach.md",
+    "vibe": "systems-focused, hardware-aware, craft-obsessed, low-latency",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "amazon-swe-coach": {
+    "name": "Amazon SWE Coach",
+    "filename": "faang/amazon-swe-coach.md",
+    "vibe": "principle-driven, operational, scale-focused, Bar-Raiser aligned",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "netflix-swe-coach": {
+    "name": "Netflix SWE Coach",
+    "filename": "faang/netflix-swe-coach.md",
+    "vibe": "senior-level, autonomous, systems-rigorous, radical-candor",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "microsoft-swe-coach": {
+    "name": "Microsoft SWE Coach",
+    "filename": "faang/microsoft-swe-coach.md",
+    "vibe": "collaborative, structured, growth-mindset, cloud-native",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "anthropic-ai-coach": {
+    "name": "Anthropic AI Coach",
+    "filename": "faang/anthropic-ai-coach.md",
+    "vibe": "academic, safety-focused, mathematically-rigorous, empirical",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "nvidia-ai-coach": {
+    "name": "Nvidia AI Coach",
+    "filename": "faang/nvidia-ai-coach.md",
+    "vibe": "low-level, hardware-accelerated, performance-obsessed, systems-heavy",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
   "ai-consultant": {
     "name": "AI Consultant",
     "filename": "ai-business/ai-consultant.md",
@@ -1020,5 +1111,61 @@
     "vibe": "technical, narrative-bridging, impact-forward, dual-audience-aware",
     "difficulty": null,
     "experience_level": null
+  },
+  "voice-mock-interviewer": {
+    "name": "Voice Mock Interviewer",
+    "filename": "interview/voice-mock-interviewer.md",
+    "vibe": "realistic, speech-aware, dynamic, conversational, firm",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "faang-voice-mock-interviewer": {
+    "name": "FAANG Voice Mock Interviewer",
+    "filename": "faang/faang-voice-mock-interviewer.md",
+    "vibe": "rigorous, voice-first, company-calibrated, high-pressure",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "resume-humanizer": {
+    "name": "Resume Humanizer",
+    "filename": "resume/resume-humanizer.md",
+    "vibe": "authentic, human-first, articulate, anti-cliche, ATS-optimized",
+    "difficulty": "Medium",
+    "experience_level": "Mid"
+  },
+  "document-exporter": {
+    "name": "Document Exporter",
+    "filename": "resume/document-exporter.md",
+    "vibe": "precise, layout-obsessed, multi-format, ATS-compliant, pixel-perfect",
+    "difficulty": "Easy",
+    "experience_level": "All"
+  },
+  "ai-infrastructure-architect": {
+    "name": "AI Infrastructure Architect",
+    "filename": "ai-engineering/ai-infrastructure-architect.md",
+    "vibe": "infrastructure-heavy, performance-obsessed, scale-focused, low-latency",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "ai-agent-workflow-builder": {
+    "name": "AI Agent Workflow Builder",
+    "filename": "ai-engineering/ai-agent-workflow-builder.md",
+    "vibe": "agentic, systematic, stateful, tool-obsessed, robust",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "multimodal-ai-engineer": {
+    "name": "Multimodal AI Engineer",
+    "filename": "ai-engineering/multimodal-ai-engineer.md",
+    "vibe": "cross-modal, vision-speech focused, creative-technical, low-latency",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
+  },
+  "ai-product-growth-builder": {
+    "name": "AI Product Growth Builder",
+    "filename": "ai-business/ai-product-growth-builder.md",
+    "vibe": "commercial, growth-focused, unit-economics aware, product-obsessed",
+    "difficulty": "Hard",
+    "experience_level": "Senior"
   }
 }
