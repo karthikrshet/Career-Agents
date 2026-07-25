@@ -92,6 +92,7 @@ interface CareerOSStore {
   toggleSessionArchive: (sessionId: string) => void;
   deleteCopilotSession: (id: string) => void;
   renameCopilotSession: (id: string, title: string) => void;
+  duplicateCopilotSession: (id: string) => void;
   setCopilotSessions: (sessions: CopilotSession[]) => void;
 
   // Activity Feed
@@ -102,6 +103,15 @@ interface CareerOSStore {
   settings: AppSettings;
   updateSettings: (updates: Partial<AppSettings>) => void;
   updateAIProvider: (config: Partial<AIProviderConfig>) => void;
+
+  // Plugins
+  installedPlugins: Record<string, boolean>;
+  enabledPlugins: Record<string, boolean>;
+  installPlugin: (id: string) => void;
+  uninstallPlugin: (id: string) => void;
+  enablePlugin: (id: string) => void;
+  disablePlugin: (id: string) => void;
+  updatePlugin: (id: string) => void;
 }
 
 export const useStore = create<CareerOSStore>()(
@@ -146,39 +156,51 @@ export const useStore = create<CareerOSStore>()(
       resumeAnalysis: null,
       setResumeAnalysis: (analysis) => {
         set({ resumeAnalysis: analysis });
-        get().updateResumeScore(analysis.overallScore);
-        get().addActivity({
-          type: "resume",
-          title: "Resume Analyzed",
-          description: `${analysis.fileName} scored ${analysis.overallScore}%`,
-          score: analysis.overallScore,
-        });
+        if (!analysis || analysis.overallScore == null) {
+          get().updateResumeScore(0);
+        } else {
+          get().updateResumeScore(analysis.overallScore);
+          get().addActivity({
+            type: "resume",
+            title: "Resume Analyzed",
+            description: `${analysis.fileName || "Resume"} scored ${analysis.overallScore}%`,
+            score: analysis.overallScore,
+          });
+        }
       },
 
       // GitBranch
       GitHubAnalysis: null,
       setGitHubAnalysis: (analysis) => {
         set({ GitHubAnalysis: analysis });
-        get().updateGithubScore(analysis.portfolioScore);
-        get().addActivity({
-          type: "GitBranch",
-          title: "GitBranch Profile Analyzed",
-          description: `@${analysis.username} scored ${analysis.portfolioScore}%`,
-          score: analysis.portfolioScore,
-        });
+        if (!analysis || analysis.portfolioScore == null) {
+          get().updateGithubScore(0);
+        } else {
+          get().updateGithubScore(analysis.portfolioScore);
+          get().addActivity({
+            type: "GitBranch",
+            title: "GitBranch Profile Analyzed",
+            description: `@${analysis.username} scored ${analysis.portfolioScore}%`,
+            score: analysis.portfolioScore,
+          });
+        }
       },
 
       // Link2
       linkedinAnalysis: null,
       setLinkedinAnalysis: (analysis) => {
         set({ linkedinAnalysis: analysis });
-        get().updateLinkedinScore(analysis.overallScore);
-        get().addActivity({
-          type: "Link2",
-          title: "Link2 Profile Optimized",
-          description: `Profile scored ${analysis.overallScore}% visibility`,
-          score: analysis.overallScore,
-        });
+        if (!analysis || analysis.overallScore == null) {
+          get().updateLinkedinScore(0);
+        } else {
+          get().updateLinkedinScore(analysis.overallScore);
+          get().addActivity({
+            type: "Link2",
+            title: "Link2 Profile Optimized",
+            description: `Profile scored ${analysis.overallScore}% visibility`,
+            score: analysis.overallScore,
+          });
+        }
       },
 
       // Interview
@@ -192,12 +214,12 @@ export const useStore = create<CareerOSStore>()(
           const sessions = state.interviewSessions.map((s) =>
             s.id === sessionId ? { ...s, ...updates } : s
           );
-          if (updates.scorecard) {
+          if (updates && updates.scorecard && updates.scorecard.overallScore != null) {
             get().updateInterviewScore(updates.scorecard.overallScore);
             get().addActivity({
               type: "interview",
               title: "Interview Session Completed",
-              description: `${state.currentSession?.company} ${state.currentSession?.mode} — ${updates.scorecard.overallScore}/100`,
+              description: `${state.currentSession?.company || "General"} ${state.currentSession?.mode || "Prep"} — ${updates.scorecard.overallScore}/100`,
               score: updates.scorecard.overallScore,
             });
           }
@@ -343,6 +365,25 @@ export const useStore = create<CareerOSStore>()(
           const current = state.currentCopilotSession && state.currentCopilotSession.id === id ? { ...state.currentCopilotSession, title } : state.currentCopilotSession;
           return { copilotSessions: updatedSessions, currentCopilotSession: current };
         }),
+      duplicateCopilotSession: (id) =>
+        set((state) => {
+          const session = state.copilotSessions.find((s) => s.id === id);
+          if (!session) return {};
+          const duplicated = {
+            ...session,
+            id: generateId(),
+            title: `${session.title} (Copy)`,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+            pinned: false,
+            favorite: false,
+            archived: false,
+          };
+          return {
+            copilotSessions: [duplicated, ...state.copilotSessions],
+            currentCopilotSession: duplicated,
+          };
+        }),
       setCopilotSessions: (sessions) =>
         set(() => ({ copilotSessions: sessions })),
 
@@ -367,6 +408,34 @@ export const useStore = create<CareerOSStore>()(
             aiProvider: { ...state.settings.aiProvider, ...config },
           },
         })),
+
+      // Plugins Default State & Actions
+      installedPlugins: {},
+      enabledPlugins: {},
+      installPlugin: (id) =>
+        set((state) => ({
+          installedPlugins: { ...state.installedPlugins, [id]: true }
+        })),
+      uninstallPlugin: (id) =>
+        set((state) => {
+          const installed = { ...state.installedPlugins };
+          const enabled = { ...state.enabledPlugins };
+          delete installed[id];
+          delete enabled[id];
+          return { installedPlugins: installed, enabledPlugins: enabled };
+        }),
+      enablePlugin: (id) =>
+        set((state) => ({
+          enabledPlugins: { ...state.enabledPlugins, [id]: true }
+        })),
+      disablePlugin: (id) =>
+        set((state) => ({
+          enabledPlugins: { ...state.enabledPlugins, [id]: false }
+        })),
+      updatePlugin: (id) =>
+        set((state) => {
+          return {};
+        }),
     }),
     {
       name: "career-os-store",
@@ -380,8 +449,11 @@ export const useStore = create<CareerOSStore>()(
         jobApplications: state.jobApplications,
         companyProgress: state.companyProgress,
         copilotSessions: state.copilotSessions,
+        copilotFolders: state.copilotFolders,
         activityFeed: state.activityFeed,
         settings: state.settings,
+        installedPlugins: state.installedPlugins,
+        enabledPlugins: state.enabledPlugins,
       }),
     }
   )

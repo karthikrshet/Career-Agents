@@ -44,6 +44,20 @@ function findBestAgents(query: string): any[] {
       if (lq.includes(skill.toLowerCase())) score += 2;
     }
 
+    // Intent boosters (Priority 17)
+    if (lq.includes("resume") || lq.includes("cv") || lq.includes("ats")) {
+      if (agent.id.includes("resume") || agent.id.includes("ats")) score += 12;
+    }
+    if (lq.includes("github") || lq.includes("git") || lq.includes("portfolio")) {
+      if (agent.id.includes("github") || agent.id.includes("portfolio")) score += 12;
+    }
+    if (lq.includes("interview") || lq.includes("prep") || lq.includes("question")) {
+      if (agent.id.includes("interview") || agent.id.includes("prep")) score += 12;
+    }
+    if (lq.includes("linkedin") || lq.includes("profile")) {
+      if (agent.id.includes("linkedin") || agent.id.includes("profile")) score += 12;
+    }
+
     if (score >= 5) {
       scoredAgents.push({ agent, score });
     }
@@ -65,8 +79,9 @@ export async function POST(req: NextRequest) {
 
     // 1. Context Engine Integration
     let contextPrompt = `\n\n[Candidate Portfolio Context Index]`;
+    let pluginPrompt = "";
     if (context) {
-      const { profile, metrics, resumeAnalysis, GitHubAnalysis, linkedinAnalysis, jobApplications } = context;
+      const { profile, metrics, resumeAnalysis, GitHubAnalysis, linkedinAnalysis, jobApplications, enabledPlugins } = context;
       
       contextPrompt += `
 Candidate Profile:
@@ -98,6 +113,21 @@ LinkedIn Status:
 Job Tracking Summary (Last 5 applications):
 ${jobApplications ? JSON.stringify(jobApplications.slice(0, 5)) : "No active tracker data"}
 `;
+
+      if (enabledPlugins) {
+        if (enabledPlugins["star-coach"]) {
+          pluginPrompt += `\n\n[Plugin Active: STAR Behavioral Coach]\nInstruction: Always structure behavioral responses in STAR format (Situation, Task, Action, Result). Highlight metrics and outcomes for each bullet.`;
+        }
+        if (enabledPlugins["leetcode-tracker"]) {
+          pluginPrompt += `\n\n[Plugin Active: LeetCode Tracker Connector]\nInstruction: Focus heavily on algorithmic correctness, time/space complexity (Big O notation), and suggest LeetCode problem recommendations.`;
+        }
+        if (enabledPlugins["salary-intel"]) {
+          pluginPrompt += `\n\n[Plugin Active: Salary Intelligence]\nInstruction: Focus recommendations on compensation negotiation tactics, salary benchmarks, and levels alignment.`;
+        }
+        if (enabledPlugins["resume-pdf"]) {
+          pluginPrompt += `\n\n[Plugin Active: Resume PDF Parser]\nInstruction: Tailor suggestions specifically for PDF layout compliance and parsing logic.`;
+        }
+      }
     }
 
     // 2. Multi-Agent Router & Orchestrator
@@ -129,6 +159,7 @@ ${jobApplications ? JSON.stringify(jobApplications.slice(0, 5)) : "No active tra
     let systemMessage = messages.find((m: any) => m.role === "system");
     const masterSystemContext = `You are Career Copilot, an AI career workspace assistant. Always use candidates' dossier metrics to deliver hyper-personalized guidance.
 ${contextPrompt}
+${pluginPrompt}
 ${agentPrompts}`;
 
     if (systemMessage) {
