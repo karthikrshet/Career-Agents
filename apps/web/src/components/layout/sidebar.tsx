@@ -19,8 +19,8 @@ const NAV_ITEMS = [
     items: [
       { href: "/", icon: LayoutDashboard, label: "Dashboard" },
       { href: "/resume", icon: FileText, label: "Resume Studio" },
-      { href: "/GitBranch", icon: GitBranch, label: "GitBranch Analyzer" },
-      { href: "/Link2", icon: Link2, label: "Link2 Optimizer" },
+      { href: "/github", icon: GitBranch, label: "GitHub Analyzer" },
+      { href: "/linkedin", icon: Link2, label: "LinkedIn Optimizer" },
       { href: "/interview", icon: Mic, label: "Interview Lab" },
     ],
   },
