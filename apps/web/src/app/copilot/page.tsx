@@ -10,7 +10,8 @@ import {
   FileText, GitBranch, Mic, Settings, ChevronRight, Pin,
   Archive, Trash2, Folder, Paperclip, X, Image as ImageIcon,
   Check, Play, HelpCircle, FileSpreadsheet, FileCode, CheckCircle2,
-  TrendingUp, Volume2, Globe, Cpu, ChevronDown, Zap, Download, Star, Search
+  TrendingUp, Volume2, Globe, Cpu, ChevronDown, Zap, Download, Star,
+  Search, Copy, StopCircle, RefreshCw, Filter, SortAsc
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";

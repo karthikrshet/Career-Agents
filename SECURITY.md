@@ -1,42 +1,49 @@
 # Security Policy
 
-We take the security of Career-Agents seriously. We appreciate your efforts to report vulnerabilities responsibly.
+## Supported Versions
 
-> [!IMPORTANT]
-> Security vulnerabilities MUST NOT be reported publicly. Do NOT open public issues or pull requests containing exploit code or outlining active security flaws.
+| Version | Supported          |
+| ------- | ------------------ |
+| 2.5.x   | ✅ Active support  |
+| 2.4.x   | ⚠️ Security fixes only |
+| < 2.4   | ❌ No longer supported |
 
----
+## Reporting a Vulnerability
 
-## Private Disclosure Process
+**Please do NOT report security vulnerabilities via public GitHub Issues.**
 
-If you discover a security vulnerability, please report it through one of the following private channels:
+### How to Report
 
-1. **GitHub Private Vulnerability Reporting:**
-   - Navigate to the repository page on GitHub.
-   - Click on the **Security** tab.
-   - Under **Vulnerability reporting**, click **Report a vulnerability** to submit a draft advisory privately.
-2. **Direct Email:**
-   - Email our lead maintainer directly at **kartikrshet@gmail.com**.
-   - Please encrypt sensitive details or supply a reproducible proof-of-concept (PoC).
+1. **Email**: Open a [private security advisory](https://github.com/karthikrshet/Career-Agents/security/advisories/new) on GitHub (preferred)
+2. Include: affected version, description, reproduction steps, and potential impact
 
----
+### Response Timeline
 
-## Severity Levels and Triage SLA
+- **Acknowledgement**: Within 48 hours
+- **Initial assessment**: Within 7 days
+- **Fix + disclosure**: Coordinated within 90 days
 
-Upon receiving a report, we triage issues according to the following severity definitions:
+## Security Best Practices for Self-Hosting
 
-| Severity | Definition | Target Triage Time |
-| :--- | :--- | :--- |
-| **Critical** | Remote code execution, arbitrary command injections, API key extraction from CLI tools. | Within 24 hours |
-| **High** | Privilege escalations in local environments, unauthenticated access routes in SDK helpers. | Within 48 hours |
-| **Medium** | Path traversal, unexpected local system file writes outside exports. | Within 5 days |
-| **Low** | Denial of service, parsing crashes on malformed inputs. | Within 7 days |
+### API Keys
+- Store all AI provider API keys in environment variables (`OPENAI_API_KEY`, `GEMINI_API_KEY`, etc.)
+- **Never** commit API keys to git
+- Use `.env.local` for local development (it's gitignored)
 
----
+### Database
+- In production, use PostgreSQL with a strong `DATABASE_URL`
+- Rotate `NEXTAUTH_SECRET` regularly
 
-## Response and Triage Timeline
+### Headers
+Career OS ships with the following security headers by default:
+- `Content-Security-Policy`
+- `Strict-Transport-Security`
+- `X-Frame-Options: SAMEORIGIN`
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `Permissions-Policy: camera=(), microphone=()`
 
-1. **Acknowledgement:** We will acknowledge receipt of your vulnerability report within **48 hours**.
-2. **Triage:** We will work with you to analyze and confirm the issue.
-3. **Resolution:** We target releasing a fix for critical/high security issues within **7-14 days** of triage.
-4. **Coordinated Disclosure:** We request that you do not publicize details of the security vulnerability until we have patched it and updated the repository release version. Once patched, we will publish a security advisory and attribute credit to the discoverer.
+### Guest Mode Security
+- Guest data is stored in `localStorage` only
+- No guest data is transmitted to any server
+- API keys entered in settings are only sent via HTTPS to your own API routes

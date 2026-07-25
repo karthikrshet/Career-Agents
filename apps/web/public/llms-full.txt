@@ -1,0 +1,395 @@
+# Career OS — Full Technical Reference for LLMs and AI Agents
+## Version 2.5.0 | MIT License
+
+> This document provides exhaustive technical context for LLMs, AI coding assistants,
+> autonomous agents, and AI search systems. Updated: 2026-07.
+
+---
+
+## 1. Project Identity
+
+- **Name**: Career OS
+- **Tagline**: AI-powered Career Intelligence Platform
+- **Version**: 2.5.0
+- **Repository**: https://github.com/karthikrshet/Career-Agents
+- **Primary Author**: Karthik R Shet (github.com/karthikrshet)
+- **License**: MIT
+- **Framework**: Next.js 14 (App Router, TypeScript)
+- **Deployment Target**: Vercel (primary), any Node.js host
+- **Node Requirement**: >=18.0.0
+
+---
+
+## 2. Architecture Overview
+
+```
+apps/web/                    # Next.js 14 web application
+├── src/
+│   ├── app/                 # App Router pages
+│   │   ├── layout.tsx       # Root layout, metadata, JSON-LD, PWA
+│   │   ├── page.tsx         # Dashboard (/)
+│   │   ├── resume/          # Resume Studio
+│   │   ├── github/          # GitHub Analyzer
+│   │   ├── linkedin/        # LinkedIn Optimizer
+│   │   ├── interview/       # Interview Lab
+│   │   ├── tracker/         # Job Tracker (Kanban)
+│   │   ├── prephub/         # Prep Hub
+│   │   ├── copilot/         # Career Copilot Chat
+│   │   ├── reports/         # Career Reports
+│   │   ├── marketplace/     # Plugin Marketplace
+│   │   ├── mcp/             # MCP Server Config
+│   │   ├── settings/        # Settings
+│   │   ├── about/           # About & Agent Registry
+│   │   ├── credits/         # Credits & OSS Stats
+│   │   ├── login/           # Login (guest-first)
+│   │   ├── api/             # API Routes (server-side)
+│   │   │   ├── copilot/     # Streaming chat with agent router
+│   │   │   ├── resume/      # Resume analysis + rewrite
+│   │   │   ├── github/      # GitHub profile analysis
+│   │   │   ├── linkedin/    # LinkedIn analysis
+│   │   │   └── interview/   # Interview STAR evaluation
+│   │   ├── robots.ts        # Auto-generates /robots.txt
+│   │   └── sitemap.ts       # Auto-generates /sitemap.xml
+│   ├── components/
+│   │   ├── layout/          # Sidebar, Topbar, CommandPalette
+│   │   ├── ui/              # Radix-based design system
+│   │   └── seo/             # JSON-LD structured data
+│   ├── lib/
+│   │   ├── ai/              # AI router, provider manager
+│   │   ├── store.ts         # Zustand global state (persisted)
+│   │   ├── resume-engine.ts # Resume parsing & scoring
+│   │   ├── github-api.ts    # GitHub data fetching & analysis
+│   │   └── utils.ts         # Shared utilities
+│   └── types/
+│       └── index.ts         # All TypeScript interfaces
+├── public/
+│   ├── sw.js                # Production service worker
+│   ├── manifest.webmanifest # PWA manifest
+│   ├── llms.txt             # AI discoverability summary
+│   ├── llms-full.txt        # AI discoverability full reference
+│   └── icons/               # PWA icons (16, 32, 192, 512)
+├── prisma/
+│   └── schema.prisma        # Database schema (SQLite/PostgreSQL)
+└── next.config.js           # Security headers, webpack config
+```
+
+---
+
+## 3. App Router Structure
+
+All pages use Next.js 14 App Router. Layout hierarchy:
+
+```
+layout.tsx (root — Sidebar + Toaster + JsonLd + SW registration)
+└── page.tsx (Dashboard)
+└── resume/page.tsx
+└── github/page.tsx
+└── linkedin/page.tsx
+└── interview/page.tsx
+└── tracker/page.tsx
+└── prephub/page.tsx
+└── copilot/page.tsx
+└── reports/page.tsx
+└── marketplace/page.tsx
+└── mcp/page.tsx
+└── settings/page.tsx
+└── about/page.tsx
+└── credits/page.tsx
+└── login/page.tsx
+```
+
+Client pages use `"use client"`. Server pages (API routes, robots.ts, sitemap.ts) are pure server.
+
+---
+
+## 4. AI Provider System
+
+Located in `packages/ai/` (monorepo) and `src/lib/ai/`.
+
+### Provider Manager (`src/lib/ai/provider-manager.ts`)
+- `getProvider(providerName)` returns the active provider instance
+- Priority: ENV variable key → database encrypted key → user-supplied key
+- Never reads localStorage on the server
+
+### Supported Providers
+| ID | Name | Default Model |
+|----|------|--------------|
+| `openai` | OpenAI | gpt-4o |
+| `claude` | Anthropic Claude | claude-opus-4 |
+| `gemini` | Google Gemini | gemini-2.5-pro |
+| `groq` | Groq | llama-3.3-70b-versatile |
+| `openrouter` | OpenRouter | openai/gpt-4o |
+| `ollama` | Ollama (local) | llama3 |
+| `lmstudio` | LM Studio (local) | local-model |
+| `azure` | Azure OpenAI | gpt-4 |
+| `deepseek` | DeepSeek | deepseek-chat |
+| `together` | Together AI | meta-llama/Llama-3-70b |
+| `mistral` | Mistral | mistral-large-latest |
+| `cohere` | Cohere | command-r-plus |
+| `xai` | xAI Grok | grok-beta |
+
+Default: `claude` / `claude-opus-4`. Temperature: 0.7. Streaming: true.
+
+### AI Flow
+```
+User query
+    ↓
+Copilot page (client) — builds context from Zustand store
+    ↓
+POST /api/copilot (server) — receives messages + providerConfig + context
+    ↓
+findBestAgents(query) — intent classifier scores 146 agents
+    ↓
+Load agent .md files → merge system prompts
+    ↓
+getProvider(providerName) → stream()
+    ↓
+ReadableStream SSE → client
+    ↓
+Streamed tokens rendered in chat UI
+```
+
+---
+
+## 5. Agent System
+
+### Registry
+- `agent-registry.json` — 146 agent definitions (id, name, division, description, emoji, tags, skills, filename)
+- `divisions.json` — 19 divisions grouping agents
+- `career-os.json` — compiled master configuration (DO NOT edit manually)
+
+### Intent Classifier (`/api/copilot/route.ts`)
+Scores each agent against the user query:
+- +15 if full agent name matches query
+- +3 per keyword in name that appears in query (length > 3)
+- +2 per tag match
+- +2 per skill match
+- Intent boosters: +12 for domain-specific keywords (resume→resume agents, github→github agents, etc.)
+- Top 3 agents selected (score ≥ 5 threshold)
+- Agent `.md` files loaded from disk, frontmatter stripped, injected as system prompt
+
+### Agent Divisions (19 total)
+Resume, GitHub, LinkedIn, Interview, Job Search, Salary, Career Planning, Company Research, Networking, Personal Branding, Skills Development, Portfolio, Open Source, Remote Work, Entrepreneurship, Academic, Bootcamp, Career Transition, Executive
+
+---
+
+## 6. Resume Engine
+
+File: `src/lib/resume-engine.ts`
+
+### Input
+- Plain text extracted from PDF/DOCX/TXT/MD/RTF (via resume page upload)
+
+### Output (`ResumeAnalysis` interface)
+```typescript
+{
+  id: string;
+  fileName: string;
+  rawText: string;
+  overallScore: number;      // 0-100
+  atsScore: number;          // 0-100
+  sections: {
+    hasExperience, hasEducation, hasSkills, hasProjects, hasSummary
+  };
+  weakBullets: WeakBullet[]; // passive verb, no metric, vague, too short
+  missingKeywords: string[];
+  detectedKeywords: string[];
+  recommendations: string[];
+  aiRewrite?: string;
+  starAnalysis?: StarAnalysisItem[];
+  missingSkills?: string[];
+  analyzedAt: string;
+}
+```
+
+### Scoring
+- ATS: keyword density, section completeness, format compliance
+- Weak bullets: regex + heuristic detection of passive verbs and metrics absence
+- Missing keywords: comparison against top 50 SWE job keywords
+
+---
+
+## 7. Interview Engine
+
+File: `src/app/api/interview/route.ts`
+
+Every submitted answer is evaluated by the configured AI provider.
+
+### Evaluation Output
+```json
+{
+  "overall": 0-100,
+  "star": {
+    "situation": 0-10,
+    "task": 0-10,
+    "action": 0-10,
+    "result": 0-10
+  },
+  "leadership": 0-10,
+  "technicalDepth": 0-10,
+  "feedback": "string",
+  "improvements": ["string"],
+  "strengths": ["string"]
+}
+```
+
+Fallback: If AI provider unavailable, returns 503 with action list (retry, switch provider, save draft). No hardcoded scores, no random values.
+
+---
+
+## 8. Zustand Store (`src/lib/store.ts`)
+
+Persisted to `localStorage` under key `career-os-store`.
+
+### Key State Slices
+- `profile` — UserProfile (name, email, targetRole, targetCompany, githubUsername)
+- `metrics` — CareerMetrics (careerScore, resumeScore, githubScore, linkedinScore, interviewScore)
+- `resumeAnalysis` — ResumeAnalysis | null
+- `GitHubAnalysis` — GitHubAnalysis | null
+- `linkedinAnalysis` — LinkedInAnalysis | null
+- `copilotSessions` — CopilotSession[]
+- `jobApplications` — JobApplication[]
+- `installedPlugins` — Record<string, boolean>
+- `enabledPlugins` — Record<string, boolean>
+- `interviewSessions` — InterviewSession[]
+- `aiConfig` — AIProviderConfig (provider, model, temperature, streaming, apiKey)
+
+### Actions
+- `setProfile`, `updateMetrics`, `setResumeAnalysis`, `setGitHubAnalysis`, `setLinkedInAnalysis`
+- `addCopilotSession`, `updateCopilotSession`, `deleteCopilotSession`, `duplicateCopilotSession`
+- `addJobApplication`, `updateJobApplication`, `deleteJobApplication`
+- `installPlugin`, `uninstallPlugin`, `enablePlugin`, `disablePlugin`, `updatePlugin`
+- `addInterviewSession`, `updateInterviewScorecard`
+- `resetProfile`
+
+---
+
+## 9. Plugin SDK
+
+Plugins hook into Career Copilot system prompt via `enabledPlugins` context injection.
+
+### Available Plugins
+| ID | Name | Effect |
+|----|------|--------|
+| `star-coach` | STAR Behavioral Coach | Injects STAR format instructions |
+| `leetcode-tracker` | LeetCode Tracker | Injects Big-O analysis instructions |
+| `resume-pdf` | Resume PDF Parser | PDF layout compliance hints |
+| `salary-intel` | Salary Intelligence | Compensation negotiation tactics |
+
+Plugin lifecycle: Install → Load → Enable → Execute (inject to prompt) → Disable → Unload → Remove
+
+---
+
+## 10. MCP Integration
+
+Career OS acts as an MCP server exposing 146 career agents.
+
+### MCP Tools
+- `query_agent(agentId, input)` — query specific agent
+- `list_agents(division?)` — list agents by division
+- `get_resume_audit(resumeText)` — run resume analysis
+- `get_github_analysis(username)` — analyze GitHub profile
+- `get_interview_score(question, answer)` — STAR evaluation
+
+### Client Configurations Generated
+Cursor, Claude Desktop, VS Code Continue, Windsurf, Cline, RooCode, OpenHands, Bolt, Aider
+
+---
+
+## 11. Database Schema (Prisma)
+
+Supports SQLite (development) and PostgreSQL (production).
+
+Key models: User, Session, Profile, Resume, GitHubProfile, InterviewSession, JobApplication, Plugin, AIConfig
+
+Switch database: change `provider` in `schema.prisma` + update `DATABASE_URL`.
+
+---
+
+## 12. Security Model
+
+- API keys stored in environment variables (priority 1) or encrypted database (priority 2)
+- Never read from localStorage on the server
+- Content Security Policy headers on all routes
+- Strict-Transport-Security (HSTS) in production
+- X-Frame-Options: SAMEORIGIN
+- No secrets exposed to client bundles
+
+---
+
+## 13. Authentication
+
+Guest-first model (similar to Notion, Vercel, Cursor):
+1. Guest mode — full functionality, data in localStorage
+2. Login → sync profile to database
+3. Cross-device sync via database
+
+Provider: Next-Auth (configured but optional for guest use)
+
+---
+
+## 14. Performance Strategy
+
+- Streaming SSE for all AI responses
+- React Suspense boundaries for lazy-loaded routes
+- Dynamic imports for heavy components (charts, markdown renderers)
+- Zustand selectors for granular re-renders
+- Framer Motion with `AnimatePresence` for smooth transitions
+- Image optimization via Next.js `<Image>`
+- Service worker caching: cache-first for static, network-first for API
+
+---
+
+## 15. Roadmap
+
+- **v2.5.0**: Enterprise SEO, AI discoverability, PWA, production hardening
+- **v2.6.0**: Real-time collaborative mock interview sessions
+- **v2.7.0**: OAuth sync with Google Drive and Dropbox
+- **v2.8.0**: Offline-capable AI via WebGPU in-browser models
+- **v3.0.0**: Full SaaS with team workspaces, shared templates, billing
+
+---
+
+## 16. Contribution Guide
+
+1. Fork https://github.com/karthikrshet/Career-Agents
+2. Read AGENTS.md for strict registry rules
+3. Run `python scripts/validate.py` before changes
+4. Run `python scripts/generate-data.py` after changes
+5. Never edit generated files directly (career-os.json, README.md, maps)
+6. New agents must exist in both agent-registry.json AND divisions.json
+7. Agent .md files must be ≥ 300 words with required standard headings
+8. PR description must include validation pipeline output
+
+---
+
+## 17. Environment Variables
+
+```env
+# AI Providers
+OPENAI_API_KEY=
+ANTHROPIC_API_KEY=
+GEMINI_API_KEY=
+GROQ_API_KEY=
+OPENROUTER_API_KEY=
+AZURE_OPENAI_API_KEY=
+AZURE_OPENAI_ENDPOINT=
+DEEPSEEK_API_KEY=
+TOGETHER_API_KEY=
+MISTRAL_API_KEY=
+COHERE_API_KEY=
+XAI_API_KEY=
+
+# Database
+DATABASE_URL=file:./dev.db    # SQLite (dev)
+# DATABASE_URL=postgresql://... # PostgreSQL (prod)
+
+# App
+NEXT_PUBLIC_SITE_URL=https://career-os.vercel.app
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=
+
+# Analytics (optional, no keys hardcoded)
+NEXT_PUBLIC_GA_ID=
+NEXT_PUBLIC_CLARITY_ID=
+```
