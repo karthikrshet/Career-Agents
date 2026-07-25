@@ -378,7 +378,7 @@ export default function DashboardPage() {
                 <div className="py-8 text-center">
                   <Activity className="w-10 h-10 text-muted-foreground/20 mx-auto mb-3" />
                   <p className="text-sm text-muted-foreground">
-                    No activity yet — analyze your resume or GitBranch profile to get started.
+                    No activity yet — analyze your resume or GitHub profile to get started.
                   </p>
                   <div className="flex gap-2 justify-center mt-4">
                     <Link href="/resume">
@@ -387,10 +387,10 @@ export default function DashboardPage() {
                         Upload Resume
                       </Button>
                     </Link>
-                    <Link href="/GitBranch">
+                    <Link href="/github">
                       <Button size="sm" variant="outline">
                         <GitBranch className="w-3.5 h-3.5 mr-1.5" />
-                        Audit GitBranch
+                        Audit GitHub
                       </Button>
                     </Link>
                   </div>

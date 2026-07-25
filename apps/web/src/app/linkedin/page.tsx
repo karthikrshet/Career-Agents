@@ -101,7 +101,7 @@ export default function LinkedInPage() {
     }
     setAiLoading(true);
     try {
-      const res = await fetch("/api/Link2/analyze", {
+      const res = await fetch("/api/linkedin/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ headline, summary, config: settings.aiProvider }),
