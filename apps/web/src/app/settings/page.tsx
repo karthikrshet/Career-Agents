@@ -59,6 +59,13 @@ export default function SettingsPage() {
   const updateAIProvider = useStore((s) => s.updateAIProvider);
   const profile = useStore((s) => s.profile);
   const setProfile = useStore((s) => s.setProfile);
+  
+  const installedPlugins = useStore((s) => s.installedPlugins || {});
+  const enabledPlugins = useStore((s) => s.enabledPlugins || {});
+  const installPlugin = useStore((s) => s.installPlugin);
+  const uninstallPlugin = useStore((s) => s.uninstallPlugin);
+  const enablePlugin = useStore((s) => s.enablePlugin);
+  const disablePlugin = useStore((s) => s.disablePlugin);
 
   // States
   const [apiKey, setApiKey] = useState("");
@@ -646,20 +653,67 @@ export default function SettingsPage() {
                     <CardDescription>Manage publisher plugins and modular hooks</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-3 text-xs text-muted-foreground">
-                    <div className="flex justify-between items-center p-3 rounded-lg border border-border bg-card">
-                      <div>
-                        <p className="font-semibold text-foreground">STAR Behavioral Coach v1.0.4</p>
-                        <p className="text-[10px]">By Career OS Team · 12.4k installs</p>
-                      </div>
-                      <Badge variant="success">Active</Badge>
-                    </div>
-                    <div className="flex justify-between items-center p-3 rounded-lg border border-border bg-card">
-                      <div>
-                        <p className="font-semibold text-foreground">LeetCode Tracker Connector v0.8.2</p>
-                        <p className="text-[10px]">By Community Contributors · 4.8k installs</p>
-                      </div>
-                      <Button size="sm" variant="outline">Install</Button>
-                    </div>
+                    {(() => {
+                      const list = [
+                        { id: "star-coach", name: "STAR Behavioral Coach", version: "1.0.4", author: "Career OS Team" },
+                        { id: "leetcode-tracker", name: "LeetCode Tracker Connector", version: "0.8.2", author: "Community Contributors" },
+                        { id: "resume-pdf", name: "Resume PDF Parser", version: "1.2.0", author: "Career OS" },
+                        { id: "salary-intel", name: "Salary Intelligence", version: "1.0.3", author: "Community" },
+                      ];
+                      const installedList = list.filter(p => installedPlugins[p.id]);
+                      if (installedList.length === 0) {
+                        return (
+                          <div className="text-center py-6 text-xs text-muted-foreground">
+                            No plugins installed yet. Visit the <a href="/marketplace" className="text-primary hover:underline font-semibold">Plugin Marketplace</a> to install extensions.
+                          </div>
+                        );
+                      }
+                      return (
+                        <div className="space-y-2">
+                          {installedList.map((plugin) => {
+                            const isEnabled = !!enabledPlugins[plugin.id];
+                            return (
+                              <div key={plugin.id} className="flex justify-between items-center p-3 rounded-lg border border-border bg-card/60">
+                                <div>
+                                  <p className="font-semibold text-foreground">{plugin.name}</p>
+                                  <p className="text-[10px] text-muted-foreground">By {plugin.author} · Version {plugin.version}</p>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="text-[10px] text-muted-foreground">{isEnabled ? "Active" : "Disabled"}</span>
+                                    <input
+                                      type="checkbox"
+                                      checked={isEnabled}
+                                      onChange={() => {
+                                        if (isEnabled) {
+                                          disablePlugin(plugin.id);
+                                          toast.info(`${plugin.name} disabled`);
+                                        } else {
+                                          enablePlugin(plugin.id);
+                                          toast.success(`${plugin.name} enabled`);
+                                        }
+                                      }}
+                                      className="accent-primary cursor-pointer h-3.5 w-3.5"
+                                    />
+                                  </div>
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    className="h-7 text-[10px] text-red-400 hover:text-red-300 px-2"
+                                    onClick={() => {
+                                      uninstallPlugin(plugin.id);
+                                      toast.success(`${plugin.name} uninstalled`);
+                                    }}
+                                  >
+                                    Uninstall
+                                  </Button>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      );
+                    })()}
                   </CardContent>
                 </Card>
               </motion.div>

@@ -59,6 +59,7 @@ export default function InterviewPage() {
   const addInterviewSession = useStore((s) => s.addInterviewSession);
   const updateSessionScorecard = useStore((s) => s.updateSessionScorecard);
   const settings = useStore((s) => s.settings);
+  const updateAIProvider = useStore((s) => s.updateAIProvider);
 
   const [stage, setStage] = useState<Stage>("config");
   const [company, setCompany] = useState("Google");
@@ -71,6 +72,8 @@ export default function InterviewPage() {
   const [responses, setResponses] = useState<{ questionId: string; answer: string }[]>([]);
   const [timerSec, setTimerSec] = useState(0);
   const [evaluating, setEvaluating] = useState(false);
+  const [evalError, setEvalError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -124,41 +127,97 @@ export default function InterviewPage() {
     }
   }
 
+  function handleRetryEvaluation() {
+    if (session) {
+      finishSession(session, responses);
+    }
+  }
+
+  function handleSaveDraft() {
+    if (!session) return;
+    updateSessionScorecard(session.id, {
+      responses: responses.map((r) => ({ ...r, submittedAt: new Date().toISOString() })),
+      completedAt: new Date().toISOString(),
+    });
+    toast.success("Draft saved successfully to past sessions.");
+    setStage("config");
+    setSession(null);
+  }
+
   async function finishSession(s: InterviewSession, resps: typeof responses) {
     if (timerRef.current) clearInterval(timerRef.current);
     setEvaluating(true);
-
-    // Local scoring (AI scoring would come from API)
-    const avgLen = resps.reduce((a, r) => a + r.answer.split(/\s+/).length, 0) / resps.length;
-    const lengthScore = Math.min(100, Math.round((avgLen / 150) * 100));
-
-    const scorecard = {
-      overallScore: Math.round((lengthScore + 60) / 2),
-      dimensions: {
-        starStructure: Math.round(Math.random() * 30 + 55),
-        technicalAccuracy: Math.round(Math.random() * 30 + 50),
-        communication: Math.round(Math.random() * 20 + 65),
-        problemSolving: Math.round(Math.random() * 25 + 55),
-        leadership: Math.round(Math.random() * 20 + 60),
-        cultureAdd: Math.round(Math.random() * 20 + 65),
-      },
-      strengths: ["Clear communication structure", "Covered key technical concepts"],
-      improvements: ["Add more quantified results (%, users, time saved)", "Use STAR format more explicitly"],
-      aiSummary: settings.aiProvider.apiKey
-        ? "Connect AI provider in Settings for a detailed AI-powered scorecard."
-        : "Connect AI provider in Settings for a detailed AI-powered scorecard.",
-    };
-
-    updateSessionScorecard(s.id, {
-      responses: resps.map((r) => ({ ...r, submittedAt: new Date().toISOString() })),
-      scorecard,
-      completedAt: new Date().toISOString(),
-    });
-
-    const updatedSession = { ...s, scorecard, responses: resps.map((r) => ({ ...r, submittedAt: new Date().toISOString() })) };
-    setSession(updatedSession);
-    setEvaluating(false);
+    setEvalError(false);
+    setErrorMessage("");
     setStage("scorecard");
+
+    try {
+      const res = await fetch("/api/interview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "evaluate",
+          company: s.company,
+          role: s.role,
+          mode: s.mode,
+          difficulty: s.difficulty,
+          responses: resps.map((r) => {
+            const questionText = s.questions.find((q) => q.id === r.questionId)?.text || "";
+            return { question: questionText, answer: r.answer };
+          }),
+          aiConfig: {
+            provider: settings.aiProvider.provider,
+            apiKey: settings.aiProvider.apiKey,
+            model: settings.aiProvider.model,
+            temperature: settings.aiProvider.temperature || 0.7
+          }
+        })
+      });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Unable to evaluate because AI provider is unavailable.");
+      }
+
+      const parsed = await res.json();
+      
+      if (!parsed || !parsed.scores || typeof parsed.scores.overall !== "number") {
+        throw new Error("Unable to evaluate because AI provider is unavailable.");
+      }
+
+      const scorecard = {
+        overallScore: parsed.scores.overall,
+        dimensions: {
+          situation: parsed.scores.situation,
+          task: parsed.scores.task,
+          action: parsed.scores.action,
+          result: parsed.scores.result,
+          ownership: parsed.scores.ownership,
+          leadership: parsed.scores.leadership,
+          communication: parsed.scores.communication,
+          technicalDepth: parsed.scores.technicalDepth,
+          problemSolving: parsed.scores.problemSolving,
+          confidence: parsed.scores.confidence
+        },
+        strengths: parsed.strengths || [],
+        improvements: parsed.improvements || [],
+        aiSummary: parsed.feedback || "Evaluation complete."
+      };
+
+      updateSessionScorecard(s.id, {
+        responses: resps.map((r) => ({ ...r, submittedAt: new Date().toISOString() })),
+        scorecard,
+        completedAt: new Date().toISOString(),
+      });
+
+      const updatedSession = { ...s, scorecard, responses: resps.map((r) => ({ ...r, submittedAt: new Date().toISOString() })) };
+      setSession(updatedSession);
+      setEvaluating(false);
+    } catch (err: any) {
+      setEvaluating(false);
+      setEvalError(true);
+      setErrorMessage(err.message || "Unable to evaluate because AI provider is unavailable.");
+    }
   }
 
   return (
@@ -329,7 +388,7 @@ export default function InterviewPage() {
           )}
 
           {/* Scorecard stage */}
-          {stage === "scorecard" && session?.scorecard && (
+          {stage === "scorecard" && (
             <motion.div
               key="scorecard"
               initial={{ opacity: 0, y: 16 }}
@@ -339,9 +398,56 @@ export default function InterviewPage() {
               {evaluating ? (
                 <div className="flex flex-col items-center justify-center py-20 gap-4">
                   <Loader2 className="w-10 h-10 text-primary animate-spin" />
-                  <p className="text-sm text-muted-foreground">Evaluating your responses...</p>
+                  <p className="text-sm text-muted-foreground">Evaluating your responses using AI...</p>
                 </div>
-              ) : (
+              ) : evalError ? (
+                <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-6 text-center space-y-4 max-w-lg mx-auto glass">
+                  <AlertCircle className="w-12 h-12 text-red-400 mx-auto animate-bounce" />
+                  <div className="space-y-1">
+                    <p className="text-sm font-semibold text-red-400">Evaluation Failed</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {errorMessage || "Unable to evaluate because AI provider is unavailable."}
+                    </p>
+                  </div>
+                  
+                  {/* Inline Provider Switcher (Issue 14 & 15) */}
+                  <div className="space-y-1.5 border border-border/40 p-3 rounded-lg bg-secondary/20 text-left">
+                    <label className="text-[10px] text-muted-foreground block font-semibold mb-1 uppercase tracking-wider">Switch AI Provider</label>
+                    <select
+                      className="w-full px-2 py-1.5 rounded bg-secondary border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary text-foreground"
+                      value={settings.aiProvider.provider}
+                      onChange={(e) => {
+                        const newProvider = e.target.value;
+                        const defaultModelMap: Record<string, string> = {
+                          openai: "gpt-4o",
+                          claude: "claude-3-5-sonner",
+                          gemini: "gemini-1.5-pro",
+                          groq: "llama3-70b-8192"
+                        };
+                        updateAIProvider({
+                          provider: newProvider,
+                          model: defaultModelMap[newProvider] || "gemini-1.5-pro"
+                        });
+                        toast.info(`Switched active provider to ${newProvider}`);
+                      }}
+                    >
+                      <option value="gemini">Gemini</option>
+                      <option value="groq">Groq</option>
+                      <option value="claude">Claude</option>
+                      <option value="openai">OpenAI</option>
+                    </select>
+                  </div>
+
+                  <div className="flex gap-2 justify-center pt-2">
+                    <Button size="sm" onClick={handleRetryEvaluation}>
+                      Retry
+                    </Button>
+                    <Button size="sm" variant="outline" onClick={handleSaveDraft}>
+                      Save Draft
+                    </Button>
+                  </div>
+                </div>
+              ) : session?.scorecard ? (
                 <>
                   <div className="flex items-center gap-4">
                     <div className="flex-1">
@@ -364,10 +470,10 @@ export default function InterviewPage() {
                             {key.replace(/([A-Z])/g, " $1").trim()}
                           </p>
                           <div className="flex items-end gap-2">
-                            <span className={cn("text-xl font-bold", scoreToColor(value))}>{value}</span>
-                            <span className="text-xs text-muted-foreground mb-0.5">/100</span>
+                            <span className={cn("text-xl font-bold", scoreToColor((value as number) * 10))}>{value as number}</span>
+                            <span className="text-xs text-muted-foreground mb-0.5">/10</span>
                           </div>
-                          <Progress value={value} className="h-1 mt-2" />
+                          <Progress value={(value as number) * 10} className="h-1 mt-2" />
                         </CardContent>
                       </Card>
                     ))}
@@ -384,7 +490,7 @@ export default function InterviewPage() {
                       <CardContent>
                         <ul className="space-y-1">
                           {session.scorecard.strengths.map((s, i) => (
-                            <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                            <li key={i} className="text-sm text-muted-foreground flex items-start gap-2 text-left">
                               <Star className="w-3 h-3 text-emerald-400 shrink-0 mt-0.5" />
                               {s}
                             </li>
@@ -402,7 +508,7 @@ export default function InterviewPage() {
                       <CardContent>
                         <ul className="space-y-1">
                           {session.scorecard.improvements.map((s, i) => (
-                            <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                            <li key={i} className="text-sm text-muted-foreground flex items-start gap-2 text-left">
                               <ChevronRight className="w-3 h-3 text-amber-400 shrink-0 mt-0.5" />
                               {s}
                             </li>
@@ -417,7 +523,7 @@ export default function InterviewPage() {
                     <Button variant="outline" onClick={() => toast.info("Export coming soon")}>Export Report</Button>
                   </div>
                 </>
-              )}
+              ) : null}
             </motion.div>
           )}
         </AnimatePresence>

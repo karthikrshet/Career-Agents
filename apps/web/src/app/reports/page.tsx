@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
-import { cn, scoreToColor, scoreToGrade } from "@/lib/utils";
+import { cn, scoreToColor, scoreToGrade, generateId } from "@/lib/utils";
 
 export default function ReportsPage() {
   const metrics = useStore((s) => s.metrics);
@@ -25,6 +25,13 @@ export default function ReportsPage() {
   const jobApplications = useStore((s) => s.jobApplications);
 
   const [generating, setGenerating] = useState<string | null>(null);
+  const [history, setHistory] = useState<{ id: string; name: string; date: string; format: string; version: number }[]>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("career-reports-history");
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
 
   const hasData = metrics.careerScore > 0 || resumeAnalysis || GitHubAnalysis;
 
@@ -83,8 +90,32 @@ export default function ReportsPage() {
         const md = generateMarkdown();
         const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Career OS Report</title><style>body{font-family:system-ui;max-width:800px;margin:40px auto;padding:20px;background:#090d16;color:#e2e8f0}h1{background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}table{width:100%;border-collapse:collapse}th,td{padding:8px 12px;border:1px solid #1e293b;text-align:left}tr:nth-child(even){background:#111827}</style></head><body><pre>${md}</pre></body></html>`;
         downloadFile(html, `career-report-${Date.now()}.html`, "text/html");
+      } else if (format === "doc") {
+        const docHtml = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head><title>Career OS Report</title><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml></head>
+<body>
+  <h2>Career OS Report</h2>
+  <pre>${generateMarkdown().replace(/\n/g, "<br/>")}</pre>
+</body>
+</html>`;
+        downloadFile(docHtml, `career-report-${Date.now()}.doc`, "application/msword");
+      } else if (format === "pdf") {
+        window.print();
       }
-      toast.success(`${format.toUpperCase()} report downloaded`);
+
+      // Add version entry to history
+      const newEntry = {
+        id: generateId(),
+        name: `Career Report (${format.toUpperCase()})`,
+        date: new Date().toLocaleString(),
+        format,
+        version: history.filter(h => h.format === format).length + 1
+      };
+      const updated = [newEntry, ...history];
+      setHistory(updated);
+      localStorage.setItem("career-reports-history", JSON.stringify(updated));
+
+      toast.success(`${format.toUpperCase()} report generated`);
     } catch {
       toast.error("Export failed");
     } finally {
@@ -96,6 +127,8 @@ export default function ReportsPage() {
     { format: "markdown", label: "Markdown Report", desc: "Full analysis report in .md format", icon: FileText, recommended: true },
     { format: "json", label: "JSON Data Export", desc: "Raw data — all scores, analyses, applications", icon: FileJson, recommended: false },
     { format: "html", label: "HTML Report", desc: "Styled, shareable web page", icon: Code, recommended: false },
+    { format: "doc", label: "Word Document", desc: "Word-compatible document", icon: FileText, recommended: false },
+    { format: "pdf", label: "PDF Export", desc: "Print or save as high-fidelity PDF", icon: FileText, recommended: false },
   ];
 
   return (
@@ -167,34 +200,99 @@ export default function ReportsPage() {
           ))}
         </div>
 
-        {/* Report history */}
-        <Card className="glass">
-          <CardHeader className="pb-3">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-muted-foreground" />
-              <CardTitle className="text-base">Data Summary</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              {[
-                { label: "Resume analyses", value: resumeAnalysis ? 1 : 0 },
-                { label: "GitBranch audits", value: GitHubAnalysis ? 1 : 0 },
-                { label: "Link2 analyses", value: linkedinAnalysis ? 1 : 0 },
-                { label: "Interview sessions", value: interviewSessions.length },
-                { label: "Job applications", value: jobApplications.length },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center justify-between py-2 border-b border-border/50 last:border-0">
-                  <span className="text-sm text-muted-foreground">{item.label}</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium">{item.value}</span>
-                    {item.value > 0 && <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Data Summary */}
+          <Card className="glass">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-muted-foreground" />
+                <CardTitle className="text-base">Data Summary</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {[
+                  { label: "Resume analyses", value: resumeAnalysis ? 1 : 0 },
+                  { label: "GitBranch audits", value: GitHubAnalysis ? 1 : 0 },
+                  { label: "Link2 analyses", value: linkedinAnalysis ? 1 : 0 },
+                  { label: "Interview sessions", value: interviewSessions.length },
+                  { label: "Job applications", value: jobApplications.length },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center justify-between py-2 border-b border-border/50 last:border-0">
+                    <span className="text-sm text-muted-foreground">{item.label}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium">{item.value}</span>
+                      {item.value > 0 && <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />}
+                    </div>
                   </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Generated Reports History */}
+          <Card className="glass">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-primary" />
+                <CardTitle className="text-base">Generated Reports History</CardTitle>
+                <Badge variant="secondary" className="text-[10px]">{history.length} versions</Badge>
+              </div>
+            </CardHeader>
+            <CardContent>
+              {history.length === 0 ? (
+                <div className="text-center py-6 text-xs text-muted-foreground">
+                  No reports generated in this workspace session.
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              ) : (
+                <div className="space-y-2 max-h-[200px] overflow-auto">
+                  {history.map((entry) => (
+                    <div key={entry.id} className="flex items-center justify-between p-2 rounded-lg border border-border bg-secondary/15 text-xs">
+                      <div>
+                        <p className="font-semibold text-foreground">{entry.name} (v{entry.version})</p>
+                        <p className="text-[9px] text-muted-foreground mt-0.5">{entry.date}</p>
+                      </div>
+                      <div className="flex gap-1">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="h-7 text-[10px]"
+                          onClick={() => {
+                            navigator.clipboard.writeText(`https://career-os.dev/reports/share/${entry.id}`);
+                            toast.success("Share link copied to clipboard");
+                          }}
+                        >
+                          Share
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="h-7 text-[10px]"
+                          onClick={() => handleGenerate(entry.format)}
+                        >
+                          Download
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="h-7 text-[10px] text-red-400 hover:text-red-300"
+                          onClick={() => {
+                            const updated = history.filter((h) => h.id !== entry.id);
+                            setHistory(updated);
+                            localStorage.setItem("career-reports-history", JSON.stringify(updated));
+                            toast.success("Report deleted from history");
+                          }}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import {
   LayoutDashboard, FileText, GitBranch, Link2, Mic,
   KanbanSquare, Building2, Bot, BarChart3, Package,
   Cpu, Settings, ChevronLeft, ChevronRight, Zap,
-  TrendingUp
+  TrendingUp, Award, Info
 } from "lucide-react";
 import { cn, formatScore } from "@/lib/utils";
 import { useStore } from "@/lib/store";
@@ -39,6 +39,8 @@ const NAV_ITEMS = [
       { href: "/marketplace", icon: Package, label: "Marketplace" },
       { href: "/mcp", icon: Cpu, label: "MCP Server" },
       { href: "/settings", icon: Settings, label: "Settings" },
+      { href: "/about", icon: Info, label: "About Platform" },
+      { href: "/credits", icon: Award, label: "Credits" },
     ],
   },
 ];
