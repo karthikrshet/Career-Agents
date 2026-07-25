@@ -204,6 +204,11 @@ export interface PrepModule {
   notes?: string;
 }
 
+export interface AIMessage {
+  role: "system" | "user" | "assistant";
+  content: string;
+}
+
 // Copilot
 export interface CopilotMessage {
   id: string;
@@ -213,12 +218,23 @@ export interface CopilotMessage {
   toolCall?: string;
 }
 
+export interface CopilotFolder {
+  id: string;
+  name: string;
+  color?: string;
+  createdAt: string;
+}
+
 export interface CopilotSession {
   id: string;
   title: string;
   messages: CopilotMessage[];
   createdAt: string;
   updatedAt: string;
+  pinned?: boolean;
+  archived?: boolean;
+  favorite?: boolean;
+  folderId?: string;
 }
 
 // Activity
