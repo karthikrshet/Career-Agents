@@ -1,14 +1,19 @@
+// apps/web/src/components/layout/command-palette.tsx
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Command } from "cmdk";
 import {
   LayoutDashboard, FileText, GitBranch, Link2, Mic,
   KanbanSquare, BookOpen, Bot, BarChart3, Package,
-  Settings, Zap, Search, ArrowRight, Loader2
+  Settings, Zap, Search, ArrowRight, Building2, MessageSquare
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useStore } from "@/lib/store";
+
+// Load local files at compile/bundle time
+import agentRegistry from "../../../../../agent-registry.json";
+import companiesRegistry from "../../../../../companies.json";
 
 const PAGES = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard, description: "Career overview & metrics" },
@@ -41,6 +46,7 @@ interface CommandPaletteProps {
 export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
   const router = useRouter();
   const [query, setQuery] = useState("");
+  const copilotSessions = useStore((s) => s.copilotSessions);
 
   const navigate = useCallback((href: string) => {
     router.push(href);
@@ -60,12 +66,40 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
   if (!open) return null;
 
   const lq = query.toLowerCase();
+
+  // Search local pages
   const filteredPages = PAGES.filter(
     (p) => p.label.toLowerCase().includes(lq) || p.description.toLowerCase().includes(lq)
   );
+
+  // Search quick actions
   const filteredActions = ACTIONS.filter(
     (a) => a.label.toLowerCase().includes(lq) || a.description.toLowerCase().includes(lq)
   );
+
+  // Search 146 Career Agents from registry
+  const filteredAgents = agentRegistry.agents
+    .filter(
+      (agent) =>
+        agent.name.toLowerCase().includes(lq) ||
+        agent.description.toLowerCase().includes(lq) ||
+        agent.tags.some((t) => t.toLowerCase().includes(lq))
+    )
+    .slice(0, 5); // Limit to top 5 hits
+
+  // Search active chats
+  const filteredChats = copilotSessions
+    .filter((session) => session.title.toLowerCase().includes(lq))
+    .slice(0, 3);
+
+  // Search Target Companies
+  const filteredCompanies = companiesRegistry.companies
+    .filter(
+      (company) =>
+        company.name.toLowerCase().includes(lq) ||
+        company.description.toLowerCase().includes(lq)
+    )
+    .slice(0, 3);
 
   return (
     <div
@@ -86,7 +120,7 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
           <input
             autoFocus
             type="text"
-            placeholder="Search pages, actions, agents…"
+            placeholder="Search pages, actions, agents, companies…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
@@ -97,24 +131,25 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
         </div>
 
         {/* Results */}
-        <div className="max-h-[360px] overflow-y-auto py-2">
+        <div className="max-h-[420px] overflow-y-auto py-2 divide-y divide-border/40">
+          {/* Quick Actions */}
           {filteredActions.length > 0 && (
-            <div>
-              <p className="px-4 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+            <div className="py-2">
+              <p className="px-4 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
                 Quick Actions
               </p>
               {filteredActions.map((action) => (
                 <button
                   key={action.id}
                   onClick={() => navigate(action.href)}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-secondary transition-colors group"
+                  className="w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-secondary/40 transition-colors group"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                    <action.icon className="w-4 h-4 text-primary" />
+                  <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <action.icon className="w-3.5 h-3.5 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground">{action.label}</p>
-                    <p className="text-xs text-muted-foreground truncate">{action.description}</p>
+                    <p className="text-xs font-semibold text-foreground">{action.label}</p>
+                    <p className="text-[10px] text-muted-foreground truncate">{action.description}</p>
                   </div>
                   <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
@@ -122,23 +157,104 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
             </div>
           )}
 
+          {/* Active Chats */}
+          {filteredChats.length > 0 && (
+            <div className="py-2">
+              <p className="px-4 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+                Recent Chats
+              </p>
+              {filteredChats.map((chat) => (
+                <button
+                  key={chat.id}
+                  onClick={() => navigate(`/copilot?chat=${chat.id}`)}
+                  className="w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-secondary/40 transition-colors group"
+                >
+                  <div className="w-7 h-7 rounded-lg bg-secondary flex items-center justify-center shrink-0">
+                    <MessageSquare className="w-3.5 h-3.5 text-muted-foreground" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-foreground truncate">{chat.title}</p>
+                    <p className="text-[10px] text-muted-foreground">Open chat session</p>
+                  </div>
+                  <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Career Agents */}
+          {filteredAgents.length > 0 && (
+            <div className="py-2">
+              <p className="px-4 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+                Career Agents
+              </p>
+              {filteredAgents.map((agent) => (
+                <button
+                  key={agent.id}
+                  onClick={() => navigate(`/copilot?agent=${agent.id}`)}
+                  className="w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-secondary/40 transition-colors group"
+                >
+                  <div className="w-7 h-7 rounded-lg bg-indigo-500/10 flex items-center justify-center shrink-0">
+                    <Bot className="w-3.5 h-3.5 text-indigo-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs font-semibold text-foreground">{agent.name}</span>
+                      <span className="text-[9px] px-1 bg-indigo-500/10 text-indigo-400 rounded-sm font-medium">
+                        {agent.division}
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-muted-foreground truncate">{agent.description}</p>
+                  </div>
+                  <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Target Companies */}
+          {filteredCompanies.length > 0 && (
+            <div className="py-2">
+              <p className="px-4 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+                Companies
+              </p>
+              {filteredCompanies.map((company) => (
+                <button
+                  key={company.id}
+                  onClick={() => navigate(`/prephub?company=${company.id}`)}
+                  className="w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-secondary/40 transition-colors group"
+                >
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
+                    <Building2 className="w-3.5 h-3.5 text-emerald-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-foreground">{company.name}</p>
+                    <p className="text-[10px] text-muted-foreground truncate">{company.description}</p>
+                  </div>
+                  <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Pages */}
           {filteredPages.length > 0 && (
-            <div className={cn(filteredActions.length > 0 && "mt-1 pt-1 border-t border-border")}>
-              <p className="px-4 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+            <div className="py-2">
+              <p className="px-4 py-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
                 Pages
               </p>
               {filteredPages.map((page) => (
                 <button
                   key={page.href}
                   onClick={() => navigate(page.href)}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 text-left hover:bg-secondary transition-colors group"
+                  className="w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-secondary/40 transition-colors group"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center shrink-0 group-hover:bg-muted transition-colors">
-                    <page.icon className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                  <div className="w-7 h-7 rounded-lg bg-secondary flex items-center justify-center shrink-0 group-hover:bg-muted transition-colors">
+                    <page.icon className="w-3.5 h-3.5 text-muted-foreground group-hover:text-foreground transition-colors" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground">{page.label}</p>
-                    <p className="text-xs text-muted-foreground truncate">{page.description}</p>
+                    <p className="text-xs font-semibold text-foreground">{page.label}</p>
+                    <p className="text-[10px] text-muted-foreground truncate">{page.description}</p>
                   </div>
                   <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
@@ -146,15 +262,19 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
             </div>
           )}
 
-          {filteredPages.length === 0 && filteredActions.length === 0 && (
-            <div className="px-4 py-8 text-center">
-              <p className="text-sm text-muted-foreground">No results for &ldquo;{query}&rdquo;</p>
-            </div>
-          )}
+          {filteredPages.length === 0 &&
+            filteredActions.length === 0 &&
+            filteredAgents.length === 0 &&
+            filteredChats.length === 0 &&
+            filteredCompanies.length === 0 && (
+              <div className="px-4 py-8 text-center">
+                <p className="text-xs text-muted-foreground">No results for &ldquo;{query}&rdquo;</p>
+              </div>
+            )}
         </div>
 
         {/* Footer hint */}
-        <div className="px-4 py-2 border-t border-border flex items-center gap-4 text-[10px] text-muted-foreground">
+        <div className="px-4 py-2 border-t border-border flex items-center gap-4 text-[9px] text-muted-foreground/60">
           <span>↑↓ Navigate</span>
           <span>↵ Select</span>
           <span>ESC Close</span>

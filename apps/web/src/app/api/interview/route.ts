@@ -1,6 +1,8 @@
-// api/interview/route.ts — AI-powered interview question generation + answer evaluation
+// apps/web/src/app/api/interview/route.ts
+// AI-powered interview question generation + answer evaluation
 
 import { NextResponse } from "next/server";
+import { generate } from "packages/ai/router";
 
 const SYSTEM_PROMPT_GENERATE = `You are an expert technical interviewer at a top-tier tech company.
 Generate exactly 5 interview questions in JSON format for the given context.
@@ -17,7 +19,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { action, company, role, mode, difficulty, responses, aiConfig } = body;
 
-    if (!aiConfig?.apiKey) {
+    if (!aiConfig?.apiKey && !["ollama", "lmstudio"].includes(aiConfig?.provider)) {
       // Return sample questions when no API key is configured
       return NextResponse.json(generateSampleQuestions(mode, company));
     }
@@ -38,34 +40,25 @@ async function generateQuestions({ company, role, mode, difficulty, aiConfig }: 
   const userPrompt = `Generate ${difficulty} ${mode} interview questions for a ${role || "Software Engineer"} position at ${company || "a top tech company"}.
 Make them realistic and specific to the company culture and role.`;
 
-  const res = await fetch(getEndpoint(aiConfig), {
-    method: "POST",
-    headers: getHeaders(aiConfig),
-    body: JSON.stringify({
-      model: aiConfig.model,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT_GENERATE },
-        { role: "user", content: userPrompt },
-      ],
-      temperature: 0.8,
-      max_tokens: 1500,
-    }),
+  const raw = await generate({
+    messages: [
+      { role: "system", content: SYSTEM_PROMPT_GENERATE },
+      { role: "user", content: userPrompt },
+    ],
+    config: {
+      ...aiConfig,
+      streaming: false,
+    },
   });
 
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`AI error (${res.status}): ${text.slice(0, 200)}`);
-  }
-
-  const data = await res.json();
-  const raw = data.choices?.[0]?.message?.content || "";
-  
   try {
-    const parsed = JSON.parse(raw);
+    // Strip markdown formatting if the model wrapped JSON in ```json ... ```
+    const cleanJSON = raw.replace(/```json|```/g, "").trim();
+    const parsed = JSON.parse(cleanJSON);
     return NextResponse.json(parsed);
   } catch {
     // Fallback to sample questions if AI response isn't valid JSON
-    return NextResponse.json(generateSampleQuestions(mode, company).questions ? generateSampleQuestions(mode, company) : { questions: [] });
+    return NextResponse.json(generateSampleQuestions(mode, company));
   }
 }
 
@@ -76,30 +69,20 @@ async function evaluateAnswers({ responses, company, mode, aiConfig }: any) {
 
   const userPrompt = `Evaluate these ${mode} interview answers for ${company || "a top tech company"}:\n\n${answersText}`;
 
-  const res = await fetch(getEndpoint(aiConfig), {
-    method: "POST",
-    headers: getHeaders(aiConfig),
-    body: JSON.stringify({
-      model: aiConfig.model,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT_EVALUATE },
-        { role: "user", content: userPrompt },
-      ],
-      temperature: 0.3,
-      max_tokens: 1000,
-    }),
+  const raw = await generate({
+    messages: [
+      { role: "system", content: SYSTEM_PROMPT_EVALUATE },
+      { role: "user", content: userPrompt },
+    ],
+    config: {
+      ...aiConfig,
+      streaming: false,
+    },
   });
 
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`AI error (${res.status}): ${text.slice(0, 200)}`);
-  }
-
-  const data = await res.json();
-  const raw = data.choices?.[0]?.message?.content || "";
-  
   try {
-    const parsed = JSON.parse(raw);
+    const cleanJSON = raw.replace(/```json|```/g, "").trim();
+    const parsed = JSON.parse(cleanJSON);
     return NextResponse.json(parsed);
   } catch {
     // Fallback scorecard
@@ -110,31 +93,6 @@ async function evaluateAnswers({ responses, company, mode, aiConfig }: any) {
       improvements: ["Add more quantitative results", "Use the STAR format more explicitly"],
     });
   }
-}
-
-function getEndpoint(aiConfig: any): string {
-  const endpoints: Record<string, string> = {
-    groq: "https://api.groq.com/openai/v1/chat/completions",
-    openai: "https://api.openai.com/v1/chat/completions",
-    anthropic: "https://api.anthropic.com/v1/messages",
-    gemini: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
-    openrouter: "https://openrouter.ai/api/v1/chat/completions",
-    deepseek: "https://api.deepseek.com/chat/completions",
-    ollama: "http://localhost:11434/v1/chat/completions",
-    lmstudio: "http://localhost:1234/v1/chat/completions",
-  };
-  return aiConfig.baseUrl || endpoints[aiConfig.provider] || endpoints.groq;
-}
-
-function getHeaders(aiConfig: any): Record<string, string> {
-  const h: Record<string, string> = { "Content-Type": "application/json" };
-  if (aiConfig.provider === "anthropic") {
-    h["x-api-key"] = aiConfig.apiKey || "";
-    h["anthropic-version"] = "2023-06-01";
-  } else {
-    h["Authorization"] = `Bearer ${aiConfig.apiKey || ""}`;
-  }
-  return h;
 }
 
 function generateSampleQuestions(mode: string, company: string) {
