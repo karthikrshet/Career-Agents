@@ -67,12 +67,13 @@ export async function GET() {
       warnings.push(`Agent "${agent.filename}" body word count (${words}) is below 300 words.`);
     }
 
-    // 5. Section headings check
+    // 5. Section headings check (supports standard 9 emoji headings or core section names)
     const requiredHeadings = [
-      "## Persona",
-      "## Role & Responsibilities",
-      "## Core Capabilities",
-      "## Guidelines & Directives"
+      "Your Identity & Memory",
+      "Your Core Mission",
+      "Critical Rules You Must Follow",
+      "Technical Deliverables",
+      "Workflow Process"
     ];
     for (const heading of requiredHeadings) {
       if (!content.includes(heading)) {
