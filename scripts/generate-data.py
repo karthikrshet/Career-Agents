@@ -579,6 +579,7 @@ def build_merged_readme(agents, divisions_data, workflows, bundles, companies, p
 <br />
 
 <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Live_Deployment-career--agents.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white" height="32" alt="Vercel Deployment" /></a>
+<a href="https://karthikrajeshshet.vercel.app/"><img src="https://img.shields.io/badge/Author-Karthik_Rajesh_Shet-0284c7?style=for-the-badge&logo=vercel&logoColor=white" height="32" alt="Author Portfolio" /></a>
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Registry-career--agents-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="32" alt="NPM Registry" /></a>
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/dm/career-agents?style=for-the-badge&logo=npm&logoColor=white&color=cb3837" height="32" alt="NPM Downloads" /></a>
 <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" height="32" alt="GitHub Repo" /></a>
@@ -1207,13 +1208,14 @@ A: Keys are saved locally in your browser's `localStorage` and are never stored 
 <table align="center" style="border: none; border-collapse: collapse; background: transparent;">
   <tr>
     <td align="center" style="border: none; padding: 24px;">
-      <a href="https://github.com/karthikrshet">
+      <a href="https://karthikrajeshshet.vercel.app/">
         <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/karthik_shet.jpg" width="210" height="auto" style="border-radius: 24px; border: 4px solid #0284c7; box-shadow: 0 16px 36px rgba(2, 132, 199, 0.35);" alt="Karthik Rajesh Shet" />
       </a>
       <br /><br />
       <h2 style="margin: 8px 0; font-size: 1.8em; color: #0f172a;"><b>Karthik Rajesh Shet</b></h2>
       <p style="font-size: 1.15em; font-weight: 600; color: #0284c7; margin-top: 4px;">Creator &amp; Principal Platform Architect</p>
       <p style="margin-top: 12px;">
+        <a href="https://karthikrajeshshet.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-karthikrajeshshet.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white" height="28" alt="Personal Portfolio" /></a>
         <a href="https://github.com/karthikrshet"><img src="https://img.shields.io/badge/GitHub-@karthikrshet-181717?style=for-the-badge&logo=github&logoColor=white" height="28" alt="GitHub Profile" /></a>
         <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Platform-Career--Agents-000000?style=for-the-badge&logo=vercel&logoColor=white" height="28" alt="Vercel Live App" /></a>
         <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Package-v17.0.0-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="28" alt="NPM Package" /></a>
@@ -1240,7 +1242,7 @@ A: Keys are saved locally in your browser's `localStorage` and are never stored 
 
 <h3>Let's elevate your tech career.</h3>
 
-<p><b>[ <a href="https://career-agents.vercel.app">Live Vercel App</a> · <a href="https://github.com/karthikrshet/Career-Agents">GitHub Repository</a> · <a href="https://www.npmjs.com/package/career-agents">NPM Package</a> ]</b></p>
+<p><b>[ <a href="https://career-agents.vercel.app">Live Vercel App</a> · <a href="https://karthikrajeshshet.vercel.app/">Author Portfolio</a> · <a href="https://github.com/karthikrshet/Career-Agents">GitHub Repository</a> · <a href="https://www.npmjs.com/package/career-agents">NPM Package</a> ]</b></p>
 
 <sub>Career Agents Operating System · Designed &amp; Built by Karthik Rajesh Shet · &copy; 2026</sub>
 
