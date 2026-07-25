@@ -1,0 +1,104 @@
+# Career OS
+## AI-Powered Career Intelligence Platform — v2.5.0
+
+> This file helps AI systems, LLMs, and autonomous agents understand the Career OS project.
+> Format follows the llms.txt specification (https://llmstxt.org).
+
+## Project
+
+- **Name**: Career OS
+- **Version**: 2.5.0
+- **Repository**: https://github.com/karthikrshet/Career-Agents
+- **License**: MIT
+- **Status**: Active Open Source
+
+## Purpose
+
+Career OS is a unified, AI-powered career intelligence platform for software engineers. It continuously monitors resume quality, GitHub portfolio health, LinkedIn visibility, and interview readiness — orchestrating 146 specialized AI agents to provide hyper-personalized career coaching.
+
+## Core Modules
+
+- **Resume Studio**: Uploads PDF/DOCX/TXT resumes, computes ATS score, detects weak bullets, rewrites with AI, generates keyword gap analysis.
+- **GitHub Analyzer**: Audits public GitHub profile — repository quality, README grades, language diversity, star/fork metrics, pinned repo analysis.
+- **LinkedIn Optimizer**: Scores headline, summary, skill visibility, and recruiter discoverability. Suggests AI-rewritten sections.
+- **Interview Lab**: AI-powered mock interview with STAR scoring (Situation/Task/Action/Result) and leadership/technical depth metrics.
+- **Job Tracker**: Kanban board for tracking job applications across pipeline stages (Applied → Screening → Interview → Offer → Rejected).
+- **Prep Hub**: Company-specific interview prep tracks with categorized questions and difficulty tiers.
+- **Career Copilot**: Multi-session AI chat with persistent history, context injection from all workspace data, and 146-agent routing.
+- **Reports**: Exportable career analysis reports combining all module scores.
+- **Plugin Marketplace**: Installable extensions (STAR Coach, LeetCode Tracker, Resume PDF Parser, Salary Intelligence).
+- **MCP Server**: Exposes all 146 career agents as Model Context Protocol tools for Cursor, Claude Desktop, VS Code, Windsurf, Cline, and others.
+- **Settings**: Multi-provider AI key management, profile configuration, theme settings.
+- **About**: Dynamic searchable registry of all 146 active agents.
+- **Credits**: Open-source contributor list with live GitHub API stats.
+
+## AI Provider System
+
+Career OS uses a unified AI router supporting 13 providers:
+- OpenAI (GPT-4o, GPT-4, GPT-3.5)
+- Anthropic Claude (claude-opus-4, claude-sonnet-4-5, claude-3-5-haiku)
+- Google Gemini (gemini-2.5-pro, gemini-2.0-flash)
+- Groq (llama-3.3-70b, mixtral-8x7b)
+- OpenRouter (any available model)
+- Ollama (local, self-hosted)
+- LM Studio (local, self-hosted)
+- Azure OpenAI
+- DeepSeek
+- Together AI
+- Mistral
+- Cohere
+- xAI Grok
+
+Default provider: Claude (claude-opus-4). Temperature: 0.7. Streaming: enabled.
+
+## Agent System
+
+- **146 Specialized AI Agents** organized into 19 divisions
+- Agents cover: resume optimization, interview coaching, GitHub auditing, LinkedIn optimization, salary negotiation, career path planning, company research, and more
+- Agent registry: `agent-registry.json` at repository root
+- Division registry: `divisions.json`
+- Intent classifier in `/api/copilot/route.ts` dynamically routes queries to top-scoring agents using tag/skill/name matching with intent boosters
+
+## MCP (Model Context Protocol)
+
+Career OS exposes all 146 agents as MCP tools. Compatible clients:
+- Cursor (`~/.cursor/mcp.json`)
+- Claude Desktop (`~/.config/Claude/claude_desktop_config.json`)
+- VS Code Copilot
+- Continue
+- Windsurf
+- Cline
+- RooCode
+- OpenHands
+- Bolt
+- Aider
+
+MCP Tool categories: `query_agent`, `list_agents`, `get_resume_audit`, `get_github_analysis`, `get_interview_score`
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **UI**: React 18, Tailwind CSS, Framer Motion, Radix UI
+- **State**: Zustand (persisted)
+- **Database**: Prisma ORM (SQLite dev, PostgreSQL prod)
+- **AI**: Custom packages/ai router with streaming SSE
+- **Auth**: Next-Auth (guest mode first, login-to-sync)
+- **Hosting**: Vercel (recommended)
+
+## API Routes
+
+- `POST /api/copilot` — Streaming chat with agent orchestration
+- `POST /api/resume` — Resume analysis and ATS scoring
+- `POST /api/resume/rewrite` — AI bullet rewrite
+- `POST /api/github` — GitHub profile analysis
+- `POST /api/linkedin` — LinkedIn profile optimization
+- `POST /api/interview` — STAR-based interview evaluation
+- `GET /api/provider` — Check configured AI providers
+
+## Documentation
+
+- Repository: https://github.com/karthikrshet/Career-Agents
+- Contributing: https://github.com/karthikrshet/Career-Agents/blob/main/CONTRIBUTING.md
+- Security: https://github.com/karthikrshet/Career-Agents/blob/main/SECURITY.md
+- Roadmap: https://github.com/karthikrshet/Career-Agents/blob/main/ROADMAP.md
+- Changelog: https://github.com/karthikrshet/Career-Agents/blob/main/CHANGELOG.md
