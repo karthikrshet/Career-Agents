@@ -4,7 +4,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type {
   CareerMetrics, UserProfile, ResumeAnalysis, GitHubAnalysis,
-  LinkedInAnalysis, InterviewSession, JobApplication, CopilotSession,
+  LinkedInAnalysis, InterviewSession, JobApplication, CopilotSession, CopilotFolder,
   ActivityEntry, AppSettings, AIProviderConfig, CompanyTrack, PrepModule
 } from "@/types";
 import { calculateCareerScore, generateId } from "@/lib/utils";
@@ -80,8 +80,19 @@ interface CareerOSStore {
   // Copilot
   copilotSessions: CopilotSession[];
   currentCopilotSession: CopilotSession | null;
+  copilotFolders: CopilotFolder[];
   startCopilotSession: () => void;
   appendCopilotMessage: (role: "user" | "assistant", content: string) => void;
+  createCopilotFolder: (name: string, color?: string) => void;
+  deleteCopilotFolder: (id: string) => void;
+  renameCopilotFolder: (id: string, name: string) => void;
+  updateSessionFolder: (sessionId: string, folderId?: string) => void;
+  toggleSessionPin: (sessionId: string) => void;
+  toggleSessionFavorite: (sessionId: string) => void;
+  toggleSessionArchive: (sessionId: string) => void;
+  deleteCopilotSession: (id: string) => void;
+  renameCopilotSession: (id: string, title: string) => void;
+  setCopilotSessions: (sessions: CopilotSession[]) => void;
 
   // Activity Feed
   activityFeed: ActivityEntry[];
@@ -239,6 +250,7 @@ export const useStore = create<CareerOSStore>()(
       // Copilot
       copilotSessions: [],
       currentCopilotSession: null,
+      copilotFolders: [],
       startCopilotSession: () => {
         const session: CopilotSession = {
           id: generateId(),
@@ -246,11 +258,14 @@ export const useStore = create<CareerOSStore>()(
           messages: [{
             id: generateId(),
             role: "assistant",
-            content: "Hello! I am Career Copilot, your AI-powered career assistant. I have access to your profile, resume analysis, GitBranch data, and more. How can I help you today?\n\nQuick actions:\n- Type **analyze my resume** to get AI feedback\n- Type **prepare me for Google** to generate a study plan\n- Type **review my GitBranch** to get portfolio tips",
+            content: "Hello! I am Career Copilot, your AI-powered career assistant. I have access to your profile, resume analysis, GitHub data, and more. How can I help you today?\n\nQuick actions:\n- Type **analyze my resume** to get AI feedback\n- Type **prepare me for Google** to generate a study plan\n- Type **review my GitHub** to get portfolio tips",
             timestamp: new Date().toISOString(),
           }],
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
+          pinned: false,
+          archived: false,
+          favorite: false,
         };
         set((state) => ({
           currentCopilotSession: session,
@@ -271,6 +286,65 @@ export const useStore = create<CareerOSStore>()(
             copilotSessions: state.copilotSessions.map((s) => (s.id === updated.id ? updated : s)),
           };
         }),
+      createCopilotFolder: (name, color) =>
+        set((state) => ({
+          copilotFolders: [...state.copilotFolders, { id: generateId(), name, color, createdAt: new Date().toISOString() }],
+        })),
+      deleteCopilotFolder: (id) =>
+        set((state) => ({
+          copilotFolders: state.copilotFolders.filter((f) => f.id !== id),
+          copilotSessions: state.copilotSessions.map((s) => (s.folderId === id ? { ...s, folderId: undefined } : s)),
+        })),
+      renameCopilotFolder: (id, name) =>
+        set((state) => ({
+          copilotFolders: state.copilotFolders.map((f) => (f.id === id ? { ...f, name } : f)),
+        })),
+      updateSessionFolder: (sessionId, folderId) =>
+        set((state) => {
+          const updatedSessions = state.copilotSessions.map((s) => (s.id === sessionId ? { ...s, folderId } : s));
+          const current = state.currentCopilotSession && state.currentCopilotSession.id === sessionId
+            ? { ...state.currentCopilotSession, folderId }
+            : state.currentCopilotSession;
+          return { copilotSessions: updatedSessions, currentCopilotSession: current };
+        }),
+      toggleSessionPin: (sessionId) =>
+        set((state) => {
+          const updatedSessions = state.copilotSessions.map((s) => (s.id === sessionId ? { ...s, pinned: !s.pinned } : s));
+          const current = state.currentCopilotSession && state.currentCopilotSession.id === sessionId
+            ? { ...state.currentCopilotSession, pinned: !state.currentCopilotSession.pinned }
+            : state.currentCopilotSession;
+          return { copilotSessions: updatedSessions, currentCopilotSession: current };
+        }),
+      toggleSessionFavorite: (sessionId) =>
+        set((state) => {
+          const updatedSessions = state.copilotSessions.map((s) => (s.id === sessionId ? { ...s, favorite: !s.favorite } : s));
+          const current = state.currentCopilotSession && state.currentCopilotSession.id === sessionId
+            ? { ...state.currentCopilotSession, favorite: !state.currentCopilotSession.favorite }
+            : state.currentCopilotSession;
+          return { copilotSessions: updatedSessions, currentCopilotSession: current };
+        }),
+      toggleSessionArchive: (sessionId) =>
+        set((state) => {
+          const updatedSessions = state.copilotSessions.map((s) => (s.id === sessionId ? { ...s, archived: !s.archived } : s));
+          const current = state.currentCopilotSession && state.currentCopilotSession.id === sessionId
+            ? { ...state.currentCopilotSession, archived: !state.currentCopilotSession.archived }
+            : state.currentCopilotSession;
+          return { copilotSessions: updatedSessions, currentCopilotSession: current };
+        }),
+      deleteCopilotSession: (id) =>
+        set((state) => {
+          const updatedSessions = state.copilotSessions.filter((s) => s.id !== id);
+          const current = state.currentCopilotSession && state.currentCopilotSession.id === id ? null : state.currentCopilotSession;
+          return { copilotSessions: updatedSessions, currentCopilotSession: current };
+        }),
+      renameCopilotSession: (id, title) =>
+        set((state) => {
+          const updatedSessions = state.copilotSessions.map((s) => (s.id === id ? { ...s, title } : s));
+          const current = state.currentCopilotSession && state.currentCopilotSession.id === id ? { ...state.currentCopilotSession, title } : state.currentCopilotSession;
+          return { copilotSessions: updatedSessions, currentCopilotSession: current };
+        }),
+      setCopilotSessions: (sessions) =>
+        set(() => ({ copilotSessions: sessions })),
 
       // Activity
       activityFeed: [],

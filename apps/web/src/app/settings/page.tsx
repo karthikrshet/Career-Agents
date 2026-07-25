@@ -36,6 +36,22 @@ const PROVIDERS: { id: AIProvider; label: string; free: boolean; description: st
   { id: "azure", label: "Azure OpenAI", free: false, description: "Enterprise security & private endpoints." },
 ];
 
+const PROVIDER_METADATA: Record<string, { contextWindow: string; vision: boolean; streaming: boolean; tools: boolean; files: boolean; cost: string }> = {
+  openai: { contextWindow: "128k tokens", vision: true, streaming: true, tools: true, files: true, cost: "$2.50 / M tokens" },
+  claude: { contextWindow: "200k tokens", vision: true, streaming: true, tools: true, files: true, cost: "$3.00 / M tokens" },
+  anthropic: { contextWindow: "200k tokens", vision: true, streaming: true, tools: true, files: true, cost: "$3.00 / M tokens" },
+  gemini: { contextWindow: "2M tokens", vision: true, streaming: true, tools: true, files: true, cost: "$0.075 / M tokens" },
+  groq: { contextWindow: "128k tokens", vision: false, streaming: true, tools: true, files: false, cost: "Free / Rate Limited" },
+  openrouter: { contextWindow: "Variable", vision: true, streaming: true, tools: true, files: false, cost: "Variable by model" },
+  deepseek: { contextWindow: "64k tokens", vision: false, streaming: true, tools: true, files: false, cost: "$0.14 / M tokens" },
+  together: { contextWindow: "32k tokens", vision: false, streaming: true, tools: true, files: false, cost: "$0.20 / M tokens" },
+  mistral: { contextWindow: "128k tokens", vision: false, streaming: true, tools: true, files: false, cost: "$2.00 / M tokens" },
+  cohere: { contextWindow: "128k tokens", vision: false, streaming: true, tools: true, files: false, cost: "$1.00 / M tokens" },
+  xai: { contextWindow: "128k tokens", vision: false, streaming: true, tools: true, files: false, cost: "$5.00 / M tokens" },
+  ollama: { contextWindow: "Local context", vision: true, streaming: true, tools: true, files: true, cost: "Free / Local" },
+  lmstudio: { contextWindow: "Local context", vision: true, streaming: true, tools: true, files: true, cost: "Free / Local" },
+  azure: { contextWindow: "128k tokens", vision: true, streaming: true, tools: true, files: true, cost: "Enterprise subscription" },
+};
 
 export default function SettingsPage() {
   const settings = useStore((s) => s.settings);
@@ -44,9 +60,10 @@ export default function SettingsPage() {
   const profile = useStore((s) => s.profile);
   const setProfile = useStore((s) => s.setProfile);
 
-  const [apiKey, setApiKey] = useState(settings.aiProvider.apiKey || "");
+  // States
+  const [apiKey, setApiKey] = useState("");
+  const [baseUrl, setBaseUrl] = useState("");
   const [showKey, setShowKey] = useState(false);
-  const [baseUrl, setBaseUrl] = useState(settings.aiProvider.baseUrl || "");
   
   // Account Form States
   const [accountName, setAccountName] = useState(profile?.name || "");
@@ -65,6 +82,22 @@ export default function SettingsPage() {
     | "storage" | "exports" | "notifications" | "keyboard" | "danger"
   >("providers");
 
+  const [statusMap, setStatusMap] = useState<Record<string, { status: "connected" | "missing_key" | "offline" | "local" | "testing"; latency?: number }>>({});
+
+  useEffect(() => {
+    // Populate default statuses
+    const newStatuses: Record<string, any> = {};
+    for (const p of PROVIDERS) {
+      if (["ollama", "lmstudio"].includes(p.id)) {
+        newStatuses[p.id] = { status: "local" };
+      } else {
+        const hasKey = p.id === settings.aiProvider.provider ? !!apiKey : !!settings.aiProvider.apiKey;
+        newStatuses[p.id] = { status: hasKey ? "connected" : "missing_key" };
+      }
+    }
+    setStatusMap(newStatuses);
+  }, [apiKey, settings.aiProvider.provider]);
+
   useEffect(() => {
     setApiKey(settings.aiProvider.apiKey || "");
     setBaseUrl(settings.aiProvider.baseUrl || "");
@@ -78,12 +111,37 @@ export default function SettingsPage() {
     toast.success("AI Configuration saved");
   }
 
-  function testConnection() {
-    toast.loading("Testing provider connection...");
-    setTimeout(() => {
+  async function testConnection() {
+    const provId = settings.aiProvider.provider;
+    toast.loading(`Testing connection to ${provId}...`);
+    setStatusMap((prev) => ({ ...prev, [provId]: { status: "testing" } }));
+    
+    try {
+      const res = await fetch("/api/providers/test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          provider: provId,
+          model: settings.aiProvider.model,
+          apiKey: apiKey || undefined,
+          baseUrl: baseUrl || undefined,
+        }),
+      });
+      const data = await res.json();
       toast.dismiss();
-      toast.success("Connection successful — provider is responding");
-    }, 1500);
+
+      if (data.success && data.connected) {
+        toast.success(`Connected! ${provId} (${data.model}) responded in ${data.latency}ms.`);
+        setStatusMap((prev) => ({ ...prev, [provId]: { status: "connected", latency: data.latency } }));
+      } else {
+        toast.error(`Connection failed: ${data.error}`);
+        setStatusMap((prev) => ({ ...prev, [provId]: { status: "offline" } }));
+      }
+    } catch (e: any) {
+      toast.dismiss();
+      toast.error(`Connection error: ${e.message}`);
+      setStatusMap((prev) => ({ ...prev, [provId]: { status: "offline" } }));
+    }
   }
 
   function saveAccountInfo() {
@@ -297,23 +355,73 @@ export default function SettingsPage() {
                             updateAIProvider({ provider: p.id, model: PROVIDER_MODELS[p.id][0] });
                           }}
                           className={cn(
-                            "flex items-start gap-2.5 p-2.5 rounded-lg border text-left transition-all text-xs",
+                            "flex flex-col gap-1 p-2.5 rounded-lg border text-left transition-all text-xs",
                             settings.aiProvider.provider === p.id
                               ? "border-primary bg-primary/5 font-semibold text-foreground"
                               : "border-border hover:border-border/80 hover:bg-secondary/20 text-muted-foreground hover:text-foreground"
                           )}
                         >
-                          <div className={cn(
-                            "w-2 h-2 rounded-full mt-1 shrink-0",
-                            settings.aiProvider.provider === p.id ? "bg-primary animate-pulse" : "bg-muted"
-                          )} />
-                          <div>
+                          <div className="flex items-center justify-between w-full">
                             <span>{p.label}</span>
-                            {p.free && <span className="ml-1.5 px-1 bg-emerald-500/10 text-emerald-400 rounded-sm text-[8px]">Free</span>}
+                            <span className={cn(
+                              "w-1.5 h-1.5 rounded-full mt-0.5 shrink-0",
+                              settings.aiProvider.provider === p.id ? "bg-primary animate-pulse" : "bg-muted"
+                            )} />
                           </div>
+                          
+                          <span className={cn(
+                            "text-[8px] px-1 py-0.5 rounded-sm font-medium mt-1 w-fit",
+                            statusMap[p.id]?.status === "connected" && "bg-emerald-500/10 text-emerald-400",
+                            statusMap[p.id]?.status === "missing_key" && "bg-amber-500/10 text-amber-400",
+                            statusMap[p.id]?.status === "offline" && "bg-red-500/10 text-red-400",
+                            statusMap[p.id]?.status === "local" && "bg-blue-500/10 text-blue-400",
+                            statusMap[p.id]?.status === "testing" && "bg-gray-500/10 text-gray-400 animate-pulse"
+                          )}>
+                            {statusMap[p.id]?.status === "connected" && `🟢 Connected ${statusMap[p.id]?.latency ? `(${statusMap[p.id]?.latency}ms)` : ""}`}
+                            {statusMap[p.id]?.status === "missing_key" && "🟡 Missing Key"}
+                            {statusMap[p.id]?.status === "offline" && "🔴 Offline"}
+                            {statusMap[p.id]?.status === "local" && "🔵 Local"}
+                            {statusMap[p.id]?.status === "testing" && "⚙️ Testing..."}
+                          </span>
                         </button>
                       ))}
                     </div>
+
+                    {/* Active Provider Details Block */}
+                    {PROVIDER_METADATA[settings.aiProvider.provider] && (
+                      <div className="bg-secondary/20 border border-border/40 rounded-lg p-3 space-y-2 text-xs">
+                        <p className="font-semibold text-foreground flex items-center gap-1.5 border-b border-border/40 pb-1.5">
+                          <Cpu className="w-3.5 h-3.5 text-primary" />
+                          <span>{PROVIDER_METADATA[settings.aiProvider.provider] ? `${settings.aiProvider.provider.toUpperCase()} Specifications` : "Provider Specifications"}</span>
+                        </p>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-4 text-muted-foreground">
+                          <div>
+                            <span className="font-medium text-foreground block">Context Window</span>
+                            {PROVIDER_METADATA[settings.aiProvider.provider].contextWindow}
+                          </div>
+                          <div>
+                            <span className="font-medium text-foreground block">Vision Support</span>
+                            {PROVIDER_METADATA[settings.aiProvider.provider].vision ? "✅ Supported" : "❌ Not Supported"}
+                          </div>
+                          <div>
+                            <span className="font-medium text-foreground block">Streaming Support</span>
+                            {PROVIDER_METADATA[settings.aiProvider.provider].streaming ? "✅ Supported" : "❌ Not Supported"}
+                          </div>
+                          <div>
+                            <span className="font-medium text-foreground block">Tools Integration</span>
+                            {PROVIDER_METADATA[settings.aiProvider.provider].tools ? "✅ Available" : "❌ N/A"}
+                          </div>
+                          <div>
+                            <span className="font-medium text-foreground block">File Context</span>
+                            {PROVIDER_METADATA[settings.aiProvider.provider].files ? "✅ Available" : "❌ N/A"}
+                          </div>
+                          <div>
+                            <span className="font-medium text-foreground block">Cost / M Tokens</span>
+                            {PROVIDER_METADATA[settings.aiProvider.provider].cost}
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                     <div className="border-t border-border/40 pt-4 space-y-4">
                       <Badge variant="secondary" className="capitalize text-xs font-semibold px-2 py-0.5">
