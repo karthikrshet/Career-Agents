@@ -1,0 +1,132 @@
+// api/github/analyze/route.ts — Live GitHub data analysis + scoring
+
+import { NextResponse } from "next/server";
+
+const GITHUB_API = "https://api.github.com";
+const LANGUAGE_COLORS: Record<string, string> = {
+  TypeScript: "#3178c6", JavaScript: "#f1e05a", Python: "#3572A5",
+  Go: "#00ADD8", Rust: "#dea584", Java: "#b07219", "C++": "#f34b7d",
+  C: "#555555", Ruby: "#701516", Swift: "#F05138", Kotlin: "#A97BFF",
+  Shell: "#89e051", CSS: "#563d7c", HTML: "#e34c26",
+};
+
+function makeHeaders(token?: string) {
+  const h: Record<string, string> = { Accept: "application/vnd.github.v3+json" };
+  if (token) h["Authorization"] = `Bearer ${token}`;
+  return h;
+}
+
+function computePortfolioScore(user: any, repos: any[]): number {
+  let score = 30;
+  const totalStars = repos.reduce((a: number, r: any) => a + (r.stargazers_count || 0), 0);
+  score += Math.min(30, Math.round(totalStars / 5));
+  if (repos.length >= 10) score += 5;
+  if (repos.length >= 20) score += 5;
+  const hasReadmeRepos = repos.filter((r: any) => r.description && r.description.length > 20).length;
+  score += Math.min(10, hasReadmeRepos * 2);
+  if (user.bio && user.bio.length > 10) score += 5;
+  if (user.blog) score += 3;
+  if (user.twitter_username) score += 2;
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+function computeLanguages(repos: any[]) {
+  const counts: Record<string, number> = {};
+  for (const repo of repos) {
+    if (repo.language) counts[repo.language] = (counts[repo.language] || 0) + 1;
+  }
+  const total = Object.values(counts).reduce((a, b) => a + b, 0) || 1;
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 6)
+    .map(([name, count]) => ({
+      name,
+      percent: Math.round((count / total) * 100),
+      color: LANGUAGE_COLORS[name] || "#6366f1",
+    }));
+}
+
+export async function POST(req: Request) {
+  try {
+    const { username, token } = await req.json();
+    if (!username) {
+      return NextResponse.json({ error: "username is required" }, { status: 400 });
+    }
+
+    const headers = makeHeaders(token);
+
+    const [userRes, reposRes] = await Promise.all([
+      fetch(`${GITHUB_API}/users/${username}`, { headers }),
+      fetch(`${GITHUB_API}/users/${username}/repos?sort=updated&per_page=100`, { headers }),
+    ]);
+
+    if (!userRes.ok) {
+      return NextResponse.json({ error: `GitHub user not found: ${username}` }, { status: 404 });
+    }
+
+    const [user, repos] = await Promise.all([userRes.json(), reposRes.ok ? reposRes.json() : []]);
+
+    const totalStars = repos.reduce((a: number, r: any) => a + (r.stargazers_count || 0), 0);
+    const totalForks = repos.reduce((a: number, r: any) => a + (r.forks_count || 0), 0);
+    const portfolioScore = computePortfolioScore(user, repos);
+
+    const pinnedRepos = repos
+      .sort((a: any, b: any) => b.stargazers_count - a.stargazers_count)
+      .slice(0, 6)
+      .map((r: any) => ({
+        name: r.name,
+        description: r.description || "",
+        stars: r.stargazers_count,
+        forks: r.forks_count,
+        language: r.language || "Unknown",
+        hasReadme: !!(r.description && r.description.length > 10),
+        hasLicense: !!r.license,
+        hasCi: false,
+        url: r.html_url,
+      }));
+
+    const readmeGrade: "Excellent" | "Good" | "Needs Work" | "Missing" =
+      repos.filter((r: any) => r.description && r.description.length > 50).length >= 5
+        ? "Excellent"
+        : repos.filter((r: any) => r.description && r.description.length > 30).length >= 3
+        ? "Good"
+        : repos.filter((r: any) => r.description).length >= 1
+        ? "Needs Work"
+        : "Missing";
+
+    // Simulated contribution heatmap (52 weeks)
+    const contributionData = Array.from({ length: 52 }, () =>
+      Math.floor(Math.random() * 8)
+    );
+
+    const recommendations: string[] = [];
+    if (!user.bio) recommendations.push("Add a bio to your GitHub profile — it boosts visibility.");
+    if (totalStars < 10) recommendations.push("Star worthy repos and collaborate to build traction.");
+    if (repos.length < 5) recommendations.push("Create more public repositories to showcase your work.");
+    if (!user.blog) recommendations.push("Add your portfolio/website URL to your GitHub profile.");
+    if (readmeGrade === "Needs Work" || readmeGrade === "Missing") recommendations.push("Add detailed READMEs to your top repositories.");
+
+    const analysis = {
+      username: user.login,
+      avatarUrl: user.avatar_url,
+      name: user.name || user.login,
+      bio: user.bio || "",
+      followers: user.followers,
+      following: user.following,
+      publicRepos: user.public_repos,
+      totalStars,
+      totalForks,
+      portfolioScore,
+      languages: computeLanguages(repos),
+      pinnedRepos,
+      readmeGrade,
+      contributionData,
+      recommendations,
+      analyzedAt: new Date().toISOString(),
+    };
+
+    return NextResponse.json({ analysis });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message || "Analysis failed" }, { status: 500 });
+  }
+}
