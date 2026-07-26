@@ -500,6 +500,7 @@ Recalculated tracker statistics and updated applications metrics.`);
             maxTokens: settings.aiProvider.maxTokens,
             streaming: true,
           },
+          settings,
           context: {
             profile,
             metrics,

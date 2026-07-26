@@ -1,15 +1,12 @@
 // apps/web/src/app/api/copilot/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import type { AIProviderConfig } from "@/types";
-import { getProvider } from "@/lib/ai/provider-manager";
 import { compileAndExecuteAgents } from "../../../../../../packages/agents/executor";
+import { routeCompletion } from "../../../../../../packages/ai-router/services/router";
+import type { RouterConfig } from "../../../../../../packages/ai-router/services/router";
 
 export async function POST(req: NextRequest) {
   try {
-    const { messages, config, context } = await req.json();
-
-    const providerConfig = config as AIProviderConfig;
-    const activeProvider = getProvider(providerConfig.provider);
+    const { messages, config, context, settings: clientSettings } = await req.json();
 
     // 1 & 2. Agent Orchestrator & Context compilation
     const lastUserMessage = [...messages].reverse().find((m) => m.role === "user")?.content || "";
@@ -31,17 +28,25 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Verify key configured or exist in server environment variables
-    const serverKey = process.env[`${providerConfig.provider.toUpperCase()}_API_KEY` || ""];
-    const hasKey = !!serverKey || !!providerConfig.apiKey || ["ollama", "lmstudio"].includes(providerConfig.provider);
-
-    if (!hasKey) {
-      return NextResponse.json({
-        success: false,
-        provider: providerConfig.provider,
-        error: "API key not configured"
-      }, { status: 200 }); // return 200 with success: false to handle cleanly in UI
-    }
+    // 3. Compile Gateway Config mapping rotated keys and endpoints
+    const provider = config?.provider || "openai";
+    
+    const gatewayConfig: RouterConfig = {
+      mode: clientSettings?.routerMode || "balanced",
+      providerOrder: clientSettings?.providerOrder || ["groq", "gemini", "openai", "claude"],
+      keys: clientSettings?.keys || {
+        [provider]: [config?.apiKey || ""]
+      },
+      baseUrls: clientSettings?.baseUrls || {
+        [provider]: config?.baseUrl || ""
+      },
+      modelNames: clientSettings?.modelNames || {
+        [provider]: config?.model
+      },
+      temperature: config?.temperature ?? 0.7,
+      maxTokens: config?.maxTokens || 4096,
+      streaming: true,
+    };
 
     // Proxy stream
     const encoder = new TextEncoder();
@@ -52,9 +57,9 @@ export async function POST(req: NextRequest) {
         }
 
         try {
-          await activeProvider.stream(
+          await routeCompletion(
             messages,
-            providerConfig,
+            gatewayConfig,
             (text) => {
               const payload = {
                 choices: [
@@ -72,7 +77,7 @@ export async function POST(req: NextRequest) {
           const errPayload = {
             choices: [
               {
-                delta: { content: `\n\n*Connection Issue: ${e.message || "Failed to generate response."}*` },
+                delta: { content: `\n\n*Gateway Connection Issue: ${e.message || "Failed to generate response."}*` },
               },
             ],
           };
