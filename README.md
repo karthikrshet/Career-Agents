@@ -1,18 +1,69 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.svg" alt="Career OS Logo" width="120" />
-
-# Career OS
-
-### The Open-Source AI Career Operating System for Software Engineers
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/banner.svg" alt="Career OS Banner" width="800" />
+<p>
+  <img
+    src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.svg"
+    alt="Career Agents Logo"
+    width="110"
+  />
 </p>
 
-Career OS is an enterprise-grade, open-source personal career optimization suite designed to automate and systemize professional growth. By unifying 146 specialized AI agents, local ATS resume grading, public GitHub profile auditing, search-visibility LinkedIn scanning, and interactive STAR behavioral mock interviews, it replaces generic prompts and static templates with a context-aware career intelligence cockpit.
+# Career Agents
+
+### The Open-Source AI Career Operating System
+
+<p>
+  <strong>146 AI Career Agents</strong> •
+  <strong>Career Copilot</strong> •
+  <strong>Resume Studio</strong> •
+  <strong>MCP Server</strong> •
+  <strong>CLI</strong> •
+  <strong>Next.js Dashboard</strong>
+</p>
+
+<p>
+  <img
+    src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/banner.svg"
+    alt="Career Agents Banner"
+    width="900"
+  />
+</p>
+
+<p>
+
+An open-source AI Career Operating System that helps software engineers optimize resumes, prepare for interviews, analyze GitHub portfolios, improve LinkedIn profiles, track job applications, and collaborate with **146 specialized AI career agents** through a modern web dashboard, CLI, and Model Context Protocol (MCP) server.
+
+</p>
+
+
 
 </div>
+
+---
+
+## What is Career Agents?
+
+Career Agents is an open-source AI platform designed to function as a complete Career Operating System for software engineers and technical professionals.
+
+Instead of relying on isolated prompts or disconnected AI tools, Career Agents orchestrates **146 specialized AI agents** to automate every stage of career development—from resume optimization and portfolio analysis to interview preparation, company-specific roadmaps, and long-term career planning.
+
+The platform includes:
+
+- Career Copilot with multi-provider AI routing
+- Resume Studio with ATS analysis
+- GitHub Portfolio Analyzer
+- LinkedIn Optimizer
+- Interactive Mock Interview Lab
+- Job Application Tracker
+- Company Preparation Hub
+- Marketplace
+- Model Context Protocol (MCP) Server
+- Web Dashboard
+- Command Line Interface
+- REST APIs
+- Plugin System
+
+Career Agents can be used as a standalone web application, a local CLI tool, an MCP server inside editors like Cursor and Claude Desktop, or integrated into custom workflows.
 
 ---
 
@@ -45,11 +96,11 @@ Software engineers face a fragmented job application cycle where resumes are fil
 
 ---
 
-## Why Career OS
+## Why Career Agents
 
 Traditional career readiness tools fail because they evaluate portfolios and resumes in isolation. General-purpose AI chatbots fail because they require developers to manually copy-paste resume templates, terminal outputs, and system architecture descriptions into separate windows, losing continuity across sessions. 
 
-Career OS takes a different approach:
+Career Agents takes a different approach:
 - **Heuristic + AI ATS Parsing:** Integrates regex section scanners and action-verb checking with LLM-powered bullet optimization.
 - **Context-Aware Routing:** The Career Copilot reads the user's active resume scores, GitHub repo counts, and target titles, automatically routing queries to the most qualified agent in the 146-agent registry.
 - **Zero-Key Privacy:** Stores sensitive API keys in the browser's `localStorage` rather than database systems, safeguarding user credentials.
@@ -105,11 +156,10 @@ Career OS takes a different approach:
 
 ## Demo
 
-- **Live Demo Instance:** [career-os.dev](https://career-os.dev) (Use fully in guest mode with no credentials needed)
+- **Live Demo Instance:** [https://career-os.dev](https://career-agents.vercel.app/) (Use fully in guest mode with no credentials needed)
 - **GitHub Repository:** [github.com/karthikrshet/Career-Agents](https://github.com/karthikrshet/Career-Agents)
 - **NPM Package Registry:** [npmjs.com/package/career-agents](https://www.npmjs.com/package/career-agents)
 - **Documentation index:** [docs/README.md](./docs/README.md)
-- **Video Walkthrough:** [YouTube Video Walkthrough](https://youtube.com)
 
 ---
 
