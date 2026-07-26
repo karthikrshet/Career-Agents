@@ -1,9 +1,5 @@
 <div align="center">
-
-
-# Career OS
-
-### The Open-Source AI Career Operating System for Software Engineers
+The Open-Source AI Career Operating System for Software Engineers
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/banner.svg" alt="Career OS Banner" width="800" />
