@@ -94,3 +94,32 @@ jobs:
           }
           if (errors > 0) process.exit(1);
           '
+
+  build-and-test:
+    name: Build, Lint & Type-Check Web App
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: Install dependencies
+        run: |
+          npm install
+          cd apps/web && npm install
+      - name: Generate Data Models
+        run: python scripts/generate-data.py
+      - name: Validate Markdown References
+        run: python scripts/validate.py
+      - name: Lint Next.js
+        run: cd apps/web && npm run lint
+      - name: Type-Check Web App
+        run: cd apps/web && npm run type-check
+      - name: Build Next.js Production Build
+        run: cd apps/web && npm run build

@@ -659,14 +659,14 @@ The top 3 matching agents with score >= 5 are compiled, their Markdown prompt bo
 
 ## AI Providers
 
-Career OS supports 14 providers. The router evaluates API keys from the browser's `localStorage` settings config first, falling back to server-side environment variables if the local config is empty:
+Career OS supports **18 providers** managed by the centralized AI Gateway. The router evaluates API keys from the browser's `localStorage` settings key arrays (Primary, Secondary, Backup key rotations) first, falling back to server-side environment variables if the local config is empty:
 
 | Provider | Status | Default Model | Free Tier | Streaming | Vision |
 |----------|--------|--------------|-----------|-----------|--------|
 | **Groq** | ✅ Active | `llama-3.3-70b-versatile` | ✅ Yes | ✅ Yes | ❌ |
 | **Google Gemini** | ✅ Active | `gemini-2.5-pro` | ✅ Yes | ✅ Yes | ✅ Yes |
 | **OpenAI** | ✅ Active | `gpt-4o` | ❌ No | ✅ Yes | ✅ Yes |
-| **Anthropic** | ✅ Active | `claude-3-5-sonnet-20241022`| ❌ No | ✅ Yes | ✅ Yes |
+| **Anthropic Claude** | ✅ Active | `claude-3-5-sonnet-20241022`| ❌ No | ✅ Yes | ✅ Yes |
 | **DeepSeek** | ✅ Active | `deepseek-chat` | ❌ Cheap | ✅ Yes | ❌ |
 | **OpenRouter** | ✅ Active | `openai/gpt-4o` | ✅ Yes | ✅ Yes | ✅ Yes |
 | **Together AI** | ✅ Active | `meta-llama/Llama-3-70b-chat`| ❌ No | ✅ Yes | ❌ |
@@ -676,6 +676,11 @@ Career OS supports 14 providers. The router evaluates API keys from the browser'
 | **Azure OpenAI** | ✅ Active | Custom deployment | ❌ Enterprise| ✅ Yes | ✅ Yes |
 | **Ollama** | ✅ Active (Local) | User pulled (e.g. `llama3`) | ✅ Yes | ✅ Yes | ❌ |
 | **LM Studio** | ✅ Active (Local) | Custom loaded GGUF | ✅ Yes | ✅ Yes | ❌ |
+| **Fireworks** | ✅ Active | `llama-v3-70b-instruct` | ❌ No | ✅ Yes | ❌ |
+| **Perplexity** | ✅ Active | `llama-3.1-sonar-large` | ❌ No | ✅ Yes | ❌ |
+| **AI21 Labs** | ✅ Active | `jamba-1.5-large` | ❌ No | ✅ Yes | ❌ |
+| **OpenAI Compatible**| ✅ Active | Custom loaded model | ✅ Yes | ✅ Yes | ✅ Yes |
+| **Custom Endpoint** | ✅ Active | Custom loaded model | ✅ Yes | ✅ Yes | ✅ Yes |
 
 ---
 
@@ -805,13 +810,25 @@ Open [http://localhost:3000](http://localhost:3000) and configure your AI key un
 | `NEXTAUTH_SECRET` | Yes | None | Secret key used to encrypt user sessions. Never share this. |
 | `NEXTAUTH_URL` | Yes | `http://localhost:3000` | Canonical URL of your app deployment. |
 | `DATABASE_URL` | No | None | Postgres connection string. If blank, app operates in Guest Mode. |
+| `JWT_SECRET` | No | None | Secret key used to sign session cookies. |
+| `UPLOAD_LIMIT_MB` | No | `10` | Maximum allowed file upload size for resume parsing. |
+| `DEFAULT_PROVIDER` | No | `gemini` | Fallback default gateway provider. |
+| `DEFAULT_MODEL` | No | `gemini-2.5-flash` | Fallback default gateway model. |
 | `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` | No | None | OAuth application keys generated via GitHub Developer settings. |
 | `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | No | None | OAuth application keys generated via Google Cloud Console. |
-| `GROQ_API_KEY` | No | None | Server-side fallback key for Groq AI completions. |
-| `GEMINI_API_KEY` | No | None | Server-side fallback key for Google Gemini completions. |
+| `OPENAI_API_KEY` | No | None | Server-side fallback key for OpenAI. |
+| `ANTHROPIC_API_KEY` | No | None | Server-side fallback key for Anthropic Claude. |
+| `GEMINI_API_KEY` | No | None | Server-side fallback key for Google Gemini. |
+| `GROQ_API_KEY` | No | None | Server-side fallback key for Groq. |
+| `DEEPSEEK_API_KEY` | No | None | Server-side fallback key for DeepSeek. |
+| `OPENROUTER_API_KEY` | No | None | Server-side fallback key for OpenRouter. |
+| `MISTRAL_API_KEY` | No | None | Server-side fallback key for Mistral. |
+| `COHERE_API_KEY` | No | None | Server-side fallback key for Cohere. |
+| `TOGETHER_API_KEY` | No | None | Server-side fallback key for Together AI. |
+| `XAI_API_KEY` | No | None | Server-side fallback key for xAI Grok. |
 | `GITHUB_TOKEN` | No | None | Read-only GitHub PAT used to increase GitHub API limit to 5000/hr. |
 | `REDIS_URL` | No | None | Redis connection string used for optional API route rate limiting. |
-| `LOG_LEVEL` | No | `info` | Logging verbosity level on NextJS console (`debug`, `info`, `warn`, `error`). |
+| `LOG_LEVEL` | No | `info` | Logging verbosity level on NextJS console. |
 
 ---
 
