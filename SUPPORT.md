@@ -1,60 +1,77 @@
-# Supporting Career-Agents
+# Support
 
-Welcome to the Career-Agents support guide! If you are experiencing issues with the CLI, MCP server, templates, or integrations, this document outlines how to get help and resolve common problems.
-
----
-
-## Support Channels
-
-### 1. GitHub Discussions (Preferred)
-For questions, configuration guides, integration walkthroughs, and architecture discussions:
-- **Link:** [GitHub Discussions](https://github.com/karthikrshet/Career-Agents/discussions)
-- **Use cases:** Configuration guides, editor integrations, and sharing ideas.
-
-### 2. GitHub Issues
-To report bugs, CLI runtime crashes, validation failures, or incorrect registry entries:
-- **Link:** [GitHub Issues](https://github.com/karthikrshet/Career-Agents/issues)
-- **Use cases:** Bug reports, command errors, formatting or registry mismatch requests.
-
-### 3. Community Outlets
-For real-time chats and collaborating with other contributors, please refer to the community announcements on the repository.
+Need help with Career OS? Here's where to find it.
 
 ---
 
-## Troubleshooting Quick Reference
+## Self-Service Resources
 
-### CLI Diagnostic Command
-If something isn't working, start by running the doctor check:
-```bash
-career-agents doctor
-# or via node directly
-node scripts/cli.js doctor
-```
-
-### Common Issues
-
-#### 1. MCP Server Fails to Start / Connection Timeout
-- **Symptoms:** Editors like Cursor or Claude Desktop fail to connect, showing "Stdio server error" or timeout.
-- **Fix:** 
-  1. Ensure you have Node.js version 18 or higher installed (`node -v`).
-  2. Test executing the server locally: `node scripts/cli.js mcp`. It should wait quietly for JSON-RPC stdio inputs without crashing.
-  3. Verify the path configuration in your Claude/Cursor configuration file uses absolute paths or matches `npx -y career-agents mcp` exactly.
-
-#### 2. Missing Database / Search Index Errors
-- **Symptoms:** Search returning 0 results, missing knowledge graph, or empty bundles listing.
-- **Fix:** Force-rebuild the registry indices:
-  ```bash
-  career-agents update
-  ```
-
-#### 3. Command Line Executable Not Found
-- **Symptoms:** Running `career-agents` returns command not found.
-- **Fix:** If installed globally via npm, ensure your npm global prefix is added to your environment `PATH` variable.
-  ```bash
-  npm install -g career-agents
-  ```
+| Resource | What You'll Find |
+|---|---|
+| [docs/QUICKSTART.md](./docs/QUICKSTART.md) | Get running in 5 minutes |
+| [docs/TROUBLESHOOTING.md](./docs/TROUBLESHOOTING.md) | Common issues and step-by-step fixes |
+| [docs/FAQ.md](./docs/FAQ.md) | 35+ frequently asked questions |
+| [docs/PROVIDERS.md](./docs/PROVIDERS.md) | AI provider setup and troubleshooting |
+| [docs/API.md](./docs/API.md) | API reference with error codes |
+| [docs/MCP.md](./docs/MCP.md) | MCP server configuration |
 
 ---
 
-## Professional Support
-If you need personalized assistance or enterprise-level integration support, please contact the maintainers or open an inquiry on GitHub.
+## Community Support
+
+### GitHub Discussions
+[github.com/karthikrshet/Career-Agents/discussions](https://github.com/karthikrshet/Career-Agents/discussions)
+
+Best for:
+- Feature ideas and feedback
+- "How do I...?" questions
+- Showcasing your Career OS setup
+- Sharing interview success stories
+
+### GitHub Issues
+[github.com/karthikrshet/Career-Agents/issues](https://github.com/karthikrshet/Career-Agents/issues)
+
+Best for:
+- Confirmed bug reports
+- Feature requests with a specific proposal
+
+**When filing an issue, include:**
+- Your OS (Windows / macOS / Linux)
+- Node.js version (`node --version`)
+- Browser and version
+- Steps to reproduce
+- Exact error message (from browser console or terminal)
+
+---
+
+## Security Issues
+
+**Never** file security vulnerabilities as public issues.
+
+Use GitHub Security Advisories: [github.com/karthikrshet/Career-Agents/security/advisories/new](https://github.com/karthikrshet/Career-Agents/security/advisories/new)
+
+See [SECURITY.md](./SECURITY.md) for the full vulnerability reporting process.
+
+---
+
+## Before Opening an Issue
+
+1. Check [TROUBLESHOOTING.md](./docs/TROUBLESHOOTING.md) for your error
+2. Search [existing issues](https://github.com/karthikrshet/Career-Agents/issues) — it may already be reported or fixed
+3. Try the latest version: `git pull && npm install`
+4. Check the [CHANGELOG](./CHANGELOG.md) for recent fixes
+
+---
+
+## Response Times
+
+This is an open-source project maintained by a small team. We aim to:
+
+| Type | Response Time |
+|---|---|
+| Security vulnerabilities | Within 48 hours |
+| Bug reports with reproduction steps | Within 1 week |
+| Feature requests | When scheduled for a milestone |
+| GitHub Discussions | Community-driven, varies |
+
+We appreciate your patience and contributions to making Career OS better.

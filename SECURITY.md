@@ -2,48 +2,72 @@
 
 ## Supported Versions
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 2.5.x   | ✅ Active support  |
-| 2.4.x   | ⚠️ Security fixes only |
-| < 2.4   | ❌ No longer supported |
+| Version | Supported |
+|---|---|
+| 2.5.x | ✅ Current — fully supported |
+| 2.x.x | ⚠️ Security fixes only |
+| < 2.0 | ❌ Unsupported |
+
+---
 
 ## Reporting a Vulnerability
 
-**Please do NOT report security vulnerabilities via public GitHub Issues.**
+**Please do NOT open a public GitHub issue for security vulnerabilities.**
 
 ### How to Report
 
-1. **Email**: Open a [private security advisory](https://github.com/karthikrshet/Career-Agents/security/advisories/new) on GitHub (preferred)
-2. Include: affected version, description, reproduction steps, and potential impact
+1. **GitHub Security Advisories** (preferred):  
+   Go to [github.com/karthikrshet/Career-Agents/security/advisories/new](https://github.com/karthikrshet/Career-Agents/security/advisories/new)  
+   Submit a private security advisory.
+
+2. **Email:**  
+   Contact the maintainer via GitHub profile: [github.com/karthikrshet](https://github.com/karthikrshet)
+
+### What to Include
+
+- A clear description of the vulnerability
+- Steps to reproduce
+- Affected version(s)
+- Potential impact assessment
+- Optional: suggested fix
 
 ### Response Timeline
 
-- **Acknowledgement**: Within 48 hours
-- **Initial assessment**: Within 7 days
-- **Fix + disclosure**: Coordinated within 90 days
+| Action | Timeline |
+|---|---|
+| Acknowledge receipt | Within 48 hours |
+| Confirm the vulnerability | Within 5 business days |
+| Release a fix (critical) | Within 7 days |
+| Release a fix (high) | Within 14 days |
+| Release a fix (medium/low) | Next scheduled release |
 
-## Security Best Practices for Self-Hosting
+We will credit you in the security advisory unless you request anonymity.
 
-### API Keys
-- Store all AI provider API keys in environment variables (`OPENAI_API_KEY`, `GEMINI_API_KEY`, etc.)
-- **Never** commit API keys to git
-- Use `.env.local` for local development (it's gitignored)
+---
 
-### Database
-- In production, use PostgreSQL with a strong `DATABASE_URL`
-- Rotate `NEXTAUTH_SECRET` regularly
+## Security Architecture
 
-### Headers
-Career OS ships with the following security headers by default:
-- `Content-Security-Policy`
-- `Strict-Transport-Security`
-- `X-Frame-Options: SAMEORIGIN`
-- `X-Content-Type-Options: nosniff`
-- `Referrer-Policy: strict-origin-when-cross-origin`
-- `Permissions-Policy: camera=(), microphone=()`
+For the detailed security model, see [docs/SECURITY.md](./docs/SECURITY.md).
 
-### Guest Mode Security
-- Guest data is stored in `localStorage` only
-- No guest data is transmitted to any server
-- API keys entered in settings are only sent via HTTPS to your own API routes
+### Key Points
+
+- **API keys are never stored server-side.** They live in browser `localStorage` only.
+- **No user data is sent to Career OS servers.** All analysis uses your own AI provider key.
+- **HTTP security headers** are set on all routes: CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy.
+- **No telemetry by default.** Opt-in only (`NEXT_PUBLIC_ENABLE_TELEMETRY=true`).
+
+---
+
+## Known Security Considerations
+
+1. **localStorage API key storage** — API keys in localStorage are accessible to any JavaScript on the same origin. Career OS's CSP prevents third-party scripts from running, mitigating XSS-based key theft.
+
+2. **Guest mode data** — All guest mode data (resumes, chat history, job applications) is stored in browser localStorage. Clearing browser data will delete it. This is by design for privacy.
+
+3. **MCP server** — The MCP server uses stdio and is designed for local use only. Do not expose it to a public network.
+
+---
+
+## Dependency Vulnerabilities
+
+Run `npm audit` in `apps/web/` to check for known vulnerabilities in dependencies. Critical vulnerabilities are addressed immediately in patch releases.

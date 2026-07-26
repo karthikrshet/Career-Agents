@@ -15,6 +15,72 @@ export interface AIProviderConfig {
   streaming: boolean;
 }
 
+// ─── AI Error Classification ─────────────────────────────────────────────────
+export type AIErrorCode =
+  | "QUOTA_EXCEEDED"
+  | "AUTH_FAILED"
+  | "RATE_LIMITED"
+  | "MODEL_NOT_FOUND"
+  | "TIMEOUT"
+  | "UNAVAILABLE"
+  | "INVALID_INPUT"
+  | "CONTEXT_TOO_LONG"
+  | "UNKNOWN";
+
+export interface AIProviderError {
+  code: AIErrorCode;
+  provider: string;
+  providerName: string;
+  statusCode: number;
+  retryable: boolean;
+  retryAfterSeconds?: number;
+  userMessage: string;
+  userDetail: string;
+  suggestions: string[];
+  fallbackProvider?: string;
+  fallbackModel?: string;
+}
+
+// ─── Provider Health Monitoring ──────────────────────────────────────────────
+export type ProviderStatus = "healthy" | "degraded" | "unavailable" | "unknown";
+
+export interface ProviderHealthEntry {
+  provider: string;
+  providerName: string;
+  status: ProviderStatus;
+  latencyMs?: number;
+  lastChecked?: string;
+  lastError?: AIErrorCode;
+  failedAt?: string;
+  retryAfter?: string;
+}
+
+export type ProviderHealthMap = Record<string, ProviderHealthEntry>;
+
+// ─── SSE Event Types from AI Gateway ────────────────────────────────────────
+export interface SSEProviderChangeEvent {
+  type: "provider_change";
+  from: string;
+  fromName: string;
+  to: string;
+  toName: string;
+  reason: string;
+}
+
+export interface SSERetryEvent {
+  type: "retry";
+  attempt: number;
+  maxAttempts: number;
+  retryAfterSeconds: number;
+  provider: string;
+  providerName: string;
+}
+
+export interface SSEErrorEvent {
+  type: "error";
+  error: AIProviderError;
+}
+
 export interface UserProfile {
   id: string;
   name: string;
@@ -265,6 +331,11 @@ export interface AppSettings {
   language: string;
   notifications: boolean;
   telemetry: boolean;
+  // AI Reliability
+  autoFallback: boolean;
+  retryCount: number;       // 1-5
+  retryDelayMs: number;     // ms between retries
+  providerOrder: string[];  // ordered fallback chain
 }
 
 // Plugin
