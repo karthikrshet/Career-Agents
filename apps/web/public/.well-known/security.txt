@@ -1,0 +1,5 @@
+Contact: mailto:security@career-os.vercel.app
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en
+Acknowledgments: https://github.com/karthikrshet/Career-Agents/blob/main/SUPPORT.md
+Policy: https://github.com/karthikrshet/Career-Agents/blob/main/SECURITY.md

@@ -55,8 +55,45 @@ const softwareSchema = {
   license: 'https://opensource.org/licenses/MIT',
   codeRepository: 'https://github.com/karthikrshet/Career-Agents',
   programmingLanguage: ['TypeScript', 'JavaScript', 'Python'],
-  softwareVersion: '2.5.0',
+  softwareVersion: '3.0.0',
   releaseNotes: `${baseUrl}/credits`,
+};
+
+const breadcrumbsSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: baseUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Resume Studio',
+      item: `${baseUrl}/resume`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'GitHub Analyzer',
+      item: `${baseUrl}/github`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 4,
+      name: 'LinkedIn Tracker',
+      item: `${baseUrl}/linkedin`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 5,
+      name: 'Interview Lab',
+      item: `${baseUrl}/interview`,
+    },
+  ],
 };
 
 const websiteSchema = {
@@ -115,7 +152,7 @@ const faqSchema = {
 };
 
 export function JsonLd() {
-  const schemas = [organizationSchema, softwareSchema, websiteSchema, faqSchema];
+  const schemas = [organizationSchema, softwareSchema, websiteSchema, faqSchema, breadcrumbsSchema];
   return (
     <>
       {schemas.map((schema, i) => (

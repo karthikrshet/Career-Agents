@@ -1,9 +1,9 @@
 // Production Service Worker for Career OS
 // Cache-first for static assets, network-first for API, offline fallback
 
-const CACHE_NAME = 'career-os-v2-5-0';
-const STATIC_CACHE = 'career-os-static-v2-5-0';
-const API_CACHE = 'career-os-api-v2-5-0';
+const CACHE_NAME = 'career-os-v3-0-0';
+const STATIC_CACHE = 'career-os-static-v3-0-0';
+const API_CACHE = 'career-os-api-v3-0-0';
 
 const STATIC_ASSETS = [
   '/',
