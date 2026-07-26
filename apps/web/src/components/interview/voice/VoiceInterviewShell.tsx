@@ -164,6 +164,59 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
     }
   }, []);
 
+  // Session storage persistence key
+  const SESSION_STORAGE_KEY = "career_agents_active_voice_session";
+
+  // Restore session & config from localStorage on mount
+  useEffect(() => {
+    if (typeof window === "undefined" || !mounted) return;
+    try {
+      const stored = localStorage.getItem(SESSION_STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed.selectedAgentId) {
+          const found = ALL_AGENTS.find((a) => a.id === parsed.selectedAgentId);
+          if (found) setSelectedAgent(found);
+        }
+        if (parsed.company) setCompany(parsed.company);
+        if (parsed.role) setRole(parsed.role);
+        if (parsed.mode) setMode(parsed.mode);
+        if (parsed.difficulty) setDifficulty(parsed.difficulty);
+        if (parsed.language) setLanguage(parsed.language);
+        if (parsed.durationMinutes) setDurationMinutes(parsed.durationMinutes);
+        if (parsed.sessionId && parsed.history && parsed.history.length > 0 && fsmState === "CONFIGURING" && !initialSessionId) {
+          setSessionId(parsed.sessionId);
+          setHistory(parsed.history);
+          setTimerSec(parsed.timerSec || 0);
+          setFsmState(parsed.fsmState === "COMPLETED" ? "COMPLETED" : "WAITING_FOR_NEXT_QUESTION");
+        }
+      }
+    } catch (e) {}
+  }, [mounted]);
+
+  // Persist session & config changes to localStorage
+  useEffect(() => {
+    if (typeof window === "undefined" || !mounted) return;
+    try {
+      localStorage.setItem(
+        SESSION_STORAGE_KEY,
+        JSON.stringify({
+          selectedAgentId: selectedAgent.id,
+          company,
+          role,
+          mode,
+          difficulty,
+          language,
+          durationMinutes,
+          sessionId,
+          history,
+          fsmState,
+          timerSec,
+        })
+      );
+    } catch (e) {}
+  }, [selectedAgent, company, role, mode, difficulty, language, durationMinutes, sessionId, history, fsmState, timerSec, mounted]);
+
   // Filter voices by language
   const filteredVoices = useMemo(() => {
     const prefix = language.split("-")[0];
