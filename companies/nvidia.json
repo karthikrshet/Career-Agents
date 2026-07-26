@@ -1,0 +1,26 @@
+{
+  "id": "nvidia",
+  "name": "Nvidia",
+  "interview_process": [
+    "Recruiter call & screening (30 min)",
+    "Technical phone interview: C++ coding & systems concepts (45 min)",
+    "Onsite loop: 3 technical coding / systems architecture rounds, 1 AI/graphics round, 1 team fit round (45 min each)"
+  ],
+  "skills": [
+    "Systems Programming (C/C++, CUDA)",
+    "Parallel Computing & GPU Architecture",
+    "Data Structures & Algorithms",
+    "Deep Learning & Computer Vision"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "technical-interview-coach",
+    "system-design-coach",
+    "machine-learning-engineer",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Nvidia Developer Blog",
+    "CUDA Documentation"
+  ]
+}

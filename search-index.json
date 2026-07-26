@@ -3829,6 +3829,20 @@
       "companies": []
     },
     {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "type": "company",
+      "description": "Anthropic interview preparation track.",
+      "tags": [],
+      "skills": [
+        "Data Structures & Algorithms",
+        "Generative AI & LLM Fine-Tuning",
+        "Alignment & Safety Principles",
+        "System Design & Scalability"
+      ],
+      "companies": []
+    },
+    {
       "id": "atlassian",
       "name": "Atlassian",
       "type": "company",
@@ -3911,6 +3925,20 @@
       "companies": []
     },
     {
+      "id": "nvidia",
+      "name": "Nvidia",
+      "type": "company",
+      "description": "Nvidia interview preparation track.",
+      "tags": [],
+      "skills": [
+        "Systems Programming (C/C++, CUDA)",
+        "Parallel Computing & GPU Architecture",
+        "Data Structures & Algorithms",
+        "Deep Learning & Computer Vision"
+      ],
+      "companies": []
+    },
+    {
       "id": "openai",
       "name": "OpenAI",
       "type": "company",
@@ -3982,5 +4010,5 @@
     }
   ],
   "version": "1.0.0",
-  "total": 205
+  "total": 207
 }
