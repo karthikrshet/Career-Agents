@@ -5,6 +5,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.0.0] — 2026-07
+
+### Added
+- **Intelligent Agent Orchestration Engine**: Added `packages/agents` (router, planner, executor, merger, context, cache) for multi-agent context planning, intent routing, and advice merging.
+- **Career Memory**: Added `packages/memory` cache interface to persist achievements, milestones, and metrics.
+- **Workflow Engine**: Added stateful `packages/core/workflow-engine.js` tracker.
+- **Company Intelligence**: Added structured JSON company profiles for `anthropic` and `nvidia` inside `companies/`.
+- **OpenAPI / Swagger Reference**: Added an interactive API documentation page at `/api/docs` mapping requests/responses.
+
+### Changed
+- **Bushed Version**: Version upgrade to `3.0.0` for core packages, web dashboard, and registries.
+- **Copilot Integration**: Unified the Copilot API route (`/api/copilot`) to resolve prompt pipelines using the new orchestration packages.
+
+---
+
 ## [2.5.0] — 2026-07
 
 ### Added

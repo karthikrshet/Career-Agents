@@ -1,0 +1,26 @@
+{
+  "id": "anthropic",
+  "name": "Anthropic",
+  "interview_process": [
+    "Initial technical chat (30 min)",
+    "Technical programming screen (45 min)",
+    "Onsite loop: 2 coding rounds, 1 system design / AI engineering round, 1 cultural fit round (45 min each)"
+  ],
+  "skills": [
+    "Data Structures & Algorithms",
+    "Generative AI & LLM Fine-Tuning",
+    "Alignment & Safety Principles",
+    "System Design & Scalability"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "openai-career-coach",
+    "technical-interview-coach",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Anthropic Research Blog",
+    "Constitutional AI documentation"
+  ]
+}

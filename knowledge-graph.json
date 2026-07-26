@@ -1981,6 +1981,26 @@
       "type": "skill"
     },
     {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "type": "company"
+    },
+    {
+      "id": "skill-generative-ai-&-llm-fine-tuning",
+      "name": "Generative AI & LLM Fine-Tuning",
+      "type": "skill"
+    },
+    {
+      "id": "skill-alignment-&-safety-principles",
+      "name": "Alignment & Safety Principles",
+      "type": "skill"
+    },
+    {
+      "id": "skill-system-design-&-scalability",
+      "name": "System Design & Scalability",
+      "type": "skill"
+    },
+    {
       "id": "skill-atlassian-core-values-(open-company-no-bullshit)",
       "name": "Atlassian core values (Open Company No Bullshit)",
       "type": "skill"
@@ -2023,11 +2043,6 @@
     {
       "id": "skill-data-structures-&-algorithms-(graphs,-dynamic-programming,-trees)",
       "name": "Data Structures & Algorithms (graphs, dynamic programming, trees)",
-      "type": "skill"
-    },
-    {
-      "id": "skill-system-design-&-scalability",
-      "name": "System Design & Scalability",
       "type": "skill"
     },
     {
@@ -2088,6 +2103,26 @@
     {
       "id": "skill-resilience-engineering-(chaos-monkey)",
       "name": "Resilience engineering (Chaos Monkey)",
+      "type": "skill"
+    },
+    {
+      "id": "nvidia",
+      "name": "Nvidia",
+      "type": "company"
+    },
+    {
+      "id": "skill-systems-programming-(c/c++,-cuda)",
+      "name": "Systems Programming (C/C++, CUDA)",
+      "type": "skill"
+    },
+    {
+      "id": "skill-parallel-computing-&-gpu-architecture",
+      "name": "Parallel Computing & GPU Architecture",
+      "type": "skill"
+    },
+    {
+      "id": "skill-deep-learning-&-computer-vision",
+      "name": "Deep Learning & Computer Vision",
       "type": "skill"
     },
     {
@@ -10663,6 +10698,46 @@
       "relation": "requires_skill"
     },
     {
+      "source": "anthropic",
+      "target": "openai-career-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "anthropic",
+      "target": "technical-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "anthropic",
+      "target": "system-design-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "anthropic",
+      "target": "mock-interviewer",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "anthropic",
+      "target": "skill-data-structures-&-algorithms",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic",
+      "target": "skill-generative-ai-&-llm-fine-tuning",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic",
+      "target": "skill-alignment-&-safety-principles",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic",
+      "target": "skill-system-design-&-scalability",
+      "relation": "requires_skill"
+    },
+    {
       "source": "atlassian",
       "target": "atlassian-interview-coach",
       "relation": "requires_agent"
@@ -10890,6 +10965,46 @@
     {
       "source": "netflix",
       "target": "skill-resilience-engineering-(chaos-monkey)",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia",
+      "target": "technical-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "nvidia",
+      "target": "system-design-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "nvidia",
+      "target": "machine-learning-engineer",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "nvidia",
+      "target": "mock-interviewer",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "nvidia",
+      "target": "skill-systems-programming-(c/c++,-cuda)",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia",
+      "target": "skill-parallel-computing-&-gpu-architecture",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia",
+      "target": "skill-data-structures-&-algorithms",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia",
+      "target": "skill-deep-learning-&-computer-vision",
       "relation": "requires_skill"
     },
     {

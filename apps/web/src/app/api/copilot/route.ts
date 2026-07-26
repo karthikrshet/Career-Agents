@@ -1,74 +1,8 @@
 // apps/web/src/app/api/copilot/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import type { AIProviderConfig, AIMessage } from "@/types";
+import type { AIProviderConfig } from "@/types";
 import { getProvider } from "@/lib/ai/provider-manager";
-import fs from "fs";
-import path from "path";
-
-// Load registry dynamically from workspace root
-const agentRegistryPath = path.join(process.cwd(), "../../agent-registry.json");
-let agentRegistry: { agents: any[] } = { agents: [] };
-try {
-  agentRegistry = JSON.parse(fs.readFileSync(agentRegistryPath, "utf-8"));
-} catch (err) {
-  console.error("Failed to load agent-registry.json", err);
-}
-
-function findBestAgents(query: string): any[] {
-  const lq = query.toLowerCase();
-  const scoredAgents: { agent: any; score: number }[] = [];
-
-  for (const agent of agentRegistry.agents) {
-    let score = 0;
-    const nameLower = agent.name.toLowerCase();
-    const descLower = agent.description.toLowerCase();
-
-    // Match full name
-    if (lq.includes(nameLower)) {
-      score += 15;
-    }
-
-    // Keyword matching
-    const keywords = nameLower.split(/\s+/);
-    for (const kw of keywords) {
-      if (kw.length > 3 && lq.includes(kw)) score += 3;
-    }
-
-    // Match tags
-    for (const tag of agent.tags || []) {
-      if (lq.includes(tag.toLowerCase())) score += 2;
-    }
-
-    // Match skills
-    for (const skill of agent.skills || []) {
-      if (lq.includes(skill.toLowerCase())) score += 2;
-    }
-
-    // Intent boosters (Priority 17)
-    if (lq.includes("resume") || lq.includes("cv") || lq.includes("ats")) {
-      if (agent.id.includes("resume") || agent.id.includes("ats")) score += 12;
-    }
-    if (lq.includes("github") || lq.includes("git") || lq.includes("portfolio")) {
-      if (agent.id.includes("github") || agent.id.includes("portfolio")) score += 12;
-    }
-    if (lq.includes("interview") || lq.includes("prep") || lq.includes("question")) {
-      if (agent.id.includes("interview") || agent.id.includes("prep")) score += 12;
-    }
-    if (lq.includes("linkedin") || lq.includes("profile")) {
-      if (agent.id.includes("linkedin") || agent.id.includes("profile")) score += 12;
-    }
-
-    if (score >= 5) {
-      scoredAgents.push({ agent, score });
-    }
-  }
-
-  // Sort by score descending and take top 3
-  return scoredAgents
-    .sort((a, b) => b.score - a.score)
-    .map((s) => s.agent)
-    .slice(0, 3);
-}
+import { compileAndExecuteAgents } from "../../../../../../packages/agents/executor";
 
 export async function POST(req: NextRequest) {
   try {
@@ -77,97 +11,23 @@ export async function POST(req: NextRequest) {
     const providerConfig = config as AIProviderConfig;
     const activeProvider = getProvider(providerConfig.provider);
 
-    // 1. Context Engine Integration
-    let contextPrompt = `\n\n[Candidate Portfolio Context Index]`;
-    let pluginPrompt = "";
-    if (context) {
-      const { profile, metrics, resumeAnalysis, GitHubAnalysis, linkedinAnalysis, jobApplications, enabledPlugins } = context;
-      
-      contextPrompt += `
-Candidate Profile:
-- Name: ${profile?.name || "Guest User"}
-- Target Role: ${profile?.targetRole || "Software Engineer"}
-- Target Company: ${profile?.targetCompany || "Not specified"}
-
-Performance Metrics:
-- Overall Career Score: ${metrics?.careerScore || 0}/100
-- Resume Score: ${metrics?.resumeScore || 0}/100
-- GitHub Score: ${metrics?.githubScore || 0}/100
-- LinkedIn Score: ${metrics?.linkedinScore || 0}/100
-- Interview Score: ${metrics?.interviewScore || 0}/100
-
-Resume Audit:
-- ATS Compatibility: ${resumeAnalysis?.atsScore || "N/A"}%
-- Weak Bullets Highlighted: ${resumeAnalysis?.weakBullets ? JSON.stringify(resumeAnalysis.weakBullets.slice(0, 4)) : "None"}
-- Missing Keywords: ${resumeAnalysis?.missingKeywords ? JSON.stringify(resumeAnalysis.missingKeywords) : "None"}
-
-GitHub Portfolio:
-- Public Repos: ${GitHubAnalysis?.publicRepos || 0}
-- Stars Count: ${GitHubAnalysis?.totalStars || 0}
-- README Quality: ${GitHubAnalysis?.readmeGrade || "N/A"}
-
-LinkedIn Status:
-- Headline Analysis: ${linkedinAnalysis?.headlineAnalysis?.current || "N/A"}
-- Recruiter Visibility: ${linkedinAnalysis?.visibilityIndex || "N/A"}
-
-Job Tracking Summary (Last 5 applications):
-${jobApplications ? JSON.stringify(jobApplications.slice(0, 5)) : "No active tracker data"}
-`;
-
-      if (enabledPlugins) {
-        if (enabledPlugins["star-coach"]) {
-          pluginPrompt += `\n\n[Plugin Active: STAR Behavioral Coach]\nInstruction: Always structure behavioral responses in STAR format (Situation, Task, Action, Result). Highlight metrics and outcomes for each bullet.`;
-        }
-        if (enabledPlugins["leetcode-tracker"]) {
-          pluginPrompt += `\n\n[Plugin Active: LeetCode Tracker Connector]\nInstruction: Focus heavily on algorithmic correctness, time/space complexity (Big O notation), and suggest LeetCode problem recommendations.`;
-        }
-        if (enabledPlugins["salary-intel"]) {
-          pluginPrompt += `\n\n[Plugin Active: Salary Intelligence]\nInstruction: Focus recommendations on compensation negotiation tactics, salary benchmarks, and levels alignment.`;
-        }
-        if (enabledPlugins["resume-pdf"]) {
-          pluginPrompt += `\n\n[Plugin Active: Resume PDF Parser]\nInstruction: Tailor suggestions specifically for PDF layout compliance and parsing logic.`;
-        }
-      }
-    }
-
-    // 2. Multi-Agent Router & Orchestrator
+    // 1 & 2. Agent Orchestrator & Context compilation
     const lastUserMessage = [...messages].reverse().find((m) => m.role === "user")?.content || "";
-    const selectedAgents = findBestAgents(lastUserMessage);
-
-    let thinkingIndicator = "";
-    let agentPrompts = "";
-
-    if (selectedAgents.length > 0) {
-      const agentNames = selectedAgents.map((a) => `${a.name} (${a.emoji || "🤖"})`).join(", ");
-      thinkingIndicator = `<thinking>Orchestrating career agent team: ${agentNames}. Merging system prompt requirements...</thinking>\n\n`;
-
-      for (const agent of selectedAgents) {
-        try {
-          const agentFilePath = path.join(process.cwd(), "../../", agent.filename);
-          if (fs.existsSync(agentFilePath)) {
-            const rawPrompt = fs.readFileSync(agentFilePath, "utf-8");
-            const cleanPrompt = rawPrompt.replace(/^---[\s\S]*?---/, "").trim();
-            agentPrompts += `\n\n[Agent Role: ${agent.name}]\n${cleanPrompt}`;
-          }
-        } catch (err) {
-          console.error(`Failed to load agent file: ${agent.filename}`, err);
-        }
-      }
-    }
+    const { systemPrompt, thinkingIndicator } = compileAndExecuteAgents(
+      lastUserMessage,
+      context || {},
+      context?.enabledPlugins || {}
+    );
 
     // Construct final master system prompt
     let systemMessage = messages.find((m: any) => m.role === "system");
-    const masterSystemContext = `You are Career Copilot, an AI career workspace assistant. Always use candidates' dossier metrics to deliver hyper-personalized guidance.
-${contextPrompt}
-${pluginPrompt}
-${agentPrompts}`;
 
     if (systemMessage) {
-      systemMessage.content = masterSystemContext + "\n\n" + systemMessage.content;
+      systemMessage.content = systemPrompt + "\n\n" + systemMessage.content;
     } else {
       messages.unshift({
         role: "system" as const,
-        content: masterSystemContext,
+        content: systemPrompt,
       });
     }
 

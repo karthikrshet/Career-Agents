@@ -20,9 +20,19 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "packages/ai/*": ["../../packages/ai/*"]
+      "packages/ai/*": ["../../packages/ai/*"],
+      "packages/agents/*": ["../../packages/agents/*"],
+      "packages/memory/*": ["../../packages/memory/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../../packages/ai/**/*.ts"],
+  "include": [
+    "next-env.d.ts", 
+    "**/*.ts", 
+    "**/*.tsx", 
+    ".next/types/**/*.ts", 
+    "../../packages/ai/**/*.ts",
+    "../../packages/agents/**/*.ts",
+    "../../packages/memory/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
