@@ -1,7 +1,7 @@
 // apps/web/src/app/api/parse-file/url/route.ts
 import { NextRequest, NextResponse } from "next/server";
 // @ts-ignore
-import pdfParser from "pdf-parse";
+import { PDFParse } from "pdf-parse";
 import JSZip from "jszip";
 
 export async function POST(req: NextRequest) {
@@ -34,8 +34,16 @@ export async function POST(req: NextRequest) {
 
     let text = "";
     if (ext === "pdf") {
-      const parsed = await pdfParser(buffer as any);
-      text = parsed.text || "";
+      let parser: any = null;
+      try {
+        parser = new PDFParse({ data: new Uint8Array(buffer) });
+        const parsed = await parser.getText();
+        text = parsed.text || "";
+      } finally {
+        if (parser && typeof parser.destroy === "function") {
+          await parser.destroy().catch(() => {});
+        }
+      }
     } else if (ext === "docx") {
       const zip = await JSZip.loadAsync(buffer as any);
       const docXml = await zip.file("word/document.xml")?.async("text");

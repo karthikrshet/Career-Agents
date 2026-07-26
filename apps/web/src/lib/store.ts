@@ -23,6 +23,10 @@ const DEFAULT_SETTINGS: AppSettings = {
   language: "en",
   notifications: true,
   telemetry: false,
+  autoFallback: true,
+  retryCount: 3,
+  retryDelayMs: 1000,
+  providerOrder: ["groq", "gemini", "openai", "claude"],
 };
 
 const DEFAULT_METRICS: CareerMetrics = {
