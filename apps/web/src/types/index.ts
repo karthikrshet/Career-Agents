@@ -336,6 +336,11 @@ export interface AppSettings {
   retryCount: number;       // 1-5
   retryDelayMs: number;     // ms between retries
   providerOrder: string[];  // ordered fallback chain
+  // AI Gateway Upgrades
+  routerMode?: "auto" | "coding" | "reasoning" | "vision" | "fast" | "cheap" | "long-context" | "balanced" | "creative";
+  keys?: Record<string, string[]>; // [primary, secondary, backup]
+  baseUrls?: Record<string, string>;
+  modelNames?: Record<string, string>;
 }
 
 // Plugin
