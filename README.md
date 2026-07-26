@@ -1,6 +1,5 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.png" alt="Career OS Logo" width="120" />
 
 # Career OS
 
