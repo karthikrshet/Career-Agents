@@ -1,7 +1,7 @@
 // apps/web/src/app/api/parse-file/route.ts
 import { NextRequest, NextResponse } from "next/server";
 // @ts-ignore
-import pdfParser from "pdf-parse";
+import { PDFParse } from "pdf-parse";
 import ExcelJS from "exceljs";
 import JSZip from "jszip";
 
@@ -21,12 +21,18 @@ export async function POST(req: NextRequest) {
     let data: any = null;
 
     if (ext === "pdf") {
+      let parser: any = null;
       try {
-        const parsed = await pdfParser(buffer as any);
+        parser = new PDFParse({ data: new Uint8Array(buffer) });
+        const parsed = await parser.getText();
         text = parsed.text || "";
         data = { type: "pdf", textLength: text.length };
       } catch (err: any) {
         throw new Error(`PDF Parsing failed: ${err.message}`);
+      } finally {
+        if (parser && typeof parser.destroy === "function") {
+          await parser.destroy().catch(() => {});
+        }
       }
     } else if (ext === "docx") {
       try {

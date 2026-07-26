@@ -198,7 +198,12 @@ def generate_knowledge_graph(agents, divisions, workflows, bundles, companies, p
 
     # Add divisions nodes
     for d in divisions.get("divisions", []):
-        add_node(d.get("division"), d.get("name"), "division")
+        div_id = d.get("division")
+        div_name = d.get("name")
+        if div_id and isinstance(div_id, str) and div_id.strip():
+            add_node(div_id, div_name or div_id.capitalize(), "division")
+        else:
+            print(f"  WARNING: Division entry missing 'division' field: {repr(d)} — skipping.")
         
     # Add agents nodes and division edges
     for a in agents:
