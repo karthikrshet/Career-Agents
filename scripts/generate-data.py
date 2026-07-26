@@ -396,7 +396,7 @@ def generate_llm_indexes(agents, workflows, companies, paths, bundles):
 
     # Section A: Specialized Agents
     full_content.append("============================================================")
-    full_content.append("SECTION 1: SPECIALIZED CAREER AGENTS (146 AGENTS)")
+    full_content.append("SECTION 1: SPECIALIZED CAREER AGENTS (167 AGENTS)")
     full_content.append("============================================================")
     full_content.append("")
 
@@ -931,7 +931,7 @@ sequenceDiagram
     
     User->>Client: Send Copilot Query / Resume File
     Client->>Router: Forward Query + Active User Dossier
-    Router->>Router: Match 146 Agent Registry & Compile System Prompt
+    Router->>Router: Match 167 Agent Registry & Compile System Prompt
     Router->>LLM: Dispatch Request with Fallback Chain
     LLM-->>Router: Stream Tokens via Server-Sent Events (SSE)
     Router-->>User: Render Real-Time Markdown & Code Output
@@ -1172,7 +1172,7 @@ python scripts/validate.py
 - **v10.0.0 (Founder Event Edition):** Immersive AI Career Operating System redesign and multi-provider fallback chains.
 - **v12.0.0:** Monorepo package isolation and OpenAPI documentation layouts.
 - **v14.0.0:** Enterprise OAuth authentication and RBAC roles.
-- **v16.1.0 (Current Release):** 20-Language Coding Studio with 240+ problems, 20 ATS Resume Templates, 18 AI Provider Gateways, 146 Agent Ecosystem, and stdio MCP server.
+- **v17.0.0 (Current Release):** 20-Language Coding Studio with 240+ problems, 20 ATS Resume Templates, 18 AI Provider Gateways, 167 Agent Ecosystem, and stdio MCP server.
 
 ---
 

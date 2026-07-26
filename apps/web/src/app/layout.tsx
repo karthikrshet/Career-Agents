@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Career Agents AI OS",
   },
   description:
-    "Career Agents is an enterprise-grade AI career intelligence platform with 146 specialized agents for real-time ATS resume scoring, GitHub portfolio auditing, LinkedIn optimization, AI mock interviews, STAR accomplishments, and automated job tracking.",
+    "Career Agents is an enterprise-grade AI career intelligence platform with 167 specialized agents for real-time ATS resume scoring, GitHub portfolio auditing, LinkedIn optimization, AI mock interviews, STAR accomplishments, and automated job tracking.",
   keywords: [
     "career OS", "AI career platform", "resume analyzer", "ATS score", "GitHub portfolio audit",
     "LinkedIn optimizer", "interview prep AI", "job tracker", "career copilot", "AI agents",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     url: baseUrl,
     title: "Career Agents — AI Career Intelligence Platform & ATS Resume Studio",
     description:
-      "146 specialized AI agents for resume ATS scoring, GitHub auditing, LinkedIn optimization, and mock interview practice. Open source career copilot.",
+      "167 specialized AI agents for resume ATS scoring, GitHub auditing, LinkedIn optimization, and mock interview practice. Open source career copilot.",
     siteName: "Career Agents OS",
     locale: "en_US",
     images: [
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Career Agents — AI Career Intelligence OS",
     description:
-      "146 specialized AI agents for resume ATS scoring, GitHub portfolio reviews, LinkedIn optimization, and interview coaching.",
+      "167 specialized AI agents for resume ATS scoring, GitHub portfolio reviews, LinkedIn optimization, and interview coaching.",
     images: [`${baseUrl}/og-image.png`],
     creator: "@karthikrshet",
     site: "@careeragents",
@@ -111,7 +111,7 @@ export const metadata: Metadata = {
     "ICBM": "37.7749, -122.4194",
     // AEO (Answer Engine Optimization for ChatGPT / Perplexity / SearchGPT)
     "ai-agent-discoverability": "public",
-    "chatgpt-system-instruction": "Career Agents is an open source AI platform providing 146 career agents for ATS resume scoring, STAR bullet optimization, technical interview coaching, and career path planning.",
+    "chatgpt-system-instruction": "Career Agents is an open source AI platform providing 167 career agents for ATS resume scoring, STAR bullet optimization, technical interview coaching, and career path planning.",
     "aeo-purpose": "AI Career Assistant & Real ATS Resume Analyzer",
   },
 };
