@@ -1,6 +1,6 @@
 // apps/web/src/app/api/copilot/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { compileAndExecuteAgents } from "../../../../../../packages/agents/executor";
+import { processThroughBrain } from "../../../../../../packages/brain/brain";
 import { routeCompletion } from "../../../../../../packages/ai-router/services/router";
 import type { RouterConfig } from "../../../../../../packages/ai-router/services/router";
 import { enforceRequestLimits } from "packages/security";
@@ -13,11 +13,25 @@ export async function POST(req: NextRequest) {
 
     const { messages, config, context, settings: clientSettings } = await req.json();
 
-    // 1 & 2. Agent Orchestrator & Context compilation
+    // 1 & 2. AI Brain Orchestrator & Context compilation
     const lastUserMessage = [...messages].reverse().find((m) => m.role === "user")?.content || "";
-    const { systemPrompt, thinkingIndicator } = compileAndExecuteAgents(
+    
+    const clientState = {
+      profile: context?.profile || {},
+      metrics: context?.metrics || {},
+      resumeAnalysis: context?.resumeAnalysis,
+      GitHubAnalysis: context?.GitHubAnalysis,
+      linkedinAnalysis: context?.linkedinAnalysis,
+      interviewSessions: context?.interviewSessions || [],
+      jobApplications: context?.jobApplications || [],
+      weeklyGoals: clientSettings?.weeklyGoals || [],
+      learningProgress: clientSettings?.learningProgress || {}
+    };
+
+    const { systemPrompt, thinkingIndicator } = processThroughBrain(
       lastUserMessage,
-      context || {},
+      messages,
+      clientState,
       context?.enabledPlugins || {}
     );
 
