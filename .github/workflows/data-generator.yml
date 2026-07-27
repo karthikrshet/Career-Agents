@@ -28,5 +28,5 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add career-os.json search-index.json knowledge-graph.json agent-map.json workflow-map.json company-map.json career-path-map.json llms.txt llms-full.txt career-agents-index.json
+          git add career-agents.json search-index.json knowledge-graph.json agent-map.json workflow-map.json company-map.json career-path-map.json llms.txt llms-full.txt career-agents-index.json
           git diff --quiet --cached || (git commit -m "chore: auto-generate indices, search catalog, maps, and stats [skip ci]" && git push)
