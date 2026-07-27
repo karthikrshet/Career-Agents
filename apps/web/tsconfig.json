@@ -25,7 +25,8 @@
       "packages/memory/*": ["../../packages/memory/*"],
       "packages/ai-router/*": ["../../packages/ai-router/*"],
       "packages/security": ["../../packages/security"],
-      "packages/security/*": ["../../packages/security/*"]
+      "packages/security/*": ["../../packages/security/*"],
+      "packages/brain/*": ["../../packages/brain/*"]
     }
   },
   "include": [
@@ -37,7 +38,8 @@
     "../../packages/agents/**/*.ts",
     "../../packages/memory/**/*.ts",
     "../../packages/ai-router/**/*.ts",
-    "../../packages/security/**/*.ts"
+    "../../packages/security/**/*.ts",
+    "../../packages/brain/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
