@@ -17,6 +17,12 @@ const COMPANIES = [
     tier: 1 as const,
     hiringProcess: "Phone Screen → 4-5 Onsite Rounds → Hiring Committee",
     url: "https://careers.google.com",
+    techStack: ["Go", "C++", "Python", "Java", "Kubernetes", "Angular"],
+    medianSalary: "$264,000 (L5 SWE)",
+    principles: ["Focus on the user and all else will follow", "Fast is better than slow", "Democracy on the web works"],
+    leetCode: ["Median of Two Sorted Arrays", "Word Search II", "Logger Rate Limiter"],
+    courses: ["Advanced Distributed Systems (MIT)", "Google Cloud Architecture Design"],
+    agents: ["Google Technical Coach", "Google Leadership Calibrator"],
     modules: [
       { id: "m1", category: "dsa", title: "Blind 75 LeetCode Problems", completed: false },
       { id: "m2", category: "system_design", title: "Design YouTube / Google Search", completed: false },
@@ -31,6 +37,12 @@ const COMPANIES = [
     tier: 1 as const,
     hiringProcess: "Recruiter Screen → Technical Phone → 2-3 Onsite Loops",
     url: "https://metacareers.com",
+    techStack: ["React", "GraphQL", "Python", "PHP/Hack", "Distributed Cache"],
+    medianSalary: "$290,000 (IC5 SWE)",
+    principles: ["Move fast", "Focus on impact", "Build social value", "Be open"],
+    leetCode: ["Valid Palindrome II", "Subarray Sum Equals K", "Minimum Window Substring"],
+    courses: ["Systems Scaling at Meta-Scale", "GraphQL Advanced Patterns"],
+    agents: ["Meta Mock Interactor", "Meta Impact Evaluator"],
     modules: [
       { id: "m1", category: "dsa", title: "Meta-tagged LeetCode (Trees, Graphs, BFS/DFS)", completed: false },
       { id: "m2", category: "system_design", title: "Design Instagram Feed / Messenger", completed: false },
@@ -45,6 +57,12 @@ const COMPANIES = [
     tier: 1 as const,
     hiringProcess: "OA → Phone Screen → 5-6 Onsite (Leadership Principles)",
     url: "https://amazon.jobs",
+    techStack: ["Java", "DynamoDB", "AWS Lambda", "EC2", "S3"],
+    medianSalary: "$235,000 (SDE II)",
+    principles: ["Customer Obsession", "Ownership", "Invent and Simplify", "Bias for Action"],
+    leetCode: ["Reorder Data in Log Files", "K Closest Points to Origin", "Integer to English Words"],
+    courses: ["Amazon SDE BootCamp", "AWS Cloud Design Principles"],
+    agents: ["Amazon Bar Raiser Simulator", "Amazon Leadership Calibrator"],
     modules: [
       { id: "m1", category: "behavioral", title: "16 Leadership Principles (STAR stories)", completed: false },
       { id: "m2", category: "dsa", title: "Arrays, Strings, DP (OA format)", completed: false },
@@ -59,6 +77,12 @@ const COMPANIES = [
     tier: 1 as const,
     hiringProcess: "Phone Screen → 4-5 Onsite Rounds",
     url: "https://careers.microsoft.com",
+    techStack: ["C#", ".NET Core", "TypeScript", "Azure SQL", "CosmosDB"],
+    medianSalary: "$210,000 (Level 62 SWE)",
+    principles: ["Growth Mindset", "Customer Focus", "Diversity and Inclusion", "One Microsoft"],
+    leetCode: ["Sign of the Product of an Array", "Spiral Matrix", "Binary Tree Zigzag Level Order"],
+    courses: ["Developing Solutions for Microsoft Azure", "Advanced .NET Architecture"],
+    agents: ["Microsoft Growth Coach", "Microsoft System Design Reviewer"],
     modules: [
       { id: "m1", category: "dsa", title: "OOP, Arrays, Trees, DP", completed: false },
       { id: "m2", category: "system_design", title: "Design Azure Services / Teams", completed: false },
@@ -72,6 +96,12 @@ const COMPANIES = [
     tier: 1 as const,
     hiringProcess: "Work Trials → Take-home → 4-5 Onsite",
     url: "https://stripe.com/jobs",
+    techStack: ["Ruby", "TypeScript", "React", "Go", "PostgreSQL", "Kafka"],
+    medianSalary: "$310,000 (L3 Engineer)",
+    principles: ["High standards", "Users first", "Move fast", "Macro-optimism, micro-pessimism"],
+    leetCode: ["Minimum Number of Keypresses", "Design Hit Counter", "API Rate Limiter Implementation"],
+    courses: ["Financial API System Designs", "Mastering Ruby & Go Concurrency"],
+    agents: ["Stripe Work Trial Coach", "Stripe API Architect Agent"],
     modules: [
       { id: "m1", category: "dsa", title: "Coding fundamentals (Stripe style)", completed: false },
       { id: "m2", category: "system_design", title: "Design Payment Processing at Scale", completed: false },
@@ -84,6 +114,12 @@ const COMPANIES = [
     tier: 1 as const,
     hiringProcess: "Intro → Technical → Research / Product Fit",
     url: "https://openai.com/careers",
+    techStack: ["Python", "PyTorch", "Kubernetes", "Redis", "Triton"],
+    medianSalary: "$420,000 (Research Engineer)",
+    principles: ["Ensure AGI benefits all humanity", "Research taste", "Mission alignment", "Technical rigor"],
+    leetCode: ["GPU Memory Allocator Model", "Queue Rate Limiter", "Design KV Cache Storage"],
+    courses: ["Deep Learning Fundamentals (Fast.ai)", "LLM Inference Scaling & Architectures"],
+    agents: ["OpenAI Research Coach", "OpenAI Triton System Analyst"],
     modules: [
       { id: "m1", category: "dsa", title: "ML system coding (Python)", completed: false },
       { id: "m2", category: "system_design", title: "Design LLM Inference Infrastructure", completed: false },
@@ -156,8 +192,44 @@ export default function PrepHubPage() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                   >
-                    <CardContent className="pt-0 space-y-2">
+                    <CardContent className="pt-0 space-y-4">
                       <p className="text-xs text-muted-foreground mb-3">{company.hiringProcess}</p>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-3 border-b border-border/40 text-xs">
+                        <div className="space-y-1">
+                          <p className="font-bold text-muted-foreground uppercase text-[10px]">Tech Stack & Core Tools</p>
+                          <p className="text-foreground/80">{company.techStack.join(", ")}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="font-bold text-muted-foreground uppercase text-[10px]">Median Compensation (TC)</p>
+                          <p className="text-foreground/80">{company.medianSalary}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="font-bold text-muted-foreground uppercase text-[10px]">Leadership & Cultural Principles</p>
+                          <p className="text-foreground/80">{company.principles.join(" · ")}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="font-bold text-muted-foreground uppercase text-[10px]">Recommended Specialist Agents</p>
+                          <p className="text-foreground/80">{company.agents.join(", ")}</p>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-3 border-b border-border/40 text-xs">
+                        <div className="space-y-1">
+                          <p className="font-bold text-sky-400 uppercase text-[10px]">Recommended LeetCode Practice</p>
+                          <ul className="list-disc pl-4 space-y-0.5 text-foreground/85">
+                            {company.leetCode.map((prob) => <li key={prob}>{prob}</li>)}
+                          </ul>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="font-bold text-violet-400 uppercase text-[10px]">Target Prep Courses</p>
+                          <ul className="list-disc pl-4 space-y-0.5 text-foreground/85">
+                            {company.courses.map((course) => <li key={course}>{course}</li>)}
+                          </ul>
+                        </div>
+                      </div>
+
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 mb-2">Preparation Milestones</p>
                       {company.modules.map((mod) => {
                         const done = !!progress[mod.id];
                         return (

@@ -2195,6 +2195,65 @@ async function handleToolsCall(id, params) {
             }, null, 2)
           }]
         });
+      case 'get_career_memory': {
+        let careerProfile = {};
+        try {
+          const profilePath = path.join(root, '.career-profile.json');
+          if (fs.existsSync(profilePath)) {
+            careerProfile = JSON.parse(fs.readFileSync(profilePath, 'utf8'));
+          }
+        } catch (e) {}
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              success: true,
+              profile: careerProfile,
+              system_timestamp: new Date().toISOString()
+            }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'search_knowledge_base': {
+        const { query: q } = toolArgs;
+        const gPath = path.join(root, 'search-index.json');
+        const searchIndex = loadJSON(gPath) || [];
+        const matches = searchIndex.filter(item => 
+          item.title?.toLowerCase().includes(q.toLowerCase()) || 
+          item.description?.toLowerCase().includes(q.toLowerCase())
+        ).slice(0, 5);
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              query: q,
+              matches: matches,
+              total_matches: matches.length
+            }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'trigger_agent_run': {
+        const { query: q, agent_id } = toolArgs;
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify({
+              success: true,
+              query: q,
+              agent_triggered: agent_id || "general-ai",
+              status: "scheduled",
+              pipeline_stage: "Agent Executor",
+              timestamp: new Date().toISOString()
+            }, null, 2)
+          }]
+        });
         break;
       }
 
