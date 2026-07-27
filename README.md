@@ -59,46 +59,215 @@ Career Agents takes a different approach:
 
 ## Screenshots
 
-<details>
-<summary>View Dashboard Preview</summary>
+Explore the primary modules of Career Agents v4.0. The screenshots below highlight the core functionality of the platform.
 
-*Displays global metrics, 5-dimensional career scores, recent activity feeds, and quick actions.*
-![Dashboard View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/dashboard.png)
+---
+
+<details>
+<summary><strong>Dashboard</strong></summary>
+
+The Dashboard provides a centralized overview of career progress, AI insights, activity history, quick actions, and personalized recommendations.
+
+![Dashboard](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/dashboard.png)
+
 </details>
 
-<details>
-<summary>View Resume Studio Preview</summary>
+---
 
-*Scans document formatting, highlights missing keywords, and suggests bullet-point improvements.*
-![Resume Studio View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/resume.png)
+<details>
+<summary><strong>Resume Studio</strong></summary>
+
+Analyze ATS compatibility, optimize resume content, improve formatting, identify missing keywords, and generate AI-powered recommendations.
+
+![Resume Studio](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/resume.png)
+
 </details>
 
-<details>
-<summary>View GitHub Wrapped Preview</summary>
+---
 
-*Analyzes public repository counts, language distribution, star scores, and documentation completeness.*
-![GitHub Wrapped View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/github_wrapped_preview.gif)
+<details>
+<summary><strong>GitHub Analyzer</strong></summary>
+
+Evaluate repositories, contribution history, programming languages, documentation quality, project health, and overall developer portfolio.
+
+![GitHub Analyzer](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/github_wrapped_preview.gif)
+
 </details>
 
-<details>
-<summary>View LinkedIn Optimizer Preview</summary>
+---
 
-*Grades headline positioning, about summaries, and searches keyword density.*
-![LinkedIn Optimizer View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/linkedinoptimizer.png)
+<details>
+<summary><strong>LinkedIn Optimizer</strong></summary>
+
+Improve recruiter visibility through AI-powered profile analysis, headline optimization, keyword recommendations, and profile scoring.
+
+![LinkedIn Optimizer](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/linkedinoptimizer.png)
+
 </details>
 
-<details>
-<summary>View Interview Lab Preview</summary>
+---
 
-*Conducts mock interviews across 10 company tracks, featuring integrated coding canvases and scorecards.*
-![Mock Interview View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/interviewlab.png)
+<details>
+<summary><strong>Interview Lab</strong></summary>
+
+Practice technical interviews, coding assessments, behavioral interviews, and company-specific interview tracks with AI-generated feedback.
+
+![Interview Lab](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/interviewlab.png)
+
 </details>
 
-<details>
-<summary>View Marketplace Preview</summary>
+---
 
-*Enable or disable plugin extensions and review required context permissions.*
-![Marketplace View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/marketplace.png)
+<details>
+<summary><strong>Career OS</strong></summary>
+
+Manage career roadmaps, learning paths, milestones, skill development, and long-term professional growth.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>AI Copilot</strong></summary>
+
+A platform-wide AI assistant for career guidance, coding assistance, resume improvement, interview preparation, and workflow automation.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>Job Hub</strong></summary>
+
+Search and discover job opportunities from multiple sources with intelligent filtering and personalized recommendations.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>Job Tracker</strong></summary>
+
+Track applications, interviews, referrals, follow-ups, offers, and application progress from one centralized workspace.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>Prep Hub</strong></summary>
+
+Access structured interview preparation resources, DSA practice, aptitude training, system design, and learning roadmaps.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>Code Playground</strong></summary>
+
+Write, execute, debug, and test code in multiple programming languages directly within the browser.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>LinkedIn AI</strong></summary>
+
+Generate LinkedIn posts, networking messages, profile improvements, recruiter outreach, and engagement content using AI.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>Reports</strong></summary>
+
+View detailed analytics covering career progress, interview performance, resume improvements, GitHub insights, and job applications.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>Workflow Builder</strong></summary>
+
+Create visual workflows that connect AI agents, automations, APIs, and productivity tools without writing code.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>Marketplace</strong></summary>
+
+Browse, install, manage, and configure AI agents, integrations, plugins, and workflow templates.
+
+![Marketplace](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/marketplace.png)
+
+</details>
+
+---
+
+<details>
+<summary><strong>MCP Server</strong></summary>
+
+Connect Career Agents with Claude Desktop, Cursor, VS Code, Windsurf, and other AI applications using the Model Context Protocol.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>Settings</strong></summary>
+
+Configure account preferences, themes, API keys, notifications, authentication, integrations, and platform behavior.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>About Platform</strong></summary>
+
+Learn about the platform architecture, roadmap, release notes, licensing, contributors, and technical documentation.
+
+> Screenshot Coming Soon
+
+</details>
+
+---
+
+<details>
+<summary><strong>Credits</strong></summary>
+
+View AI credit usage, subscription information, billing history, API consumption, and available platform resources.
+
+> Screenshot Coming Soon
+
 </details>
 
 ---
