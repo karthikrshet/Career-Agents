@@ -65,9 +65,17 @@ export function processThroughBrain(
 
   const finalSystemPrompt = `${context.fullPrompt}${pluginPrompt}${agentPrompts}`;
 
+  const memorySize = Math.round(JSON.stringify(memory).length / 1024) + "KB";
+  const filesList: string[] = [];
+  if (clientState?.resumeAnalysis?.fileName) filesList.push(clientState.resumeAnalysis.fileName);
+  if (clientState?.GitHubAnalysis?.repoName) filesList.push(clientState.GitHubAnalysis.repoName);
+  const filesUsed = filesList.length > 0 ? filesList.join(",") : "None";
+  const citationsCount = ragMatches.length;
+  const activeModelName = clientState?.activeModel || "Claude 3.5 Sonnet";
+
   const allTimelineSteps = plan.timeline.steps.map(s => s.agentName).join(", ");
   const runningCount = plan.timeline.steps.length;
-  const thinkingIndicator = `<thinking>AI Brain executing dynamic route: classified intent as "${plan.intent}" (${plan.intentConfidence}% confidence). Found ${runningCount} specialist agents [${allTimelineSteps}]. Confidence: ${plan.timeline.confidence}%. Mapped execution chain in ${plan.timeline.totalTimeMs}ms.</thinking>\n\n`;
+  const thinkingIndicator = `<thinking>AI Brain executing dynamic route: classified intent as "${plan.intent}" (${plan.intentConfidence}% confidence). Found ${runningCount} specialist agents [${allTimelineSteps}]. Confidence: ${plan.timeline.confidence}%. Mapped execution chain in ${plan.timeline.totalTimeMs}ms. Memory: ${memorySize}. Files: ${filesUsed}. Citations: ${citationsCount}. Models: ${activeModelName}.</thinking>\n\n`;
 
   return {
     systemPrompt: finalSystemPrompt,

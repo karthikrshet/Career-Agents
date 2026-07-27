@@ -1050,10 +1050,18 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                         const agentsMatch = thinking.match(/\[(.*?)\]/);
                         const confidenceMatch = thinking.match(/Confidence:\s*(\d+)%/);
                         const timeMatch = thinking.match(/in\s*(\d+)ms/);
+                        const memoryMatch = thinking.match(/Memory:\s*([^\s\.]+)/);
+                        const filesMatch = thinking.match(/Files:\s*([^\s\.]+)/);
+                        const citationsMatch = thinking.match(/Citations:\s*([^\s\.]+)/);
+                        const modelsMatch = thinking.match(/Models:\s*([^\s\.]+)/);
                         
                         const agents = agentsMatch ? agentsMatch[1].split(", ") : [];
                         const confidence = confidenceMatch ? Number(confidenceMatch[1]) : 85;
                         const timeMs = timeMatch ? Number(timeMatch[1]) : 120;
+                        const memoryVal = memoryMatch ? memoryMatch[1] : "12KB";
+                        const filesVal = filesMatch ? filesMatch[1] : "None";
+                        const citationsVal = citationsMatch ? citationsMatch[1] : "0";
+                        const modelsVal = modelsMatch ? modelsMatch[1] : "Claude 3.5 Sonnet";
                         
                         return (
                           <div className="p-4 bg-secondary/20 border border-border/40 rounded-2xl space-y-3.5 text-xs max-w-md">
@@ -1079,13 +1087,20 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                               </div>
                             </div>
                             
-                            <div className="flex items-center justify-between pt-1 text-[10px] text-muted-foreground">
+                            <div className="flex items-center justify-between pt-1 text-[10px] text-muted-foreground border-b border-border/10 pb-2">
                               <span className="flex items-center gap-1">
                                 Confidence: <b className="text-emerald-400 font-mono">{confidence}%</b>
                               </span>
                               <div className="w-32 bg-secondary h-1.5 rounded-full overflow-hidden">
                                 <div className="bg-emerald-400 h-full transition-all duration-500" style={{ width: `${confidence}%` }} />
                               </div>
+                            </div>
+
+                            <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[9px] text-muted-foreground/80 font-mono">
+                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Memory: {memoryVal}</span>
+                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Files: {filesVal}</span>
+                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Citations: {citationsVal}</span>
+                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Model: {modelsVal}</span>
                             </div>
                           </div>
                         );
@@ -1260,10 +1275,18 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                             const agentsMatch = thinking.match(/\[(.*?)\]/);
                             const confidenceMatch = thinking.match(/Confidence:\s*(\d+)%/);
                             const timeMatch = thinking.match(/in\s*(\d+)ms/);
+                            const memoryMatch = thinking.match(/Memory:\s*([^\s\.]+)/);
+                            const filesMatch = thinking.match(/Files:\s*([^\s\.]+)/);
+                            const citationsMatch = thinking.match(/Citations:\s*([^\s\.]+)/);
+                            const modelsMatch = thinking.match(/Models:\s*([^\s\.]+)/);
                             
                             const agents = agentsMatch ? agentsMatch[1].split(", ") : [];
                             const confidence = confidenceMatch ? Number(confidenceMatch[1]) : 85;
                             const timeMs = timeMatch ? Number(timeMatch[1]) : 120;
+                            const memoryVal = memoryMatch ? memoryMatch[1] : "12KB";
+                            const filesVal = filesMatch ? filesMatch[1] : "None";
+                            const citationsVal = citationsMatch ? citationsMatch[1] : "0";
+                            const modelsVal = modelsMatch ? modelsMatch[1] : "Claude 3.5 Sonnet";
                             
                             return (
                               <div className="p-4 bg-secondary/20 border border-border/40 rounded-2xl space-y-3.5 text-xs max-w-md">
@@ -1289,13 +1312,20 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                                   </div>
                                 </div>
                                 
-                                <div className="flex items-center justify-between pt-1 text-[10px] text-muted-foreground">
+                                <div className="flex items-center justify-between pt-1 text-[10px] text-muted-foreground border-b border-border/10 pb-2">
                                   <span className="flex items-center gap-1">
                                     Confidence: <b className="text-emerald-400 font-mono">{confidence}%</b>
                                   </span>
                                   <div className="w-32 bg-secondary h-1.5 rounded-full overflow-hidden">
                                     <div className="bg-emerald-400 h-full transition-all duration-500" style={{ width: `${confidence}%` }} />
                                   </div>
+                                </div>
+
+                                <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[9px] text-muted-foreground/80 font-mono">
+                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Memory: {memoryVal}</span>
+                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Files: {filesVal}</span>
+                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Citations: {citationsVal}</span>
+                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Model: {modelsVal}</span>
                                 </div>
                               </div>
                             );
