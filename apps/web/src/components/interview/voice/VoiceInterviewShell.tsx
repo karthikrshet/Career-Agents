@@ -184,11 +184,20 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
         if (parsed.difficulty) setDifficulty(parsed.difficulty);
         if (parsed.language) setLanguage(parsed.language);
         if (parsed.durationMinutes) setDurationMinutes(parsed.durationMinutes);
+        if (parsed.completedSessionData) {
+          setCompletedSessionData(parsed.completedSessionData);
+        }
         if (parsed.sessionId && parsed.history && parsed.history.length > 0 && fsmState === "CONFIGURING" && !initialSessionId) {
           setSessionId(parsed.sessionId);
           setHistory(parsed.history);
           setTimerSec(parsed.timerSec || 0);
-          setFsmState(parsed.fsmState === "COMPLETED" ? "COMPLETED" : "WAITING_FOR_NEXT_QUESTION");
+          if (parsed.fsmState === "COMPLETED" && parsed.completedSessionData) {
+            setFsmState("COMPLETED");
+          } else if (parsed.fsmState !== "COMPLETED") {
+            setFsmState("WAITING_FOR_NEXT_QUESTION");
+          } else {
+            setFsmState("CONFIGURING");
+          }
         }
       }
     } catch (e) {}
@@ -212,10 +221,11 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
           history,
           fsmState,
           timerSec,
+          completedSessionData,
         })
       );
     } catch (e) {}
-  }, [selectedAgent, company, role, mode, difficulty, language, durationMinutes, sessionId, history, fsmState, timerSec, mounted]);
+  }, [selectedAgent, company, role, mode, difficulty, language, durationMinutes, sessionId, history, fsmState, timerSec, completedSessionData, mounted]);
 
   // Filter voices by language
   const filteredVoices = useMemo(() => {
@@ -674,7 +684,7 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
 
       <AnimatePresence mode="wait">
         {/* CONFIGURING STAGE */}
-        {fsmState === "CONFIGURING" && (
+        {(fsmState === "CONFIGURING" || (fsmState === "COMPLETED" && !completedSessionData)) && (
           <motion.div
             key="config"
             initial={{ opacity: 0, y: 16 }}
