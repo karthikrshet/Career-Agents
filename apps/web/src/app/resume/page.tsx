@@ -180,7 +180,10 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
       "text/plain": [".txt"],
       "text/markdown": [".md"],
       "application/rtf": [".rtf"],
-      "application/vnd.oasis.opendocument.text": [".odt"]
+      "application/vnd.oasis.opendocument.text": [".odt"],
+      "application/json": [".json"],
+      "application/zip": [".zip"],
+      "application/x-zip-compressed": [".zip"]
     },
     multiple: false,
   });

@@ -1,11 +1,16 @@
 // apps/web/src/lib/pdf/browser.ts
 
-export async function parsePdfBrowser(file: File): Promise<string> {
-  // Client-side PDF text extraction placeholder / browser APIs
+export async function preview(file: File): Promise<string | null> {
   if (typeof window === "undefined") {
-    return "";
+    return null;
   }
-  
-  // Return empty string or stub logic
-  return "";
+  return URL.createObjectURL(file);
+}
+
+export async function render(file: File): Promise<any | null> {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  // Browser preview render stub
+  return null;
 }

@@ -5,6 +5,19 @@ import { classifyGatewayError } from "../utils/error-handler";
 import { recordRouterLog } from "./analytics";
 import { secureFetch } from "../../security";
 
+const ENV_KEY_MAP: Record<string, string> = {
+  openai: "OPENAI_API_KEY",
+  claude: "ANTHROPIC_API_KEY",
+  anthropic: "ANTHROPIC_API_KEY",
+  gemini: "GEMINI_API_KEY",
+  groq: "GROQ_API_KEY",
+  openrouter: "OPENROUTER_API_KEY",
+  deepseek: "DEEPSEEK_API_KEY",
+  mistral: "MISTRAL_API_KEY",
+  cohere: "COHERE_API_KEY",
+  together: "TOGETHER_API_KEY",
+};
+
 export interface RouterConfig {
   mode: RouterMode;
   providerOrder?: AIProviderId[];
@@ -105,8 +118,16 @@ export async function routeCompletion(
     const registry = PROVIDER_REGISTRY[providerId];
     if (!registry) continue;
 
-    // Retrieve configured API keys (handles rotations)
-    const keyList = config.keys[providerId] || [];
+    // 1. Resolve key list with priority: Client-saved keys -> Env vars -> Provider Disabled (Empty)
+    let keyList = (config.keys[providerId] || []).filter(k => k && k.trim() !== "");
+    if (keyList.length === 0) {
+      const envVarName = ENV_KEY_MAP[providerId];
+      const envKey = envVarName ? process.env[envVarName] : undefined;
+      if (envKey && envKey.trim() !== "") {
+        keyList = [envKey.trim()];
+      }
+    }
+
     const model = config.modelNames?.[providerId] || DEFAULT_MODEL_NAMES[providerId] || "default";
     
     // Ignore config.baseUrls endpoint overrides unless it's azure, ollama, or lmstudio
@@ -115,7 +136,20 @@ export async function routeCompletion(
       endpoint = config.baseUrls[providerId];
     }
     
-    // Always fallback to empty string if no auth or local endpoint
+    // If key list is empty and provider requires authentication (is not local/ollama)
+    const requiresAuth = registry.authType !== "none";
+    if (requiresAuth && keyList.length === 0) {
+      // Record this provider as unavailable in the execution chain
+      executionChain.push({
+        provider: providerId,
+        model,
+        latencyMs: 0,
+        status: "failed",
+        error: "Provider unavailable: API Key is missing or misconfigured.",
+      });
+      continue; // Skip calling this provider entirely
+    }
+
     const keysToTry = keyList.length > 0 ? keyList : [""];
 
     for (let keyIdx = 0; keyIdx < keysToTry.length; keyIdx++) {
@@ -148,7 +182,11 @@ export async function routeCompletion(
 
           if (!res.ok) {
             const err = await res.text();
-            throw new Error(`Google API returned status code ${res.status}: ${err}`);
+            let errorMessage = `Google API returned status code ${res.status}: ${err}`;
+            if (res.status === 429 || err.toLowerCase().includes("quota") || err.toLowerCase().includes("exhausted")) {
+              errorMessage = "Your Gemini API quota has been exceeded. Please retry in a few minutes, view the Google Developer Documentation link (https://ai.google.dev/gemini-api/docs/quota), or switch your provider/model settings (e.g. switch to OpenRouter, Groq, OpenAI, or mistral).";
+            }
+            throw new Error(errorMessage);
           }
 
           const json = await res.json();
@@ -197,7 +235,11 @@ export async function routeCompletion(
 
           if (!res.ok) {
             const err = await res.text();
-            throw new Error(`Provider API returned status code ${res.status}: ${err}`);
+            let errorMessage = `Provider API returned status code ${res.status}: ${err}`;
+            if (res.status === 429 || err.toLowerCase().includes("quota") || err.toLowerCase().includes("exhausted")) {
+              errorMessage = `Your ${providerId.toUpperCase()} API quota has been exceeded. Please retry in a few minutes, view the provider's developer documentation, or switch your provider/model settings (e.g. switch to OpenRouter, Groq, OpenAI, or mistral).`;
+            }
+            throw new Error(errorMessage);
           }
 
           if (isStreaming) {

@@ -168,13 +168,18 @@ export default function SettingsPage() {
   // Multi-key rotation save
   function handleSaveRotatedKeys() {
     const keysMap = { ...settings.keys };
+    const primary = primaryKeyInput.trim();
     keysMap[selectedProvider] = [
-      primaryKeyInput.trim(),
+      primary,
       secondaryKeyInput.trim(),
       backupKeyInput.trim(),
     ].filter(Boolean);
 
     updateSettings({ keys: keysMap });
+    updateAIProvider({
+      provider: selectedProvider as any,
+      apiKey: primary || undefined,
+    });
     toast.success(`Keys registered successfully for ${selectedProvider.toUpperCase()}`);
   }
 
@@ -352,7 +357,10 @@ export default function SettingsPage() {
                         return (
                           <div
                             key={p.id}
-                            onClick={() => setSelectedProvider(p.id)}
+                            onClick={() => {
+                              setSelectedProvider(p.id);
+                              updateAIProvider({ provider: p.id as any });
+                            }}
                             className={cn(
                               "relative flex flex-col justify-between p-3.5 rounded-xl border text-left cursor-pointer transition-all text-xs",
                               isSelected 
