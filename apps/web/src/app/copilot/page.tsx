@@ -25,6 +25,10 @@ import { useStore } from "@/lib/store";
 import { buildCareerContext } from "@/lib/ai";
 import { cn, timeAgo, generateId } from "@/lib/utils";
 import { PROVIDER_MODELS } from "@/lib/ai";
+import { ModelPanel } from "@/components/copilot/ModelPanel";
+import { ChatExport } from "@/components/copilot/ChatExport";
+import { MessageActions } from "@/components/copilot/MessageActions";
+import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts";
 import type { CopilotSession } from "@/types";
 
 const QUICK_ACTIONS = [
@@ -92,6 +96,31 @@ function CopilotWorkspace() {
   // Voice listening
   const [isListening, setIsListening] = useState(false);
   const [recognition, setRecognition] = useState<any>(null);
+
+  // Model Settings & Export state
+  const [isConfigOpen, setIsConfigOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [internetMode, setInternetMode] = useState(false);
+  const [memoryEnabled, setMemoryEnabled] = useState(true);
+  const [reasoningEnabled, setReasoningEnabled] = useState(true);
+
+  // Keyboard Shortcuts
+  useKeyboardShortcuts({
+    "mod+k": (e) => {
+      e.preventDefault();
+      setIsConfigOpen(true);
+    },
+    "mod+l": (e) => {
+      e.preventDefault();
+      startCopilotSession();
+      toast.info("New conversation session started!");
+    },
+    "esc": () => {
+      setIsConfigOpen(false);
+      setIsExportOpen(false);
+      setShowModelDropdown(false);
+    }
+  });
 
   // File Attachments
   const [attachments, setAttachments] = useState<FileAttachment[]>([]);
@@ -501,7 +530,12 @@ Recalculated tracker statistics and updated applications metrics.`);
             maxTokens: settings.aiProvider.maxTokens,
             streaming: true,
           },
-          settings,
+          settings: {
+            ...settings,
+            internetMode,
+            memoryEnabled,
+            reasoningEnabled,
+          },
           context: {
             profile,
             metrics,
@@ -1001,7 +1035,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
 
                   <div className="max-w-[85%] space-y-2 flex-1">
                     {/* Render thinking blocks if loaded */}
-                    {thinking && (
+                    {thinking && reasoningEnabled && (
                       (() => {
                         const isOrchestration = thinking.includes("specialist agents");
                         if (!isOrchestration) {
@@ -1118,62 +1152,27 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                     {currentSession && (
                       <div className="flex items-center justify-between text-[10px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity pt-1">
                         <div className="flex items-center gap-3">
-                          <button
-                            onClick={() => {
-                              navigator.clipboard.writeText(content);
-                              toast.success("Copied to clipboard!");
-                            }}
-                            className="hover:text-foreground transition-colors"
-                            title="Copy message contents"
-                          >
-                            Copy
-                          </button>
-                          
-                          {msg.role === "user" && (
-                            <button
-                              onClick={() => {
-                                const newPrompt = prompt("Edit prompt:", content);
-                                if (newPrompt) {
-                                  const idx = messages.findIndex((m) => m.id === msg.id);
-                                  const slice = messages.slice(0, idx);
-                                  useStore.setState({
-                                    currentCopilotSession: {
-                                      ...currentSession,
-                                      messages: slice,
-                                    },
-                                  });
-                                  send(newPrompt, slice);
-                                }
-                              }}
-                              className="hover:text-foreground transition-colors"
-                              title="Edit prompt and resend"
-                            >
-                              Edit
-                            </button>
-                          )}
+                          <MessageActions
+                            content={content}
+                            isAssistant={msg.role === "assistant"}
+                            onRegenerate={msg.role === "assistant" ? () => {
+                              const idx = messages.findIndex((m) => m.id === msg.id);
+                              const slice = messages.slice(0, idx);
+                              const lastUserMsg = [...slice].reverse().find(m => m.role === "user")?.content;
+                              if (lastUserMsg) {
+                                useStore.setState({
+                                  currentCopilotSession: {
+                                    ...currentSession,
+                                    messages: slice,
+                                  },
+                                });
+                                send(lastUserMsg, slice);
+                              }
+                            } : undefined}
+                          />
 
                           {msg.role === "assistant" && (
                             <>
-                              <button
-                                onClick={() => {
-                                  const idx = messages.findIndex((m) => m.id === msg.id);
-                                  const slice = messages.slice(0, idx);
-                                  const lastUserMsg = [...slice].reverse().find(m => m.role === "user")?.content;
-                                  if (lastUserMsg) {
-                                    useStore.setState({
-                                      currentCopilotSession: {
-                                        ...currentSession,
-                                        messages: slice,
-                                      },
-                                    });
-                                    send(lastUserMsg, slice);
-                                  }
-                                }}
-                                className="hover:text-foreground transition-colors"
-                                title="Regenerate this response"
-                              >
-                                Regenerate
-                              </button>
                               <span className="opacity-40">·</span>
                               <button
                                 onClick={() => send("Continue writing", messages)}
@@ -1246,7 +1245,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                     const { thinking, content } = parseThinkingAndContent(streamBuffer);
                     return (
                       <>
-                        {thinking && (
+                        {thinking && reasoningEnabled && (
                           (() => {
                             const isOrchestration = thinking.includes("specialist agents");
                             if (!isOrchestration) {
@@ -1504,6 +1503,28 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                     </div>
                   )}
                 </div>
+
+                {/* Cognitive Config Settings Gear Button */}
+                <button
+                  onClick={() => setIsConfigOpen(true)}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border/50 hover:bg-secondary hover:text-foreground text-muted-foreground transition-all"
+                  title="Configure Model, Internet, Memory & Reasoning"
+                >
+                  <Settings className="w-3.5 h-3.5 text-primary" />
+                  <span>Configure</span>
+                </button>
+
+                {/* Export Chat Button */}
+                {currentSession && (
+                  <button
+                    onClick={() => setIsExportOpen(true)}
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border/50 hover:bg-secondary hover:text-foreground text-muted-foreground transition-all"
+                    title="Export or Share Chat"
+                  >
+                    <Download className="w-3.5 h-3.5 text-indigo-400" />
+                    <span>Export</span>
+                  </button>
+                )}
               </div>
 
               <div className="flex items-center gap-1.5">
@@ -1513,6 +1534,32 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
             </div>
           </div>
         </div>
+
+        {/* Settings configurator drawer */}
+        <ModelPanel
+          isOpen={isConfigOpen}
+          onClose={() => setIsConfigOpen(false)}
+          internetMode={internetMode}
+          setInternetMode={setInternetMode}
+          memoryEnabled={memoryEnabled}
+          setMemoryEnabled={setMemoryEnabled}
+          reasoningEnabled={reasoningEnabled}
+          setReasoningEnabled={setReasoningEnabled}
+          activeProvider={activeProvider}
+          setActiveProvider={setActiveProvider}
+          activeModel={activeModel}
+          setActiveModel={setActiveModel}
+        />
+
+        {/* Export / Share dialog overlay */}
+        {currentSession && (
+          <ChatExport
+            isOpen={isExportOpen}
+            onClose={() => setIsExportOpen(false)}
+            messages={messages}
+            title={currentSession.title}
+          />
+        )}
       </div>
     </div>
   );

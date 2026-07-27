@@ -186,25 +186,37 @@ export default function PlaygroundPage() {
     setShowLangPicker(false);
   }
 
-  function runCode() {
-    if (language !== "javascript" && language !== "typescript") {
-      setOutput(`▶ Simulated execution for ${LANGUAGES.find(l => l.id === language)?.label}:\n✓ Code structure looks valid.\n✓ No syntax errors detected.\n\nNote: Live execution is available for JavaScript/TypeScript.\nFor other languages, use the AI Review to get complexity and correctness analysis.`);
-      return;
-    }
-
+  async function runCode() {
     setRunning(true);
-    setOutput("");
+    setOutput("▶ Running code in secure compiler sandbox...\n");
     try {
-      const logs: string[] = [];
-      const mockConsole = {
-        log: (...args: any[]) => logs.push(args.map(String).join(" ")),
-        error: (...args: any[]) => logs.push("ERROR: " + args.map(String).join(" ")),
-        warn: (...args: any[]) => logs.push("WARN: " + args.map(String).join(" ")),
-      };
-      // eslint-disable-next-line no-new-func
-      const fn = new Function("console", code);
-      fn(mockConsole);
-      setOutput(logs.join("\n") || "✓ Executed successfully (no output)");
+      const res = await fetch("/api/run-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ language, code }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Execution failed");
+      }
+
+      const result = await res.json();
+      if (result.success) {
+        let executionOutput = "";
+        if (result.stdout) {
+          executionOutput += result.stdout;
+        }
+        if (result.stderr) {
+          executionOutput += `\n[STDERR]\n${result.stderr}`;
+        }
+        if (!result.stdout && !result.stderr) {
+          executionOutput += `✓ Process exited successfully with status code ${result.code} (no output)`;
+        }
+        setOutput(executionOutput.trim());
+      } else {
+        setOutput(`Error: ${result.error}`);
+      }
     } catch (err: any) {
       setOutput(`Error: ${err.message}`);
     } finally {

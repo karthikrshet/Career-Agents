@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search, Bookmark, BookmarkCheck, ExternalLink, Filter,
@@ -112,6 +112,8 @@ export default function JobsPage() {
   const { settings } = useStore();
   const resumeAnalysis = useStore((s) => s.resumeAnalysis);
 
+  const [jobsList, setJobsList] = useState<JobListing[]>([]);
+  const [loadingJobs, setLoadingJobs] = useState(true);
   const [query, setQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState<"All" | "Remote" | "Hybrid" | "Onsite">("All");
   const [experienceFilter, setExperienceFilter] = useState("All");
@@ -129,6 +131,30 @@ export default function JobsPage() {
   const [selectedJob, setSelectedJob] = useState<JobListing | null>(null);
   const [generated, setGenerated] = useState<{ type: string; content: string } | null>(null);
 
+  useEffect(() => {
+    async function loadJobs() {
+      try {
+        const res = await fetch("/api/jobs");
+        if (res.ok) {
+          const data = await res.json();
+          const scored = data.map((job: JobListing) => {
+            const detected = resumeAnalysis?.detectedKeywords || [];
+            if (detected.length === 0) return { ...job, atsMatch: 70 };
+            const matches = job.tech.filter(t => detected.some(d => d.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(d.toLowerCase())));
+            const score = Math.round((matches.length / Math.max(1, job.tech.length)) * 50 + 50);
+            return { ...job, atsMatch: Math.min(98, score) };
+          });
+          setJobsList(scored);
+        }
+      } catch (err) {
+        console.error("Failed to load live jobs", err);
+      } finally {
+        setLoadingJobs(false);
+      }
+    }
+    loadJobs();
+  }, [resumeAnalysis]);
+
   function toggleBookmark(id: string) {
     setBookmarks(prev => {
       const next = new Set(prev);
@@ -140,7 +166,7 @@ export default function JobsPage() {
   }
 
   function filteredJobs() {
-    return SAMPLE_JOBS.filter(job => {
+    return jobsList.filter(job => {
       if (query && !job.title.toLowerCase().includes(query.toLowerCase()) && !job.company.toLowerCase().includes(query.toLowerCase()) && !job.tech.some(t => t.toLowerCase().includes(query.toLowerCase()))) return false;
       if (typeFilter !== "All" && job.type !== typeFilter) return false;
       if (visaFilter && !job.visaSponsorship) return false;
@@ -209,7 +235,7 @@ export default function JobsPage() {
   }
 
   const jobs = filteredJobs();
-  const bookmarkedJobs = SAMPLE_JOBS.filter(j => bookmarks.has(j.id));
+  const bookmarkedJobs = jobsList.filter(j => bookmarks.has(j.id));
 
   return (
     <div className="flex h-full flex-col overflow-hidden">
@@ -305,86 +331,95 @@ export default function JobsPage() {
             <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">
               {jobs.length} positions found
             </p>
-            {jobs.map((job, i) => (
-              <motion.div
-                key={job.id}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.03 }}
-              >
-                <Card
-                  className={cn(
-                    "border-border/50 hover:border-primary/30 transition-all cursor-pointer group",
-                    selectedJob?.id === job.id && "border-primary/50 bg-primary/5"
-                  )}
-                  onClick={() => { setSelectedJob(job); setGenerated(null); }}
-                >
-                  <CardContent className="p-4">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap mb-1">
-                          <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors truncate">
-                            {job.title}
-                          </h3>
-                          {job.atsMatch && (
-                            <span className={cn("text-[10px] font-bold", atsColor(job.atsMatch))}>
-                              {job.atsMatch}% ATS match
-                            </span>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
-                          <span className="flex items-center gap-1"><Building2 className="w-3 h-3" /> {job.company}</span>
-                          <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> {job.location}</span>
-                          {job.salary && <span className="flex items-center gap-1"><DollarSign className="w-3 h-3" /> {job.salary}</span>}
-                          <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {job.postedAt}</span>
-                        </div>
-                        <div className="flex flex-wrap gap-1 mt-2">
-                          <Badge variant="outline" className={cn("text-[10px] py-0 px-1.5",
-                            job.type === "Remote" ? "border-emerald-500/30 text-emerald-400" :
-                              job.type === "Hybrid" ? "border-sky-500/30 text-sky-400" : "border-orange-500/30 text-orange-400"
-                          )}>
-                            {job.type}
-                          </Badge>
-                          {job.visaSponsorship && (
-                            <Badge variant="outline" className="text-[10px] py-0 px-1.5 border-violet-500/30 text-violet-400">Visa ✓</Badge>
-                          )}
-                          {job.tech.slice(0, 4).map(t => (
-                            <Badge key={t} variant="outline" className="text-[10px] py-0 px-1.5 text-muted-foreground">{t}</Badge>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2 shrink-0">
-                        <button
-                          onClick={e => { e.stopPropagation(); toggleBookmark(job.id); }}
-                          className={cn("p-1.5 rounded-lg border transition-all",
-                            bookmarks.has(job.id)
-                              ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
-                              : "text-muted-foreground border-border/40 hover:text-amber-400 hover:border-amber-500/30"
-                          )}
-                        >
-                          {bookmarks.has(job.id) ? <BookmarkCheck className="w-4 h-4" /> : <Bookmark className="w-4 h-4" />}
-                        </button>
-                        <a
-                          href={job.sourceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={e => e.stopPropagation()}
-                          className="p-1.5 rounded-lg border border-border/40 text-muted-foreground hover:text-foreground hover:border-border transition-all"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-            {jobs.length === 0 && (
-              <div className="text-center py-16 text-muted-foreground">
-                <Search className="w-10 h-10 mx-auto mb-3 opacity-30" />
-                <p className="text-sm">No jobs found. Try adjusting your filters.</p>
+            {loadingJobs ? (
+              <div className="flex flex-col items-center justify-center py-20 gap-3 bg-card/20 rounded-2xl border border-border/40">
+                <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                <p className="text-xs text-muted-foreground font-medium">Aggregating live job listings...</p>
               </div>
+            ) : (
+              <>
+                {jobs.map((job, i) => (
+                  <motion.div
+                    key={job.id}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.03 }}
+                  >
+                    <Card
+                      className={cn(
+                        "border-border/50 hover:border-primary/30 transition-all cursor-pointer group",
+                        selectedJob?.id === job.id && "border-primary/50 bg-primary/5"
+                      )}
+                      onClick={() => { setSelectedJob(job); setGenerated(null); }}
+                    >
+                      <CardContent className="p-4">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap mb-1">
+                              <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors truncate">
+                                {job.title}
+                              </h3>
+                              {job.atsMatch && (
+                                <span className={cn("text-[10px] font-bold", atsColor(job.atsMatch))}>
+                                  {job.atsMatch}% ATS match
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
+                              <span className="flex items-center gap-1"><Building2 className="w-3 h-3" /> {job.company}</span>
+                              <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> {job.location}</span>
+                              {job.salary && <span className="flex items-center gap-1"><DollarSign className="w-3 h-3" /> {job.salary}</span>}
+                              <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {job.postedAt}</span>
+                            </div>
+                            <div className="flex flex-wrap gap-1 mt-2">
+                              <Badge variant="outline" className={cn("text-[10px] py-0 px-1.5",
+                                job.type === "Remote" ? "border-emerald-500/30 text-emerald-400" :
+                                  job.type === "Hybrid" ? "border-sky-500/30 text-sky-400" : "border-orange-500/30 text-orange-400"
+                              )}>
+                                {job.type}
+                              </Badge>
+                              {job.visaSponsorship && (
+                                <Badge variant="outline" className="text-[10px] py-0 px-1.5 border-violet-500/30 text-violet-400">Visa ✓</Badge>
+                              )}
+                              {job.tech.slice(0, 4).map(t => (
+                                <Badge key={t} variant="outline" className="text-[10px] py-0 px-1.5 text-muted-foreground">{t}</Badge>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              onClick={e => { e.stopPropagation(); toggleBookmark(job.id); }}
+                              className={cn("p-1.5 rounded-lg border transition-all",
+                                bookmarks.has(job.id)
+                                  ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
+                                  : "text-muted-foreground border-border/40 hover:text-amber-400 hover:border-amber-500/30"
+                              )}
+                            >
+                              {bookmarks.has(job.id) ? <BookmarkCheck className="w-4 h-4" /> : <Bookmark className="w-4 h-4" />}
+                            </button>
+                            <a
+                              href={job.sourceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={e => e.stopPropagation()}
+                              className="p-1.5 rounded-lg border border-border/40 text-muted-foreground hover:text-foreground hover:border-border transition-all"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+                {jobs.length === 0 && (
+                  <div className="text-center py-16 text-muted-foreground">
+                    <Search className="w-10 h-10 mx-auto mb-3 opacity-30" />
+                    <p className="text-sm">No jobs found. Try adjusting your filters.</p>
+                  </div>
+                )}
+              </>
             )}
           </div>
 
