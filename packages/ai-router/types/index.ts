@@ -147,6 +147,9 @@ export interface RouterLog {
   finalModel: string;
   inputTokens: number;
   outputTokens: number;
+  originalInputTokens?: number;
+  tokensSaved?: number;
+  savingsPercentage?: number;
   costUSD: number;
   durationMs: number;
   status: "completed" | "failed";
