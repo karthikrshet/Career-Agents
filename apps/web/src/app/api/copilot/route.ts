@@ -16,24 +16,40 @@ export async function POST(req: NextRequest) {
     // 1 & 2. AI Brain Orchestrator & Context compilation
     const lastUserMessage = [...messages].reverse().find((m) => m.role === "user")?.content || "";
     
+    // Check internetMode toggle and fetch search results
+    let webCitations = "";
+    if (clientSettings?.internetMode) {
+      try {
+        const { searchInternet, formatSearchCitations } = await import("../../../../../../packages/brain/brain");
+        const searchResults = await searchInternet(lastUserMessage);
+        webCitations = formatSearchCitations(searchResults);
+      } catch (err) {
+        console.error("Failed to run web search", err);
+      }
+    }
+
     const clientState = {
       profile: context?.profile || {},
       metrics: context?.metrics || {},
-      resumeAnalysis: context?.resumeAnalysis,
-      GitHubAnalysis: context?.GitHubAnalysis,
-      linkedinAnalysis: context?.linkedinAnalysis,
-      interviewSessions: context?.interviewSessions || [],
-      jobApplications: context?.jobApplications || [],
+      resumeAnalysis: clientSettings?.memoryEnabled !== false ? context?.resumeAnalysis : null,
+      GitHubAnalysis: clientSettings?.memoryEnabled !== false ? context?.GitHubAnalysis : null,
+      linkedinAnalysis: clientSettings?.memoryEnabled !== false ? context?.linkedinAnalysis : null,
+      interviewSessions: clientSettings?.memoryEnabled !== false ? (context?.interviewSessions || []) : [],
+      jobApplications: clientSettings?.memoryEnabled !== false ? (context?.jobApplications || []) : [],
       weeklyGoals: clientSettings?.weeklyGoals || [],
       learningProgress: clientSettings?.learningProgress || {}
     };
 
-    const { systemPrompt, thinkingIndicator } = processThroughBrain(
+    let { systemPrompt, thinkingIndicator } = processThroughBrain(
       lastUserMessage,
       messages,
       clientState,
       context?.enabledPlugins || {}
     );
+
+    if (webCitations) {
+      systemPrompt += webCitations;
+    }
 
     // Construct final master system prompt
     let systemMessage = messages.find((m: any) => m.role === "system");

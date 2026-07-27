@@ -18,6 +18,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { analyzeResumeText } from "@/lib/resume-engine";
 import { cn, scoreToColor, scoreToGrade, scoreToBgColor } from "@/lib/utils";
+import { AtsComparison } from "@/components/resume/AtsComparison";
 import type { ResumeAnalysis } from "@/types";
 
 type Step = "upload" | "analyzing" | "results";
@@ -215,111 +216,37 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
     }
   }
 
-  function downloadReport(format: "markdown" | "json" | "html" | "doc" | "pdf") {
+  async function downloadReport(format: "markdown" | "json" | "html" | "doc" | "pdf" | "latex") {
     if (!resumeAnalysis) return;
-    const dateStr = new Date(resumeAnalysis.analyzedAt).toLocaleDateString();
     
-    if (format === "markdown") {
-      const md = `# Resume Analysis Report
-**File:** ${resumeAnalysis.fileName}
-**Date:** ${dateStr}
-**ATS Score:** ${resumeAnalysis.overallScore}/100
-
-## Sections Detected
-${Object.entries(resumeAnalysis.sections).map(([k, v]) => `- ${k}: ${v ? "Present" : "Missing"}`).join("\n")}
-
-## Missing Keywords
-${resumeAnalysis.missingKeywords.join(", ")}
-
-## STAR Analysis
-${resumeAnalysis.starAnalysis?.map((s) => `- **Bullet:** ${s.bullet}\n  **S:** ${s.situation}\n  **T:** ${s.task}\n  **A:** ${s.action}\n  **R:** ${s.result}\n  **Score:** ${s.rating}`).join("\n\n") || "None"}
-
-## Recommendations
-${resumeAnalysis.recommendations.map((r) => `- ${r}`).join("\n")}
-`;
-      const blob = new Blob([md], { type: "text/markdown" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `resume-report-${Date.now()}.md`;
-      a.click();
-      URL.revokeObjectURL(url);
-      toast.success("Markdown report downloaded");
-    } else if (format === "json") {
-      const jsonStr = JSON.stringify(resumeAnalysis, null, 2);
-      const blob = new Blob([jsonStr], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `resume-report-${Date.now()}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
-      toast.success("JSON report downloaded");
-    } else if (format === "html") {
-      const htmlStr = `<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Resume Analysis Report</title>
-  <style>
-    body { font-family: system-ui; max-width: 800px; margin: 40px auto; padding: 20px; background: #090d16; color: #e2e8f0; }
-    h1 { background: linear-gradient(135deg,#38bdf8,#818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    h2 { border-bottom: 1px solid #1e293b; padding-bottom: 8px; color: #38bdf8; }
-    ul { line-height: 1.6; }
-    .card { background: #111827; border: 1px solid #1e293b; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-  </style>
-</head>
-<body>
-  <h1>Resume Analysis Report</h1>
-  <p><strong>File:</strong> ${resumeAnalysis.fileName}</p>
-  <p><strong>Date:</strong> ${dateStr}</p>
-  <p><strong>ATS Score:</strong> ${resumeAnalysis.overallScore}/100</p>
-  
-  <h2>Detected Sections</h2>
-  <ul>
-    ${Object.entries(resumeAnalysis.sections).map(([k, v]) => `<li>${k}: ${v ? "Present" : "Missing"}</li>`).join("")}
-  </ul>
-
-  <h2>Missing Keywords</h2>
-  <p>${resumeAnalysis.missingKeywords.join(", ") || "None"}</p>
-
-  <h2>Recommendations</h2>
-  <ul>
-    ${resumeAnalysis.recommendations.map((r) => `<li>${r}</li>`).join("")}
-  </ul>
-</body>
-</html>`;
-      const blob = new Blob([htmlStr], { type: "text/html" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `resume-report-${Date.now()}.html`;
-      a.click();
-      URL.revokeObjectURL(url);
-      toast.success("HTML report downloaded");
-    } else if (format === "doc") {
-      const docHtml = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-<head><title>Resume Analysis Report</title><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml></head>
-<body>
-  <h1>Resume Analysis Report</h1>
-  <p><b>File:</b> ${resumeAnalysis.fileName}</p>
-  <p><b>Date:</b> ${dateStr}</p>
-  <p><b>ATS Score:</b> ${resumeAnalysis.overallScore}/100</p>
-  <h2>Recommendations</h2>
-  <p>${resumeAnalysis.recommendations.join("<br/>")}</p>
-</body>
-</html>`;
-      const blob = new Blob([docHtml], { type: "application/msword" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `resume-report-${Date.now()}.doc`;
-      a.click();
-      URL.revokeObjectURL(url);
-      toast.success("Word document downloaded");
-    } else if (format === "pdf") {
+    if (format === "pdf") {
       window.print();
       toast.success("Print dialog opened for PDF export");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/resume/export", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ format, analysis: resumeAnalysis }),
+      });
+
+      if (!res.ok) throw new Error("Failed to export report");
+
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const fileExt = format === "latex" ? "tex" : format === "doc" ? "docx" : format;
+      a.download = `resume-report-${Date.now()}.${fileExt}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      toast.success(`${format.toUpperCase()} report downloaded`);
+    } catch (err: any) {
+      toast.error("Download failed — please try again.");
     }
   }
 
@@ -581,12 +508,13 @@ ${resumeAnalysis.recommendations.map((r) => `- ${r}`).join("\n")}
                     <p className="text-[10px] text-muted-foreground font-semibold text-center mb-1 flex items-center justify-center gap-1">
                       <Download className="w-3 h-3" /> Export Report
                     </p>
-                    <div className="grid grid-cols-5 gap-1">
-                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("markdown")}>MD</Button>
-                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("html")}>HTML</Button>
-                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("json")}>JSON</Button>
-                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("doc")}>Word</Button>
-                      <Button size="sm" variant="outline" className="text-[9px] px-1 h-7 bg-background" onClick={() => downloadReport("pdf")}>PDF</Button>
+                    <div className="grid grid-cols-6 gap-1">
+                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("markdown")}>MD</Button>
+                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("html")}>HTML</Button>
+                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("json")}>JSON</Button>
+                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("doc")}>Word</Button>
+                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("latex")}>LaTeX</Button>
+                      <Button size="sm" variant="outline" className="text-[9px] px-0.5 h-7 bg-background" onClick={() => downloadReport("pdf")}>PDF</Button>
                     </div>
                   </div>
 
@@ -702,6 +630,19 @@ ${resumeAnalysis.recommendations.map((r) => `- ${r}`).join("\n")}
                       </motion.div>
                     )}
                   </AnimatePresence>
+                </Card>
+              )}
+
+              {/* ATS Comparison Section */}
+              {analysis.weakBullets && analysis.weakBullets.length > 0 && (
+                <Card className="glass p-6">
+                  <AtsComparison
+                    originalBullets={analysis.weakBullets.map(b => b.original)}
+                    optimizedBullets={analysis.weakBullets.map(b => b.suggested)}
+                    onApplyOptimized={() => {
+                      toast.success("Applied AI optimized bullets to draft!");
+                    }}
+                  />
                 </Card>
               )}
 

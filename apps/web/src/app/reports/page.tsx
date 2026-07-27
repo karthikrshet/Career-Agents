@@ -79,28 +79,41 @@ export default function ReportsPage() {
 
   async function handleGenerate(format: string) {
     setGenerating(format);
-    await new Promise((r) => setTimeout(r, 600));
     try {
-      if (format === "markdown") {
-        downloadFile(generateMarkdown(), `career-report-${Date.now()}.md`, "text/markdown");
-      } else if (format === "json") {
+      if (format === "pdf") {
+        window.print();
+        toast.success("Print dialog opened");
+        return;
+      }
+
+      if (format === "json") {
         const data = { profile, metrics, resumeAnalysis, GitHubAnalysis, linkedinAnalysis, interviewSessions, jobApplications, generatedAt: new Date().toISOString() };
         downloadFile(JSON.stringify(data, null, 2), `career-data-${Date.now()}.json`, "application/json");
       } else if (format === "html") {
         const md = generateMarkdown();
         const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Career Agents Report</title><style>body{font-family:system-ui;max-width:800px;margin:40px auto;padding:20px;background:#090d16;color:#e2e8f0}h1{background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}table{width:100%;border-collapse:collapse}th,td{padding:8px 12px;border:1px solid #1e293b;text-align:left}tr:nth-child(even){background:#111827}</style></head><body><pre>${md}</pre></body></html>`;
         downloadFile(html, `career-report-${Date.now()}.html`, "text/html");
-      } else if (format === "doc") {
-        const docHtml = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-<head><title>Career Agents Report</title><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml></head>
-<body>
-  <h2>Career Agents Report</h2>
-  <pre>${generateMarkdown().replace(/\n/g, "<br/>")}</pre>
-</body>
-</html>`;
-        downloadFile(docHtml, `career-report-${Date.now()}.doc`, "application/msword");
-      } else if (format === "pdf") {
-        window.print();
+      } else {
+        // Fetch from server exporter (markdown, doc, xlsx)
+        const reportData = { profile, metrics, resumeAnalysis, GitHubAnalysis, linkedinAnalysis, interviewSessions, jobApplications };
+        const res = await fetch("/api/reports/export", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ format, reportData }),
+        });
+
+        if (!res.ok) throw new Error("Server generation failed");
+
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        const fileExt = format === "doc" ? "docx" : format;
+        a.download = `career-report-${Date.now()}.${fileExt}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
       }
 
       // Add version entry to history
@@ -128,6 +141,7 @@ export default function ReportsPage() {
     { format: "json", label: "JSON Data Export", desc: "Raw data — all scores, analyses, applications", icon: FileJson, recommended: false },
     { format: "html", label: "HTML Report", desc: "Styled, shareable web page", icon: Code, recommended: false },
     { format: "doc", label: "Word Document", desc: "Word-compatible document", icon: FileText, recommended: false },
+    { format: "xlsx", label: "Excel Data Matrix", desc: "Structured spreadsheet of scores and leads", icon: FileJson, recommended: false },
     { format: "pdf", label: "PDF Export", desc: "Print or save as high-fidelity PDF", icon: FileText, recommended: false },
   ];
 

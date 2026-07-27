@@ -12,6 +12,9 @@ export interface BrainResult {
   timeline: any;
   confidence: number;
   timeTakenMs: number;
+  intent: string;
+  intentConfidence: number;
+  rationale: string;
 }
 
 export function processThroughBrain(
@@ -64,7 +67,7 @@ export function processThroughBrain(
 
   const agentNames = plan.matchedAgents.map((a) => `${a.name} (${a.emoji || "🤖"})`).join(", ");
   const runningCount = plan.timeline.steps.length;
-  const thinkingIndicator = `<thinking>AI Brain executing dynamic route: Found ${runningCount} specialist agents [${agentNames}]. Confidence: ${plan.timeline.confidence}%. Mapped execution chain in ${plan.timeline.totalTimeMs}ms.</thinking>\n\n`;
+  const thinkingIndicator = `<thinking>AI Brain executing dynamic route: classified intent as "${plan.intent}" (${plan.intentConfidence}% confidence). Found ${runningCount} specialist agents [${agentNames}]. Confidence: ${plan.timeline.confidence}%. Mapped execution chain in ${plan.timeline.totalTimeMs}ms.</thinking>\n\n`;
 
   return {
     systemPrompt: finalSystemPrompt,
@@ -72,6 +75,9 @@ export function processThroughBrain(
     timeline: plan.timeline,
     confidence: plan.timeline.confidence,
     timeTakenMs: plan.timeline.totalTimeMs,
+    intent: plan.intent,
+    intentConfidence: plan.intentConfidence,
+    rationale: plan.rationale,
   };
 }
 
@@ -84,3 +90,7 @@ export * from "./skills";
 export * from "./knowledge";
 export * from "./history";
 export * from "./summary";
+export * from "./intent";
+export * from "./search";
+
+
