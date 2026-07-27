@@ -37,7 +37,9 @@ export async function POST(req: NextRequest) {
       interviewSessions: clientSettings?.memoryEnabled !== false ? (context?.interviewSessions || []) : [],
       jobApplications: clientSettings?.memoryEnabled !== false ? (context?.jobApplications || []) : [],
       weeklyGoals: clientSettings?.weeklyGoals || [],
-      learningProgress: clientSettings?.learningProgress || {}
+      learningProgress: clientSettings?.learningProgress || {},
+      activeModel: config?.model || "default",
+      activeProvider: config?.provider || "default"
     };
 
     let { systemPrompt, thinkingIndicator } = processThroughBrain(

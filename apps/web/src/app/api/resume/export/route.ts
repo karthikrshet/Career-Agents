@@ -183,8 +183,89 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    if (format === "pdf") {
+      const pdfLines: string[] = [
+        `File Name: ${analysis.fileName}`,
+        `Date Analyzed: ${dateStr}`,
+        `Overall ATS Score: ${analysis.overallScore}/100`,
+        `Grade: ${analysis.overallScore >= 80 ? "A" : analysis.overallScore >= 60 ? "B" : "C"}`,
+        "",
+        "SECTION AUDIT:",
+      ];
+
+      Object.entries(analysis.sections || {}).forEach(([k, v]) => {
+        pdfLines.push(`- ${k}: ${v ? "Present" : "Missing"}`);
+      });
+
+      pdfLines.push("", "MISSING KEYWORDS:");
+      if (Array.isArray(analysis.missingKeywords) && analysis.missingKeywords.length > 0) {
+        pdfLines.push(analysis.missingKeywords.join(", "));
+      } else {
+        pdfLines.push("None identified");
+      }
+
+      pdfLines.push("", "RECOMMENDATIONS:");
+      (analysis.recommendations || []).forEach((r: string) => {
+        pdfLines.push(`* ${r}`);
+      });
+
+      pdfLines.push("", "STAR ACCOMPLISHMENTS AUDIT:");
+      (analysis.starAnalysis || []).forEach((s: any, idx: number) => {
+        pdfLines.push(`Accomplishment #${idx + 1} (Score: ${s.rating}/100):`);
+        pdfLines.push(` - Bullet: ${s.bullet}`);
+        pdfLines.push(` - Situation/Task: ${s.situation}`);
+        pdfLines.push(` - Action: ${s.action}`);
+        pdfLines.push(` - Result: ${s.result}`);
+      });
+
+      const buffer = generateSimplePdf("ATS Resume Analysis Report", pdfLines);
+      return new NextResponse(new Uint8Array(buffer), {
+        headers: {
+          "Content-Type": "application/pdf",
+          "Content-Disposition": `attachment; filename="ats-report-${Date.now()}.pdf"`
+        }
+      });
+    }
+
     return NextResponse.json({ success: false, error: "Invalid format specified" }, { status: 400 });
   } catch (err: any) {
     return NextResponse.json({ success: false, error: err.message || "Failed to export report" }, { status: 500 });
   }
+}
+
+function generateSimplePdf(title: string, lines: string[]): Buffer {
+  const chunks: string[] = [];
+  chunks.push("%PDF-1.4\n");
+  
+  const objectOffsets: number[] = [];
+  const addObj = (content: string) => {
+    const offset = chunks.join("").length;
+    objectOffsets.push(offset);
+    chunks.push(`${objectOffsets.length} 0 obj\n${content}\nendobj\n`);
+  };
+
+  addObj("<< /Type /Catalog /Pages 2 0 R >>");
+  addObj("<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+  addObj("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>");
+  addObj("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
+
+  let streamContent = `BT\n/F1 18 Tf\n70 780 Td\n(${title.replace(/[\(\)]/g, "\\$&")}) Tj\n/F1 9 Tf\n`;
+  for (const line of lines) {
+    const escaped = line.replace(/[\(\)]/g, "\\$&");
+    streamContent += `0 -14 Td\n(${escaped}) Tj\n`;
+  }
+  streamContent += "ET";
+
+  addObj(`<< /Length ${streamContent.length} >>\nstream\n${streamContent}\nstreamend\nendstream`);
+
+  const xrefOffset = chunks.join("").length;
+  let xref = `xref\n0 ${objectOffsets.length + 1}\n0000000000 65535 f \n`;
+  for (const offset of objectOffsets) {
+    xref += `${String(offset).padStart(10, "0")} 00000 n \n`;
+  }
+  chunks.push(xref);
+
+  chunks.push(`trailer\n<< /Size ${objectOffsets.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF\n`);
+
+  return Buffer.from(chunks.join(""), "utf-8");
 }

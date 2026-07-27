@@ -219,11 +219,7 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
   async function downloadReport(format: "markdown" | "json" | "html" | "doc" | "pdf" | "latex") {
     if (!resumeAnalysis) return;
     
-    if (format === "pdf") {
-      window.print();
-      toast.success("Print dialog opened for PDF export");
-      return;
-    }
+
 
     try {
       const res = await fetch("/api/resume/export", {
