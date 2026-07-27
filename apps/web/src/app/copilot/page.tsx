@@ -1,4 +1,5 @@
 // apps/web/src/app/copilot/page.tsx
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState, useRef, useEffect, useCallback, Suspense } from "react";
@@ -121,7 +122,7 @@ function CopilotWorkspace() {
     } else if (!currentSession) {
       startCopilotSession();
     }
-  }, [chatParam, copilotSessions, hydrated, currentSession]);
+  }, [chatParam, copilotSessions, hydrated, currentSession, startCopilotSession]);
 
   // Sync internal active values on settings changes
   useEffect(() => {
@@ -193,59 +194,8 @@ function CopilotWorkspace() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [currentSession?.messages, streamBuffer]);
 
-  // File Dropzone logic
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    acceptedFiles.forEach((file) => {
-      const id = generateId();
-      const isImg = file.type.startsWith("image/");
-      const newAttach: FileAttachment = {
-        id,
-        name: file.name,
-        size: file.size,
-        type: file.type || file.name.split(".").pop() || "unknown",
-        status: "uploading",
-        progress: 10,
-        previewUrl: isImg ? URL.createObjectURL(file) : undefined,
-      };
-
-      setAttachments((prev) => [...prev, newAttach]);
-
-      // If it's an image, read base64 for Vision (Issue 6)
-      if (isImg) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setAttachments((prev) =>
-            prev.map((a) => (a.id === id ? { ...a, previewUrl: reader.result as string, status: "ready", progress: 100 } : a))
-          );
-          // Auto-detect image subject categories
-          const nameLower = file.name.toLowerCase();
-          let detected = "System Design Diagram";
-          if (nameLower.includes("resume") || nameLower.includes("cv")) detected = "Resume Screenshot";
-          else if (nameLower.includes("arch") || nameLower.includes("sys")) detected = "Architecture Layout";
-          else if (nameLower.includes("dash") || nameLower.includes("chart")) detected = "Dashboard Mockup";
-          else if (nameLower.includes("flow") || nameLower.includes("chart")) detected = "Flowchart";
-          else if (nameLower.includes("offer") || nameLower.includes("letter")) detected = "Offer Letter";
-          else if (nameLower.includes("invoice") || nameLower.includes("bill")) detected = "Invoice Screenshot";
-          else if (nameLower.includes("code") || nameLower.includes("leetcode")) detected = "LeetCode Code Screenshot";
-          
-          toast.success(`Vision Engine: Automatically detected ${detected}`);
-        };
-        reader.readAsDataURL(file);
-        return;
-      }
-
-      // Trigger real server-side parser
-      processUploadedFile(file, id);
-    });
-  }, []);
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    noClick: true,
-  });
-
   // Real server-side parser integrations
-  const processUploadedFile = async (file: File, attachmentId: string) => {
+  const processUploadedFile = useCallback(async (file: File, attachmentId: string) => {
     const filename = file.name.toLowerCase();
     const ext = filename.split(".").pop() || "";
     
@@ -413,7 +363,58 @@ Recalculated tracker statistics and updated applications metrics.`);
       );
       toast.error(`Parser request failed: ${e.message}`);
     }
-  };
+  }, [setResumeAnalysis, updateGithubScore, addActivity, appendCopilotMessage, addJobApplication]);
+
+  // File Dropzone logic
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    acceptedFiles.forEach((file) => {
+      const id = generateId();
+      const isImg = file.type.startsWith("image/");
+      const newAttach: FileAttachment = {
+        id,
+        name: file.name,
+        size: file.size,
+        type: file.type || file.name.split(".").pop() || "unknown",
+        status: "uploading",
+        progress: 10,
+        previewUrl: isImg ? URL.createObjectURL(file) : undefined,
+      };
+
+      setAttachments((prev) => [...prev, newAttach]);
+
+      // If it's an image, read base64 for Vision (Issue 6)
+      if (isImg) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setAttachments((prev) =>
+            prev.map((a) => (a.id === id ? { ...a, previewUrl: reader.result as string, status: "ready", progress: 100 } : a))
+          );
+          // Auto-detect image subject categories
+          const nameLower = file.name.toLowerCase();
+          let detected = "System Design Diagram";
+          if (nameLower.includes("resume") || nameLower.includes("cv")) detected = "Resume Screenshot";
+          else if (nameLower.includes("arch") || nameLower.includes("sys")) detected = "Architecture Layout";
+          else if (nameLower.includes("dash") || nameLower.includes("chart")) detected = "Dashboard Mockup";
+          else if (nameLower.includes("flow") || nameLower.includes("chart")) detected = "Flowchart";
+          else if (nameLower.includes("offer") || nameLower.includes("letter")) detected = "Offer Letter";
+          else if (nameLower.includes("invoice") || nameLower.includes("bill")) detected = "Invoice Screenshot";
+          else if (nameLower.includes("code") || nameLower.includes("leetcode")) detected = "LeetCode Code Screenshot";
+          
+          toast.success(`Vision Engine: Automatically detected ${detected}`);
+        };
+        reader.readAsDataURL(file);
+        return;
+      }
+
+      // Trigger real server-side parser
+      processUploadedFile(file, id);
+    });
+  }, [processUploadedFile]);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    noClick: true,
+  });
 
   const removeAttachment = (id: string) => {
     setAttachments((prev) => prev.filter((a) => a.id !== id));
