@@ -63,6 +63,10 @@ export default function SettingsPage() {
   const gatewayProvider = useGatewayStore((s) => s.activeProvider) as AIProviderId;
   const demoMode = useGatewayStore((s) => s.demoMode);
   const activeModel = useGatewayStore((s) => s.activeModel);
+  const optimizeTokens = useGatewayStore((s) => s.optimizeTokens);
+  const compressionLevel = useGatewayStore((s) => s.compressionLevel);
+  const setOptimizeTokens = useGatewayStore((s) => s.setOptimizeTokens);
+  const setCompressionLevel = useGatewayStore((s) => s.setCompressionLevel);
   const [selectedProvider, setSelectedProvider] = useState<AIProviderId>(gatewayProvider || "openai");
   const [modelsCache, setModelsCache] = useState<Record<string, string[]>>({});
   const [loadingModels, setLoadingModels] = useState(false);
@@ -759,8 +763,8 @@ export default function SettingsPage() {
                       </div>
                       <input 
                         type="checkbox" 
-                        checked={useGatewayStore((s) => s.optimizeTokens)} 
-                        onChange={(e) => useGatewayStore.getState().setOptimizeTokens(e.target.checked)} 
+                        checked={optimizeTokens} 
+                        onChange={(e) => setOptimizeTokens(e.target.checked)} 
                         className="accent-emerald-500 w-4 h-4 cursor-pointer" 
                       />
                     </div>
@@ -769,8 +773,8 @@ export default function SettingsPage() {
                       <label className="text-xs text-muted-foreground mb-1 block font-medium">Compression Aggressiveness</label>
                       <select
                         className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground focus:outline-none"
-                        value={useGatewayStore((s) => s.compressionLevel)}
-                        onChange={(e) => useGatewayStore.getState().setCompressionLevel(e.target.value as any)}
+                        value={compressionLevel}
+                        onChange={(e) => setCompressionLevel(e.target.value as any)}
                       >
                         <option value="aggressive">Aggressive (Up to 80% Token Savings — Recommended)</option>
                         <option value="medium">Balanced (Up to 50% Token Savings)</option>

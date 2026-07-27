@@ -167,6 +167,14 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
   // Session storage persistence key
   const SESSION_STORAGE_KEY = "career_agents_active_voice_session";
 
+  const [draftSession, setDraftSession] = useState<{
+    sessionId: string;
+    history: TranscriptMessage[];
+    timerSec: number;
+    company: string;
+    role: string;
+  } | null>(null);
+
   // Restore session & config from localStorage on mount
   useEffect(() => {
     if (typeof window === "undefined" || !mounted) return;
@@ -187,18 +195,17 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
         if (parsed.completedSessionData) {
           setCompletedSessionData(parsed.completedSessionData);
         }
-        if (parsed.sessionId && parsed.history && parsed.history.length > 0 && fsmState === "CONFIGURING" && !initialSessionId) {
-          setSessionId(parsed.sessionId);
-          setHistory(parsed.history);
-          setTimerSec(parsed.timerSec || 0);
-          if (parsed.fsmState === "COMPLETED" && parsed.completedSessionData) {
-            setFsmState("COMPLETED");
-          } else if (parsed.fsmState !== "COMPLETED") {
-            setFsmState("WAITING_FOR_NEXT_QUESTION");
-          } else {
-            setFsmState("CONFIGURING");
-          }
+        if (parsed.sessionId && parsed.history && parsed.history.length > 0 && parsed.fsmState !== "COMPLETED") {
+          setDraftSession({
+            sessionId: parsed.sessionId,
+            history: parsed.history,
+            timerSec: parsed.timerSec || 0,
+            company: parsed.company || "Google",
+            role: parsed.role || "Software Engineer",
+          });
         }
+        // Direct navigation to /interview/voice ALWAYS lands on CONFIGURING hub
+        setFsmState("CONFIGURING");
       }
     } catch (e) {}
   }, [mounted]);
