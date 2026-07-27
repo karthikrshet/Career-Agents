@@ -8,7 +8,7 @@ import {
   LayoutDashboard, FileText, GitBranch, Link2, Mic,
   KanbanSquare, Building2, Bot, BarChart3, Package,
   Cpu, Settings, ChevronLeft, ChevronRight, Zap,
-  TrendingUp, Award, Info
+  TrendingUp, Award, Info, Briefcase, Code2, GitMerge
 } from "lucide-react";
 import { cn, formatScore } from "@/lib/utils";
 import { useStore } from "@/lib/store";
@@ -25,17 +25,21 @@ const NAV_ITEMS = [
     ],
   },
   {
-    section: "Career",
+    section: "Career OS",
     items: [
+      { href: "/copilot", icon: Bot, label: "AI Copilot" },
+      { href: "/jobs", icon: Briefcase, label: "Job Hub" },
       { href: "/tracker", icon: KanbanSquare, label: "Job Tracker" },
       { href: "/prephub", icon: Building2, label: "Prep Hub" },
-      { href: "/copilot", icon: Bot, label: "Career Copilot" },
+      { href: "/playground", icon: Code2, label: "Code Playground" },
+      { href: "/linkedin-ai", icon: Link2, label: "LinkedIn AI" },
       { href: "/reports", icon: BarChart3, label: "Reports" },
     ],
   },
   {
     section: "Platform",
     items: [
+      { href: "/workflows", icon: GitMerge, label: "Workflow Builder" },
       { href: "/marketplace", icon: Package, label: "Marketplace" },
       { href: "/mcp", icon: Cpu, label: "MCP Server" },
       { href: "/settings", icon: Settings, label: "Settings" },
@@ -74,7 +78,7 @@ export function Sidebar() {
               className="flex flex-col"
             >
               <span className="text-sm font-semibold text-foreground tracking-tight">Career Agents</span>
-              <span className="text-[10px] text-muted-foreground">v2.0 · Career Intelligence</span>
+              <span className="text-[10px] text-muted-foreground">v4.0 · AI Career OS</span>
             </motion.div>
           )}
         </AnimatePresence>
