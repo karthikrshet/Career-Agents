@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Plugin Marketplace — Extend Career OS",
+  title: "Plugin Marketplace — Extend Career Agents",
   description:
-    "Browse and install plugins to extend Career OS functionality. STAR Behavioral Coach, LeetCode Tracker, Resume PDF Parser, Salary Intelligence, and more community plugins.",
+    "Browse and install plugins to extend Career Agents functionality. STAR Behavioral Coach, LeetCode Tracker, Resume PDF Parser, Salary Intelligence, and more community plugins.",
   keywords: [
     "career OS plugins", "plugin marketplace", "STAR coach plugin", "leetcode tracker",
     "resume pdf parser", "salary intelligence", "career tools extensions",
   ],
   openGraph: {
-    title: "Career OS Plugin Marketplace",
-    description: "Install community plugins to extend Career OS — STAR Coach, LeetCode Tracker, Salary Intelligence, and more.",
+    title: "Career Agents Plugin Marketplace",
+    description: "Install community plugins to extend Career Agents — STAR Coach, LeetCode Tracker, Salary Intelligence, and more.",
     url: "/marketplace",
   },
   alternates: { canonical: "/marketplace" },

@@ -1,12 +1,12 @@
-# Career OS — Testing & Verification Guide
+# Career Agents — Testing & Verification Guide
 
-This guide outlines the validation pipelines, TypeScript safety checks, unit tests, and CLI validation scripts used to maintain repository health in Career OS.
+This guide outlines the validation pipelines, TypeScript safety checks, unit tests, and CLI validation scripts used to maintain repository health in Career Agents.
 
 ---
 
 ## Testing Subsystems
 
-Career OS organizes testing into three areas:
+Career Agents organizes testing into three areas:
 
 1. **TypeScript Type Safety Check:** Resolves typescript compilation warnings.
 2. **ESLint Static Analysis:** Verifies coding styles and formatting.

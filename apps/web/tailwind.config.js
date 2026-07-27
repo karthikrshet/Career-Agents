@@ -47,7 +47,7 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Career OS brand tokens
+        // Career Agents brand tokens
         "cos-sky": {
           50:  "#f0f9ff",
           100: "#e0f2fe",

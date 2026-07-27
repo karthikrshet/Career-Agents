@@ -1,12 +1,12 @@
-# Career OS — Search & Indexing Engine
+# Career Agents — Search & Indexing Engine
 
-This document details how search, indexing, and keyword scoring operate in the Career OS workspace.
+This document details how search, indexing, and keyword scoring operate in the Career Agents workspace.
 
 ---
 
 ## Indexing Pipeline
 
-Career OS builds a statically compiled index file at `/search-index.json`. This index is compiled during the release build by the data generation script:
+Career Agents builds a statically compiled index file at `/search-index.json`. This index is compiled during the release build by the data generation script:
 
 ```bash
 python scripts/generate-data.py

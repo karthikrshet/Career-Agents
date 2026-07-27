@@ -37,7 +37,7 @@ export default function ReportsPage() {
 
   function generateMarkdown() {
     const sections = [];
-    sections.push(`# Career OS Report`);
+    sections.push(`# Career Agents Report`);
     sections.push(`**Generated:** ${new Date().toLocaleDateString()}`);
     if (profile) sections.push(`**Candidate:** ${profile.name} | **Target:** ${profile.targetRole || "Not specified"}`);
     sections.push("\n## Career Scores\n");
@@ -88,13 +88,13 @@ export default function ReportsPage() {
         downloadFile(JSON.stringify(data, null, 2), `career-data-${Date.now()}.json`, "application/json");
       } else if (format === "html") {
         const md = generateMarkdown();
-        const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Career OS Report</title><style>body{font-family:system-ui;max-width:800px;margin:40px auto;padding:20px;background:#090d16;color:#e2e8f0}h1{background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}table{width:100%;border-collapse:collapse}th,td{padding:8px 12px;border:1px solid #1e293b;text-align:left}tr:nth-child(even){background:#111827}</style></head><body><pre>${md}</pre></body></html>`;
+        const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Career Agents Report</title><style>body{font-family:system-ui;max-width:800px;margin:40px auto;padding:20px;background:#090d16;color:#e2e8f0}h1{background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}table{width:100%;border-collapse:collapse}th,td{padding:8px 12px;border:1px solid #1e293b;text-align:left}tr:nth-child(even){background:#111827}</style></head><body><pre>${md}</pre></body></html>`;
         downloadFile(html, `career-report-${Date.now()}.html`, "text/html");
       } else if (format === "doc") {
         const docHtml = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-<head><title>Career OS Report</title><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml></head>
+<head><title>Career Agents Report</title><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml></head>
 <body>
-  <h2>Career OS Report</h2>
+  <h2>Career Agents Report</h2>
   <pre>${generateMarkdown().replace(/\n/g, "<br/>")}</pre>
 </body>
 </html>`;
@@ -258,7 +258,7 @@ export default function ReportsPage() {
                           variant="ghost"
                           className="h-7 text-[10px]"
                           onClick={() => {
-                            navigator.clipboard.writeText(`https://career-os.dev/reports/share/${entry.id}`);
+                            navigator.clipboard.writeText(`https://career-agents.dev/reports/share/${entry.id}`);
                             toast.success("Share link copied to clipboard");
                           }}
                         >

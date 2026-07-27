@@ -1,6 +1,6 @@
-# Career OS — API Reference
+# Career Agents — API Reference
 
-Complete reference for all Career OS API routes.
+Complete reference for all Career Agents API routes.
 
 > **Base URL (development):** `http://localhost:3000/api`  
 > **Authentication:** Most routes accept an AI provider config in the request body. No auth token required for API routes in guest mode.

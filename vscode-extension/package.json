@@ -20,12 +20,12 @@
       {
         "command": "career-agents.search",
         "title": "Career-Agents: Search AI Catalog",
-        "category": "Career OS"
+        "category": "Career Agents"
       },
       {
         "command": "career-agents.inject",
         "title": "Career-Agents: Inject Agent prompt into Workspace Rules",
-        "category": "Career OS"
+        "category": "Career Agents"
       }
     ],
     "configuration": {

@@ -1,69 +1,18 @@
 <div align="center">
 
-<p>
-  <img
-    src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.svg"
-    alt="Career Agents Logo"
-    width="110"
-  />
-</p>
+<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.png" alt="Career Agents Logo" width="120" />
 
 # Career Agents
 
-### The Open-Source AI Career Operating System
+### The Open-Source AI Career Agents for Software Engineers
 
-<p>
-  <strong>146 AI Career Agents</strong> •
-  <strong>Career Copilot</strong> •
-  <strong>Resume Studio</strong> •
-  <strong>MCP Server</strong> •
-  <strong>CLI</strong> •
-  <strong>Next.js Dashboard</strong>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/banner.svg" alt="Career Agents Banner" width="800" />
 </p>
 
-<p>
-  <img
-    src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/banner.svg"
-    alt="Career Agents Banner"
-    width="900"
-  />
-</p>
-
-<p>
-
-An open-source AI Career Operating System that helps software engineers optimize resumes, prepare for interviews, analyze GitHub portfolios, improve LinkedIn profiles, track job applications, and collaborate with **146 specialized AI career agents** through a modern web dashboard, CLI, and Model Context Protocol (MCP) server.
-
-</p>
-
-
+Career Agents is an enterprise-grade, open-source personal career optimization suite designed to automate and systemize professional growth. By unifying 146 specialized AI agents, local ATS resume grading, public GitHub profile auditing, search-visibility LinkedIn scanning, and interactive STAR behavioral mock interviews, it replaces generic prompts and static templates with a context-aware career intelligence cockpit.
 
 </div>
-
----
-
-## What is Career Agents?
-
-Career Agents is an open-source AI platform designed to function as a complete Career Operating System for software engineers and technical professionals.
-
-Instead of relying on isolated prompts or disconnected AI tools, Career Agents orchestrates **146 specialized AI agents** to automate every stage of career development—from resume optimization and portfolio analysis to interview preparation, company-specific roadmaps, and long-term career planning.
-
-The platform includes:
-
-- Career Copilot with multi-provider AI routing
-- Resume Studio with ATS analysis
-- GitHub Portfolio Analyzer
-- LinkedIn Optimizer
-- Interactive Mock Interview Lab
-- Job Application Tracker
-- Company Preparation Hub
-- Marketplace
-- Model Context Protocol (MCP) Server
-- Web Dashboard
-- Command Line Interface
-- REST APIs
-- Plugin System
-
-Career Agents can be used as a standalone web application, a local CLI tool, an MCP server inside editors like Cursor and Claude Desktop, or integrated into custom workflows.
 
 ---
 
@@ -92,7 +41,7 @@ Career Agents can be used as a standalone web application, a local CLI tool, an 
 
 ## Elevator Pitch
 
-Software engineers face a fragmented job application cycle where resumes are filtered by parsing engines, portfolios are checked on GitHub, and behavioral performance is scored via structured framework interviews. Existing consumer AI chatbots lack integration with raw files, OAuth profile contexts, and structured ATS parser scoring. Career OS solves this fragmentation by building a local-first workspace that evaluates career assets, synchronizes target scores into a unified profile state, and exposes these workflows directly to developers inside their IDEs via the Model Context Protocol.
+Software engineers face a fragmented job application cycle where resumes are filtered by parsing engines, portfolios are checked on GitHub, and behavioral performance is scored via structured framework interviews. Existing consumer AI chatbots lack integration with raw files, OAuth profile contexts, and structured ATS parser scoring. Career Agents solves this fragmentation by building a local-first workspace that evaluates career assets, synchronizes target scores into a unified profile state, and exposes these workflows directly to developers inside their IDEs via the Model Context Protocol.
 
 ---
 
@@ -156,10 +105,11 @@ Career Agents takes a different approach:
 
 ## Demo
 
-- **Live Demo Instance:** [https://career-os.dev](https://career-agents.vercel.app/) (Use fully in guest mode with no credentials needed)
+- **Live Demo Instance:** [career-os.dev](https://career-os.dev) (Use fully in guest mode with no credentials needed)
 - **GitHub Repository:** [github.com/karthikrshet/Career-Agents](https://github.com/karthikrshet/Career-Agents)
 - **NPM Package Registry:** [npmjs.com/package/career-agents](https://www.npmjs.com/package/career-agents)
 - **Documentation index:** [docs/README.md](./docs/README.md)
+- **Video Walkthrough:** [YouTube Video Walkthrough](https://youtube.com)
 
 ---
 
@@ -210,7 +160,7 @@ Career Agents takes a different approach:
 
 ## AI Agent Ecosystem
 
-Career OS manages **146 agents** categorized across **19 divisions**. When a user prompts the Copilot, the routing engine tokenizes the query and compares it against agent names, descriptions, tags, and required skills to construct a matching scorecard:
+Career Agents manages **146 agents** categorized across **19 divisions**. When a user prompts the Copilot, the routing engine tokenizes the query and compares it against agent names, descriptions, tags, and required skills to construct a matching scorecard:
 
 ```
 Score = (Exact Name Match * 15) + (Keyword Match * 3) + (Skill Match * 2) + (Domain Booster * 12)
@@ -507,7 +457,7 @@ The top 3 matching agents with score >= 5 are compiled, their Markdown prompt bo
 
 ## AI Providers
 
-Career OS supports **18 providers** managed by the centralized AI Gateway. The router evaluates API keys from the browser's `localStorage` settings key arrays (Primary, Secondary, Backup key rotations) first, falling back to server-side environment variables if the local config is empty:
+Career Agents supports **18 providers** managed by the centralized AI Gateway. The router evaluates API keys from the browser's `localStorage` settings key arrays (Primary, Secondary, Backup key rotations) first, falling back to server-side environment variables if the local config is empty:
 
 | Provider | Status | Default Model | Free Tier | Streaming | Vision |
 |----------|--------|--------------|-----------|-----------|--------|
@@ -544,7 +494,7 @@ sequenceDiagram
     participant Router as AI Provider Router
     participant DB as PostgreSQL (Prisma)
     
-    User->>SW: Access Career OS Pages
+    User->>SW: Access Career Agents Pages
     SW->>User: Serve cached layout assets (Offline support)
     User->>NextJS: Request Resume/GitHub Audit
     NextJS->>Router: Forward file/profile buffer
@@ -631,7 +581,7 @@ cp .env.example .env
 
 ## Quick Start
 
-Get Career OS running locally in under 5 minutes:
+Get Career Agents running locally in under 5 minutes:
 
 ```bash
 # Clone and build dependencies
@@ -682,7 +632,7 @@ Open [http://localhost:3000](http://localhost:3000) and configure your AI key un
 
 ## CLI Documentation
 
-Career OS includes a terminal utility under `scripts/cli.js`.
+Career Agents includes a terminal utility under `scripts/cli.js`.
 
 | Command | Arguments | Purpose | Example |
 |---------|-----------|---------|---------|
@@ -786,7 +736,7 @@ Available (Marketplace) -> Install (Register keys) -> Enable (Inject Prompt Cont
 
 ## Model Context Protocol (MCP)
 
-Expose Career OS tools directly to your local LLM clients:
+Expose Career Agents tools directly to your local LLM clients:
 
 ### Supported Editors
 - **Cursor AI:** Add stdio command `node /absolute/path/to/Career-Agents/mcp/server.js` in Settings -> Features -> MCP.
@@ -812,7 +762,7 @@ Expose Career OS tools directly to your local LLM clients:
 
 ## REST API Reference
 
-Career OS exposes 10 REST endpoints. For request/response schemas, check [docs/API.md](./docs/API.md) or `/api/docs`:
+Career Agents exposes 10 REST endpoints. For request/response schemas, check [docs/API.md](./docs/API.md) or `/api/docs`:
 
 - `POST /api/copilot` — Streams response tokens using SSE.
 - `POST /api/interview` — Generates questions or evaluates answers.
@@ -850,7 +800,7 @@ Developers can create custom plugins. A plugin is defined as a JSON manifest fil
 
 ## Security
 
-Career OS is built with enterprise security standards:
+Career Agents is built with enterprise security standards:
 - **Zero-Key Storage:** AI provider API keys are saved in browser `localStorage` and never sent to any database.
 - **Session Tokens:** NextAuth JWT tokens are signed using `NEXTAUTH_SECRET` and saved in secure HttpOnly, SameSite=Lax cookies.
 - **Strict Headers:** Includes Content Security Policy (CSP), HTTP Strict Transport Security (HSTS), and clickjacking safeguards.
@@ -870,7 +820,7 @@ The application is optimized for low latency:
 
 ## SEO
 
-Career OS implements search engine optimization (SEO) standards:
+Career Agents implements search engine optimization (SEO) standards:
 - **Dynamic Sitemap:** `sitemap.xml` automatically registers all application pages at build time.
 - **Structured Data:** Injects structured JSON-LD data into layouts to help search engines understand the site's content.
 - **AI Discoverability:** Includes `llms.txt` and `llms-full.txt` (following the llmstxt.org specification) to allow LLM agents to index the repository easily.
@@ -908,10 +858,10 @@ python scripts/generate-data.py
 
 ## Deployment
 
-Deploy Career OS to production using one of three methods:
+Deploy Career Agents to production using one of three methods:
 
 - **Vercel:** Connect the repository to Vercel, set root directory to `apps/web`, configure env variables, and deploy.
-- **Docker:** Build a container from the root `Dockerfile` using `docker build -t career-os .`.
+- **Docker:** Build a container from the root `Dockerfile` using `docker build -t career-agents .`.
 - **Self-Hosted (Linux/Windows):** Run using a Node.js server with PM2 process manager and an Nginx reverse proxy.
 - For complete steps, see [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md).
 
@@ -921,7 +871,7 @@ Deploy Career OS to production using one of three methods:
 
 | Document File | Purpose / Details |
 |---------------|-------------------|
-| [docs/QUICKSTART.md](./docs/QUICKSTART.md) | Get Career OS running locally in 5 minutes. |
+| [docs/QUICKSTART.md](./docs/QUICKSTART.md) | Get Career Agents running locally in 5 minutes. |
 | [docs/INSTALL.md](./docs/INSTALL.md) | Detailed installation steps for all setups. |
 | [docs/DEVELOPMENT.md](./docs/DEVELOPMENT.md) | Developer guide, agent schemas, and contributing guidelines. |
 | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) | Architecture models and request flows. |
@@ -978,7 +928,7 @@ We welcome community contributions:
 
 ## FAQ
 
-**Q: Can I use Career OS without an API key?**  
+**Q: Can I use Career Agents without an API key?**  
 A: Yes. Resume ATS scans and GitHub score calculation run fully offline without any keys. Interactive chat features require a key.
 
 **Q: Where are my API keys saved?**  

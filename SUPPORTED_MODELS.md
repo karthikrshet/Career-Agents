@@ -1,6 +1,6 @@
-# Supported AI Models — Career OS v2.5.0
+# Supported AI Models — Career Agents
 
-Career OS supports 13 AI providers via a unified router. Configure your preferred provider in Settings.
+Career Agents supports 13 AI providers via a unified router. Configure your preferred provider in Settings.
 
 ---
 

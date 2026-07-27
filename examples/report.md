@@ -1,4 +1,4 @@
-# Career OS Audit Report
+# Career Agents Audit Report
 
 - **Date Compiled**: 2026-07-24T03:10:00Z
 - **Candidate Username**: johndoe

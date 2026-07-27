@@ -1,6 +1,6 @@
-# Career OS — Configuration Guide
+# Career Agents — Configuration Guide
 
-This guide covers the configurations available in Career OS, including features, next.config.js structure, next-auth setup, client-side options, and app personalization.
+This guide covers the configurations available in Career Agents, including features, next.config.js structure, next-auth setup, client-side options, and app personalization.
 
 ---
 
@@ -58,7 +58,7 @@ module.exports = nextConfig;
 
 ## Client-Side Persistence Configuration
 
-Career OS is built to persist user state using Zustand's `persist` middleware. By default, it serializes and saves the following store slices to `localStorage` under the key `career-os-store`:
+Career Agents is built to persist user state using Zustand's `persist` middleware. By default, it serializes and saves the following store slices to `localStorage` under the key `career-agents-store`:
 
 ```typescript
 // apps/web/src/lib/store.ts
@@ -84,7 +84,7 @@ export const useStore = create<StoreState>()(
       // Actions...
     }),
     {
-      name: 'career-os-store',
+      name: 'career-agents-store',
       partialize: (state) => ({
         profile: state.profile,
         metrics: state.metrics,
@@ -107,7 +107,7 @@ export const useStore = create<StoreState>()(
 
 ## Feature Flags Configuration
 
-Career OS supports runtime feature flags controlled by environment variables. Add these flags to your `.env` file to customize the active subsystems:
+Career Agents supports runtime feature flags controlled by environment variables. Add these flags to your `.env` file to customize the active subsystems:
 
 ### `NEXT_PUBLIC_ENABLE_MCP`
 - **Default:** `true`
@@ -193,8 +193,8 @@ export const authOptions = {
 
 ## Application Personalization
 
-You can brand Career OS by changing default parameters in `apps/web/src/lib/utils.ts` and the UI:
+You can brand Career Agents by changing default parameters in `apps/web/src/lib/utils.ts` and the UI:
 
-- **App Name:** Customize `NEXT_PUBLIC_APP_NAME` in `.env` (Defaults to `Career OS`).
+- **App Name:** Customize `NEXT_PUBLIC_APP_NAME` in `.env` (Defaults to `Career Agents`).
 - **Version Number:** Controlled by `NEXT_PUBLIC_APP_VERSION` (Defaults to `2.0.0` or package version).
 - **Default Theme:** Dark mode configuration is default. Customize global styles in `apps/web/src/app/globals.css`.

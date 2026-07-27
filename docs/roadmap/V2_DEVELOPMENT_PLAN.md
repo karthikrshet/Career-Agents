@@ -1,6 +1,6 @@
-# Career OS Version 2 Development Roadmap
+# Career Agents Version 2 Development Roadmap
 
-This document outlines the sequenced development roadmaps, milestones, and deliverables to transition Career OS to its next major release.
+This document outlines the sequenced development roadmaps, milestones, and deliverables to transition Career Agents to its next major release.
 
 ---
 

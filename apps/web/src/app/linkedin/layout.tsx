@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     "linkedin keywords", "linkedin SEO", "linkedin profile analyzer", "linkedin summary rewrite",
   ],
   openGraph: {
-    title: "Career OS LinkedIn Optimizer — Profile Visibility Score",
+    title: "Career Agents LinkedIn Optimizer — Profile Visibility Score",
     description: "Maximize your LinkedIn recruiter visibility with AI-powered profile optimization and rewrite suggestions.",
     url: "/linkedin",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Career OS LinkedIn Optimizer" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Career Agents LinkedIn Optimizer" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Career OS LinkedIn Optimizer",
+    title: "Career Agents LinkedIn Optimizer",
     description: "AI LinkedIn profile optimization — improve recruiter visibility and keyword targeting.",
   },
   alternates: { canonical: "/linkedin" },

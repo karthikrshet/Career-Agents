@@ -3,9 +3,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { compileAndExecuteAgents } from "../../../../../../packages/agents/executor";
 import { routeCompletion } from "../../../../../../packages/ai-router/services/router";
 import type { RouterConfig } from "../../../../../../packages/ai-router/services/router";
+import { enforceRequestLimits } from "packages/security";
 
 export async function POST(req: NextRequest) {
   try {
+    const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
+    const limitResponse = enforceRequestLimits(req, clientIp);
+    if (limitResponse) return limitResponse;
+
     const { messages, config, context, settings: clientSettings } = await req.json();
 
     // 1 & 2. Agent Orchestrator & Context compilation

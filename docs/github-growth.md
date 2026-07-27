@@ -33,6 +33,6 @@ We map our marketing and community initiatives across 5 chronological star miles
 ## 📢 Multi-Channel Sourcing
 
 - **SEO & Content:** Write highly searchable articles targeting specific career preparation keywords (e.g. "FAANG System Design preparation roadmap", "ATS resume formatting checklist").
-- **Product Hunt:** Structured launch of the Career OS Desktop App and Marketplace.
+- **Product Hunt:** Structured launch of the Career Agents Desktop App and Marketplace.
 - **Reddit & HackerNews:** Share open-source technical developer platforms, avoiding generic prompt-library terminology.
 - **Developer Communities:** Host regular tutorials and sample codes showcasing automated installation CLI configurations.

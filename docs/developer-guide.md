@@ -1,6 +1,6 @@
 # Developer Guide
 
-This document outlines guidelines for contributing to Career OS.
+This document outlines guidelines for contributing to Career Agents.
 
 ## Development Checklist
 
@@ -17,7 +17,7 @@ This document outlines guidelines for contributing to Career OS.
 
 ## Testing
 
-Career OS uses a modular test suite. Run unit and integration checks:
+Career Agents uses a modular test suite. Run unit and integration checks:
 
 ```bash
 node scripts/test-studio.js

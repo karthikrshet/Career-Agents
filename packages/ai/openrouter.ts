@@ -1,18 +1,19 @@
 // packages/ai/openrouter.ts
 import { AIProviderBase, AICompletionOptions, AIProviderName } from "./provider";
+import { secureFetch, PROVIDER_ENDPOINTS } from "../security";
 
 export class OpenRouterProvider extends AIProviderBase {
   name: AIProviderName = "openrouter";
 
   async generate(options: AICompletionOptions): Promise<string> {
     const { messages, config, signal, onChunk } = options;
-    const url = config.baseUrl || "https://openrouter.ai/api/v1/chat/completions";
+    const url = PROVIDER_ENDPOINTS.openrouter;
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${config.apiKey || ""}`,
       "HTTP-Referer": "https://careeros.dev", // Optional, for OpenRouter tracking
-      "X-Title": "Career OS",
+      "X-Title": "Career Agents",
     };
 
     const body = {
@@ -23,11 +24,12 @@ export class OpenRouterProvider extends AIProviderBase {
       stream: !!onChunk && config.streaming,
     };
 
-    const res = await fetch(url, {
+    const res = await secureFetch(url, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
       signal,
+      allowedProvider: "openrouter",
     });
 
     if (!res.ok) {

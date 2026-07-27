@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     "open source portfolio", "developer github profile", "github stars forks", "readme quality",
   ],
   openGraph: {
-    title: "Career OS GitHub Analyzer — Portfolio Health & Stats",
+    title: "Career Agents GitHub Analyzer — Portfolio Health & Stats",
     description: "Audit your GitHub portfolio with AI — score repositories, README quality, and contribution patterns.",
     url: "/github",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Career OS GitHub Analyzer" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Career Agents GitHub Analyzer" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Career OS GitHub Analyzer",
+    title: "Career Agents GitHub Analyzer",
     description: "AI-powered GitHub portfolio health check — repos, README quality, and contribution metrics.",
   },
   alternates: { canonical: "/github" },

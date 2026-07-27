@@ -40,9 +40,9 @@ $ npm install -g .
 added 1 package in 2s
 
 $ career-agents doctor
-=== Career OS Diagnostic Check (Doctor) ===
+=== Career Agents Diagnostic Check (Doctor) ===
 [1/3] Verifying Core Configuration Registries...
-  [✓ OK] career-os.json parsed.
+  [✓ OK] career-agents.json parsed.
   [✓ OK] agent-registry.json parsed...
 [3/3] Checking environment runtime variables...
   [✓ PASS] validate.py checks pass.

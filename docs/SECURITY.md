@@ -1,16 +1,16 @@
-# Career OS — Security
+# Career Agents — Security
 
-Security model, practices, and responsible disclosure for Career OS v2.5.0.
+Security model, practices, and responsible disclosure for Career Agents v2.5.0.
 
 ---
 
 ## API Key Architecture
 
-**Career OS never stores your AI provider API keys on a server.**
+**Career Agents never stores your AI provider API keys on a server.**
 
 API key flow:
 1. User enters their API key in **Settings → AI Provider**
-2. Key is stored in **browser `localStorage`** under the `career-os-store` key
+2. Key is stored in **browser `localStorage`** under the `career-agents-store` key
 3. When making AI requests, the key is sent in the request body to the Next.js API route
 4. The API route uses the key to call the AI provider and **immediately discards it** — it is never written to a database, log file, or server memory
 
@@ -19,7 +19,7 @@ API key flow:
 **Security implications:**
 - If you share your browser profile, others can access your API keys
 - Consider using environment variables on the server side for production deployments
-- Keys stored in `localStorage` are accessible to any JavaScript on the same origin — Career OS's CSP prevents third-party scripts from running
+- Keys stored in `localStorage` are accessible to any JavaScript on the same origin — Career Agents's CSP prevents third-party scripts from running
 
 ---
 
@@ -56,7 +56,7 @@ frame-ancestors 'none'
 This CSP:
 - Prevents inline script injection from untrusted sources
 - Allowlists only the known AI provider endpoints in `connect-src`
-- Blocks embedding Career OS in iframes (`frame-ancestors 'none'`)
+- Blocks embedding Career Agents in iframes (`frame-ancestors 'none'`)
 
 ### Other Headers
 
@@ -73,7 +73,7 @@ This CSP:
 
 ## Authentication Security
 
-Career OS uses **NextAuth.js v4** for authentication.
+Career Agents uses **NextAuth.js v4** for authentication.
 
 ### NEXTAUTH_SECRET
 
@@ -106,7 +106,7 @@ NextAuth.js uses **JWT sessions** (default). Session tokens are stored in HttpOn
 
 ## Data Privacy
 
-### What Career OS Stores
+### What Career Agents Stores
 
 **Browser localStorage:**
 - Career analysis results (resume, GitHub, LinkedIn)
@@ -121,16 +121,16 @@ NextAuth.js uses **JWT sessions** (default). Session tokens are stored in HttpOn
 - OAuth provider information (name, email, avatar URL)
 - **Never:** AI provider API keys
 
-### What Career OS Does NOT Do
+### What Career Agents Does NOT Do
 
-- Does not send your resume text to any Career OS server (analysis happens client-side or via your own AI provider key)
+- Does not send your resume text to any Career Agents server (analysis happens client-side or via your own AI provider key)
 - Does not track user behavior beyond opt-in analytics
 - Does not share data with third parties
 - Does not store AI provider API keys on the server
 
 ### GDPR
 
-Career OS supports data deletion. When a user account is deleted, all associated records cascade-delete from the database (`onDelete: Cascade` on all relations). Users can delete their account from the Settings page (when authenticated).
+Career Agents supports data deletion. When a user account is deleted, all associated records cascade-delete from the database (`onDelete: Cascade` on all relations). Users can delete their account from the Settings page (when authenticated).
 
 ---
 
@@ -168,7 +168,7 @@ In production (Vercel, Railway, etc.), set environment variables through the pla
 
 ## Dependency Security
 
-Career OS uses standard npm packages from the public registry. Before each release:
+Career Agents uses standard npm packages from the public registry. Before each release:
 
 ```bash
 # Check for known vulnerabilities
@@ -184,7 +184,7 @@ Dependencies are regularly reviewed in the [CHANGELOG](../CHANGELOG.md).
 
 ## Responsible Disclosure
 
-If you discover a security vulnerability in Career OS, please **do not** open a public GitHub issue.
+If you discover a security vulnerability in Career Agents, please **do not** open a public GitHub issue.
 
 **Report privately:**
 - Email: [security policy in SECURITY.md](../SECURITY.md)

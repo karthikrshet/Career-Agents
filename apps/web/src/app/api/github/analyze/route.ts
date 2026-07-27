@@ -1,6 +1,7 @@
 // api/github/analyze/route.ts — Live GitHub data analysis + scoring
 
 import { NextResponse } from "next/server";
+import { secureFetch, enforceRequestLimits } from "packages/security";
 
 const GITHUB_API = "https://api.github.com";
 const LANGUAGE_COLORS: Record<string, string> = {
@@ -48,16 +49,26 @@ function computeLanguages(repos: any[]) {
 
 export async function POST(req: Request) {
   try {
+    const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
+    const limitResponse = enforceRequestLimits(req, clientIp);
+    if (limitResponse) return limitResponse;
+
     const { username, token } = await req.json();
     if (!username) {
       return NextResponse.json({ error: "username is required" }, { status: 400 });
     }
 
+    // Strict GitHub username validation to prevent path traversal/SSRF (letters, digits, single hyphens, max 39 chars)
+    const githubUsernameRegex = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
+    if (!githubUsernameRegex.test(username)) {
+      return NextResponse.json({ error: "Invalid GitHub username format" }, { status: 400 });
+    }
+
     const headers = makeHeaders(token);
 
     const [userRes, reposRes] = await Promise.all([
-      fetch(`${GITHUB_API}/users/${username}`, { headers }),
-      fetch(`${GITHUB_API}/users/${username}/repos?sort=updated&per_page=100`, { headers }),
+      secureFetch(`${GITHUB_API}/users/${username}`, { headers, allowedProvider: "github" }),
+      secureFetch(`${GITHUB_API}/users/${username}/repos?sort=updated&per_page=100`, { headers, allowedProvider: "github" }),
     ]);
 
     if (!userRes.ok) {

@@ -9,10 +9,10 @@ export const metadata: Metadata = {
     "resume chat", "interview chat", "job search AI", "career coaching chatbot",
   ],
   openGraph: {
-    title: "Career OS Copilot — AI Career Assistant",
+    title: "Career Agents Copilot — AI Career Assistant",
     description: "Multi-agent AI career copilot with persistent chat history, context injection, and 146 specialized agents.",
     url: "/copilot",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Career OS Copilot" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Career Agents Copilot" }],
   },
   twitter: {
     card: "summary_large_image",

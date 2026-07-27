@@ -1,12 +1,13 @@
 // packages/ai/gemini.ts
 import { AIProviderBase, AICompletionOptions, AIProviderName } from "./provider";
+import { secureFetch, PROVIDER_ENDPOINTS } from "../security";
 
 export class GeminiProvider extends AIProviderBase {
   name: AIProviderName = "gemini";
 
   async generate(options: AICompletionOptions): Promise<string> {
     const { messages, config, signal, onChunk } = options;
-    const url = config.baseUrl || "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
+    const url = `${PROVIDER_ENDPOINTS.gemini}/openai/chat/completions`;
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
@@ -21,11 +22,12 @@ export class GeminiProvider extends AIProviderBase {
       stream: !!onChunk && config.streaming,
     };
 
-    const res = await fetch(url, {
+    const res = await secureFetch(url, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
       signal,
+      allowedProvider: "gemini",
     });
 
     if (!res.ok) {

@@ -1,6 +1,6 @@
-# Career OS Dashboard Guide
+# Career Agents Dashboard Guide
 
-This document describes the design, features, and profile state synchronization of the Career OS Dashboard module.
+This document describes the design, features, and profile state synchronization of the Career Agents Dashboard module.
 
 ---
 

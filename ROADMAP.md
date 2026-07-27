@@ -1,6 +1,6 @@
-# Career OS — Roadmap
+# Career Agents — Roadmap
 
-This document outlines the planned development trajectory for Career OS.
+This document outlines the planned development trajectory for Career Agents.
 
 ## Current: v3.0.0 ✅
 - **Intelligent Agent Orchestration Engine**: Added `packages/agents` (router, planner, executor, merger, context, cache) for multi-agent context planning, intent routing, and advice merging.
@@ -48,7 +48,7 @@ This document outlines the planned development trajectory for Career OS.
 
 ## Long-Term Vision
 
-Career OS aims to become the default career copilot for engineers — a unified workspace that understands your entire professional trajectory and proactively coaches you toward your goals, whether you're a bootcamp grad, a 10x engineer targeting FAANG, or a tech lead navigating executive transitions.
+Career Agents aims to become the default career copilot for engineers — a unified workspace that understands your entire professional trajectory and proactively coaches you toward your goals, whether you're a bootcamp grad, a 10x engineer targeting FAANG, or a tech lead navigating executive transitions.
 
 ---
 

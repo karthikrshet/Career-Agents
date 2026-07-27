@@ -1,4 +1,4 @@
-# Career OS Release Milestones
+# Career Agents Release Milestones
 
 This document details the versioning roadmap, release milestones, and architecture progression targets for **Career-Agents**, the Open-Source Career Operating System.
 
@@ -6,10 +6,10 @@ This document details the versioning roadmap, release milestones, and architectu
 
 ## 🚀 Release Roadmap
 
-### 1. Version 1.0.0: Career OS Core (Current)
+### 1. Version 1.0.0: Career Agents Core (Current)
 - **Goal**: Transition from a prompt repo to a structured system.
 - **Deliverables**:
-  - Centralized configurations (`career-os.json`, `agent-registry.json`).
+  - Centralized configurations (`career-agents.json`, `agent-registry.json`).
   - Pre-packaged bundles (`bundles/`).
   - Search indexes and textual knowledge graphs (`search-index.json`).
 

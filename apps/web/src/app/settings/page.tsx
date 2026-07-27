@@ -256,7 +256,7 @@ export default function SettingsPage() {
                       <Palette className="w-4 h-4 text-sky-400" />
                       Appearance
                     </CardTitle>
-                    <CardDescription>Tailor Career OS interface look and typography</CardDescription>
+                    <CardDescription>Tailor Career Agents interface look and typography</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
@@ -751,7 +751,7 @@ export default function SettingsPage() {
                     <CardDescription>Manage workspace connections for AI developer tools</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-3 text-xs text-muted-foreground">
-                    <p>Career OS exports 146 career agents directly into editors like Cursor, Claude Desktop, and VS Code. Config files can be auto-generated below.</p>
+                    <p>Career Agents exports 146 career agents directly into editors like Cursor, Claude Desktop, and VS Code. Config files can be auto-generated below.</p>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <Button size="sm" variant="outline" onClick={() => toast.success("Cursor configuration exported to clipboard!")}>
                         Cursor Config

@@ -1,6 +1,6 @@
 # Support
 
-Need help with Career OS? Here's where to find it.
+Need help with Career Agents? Here's where to find it.
 
 ---
 
@@ -25,7 +25,7 @@ Need help with Career OS? Here's where to find it.
 Best for:
 - Feature ideas and feedback
 - "How do I...?" questions
-- Showcasing your Career OS setup
+- Showcasing your Career Agents setup
 - Sharing interview success stories
 
 ### GitHub Issues
@@ -74,4 +74,4 @@ This is an open-source project maintained by a small team. We aim to:
 | Feature requests | When scheduled for a milestone |
 | GitHub Discussions | Community-driven, varies |
 
-We appreciate your patience and contributions to making Career OS better.
+We appreciate your patience and contributions to making Career Agents better.

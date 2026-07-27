@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "amazon interview", "meta interview", "microsoft interview", "startup interview",
   ],
   openGraph: {
-    title: "Career OS Prep Hub — Company-Specific Interview Prep",
+    title: "Career Agents Prep Hub — Company-Specific Interview Prep",
     description: "Company-specific interview prep tracks with categorized questions and difficulty tiers.",
     url: "/prephub",
   },

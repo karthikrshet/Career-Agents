@@ -32,10 +32,10 @@ The 11 agents added to `agent-registry.json` in the v1.2.5 release were injected
 |------|--------|--------------|
 | `agent-registry.json` | 146 | **11 NULL division fields** |
 | `career-agents-index.json` | 135 | 0 |
-| `career-os.json` | 135 | 0 |
+| `career-agents.json` | 135 | 0 |
 | `divisions.json` | 146 entries | 0 |
 
-> `career-agents-index.json` and `career-os.json` were generated from the old 135-agent set (before v1.2.5) and therefore contained no broken entries. `agent-registry.json` is the authoritative source for `generate-data.py` and was the only file affected.
+> `career-agents-index.json` and `career-agents.json` were generated from the old 135-agent set (before v1.2.5) and therefore contained no broken entries. `agent-registry.json` is the authoritative source for `generate-data.py` and was the only file affected.
 
 ### Valid Divisions (19 total)
 
@@ -164,7 +164,7 @@ Because `generate-data.py` ran successfully after the fix, the following derived
 
 | File | Status |
 |------|--------|
-| `career-os.json` | Regenerated (now 146 agents) |
+| `career-agents.json` | Regenerated (now 146 agents) |
 | `career-agents-index.json` | Regenerated (now 146 agents) |
 | `search-index.json` | Regenerated (202 items) |
 | `knowledge-graph.json` | Regenerated (426 nodes, 1758 edges) |
@@ -181,8 +181,8 @@ Because `generate-data.py` ran successfully after the fix, the following derived
 
 ```
 $ python scripts/generate-data.py
-Compiling career-os.json core configuration...
-Compiled and wrote career-os.json successfully.
+Compiling career-agents.json core configuration...
+Compiled and wrote career-agents.json successfully.
 Generating search index...
 Generated search-index.json with 202 items.
 Division integrity check passed: all 146 agents have valid division assignments.

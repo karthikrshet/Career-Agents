@@ -1,9 +1,9 @@
-// Production Service Worker for Career OS
+// Production Service Worker for Career Agents
 // Cache-first for static assets, network-first for API, offline fallback
 
-const CACHE_NAME = 'career-os-v3-0-0';
-const STATIC_CACHE = 'career-os-static-v3-0-0';
-const API_CACHE = 'career-os-api-v3-0-0';
+const CACHE_NAME = 'career-agents-v3-0-0';
+const STATIC_CACHE = 'career-agents-static-v3-0-0';
+const API_CACHE = 'career-agents-api-v3-0-0';
 
 const STATIC_ASSETS = [
   '/',
@@ -95,7 +95,7 @@ self.addEventListener('fetch', (event) => {
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request).catch(() =>
-        caches.match('/').then((cached) => cached || new Response('Career OS is offline. Please reconnect.', {
+        caches.match('/').then((cached) => cached || new Response('Career Agents is offline. Please reconnect.', {
           status: 503,
           headers: { 'Content-Type': 'text/html' },
         }))

@@ -48,7 +48,7 @@ export default function LoginPage() {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     });
-    toast.success(`Welcome to Career OS${name ? `, ${name}` : ""}!`);
+    toast.success(`Welcome to Career Agents${name ? `, ${name}` : ""}!`);
     router.push("/");
     setLoading(false);
   };
@@ -71,7 +71,7 @@ export default function LoginPage() {
             <Zap className="w-5 h-5 text-white" />
           </div>
           <div>
-            <span className="text-lg font-bold text-foreground">Career OS</span>
+            <span className="text-lg font-bold text-foreground">Career Agents</span>
             <span className="ml-2 text-xs text-muted-foreground">v2.0</span>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function LoginPage() {
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center">
               <Zap className="w-4 h-4 text-white" />
             </div>
-            <span className="font-bold text-foreground">Career OS</span>
+            <span className="font-bold text-foreground">Career Agents</span>
           </div>
 
           <div>
@@ -141,8 +141,8 @@ export default function LoginPage() {
             </h1>
             <p className="text-muted-foreground mt-1 text-sm">
               {mode === "signin"
-                ? "Sign in to continue to your Career OS dashboard."
-                : "Join Career OS and start building your dream career."}
+                ? "Sign in to continue to your Career Agents dashboard."
+                : "Join Career Agents and start building your dream career."}
             </p>
           </div>
 

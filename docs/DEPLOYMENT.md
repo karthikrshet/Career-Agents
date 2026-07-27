@@ -1,6 +1,6 @@
-# Career OS — Deployment Guide
+# Career Agents — Deployment Guide
 
-Deploy Career OS to production.
+Deploy Career Agents to production.
 
 ---
 
@@ -143,7 +143,7 @@ CMD ["npm", "start"]
 cd apps/web
 
 # Build image
-docker build -t career-os .
+docker build -t career-agents .
 
 # Run container
 docker run -p 3000:3000 \
@@ -151,7 +151,7 @@ docker run -p 3000:3000 \
   -e NEXTAUTH_URL="http://localhost:3000" \
   -e DATABASE_URL="postgresql://..." \
   -e GROQ_API_KEY="gsk_..." \
-  career-os
+  career-agents
 ```
 
 ### Docker Compose
@@ -238,7 +238,7 @@ npx prisma migrate deploy
 
 ```bash
 # Start the app
-pm2 start npm --name "career-os" -- start
+pm2 start npm --name "career-agents" -- start
 
 # Auto-start on server reboot
 pm2 startup

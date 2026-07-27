@@ -1,6 +1,6 @@
 # Developer Plugin Guide
 
-This document describes how to develop and integrate custom command plugins with the Career OS command orchestrator.
+This document describes how to develop and integrate custom command plugins with the Career Agents command orchestrator.
 
 ---
 

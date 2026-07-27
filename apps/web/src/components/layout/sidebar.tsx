@@ -73,7 +73,7 @@ export function Sidebar() {
               transition={{ duration: 0.15 }}
               className="flex flex-col"
             >
-              <span className="text-sm font-semibold text-foreground tracking-tight">Career OS</span>
+              <span className="text-sm font-semibold text-foreground tracking-tight">Career Agents</span>
               <span className="text-[10px] text-muted-foreground">v2.0 · Career Intelligence</span>
             </motion.div>
           )}

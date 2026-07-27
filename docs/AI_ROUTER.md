@@ -1,12 +1,12 @@
-# Career OS — AI Router Architecture
+# Career Agents — AI Router Architecture
 
-This document details the unified AI Router architecture of Career OS. It explains how standard OpenAI-compatible endpoints are integrated, model selections, fallback mechanisms, latency tracking, and error categorization.
+This document details the unified AI Router architecture of Career Agents. It explains how standard OpenAI-compatible endpoints are integrated, model selections, fallback mechanisms, latency tracking, and error categorization.
 
 ---
 
 ## Architecture Overview
 
-Career OS supports 14 AI backends through two complementary routing subsystems:
+Career Agents supports 14 AI backends through two complementary routing subsystems:
 
 1. **Client-side direct streaming (`apps/web/src/lib/ai.ts`)**:
    Used by the Career Copilot window to stream tokens instantly into the UI. It sends API requests directly from the user's browser, authenticating with the client's API keys saved in `localStorage`.

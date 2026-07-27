@@ -1,6 +1,6 @@
 # AI Provider Setup Guide
 
-> Career OS supports 9 AI providers. Configure your preferred one in **Settings → AI Provider** or via environment variables.
+> Career Agents supports 9 AI providers. Configure your preferred one in **Settings → AI Provider** or via environment variables.
 
 ---
 
@@ -8,7 +8,7 @@
 
 1. Go to [console.groq.com](https://console.groq.com) and sign up
 2. Create an API key
-3. In Career OS, open **Settings → AI Provider**
+3. In Career Agents, open **Settings → AI Provider**
 4. Select **Groq**, paste your key, choose `llama3-70b-8192`
 5. Click Save — all AI features are now active
 
@@ -123,7 +123,7 @@ Set custom baseUrl in Settings
 
 ## Security Notes
 
-- API keys are stored in **localStorage** only (never sent to any Career OS server)
+- API keys are stored in **localStorage** only (never sent to any Career Agents server)
 - When you add `.env` server-side keys, they're used as fallbacks for unauthenticated requests
 - For production deployment, use server-side env vars and never expose them to the client
 - Consider rotating keys if you share your browser profile

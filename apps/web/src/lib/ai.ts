@@ -133,7 +133,7 @@ export async function streamComplete(
 }
 
 export function buildCareerContext(profile: any, metrics: any): string {
-  return `You are Career Copilot, an advanced AI assistant embedded inside Career OS.
+  return `You are Career Copilot, an advanced AI assistant embedded inside Career Agents.
 
 User Profile:
 - Name: ${profile?.name || "Unknown"}

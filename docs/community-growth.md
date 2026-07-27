@@ -27,6 +27,6 @@ We drive community scaling through 5 core engagement models:
 - Monthly maintenance sprints focused on writing agents for empty paths in expansion divisions (e.g. AI Engineering or Cybersecurity).
 - Contributors receive custom profile badges and highlighted marketplace listings.
 
-### 5. Career OS Hackathons
+### 5. Career Agents Hackathons
 - Structured virtual hackathons challenging developers to build custom desktop integrations, workflow orchestration scripts, or local CLI plugins.
 - Winners receive community sponsorships and official "Verified Partner" status.

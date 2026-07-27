@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "application pipeline", "job hunt organizer", "career job board",
   ],
   openGraph: {
-    title: "Career OS Job Tracker — Kanban Application Board",
+    title: "Career Agents Job Tracker — Kanban Application Board",
     description: "Organize all job applications in a Kanban board with status tracking and AI follow-up suggestions.",
     url: "/tracker",
   },

@@ -1,6 +1,6 @@
-# Career OS — Theming & Design System
+# Career Agents — Theming & Design System
 
-This document explains the theme system, Tailwind CSS configurations, global variables, and dark/light components styling in Career OS.
+This document explains the theme system, Tailwind CSS configurations, global variables, and dark/light components styling in Career Agents.
 
 ---
 
@@ -68,7 +68,7 @@ module.exports = {
 
 ## Global CSS Variables (`globals.css`)
 
-CSS values are configured in `apps/web/src/app/globals.css`. By default, Career OS employs a dark theme with a glassmorphism aesthetic:
+CSS values are configured in `apps/web/src/app/globals.css`. By default, Career Agents employs a dark theme with a glassmorphism aesthetic:
 
 ```css
 /* apps/web/src/app/globals.css */

@@ -23,7 +23,7 @@ This audit evaluates the health, structure, and operational status of Career-Age
 ### Strengths
 - **Modular Directory Design:** Separate directories partition agents (`career/`, `resume/`, `interview/`, `networking/`, etc.), JSON structures (`career-paths/`, `companies/`, `bundles/`), engines (`recommendation-engine/`, `resume-engine/`), and launcher configs.
 - **Reference Integrity:** Verified via `validate.py` that all cross-references across registries and database files (`agent-registry.json`, `divisions.json`, `workflow-registry.json`) are correct and resolve successfully.
-- **Single Source of Truth:** `career-os.json` compiles the master configuration state, ensuring search indexes and graph schemas remain synchronized via `scripts/generate-data.py`.
+- **Single Source of Truth:** `career-agents.json` compiles the master configuration state, ensuring search indexes and graph schemas remain synchronized via `scripts/generate-data.py`.
 
 ### Opportunities
 - **Auditing Unreferenced Folders:** Discovered orphaned folders (like `developer-growth/`) containing draft markdown profiles not listed in the registry. Resolving this will reduce repository size and clean code paths.

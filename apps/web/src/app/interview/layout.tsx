@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     "technical interview prep", "system design interview", "interview scoring", "interview coaching AI",
   ],
   openGraph: {
-    title: "Career OS Interview Lab — AI Mock Interview Practice",
+    title: "Career Agents Interview Lab — AI Mock Interview Practice",
     description: "Practice mock interviews with STAR scoring, leadership metrics, and technical depth evaluation.",
     url: "/interview",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Career OS Interview Lab" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Career Agents Interview Lab" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Career OS Interview Lab",
+    title: "Career Agents Interview Lab",
     description: "AI-powered mock interviews with STAR framework scoring and technical depth analysis.",
   },
   alternates: { canonical: "/interview" },

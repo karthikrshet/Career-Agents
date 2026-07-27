@@ -3,16 +3,24 @@ import { NextRequest, NextResponse } from "next/server";
 // @ts-ignore
 import { PDFParse } from "pdf-parse";
 import JSZip from "jszip";
+import { secureFetch, enforceRequestLimits } from "packages/security";
 
 export async function POST(req: NextRequest) {
   try {
+    const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
+    const limitResponse = enforceRequestLimits(req, clientIp, { maxSize: 10 * 1024 * 1024 });
+    if (limitResponse) return limitResponse;
+
     const { url } = await req.json();
     if (!url) {
       return NextResponse.json({ success: false, error: "No URL provided" });
     }
 
-    // Secure fetch request
-    const response = await fetch(url);
+    // Secure fetch request with max response size 10MB and timeout 15s
+    const response = await secureFetch(url, {
+      maxResponseSize: 10 * 1024 * 1024,
+      timeout: 15000,
+    });
     if (!response.ok) {
       throw new Error(`Failed to fetch URL: ${response.statusText}`);
     }

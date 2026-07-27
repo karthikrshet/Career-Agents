@@ -1,4 +1,4 @@
-# Career OS Certification Program
+# Career Agents Certification Program
 
 We offer formal open-source credentials to recognize contributors and developers who expand the **Career Operating System**.
 
@@ -6,7 +6,7 @@ We offer formal open-source credentials to recognize contributors and developers
 
 ## 🎖️ Certification Tiers
 
-### 1. Career OS Certified Builder
+### 1. Career Agents Certified Builder
 *Focus: Integration tools, script extensions, and ecosystem platforms.*
 - **Requirements**:
   - Authored a fully functional CLI subcommand or registry package converter (e.g. Cursor rules parser).
@@ -14,7 +14,7 @@ We offer formal open-source credentials to recognize contributors and developers
 - **Validation**: Nominated by core maintainers upon merging the platform PR.
 - **Badge**: `[Builder Certificate Badge]`
 
-### 2. Career OS Certified Contributor
+### 2. Career Agents Certified Contributor
 *Focus: Specialist agent design and workflow orchestration.*
 - **Requirements**:
   - Authored and merged 3+ active specialty agent prompt markdown files adhering to the gold-standard specification.
@@ -22,7 +22,7 @@ We offer formal open-source credentials to recognize contributors and developers
 - **Validation**: Automatically awarded when your 3rd agent contribution passes the `validate.py` test suite and merges.
 - **Badge**: `[Contributor Certificate Badge]`
 
-### 3. Career OS Certified Maintainer
+### 3. Career Agents Certified Maintainer
 *Focus: Code ownership, triaging, and branch release cycles.*
 - **Requirements**:
   - Sustained contributions over a 3+ month period.

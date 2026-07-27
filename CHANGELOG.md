@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Career OS are documented in this file.
+All notable changes to Career Agents are documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
@@ -114,7 +114,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [2.0.0] — 2026-06
 
 ### Added
-- Complete Career OS platform rewrite
+- Complete Career Agents platform rewrite
 - 146 specialized AI agents organized into 19 divisions
 - Resume Studio, GitHub Analyzer, LinkedIn Optimizer, Interview Lab
 - Job Tracker (Kanban), Prep Hub, Career Copilot, Reports
