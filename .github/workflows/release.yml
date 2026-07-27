@@ -20,7 +20,7 @@ jobs:
         with:
           name: Release ${{ github.ref_name }}
           body: |
-            ## Career Operating System Release ${{ github.ref_name }}
+            ## Career Agents Release ${{ github.ref_name }}
             
             This release updates the agent metadata registries, search indices, and integrations profiles.
             

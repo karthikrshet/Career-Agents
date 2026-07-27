@@ -14,6 +14,7 @@ const CLOUD_METADATA_IPS = [
 
 // Helper to check if an IP is private/loopback/metadata
 export function isPrivateIp(ip: string): boolean {
+  if (typeof window !== "undefined") return false;
   if (net.isIPv4(ip)) {
     const parts = ip.split(".").map((p) => parseInt(p, 10));
     if (parts.length !== 4 || parts.some(isNaN)) return true;
@@ -149,7 +150,7 @@ export function validateExternalUrl(urlStr: string, allowedProvider?: string): U
       hostname === "127.0.0.1" ||
       hostname === "0.0.0.0" ||
       hostname === "::1" ||
-      net.isIP(hostname) && isPrivateIp(hostname)
+      (typeof window === "undefined" && net.isIP(hostname) && isPrivateIp(hostname))
     ) {
       throw new ValidationError("Localhost and private IP hostnames are rejected");
     }
@@ -166,6 +167,7 @@ export async function resolveAndValidateHost(
   hostname: string,
   isLocalProviderAllowed: boolean
 ): Promise<void> {
+  if (typeof window !== "undefined") return;
   // If it's already an IP address, validate it directly
   if (net.isIP(hostname)) {
     const isPrivate = isPrivateIp(hostname);
