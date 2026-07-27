@@ -87,6 +87,7 @@ export default function SettingsPage() {
   useEffect(() => {
     setApiKey(settings.aiProvider.apiKey || "");
     setBaseUrl(settings.aiProvider.baseUrl || "");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings.aiProvider.provider]);
 
   // Load dynamic models list when provider changes
@@ -104,6 +105,7 @@ export default function SettingsPage() {
       setLoadingModels(false);
     }
     loadModels();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProvider, settings.keys, settings.baseUrls]);
 
   function saveAIConfig() {

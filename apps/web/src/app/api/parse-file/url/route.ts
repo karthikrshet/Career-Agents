@@ -1,7 +1,6 @@
 // apps/web/src/app/api/parse-file/url/route.ts
 import { NextRequest, NextResponse } from "next/server";
-// @ts-ignore
-import { PDFParse } from "pdf-parse";
+import { parsePdfServer } from "@/lib/pdf/server";
 import JSZip from "jszip";
 import { secureFetch, enforceRequestLimits } from "packages/security";
 
@@ -42,16 +41,7 @@ export async function POST(req: NextRequest) {
 
     let text = "";
     if (ext === "pdf") {
-      let parser: any = null;
-      try {
-        parser = new PDFParse({ data: new Uint8Array(buffer) });
-        const parsed = await parser.getText();
-        text = parsed.text || "";
-      } finally {
-        if (parser && typeof parser.destroy === "function") {
-          await parser.destroy().catch(() => {});
-        }
-      }
+      text = await parsePdfServer(buffer);
     } else if (ext === "docx") {
       const zip = await JSZip.loadAsync(buffer as any);
       const docXml = await zip.file("word/document.xml")?.async("text");
