@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "job search analytics", "career dashboard export",
   ],
   openGraph: {
-    title: "Career OS Reports — Career Analysis Dashboard",
+    title: "Career Agents Reports — Career Analysis Dashboard",
     description: "Export comprehensive career reports combining all module scores and analysis.",
     url: "/reports",
   },

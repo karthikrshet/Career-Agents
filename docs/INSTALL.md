@@ -1,4 +1,4 @@
-# Career OS — Installation Guide
+# Career Agents — Installation Guide
 
 Complete installation reference for all environments.
 
@@ -106,14 +106,14 @@ Users configure their own keys in **Settings → AI Provider**. These env vars a
 
 | Variable | Default | Description |
 |---|---|---|
-| `NEXT_PUBLIC_APP_NAME` | `Career OS` | App name shown in UI |
+| `NEXT_PUBLIC_APP_NAME` | `Career Agents` | App name shown in UI |
 | `NEXT_PUBLIC_APP_VERSION` | `2.0.0` | Version shown in settings |
 
 ---
 
 ## 4. Database Setup (Optional)
 
-Career OS works fully in **guest mode** using browser localStorage — no database required.
+Career Agents works fully in **guest mode** using browser localStorage — no database required.
 
 To enable server-side persistence (sign-in, multi-device sync, production), set up PostgreSQL:
 
@@ -184,7 +184,7 @@ The `scripts/` directory contains Python and Node.js scripts for managing the ag
 # Validate all agent markdown files and registry integrity
 python scripts/validate.py
 
-# Regenerate all generated files (career-os.json, search-index.json, maps, llms.txt, README.md)
+# Regenerate all generated files (career-agents.json, search-index.json, maps, llms.txt, README.md)
 python scripts/generate-data.py
 ```
 
@@ -196,7 +196,7 @@ These are only needed if you're contributing new agents or modifying the registr
 
 After starting the dev server:
 
-1. Open [http://localhost:3000](http://localhost:3000) — you should see the Career OS dashboard
+1. Open [http://localhost:3000](http://localhost:3000) — you should see the Career Agents dashboard
 2. Open **Settings → AI Provider** — configure your AI provider
 3. Go to **Resume Studio** — upload a PDF or paste text — you should see an ATS score
 4. Go to **GitHub Analyzer** — enter a GitHub username — you should see a portfolio analysis

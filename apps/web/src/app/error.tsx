@@ -12,7 +12,7 @@ export default function ErrorPage({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error("[Career OS] Page error:", error);
+    console.error("[Career Agents] Page error:", error);
   }, [error]);
 
   return (

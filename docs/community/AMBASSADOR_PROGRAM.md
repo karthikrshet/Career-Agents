@@ -14,7 +14,7 @@ The **Career Operating System Ambassador Program** is designed for student leade
 
 ## 🎁 Ambassador Benefits
 
-- **Exclusive Swag**: Career OS branded t-shirts, stickers, and notebook kits.
+- **Exclusive Swag**: Career Agents branded t-shirts, stickers, and notebook kits.
 - **Career Mentoring**: Direct resume reviews and referrals from core project maintainers.
 - **Featured Profile**: Displayed on the repository map and website directories.
 

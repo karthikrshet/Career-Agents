@@ -25,15 +25,15 @@ All commands were validated locally from the repository root:
 
 - **Doctor Routine**:
   ```bash
-  === Career OS Diagnostic Check (Doctor) ===
-  [✓ OK] career-os.json parsed.
+  === Career Agents Diagnostic Check (Doctor) ===
+  [✓ OK] career-agents.json parsed.
   [✓ OK] agent-registry.json parsed...
   [✓ PASS] validate.py checks pass.
   ```
 
 - **Profile recommendation**:
   ```bash
-  === Career OS Recommendation Report ===
+  === Career Agents Recommendation Report ===
   Inputs -> Skills: [react, node.js], Experience: mid, Target Co: google
   🤖 Recommended Agents: google-interview-coach, google-swe-coach, ats-resume-reviewer
   ```

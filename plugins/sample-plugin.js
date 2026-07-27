@@ -1,5 +1,5 @@
 /**
- * Career OS Sample Developer Plugin
+ * Career Agents Sample Developer Plugin
  */
 
 export function metadata() {

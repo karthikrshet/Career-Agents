@@ -1,6 +1,6 @@
-# Career OS — Architecture
+# Career Agents — Architecture
 
-System architecture reference for Career OS v2.5.0.
+System architecture reference for Career Agents v2.5.0.
 
 ---
 
@@ -8,7 +8,7 @@ System architecture reference for Career OS v2.5.0.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                          Career OS Platform                            │
+│                          Career Agents Platform                            │
 │                                                                        │
 │  ┌──────────────────────────────────────────────────────────────────┐  │
 │  │                      Next.js Web App (apps/web)                  │  │
@@ -120,7 +120,7 @@ Career-Agents/                    ← Repository root
 ├── scripts/
 │   ├── cli.js                    ← CLI tool (career-agents command)
 │   ├── sdk.js                    ← Node.js SDK (CareerAgentsSDK class)
-│   ├── generate-data.py          ← Generates career-os.json, search-index, maps, README
+│   ├── generate-data.py          ← Generates career-agents.json, search-index, maps, README
 │   ├── validate.py               ← Validates agent markdown files + registry
 │   ├── install.sh / install.ps1  ← Platform install scripts
 │   └── test-*.js                 ← Test scripts for various subsystems
@@ -134,7 +134,7 @@ Career-Agents/                    ← Repository root
 │
 ├── agent-registry.json           ← Master agent registry (do not edit manually)
 ├── divisions.json                ← Division structure and agent references
-├── career-os.json                ← Generated: full platform manifest
+├── career-agents.json                ← Generated: full platform manifest
 ├── search-index.json             ← Generated: search index
 ├── knowledge-graph.json          ← Generated: relationship graph
 ├── workflow-registry.json        ← Career workflow definitions
@@ -151,7 +151,7 @@ Career-Agents/                    ← Repository root
 
 ### Next.js App Router
 
-Career OS uses Next.js 14 with the **App Router** pattern. Each page lives in `src/app/<route>/page.tsx` and can define its own `metadata` export for SEO.
+Career Agents uses Next.js 14 with the **App Router** pattern. Each page lives in `src/app/<route>/page.tsx` and can define its own `metadata` export for SEO.
 
 - All 14 routes have individual metadata (title, description, openGraph)
 - `layout.tsx` wraps every page with the Sidebar, Toaster, and PWA service worker
@@ -177,7 +177,7 @@ installedPlugins  // Plugin installation state
 enabledPlugins    // Plugin enabled/disabled state
 ```
 
-The store persists to `localStorage` under the key `career-os-store`. When a database is configured, API routes can sync data to PostgreSQL.
+The store persists to `localStorage` under the key `career-agents-store`. When a database is configured, API routes can sync data to PostgreSQL.
 
 ### Career Score Algorithm
 
@@ -304,7 +304,7 @@ See [MCP.md](./MCP.md) for configuration and tool reference.
 
 ## Database Architecture
 
-Career OS uses **Prisma ORM** with **PostgreSQL** as the production database. In development and guest mode, data persists to browser localStorage only.
+Career Agents uses **Prisma ORM** with **PostgreSQL** as the production database. In development and guest mode, data persists to browser localStorage only.
 
 ### Data Flow
 
@@ -319,7 +319,7 @@ User Action → Zustand Store (instant UI) → API Route → Prisma → PostgreS
 
 - **localStorage-first**: All reads and writes go through Zustand. The database is a sync target, not the primary store.
 - **Guest mode**: Full functionality without any login or database.
-- **API key security**: AI provider API keys are stored in localStorage only. They are never sent to any Career OS server and never persisted in the database.
+- **API key security**: AI provider API keys are stored in localStorage only. They are never sent to any Career Agents server and never persisted in the database.
 - **Cascade deletes**: All user data cascades on user deletion (GDPR compliance).
 
 See [DATABASE.md](./DATABASE.md) for the full schema reference.
@@ -328,7 +328,7 @@ See [DATABASE.md](./DATABASE.md) for the full schema reference.
 
 ## Security Architecture
 
-Career OS implements defense-in-depth:
+Career Agents implements defense-in-depth:
 
 - **Content Security Policy (CSP)**: Restricts script, style, image, and connection sources
 - **HSTS**: `max-age=63072000; includeSubDomains; preload`

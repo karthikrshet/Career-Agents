@@ -18,9 +18,9 @@ To add high-fidelity visual banners or live CLI recording previews, place the gr
 
 ---
 
-## 🏗️ Career OS Architecture Diagram
+## 🏗️ Career Agents Architecture Diagram
 
-This ASCII layout represents how candidate input flows through the Career OS logic layers to run local sandbox sessions or output IDE instructions:
+This ASCII layout represents how candidate input flows through the Career Agents logic layers to run local sandbox sessions or output IDE instructions:
 
 ```
 [Candidate Input]

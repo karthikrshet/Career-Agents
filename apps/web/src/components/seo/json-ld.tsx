@@ -1,12 +1,12 @@
 // apps/web/src/components/seo/json-ld.tsx
 // Server component — renders JSON-LD structured data for AI discoverability
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://career-os.vercel.app';
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://career-agents.vercel.app';
 
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Career OS',
+  name: 'Career Agents',
   url: baseUrl,
   logo: `${baseUrl}/icons/icon-192.png`,
   description: 'AI-powered career intelligence platform with 146 specialized agents',
@@ -24,11 +24,11 @@ const organizationSchema = {
 const softwareSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'Career OS',
+  name: 'Career Agents',
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
   url: baseUrl,
-  description: 'Career OS is an AI-powered career intelligence platform with 146 specialized agents for resume analysis, GitHub portfolio auditing, LinkedIn optimization, interview preparation, and job tracking.',
+  description: 'Career Agents is an AI-powered career intelligence platform with 146 specialized agents for resume analysis, GitHub portfolio auditing, LinkedIn optimization, interview preparation, and job tracking.',
   featureList: [
     'AI Resume ATS Analysis',
     'GitHub Portfolio Auditing',
@@ -99,7 +99,7 @@ const breadcrumbsSchema = {
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Career OS',
+  name: 'Career Agents',
   url: baseUrl,
   description: 'AI-powered career intelligence platform with 146 specialized agents',
   potentialAction: {
@@ -118,34 +118,34 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What is Career OS?',
+      name: 'What is Career Agents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Career OS is an AI-powered career intelligence platform featuring 146 specialized career agents that help engineers optimize their resume, GitHub portfolio, LinkedIn profile, and interview performance.',
+        text: 'Career Agents is an AI-powered career intelligence platform featuring 146 specialized career agents that help engineers optimize their resume, GitHub portfolio, LinkedIn profile, and interview performance.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Which AI providers does Career OS support?',
+      name: 'Which AI providers does Career Agents support?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Career OS supports OpenAI, Anthropic Claude, Google Gemini, Groq, OpenRouter, Ollama, LM Studio, Azure OpenAI, DeepSeek, Together AI, Mistral, Cohere, and xAI Grok.',
+        text: 'Career Agents supports OpenAI, Anthropic Claude, Google Gemini, Groq, OpenRouter, Ollama, LM Studio, Azure OpenAI, DeepSeek, Together AI, Mistral, Cohere, and xAI Grok.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Is Career OS open source?',
+      name: 'Is Career Agents open source?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Career OS is fully open source under the MIT license. The agent registry, division schemas, and validation pipeline are all available at github.com/karthikrshet/Career-Agents.',
+        text: 'Yes. Career Agents is fully open source under the MIT license. The agent registry, division schemas, and validation pipeline are all available at github.com/karthikrshet/Career-Agents.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is MCP in Career OS?',
+      name: 'What is MCP in Career Agents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'MCP stands for Model Context Protocol. Career OS exposes all 146 career agents as MCP tools, letting Cursor, Claude Desktop, VS Code, and other compatible AI clients connect directly to the agent registry.',
+        text: 'MCP stands for Model Context Protocol. Career Agents exposes all 146 career agents as MCP tools, letting Cursor, Claude Desktop, VS Code, and other compatible AI clients connect directly to the agent registry.',
       },
     },
   ],

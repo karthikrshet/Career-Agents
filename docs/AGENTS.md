@@ -1,12 +1,12 @@
-# Career OS — Agent Reference
+# Career Agents — Agent Reference
 
-All 146 Career OS AI agents organized by division.
+All 146 Career Agents AI agents organized by division.
 
 ---
 
 ## Overview
 
-Career OS includes **146 specialized AI agents** organized into **19 divisions**. Each agent is a Markdown file with a YAML frontmatter schema and a detailed system prompt. Agents are loaded at runtime by the Copilot API route, which scores and selects the most relevant agents for each user query.
+Career Agents includes **146 specialized AI agents** organized into **19 divisions**. Each agent is a Markdown file with a YAML frontmatter schema and a detailed system prompt. Agents are loaded at runtime by the Copilot API route, which scores and selects the most relevant agents for each user query.
 
 ### How Agent Routing Works
 

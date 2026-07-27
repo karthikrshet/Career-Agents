@@ -1,12 +1,12 @@
-# Career OS — Export Engines & Formats
+# Career Agents — Export Engines & Formats
 
-This guide documents the report generation and document compilation engines in Career OS.
+This guide documents the report generation and document compilation engines in Career Agents.
 
 ---
 
 ## Supported Export Formats
 
-Career OS allows users to export dashboards, resume scores, interview evaluations, and career roadmaps in five format categories:
+Career Agents allows users to export dashboards, resume scores, interview evaluations, and career roadmaps in five format categories:
 
 1. **PDF Reports** — Formal career metrics dossier compiled with `pdf-lib`.
 2. **Markdown Reports** — Readable files for local notes and GitHub.
@@ -36,7 +36,7 @@ export async function compilePDFReport(data: any): Promise<Uint8Array> {
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
   
   // Write document header
-  page.drawText('Career OS Personal Evaluation Report', {
+  page.drawText('Career Agents Personal Evaluation Report', {
     x: 50,
     y: 720,
     size: 20,

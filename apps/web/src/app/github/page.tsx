@@ -50,7 +50,7 @@ export default function GitHubPage() {
     return `# ${repoName}
     
 ## Project Overview
-This repository provides primary microservice modules and algorithmic logic patterns tailored for Career OS portfolio configurations.
+This repository provides primary microservice modules and algorithmic logic patterns tailored for Career Agents portfolio configurations.
 
 ### 🚀 Quick Start
 \`\`\`bash

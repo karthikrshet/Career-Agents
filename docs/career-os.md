@@ -1,6 +1,6 @@
-# Career OS Dashboard Specification
+# Career Agents Dashboard Specification
 
-This document details the functional specifications for the **Career OS Dashboard**, designed to help users track metrics and orchestrate advisor workflows during their job search or developer growth journeys.
+This document details the functional specifications for the **Career Agents Dashboard**, designed to help users track metrics and orchestrate advisor workflows during their job search or developer growth journeys.
 
 ---
 

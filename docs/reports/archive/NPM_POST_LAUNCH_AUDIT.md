@@ -9,7 +9,7 @@ This audit validates the release state, integrity, and packaging metrics for `ca
 -   **[✓] README Links Validation**: Checked all internal relative links and resource links. All resolve correctly.
 -   **[✓] CLI Functionality**: Verified that commands (`doctor`, `assess`, `recommend`, `company`, `path`, `resume`) execute without errors.
 -   **[✓] NPM Packaging**: Dry-run pack verified. Total compressed tarball size is **716.2 kB**, well under the 1 MB bar.
--   **[✓] Schema Referencing**: Mapped entities inside `career-os.json` synchronize cleanly with local registries.
+-   **[✓] Schema Referencing**: Mapped entities inside `career-agents.json` synchronize cleanly with local registries.
 
 ---
 

@@ -1,4 +1,4 @@
-# Who Uses Career OS?
+# Who Uses Career Agents?
 
 The **Career Operating System** is designed for software developers, product builders, tech student leaders, and founders at various career stages.
 

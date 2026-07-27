@@ -1,4 +1,4 @@
-# Career OS Launch & Marketing Kit
+# Career Agents Launch & Marketing Kit
 
 This kit contains copy-paste-ready templates for social media channels, tech newsletters, and blogs to promote **Career-Agents** (The Open-Source Career Operating System).
 
@@ -9,7 +9,7 @@ This kit contains copy-paste-ready templates for social media channels, tech new
 **Tweet 1 (Hook)**:
 > Stop applying to 500 jobs blind. Start running an operating system.
 > 
-> I built "Career-Agents" — a modular, open-source Career OS with 135+ specialized AI agents, interactive terminal compliance scoring, profile matchers, and IDE syncs. 🧵👇
+> I built "Career-Agents" — a modular, open-source Career Agents with 135+ specialized AI agents, interactive terminal compliance scoring, profile matchers, and IDE syncs. 🧵👇
 > [Link to Repo]
 
 **Tweet 2 (The CLI)**:
@@ -32,11 +32,11 @@ This kit contains copy-paste-ready templates for social media channels, tech new
 
 ## 💼 LinkedIn Post Template
 
-> 🚀 **Say hello to the Open-Source Career Operating System (Career OS)** 🚀
+> 🚀 **Say hello to the Open-Source Career Operating System (Career Agents)** 🚀
 > 
 > Most job seekers rely on scattered templates, generic resume writers, or random prompts. That's why we built **Career-Agents**.
 > 
-> What is Career OS?
+> What is Career Agents?
 > 🛠️ **The Product**: 135+ Specialist AI Coaches (from system design analysts to compensation strategists) mapped across 19 Divisions.
 > 💻 **The Platform**: A local Node CLI to assess your scores, get profile recommendations, and export prompt bundles.
 > 🔌 **IDE Syncs**: Direct instructions injection for Cursor, Windsurf, Aider, and Claude Code.

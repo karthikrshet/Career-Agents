@@ -1,12 +1,13 @@
 // packages/ai/groq.ts
 import { AIProviderBase, AICompletionOptions, AIProviderName } from "./provider";
+import { secureFetch, PROVIDER_ENDPOINTS } from "../security";
 
 export class GroqProvider extends AIProviderBase {
   name: AIProviderName = "groq";
 
   async generate(options: AICompletionOptions): Promise<string> {
     const { messages, config, signal, onChunk } = options;
-    const url = config.baseUrl || "https://api.groq.com/openai/v1/chat/completions";
+    const url = PROVIDER_ENDPOINTS.groq;
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
@@ -21,11 +22,12 @@ export class GroqProvider extends AIProviderBase {
       stream: !!onChunk && config.streaming,
     };
 
-    const res = await fetch(url, {
+    const res = await secureFetch(url, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
       signal,
+      allowedProvider: "groq",
     });
 
     if (!res.ok) {

@@ -1,4 +1,4 @@
-# Career OS Success Stories
+# Career Agents Success Stories
 
 Real wins from technologists, builders, and students who have optimized their careers using the **Career Operating System**.
 

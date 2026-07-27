@@ -1,6 +1,7 @@
 // packages/ai-router/services/discovery.ts
 import { PROVIDER_REGISTRY } from "./provider-registry";
 import { AIProviderId } from "../types";
+import { secureFetch } from "../../security";
 
 const DYNAMIC_MODEL_CACHE: Record<string, { models: string[]; timestamp: number }> = {};
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
@@ -44,9 +45,13 @@ export async function fetchAvailableModels(
   // Local/no-auth models
   if (["ollama", "lmstudio"].includes(providerId)) {
     try {
-      const endpoint = customBaseUrl || registry.apiEndpoint;
-      const res = await fetch(`${endpoint}/models`, {
-        signal: AbortSignal.timeout(4000)
+      // Only allow customBaseUrl override for ollama/lmstudio if it's local
+      const endpoint = (customBaseUrl && (customBaseUrl.includes("localhost") || customBaseUrl.includes("127.0.0.1") || customBaseUrl.includes("::1")))
+        ? customBaseUrl
+        : registry.apiEndpoint;
+      const res = await secureFetch(`${endpoint}/models`, {
+        signal: AbortSignal.timeout(4000),
+        allowedProvider: providerId,
       });
       if (res.ok) {
         const data = await res.json();
@@ -66,15 +71,17 @@ export async function fetchAvailableModels(
   }
 
   try {
-    const endpoint = customBaseUrl || registry.apiEndpoint;
+    // Only allow customBaseUrl override for azure
+    const endpoint = (providerId === "azure" && customBaseUrl) ? customBaseUrl : registry.apiEndpoint;
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
     };
 
     if (providerId === "gemini") {
       // Gemini models endpoint format
-      const res = await fetch(`${endpoint}/models?key=${apiKey}`, {
+      const res = await secureFetch(`${endpoint}/models?key=${apiKey}`, {
         signal: AbortSignal.timeout(6000),
+        allowedProvider: "gemini",
       });
       if (res.ok) {
         const data = await res.json();
@@ -94,9 +101,10 @@ export async function fetchAvailableModels(
         headers["dangerously-allow-browser"] = "true";
       }
 
-      const res = await fetch(`${endpoint}/models`, {
+      const res = await secureFetch(`${endpoint}/models`, {
         headers,
         signal: AbortSignal.timeout(6000),
+        allowedProvider: providerId,
       });
 
       if (res.ok) {

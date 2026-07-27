@@ -1,5 +1,6 @@
 // packages/ai/ollama.ts
 import { AIProviderBase, AICompletionOptions, AIProviderName } from "./provider";
+import { secureFetch } from "../security";
 
 export class OllamaProvider extends AIProviderBase {
   name: AIProviderName = "ollama";
@@ -24,11 +25,12 @@ export class OllamaProvider extends AIProviderBase {
       stream: !!onChunk && config.streaming,
     };
 
-    const res = await fetch(url, {
+    const res = await secureFetch(url, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
       signal,
+      allowedProvider: "ollama",
     });
 
     if (!res.ok) {

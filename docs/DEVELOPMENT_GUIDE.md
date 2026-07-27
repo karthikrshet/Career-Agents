@@ -1,6 +1,6 @@
-# Career OS Technical Development Guide
+# Career Agents Technical Development Guide
 
-This guide establishes the coding standards, directory conventions, and testing guidelines for Career OS contributions.
+This guide establishes the coding standards, directory conventions, and testing guidelines for Career Agents contributions.
 
 ---
 

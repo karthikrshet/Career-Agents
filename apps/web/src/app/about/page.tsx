@@ -66,7 +66,7 @@ export default function AboutPage() {
             <CardContent>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 To democratize career development by providing engineers with a unified, high-fidelity personal workspace. 
-                Career OS continuously monitors your resume, GitHub commits, and profile visibility, matching them with specialized 
+                Career Agents continuously monitors your resume, GitHub commits, and profile visibility, matching them with specialized 
                 coaching models to survival-test your candidacy for top-tier companies.
               </p>
             </CardContent>
@@ -96,7 +96,7 @@ export default function AboutPage() {
               <Cpu className="w-4 h-4 text-indigo-400" />
               Modular Core Architecture
             </CardTitle>
-            <CardDescription>Pipeline execution path of the Career OS workspace</CardDescription>
+            <CardDescription>Pipeline execution path of the Career Agents workspace</CardDescription>
           </CardHeader>
           <CardContent className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
             <div className="p-3.5 rounded-lg border border-border/40 bg-secondary/10 space-y-1">

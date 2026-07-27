@@ -1,6 +1,6 @@
 # Package Audit Report (v1.4.0)
 
-This document presents the packaging metrics, integrity hashes, and file manifest verification for the Career OS npm package release v1.4.0.
+This document presents the packaging metrics, integrity hashes, and file manifest verification for the Career Agents npm package release v1.4.0.
 
 ---
 
@@ -42,7 +42,7 @@ Included packages:
 ### 4. Agent Prompt Ecosystem
 - All 146 specialized prompt files mapped across 19 division subdirectories.
 - Pre-configured target templates (`resume-templates.json`, `companies.json`, `career-paths.json`).
-- Dynamic search maps (`search-index.json`, `knowledge-graph.json`, `career-os.json`).
+- Dynamic search maps (`search-index.json`, `knowledge-graph.json`, `career-agents.json`).
 
 ---
 

@@ -24,7 +24,7 @@ Before making any changes to the codebase, prompts, or configurations:
    Read and understand the following configuration/database files to locate registry structures:
    - [agent-registry.json](./agent-registry.json)
    - [divisions.json](./divisions.json)
-   - [career-os.json](./career-os.json)
+   - [career-agents.json](./career-agents.json)
 
 ---
 
@@ -36,7 +36,7 @@ To avoid registry corruption, broken references, or validation failures, you mus
 * **Never Leave Orphaned Agents**: When registering an agent, ensure it exists in both [agent-registry.json](./agent-registry.json) (under `agents`) and [divisions.json](./divisions.json) (in its matching division's `agents` array).
 * **Never Break Registry Integrity**: Do not delete registry entries that are referenced by other entities (e.g. workflows recommending specific agent IDs).
 * **Never Edit Generated Files Directly**: Do not write edits directly to:
-  - `career-os.json`
+  - `career-agents.json`
   - `search-index.json`
   - `knowledge-graph.json`
   - `README.md` (always edit `scripts/generate-data.py`'s template instead)

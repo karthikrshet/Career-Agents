@@ -1,14 +1,14 @@
-# Career OS — Database Reference
+# Career Agents — Database Reference
 
-Prisma schema, model documentation, and database configuration for Career OS.
+Prisma schema, model documentation, and database configuration for Career Agents.
 
 ---
 
 ## Overview
 
-Career OS uses **Prisma ORM** with **PostgreSQL** as the production database.
+Career Agents uses **Prisma ORM** with **PostgreSQL** as the production database.
 
-**Important:** Career OS runs fully without a database in **guest mode**. All data is stored in browser `localStorage` via Zustand. The database enables server-side persistence for authenticated users (multi-device sync, data backup).
+**Important:** Career Agents runs fully without a database in **guest mode**. All data is stored in browser `localStorage` via Zustand. The database enables server-side persistence for authenticated users (multi-device sync, data backup).
 
 ---
 

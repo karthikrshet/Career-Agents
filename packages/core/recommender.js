@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const root = path.resolve(__dirname, '..');
-const careerOsPath = path.join(root, 'career-os.json');
+const careerOsPath = path.join(root, 'career-agents.json');
 
 const c = {
   reset: '\x1b[0m',
@@ -20,7 +20,7 @@ const c = {
 
 export function recommendProfile(skillsStr, experience, targetCompany, targetRole) {
   if (!fs.existsSync(careerOsPath)) {
-    console.error(`${c.red}career-os.json not found. Please run 'career-agents update' first.${c.reset}`);
+    console.error(`${c.red}career-agents.json not found. Please run 'career-agents update' first.${c.reset}`);
     return;
   }
 
@@ -30,7 +30,7 @@ export function recommendProfile(skillsStr, experience, targetCompany, targetRol
   const roleQuery = (targetRole || '').trim().toLowerCase();
   const expQuery = (experience || 'mid').trim().toLowerCase();
 
-  console.log(`\n${c.purple}=== Career OS Recommendation Report ===${c.reset}`);
+  console.log(`\n${c.purple}=== Career Agents Recommendation Report ===${c.reset}`);
   console.log(`${c.gray}Inputs -> Skills: [${inputSkills.join(', ')}], Experience: ${expQuery}, Target Co: ${companyQuery}, Target Role: ${roleQuery}${c.reset}\n`);
 
   // 1. Recommend Agents

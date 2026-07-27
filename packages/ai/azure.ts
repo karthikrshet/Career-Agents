@@ -1,5 +1,6 @@
 // packages/ai/azure.ts
 import { AIProviderBase, AICompletionOptions, AIProviderName } from "./provider";
+import { secureFetch } from "../security";
 
 export class AzureProvider extends AIProviderBase {
   name: AIProviderName = "azure";
@@ -24,11 +25,12 @@ export class AzureProvider extends AIProviderBase {
       stream: !!onChunk && config.streaming,
     };
 
-    const res = await fetch(config.baseUrl, {
+    const res = await secureFetch(config.baseUrl, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
       signal,
+      allowedProvider: "azure",
     });
 
     if (!res.ok) {

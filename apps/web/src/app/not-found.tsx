@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "404 — Page Not Found",
-  description: "The page you are looking for does not exist in Career OS.",
+  description: "The page you are looking for does not exist in Career Agents.",
   robots: { index: false, follow: false },
 };
 
@@ -26,7 +26,7 @@ export default function NotFound() {
         </p>
         <h1 className="text-xl font-bold mb-3 text-foreground">Page Not Found</h1>
         <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
-          The page you're looking for doesn't exist in Career OS. 
+          The page you're looking for doesn't exist in Career Agents. 
           It may have been moved, deleted, or you might have mistyped the URL.
         </p>
 
@@ -47,7 +47,7 @@ export default function NotFound() {
 
         <div className="mt-8 pt-6 border-t border-border/40">
           <p className="text-xs text-muted-foreground/60">
-            Career OS v2.5.0 · 146 AI Career Agents
+            Career Agents v2.5.0 · 146 AI Career Agents
           </p>
         </div>
       </div>

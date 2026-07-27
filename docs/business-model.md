@@ -22,7 +22,7 @@ We balance open-source freedom with financial viability through 6 distinct pilla
 
 ### 4. Enterprise Placement Support
 - **Objective:** Partner with technical recruitment firms and enterprise HR teams.
-- **Model:** Offer companies private, white-labeled Career OS instances loaded with custom recruitment metrics and specialized filters.
+- **Model:** Offer companies private, white-labeled Career Agents instances loaded with custom recruitment metrics and specialized filters.
 
 ### 5. College Placement Partnerships
 - **Objective:** Standardized licensing for universities and training institutes.

@@ -1,12 +1,14 @@
 // packages/ai/openai.ts
 import { AIProviderBase, AICompletionOptions, AIProviderName } from "./provider";
+import { secureFetch, PROVIDER_ENDPOINTS } from "../security";
 
 export class OpenAIProvider extends AIProviderBase {
   name: AIProviderName = "openai";
 
   async generate(options: AICompletionOptions): Promise<string> {
     const { messages, config, signal, onChunk } = options;
-    const url = config.baseUrl || "https://api.openai.com/v1/chat/completions";
+    const provider = config.provider || "openai";
+    const url = PROVIDER_ENDPOINTS[provider as keyof typeof PROVIDER_ENDPOINTS] || PROVIDER_ENDPOINTS.openai;
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
@@ -21,11 +23,12 @@ export class OpenAIProvider extends AIProviderBase {
       stream: !!onChunk && config.streaming,
     };
 
-    const res = await fetch(url, {
+    const res = await secureFetch(url, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
       signal,
+      allowedProvider: provider,
     });
 
     if (!res.ok) {

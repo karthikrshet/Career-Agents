@@ -1,6 +1,6 @@
-# Career OS — Environment Variables
+# Career Agents — Environment Variables
 
-This document provides a detailed reference for all environment variables used by Career OS, explaining their purpose, default values, requirements, and usage guidelines.
+This document provides a detailed reference for all environment variables used by Career Agents, explaining their purpose, default values, requirements, and usage guidelines.
 
 ---
 
@@ -19,7 +19,7 @@ These variables configure user session signatures, security cookies, and redirec
 #### `NEXTAUTH_URL`
 - **Required:** Yes
 - **Description:** The canonical base URL of your application in production or development. Do not append a trailing slash.
-- **Example:** `http://localhost:3000` (development) or `https://career-os.dev` (production)
+- **Example:** `http://localhost:3000` (development) or `https://career-agents.dev` (production)
 
 ---
 
@@ -100,7 +100,7 @@ These public flags control client-side rendering options. They must be prefixed 
 ### Configuration Variables
 
 #### `NEXT_PUBLIC_APP_NAME`
-- **Default:** `Career OS`
+- **Default:** `Career Agents`
 - **Description:** Customize the default branding application name displayed in headers and dashboard components.
 
 #### `NEXT_PUBLIC_APP_VERSION`

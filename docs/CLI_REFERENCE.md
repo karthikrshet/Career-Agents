@@ -1,6 +1,6 @@
-# Career OS CLI Reference
+# Career Agents CLI Reference
 
-This document details the command catalog, parameter options, and syntax examples for the Career OS Command Line Interface.
+This document details the command catalog, parameter options, and syntax examples for the Career Agents Command Line Interface.
 
 ---
 

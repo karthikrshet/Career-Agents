@@ -1,4 +1,4 @@
-# Career OS — MCP Server
+# Career Agents — MCP Server
 
 Model Context Protocol integration for AI-native IDE experiences.
 
@@ -6,9 +6,9 @@ Model Context Protocol integration for AI-native IDE experiences.
 
 ## What Is MCP?
 
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard that lets AI assistants (like Claude, Cursor, Continue) access external tools and data sources. Career OS implements an MCP server that exposes your career intelligence tools directly inside your code editor.
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard that lets AI assistants (like Claude, Cursor, Continue) access external tools and data sources. Career Agents implements an MCP server that exposes your career intelligence tools directly inside your code editor.
 
-With the Career OS MCP server, your AI assistant can:
+With the Career Agents MCP server, your AI assistant can:
 - Search and recommend career agents
 - Analyze your GitHub profile
 - Review your resume for ATS compliance
@@ -21,7 +21,7 @@ With the Career OS MCP server, your AI assistant can:
 
 ## Available MCP Tools
 
-The Career OS MCP server (`mcp/server.js`) exposes the following tools:
+The Career Agents MCP server (`mcp/server.js`) exposes the following tools:
 
 | Tool | Description |
 |---|---|
@@ -67,7 +67,7 @@ The Career OS MCP server (`mcp/server.js`) exposes the following tools:
 ### Prerequisites
 
 - Node.js ≥ 18
-- Career OS repository cloned locally
+- Career Agents repository cloned locally
 
 ```bash
 git clone https://github.com/karthikrshet/Career-Agents.git

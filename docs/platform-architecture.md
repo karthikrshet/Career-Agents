@@ -1,16 +1,16 @@
-# Career OS Platform Architecture
+# Career Agents Platform Architecture
 
-This document defines the architectural specifications for the **Career-Agents Desktop Application** and the underlying **Career Operating System (Career OS)** framework.
+This document defines the architectural specifications for the **Career-Agents Desktop Application** and the underlying **Career Operating System (Career Agents)** framework.
 
 ---
 
 ## 🏗️ System Architecture
 
-The Career OS Platform is divided into a three-tier architecture that bridges local editor runtimes, the local desktop container, and the community marketplace.
+The Career Agents Platform is divided into a three-tier architecture that bridges local editor runtimes, the local desktop container, and the community marketplace.
 
 ```mermaid
 graph TD
-    A["Career OS Desktop (Electron/Tauri)"] --> B["Local Agent Engine"]
+    A["Career Agents Desktop (Electron/Tauri)"] --> B["Local Agent Engine"]
     B --> C["Registry Manager (agent-registry.json)"]
     B --> D["Integrations Driver (convert.py)"]
     A --> E["Community Marketplace Client"]

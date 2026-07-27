@@ -1,4 +1,4 @@
-# Career OS v1.4.0 Release Notes
+# Career Agents v1.4.0 Release Notes
 
 This release introduces the V2 monorepo package restructuring, the production-ready Resume Studio engine, feature flags configurations, and a comprehensive documentation overhaul.
 

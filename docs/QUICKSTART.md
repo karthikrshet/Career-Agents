@@ -1,6 +1,6 @@
-# Career OS — Quick Start
+# Career Agents — Quick Start
 
-Get Career OS running locally in under 5 minutes.
+Get Career Agents running locally in under 5 minutes.
 
 ---
 
@@ -10,7 +10,7 @@ Get Career OS running locally in under 5 minutes.
 - **Git** — [git-scm.com](https://git-scm.com)
 - **A free Groq API key** — [console.groq.com](https://console.groq.com) *(optional — guest mode works without it)*
 
-> **Guest Mode**: Career OS works fully without any API key or database. You can analyze resumes, track jobs, and explore the interface immediately. AI features activate once you add a key in Settings.
+> **Guest Mode**: Career Agents works fully without any API key or database. You can analyze resumes, track jobs, and explore the interface immediately. AI features activate once you add a key in Settings.
 
 ---
 
@@ -66,7 +66,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 1. Go to [console.groq.com](https://console.groq.com) and sign up (free)
 2. Create an API key
-3. In Career OS, open **Settings → AI Provider**
+3. In Career Agents, open **Settings → AI Provider**
 4. Select **Groq**, paste your key, choose `llama3-70b-8192`
 5. Click **Save** — all AI features are now active
 
@@ -80,7 +80,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## What's Available Without a Database
 
-Career OS uses **localStorage** for persistence by default — no PostgreSQL required for local development. All your data is saved in your browser.
+Career Agents uses **localStorage** for persistence by default — no PostgreSQL required for local development. All your data is saved in your browser.
 
 To enable server-side persistence (multi-device sync, production use), see [INSTALL.md](./INSTALL.md#database-setup).
 

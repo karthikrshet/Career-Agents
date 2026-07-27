@@ -20,7 +20,7 @@ All commands were run globally using the `career-agents` entrypoint:
 ### 1. Doctor (Diagnostics)
 ```
 $ career-agents doctor
-=== Career OS Diagnostic Check (Doctor) ===
+=== Career Agents Diagnostic Check (Doctor) ===
 [✓ OK] registries parsed.
 [✓ OK] directories found.
 Everything is green! Your Career Operating System is healthy.
