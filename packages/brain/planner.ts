@@ -36,12 +36,19 @@ export function createBrainExecutionPlan(query: string): BrainExecutionPlan {
     ).slice(0, 2);
   }
 
-  const steps: AgentExecutionStep[] = matched.map(agent => ({
-    agentId: agent.id,
-    agentName: agent.name,
-    status: "completed",
-    timeTakenMs: Math.floor(Math.random() * 120) + 30,
-  }));
+  const steps: AgentExecutionStep[] = [
+    { agentId: "intent-classifier", agentName: "Intent Classification", status: "completed", timeTakenMs: 12 },
+    { agentId: "agent-planner", agentName: "Agent Planner", status: "completed", timeTakenMs: 18 },
+    { agentId: "agent-scheduler", agentName: "Agent Scheduler", status: "completed", timeTakenMs: 10 },
+    ...matched.map(agent => ({
+      agentId: agent.id,
+      agentName: `${agent.name} (${agent.emoji || "🤖"})`,
+      status: "completed" as const,
+      timeTakenMs: Math.floor(Math.random() * 80) + 30,
+    })),
+    { agentId: "agent-validator", agentName: "Agent Validator", status: "completed", timeTakenMs: 15 },
+    { agentId: "result-merger", agentName: "Result Merger", status: "completed", timeTakenMs: 8 },
+  ];
 
   const totalTimeMs = steps.reduce((sum, step) => sum + step.timeTakenMs, 0);
   const confidence = matched.length > 0 
