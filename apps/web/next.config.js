@@ -41,6 +41,13 @@ const nextConfig = {
         config: [__filename],
       };
     }
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        dns: false,
+        net: false,
+      };
+    }
     return config;
   },
 };
