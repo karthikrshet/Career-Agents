@@ -1002,10 +1002,60 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                   <div className="max-w-[85%] space-y-2 flex-1">
                     {/* Render thinking blocks if loaded */}
                     {thinking && (
-                      <div className="p-3 bg-secondary/35 border border-border/40 rounded-xl flex items-center gap-2.5 text-xs text-indigo-400/90 font-mono">
-                        <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />
-                        <span>{thinking}</span>
-                      </div>
+                      (() => {
+                        const isOrchestration = thinking.includes("specialist agents");
+                        if (!isOrchestration) {
+                          return (
+                            <div className="p-3 bg-secondary/35 border border-border/40 rounded-xl flex items-center gap-2.5 text-xs text-indigo-400/90 font-mono">
+                              <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />
+                              <span>{thinking}</span>
+                            </div>
+                          );
+                        }
+                        
+                        const agentsMatch = thinking.match(/\[(.*?)\]/);
+                        const confidenceMatch = thinking.match(/Confidence:\s*(\d+)%/);
+                        const timeMatch = thinking.match(/in\s*(\d+)ms/);
+                        
+                        const agents = agentsMatch ? agentsMatch[1].split(", ") : [];
+                        const confidence = confidenceMatch ? Number(confidenceMatch[1]) : 85;
+                        const timeMs = timeMatch ? Number(timeMatch[1]) : 120;
+                        
+                        return (
+                          <div className="p-4 bg-secondary/20 border border-border/40 rounded-2xl space-y-3.5 text-xs max-w-md">
+                            <div className="flex items-center justify-between border-b border-border/20 pb-2">
+                              <span className="font-semibold text-foreground flex items-center gap-2">
+                                <Loader2 className="w-3.5 h-3.5 animate-spin text-primary shrink-0" />
+                                AI Brain Orchestration Pipeline
+                              </span>
+                              <span className="text-[10px] text-muted-foreground font-mono">Mapped in {timeMs}ms</span>
+                            </div>
+                            
+                            <div className="space-y-2">
+                              <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Active Execution Timeline</p>
+                              <div className="grid grid-cols-1 gap-1.5">
+                                {agents.map((agent, index) => (
+                                  <div key={index} className="flex items-center justify-between p-2 rounded-lg bg-[#070912]/80 border border-border/40">
+                                    <span className="font-mono text-[10.5px] text-indigo-300">🤖 {agent}</span>
+                                    <span className="px-1.5 py-0.5 rounded text-[8px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-widest">
+                                      Completed
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            
+                            <div className="flex items-center justify-between pt-1 text-[10px] text-muted-foreground">
+                              <span className="flex items-center gap-1">
+                                Confidence: <b className="text-emerald-400 font-mono">{confidence}%</b>
+                              </span>
+                              <div className="w-32 bg-secondary h-1.5 rounded-full overflow-hidden">
+                                <div className="bg-emerald-400 h-full transition-all duration-500" style={{ width: `${confidence}%` }} />
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })()
                     )}
                     
                     {content && (
@@ -1197,10 +1247,60 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                     return (
                       <>
                         {thinking && (
-                          <div className="p-3 bg-secondary/35 border border-border/40 rounded-xl flex items-center gap-2.5 text-xs text-indigo-400/90 font-mono">
-                            <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />
-                            <span>{thinking}</span>
-                          </div>
+                          (() => {
+                            const isOrchestration = thinking.includes("specialist agents");
+                            if (!isOrchestration) {
+                              return (
+                                <div className="p-3 bg-secondary/35 border border-border/40 rounded-xl flex items-center gap-2.5 text-xs text-indigo-400/90 font-mono">
+                                  <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />
+                                  <span>{thinking}</span>
+                                </div>
+                              );
+                            }
+                            
+                            const agentsMatch = thinking.match(/\[(.*?)\]/);
+                            const confidenceMatch = thinking.match(/Confidence:\s*(\d+)%/);
+                            const timeMatch = thinking.match(/in\s*(\d+)ms/);
+                            
+                            const agents = agentsMatch ? agentsMatch[1].split(", ") : [];
+                            const confidence = confidenceMatch ? Number(confidenceMatch[1]) : 85;
+                            const timeMs = timeMatch ? Number(timeMatch[1]) : 120;
+                            
+                            return (
+                              <div className="p-4 bg-secondary/20 border border-border/40 rounded-2xl space-y-3.5 text-xs max-w-md">
+                                <div className="flex items-center justify-between border-b border-border/20 pb-2">
+                                  <span className="font-semibold text-foreground flex items-center gap-2">
+                                    <Loader2 className="w-3.5 h-3.5 animate-spin text-primary shrink-0" />
+                                    AI Brain Orchestration Pipeline
+                                  </span>
+                                  <span className="text-[10px] text-muted-foreground font-mono">Mapped in {timeMs}ms</span>
+                                </div>
+                                
+                                <div className="space-y-2">
+                                  <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Active Execution Timeline</p>
+                                  <div className="grid grid-cols-1 gap-1.5">
+                                    {agents.map((agent, index) => (
+                                      <div key={index} className="flex items-center justify-between p-2 rounded-lg bg-[#070912]/80 border border-border/40">
+                                        <span className="font-mono text-[10.5px] text-indigo-300">🤖 {agent}</span>
+                                        <span className="px-1.5 py-0.5 rounded text-[8px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-widest">
+                                          Completed
+                                        </span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                                
+                                <div className="flex items-center justify-between pt-1 text-[10px] text-muted-foreground">
+                                  <span className="flex items-center gap-1">
+                                    Confidence: <b className="text-emerald-400 font-mono">{confidence}%</b>
+                                  </span>
+                                  <div className="w-32 bg-secondary h-1.5 rounded-full overflow-hidden">
+                                    <div className="bg-emerald-400 h-full transition-all duration-500" style={{ width: `${confidence}%` }} />
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })()
                         )}
                         {content && (
                           <div className="bg-card border border-border/60 rounded-2xl px-5 py-4 text-sm leading-relaxed text-foreground prose prose-invert">
