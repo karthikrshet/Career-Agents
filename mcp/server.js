@@ -2195,6 +2195,8 @@ async function handleToolsCall(id, params) {
             }, null, 2)
           }]
         });
+        break;
+      }
       case 'get_career_memory': {
         let careerProfile = {};
         try {

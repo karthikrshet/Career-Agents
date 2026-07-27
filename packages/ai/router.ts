@@ -37,15 +37,41 @@ const DEFAULT_ENDPOINTS: Partial<Record<AIProviderName, string>> = {
 
 export async function generate(options: AICompletionOptions): Promise<string> {
   const providerName = options.config.provider;
-  const ProviderClass = PROVIDER_REGISTRY[providerName];
+  let provider: AIProviderBase;
 
-  if (!ProviderClass) {
-    throw new Error(`AI Provider '${providerName}' is not registered or supported.`);
+  switch (providerName) {
+    case "openai":
+    case "deepseek":
+    case "together":
+    case "mistral":
+    case "cohere":
+    case "xai":
+    case "lmstudio":
+      provider = new OpenAIProvider();
+      break;
+    case "claude":
+    case "anthropic":
+      provider = new ClaudeProvider();
+      break;
+    case "gemini":
+      provider = new GeminiProvider();
+      break;
+    case "groq":
+      provider = new GroqProvider();
+      break;
+    case "openrouter":
+      provider = new OpenRouterProvider();
+      break;
+    case "ollama":
+      provider = new OllamaProvider();
+      break;
+    case "azure":
+      provider = new AzureProvider();
+      break;
+    default:
+      throw new Error(`AI Provider '${providerName}' is not registered or supported.`);
   }
 
-  const provider = new ProviderClass();
-
-  // If this is an OpenAI-compatible provider and no baseUrl is specified, inject the default endpoint
   const config = { ...options.config };
   if (!config.baseUrl && DEFAULT_ENDPOINTS[providerName]) {
     config.baseUrl = DEFAULT_ENDPOINTS[providerName];

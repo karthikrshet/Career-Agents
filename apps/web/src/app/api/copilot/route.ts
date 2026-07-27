@@ -66,7 +66,11 @@ export async function POST(req: NextRequest) {
     }
 
     // 3. Compile Gateway Config mapping rotated keys and endpoints
-    const provider = config?.provider || "openai";
+    const provider = String(config?.provider || "openai").toLowerCase().trim();
+    const ALLOWED_PROVIDERS = new Set(["openai", "anthropic", "claude", "gemini", "groq", "ollama", "lmstudio"]);
+    if (!ALLOWED_PROVIDERS.has(provider)) {
+      return NextResponse.json({ success: false, error: "Invalid AI provider specified" }, { status: 400 });
+    }
     
     const gatewayConfig: RouterConfig = {
       mode: clientSettings?.routerMode || "balanced",

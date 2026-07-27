@@ -3,7 +3,7 @@ import { AIProviderId, RouterMode, AIMessage, RouterLog } from "../types";
 import { PROVIDER_REGISTRY } from "./provider-registry";
 import { classifyGatewayError } from "../utils/error-handler";
 import { recordRouterLog } from "./analytics";
-import { secureFetch } from "../../security";
+import { secureFetch, safeLogger } from "../../security";
 
 const ENV_KEY_MAP: Record<string, string> = {
   openai: "OPENAI_API_KEY",
@@ -290,7 +290,7 @@ export async function routeCompletion(
         });
         break; // Key success, break key loop
       } catch (err: any) {
-        console.warn(`Gateway failed executing prompt with provider ${providerId} and key index ${keyIdx}`, err);
+        safeLogger.warn(`Gateway failed executing prompt with provider ${providerId} and key index ${keyIdx}`, err);
         executionChain.push({
           provider: providerId,
           model,

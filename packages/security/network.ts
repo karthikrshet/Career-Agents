@@ -1,5 +1,4 @@
-// packages/security/network.ts
-import { validateExternalUrl, resolveAndValidateHost } from "./url-validator";
+import { validateExternalUrl, resolveAndValidateHost, resolveAndGetSafeIp } from "./url-validator";
 import { NetworkError, ValidationError } from "./errors";
 import { SecureFetchOptions } from "./types";
 
@@ -31,14 +30,18 @@ export async function secureFetch(
     try {
       // 1. Resolve host and validate against private IP address (DNS rebinding check)
       const isLocalAllowed = allowedProvider === "ollama" || allowedProvider === "lmstudio";
-      await resolveAndValidateHost(currentUrl.hostname, isLocalAllowed);
+      const resolvedIp = await resolveAndGetSafeIp(currentUrl.hostname, isLocalAllowed);
+
+      const targetUrl = new URL(currentUrl.toString());
+      targetUrl.hostname = resolvedIp;
 
       // 2. Setup timeout and abort controller
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
-      // Clone headers for the current request context
+      // Clone headers for the current request context and set Host header
       const requestHeaders = new Headers(headers);
+      requestHeaders.set("Host", currentUrl.hostname);
 
       // 3. Construct manual redirect option to inspect locations
       const fetchOptions: RequestInit = {
@@ -51,7 +54,7 @@ export async function secureFetch(
           : controller.signal,
       };
 
-      const res = await fetch(currentUrl.toString(), fetchOptions);
+      const res = await fetch(targetUrl.toString(), fetchOptions);
       clearTimeout(timeoutId);
 
       // Enforce response size limits

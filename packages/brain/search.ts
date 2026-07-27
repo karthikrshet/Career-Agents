@@ -8,23 +8,31 @@ export interface SearchResult {
   source: string;
 }
 
+export function normalizeSearchQuery(query: string): string {
+  if (typeof query !== "string") return "";
+  let clean = query.normalize("NFKC");
+  clean = clean.replace(/[\x00-\x1F\x7F-\x9F]/g, "");
+  clean = clean.replace(/[\u200B-\u200D\uFEFF\u202A-\u202E]/g, "");
+  clean = clean.replace(/[\$'"\\;`|*?~<>^\(\)\[\]\{\}]/g, "");
+  clean = clean.replace(/\s+/g, " ").trim();
+  return clean.slice(0, 200);
+}
+
 export async function searchInternet(query: string): Promise<SearchResult[]> {
   const searchResults: SearchResult[] = [];
-  const cleanQuery = encodeURIComponent(query);
+  const cleanQueryText = normalizeSearchQuery(query);
+  if (!cleanQueryText) return searchResults;
+
+  const cleanQuery = encodeURIComponent(cleanQueryText);
   const ddgUrl = `https://html.duckduckgo.com/html/?q=${cleanQuery}`;
 
   try {
-    // Attempt secureFetch or standard fetch with a timeout
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 4000);
-
-    const response = await fetch(ddgUrl, {
+    const response = await secureFetch(ddgUrl, {
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
       },
-      signal: controller.signal,
+      timeout: 4000,
     });
-    clearTimeout(timeout);
 
     if (response.ok) {
       const html = await response.text();

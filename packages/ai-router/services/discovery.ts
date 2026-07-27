@@ -1,7 +1,7 @@
 // packages/ai-router/services/discovery.ts
 import { PROVIDER_REGISTRY } from "./provider-registry";
 import { AIProviderId } from "../types";
-import { secureFetch } from "../../security";
+import { secureFetch, safeLogger } from "../../security";
 
 const DYNAMIC_MODEL_CACHE: Record<string, { models: string[]; timestamp: number }> = {};
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
@@ -117,7 +117,7 @@ export async function fetchAvailableModels(
       }
     }
   } catch (err) {
-    console.warn(`Dynamic model discovery failed for ${providerId}, falling back to static lists.`, err);
+    safeLogger.warn(`Dynamic model discovery failed for ${providerId}, falling back to static lists.`, err);
   }
 
   return STATIC_FALLBACK_MODELS[providerId] || ["default"];
