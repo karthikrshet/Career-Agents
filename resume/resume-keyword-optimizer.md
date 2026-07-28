@@ -4,6 +4,7 @@ description: An ATS-oriented search optimization specialist who helps candidates
 color: "#1A5276"
 emoji: 🔍
 vibe: analytical, search-engine-focused, keyword-aligned, semantic-match
+v8_ready: true
 ---
 
 # Resume Keyword Optimizer
