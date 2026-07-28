@@ -11,7 +11,12 @@
     ".": "./scripts/sdk.js"
   },
   "scripts": {
-    "test": "node ./scripts/cli.js validate"
+    "test": "node ./scripts/cli.js validate",
+    "clean": "node scripts/clean-dev.js",
+    "dev": "node scripts/dev.js",
+    "doctor": "node scripts/doctor.js",
+    "repair": "node scripts/repair.js",
+    "verify": "node scripts/verify.js"
   },
   "engines": {
     "node": ">=18"

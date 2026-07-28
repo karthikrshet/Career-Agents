@@ -5,12 +5,7 @@ import "./globals.css";
 import "@/lib/env";
 import { Toaster } from "sonner";
 import { JsonLd } from "@/components/seo/json-ld";
-import dynamic from "next/dynamic";
-
-const Sidebar = dynamic(
-  () => import("@/components/layout/sidebar").then((mod) => mod.Sidebar),
-  { ssr: false }
-);
+import { LayoutWrapper } from "@/components/layout/layout-wrapper";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -101,14 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased bg-background text-foreground">
         <JsonLd />
-        <div className="flex h-screen overflow-hidden">
-          <Suspense fallback={null}>
-            <Sidebar />
-          </Suspense>
-          <main className="flex-1 overflow-hidden flex flex-col min-w-0">
-            {children}
-          </main>
-        </div>
+        <LayoutWrapper>{children}</LayoutWrapper>
         <Toaster
           position="bottom-right"
           theme="dark"

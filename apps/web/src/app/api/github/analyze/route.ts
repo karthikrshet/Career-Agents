@@ -2,6 +2,11 @@
 import { NextResponse } from "next/server";
 import { secureFetch, enforceRequestLimits } from "packages/security";
 import { generate } from "../../../../../../../packages/ai/router";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/db";
+
+export const dynamic = "force-dynamic";
 
 const GITHUB_API = "https://api.github.com";
 const LANGUAGE_COLORS: Record<string, string> = {
@@ -56,6 +61,62 @@ export async function POST(req: Request) {
     const { username, token } = await req.json();
     if (!username) {
       return NextResponse.json({ error: "username is required" }, { status: 400 });
+    }
+
+    // Server-side usage limits gating check
+    const session = await getServerSession(authOptions);
+    let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
+    let userId: string | null = null;
+
+    if (session?.user?.email) {
+      const user = await prisma.user.findUnique({
+        where: { email: session.user.email },
+        select: { id: true, plan: true }
+      });
+      if (user) {
+        userId = user.id;
+        plan = (user.plan as any) || "free";
+      }
+    }
+
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    let currentGithubCount = 0;
+    if (userId) {
+      currentGithubCount = await prisma.gitHubAnalysis.count({
+        where: {
+          userId,
+          analyzedAt: { gte: startOfToday }
+        }
+      });
+    } else {
+      currentGithubCount = await prisma.analyticsEvent.count({
+        where: {
+          sessionId: clientIp,
+          eventName: "github_analysis",
+          timestamp: { gte: startOfToday }
+        }
+      });
+    }
+
+    const { FeatureFlagsManager } = await import("@/lib/feature-flags");
+    const allowed = FeatureFlagsManager.checkUsageLimit(plan, currentGithubCount, "github");
+    if (!allowed) {
+      return NextResponse.json({
+        error: `Your plan (${plan.toUpperCase()}) daily limit has been exceeded (2 GitHub analyses max per day). Please upgrade to Professional or Enterprise plan for unlimited repository audits.`
+      }, { status: 429 });
+    }
+
+    // Log GitHub analysis event in database for guests
+    if (!userId) {
+      await prisma.analyticsEvent.create({
+        data: {
+          sessionId: clientIp,
+          eventName: "github_analysis",
+          properties: { username }
+        }
+      });
     }
 
     // Strict GitHub username validation

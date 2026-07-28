@@ -33,7 +33,10 @@ export async function secureFetch(
       const resolvedIp = await resolveAndGetSafeIp(currentUrl.hostname, isLocalAllowed);
 
       const targetUrl = new URL(currentUrl.toString());
-      targetUrl.hostname = resolvedIp;
+      const isOfficialProvider = allowedProvider && allowedProvider !== "custom";
+      if (!isOfficialProvider) {
+        targetUrl.hostname = resolvedIp;
+      }
 
       // 2. Setup timeout and abort controller
       const controller = new AbortController();

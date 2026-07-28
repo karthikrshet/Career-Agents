@@ -2,7 +2,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { secureFetch } from "packages/security";
 
-export const revalidate = 300; // Cache for 5 minutes
+export const dynamic = "force-dynamic";
+
+let jobCache: { data: JobListing[]; timestamp: number } | null = null;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 interface JobListing {
   id: string;
@@ -20,6 +23,11 @@ interface JobListing {
 }
 
 export async function GET(req: NextRequest) {
+  const now = Date.now();
+  if (jobCache && (now - jobCache.timestamp < CACHE_DURATION)) {
+    return NextResponse.json(jobCache.data);
+  }
+
   const jobs: JobListing[] = [];
 
   // Helper to extract tech tags from text
@@ -223,6 +231,10 @@ export async function GET(req: NextRequest) {
         jobs.push(fb);
       }
     });
+  }
+
+  if (jobs.length > 0) {
+    jobCache = { data: jobs, timestamp: now };
   }
 
   return NextResponse.json(jobs);
