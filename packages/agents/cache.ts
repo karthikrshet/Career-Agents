@@ -1,32 +1,29 @@
 // packages/agents/cache.ts
 import fs from "fs";
 import path from "path";
+import { resolveWorkspacePath } from "./router";
 
 const promptCache: Record<string, string> = {};
 
 export function getCachedAgentPrompt(filename: string): string {
-  if (promptCache[filename]) {
-    return promptCache[filename];
-  }
-
+  if (promptCache[filename]) return promptCache[filename];
   try {
-    const agentFilePath = path.join(process.cwd(), "../../", filename);
+    const agentFilePath = resolveWorkspacePath(filename);
     if (fs.existsSync(agentFilePath)) {
       const rawPrompt = fs.readFileSync(agentFilePath, "utf-8");
-      // Remove YAML frontmatter cleanly
+      // Remove frontmatter
       const cleanPrompt = rawPrompt.replace(/^---[\s\S]*?---/, "").trim();
       promptCache[filename] = cleanPrompt;
       return cleanPrompt;
     }
   } catch (err) {
-    console.error(`Failed to read agent prompt file: ${filename}`, err);
+    console.error("Failed to load prompt for", filename, err);
   }
-
   return "";
 }
 
 export function clearPromptCache(): void {
-  for (const key in promptCache) {
-    delete promptCache[key];
+  for (const k in promptCache) {
+    delete promptCache[k];
   }
 }
