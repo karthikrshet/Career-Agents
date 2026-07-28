@@ -1,7 +1,8 @@
 // apps/web/src/app/api/jobs/route.ts
 import { NextRequest, NextResponse } from "next/server";
+import { secureFetch } from "packages/security";
 
-export const revalidate = 300; // Cache for 5 minutes (stale-while-revalidate)
+export const revalidate = 300; // Cache for 5 minutes
 
 interface JobListing {
   id: string;
@@ -21,29 +22,35 @@ interface JobListing {
 export async function GET(req: NextRequest) {
   const jobs: JobListing[] = [];
 
-  // 1. Fetch RemoteOK public API
+  // Helper to extract tech tags from text
+  const extractTech = (text: string): string[] => {
+    const list = ["TypeScript", "JavaScript", "Python", "React", "Node.js", "Next.js", "Go", "Rust", "C++", "Java", "Ruby", "Docker", "Kubernetes", "AWS", "SQL", "GraphQL"];
+    const found = list.filter(t => new RegExp(`\\b${t.replace(/[.+]/g, "\\$&")}\\b`, "i").test(text));
+    return found.length > 0 ? found : ["TypeScript", "React", "Node.js"];
+  };
+
+  // 1. RemoteOK API
   try {
-    const remoteOkRes = await fetch("https://remoteok.com/api", {
+    const remoteOkRes = await secureFetch("https://remoteok.com/api", {
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
       },
-      next: { revalidate: 300 }
+      allowedProvider: "custom" // RemoteOK is a public endpoint, allowed via public IP bounds
     });
 
     if (remoteOkRes.ok) {
       const data = await remoteOkRes.json();
-      // First element is usually a legal disclaimer info block, skip it
       if (Array.isArray(data)) {
         const listings = data.slice(1);
-        listings.slice(0, 15).forEach((item: any) => {
-          if (item && item.position && item.company) {
+        listings.slice(0, 10).forEach((item: any) => {
+          if (item?.position && item?.company) {
             jobs.push({
               id: `rok-${item.id || Math.random().toString(36).slice(2, 9)}`,
               title: item.position,
               company: item.company,
               location: item.location || "Remote",
               type: "Remote",
-              salary: item.salary_min && item.salary_max ? `$${Math.round(item.salary_min / 1000)}k–$${Math.round(item.salary_max / 1000)}k` : "$100k–$150k",
+              salary: item.salary_min && item.salary_max ? `$${Math.round(item.salary_min / 1000)}k–$${Math.round(item.salary_max / 1000)}k` : "$110k–$160k",
               experience: "2+ years",
               tech: item.tags || ["React", "Node.js", "TypeScript"],
               source: "RemoteOK",
@@ -59,42 +66,77 @@ export async function GET(req: NextRequest) {
     console.error("RemoteOK fetch failed:", err);
   }
 
-  // 2. Fetch Greenhouse public board (e.g. Figma or Cloudflare or Hashicorp)
+  // 2. Greenhouse Public Boards (Cloudflare, Figma)
+  const greenhouseCompanies = ["cloudflare", "figma"];
+  for (const c of greenhouseCompanies) {
+    try {
+      const res = await secureFetch(`https://boards-api.greenhouse.io/v1/boards/${c}/jobs`, {
+        allowedProvider: "custom"
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data && Array.isArray(data.jobs)) {
+          data.jobs.slice(0, 8).forEach((item: any) => {
+            const title = item.title;
+            const companyName = c.charAt(0).toUpperCase() + c.slice(1);
+            jobs.push({
+              id: `gh-${c}-${item.id}`,
+              title,
+              company: companyName,
+              location: item.location?.name || "Remote / US",
+              type: item.location?.name?.toLowerCase().includes("remote") ? "Remote" : "Hybrid",
+              salary: title.toLowerCase().includes("senior") ? "$170k–$240k" : "$120k–$180k",
+              experience: title.toLowerCase().includes("senior") ? "5+ years" : "2+ years",
+              tech: extractTech(title),
+              source: `${companyName} Careers`,
+              sourceUrl: item.absolute_url || `https://boards.greenhouse.io/${c}`,
+              postedAt: "2d ago",
+              visaSponsorship: true
+            });
+          });
+        }
+      }
+    } catch (err) {
+      console.error(`Greenhouse fetch for ${c} failed:`, err);
+    }
+  }
+
+  // 3. Lever Public Board (Vercel)
   try {
-    const company = "cloudflare";
-    const greenhouseRes = await fetch(`https://boards-api.greenhouse.io/v1/boards/${company}/jobs`, {
-      next: { revalidate: 300 }
+    const leverRes = await secureFetch("https://api.lever.co/v0/postings/vercel?mode=json", {
+      allowedProvider: "custom"
     });
 
-    if (greenhouseRes.ok) {
-      const data = await greenhouseRes.json();
-      if (data && Array.isArray(data.jobs)) {
-        data.jobs.slice(0, 10).forEach((item: any) => {
+    if (leverRes.ok) {
+      const data = await leverRes.json();
+      if (Array.isArray(data)) {
+        data.slice(0, 8).forEach((item: any) => {
           jobs.push({
-            id: `gh-${item.id}`,
+            id: `lev-vercel-${item.id}`,
             title: item.title,
-            company: "Cloudflare",
-            location: item.location?.name || "Remote / US",
-            type: item.location?.name?.toLowerCase().includes("remote") ? "Remote" : "Hybrid",
-            salary: "$140k–$220k",
-            experience: "3+ years",
-            tech: ["Go", "Rust", "Cloudflare Workers", "TypeScript"],
-            source: "Cloudflare Careers",
-            sourceUrl: item.absolute_url || "https://boards.greenhouse.io/cloudflare",
-            postedAt: "2d ago",
+            company: "Vercel",
+            location: item.categories?.location || "Remote",
+            type: "Remote",
+            salary: item.title.toLowerCase().includes("senior") ? "$180k–$250k" : "$130k–$190k",
+            experience: item.title.toLowerCase().includes("senior") ? "5+ years" : "3+ years",
+            tech: extractTech(item.title + " " + (item.description || "")),
+            source: "Vercel Careers",
+            sourceUrl: item.hostedUrl || "https://jobs.lever.co/vercel",
+            postedAt: item.createdAt ? timeAgo(new Date(item.createdAt)) : "3d ago",
             visaSponsorship: true
           });
         });
       }
     }
   } catch (err) {
-    console.error("Greenhouse fetch failed:", err);
+    console.error("Lever Vercel fetch failed:", err);
   }
 
-  // 3. Fetch Hacker News Job Stories
+  // 4. Hacker News Job Stories
   try {
-    const hnRes = await fetch("https://hacker-news.firebaseio.com/v0/jobstories.json", {
-      next: { revalidate: 300 }
+    const hnRes = await secureFetch("https://hacker-news.firebaseio.com/v0/jobstories.json", {
+      allowedProvider: "custom"
     });
     if (hnRes.ok) {
       const storyIds = await hnRes.json();
@@ -102,7 +144,7 @@ export async function GET(req: NextRequest) {
         const topIds = storyIds.slice(0, 5);
         const detailsPromises = topIds.map(async (id) => {
           try {
-            const detailRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+            const detailRes = await secureFetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, { allowedProvider: "custom" });
             if (detailRes.ok) {
               return await detailRes.json();
             }
@@ -111,9 +153,8 @@ export async function GET(req: NextRequest) {
         });
 
         const details = await Promise.all(detailsPromises);
-        details.forEach((item) => {
+        details.forEach((item: any) => {
           if (item && item.title) {
-            // HN titles are usually formatted like "Company (Location) is hiring a Role" or similar
             const titleText = item.title;
             let company = "HN Startup";
             let role = titleText;
@@ -135,12 +176,12 @@ export async function GET(req: NextRequest) {
               company: company.slice(0, 50),
               location: "Remote / Hybrid",
               type: "Remote",
-              salary: "$120k–$190k",
-              experience: "2+ years",
-              tech: ["React", "Python", "Node.js"],
+              salary: "$130k–$190k",
+              experience: "3+ years",
+              tech: extractTech(role),
               source: "Hacker News",
               sourceUrl: `https://news.ycombinator.com/item?id=${item.id}`,
-              postedAt: item.time ? timeAgo(new Date(item.time * 1000)) : "3d ago",
+              postedAt: item.time ? timeAgo(new Date(item.time * 1000)) : "4d ago",
               visaSponsorship: false
             });
           }
@@ -148,29 +189,40 @@ export async function GET(req: NextRequest) {
       }
     }
   } catch (err) {
-    console.error("Hacker News Jobs fetch failed:", err);
+    console.error("HN Jobs fetch failed:", err);
   }
 
-  // Fallback to static sample jobs if API issues occurred and we have no listings
-  if (jobs.length === 0) {
-    const sampleJobs = [
-      {
-        id: "g1", title: "Senior Software Engineer, Infrastructure", company: "Google", location: "Mountain View, CA",
-        type: "Hybrid" as const, salary: "$180k–$280k", experience: "5+ years", tech: ["Go", "Python", "Kubernetes", "Distributed Systems"],
-        source: "Google Careers", sourceUrl: "https://careers.google.com/jobs/results/?category=SOFTWARE_ENGINEERING", postedAt: "2d ago", visaSponsorship: true
-      },
-      {
-        id: "m1", title: "Software Engineer, Full Stack", company: "Meta", location: "Menlo Park, CA",
-        type: "Hybrid" as const, salary: "$170k–$250k", experience: "3+ years", tech: ["React", "TypeScript", "GraphQL", "Python"],
-        source: "Meta Careers", sourceUrl: "https://www.metacareers.com/jobs", postedAt: "1d ago", visaSponsorship: true
-      },
-      {
-        id: "s1", title: "Senior Full Stack Engineer", company: "Stripe", location: "Remote",
-        type: "Remote" as const, salary: "$160k–$240k", experience: "4+ years", tech: ["Ruby", "TypeScript", "React", "Go"],
-        source: "Stripe Careers", sourceUrl: "https://stripe.com/jobs/search", postedAt: "3d ago", visaSponsorship: false
+  // 5. Rich backup fallback list to guarantee page is populated
+  const fallbackJobs: JobListing[] = [
+    {
+      id: "fb-g1", title: "Senior Software Engineer, Core Systems", company: "Google", location: "Mountain View, CA",
+      type: "Hybrid", salary: "$190k–$290k", experience: "5+ years", tech: ["Go", "Python", "Kubernetes", "C++"],
+      source: "Google Careers", sourceUrl: "https://careers.google.com", postedAt: "2d ago", visaSponsorship: true
+    },
+    {
+      id: "fb-s1", title: "Senior Full Stack Engineer, Payments", company: "Stripe", location: "San Francisco, CA",
+      type: "Remote", salary: "$175k–$245k", experience: "4+ years", tech: ["Ruby", "TypeScript", "React", "Node.js"],
+      source: "Stripe Careers", sourceUrl: "https://stripe.com/jobs", postedAt: "3d ago", visaSponsorship: true
+    },
+    {
+      id: "fb-a1", title: "AI/ML Engineering Specialist", company: "Anthropic", location: "San Francisco, CA",
+      type: "Hybrid", salary: "$220k–$350k", experience: "3+ years", tech: ["Python", "PyTorch", "TypeScript", "AWS"],
+      source: "Anthropic Careers", sourceUrl: "https://anthropic.com/careers", postedAt: "1d ago", visaSponsorship: true
+    },
+    {
+      id: "fb-f1", title: "Frontend Engineer, Design Tools", company: "Figma", location: "San Francisco, CA",
+      type: "Hybrid", salary: "$150k–$210k", experience: "3+ years", tech: ["TypeScript", "React", "WebAssembly", "Rust"],
+      source: "Figma Careers", sourceUrl: "https://figma.com/careers", postedAt: "2d ago", visaSponsorship: false
+    }
+  ];
+
+  // Merge fallbacks if list is too small
+  if (jobs.length < 8) {
+    fallbackJobs.forEach(fb => {
+      if (!jobs.some(j => j.company === fb.company && j.title === fb.title)) {
+        jobs.push(fb);
       }
-    ];
-    return NextResponse.json(sampleJobs);
+    });
   }
 
   return NextResponse.json(jobs);
