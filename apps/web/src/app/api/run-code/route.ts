@@ -39,10 +39,12 @@ export async function POST(req: NextRequest) {
       ]
     };
 
-    const res = await fetch("https://emkc.org/api/v2/piston/execute", {
+    const { secureFetch } = await import("packages/security");
+    const res = await secureFetch("https://emkc.org/api/v2/piston/execute", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      allowedProvider: "piston"
     });
 
     if (!res.ok) {
@@ -57,7 +59,10 @@ export async function POST(req: NextRequest) {
       stderr: data.run?.stderr || "",
       code: data.run?.code ?? 0,
       signal: data.run?.signal || null,
-      output: data.run?.output || ""
+      output: data.run?.output || "",
+      compileLogs: data.compile?.output || data.compile?.stderr || "",
+      executionTime: data.run?.time ? `${(data.run.time * 1000).toFixed(1)}ms` : "N/A",
+      memory: data.run?.memory ? `${(data.run.memory / 1024 / 1024).toFixed(2)}MB` : "N/A",
     });
   } catch (err: any) {
     return NextResponse.json({ success: false, error: err.message || "Failed to execute code" }, { status: 500 });
