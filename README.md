@@ -63,14 +63,14 @@ Career Agents takes a different approach:
 <summary>View Dashboard Preview</summary>
 
 *Displays global metrics, 5-dimensional career scores, recent activity feeds, and quick actions.*
-![Dashboard View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/dashboard_preview.gif)
+![Dashboard View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/dashboard.png)
 </details>
 
 <details>
 <summary>View Resume Studio Preview</summary>
 
 *Scans document formatting, highlights missing keywords, and suggests bullet-point improvements.*
-![Resume Studio View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/resume_studio_preview.gif)
+![Resume Studio View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/resume.png)
 </details>
 
 <details>
@@ -84,32 +84,30 @@ Career Agents takes a different approach:
 <summary>View LinkedIn Optimizer Preview</summary>
 
 *Grades headline positioning, about summaries, and searches keyword density.*
-![LinkedIn Optimizer View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/linkedin_optimizer_preview.gif)
+![LinkedIn Optimizer View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/linkedinoptimizer.png)
 </details>
 
 <details>
 <summary>View Interview Lab Preview</summary>
 
 *Conducts mock interviews across 10 company tracks, featuring integrated coding canvases and scorecards.*
-![Mock Interview View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/mock_interview_preview.gif)
+![Mock Interview View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/interviewlab.png)
 </details>
 
 <details>
 <summary>View Marketplace Preview</summary>
 
 *Enable or disable plugin extensions and review required context permissions.*
-![Marketplace View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/marketplace_preview.png)
+![Marketplace View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/marketplace.png)
 </details>
 
 ---
 
 ## Demo
 
-- **Live Demo Instance:** [career-os.dev](https://career-os.dev) (Use fully in guest mode with no credentials needed)
 - **GitHub Repository:** [github.com/karthikrshet/Career-Agents](https://github.com/karthikrshet/Career-Agents)
 - **NPM Package Registry:** [npmjs.com/package/career-agents](https://www.npmjs.com/package/career-agents)
 - **Documentation index:** [docs/README.md](./docs/README.md)
-- **Video Walkthrough:** [YouTube Video Walkthrough](https://youtube.com)
 
 ---
 
