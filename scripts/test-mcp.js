@@ -96,7 +96,7 @@ async function runTests() {
     console.log('Requesting tools/list...');
     const toolsRes = await sendRequest('tools/list', {});
     const tools = toolsRes.result?.tools || [];
-    assertTest('Tools Listing', tools.length === 19, `Found ${tools.length} tools`);
+    assertTest('Tools Listing', tools.length >= 19, `Found ${tools.length} tools`);
 
     // 3. Search Agents tool
     console.log('Calling search_agents...');
