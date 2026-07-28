@@ -1,7 +1,5 @@
-// apps/web/src/app/api/reports/export/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { Document, Packer, Paragraph, HeadingLevel, Table, TableRow, TableCell, WidthType } from "docx";
-import ExcelJS from "exceljs";
 import { escapeHTML } from "packages/security";
 
 export async function POST(req: NextRequest) {
@@ -290,6 +288,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (format === "xlsx" || format === "xls") {
+      const ExcelJS = (await import("exceljs")).default;
       const workbook = new ExcelJS.Workbook();
       const sheet = workbook.addWorksheet("Scores");
       sheet.columns = [
