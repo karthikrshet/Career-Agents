@@ -27,6 +27,8 @@ export interface RouterConfig {
   temperature?: number;
   maxTokens?: number;
   streaming?: boolean;
+  retryCount?: number;
+  retryDelayMs?: number;
 }
 
 const DEFAULT_FALLBACK_ORDER: AIProviderId[] = [
@@ -48,6 +50,8 @@ const MODE_PRIMARY_PROVIDERS: Record<RouterMode, AIProviderId> = {
   balanced: "openai",
   creative: "claude",
 };
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // Map provider IDs to their static fallback target models
 const DEFAULT_MODEL_NAMES: Record<AIProviderId, string> = {
@@ -154,14 +158,20 @@ export async function routeCompletion(
 
     for (let keyIdx = 0; keyIdx < keysToTry.length; keyIdx++) {
       const activeKey = keysToTry[keyIdx];
-      const runStart = Date.now();
+      const maxRetries = config.retryCount ?? 3;
+      const retryDelay = config.retryDelayMs ?? 1000;
 
-      try {
-        const headers: Record<string, string> = {
-          "Content-Type": "application/json",
-        };
+      let runStart = Date.now();
+      let lastError: any = null;
 
-        let responseText = "";
+      for (let attempt = 0; attempt < maxRetries; attempt++) {
+        runStart = Date.now();
+        try {
+          const headers: Record<string, string> = {
+            "Content-Type": "application/json",
+          };
+  
+          let responseText = "";
 
         if (providerId === "gemini") {
           // Google Gemini endpoint compilation
@@ -288,19 +298,29 @@ export async function routeCompletion(
           status: "success",
           latencyMs: Date.now() - runStart,
         });
-        break; // Key success, break key loop
+        break; // break attempt loop
       } catch (err: any) {
-        safeLogger.warn(`Gateway failed executing prompt with provider ${providerId} and key index ${keyIdx}`, err);
-        executionChain.push({
-          provider: providerId,
-          model,
-          status: "failed",
-          latencyMs: Date.now() - runStart,
-          error: err.message || "Unknown execution error",
-        });
+        lastError = err;
+        safeLogger.warn(`Gateway failed executing prompt with provider ${providerId} and key index ${keyIdx} on attempt ${attempt}`, err);
+        if (attempt < maxRetries - 1) {
+          await sleep(retryDelay);
+        }
       }
     }
+
+    if (completed) {
+      break; // break key loop
+    } else {
+      executionChain.push({
+        provider: providerId,
+        model,
+        status: "failed",
+        latencyMs: Date.now() - runStart,
+        error: lastError?.message || "Unknown execution error",
+      });
+    }
   }
+}
 
   const durationMs = Date.now() - startTime;
   const inputLen = messages.reduce((acc, m) => acc + m.content.length, 0);
