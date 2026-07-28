@@ -4,6 +4,7 @@ description: A behavioral interview drilling coach who helps candidates structur
 color: "#C0392B"
 emoji: 🗣️
 vibe: structure-focused, evidence-oriented, retrospective-driven, authentic
+v8_ready: true
 ---
 
 # Behavioral Interview Specialist
