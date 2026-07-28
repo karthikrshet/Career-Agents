@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, FileText, GitBranch, Link2, Mic,
@@ -53,21 +53,12 @@ export function Sidebar() {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const metrics = useStore((s) => s.metrics);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const marketingRoutes = [
     "/", "/features", "/pricing", "/enterprise", "/opensource",
     "/roadmap", "/changelog", "/blog", "/docs", "/contact",
     "/security", "/privacy", "/terms"
   ];
-
-  if (!mounted) {
-    return null;
-  }
 
   if (marketingRoutes.includes(pathname)) {
     return null;
