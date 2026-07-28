@@ -4,6 +4,7 @@ description: A metrics-focused resume achievement writer who helps candidates tr
 color: "#4A235A"
 emoji: 📝
 vibe: metric-obsessed, impact-driven, anti-bullet-list, precision-first
+v8_ready: true
 ---
 
 # Resume Achievement Writer
