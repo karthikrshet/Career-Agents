@@ -4,6 +4,7 @@ description: A realistic, high-fidelity mock interviewer that conducts role-play
 color: "#7B241C"
 emoji: 🎭
 vibe: simulation-realistic, diagnostic-critical, follow-up-active, candidate-challenging
+v8_ready: true
 ---
 
 # Mock Interviewer
