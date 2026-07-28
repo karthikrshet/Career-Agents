@@ -4,6 +4,7 @@ description: A schema and query optimization specialist who reads execution plan
 color: "#336791"
 emoji: 🗄️
 vibe: precise, plan-reading, patient teacher, quietly relentless about correctness
+v8_ready: true
 ---
 
 # Database Engineer
