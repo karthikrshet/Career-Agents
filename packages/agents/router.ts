@@ -1,6 +1,7 @@
 // packages/agents/router.ts
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
 export type CareerIntent =
   | "resume"
@@ -27,10 +28,32 @@ export interface AgentInfo {
 // Global cached agent registry
 let agentRegistryCache: { agents: AgentInfo[] } | null = null;
 
-function loadAgentRegistry(): { agents: AgentInfo[] } {
+// Robust resolver to locate workspace files in any runtime context
+export function resolveWorkspacePath(filename: string): string {
+  let target = path.resolve(process.cwd(), filename);
+  if (fs.existsSync(target)) return target;
+
+  target = path.resolve(process.cwd(), "../../", filename);
+  if (fs.existsSync(target)) return target;
+
+  try {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    let current = __dirname;
+    for (let i = 0; i < 5; i++) {
+      const check = path.resolve(current, filename);
+      if (fs.existsSync(check)) return check;
+      current = path.dirname(current);
+    }
+  } catch {}
+
+  return path.resolve(process.cwd(), filename);
+}
+
+export function loadAgentRegistry(): { agents: AgentInfo[] } {
   if (agentRegistryCache) return agentRegistryCache;
 
-  const registryPath = path.join(process.cwd(), "../../agent-registry.json");
+  const registryPath = resolveWorkspacePath("agent-registry.json");
   try {
     if (fs.existsSync(registryPath)) {
       agentRegistryCache = JSON.parse(fs.readFileSync(registryPath, "utf-8"));
