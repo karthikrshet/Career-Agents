@@ -30,6 +30,9 @@ export async function POST(req: NextRequest) {
       jsonModeSupported: !!registry.capabilities.supportsJSON,
       report,
       error: report.error || null,
+      response: report.response || "No response returned",
+      tokenUsage: report.tokenUsage || { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
+      providerVersion: report.providerVersion || "v1",
     });
   } catch (e: any) {
     return NextResponse.json({
@@ -45,7 +48,10 @@ export async function POST(req: NextRequest) {
       visionSupported: false,
       toolCallingSupported: false,
       jsonModeSupported: false,
-      error: e.message || "Invalid payload format"
+      error: e.message || "Invalid payload format",
+      response: "N/A",
+      tokenUsage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
+      providerVersion: "N/A",
     }, { status: 200 }); // return status 200 with success false to display clean error UI on client
   }
 }
