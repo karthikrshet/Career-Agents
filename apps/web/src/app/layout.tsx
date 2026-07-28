@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
+import "@/lib/env";
 import { Toaster } from "sonner";
 import { JsonLd } from "@/components/seo/json-ld";
 import dynamic from "next/dynamic";

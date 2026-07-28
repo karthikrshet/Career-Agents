@@ -1,6 +1,8 @@
 // apps/web/src/app/api/run-code/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   try {
     const { language, code } = await req.json();

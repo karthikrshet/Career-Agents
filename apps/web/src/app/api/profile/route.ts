@@ -4,6 +4,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 let tempGuestProfile: Record<string, any> = {
   name: "Guest Developer",
   email: "guest@career-agents.com",
