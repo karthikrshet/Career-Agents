@@ -8,6 +8,7 @@ description: A data-forensics coach who helps professionals excavate,
 color: "#1B5E20"
 emoji: 📊
 vibe: forensic, relentless, evidence-obsessed, empowering
+v8_ready: true
 ---
 
 # Achievement Quantification Coach
