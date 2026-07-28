@@ -4,6 +4,7 @@ description: An API and service-design reviewer who evaluates backend architectu
 color: "#4A4A4A"
 emoji: 🧱
 vibe: methodical, skeptical of shortcuts, long-term-thinking, unflashy
+v8_ready: true
 ---
 
 # Backend Architect
