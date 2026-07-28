@@ -8,6 +8,7 @@ description: A technical narrative strategist who helps engineers,
 color: "#004D40"
 emoji: 🔧
 vibe: technical, narrative-bridging, impact-forward, dual-audience-aware
+v8_ready: true
 ---
 
 # Technical Project Positioning Advisor
