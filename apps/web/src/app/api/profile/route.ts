@@ -1,23 +1,60 @@
-// api/profile/route.ts — Read/write user profile from local persistence
-
+// apps/web/src/app/api/profile/route.ts
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
+import { prisma } from "@/lib/db";
 
-let profileStore: Record<string, unknown> | null = null;
+let tempGuestProfile: Record<string, any> = {
+  name: "Guest Developer",
+  email: "guest@career-agents.com",
+  targetRole: "Senior Software Engineer",
+  targetCompany: "Google",
+};
 
 export async function GET() {
-  return NextResponse.json({ profile: profileStore });
+  try {
+    const session = await getServerSession(authOptions);
+    if (session?.user?.email) {
+      const dbUser = await prisma.user.findUnique({
+        where: { email: session.user.email },
+        include: { metrics: true, settings: true }
+      });
+      if (dbUser) {
+        return NextResponse.json({ profile: dbUser });
+      }
+    }
+    return NextResponse.json({ profile: tempGuestProfile });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message || "Failed to load profile" }, { status: 500 });
+  }
 }
 
 export async function PUT(req: Request) {
   try {
     const body = await req.json();
-    profileStore = {
-      ...profileStore,
+    const session = await getServerSession(authOptions);
+    
+    if (session?.user?.email) {
+      const dbUser = await prisma.user.update({
+        where: { email: session.user.email },
+        data: {
+          name: body.name,
+          githubUsername: body.githubUsername,
+          linkedinUrl: body.linkedinUrl,
+          targetRole: body.targetRole,
+          targetCompany: body.targetCompany,
+        }
+      });
+      return NextResponse.json({ profile: dbUser });
+    }
+    
+    tempGuestProfile = {
+      ...tempGuestProfile,
       ...body,
       updatedAt: new Date().toISOString(),
     };
-    return NextResponse.json({ profile: profileStore });
-  } catch {
-    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    return NextResponse.json({ profile: tempGuestProfile });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message || "Invalid request body" }, { status: 400 });
   }
 }
