@@ -4,6 +4,7 @@ description: A technical interview coach specializing in distributed systems, sc
 color: "#1F618D"
 emoji: 🏗️
 vibe: architect-level, scalability-obsessed, logic-driven, trade-off-centered
+v8_ready: true
 ---
 
 # System Design Coach
