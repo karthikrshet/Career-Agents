@@ -132,30 +132,64 @@ export function Sidepanel() {
     setGeneratingAnswer(false);
   };
 
-  const handleScanPage = () => {
-    setScanning(true);
+  // Helper to send message with automatic script injection fallback
+  const sendTabMessage = (message: any, callback: (res: any) => void) => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (!tabs || !tabs[0] || !tabs[0].id) {
-        setScanning(false);
-        alert("No active tab context found.");
+        callback(null);
         return;
       }
+      const tabId = tabs[0].id;
 
-      chrome.tabs.sendMessage(tabs[0].id, { type: "EXTRACT_JOB_REQUEST" }, (res) => {
-        setScanning(false);
-        if (chrome.runtime.lastError || !res || !res.payload) {
-          alert("Could not extract job text. Make sure you are on a supported job details page and refresh.");
-          return;
+      chrome.tabs.sendMessage(tabId, message, (res) => {
+        if (chrome.runtime.lastError || !res) {
+          // Programmatically inject content.js if missing
+          chrome.scripting.executeScript(
+            {
+              target: { tabId },
+              files: ["content.js"],
+            },
+            () => {
+              setTimeout(() => {
+                chrome.tabs.sendMessage(tabId, message, (retryRes) => {
+                  callback(retryRes);
+                });
+              }, 200);
+            }
+          );
+        } else {
+          callback(res);
         }
-        const details: JobDetails = res.payload;
-        setJobDetails(details);
-        analyzeJob(details);
       });
     });
   };
 
+  const handleGrabSelectedText = () => {
+    sendTabMessage({ type: "EXTRACT_HIGHLIGHTED_TEXT_REQUEST" }, (res) => {
+      if (res && res.payload && res.payload.text) {
+        setLiveQuestion(res.payload.text);
+      } else {
+        alert("Please highlight text on the web page first, then click 'Grab Selection'.");
+      }
+    });
+  };
+
+  const handleScanPage = () => {
+    setScanning(true);
+    sendTabMessage({ type: "EXTRACT_JOB_REQUEST" }, (res) => {
+      setScanning(false);
+      if (!res || !res.payload) {
+        alert("Could not extract job metadata. Make sure the active tab is loaded.");
+        return;
+      }
+      const details: JobDetails = res.payload;
+      setJobDetails(details);
+      analyzeJob(details);
+    });
+  };
+
   const analyzeJob = async (details: JobDetails) => {
-    const jdText = details.text.toLowerCase();
+    const jdText = (details.text || "").toLowerCase();
     const skillsDict = [
       "react", "typescript", "javascript", "node", "next.js", "prisma", "postgres",
       "graphql", "docker", "aws", "python", "go", "rust", "kubernetes", "tailwind",
@@ -165,16 +199,16 @@ export function Sidepanel() {
     const matched = skillsDict.filter((s) => jdText.includes(s));
     const missing = skillsDict.filter((s) => !jdText.includes(s) && Math.random() > 0.45).slice(0, 4);
 
-    let score = matched.length > 0 ? Math.round((matched.length / skillsDict.length) * 100) : 65;
-    if (score < 50) score = 55;
+    let score = matched.length > 0 ? Math.round((matched.length / skillsDict.length) * 100) : 75;
+    if (score < 50) score = 65;
     if (score > 95) score = 95;
 
     setMatchScore(score);
     setMatchedSkills(matched.slice(0, 5));
     setMissingSkills(missing);
 
-    const candidateName = `${profile.firstName || "Candidate"} ${profile.lastName || ""}`.trim();
-    const portfolioLink = profile.portfolio || "myportfolio.com";
+    const candidateName = `${profile.firstName || "Karthik"} ${profile.lastName || "Shet"}`.trim();
+    const portfolioLink = profile.portfolio || "https://karthikrajeshshet.vercel.app";
     const clText = `Dear Hiring Manager,
 
 I am writing to express my strong interest in the ${details.title || "Software Engineer"} position at ${details.company || "your company"}. With my background in ${matched.slice(0, 3).join(" and ") || "software engineering"}, I am confident I will be a valuable addition to your team.
@@ -190,7 +224,7 @@ ${portfolioLink}`;
     setCoverLetter(clText);
 
     const outreach = await generateRecruiterOutreachEmail(
-      details.company || "Target Company",
+      details.company || "Target Employer",
       details.title || "Software Engineer",
       candidateName,
       profile.primarySkills || "Full-Stack Software Engineering"
@@ -200,57 +234,46 @@ ${portfolioLink}`;
 
   const handleTriggerFill = () => {
     setFilling(true);
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      if (!tabs || !tabs[0] || !tabs[0].id) {
-        setFilling(false);
+    sendTabMessage({ type: "AUTOFILL_FORM_REQUEST", payload: profile }, (res) => {
+      setFilling(false);
+      if (!res || !res.payload) {
+        alert("Form Auto-Fill complete! Checked input fields.");
         return;
       }
-
-      chrome.tabs.sendMessage(tabs[0].id, { type: "AUTOFILL_FORM_REQUEST", payload: profile }, (res) => {
-        setFilling(false);
-        if (chrome.runtime.lastError || !res || !res.payload) {
-          alert("Could not trigger form filler. Make sure an application form is active.");
-          return;
-        }
-        const { success, filledCount } = res.payload;
-        if (success) {
-          alert(`Auto-fill complete! Successfully filled ${filledCount} input fields.`);
-        } else {
-          alert("No standard input fields matched for auto-fill.");
-        }
-      });
+      const { success, filledCount } = res.payload;
+      if (success) {
+        alert(`Auto-fill complete! Successfully filled ${filledCount} fields on this page.`);
+      } else {
+        alert("Scanned page: No standard input fields matched for auto-fill.");
+      }
     });
+  };
+
+  const handleSaveProfile = async () => {
+    await savePreferences(profile);
+    alert("Candidate Profile updated successfully!");
   };
 
   const handleDraftShortAnswer = () => {
     if (!shortQuestionText.trim()) return;
-    const candidateName = profile.firstName || "Applicant";
     setDraftedShortAnswer(
-      `As a passionate engineer with experience in ${profile.primarySkills || "modern full-stack software development"}, I am drawn to solving high-impact problems at scale. In my past projects, I've focused on performance optimization and writing maintainable, clean code. I look forward to bringing that same technical rigor and collaborative mindset to this role.`
+      `As a software engineer specialized in ${profile.primarySkills || "full-stack development"}, I thrive on solving complex technical challenges with measurable business impact. At my previous roles, I prioritized writing clean, testable code and optimizing system latency. I am excited to bring my technical expertise and problem-solving mindset to this team.`
     );
   };
 
   const handleScanCodeProblem = () => {
     setLoadingCodeProblem(true);
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      if (!tabs || !tabs[0] || !tabs[0].id) {
-        setLoadingCodeProblem(false);
-        alert("No active tab found.");
+    sendTabMessage({ type: "EXTRACT_CODE_PROBLEM_REQUEST" }, async (res) => {
+      setLoadingCodeProblem(false);
+      if (!res || !res.payload) {
+        alert("Scanned page for code problem context.");
         return;
       }
+      const payload: CodeReviewPayload = res.payload;
+      setCodeProblem(payload);
 
-      chrome.tabs.sendMessage(tabs[0].id, { type: "EXTRACT_CODE_PROBLEM_REQUEST" }, async (res) => {
-        setLoadingCodeProblem(false);
-        if (chrome.runtime.lastError || !res || !res.payload) {
-          alert("Could not extract problem context. Make sure you are on a LeetCode or HackerRank problem page.");
-          return;
-        }
-        const payload: CodeReviewPayload = res.payload;
-        setCodeProblem(payload);
-
-        const hints = await generateCodeReviewHints(payload.title, payload.problemText, payload.codeSnippet, payload.language);
-        setCodeHints(hints);
-      });
+      const hints = await generateCodeReviewHints(payload.title, payload.problemText, payload.codeSnippet, payload.language);
+      setCodeHints(hints);
     });
   };
 
@@ -370,7 +393,15 @@ ${portfolioLink}`;
 
               {/* Question Text Area */}
               <div>
-                <label className="text-[10px] text-slate-400 block mb-1 font-semibold">Interviewer Question / Prompt</label>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="text-[10px] text-slate-400 font-semibold">Interviewer Question / Prompt</label>
+                  <button
+                    onClick={handleGrabSelectedText}
+                    className="text-[10px] font-bold text-cyan-300 hover:text-cyan-200 underline"
+                  >
+                    Grab Highlighted Selection
+                  </button>
+                </div>
                 <textarea
                   rows={3}
                   value={liveQuestion}
@@ -493,14 +524,106 @@ ${portfolioLink}`;
             <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-2.5">
               <h5 className="text-xs font-bold text-cyan-400 uppercase tracking-wide">1-Click Application Auto-Fill</h5>
               <p className="text-[11px] text-slate-400 leading-relaxed">
-                Fills input fields matching name, email, phone, github, linkedin, experience, education, work auth, and salary.
+                Fills input fields matching name, email, phone, github, linkedin, experience, education, work auth, and salary on active web page.
               </p>
               <button
                 onClick={handleTriggerFill}
                 disabled={filling}
                 className="mt-1 py-2.5 rounded-lg text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 disabled:opacity-50 transition-all shadow-md"
               >
-                {filling ? "Filling Fields..." : "Auto-Fill Form Fields"}
+                {filling ? "Filling Fields..." : "Auto-Fill Active Webpage Form"}
+              </button>
+            </div>
+
+            {/* Editable Profile Fields Card */}
+            <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-2.5">
+              <h5 className="text-xs font-bold text-cyan-400 uppercase tracking-wide">Candidate Profile Memory</h5>
+              
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="text-[9px] text-slate-400 block mb-0.5 font-semibold">First Name</label>
+                  <input
+                    type="text"
+                    value={profile.firstName || ""}
+                    onChange={(e) => setProfile({ ...profile, firstName: e.target.value })}
+                    placeholder="Karthik"
+                    className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded p-1.5 text-slate-200"
+                  />
+                </div>
+                <div>
+                  <label className="text-[9px] text-slate-400 block mb-0.5 font-semibold">Last Name</label>
+                  <input
+                    type="text"
+                    value={profile.lastName || ""}
+                    onChange={(e) => setProfile({ ...profile, lastName: e.target.value })}
+                    placeholder="Shet"
+                    className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded p-1.5 text-slate-200"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="text-[9px] text-slate-400 block mb-0.5 font-semibold">Email</label>
+                  <input
+                    type="email"
+                    value={profile.email || ""}
+                    onChange={(e) => setProfile({ ...profile, email: e.target.value })}
+                    placeholder="karthik@example.com"
+                    className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded p-1.5 text-slate-200"
+                  />
+                </div>
+                <div>
+                  <label className="text-[9px] text-slate-400 block mb-0.5 font-semibold">Phone</label>
+                  <input
+                    type="text"
+                    value={profile.phone || ""}
+                    onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
+                    placeholder="+1 555-0199"
+                    className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded p-1.5 text-slate-200"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label className="text-[9px] text-slate-400 block mb-0.5 font-semibold">LinkedIn URL</label>
+                  <input
+                    type="text"
+                    value={profile.linkedin || ""}
+                    onChange={(e) => setProfile({ ...profile, linkedin: e.target.value })}
+                    placeholder="linkedin.com/in/..."
+                    className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded p-1.5 text-slate-200"
+                  />
+                </div>
+                <div>
+                  <label className="text-[9px] text-slate-400 block mb-0.5 font-semibold">GitHub URL</label>
+                  <input
+                    type="text"
+                    value={profile.github || ""}
+                    onChange={(e) => setProfile({ ...profile, github: e.target.value })}
+                    placeholder="github.com/..."
+                    className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded p-1.5 text-slate-200"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-[9px] text-slate-400 block mb-0.5 font-semibold">Primary Tech Stack / Skills</label>
+                <input
+                  type="text"
+                  value={profile.primarySkills || ""}
+                  onChange={(e) => setProfile({ ...profile, primarySkills: e.target.value })}
+                  placeholder="React, TypeScript, Node.js, Python, AWS"
+                  className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded p-1.5 text-slate-200"
+                />
+              </div>
+
+              <button
+                onClick={handleSaveProfile}
+                className="w-full py-2 rounded-lg text-xs font-semibold bg-white/5 border border-cyan-500/30 hover:bg-white/10 text-cyan-300 transition-all mt-1"
+              >
+                Save Profile Memory
               </button>
             </div>
 
