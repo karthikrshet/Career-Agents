@@ -5,6 +5,7 @@ import { searchKnowledgeBase, formatCitations } from "./knowledge";
 import { compileBrainContext } from "./context";
 import { getCachedAgentPrompt } from "./router";
 import { BrainMessage, BrainMemory } from "./types";
+import { routeCompletion } from "../ai-router/services/router";
 
 export interface BrainResult {
   systemPrompt: string;
@@ -17,17 +18,20 @@ export interface BrainResult {
   rationale: string;
 }
 
-export function processThroughBrain(
+export async function processThroughBrain(
   query: string,
   history: BrainMessage[],
   clientState: any,
-  enabledPlugins?: Record<string, boolean>
-): BrainResult {
+  enabledPlugins?: Record<string, boolean>,
+  gatewayConfig?: any
+): Promise<BrainResult> {
+  const startTime = Date.now();
+
   // 1. Compile permanent memory from client state
   const memory = compileBrainMemory(clientState);
 
   // 2. Query Knowledge Base for RAG context
-  const ragMatches = searchKnowledgeBase(query, 3);
+  const ragMatches = await searchKnowledgeBase(query, 3);
   const citations = formatCitations(ragMatches);
 
   // 3. Compile core prompt context
@@ -40,19 +44,54 @@ export function processThroughBrain(
 
   // 4. Plan agent execution sequence
   const plan = createBrainExecutionPlan(query);
+  const matched = plan.matchedAgents.slice(0, 2); // Run top 2 agents in parallel for latency optimization
+
+  // 5. Execute Specialist Agents in parallel via LLM Gateway
+  const agentResults: string[] = [];
   
-  // 5. Append agent instructions
-  let agentPrompts = "";
-  if (plan.matchedAgents.length > 0) {
-    for (const agent of plan.matchedAgents) {
+  if (gatewayConfig && matched.length > 0) {
+    const promises = matched.map(async (agent) => {
       const prompt = getCachedAgentPrompt(agent.filename);
-      if (prompt) {
-        agentPrompts += `\n\n[Agent Role: ${agent.name}]\n${prompt}`;
+      const agentSystemPrompt = `You are the specialized agent "${agent.name}" (Role: ${agent.division}).
+Your Goal is: ${agent.description}
+
+Here is the agent instructions:
+${prompt}
+
+Analyze the candidate's query: "${query}"
+And provide your specialized advice. Focus on actionable transition recommendations.
+Limit your response to 120 words. Do not write introductory or conversational headers, write only your direct analysis.`;
+
+      try {
+        const agentConfig = {
+          ...gatewayConfig,
+          maxTokens: 384,
+          streaming: false,
+        };
+        const response = await routeCompletion(
+          [
+            { role: "system", content: agentSystemPrompt },
+            { role: "user", content: query }
+          ],
+          agentConfig
+        );
+        return `### [Agent: ${agent.name} (${agent.division})] Specialized Analysis:\n${response}`;
+      } catch (err: any) {
+        return `### [Agent: ${agent.name}] Analysis failed: ${err.message}`;
       }
-    }
+    });
+
+    const results = await Promise.all(promises);
+    agentResults.push(...results);
   }
 
-  // 6. Append active plugins instructions
+  // 6. Merge outputs intelligently
+  let agentPrompts = "";
+  if (agentResults.length > 0) {
+    agentPrompts += "\n\n=== SPECIALIST AGENT CRITIQUES ===\n" + agentResults.join("\n\n") + "\n=================================";
+  }
+
+  // 7. Append active plugins instructions
   let pluginPrompt = "";
   if (enabledPlugins) {
     if (enabledPlugins["star-coach"]) {
@@ -75,14 +114,16 @@ export function processThroughBrain(
 
   const allTimelineSteps = plan.timeline.steps.map(s => s.agentName).join(", ");
   const runningCount = plan.timeline.steps.length;
-  const thinkingIndicator = `<thinking>AI Brain executing dynamic route: classified intent as "${plan.intent}" (${plan.intentConfidence}% confidence). Found ${runningCount} specialist agents [${allTimelineSteps}]. Confidence: ${plan.timeline.confidence}%. Mapped execution chain in ${plan.timeline.totalTimeMs}ms. Memory: ${memorySize}. Files: ${filesUsed}. Citations: ${citationsCount}. Models: ${activeModelName}.</thinking>\n\n`;
+  const totalTimeTaken = Date.now() - startTime;
+  
+  const thinkingIndicator = `<thinking>AI Brain executing dynamic route: classified intent as "${plan.intent}" (${plan.intentConfidence}% confidence). Ran ${matched.length} specialist agents [${matched.map(a => a.name).join(", ")}]. Context: Memory: ${memorySize}, Files: ${filesUsed}, Citations: ${citationsCount}. Model: ${activeModelName}. Execution completed in ${totalTimeTaken}ms.</thinking>\n\n`;
 
   return {
     systemPrompt: finalSystemPrompt,
     thinkingIndicator,
     timeline: plan.timeline,
     confidence: plan.timeline.confidence,
-    timeTakenMs: plan.timeline.totalTimeMs,
+    timeTakenMs: totalTimeTaken,
     intent: plan.intent,
     intentConfidence: plan.intentConfidence,
     rationale: plan.rationale,
@@ -100,5 +141,3 @@ export * from "./history";
 export * from "./summary";
 export * from "./intent";
 export * from "./search";
-
-
