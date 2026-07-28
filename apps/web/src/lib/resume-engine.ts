@@ -126,8 +126,25 @@ function computeAtsScore(
 
 export async function analyzeResumeText(
   rawText: string,
-  fileName: string
+  fileName: string,
+  config?: any
 ): Promise<ResumeAnalysis> {
+  // If running in browser, delegate to server API for real AI evaluation
+  if (typeof window !== "undefined") {
+    try {
+      const res = await fetch("/api/resume/evaluate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: rawText, fileName, config }),
+      });
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (err) {
+      console.error("Server-side resume evaluation failed, falling back to scanner", err);
+    }
+  }
+
   const lines = rawText
     .split("\n")
     .map((l) => l.trim())
