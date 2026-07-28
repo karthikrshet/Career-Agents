@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { generate } from "../../../../../../../packages/ai/router";
 import { enforceRequestLimits } from "../../../../../../../packages/security";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 
 const ATS_KEYWORDS = [

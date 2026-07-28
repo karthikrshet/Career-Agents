@@ -60,7 +60,7 @@ export default function ResumePage() {
     } finally {
       setAnalyzing(false);
     }
-  }, [setResumeAnalysis]);
+  }, [setResumeAnalysis, settings.aiProvider]);
 
   async function handleUrlImport() {
     if (!resumeUrl.trim()) return;
