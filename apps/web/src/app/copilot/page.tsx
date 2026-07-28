@@ -1046,22 +1046,30 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                             </div>
                           );
                         }
-                        
-                        const agentsMatch = thinking.match(/\[(.*?)\]/);
+                                            const timelineMatch = thinking.match(/timeline \[(.*?)\]/);
+                        const specialistMatch = thinking.match(/specialist agents \[(.*?)\]/);
                         const confidenceMatch = thinking.match(/Confidence:\s*(\d+)%/);
                         const timeMatch = thinking.match(/in\s*(\d+)ms/);
-                        const memoryMatch = thinking.match(/Memory:\s*([^\s\.]+)/);
-                        const filesMatch = thinking.match(/Files:\s*([^\s\.]+)/);
-                        const citationsMatch = thinking.match(/Citations:\s*([^\s\.]+)/);
-                        const modelsMatch = thinking.match(/Models:\s*([^\s\.]+)/);
+                        const memoryMatch = thinking.match(/Memory:\s*([^\s\.,]+)/);
+                        const filesMatch = thinking.match(/Files:\s*([^\s\.,]+)/);
+                        const citationsMatch = thinking.match(/Citations:\s*([^\s\.,]+)/);
+                        const modelsMatch = thinking.match(/Model:\s*([^\s\.,]+)/);
+                        const providerMatch = thinking.match(/Provider:\s*([^\s\.,]+)/);
+                        const promptTokensMatch = thinking.match(/PromptTokens:\s*([^\s\.,]+)/);
+                        const completionTokensMatch = thinking.match(/CompletionTokens:\s*([^\s\.,]+)/);
+                        const costMatch = thinking.match(/Cost:\s*([^\s\.,]+)/);
                         
-                        const agents = agentsMatch ? agentsMatch[1].split(", ") : [];
+                        const timeline = timelineMatch ? timelineMatch[1].split(", ") : [];
                         const confidence = confidenceMatch ? Number(confidenceMatch[1]) : 85;
                         const timeMs = timeMatch ? Number(timeMatch[1]) : 120;
                         const memoryVal = memoryMatch ? memoryMatch[1] : "12KB";
                         const filesVal = filesMatch ? filesMatch[1] : "None";
                         const citationsVal = citationsMatch ? citationsMatch[1] : "0";
                         const modelsVal = modelsMatch ? modelsMatch[1] : "Claude 3.5 Sonnet";
+                        const providerVal = providerMatch ? providerMatch[1] : "openai";
+                        const promptTokensVal = promptTokensMatch ? promptTokensMatch[1] : "0";
+                        const completionTokensVal = completionTokensMatch ? completionTokensMatch[1] : "0";
+                        const costVal = costMatch ? costMatch[1] : "$0.000000";
                         
                         return (
                           <div className="p-4 bg-secondary/20 border border-border/40 rounded-2xl space-y-3.5 text-xs max-w-md">
@@ -1076,7 +1084,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                             <div className="space-y-2">
                               <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Active Execution Timeline</p>
                               <div className="grid grid-cols-1 gap-1.5">
-                                {agents.map((agent, index) => (
+                                {timeline.map((agent, index) => (
                                   <div key={index} className="flex items-center justify-between p-2 rounded-lg bg-[#070912]/80 border border-border/40">
                                     <span className="font-mono text-[10.5px] text-indigo-300">🤖 {agent}</span>
                                     <span className="px-1.5 py-0.5 rounded text-[8px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-widest">
@@ -1097,10 +1105,14 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                             </div>
 
                             <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[9px] text-muted-foreground/80 font-mono">
+                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Provider: {providerVal.toUpperCase()}</span>
+                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Model: {modelsVal}</span>
                               <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Memory: {memoryVal}</span>
                               <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Files: {filesVal}</span>
-                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Citations: {citationsVal}</span>
-                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Model: {modelsVal}</span>
+                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">RAG Chunks: {citationsVal}</span>
+                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Prompt Tokens: {promptTokensVal}</span>
+                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Completion Tokens: {completionTokensVal}</span>
+                              <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Cost: {costVal}</span>
                             </div>
                           </div>
                         );
@@ -1272,21 +1284,30 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                               );
                             }
                             
-                            const agentsMatch = thinking.match(/\[(.*?)\]/);
+                            const timelineMatch = thinking.match(/timeline \[(.*?)\]/);
+                            const specialistMatch = thinking.match(/specialist agents \[(.*?)\]/);
                             const confidenceMatch = thinking.match(/Confidence:\s*(\d+)%/);
                             const timeMatch = thinking.match(/in\s*(\d+)ms/);
-                            const memoryMatch = thinking.match(/Memory:\s*([^\s\.]+)/);
-                            const filesMatch = thinking.match(/Files:\s*([^\s\.]+)/);
-                            const citationsMatch = thinking.match(/Citations:\s*([^\s\.]+)/);
-                            const modelsMatch = thinking.match(/Models:\s*([^\s\.]+)/);
+                            const memoryMatch = thinking.match(/Memory:\s*([^\s\.,]+)/);
+                            const filesMatch = thinking.match(/Files:\s*([^\s\.,]+)/);
+                            const citationsMatch = thinking.match(/Citations:\s*([^\s\.,]+)/);
+                            const modelsMatch = thinking.match(/Model:\s*([^\s\.,]+)/);
+                            const providerMatch = thinking.match(/Provider:\s*([^\s\.,]+)/);
+                            const promptTokensMatch = thinking.match(/PromptTokens:\s*([^\s\.,]+)/);
+                            const completionTokensMatch = thinking.match(/CompletionTokens:\s*([^\s\.,]+)/);
+                            const costMatch = thinking.match(/Cost:\s*([^\s\.,]+)/);
                             
-                            const agents = agentsMatch ? agentsMatch[1].split(", ") : [];
+                            const timeline = timelineMatch ? timelineMatch[1].split(", ") : [];
                             const confidence = confidenceMatch ? Number(confidenceMatch[1]) : 85;
                             const timeMs = timeMatch ? Number(timeMatch[1]) : 120;
                             const memoryVal = memoryMatch ? memoryMatch[1] : "12KB";
                             const filesVal = filesMatch ? filesMatch[1] : "None";
                             const citationsVal = citationsMatch ? citationsMatch[1] : "0";
                             const modelsVal = modelsMatch ? modelsMatch[1] : "Claude 3.5 Sonnet";
+                            const providerVal = providerMatch ? providerMatch[1] : "openai";
+                            const promptTokensVal = promptTokensMatch ? promptTokensMatch[1] : "0";
+                            const completionTokensVal = completionTokensMatch ? completionTokensMatch[1] : "0";
+                            const costVal = costMatch ? costMatch[1] : "$0.000000";
                             
                             return (
                               <div className="p-4 bg-secondary/20 border border-border/40 rounded-2xl space-y-3.5 text-xs max-w-md">
@@ -1301,7 +1322,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                                 <div className="space-y-2">
                                   <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Active Execution Timeline</p>
                                   <div className="grid grid-cols-1 gap-1.5">
-                                    {agents.map((agent, index) => (
+                                    {timeline.map((agent, index) => (
                                       <div key={index} className="flex items-center justify-between p-2 rounded-lg bg-[#070912]/80 border border-border/40">
                                         <span className="font-mono text-[10.5px] text-indigo-300">🤖 {agent}</span>
                                         <span className="px-1.5 py-0.5 rounded text-[8px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-widest">
@@ -1322,10 +1343,14 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                                 </div>
 
                                 <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[9px] text-muted-foreground/80 font-mono">
+                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Provider: {providerVal.toUpperCase()}</span>
+                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Model: {modelsVal}</span>
                                   <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Memory: {memoryVal}</span>
                                   <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Files: {filesVal}</span>
-                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Citations: {citationsVal}</span>
-                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Model: {modelsVal}</span>
+                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">RAG Chunks: {citationsVal}</span>
+                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Prompt Tokens: {promptTokensVal}</span>
+                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Completion Tokens: {completionTokensVal}</span>
+                                  <span className="bg-secondary/40 px-1.5 py-0.5 rounded border border-border/20">Cost: {costVal}</span>
                                 </div>
                               </div>
                             );

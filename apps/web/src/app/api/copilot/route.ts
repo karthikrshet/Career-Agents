@@ -4,6 +4,9 @@ import { processThroughBrain } from "../../../../../../packages/brain/brain";
 import { routeCompletion } from "../../../../../../packages/ai-router/services/router";
 import type { RouterConfig } from "../../../../../../packages/ai-router/services/router";
 import { enforceRequestLimits } from "packages/security";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +17,63 @@ export async function POST(req: NextRequest) {
     if (limitResponse) return limitResponse;
 
     const { messages, config, context, settings: clientSettings } = await req.json();
+
+    // Server-side usage limits gating check
+    const session = await getServerSession(authOptions);
+    let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
+    let userId: string | null = null;
+
+    if (session?.user?.email) {
+      const user = await prisma.user.findUnique({
+        where: { email: session.user.email },
+        select: { id: true, plan: true }
+      });
+      if (user) {
+        userId = user.id;
+        plan = (user.plan as any) || "free";
+      }
+    }
+
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    let currentPromptCount = 0;
+    if (userId) {
+      currentPromptCount = await prisma.analyticsEvent.count({
+        where: {
+          userId,
+          eventName: "copilot_prompt",
+          timestamp: { gte: startOfToday }
+        }
+      });
+    } else {
+      currentPromptCount = await prisma.analyticsEvent.count({
+        where: {
+          sessionId: clientIp,
+          eventName: "copilot_prompt",
+          timestamp: { gte: startOfToday }
+        }
+      });
+    }
+
+    const { FeatureFlagsManager } = await import("@/lib/feature-flags");
+    const allowed = FeatureFlagsManager.checkUsageLimit(plan, currentPromptCount, "copilot");
+    if (!allowed) {
+      return NextResponse.json({
+        success: false,
+        error: `Your plan (${plan.toUpperCase()}) daily limit has been exceeded (20 prompts max per day). Please upgrade to Professional or Enterprise plan for unlimited Copilot chats.`
+      }, { status: 429 });
+    }
+
+    // Store copilot prompt telemetry event in database
+    await prisma.analyticsEvent.create({
+      data: {
+        userId,
+        sessionId: clientIp,
+        eventName: "copilot_prompt",
+        properties: { model: config?.model || "default" }
+      }
+    });
 
     // 1 & 2. AI Brain Orchestrator & Context compilation
     const lastUserMessage = [...messages].reverse().find((m) => m.role === "user")?.content || "";

@@ -47,6 +47,63 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, error: "No resume text provided" }, { status: 400 });
     }
 
+    // Server-side usage limits gating check
+    const session = await getServerSession(authOptions);
+    let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
+    let userId: string | null = null;
+
+    if (session?.user?.email) {
+      const user = await prisma.user.findUnique({
+        where: { email: session.user.email },
+        select: { id: true, plan: true }
+      });
+      if (user) {
+        userId = user.id;
+        plan = (user.plan as any) || "free";
+      }
+    }
+
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    let currentScansCount = 0;
+    if (userId) {
+      currentScansCount = await prisma.resumeAnalysis.count({
+        where: {
+          userId,
+          analyzedAt: { gte: startOfToday }
+        }
+      });
+    } else {
+      currentScansCount = await prisma.analyticsEvent.count({
+        where: {
+          sessionId: clientIp,
+          eventName: "resume_scan",
+          timestamp: { gte: startOfToday }
+        }
+      });
+    }
+
+    const { FeatureFlagsManager } = await import("@/lib/feature-flags");
+    const allowed = FeatureFlagsManager.checkUsageLimit(plan, currentScansCount, "resume");
+    if (!allowed) {
+      return NextResponse.json({
+        success: false,
+        error: `Your plan (${plan.toUpperCase()}) daily limit has been exceeded (5 resume scans max per day). Please upgrade to Professional or Enterprise plan for unlimited resume evaluations.`
+      }, { status: 429 });
+    }
+
+    // Increment guest scan telemetry in PostgreSQL
+    if (!userId) {
+      await prisma.analyticsEvent.create({
+        data: {
+          sessionId: clientIp,
+          eventName: "resume_scan",
+          properties: { fileName: fileName || "resume.pdf" }
+        }
+      });
+    }
+
     const lines = text
       .split("\n")
       .map((l: string) => l.trim())
@@ -200,7 +257,6 @@ Return a JSON object matching this structure:
     const analysisId = Math.random().toString(36).slice(2, 9);
 
     // 7. Save to PostgreSQL if logged in
-    const session = await getServerSession(authOptions);
     if (session?.user) {
       try {
         const userEmail = session.user.email;

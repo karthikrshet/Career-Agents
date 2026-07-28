@@ -3,6 +3,9 @@ import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 import { enforceRequestLimits } from "packages/security";
 import { generate } from "packages/ai/router";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/db";
 
 const SYSTEM_PROMPT_GENERATE = `You are an expert technical interviewer at a top-tier tech company.
 Generate exactly 5 interview questions in JSON format for the given context.
@@ -41,12 +44,18 @@ Format:
     "technicalDepth": N,
     "problemSolving": N,
     "confidence": N,
-    "overall": M
+    "overall": N
   },
   "feedback": "...",
-  "strengths": ["..."],
-  "improvements": ["..."]
-}`;
+  "starEvaluation": {
+    "situation": "...",
+    "task": "...",
+    "action": "...",
+    "result": "..."
+  },
+  "suggestions": ["..."]
+}
+`;
 
 export async function POST(req: Request) {
   try {
@@ -57,11 +66,67 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { action, company, role, mode, difficulty, responses, aiConfig } = body;
 
-    const provider = aiConfig?.provider || "gemini";
-    const apiKey = aiConfig?.apiKey || process.env[`${provider.toUpperCase()}_API_KEY` || ""];
-    const hasKey = !!apiKey || ["ollama", "lmstudio"].includes(provider);
+    // Server-side usage limits gating check
+    const session = await getServerSession(authOptions);
+    let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
+    let userId: string | null = null;
+
+    if (session?.user?.email) {
+      const user = await prisma.user.findUnique({
+        where: { email: session.user.email },
+        select: { id: true, plan: true }
+      });
+      if (user) {
+        userId = user.id;
+        plan = (user.plan as any) || "free";
+      }
+    }
 
     if (action === "generate") {
+      const startOfToday = new Date();
+      startOfToday.setHours(0, 0, 0, 0);
+
+      let currentSessionsCount = 0;
+      if (userId) {
+        currentSessionsCount = await prisma.interviewSession.count({
+          where: {
+            userId,
+            startedAt: { gte: startOfToday }
+          }
+        });
+      } else {
+        currentSessionsCount = await prisma.analyticsEvent.count({
+          where: {
+            sessionId: clientIp,
+            eventName: "interview_session",
+            timestamp: { gte: startOfToday }
+          }
+        });
+      }
+
+      const { FeatureFlagsManager } = await import("@/lib/feature-flags");
+      const allowed = FeatureFlagsManager.checkUsageLimit(plan, currentSessionsCount, "interview");
+      if (!allowed) {
+        return NextResponse.json({
+          error: `Your plan (${plan.toUpperCase()}) daily limit has been exceeded (1 mock interview max per day). Please upgrade to Professional or Enterprise plan for unlimited mock interviews.`
+        }, { status: 429 });
+      }
+
+      // Log interview session event in database for guests
+      if (!userId) {
+        await prisma.analyticsEvent.create({
+          data: {
+            sessionId: clientIp,
+            eventName: "interview_session",
+            properties: { company: company || "General" }
+          }
+        });
+      }
+
+      const provider = aiConfig?.provider || "gemini";
+      const apiKey = aiConfig?.apiKey || process.env[`${provider.toUpperCase()}_API_KEY` || ""];
+      const hasKey = !!apiKey || ["ollama", "lmstudio"].includes(provider);
+
       if (!hasKey) {
         return NextResponse.json(generateSampleQuestions(mode, company));
       }

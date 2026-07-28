@@ -10,6 +10,7 @@ import {
   Terminal, Globe, Lock, Workflow, BarChart3, Package, BookOpen
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import agentRegistry from "../../../../agent-registry.json";
 import { cn } from "@/lib/utils";
@@ -209,17 +210,7 @@ export default function LandingPage() {
   const [agentSearch, setAgentSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const [cookieConsent, setCookieConsent] = useState<"accepted" | "declined" | null>(null);
 
-  useEffect(() => {
-    const consent = localStorage.getItem("cookie-consent");
-    if (consent) setCookieConsent(consent as any);
-  }, []);
-
-  const handleConsent = (status: "accepted" | "declined") => {
-    localStorage.setItem("cookie-consent", status);
-    setCookieConsent(status);
-  };
 
   const agents = useMemo(() => agentRegistry.agents || [], []);
   
@@ -245,39 +236,7 @@ export default function LandingPage() {
       <div className="absolute top-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-sky-950/15 blur-[180px] pointer-events-none" />
       <div className="absolute bottom-[10%] left-[10%] w-[50%] h-[50%] rounded-full bg-violet-950/10 blur-[150px] pointer-events-none" />
 
-      {/* Global Marketing Topbar Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-slate-900 bg-slate-950/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src="/logo.svg" alt="Career Agents" className="w-8 h-8" />
-            <span className="font-semibold text-sm tracking-tight text-white">Career Agents</span>
-          </div>
 
-          <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-slate-400">
-            <Link href="/features" className="hover:text-white transition">Features</Link>
-            <Link href="/pricing" className="hover:text-white transition">Pricing</Link>
-            <Link href="/docs" className="hover:text-white transition">Docs</Link>
-            <Link href="/roadmap" className="hover:text-white transition">Roadmap</Link>
-            <Link href="/changelog" className="hover:text-white transition">Changelog</Link>
-            <Link href="/blog" className="hover:text-white transition">Blog</Link>
-            <Link href="/about" className="hover:text-white transition">About</Link>
-            <Link href="/opensource" className="hover:text-white transition">Open Source</Link>
-            <Link href="/enterprise" className="hover:text-white transition">Enterprise</Link>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="ghost" className="text-xs font-medium hover:bg-slate-900 text-slate-400 hover:text-white">Sign In</Button>
-            </Link>
-            <Link href="/dashboard">
-              <Button className="text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/20 px-4 py-2 rounded-lg">
-                Launch App
-                <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center border-b border-slate-900/60 overflow-hidden">
@@ -709,91 +668,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Global Sitemap Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950 py-16">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-8 text-xs text-slate-400 mb-12">
-          <div className="space-y-4 col-span-2">
-            <div className="flex items-center gap-3">
-              <img src="/logo.svg" alt="Career Agents" className="w-8 h-8" />
-              <span className="font-semibold text-sm tracking-tight text-white">Career Agents</span>
-            </div>
-            <p className="text-[10px] text-slate-500 leading-relaxed max-w-xs">
-              The Open Source AI Career Operating System for software developers. Systemizing professional growth with multi-agent orchestration.
-            </p>
-          </div>
 
-          <div>
-            <h5 className="font-semibold text-slate-200 mb-4 text-[10px] uppercase tracking-wider">Product</h5>
-            <ul className="space-y-2 text-[10px] text-slate-500">
-              <li><Link href="/features" className="hover:text-white transition">Features</Link></li>
-              <li><Link href="/pricing" className="hover:text-white transition">Pricing</Link></li>
-              <li><Link href="/roadmap" className="hover:text-white transition">Roadmap</Link></li>
-              <li><Link href="/changelog" className="hover:text-white transition">Changelog</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-semibold text-slate-200 mb-4 text-[10px] uppercase tracking-wider">Developers</h5>
-            <ul className="space-y-2 text-[10px] text-slate-500">
-              <li><Link href="/docs" className="hover:text-white transition">Documentation</Link></li>
-              <li><Link href="/opensource" className="hover:text-white transition">Contributing</Link></li>
-              <li><Link href="/mcp" className="hover:text-white transition">MCP Server</Link></li>
-              <li><Link href="/blog" className="hover:text-white transition">Tech Blog</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-semibold text-slate-200 mb-4 text-[10px] uppercase tracking-wider">Company</h5>
-            <ul className="space-y-2 text-[10px] text-slate-500">
-              <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition">Contact Sales</Link></li>
-              <li><Link href="/security" className="hover:text-white transition">Security Portal</Link></li>
-              <li><Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 border-t border-slate-900/60 pt-8 flex flex-col md:flex-row items-center justify-between text-[10px] text-slate-500 gap-4">
-          <span>&copy; {new Date().getFullYear()} Career Agents. All rights reserved.</span>
-          <div className="flex gap-4">
-            <Link href="/terms" className="hover:text-slate-300">Terms of Service</Link>
-            <Link href="/privacy" className="hover:text-slate-300">Privacy Policy</Link>
-          </div>
-        </div>
-      </footer>
-
-      {/* Cookie Consent Banner */}
-      <AnimatePresence>
-        {!cookieConsent && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-6 right-6 max-w-sm border border-slate-900 bg-slate-950/95 backdrop-blur-md p-4 rounded-xl shadow-2xl z-50 flex flex-col gap-3"
-          >
-            <div className="flex items-start gap-2.5">
-              <Shield className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-              <p className="text-[10px] text-slate-400 leading-relaxed">
-                We use cookies to analyze traffic on our hosted deployment. No tracking keys are stored for local clones or repository forks.
-              </p>
-            </div>
-            <div className="flex justify-end gap-2 text-[10px]">
-              <button
-                onClick={() => handleConsent("declined")}
-                className="px-3 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 transition"
-              >
-                Decline
-              </button>
-              <button
-                onClick={() => handleConsent("accepted")}
-                className="px-3 py-1.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white transition font-medium"
-              >
-                Accept
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
     </div>
   );

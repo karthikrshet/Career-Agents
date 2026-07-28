@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import {
   LayoutDashboard, FileText, GitBranch, Link2, Mic,
   KanbanSquare, Building2, Bot, BarChart3, Package,
@@ -71,12 +72,12 @@ export function Sidebar() {
       className="relative flex flex-col h-full border-r border-border bg-card/50 overflow-hidden shrink-0"
     >
       {/* Logo */}
-      <div className={cn(
-        "flex items-center gap-3 p-4 border-b border-border",
+      <Link href="/" className={cn(
+        "flex items-center gap-3 p-4 border-b border-border hover:bg-muted/10 transition-colors",
         collapsed && "justify-center"
       )}>
         <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center">
-          <img src="/logo.svg" alt="Career Agents Logo" className="w-8 h-8" />
+          <Image src="/logo.svg" alt="Career Agents Logo" width={32} height={32} className="w-8 h-8" />
         </div>
         <AnimatePresence>
           {!collapsed && (
@@ -92,7 +93,7 @@ export function Sidebar() {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </Link>
 
       {/* Score pill */}
       <AnimatePresence>
