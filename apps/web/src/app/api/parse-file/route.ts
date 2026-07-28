@@ -5,6 +5,13 @@ import JSZip from "jszip";
 import { extractText, extractPages, extractMetadata } from "@/lib/pdf/server";
 import { indexDocument } from "packages/brain/knowledge";
 
+// Polyfill DOMMatrix for serverless/node environments where browser canvas globals are missing
+if (typeof global !== "undefined" && !(global as any).DOMMatrix) {
+  (global as any).DOMMatrix = class DOMMatrix {
+    constructor() {}
+  };
+}
+
 export async function POST(req: NextRequest) {
   const errors: string[] = [];
   let filename = "uploaded-file";
@@ -55,9 +62,15 @@ export async function POST(req: NextRequest) {
       }
     } else if (ext === "docx") {
       try {
-        const zip = await JSZip.loadAsync(buffer as any);
-        const docXml = await zip.file("word/document.xml")?.async("text");
-        text = docXml ? docXml.replace(/<[^>]+>/g, " ").trim() : "";
+        const mammoth = await import("mammoth");
+        const mammothRes = await mammoth.extractRawText({ buffer });
+        text = mammothRes.value;
+
+        const htmlRes = await mammoth.convertToHtml({ buffer });
+        const headings = htmlRes.value.match(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/gi)?.map(h => h.replace(/<[^>]+>/g, "").trim()) || [];
+        const links = htmlRes.value.match(/href="([^"]+)"/gi)?.map(l => l.slice(6, -1)) || [];
+        
+        metadata = { headings, links };
         pages = [text];
       } catch (err: any) {
         errors.push(`DOCX parsing failed: ${err.message}`);
@@ -105,22 +118,59 @@ export async function POST(req: NextRequest) {
         });
         text = JSON.stringify(sheets);
         pages = [text];
-        metadata = { sheets: Object.keys(sheets) };
+        metadata = { sheets: Object.keys(sheets), tables: sheets };
       } catch (err: any) {
         errors.push(`Excel parsing failed: ${err.message}`);
       }
     } else if (ext === "csv") {
       try {
-        text = buffer.toString("utf-8");
+        const csvContent = buffer.toString("utf-8");
+        const lines = csvContent.split(/\r?\n/).filter(Boolean);
+        const rows = lines.map(line => {
+          const cells: string[] = [];
+          let current = "";
+          let inQuotes = false;
+          for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+              inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+              cells.push(current.trim());
+              current = "";
+            } else {
+              current += char;
+            }
+          }
+          cells.push(current.trim());
+          return cells;
+        });
+        text = csvContent;
         pages = [text];
+        metadata = { rows };
       } catch (err: any) {
         errors.push(`CSV parsing failed: ${err.message}`);
+      }
+    } else if (ext === "pptx") {
+      try {
+        const zip = await JSZip.loadAsync(buffer as any);
+        const slideFiles = Object.keys(zip.files).filter(fn => fn.startsWith("ppt/slides/slide") && fn.endsWith(".xml"));
+        let pptxText = "";
+        for (const sf of slideFiles) {
+          const xml = await zip.files[sf].async("text");
+          pptxText += xml.replace(/<[^>]+>/g, " ").trim() + "\n";
+        }
+        text = pptxText.trim();
+        pages = [text];
+        metadata = { slideCount: slideFiles.length };
+      } catch (err: any) {
+        errors.push(`PPTX parsing failed: ${err.message}`);
       }
     } else if (ext === "zip") {
       try {
         const zip = await JSZip.loadAsync(buffer as any);
         const filesList: string[] = [];
         const configs: Record<string, string> = {};
+        const parsedTexts: string[] = [];
         let extractedResumeText = "";
         let extractedResumeName = "";
         
@@ -137,33 +187,34 @@ export async function POST(req: NextRequest) {
           }
           
           const innerExt = baseName.split(".").pop()?.toLowerCase() || "";
-          if (!extractedResumeText && ["pdf", "docx", "doc", "txt", "md", "json"].includes(innerExt)) {
-            const fileBuffer = Buffer.from(await fileObj.async("arraybuffer"));
-            if (innerExt === "pdf") {
-              try {
-                extractedResumeText = await extractText(fileBuffer);
-                extractedResumeName = fn;
-              } catch {}
-            } else if (innerExt === "docx") {
-              try {
-                const docZip = await JSZip.loadAsync(fileBuffer as any);
-                const docXml = await docZip.file("word/document.xml")?.async("text");
-                extractedResumeText = docXml ? docXml.replace(/<[^>]+>/g, " ").trim() : "";
-                extractedResumeName = fn;
-              } catch {}
-            } else if (["txt", "md", "json"].includes(innerExt)) {
-              const rawTxt = fileBuffer.toString("utf-8");
-              extractedResumeText = rawTxt;
+          const fileBuffer = Buffer.from(await fileObj.async("arraybuffer"));
+          
+          let parsed = "";
+          if (innerExt === "pdf") {
+            try { parsed = await extractText(fileBuffer); } catch {}
+          } else if (innerExt === "docx") {
+            try {
+              const mammoth = await import("mammoth");
+              parsed = (await mammoth.extractRawText({ buffer: fileBuffer })).value;
+            } catch {}
+          } else if (["txt", "md", "csv", "json", "xml", "html"].includes(innerExt)) {
+            parsed = fileBuffer.toString("utf-8");
+          }
+          
+          if (parsed) {
+            parsedTexts.push(`--- File: ${fn} ---\n${parsed}`);
+            if (!extractedResumeText && ["pdf", "docx", "txt", "md"].includes(innerExt)) {
+              extractedResumeText = parsed;
               extractedResumeName = fn;
             }
           }
         }
         
-        metadata = { filesList, configs, extractedResumeName };
+        metadata = { filesList, fileCount: filesList.length, configs, extractedResumeName };
         if (extractedResumeText) {
           text = extractedResumeText;
         } else {
-          text = `ZIP archive file: ${file.name}. Contained ${filesList.length} files. Configs: ${Object.keys(configs).join(", ")}`;
+          text = parsedTexts.join("\n\n") || `ZIP archive containing ${filesList.length} files.`;
         }
         pages = [text];
       } catch (err: any) {
@@ -171,10 +222,21 @@ export async function POST(req: NextRequest) {
       }
     } else if (mime.startsWith("image/")) {
       try {
-        const dataUrl = `data:${mime};base64,${buffer.toString("base64")}`;
-        images.push({ dataUrl, name: file.name });
-        text = `[Image Content: ${file.name}]`;
+        const sharp = (await import("sharp")).default;
+        const img = sharp(buffer);
+        const meta = await img.metadata();
+        metadata = {
+          width: meta.width,
+          height: meta.height,
+          format: meta.format,
+          space: meta.space,
+          density: meta.density,
+          hasAlpha: meta.hasAlpha,
+        };
+        text = `Image details: ${filename} (${meta.width}x${meta.height}px, format: ${meta.format})`;
         pages = [text];
+        const dataUrl = `data:${mime};base64,${buffer.toString("base64")}`;
+        images.push({ dataUrl, name: filename });
       } catch (err: any) {
         errors.push(`Image parsing failed: ${err.message}`);
       }
@@ -226,7 +288,6 @@ export async function POST(req: NextRequest) {
         errors.push(`JSON Resume parsing failed: ${err.message}`);
       }
     } else {
-      // JSON, TXT, MD, etc.
       try {
         text = buffer.toString("utf-8");
         pages = [text];
@@ -239,10 +300,10 @@ export async function POST(req: NextRequest) {
     const tokens = Math.round(wordCount * 1.3);
     const language = text.toLowerCase().includes("the") || text.toLowerCase().includes("experience") ? "en" : "unknown";
 
-    // Index the file in the RAG Knowledge Base automatically!
+    // Index parsed text directly in the persistent RAG knowledge base
     if (text && text.trim().length > 0) {
       try {
-        indexDocument(filename, mime, text);
+        await indexDocument(filename, mime, text);
       } catch (err) {
         console.error("Knowledge indexing failed", err);
       }
@@ -256,7 +317,7 @@ export async function POST(req: NextRequest) {
       text,
       images,
       metadata,
-      data: metadata, // backward compatibility
+      data: metadata,
       size,
       language,
       tokens,
