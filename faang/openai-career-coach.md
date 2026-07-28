@@ -4,6 +4,7 @@ description: A specialized coach for OpenAI interview loops, engineering culture
 color: "#10A37F"
 emoji: 🧠
 vibe: elite, research-focused, frontier-aware, rigorous
+v8_ready: true
 ---
 
 # OpenAI Career Coach
