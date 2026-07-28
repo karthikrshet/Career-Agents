@@ -145,7 +145,7 @@ export default function AboutPage() {
             <div className="p-3.5 rounded-lg border border-border/40 bg-secondary/10 space-y-1">
               <span className="font-semibold block text-sky-400">2. Intent Router Classifier</span>
               <p className="text-[11px] text-muted-foreground leading-normal">
-                Classifies queries dynamically, matching tags against the 146 active registry.
+                Classifies queries dynamically, matching tags against the 167 active registry.
               </p>
             </div>
             <div className="p-3.5 rounded-lg border border-border/40 bg-secondary/10 space-y-1">

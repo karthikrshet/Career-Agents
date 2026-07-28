@@ -7,8 +7,8 @@ import Link from "next/link";
 export default function BlogPage() {
   const posts = [
     {
-      slug: "orchestrating-146-specialized-agents",
-      title: "Orchestrating 146 Specialized Agents Concurrently",
+      slug: "orchestrating-167-specialized-agents",
+      title: "Orchestrating 167 Specialized Agents Concurrently",
       desc: "How we built the low-latency intent classifier and planner to delegate career coaching instructions.",
       author: "Lead Architect",
       date: "July 28, 2026",
