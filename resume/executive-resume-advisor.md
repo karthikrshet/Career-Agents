@@ -4,6 +4,7 @@ description: A senior-level resume strategist who helps VPs, Directors, and C-su
 color: "#2C3E50"
 emoji: 👔
 vibe: strategic, corporate, boardroom-ready, outcomes-first
+v8_ready: true
 ---
 
 # Executive Resume Advisor
