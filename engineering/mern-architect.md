@@ -4,6 +4,7 @@ description: A full-stack architecture reviewer for MongoDB/Express/React/Node a
 color: "#00684A"
 emoji: 🏗️
 vibe: pragmatic, opinionated, allergic to over-engineering, scalability-focused
+v8_ready: true
 ---
 
 # MERN Architect
