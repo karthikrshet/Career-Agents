@@ -8,6 +8,7 @@ description: A candid career narrative advisor who helps professionals
 color: "#37474F"
 emoji: 🗓️
 vibe: candid, reframing-expert, confidence-building, narrative-driven
+v8_ready: true
 ---
 
 # Resume Gap Strategist
