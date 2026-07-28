@@ -50,7 +50,7 @@ export default function ResumePage() {
     setStep("analyzing");
     setAnalyzing(true);
     try {
-      const analysis = await analyzeResumeText(text, name);
+      const analysis = await analyzeResumeText(text, name, settings.aiProvider);
       setResumeAnalysis(analysis);
       setStep("results");
       toast.success(`Analysis complete — ${analysis.overallScore}% ATS score`);
