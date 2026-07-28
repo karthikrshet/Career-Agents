@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Bot, Search, Shield, Cpu, Info } from "lucide-react";
+import { Bot, Search, Shield, Cpu, Info, Loader2, CheckCircle2, AlertTriangle } from "lucide-react";
 import { Topbar } from "@/components/layout/topbar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import agentRegistry from "../../../../../agent-registry.json";
 
 interface Agent {
@@ -23,6 +25,26 @@ interface Agent {
 export default function AboutPage() {
   const [search, setSearch] = useState("");
   const [activeDivision, setActiveDivision] = useState("All");
+  const [validating, setValidating] = useState(false);
+  const [validationResult, setValidationResult] = useState<{ success: boolean; totalAgents: number; errors: string[]; warnings: string[] } | null>(null);
+
+  async function handleValidateRegistry() {
+    setValidating(true);
+    try {
+      const res = await fetch("/api/agents/validate");
+      const data = await res.json();
+      setValidationResult(data);
+      if (data.success) {
+        toast.success(`Registry validated: ${data.totalAgents} agents passed all integrity checks!`);
+      } else {
+        toast.error(`Registry has ${data.errors.length} errors and ${data.warnings.length} warnings.`);
+      }
+    } catch {
+      toast.error("Failed to run registry validator");
+    } finally {
+      setValidating(false);
+    }
+  }
 
   const agents: Agent[] = useMemo(() => {
     return (agentRegistry.agents || []) as Agent[];
@@ -128,22 +150,49 @@ export default function AboutPage() {
 
         {/* 146 Specialized Agents Registry */}
         <Card className="glass text-left">
-          <CardHeader className="pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <div>
+          <CardHeader className="pb-3 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex-1">
               <CardTitle className="text-base flex items-center gap-2">
                 <Bot className="w-4 h-4 text-violet-400" />
                 Specialized AI Agents Registry ({agents.length} Active)
               </CardTitle>
-              <CardDescription>Dynamic metadata database for all registered platform agents</CardDescription>
+              <CardDescription className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span>Dynamic metadata database for all registered platform agents</span>
+                {validationResult && (
+                  <span className="flex items-center gap-1 text-[10px] font-medium mt-0.5">
+                    {validationResult.success ? (
+                      <span className="text-emerald-400 flex items-center gap-1 font-semibold">
+                        <CheckCircle2 className="w-3.5 h-3.5" /> Integrity OK
+                      </span>
+                    ) : (
+                      <span className="text-rose-400 flex items-center gap-1 font-semibold">
+                        <AlertTriangle className="w-3.5 h-3.5" /> Integrity Failed ({validationResult.errors.length} errors)
+                      </span>
+                    )}
+                  </span>
+                )}
+              </CardDescription>
             </div>
-            <div className="relative w-full sm:w-60">
-              <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search agents by name or tag..."
-                className="pl-8 text-xs h-8 bg-secondary/30"
-              />
+            <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={validating}
+                onClick={handleValidateRegistry}
+                className="h-8 text-xs font-semibold px-3 bg-violet-500/10 text-violet-400 border-violet-500/20 hover:bg-violet-500/20"
+              >
+                {validating && <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />}
+                Validate Registry
+              </Button>
+              <div className="relative w-full sm:w-60">
+                <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search agents by name or tag..."
+                  className="pl-8 text-xs h-8 bg-secondary/30"
+                />
+              </div>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
