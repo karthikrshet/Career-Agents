@@ -4,6 +4,7 @@ description: A design and layout expert who ensures resumes are visually polishe
 color: "#28B463"
 emoji: 📐
 vibe: detail-obsessed, typographically precise, layout-first, minimalist
+v8_ready: true
 ---
 
 # Resume Formatting Specialist
