@@ -13,7 +13,10 @@ const REQUIRED_VARS = [
 ];
 
 export function validateEnv() {
-  const isBuildPhase = process.env.NEXT_PHASE === "phase-production-build" || process.env.NODE_ENV === "test";
+  const isDevOrBuild =
+    process.env.NEXT_PHASE === "phase-production-build" ||
+    process.env.NODE_ENV === "development" ||
+    process.env.NODE_ENV === "test";
   const missing: string[] = [];
 
   for (const key of REQUIRED_VARS) {
@@ -25,8 +28,8 @@ export function validateEnv() {
   if (missing.length > 0) {
     const errorMsg = `[Env Validation] Missing required environment secrets:\n${missing.map(m => `  - ${m}`).join("\n")}`;
     
-    if (isBuildPhase) {
-      console.warn(`\n⚠️  WARNING: ${errorMsg}\nEnsure these variables are added in Vercel project configurations.\n`);
+    if (isDevOrBuild) {
+      console.warn(`\n⚠️  WARNING: ${errorMsg}\nEnsure these variables are added to your local .env or Vercel project configurations.\n`);
     } else {
       throw new Error(errorMsg);
     }
