@@ -17,7 +17,7 @@ const NAV_ITEMS = [
   {
     section: "Core",
     items: [
-      { href: "/", icon: LayoutDashboard, label: "Dashboard" },
+      { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
       { href: "/resume", icon: FileText, label: "Resume Studio" },
       { href: "/github", icon: GitBranch, label: "GitHub Analyzer" },
       { href: "/linkedin", icon: Link2, label: "LinkedIn Optimizer" },
@@ -53,6 +53,16 @@ export function Sidebar() {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const metrics = useStore((s) => s.metrics);
+
+  const marketingRoutes = [
+    "/", "/features", "/pricing", "/enterprise", "/opensource", 
+    "/roadmap", "/changelog", "/blog", "/docs", "/contact", 
+    "/security", "/privacy", "/terms"
+  ];
+
+  if (marketingRoutes.includes(pathname)) {
+    return null;
+  }
 
   return (
     <motion.aside

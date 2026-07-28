@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Bot, Search, Shield, Cpu, Info, Loader2, CheckCircle2, AlertTriangle } from "lucide-react";
-import { Topbar } from "@/components/layout/topbar";
+import { Bot, Search, Shield, Cpu, Info, Loader2, CheckCircle2, AlertTriangle, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -72,10 +72,25 @@ export default function AboutPage() {
   }, [agents, search, activeDivision]);
 
   return (
-    <div className="flex flex-col h-full overflow-auto">
-      <Topbar title="About Platform" subtitle="Mission, architecture, and dynamic agents registry" />
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans py-20 relative overflow-y-auto">
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-900/10 blur-[150px] pointer-events-none" />
 
-      <div className="flex-1 p-6 space-y-6">
+      <div className="max-w-6xl mx-auto px-6">
+        <Link href="/" className="inline-flex items-center gap-2 text-xs text-slate-500 hover:text-white transition mb-12">
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Back to landing
+        </Link>
+
+        <div className="max-w-2xl mb-12">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+            About the Platform
+          </h1>
+          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            Mission, architecture details, and dynamic agents registry validation systems.
+          </p>
+        </div>
+
+        <div className="space-y-6">
         {/* Mission & Vision Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Card className="glass text-left">
@@ -249,5 +264,6 @@ export default function AboutPage() {
         </Card>
       </div>
     </div>
-  );
+  </div>
+);
 }
