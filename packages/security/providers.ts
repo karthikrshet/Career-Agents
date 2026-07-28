@@ -12,6 +12,11 @@ export const PROVIDER_DOMAINS: Record<string, string[]> = {
   mistral: ["api.mistral.ai"],
   cohere: ["api.cohere.ai"],
   github: ["api.github.com"],
+  fireworks: ["api.fireworks.ai"],
+  perplexity: ["api.perplexity.ai"],
+  xai: ["api.x.ai"],
+  ai21: ["api.ai21.com"],
+  piston: ["emkc.org"],
 };
 
 export const PROVIDER_ENDPOINTS = {
@@ -27,6 +32,10 @@ export const PROVIDER_ENDPOINTS = {
   cohere: "https://api.cohere.ai/v1/chat/completions",
   ollama: "http://localhost:11434/v1/chat/completions",
   lmstudio: "http://localhost:1234/v1/chat/completions",
+  fireworks: "https://api.fireworks.ai/inference/v1/chat/completions",
+  perplexity: "https://api.perplexity.ai/chat/completions",
+  xai: "https://api.x.ai/v1/chat/completions",
+  ai21: "https://api.ai21.com/studio/v1/chat/completions",
 };
 
 export function validateProviderHost(hostname: string, provider: string): boolean {
@@ -40,6 +49,11 @@ export function validateProviderHost(hostname: string, provider: string): boolea
   if (normalizedProvider === "ollama" || normalizedProvider === "lmstudio") {
     // Only allow local access
     return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1";
+  }
+
+  if (normalizedProvider === "openai-compat" || normalizedProvider === "custom") {
+    // We allow any public host since SSRF rebinding check resolves host and checks for private IP subnets
+    return true;
   }
   
   const allowed = PROVIDER_DOMAINS[normalizedProvider];
