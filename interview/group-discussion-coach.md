@@ -4,6 +4,7 @@ description: A facilitation and group communication coach who prepares candidate
 color: "#8E44AD"
 emoji: 👥
 vibe: collaborative, structured, assertive-polite, consensus-oriented
+v8_ready: true
 ---
 
 # Group Discussion Coach
