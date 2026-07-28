@@ -377,12 +377,27 @@ export default function SettingsPage() {
                               </div>
                               <span className={cn(
                                 "px-1.5 py-0.5 rounded text-[8px] font-bold uppercase",
-                                report?.status === "healthy" && "bg-emerald-500/10 text-emerald-400",
-                                report?.status === "missing_key" && "bg-amber-500/10 text-amber-400",
-                                report?.status === "unavailable" && "bg-red-500/10 text-red-400",
-                                !report && "bg-secondary text-muted-foreground"
+                                (!report || report.status === "untested") && "bg-secondary text-muted-foreground",
+                                (report?.status === "connected" || report?.status === "healthy") && "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+                                report?.status === "missing_key" && "bg-amber-500/10 text-amber-400 border border-amber-500/20",
+                                ["offline", "invalid_key", "quota_exceeded", "rate_limited", "auth_failed", "model_not_found", "unavailable"].includes(report?.status || "") && "bg-red-500/10 text-red-400 border border-red-500/20"
                               )}>
-                                {report ? report.status : "untested"}
+                                {(() => {
+                                  if (!report) return "Untested";
+                                  const statusMap: Record<string, string> = {
+                                    connected: "Connected",
+                                    healthy: "Connected",
+                                    offline: "Offline",
+                                    missing_key: "Missing API Key",
+                                    invalid_key: "Invalid Key",
+                                    quota_exceeded: "Quota Exceeded",
+                                    rate_limited: "Rate Limited",
+                                    auth_failed: "Authentication Failed",
+                                    model_not_found: "Model Not Found",
+                                    unavailable: "Offline",
+                                  };
+                                  return statusMap[report.status] || report.status;
+                                })()}
                               </span>
                             </div>
 
@@ -459,6 +474,26 @@ export default function SettingsPage() {
                             <span className="font-medium text-foreground block mb-0.5">Context limitation</span>
                             <span className="font-mono">{PROVIDER_REGISTRY[selectedProvider].maxContext.toLocaleString()} tokens</span>
                           </div>
+                          <div>
+                            <span className="font-medium text-foreground block mb-0.5">Token usage</span>
+                            <span className="font-mono text-foreground">
+                              {diagnosticReport[selectedProvider]?.tokenUsage 
+                                ? `In: ${diagnosticReport[selectedProvider].tokenUsage.inputTokens} / Out: ${diagnosticReport[selectedProvider].tokenUsage.outputTokens}`
+                                : "N/A"}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="font-medium text-foreground block mb-0.5">Provider version</span>
+                            <span className="font-mono text-foreground">{diagnosticReport[selectedProvider]?.providerVersion || "N/A"}</span>
+                          </div>
+                          {diagnosticReport[selectedProvider]?.response && (
+                            <div className="col-span-2 sm:col-span-3 border-t border-border/40 pt-3">
+                              <span className="font-medium text-foreground block mb-0.5">Test Response</span>
+                              <span className="font-mono text-[10px] block bg-black/40 p-2.5 rounded-lg border border-border/40 text-emerald-400/90 whitespace-pre-wrap">
+                                {diagnosticReport[selectedProvider].response}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
