@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { extractText, extractPages, extractMetadata } from "@/lib/pdf/server";
 import { indexDocument } from "packages/brain/knowledge";
+import { normalizeAndSanitize } from "packages/security";
 
 // Polyfill DOMMatrix for serverless/node environments where browser canvas globals are missing
 if (typeof global !== "undefined" && !(global as any).DOMMatrix) {
@@ -29,12 +30,41 @@ export async function POST(req: NextRequest) {
       }, { status: 400 });
     }
 
-    filename = file.name;
+    // Enforce 20 MB size limit
+    if (file.size > 20 * 1024 * 1024) {
+      return NextResponse.json({
+        success: false,
+        error: "File size exceeds the 20 MB limit",
+        errors: ["File size exceeds the 20 MB limit"]
+      }, { status: 400 });
+    }
+
+    // Sanitize filename
+    const sanitizedFilename = normalizeAndSanitize(file.name, 100);
+    if (!sanitizedFilename) {
+      return NextResponse.json({
+        success: false,
+        error: "Invalid file name",
+        errors: ["Invalid file name"]
+      }, { status: 400 });
+    }
+    filename = sanitizedFilename;
     size = file.size;
     mime = file.type || "application/octet-stream";
 
     const buffer = Buffer.from(await file.arrayBuffer());
-    const ext = file.name.split(".").pop()?.toLowerCase() || "";
+    const ext = filename.split(".").pop()?.toLowerCase() || "";
+
+    const ALLOWED_EXTENSIONS = new Set(["pdf", "docx", "pptx", "xlsx", "csv", "txt", "json", "zip", "md", "markdown"]);
+    const DISALLOWED_EXTENSIONS = new Set(["exe", "bat", "cmd", "sh", "msi", "vbs", "js", "ts", "com", "scr", "pif"]);
+
+    if (!ALLOWED_EXTENSIONS.has(ext) || DISALLOWED_EXTENSIONS.has(ext)) {
+      return NextResponse.json({
+        success: false,
+        error: `File extension '.${ext}' is not allowed or is blocked.`,
+        errors: [`File extension '.${ext}' is not allowed or is blocked.`]
+      }, { status: 400 });
+    }
 
     // Set correct mime if empty based on ext
     if (!file.type) {
