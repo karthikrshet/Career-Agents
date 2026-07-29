@@ -22,25 +22,83 @@ export function sanitizeLogContent(content: string): string {
     .trim();
 }
 
+/**
+ * Scans strings and objects to redact credentials (passwords, cookies, JWTs, API keys).
+ */
+export function redactSensitiveData(input: any): any {
+  if (typeof input === "string") {
+    return input
+      .replace(/(bearer\s+)[a-zA-Z0-9_\-\.]+/ig, "$1[REDACTED]")
+      .replace(/(api[-_]?key\s*[:=]\s*)['"]?[a-zA-Z0-9_\-\.]+['"]?/ig, "$1[REDACTED]")
+      .replace(/(password\s*[:=]\s*)['"]?[^'"]+['"]?/ig, "$1[REDACTED]")
+      .replace(/(secret\s*[:=]\s*)['"]?[a-zA-Z0-9_\-\.]+['"]?/ig, "$1[REDACTED]")
+      .replace(/(jwt\s*[:=]\s*)['"]?[a-zA-Z0-9_\-\.]+/ig, "$1[REDACTED]");
+  }
+  
+  if (Array.isArray(input)) {
+    return input.map(redactSensitiveData);
+  }
+  
+  if (input !== null && typeof input === "object") {
+    const redacted: Record<string, any> = {};
+    const sensitiveKeys = [
+      "password", "passwd", "secret", "apikey", "api_key", "authorization", 
+      "cookie", "jwt", "token", "bearer", "sessionid", "session_id", "sk_", "key"
+    ];
+    
+    for (const [key, val] of Object.entries(input)) {
+      const lowerKey = key.toLowerCase();
+      let isSensitive = false;
+      for (const sk of sensitiveKeys) {
+        if (lowerKey.includes(sk)) {
+          isSensitive = true;
+          break;
+        }
+      }
+      
+      if (isSensitive) {
+        redacted[key] = "[REDACTED]";
+      } else {
+        redacted[key] = redactSensitiveData(val);
+      }
+    }
+    return redacted;
+  }
+  
+  return input;
+}
+
 export const safeLogger = {
   info(message: string, ...args: any[]) {
-    const cleanMsg = sanitizeLogContent(message);
-    const cleanArgs = args.map(a => typeof a === "string" ? sanitizeLogContent(a) : a);
+    const cleanMsg = redactSensitiveData(sanitizeLogContent(message));
+    const cleanArgs = args.map(a => {
+      const redacted = redactSensitiveData(a);
+      return typeof redacted === "string" ? sanitizeLogContent(redacted) : redacted;
+    });
     console.info(cleanMsg, ...cleanArgs);
   },
   warn(message: string, ...args: any[]) {
-    const cleanMsg = sanitizeLogContent(message);
-    const cleanArgs = args.map(a => typeof a === "string" ? sanitizeLogContent(a) : a);
+    const cleanMsg = redactSensitiveData(sanitizeLogContent(message));
+    const cleanArgs = args.map(a => {
+      const redacted = redactSensitiveData(a);
+      return typeof redacted === "string" ? sanitizeLogContent(redacted) : redacted;
+    });
     console.warn(cleanMsg, ...cleanArgs);
   },
   error(message: string, ...args: any[]) {
-    const cleanMsg = sanitizeLogContent(message);
-    const cleanArgs = args.map(a => typeof a === "string" ? sanitizeLogContent(a) : a);
+    const cleanMsg = redactSensitiveData(sanitizeLogContent(message));
+    const cleanArgs = args.map(a => {
+      const redacted = redactSensitiveData(a);
+      return typeof redacted === "string" ? sanitizeLogContent(redacted) : redacted;
+    });
     console.error(cleanMsg, ...cleanArgs);
   },
   log(message: string, ...args: any[]) {
-    const cleanMsg = sanitizeLogContent(message);
-    const cleanArgs = args.map(a => typeof a === "string" ? sanitizeLogContent(a) : a);
+    const cleanMsg = redactSensitiveData(sanitizeLogContent(message));
+    const cleanArgs = args.map(a => {
+      const redacted = redactSensitiveData(a);
+      return typeof redacted === "string" ? sanitizeLogContent(redacted) : redacted;
+    });
     console.log(cleanMsg, ...cleanArgs);
   }
 };

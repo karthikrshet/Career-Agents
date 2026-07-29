@@ -12,6 +12,33 @@ const CLOUD_METADATA_IPS = [
   "100.100.100.200", // Alibaba Cloud
 ];
 
+// Strict allowlist for outgoing fetch requests
+export const STRICT_ALLOWLIST = new Set([
+  "api.groq.com",
+  "api.openai.com",
+  "api.anthropic.com",
+  "generativelanguage.googleapis.com",
+  "openrouter.ai",
+  "api.deepseek.com",
+  "api.cohere.com",
+  "api.cohere.ai",
+  "api.mistral.ai",
+  "api.fireworks.ai",
+  "api.perplexity.ai",
+  "api.x.ai",
+  "api.ai21.com",
+  "api.together.xyz",
+  "api.github.com",
+  "emkc.org",
+  "remoteok.com",
+  "boards-api.greenhouse.io",
+  "api.lever.co",
+  "hacker-news.firebaseio.com",
+  "html.duckduckgo.com",
+  "github.com",
+  "raw.githubusercontent.com"
+]);
+
 // Helper to check if an IP is private/loopback/metadata
 export function isPrivateIp(ip: string): boolean {
   if (typeof window !== "undefined") return false;
@@ -153,6 +180,13 @@ export function validateExternalUrl(urlStr: string, allowedProvider?: string): U
       (typeof window === "undefined" && net.isIP(hostname) && isPrivateIp(hostname))
     ) {
       throw new ValidationError("Localhost and private IP hostnames are rejected");
+    }
+  }
+
+  // General strict allowlist validation
+  if (!isLocalProvider) {
+    if (!STRICT_ALLOWLIST.has(hostname)) {
+      throw new ValidationError(`Hostname '${hostname}' is not in the strict allowlist`);
     }
   }
 
