@@ -1,11 +1,14 @@
 // apps/web/src/app/api/reports/generate/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { enforceRequestLimits, escapeHTML } from "packages/security";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
     const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
-    const limitResponse = enforceRequestLimits(req, clientIp);
+    const limitResponse = enforceRequestLimits(req, clientIp, { isUser: !!session?.user });
     if (limitResponse) return limitResponse;
 
     const { profile, metrics, format, type, data } = await req.json();

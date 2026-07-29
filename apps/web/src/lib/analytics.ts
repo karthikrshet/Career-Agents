@@ -29,7 +29,17 @@ export async function trackEvent(eventName: string, properties?: Record<string, 
 
   let sessionId = sessionStorage.getItem("analytics-session-id");
   if (!sessionId) {
-    sessionId = `sess-${Math.random().toString(36).slice(2, 10)}`;
+    let randStr = "";
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+      randStr = crypto.randomUUID().replace(/-/g, "").slice(0, 8);
+    } else if (typeof crypto !== "undefined" && typeof crypto.getRandomValues === "function") {
+      const array = new Uint32Array(2);
+      crypto.getRandomValues(array);
+      randStr = Array.from(array, dec => dec.toString(36)).join("").slice(0, 8);
+    } else {
+      randStr = Date.now().toString(36);
+    }
+    sessionId = `sess-${randStr}`;
     sessionStorage.setItem("analytics-session-id", sessionId);
   }
 
