@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
+import { useGatewayStore } from "@/lib/gateway-store";
 import { cn } from "@/lib/utils";
 
 // ─── Language config ─────────────────────────────────────────────────────────
@@ -244,15 +245,25 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no expl
   "score": 85
 }`;
 
+      const activeProvider = useGatewayStore.getState().activeProvider;
       const res = await fetch("/api/copilot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: [{ role: "user", content: prompt }],
           context: {},
+          config: {
+            provider: activeProvider,
+            model: useGatewayStore.getState().activeModel,
+            apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey,
+            baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl,
+            temperature: useGatewayStore.getState().temperature,
+            maxTokens: useGatewayStore.getState().maxTokens,
+            streaming: true,
+          },
           settings: { 
-            aiProvider: settings.aiProvider, 
-            demoMode: typeof window !== "undefined" ? localStorage.getItem("demo_mode_enabled") === "true" : false 
+            ...settings,
+            demoMode: useGatewayStore.getState().demoMode 
           },
         }),
       });
