@@ -899,11 +899,10 @@ Deploy Career Agents to production using one of three methods:
 
 ## Roadmap
 
-- **v3.0.0 (Completed):** AI Agent Orchestration, Career Memory, Workflow Engine, Company Intelligence.
-- **v3.1.0 (Next):** Real-time voice interview drills and WebRTC integration.
-- **v3.2.0:** Direct LinkedIn Profile API OAuth imports.
-- **v3.3.0:** Local offline AI support running inside web browsers via WebGPU.
-- **v4.0.0:** Multi-user team workspaces and shared organization dashboard layouts.
+- **v10.0.0 (Founder Event Edition):** Immersive AI Career Operating System redesign, system diagnostics, and AI provider fallback chains.
+- **v11.0.0 (Next):** Direct LinkedIn Profile API OAuth imports and automated messaging.
+- **v12.0.0:** Local offline AI support running inside web browsers via WebGPU.
+- **v13.0.0:** Multi-user team workspaces and shared organization dashboard layouts.
 
 ---
 
