@@ -12,14 +12,14 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const marketingRoutes = [
     "/features", "/pricing", "/enterprise", "/opensource",
     "/roadmap", "/changelog", "/blog", "/docs", "/contact",
-    "/security", "/privacy", "/terms", "/about"
+    "/security", "/privacy", "/terms"
   ];
 
   const isMarketing = pathname === "/" || marketingRoutes.some(r => pathname === r || pathname.startsWith(r + "/"));
 
   if (isMarketing) {
     return (
-      <div className="min-h-screen flex flex-col bg-slate-950 text-foreground overflow-y-auto scroll-smooth">
+      <div className="min-h-screen flex flex-col bg-slate-950 text-foreground scroll-smooth">
         <MarketingNavbar />
         <main className="flex-1 w-full flex flex-col">
           {children}
