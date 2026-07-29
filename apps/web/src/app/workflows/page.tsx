@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, Trash2, Play, ChevronDown, ChevronUp,
   ArrowDown, Zap, CheckCircle, Loader2, GripVertical,
-  FileText, GitBranch, Link2, Mic, BarChart3, Bot, Briefcase
+  FileText, GitBranch, Link2, Mic, BarChart3, Bot, Briefcase,
+  Undo, Redo, ZoomIn, ZoomOut, Maximize2
 } from "lucide-react";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
@@ -126,6 +127,10 @@ function deserializeSteps(jsonStr: string): WorkflowStep[] {
 export default function WorkflowPage() {
   const [steps, setSteps] = useState<WorkflowStep[]>([]);
   const [loaded, setLoaded] = useState(false);
+  const [zoom, setZoom] = useState(1.0);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [undoStack, setUndoStack] = useState<WorkflowStep[][]>([]);
+  const [redoStack, setRedoStack] = useState<WorkflowStep[][]>([]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -133,6 +138,10 @@ export default function WorkflowPage() {
       if (saved) {
         setSteps(deserializeSteps(saved));
       }
+      const savedZoom = localStorage.getItem("ca-workflow-zoom");
+      if (savedZoom) setZoom(JSON.parse(savedZoom));
+      const savedPan = localStorage.getItem("ca-workflow-pan");
+      if (savedPan) setPan(JSON.parse(savedPan));
       setLoaded(true);
     }
   }, []);
@@ -140,18 +149,28 @@ export default function WorkflowPage() {
   useEffect(() => {
     if (loaded && typeof window !== "undefined") {
       localStorage.setItem("ca-workflow-steps", serializeSteps(steps));
+      localStorage.setItem("ca-workflow-zoom", JSON.stringify(zoom));
+      localStorage.setItem("ca-workflow-pan", JSON.stringify(pan));
     }
-  }, [steps, loaded]);
+  }, [steps, zoom, pan, loaded]);
+
+  const pushToUndo = (currentSteps: WorkflowStep[]) => {
+    setUndoStack(prev => [...prev.slice(-49), currentSteps]); // Cap stack at 50 elements
+    setRedoStack([]);
+  };
+
   const [running, setRunning] = useState(false);
   const [showCatalog, setShowCatalog] = useState(false);
   const [currentStepIdx, setCurrentStepIdx] = useState<number | null>(null);
 
   function addStep(type: string) {
+    pushToUndo(steps);
     setSteps(prev => [...prev, makeStep(type)]);
     setShowCatalog(false);
   }
 
   function removeStep(id: string) {
+    pushToUndo(steps);
     setSteps(prev => prev.filter(s => s.id !== id));
   }
 
@@ -160,6 +179,7 @@ export default function WorkflowPage() {
       const idx = prev.findIndex(s => s.id === id);
       if (dir === "up" && idx === 0) return prev;
       if (dir === "down" && idx === prev.length - 1) return prev;
+      pushToUndo(prev);
       const next = [...prev];
       const swap = dir === "up" ? idx - 1 : idx + 1;
       [next[idx], next[swap]] = [next[swap], next[idx]];
@@ -167,7 +187,26 @@ export default function WorkflowPage() {
     });
   }
 
+  function handleUndo() {
+    if (undoStack.length === 0) return;
+    const prev = undoStack[undoStack.length - 1];
+    setUndoStack(stack => stack.slice(0, -1));
+    setRedoStack(stack => [...stack, steps]);
+    setSteps(prev);
+    toast.info("Undone last change");
+  }
+
+  function handleRedo() {
+    if (redoStack.length === 0) return;
+    const next = redoStack[redoStack.length - 1];
+    setRedoStack(stack => stack.slice(0, -1));
+    setUndoStack(stack => [...stack, steps]);
+    setSteps(next);
+    toast.info("Redone change");
+  }
+
   function loadPreset(preset: typeof PRESET_WORKFLOWS[0]) {
+    pushToUndo(steps);
     setSteps(preset.steps.map(makeStep));
     toast.success(`Loaded "${preset.name}" workflow`);
   }
@@ -234,28 +273,76 @@ export default function WorkflowPage() {
 
             {/* Workflow Canvas */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   Workflow Canvas {steps.length > 0 && `· ${steps.length} steps`}
                 </p>
-                {steps.length > 0 && (
-                  <div className="flex gap-2">
-                    {allDone && (
-                      <Button variant="outline" size="sm" onClick={resetWorkflow} className="h-7 text-xs gap-1.5">
-                        Reset
-                      </Button>
-                    )}
-                    <Button
-                      size="sm"
-                      onClick={runWorkflow}
-                      disabled={running || steps.length === 0}
-                      className="h-7 text-xs gap-1.5"
+                
+                <div className="flex items-center gap-2">
+                  {/* Canvas manipulation controls */}
+                  <div className="flex items-center gap-1 border border-border/40 rounded-lg p-1 bg-card/60">
+                    <button
+                      onClick={handleUndo}
+                      disabled={undoStack.length === 0}
+                      className="p-1 rounded hover:bg-secondary/40 text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors"
+                      title="Undo"
                     >
-                      {running ? <Loader2 className="w-3 h-3 animate-spin" /> : <Play className="w-3 h-3" />}
-                      {running ? `Running ${currentStepIdx !== null ? currentStepIdx + 1 : 0}/${steps.length}` : "Run Workflow"}
-                    </Button>
+                      <Undo className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={handleRedo}
+                      disabled={redoStack.length === 0}
+                      className="p-1 rounded hover:bg-secondary/40 text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors"
+                      title="Redo"
+                    >
+                      <Redo className="w-3.5 h-3.5" />
+                    </button>
+                    
+                    <span className="w-px h-3.5 bg-border/40 mx-1" />
+                    
+                    <button
+                      onClick={() => setZoom(z => Math.max(0.5, z - 0.1))}
+                      className="p-1 rounded hover:bg-secondary/40 text-muted-foreground hover:text-foreground transition-colors"
+                      title="Zoom Out"
+                    >
+                      <ZoomOut className="w-3.5 h-3.5" />
+                    </button>
+                    <span className="text-[10px] font-mono text-muted-foreground w-8 text-center select-none">{Math.round(zoom * 100)}%</span>
+                    <button
+                      onClick={() => setZoom(z => Math.min(2.0, z + 0.1))}
+                      className="p-1 rounded hover:bg-secondary/40 text-muted-foreground hover:text-foreground transition-colors"
+                      title="Zoom In"
+                    >
+                      <ZoomIn className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => { setZoom(1.0); setPan({ x: 0, y: 0 }); }}
+                      className="p-1 rounded hover:bg-secondary/40 text-muted-foreground hover:text-foreground transition-colors"
+                      title="Reset View"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </button>
                   </div>
-                )}
+
+                  {steps.length > 0 && (
+                    <div className="flex gap-2">
+                      {allDone && (
+                        <Button variant="outline" size="sm" onClick={resetWorkflow} className="h-7 text-xs gap-1.5">
+                          Reset
+                        </Button>
+                      )}
+                      <Button
+                        size="sm"
+                        onClick={runWorkflow}
+                        disabled={running || steps.length === 0}
+                        className="h-7 text-xs gap-1.5"
+                      >
+                        {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
+                        {running ? `Running ${currentStepIdx !== null ? currentStepIdx + 1 : 0}/${steps.length}` : "Run"}
+                      </Button>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Progress bar when running */}
@@ -277,7 +364,7 @@ export default function WorkflowPage() {
                   <p className="text-xs mt-1 opacity-60">Or load a preset template above</p>
                 </div>
               ) : (
-                <div className="space-y-2">
+                <div className="space-y-2 origin-top-left transition-all duration-300" style={{ transform: `scale(${zoom}) translate(${pan.x}px, ${pan.y}px)` }}>
                   {steps.map((step, i) => {
                     const StepIcon = step.icon;
                     return (

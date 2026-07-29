@@ -61,6 +61,7 @@ export default function InterviewPage() {
   const updateSessionScorecard = useStore((s) => s.updateSessionScorecard);
   const settings = useStore((s) => s.settings);
   const updateAIProvider = useStore((s) => s.updateAIProvider);
+  const activeProvider = useGatewayStore((s) => s.activeProvider);
 
   const [stage, setStage] = useState<Stage>("config");
   const [company, setCompany] = useState("Google");
@@ -415,7 +416,7 @@ export default function InterviewPage() {
                     <label className="text-[10px] text-muted-foreground block font-semibold mb-1 uppercase tracking-wider">Switch AI Provider</label>
                     <select
                       className="w-full px-2 py-1.5 rounded bg-secondary border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary text-foreground"
-                      value={useGatewayStore((s) => s.activeProvider)}
+                      value={activeProvider}
                       onChange={(e) => {
                         const newProvider = e.target.value as import("@/types").AIProvider;
                         const defaultModelMap: Record<string, string> = {

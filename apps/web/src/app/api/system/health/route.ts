@@ -74,19 +74,44 @@ export async function GET() {
   const dbStart = Date.now();
   try {
     await prisma.$queryRaw`SELECT 1`;
-    // Schema check: verify if analyticsEvent table is fully functional
+    // Schema check: verify if required tables exist
     try {
-      await prisma.analyticsEvent.count();
-      checks["Database"] = { 
-        status: "Healthy", 
-        latency: Date.now() - dbStart, 
-        details: "Database connected and schema verified" 
+      const missingTables: string[] = [];
+      const verifyTable = async (name: string, checkFn: () => Promise<any>) => {
+        try {
+          await checkFn();
+        } catch {
+          missingTables.push(name);
+        }
       };
+
+      await verifyTable("users", () => prisma.user.count());
+      await verifyTable("accounts", () => prisma.account.count());
+      await verifyTable("sessions", () => prisma.session.count());
+      await verifyTable("chat_messages", () => (prisma as any).chatMessage.count());
+      await verifyTable("resumes", () => prisma.resumeAnalysis.count());
+      await verifyTable("workflows", () => (prisma as any).workflow.count());
+      await verifyTable("reports", () => (prisma as any).report.count());
+      await verifyTable("analytics_events", () => prisma.analyticsEvent.count());
+
+      if (missingTables.length === 0) {
+        checks["Database"] = { 
+          status: "Healthy", 
+          latency: Date.now() - dbStart, 
+          details: "Database connected and schema verified" 
+        };
+      } else {
+        checks["Database"] = { 
+          status: "Partial", 
+          latency: Date.now() - dbStart, 
+          details: `Connected, but tables missing (run migrations): ${missingTables.join(", ")}` 
+        };
+      }
     } catch (schemaErr: any) {
       checks["Database"] = { 
         status: "Partial", 
         latency: Date.now() - dbStart, 
-        details: `Connected, but schema check failed (need migrations): ${schemaErr.message}` 
+        details: `Connected, but schema check failed: ${schemaErr.message}` 
       };
     }
   } catch (err: any) {

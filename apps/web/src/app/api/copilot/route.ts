@@ -198,10 +198,12 @@ export async function POST(req: NextRequest) {
           controller.enqueue(encoder.encode("data: [DONE]\n\n"));
           controller.close();
         } catch (e: any) {
+          const reqId = "REQ-" + Math.floor(10000 + Math.random() * 90000);
+          console.error(`[${reqId}] Copilot stream execution failed:`, e);
           const errPayload = {
             choices: [
               {
-                delta: { content: `\n\n*Gateway Connection Issue: ${e.message || "Failed to generate response."}*` },
+                delta: { content: `\n\nWe couldn't complete your request. Reference ID: ${reqId}. Please try again. Backend logs may contain details. Frontend must never.` },
               },
             ],
           };
@@ -219,6 +221,11 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (e: any) {
-    return NextResponse.json({ success: false, error: e.message || "Internal server error" }, { status: 500 });
+    const reqId = "REQ-" + Math.floor(10000 + Math.random() * 90000);
+    console.error(`[${reqId}] Copilot API route failed:`, e);
+    return NextResponse.json({
+      success: false,
+      error: `We couldn't complete your request. Reference ID: ${reqId}. Please try again. Backend logs may contain details. Frontend must never.`
+    }, { status: 500 });
   }
 }

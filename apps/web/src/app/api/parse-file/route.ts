@@ -352,7 +352,7 @@ export async function POST(req: NextRequest) {
         size,
         language: "unknown",
         tokens: 0,
-        errors: ["Cannot parse document. Supported formats: PDF, DOCX, TXT."],
+        errors: ["Cannot parse document. Supported formats: PDF, DOCX, TXT, Markdown."],
       }, { status: 400 });
     }
 
@@ -383,7 +383,7 @@ export async function POST(req: NextRequest) {
       size,
       language: "unknown",
       tokens: 0,
-      errors: ["Cannot parse document. Supported formats: PDF, DOCX, TXT."],
+      errors: ["Cannot parse document. Supported formats: PDF, DOCX, TXT, Markdown."],
     }, { status: 400 });
   }
 }
