@@ -14,7 +14,7 @@ import {
 import { cn, formatScore } from "@/lib/utils";
 import { useStore } from "@/lib/store";
 
-const NAV_ITEMS = [
+export const NAV_ITEMS = [
   {
     section: "Core",
     items: [
@@ -69,7 +69,7 @@ export function Sidebar() {
     <motion.aside
       animate={{ width: collapsed ? 68 : 240 }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
-      className="relative flex flex-col h-full border-r border-border bg-card/50 overflow-hidden shrink-0"
+      className="relative hidden md:flex flex-col h-full border-r border-border bg-card/50 overflow-hidden shrink-0"
     >
       {/* Logo */}
       <Link href="/" className={cn(

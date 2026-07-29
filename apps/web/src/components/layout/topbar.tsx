@@ -3,11 +3,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Bell, Search, User, Globe, BookOpen, HelpCircle, MessageSquare, History } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Bell, Search, User, Globe, BookOpen, HelpCircle, MessageSquare, History, Menu, X } from "lucide-react";
 import { useStore } from "@/lib/store";
 import { cn, scoreToColor } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { CommandPalette } from "@/components/layout/command-palette";
+import { NAV_ITEMS } from "./sidebar";
 
 interface TopbarProps {
   title: string;
@@ -15,11 +18,13 @@ interface TopbarProps {
 }
 
 export function Topbar({ title, subtitle }: TopbarProps) {
+  const pathname = usePathname();
   const profile = useStore((s) => s.profile);
   const metrics = useStore((s) => s.metrics);
   const activityFeed = useStore((s) => s.activityFeed);
   const [showNotifications, setShowNotifications] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const recent = activityFeed.slice(0, 5);
 
@@ -38,6 +43,17 @@ export function Topbar({ title, subtitle }: TopbarProps) {
   return (
     <>
       <header className="flex items-center gap-4 px-6 py-4 border-b border-border bg-card/30 backdrop-blur-sm">
+        {/* Mobile Menu Toggle */}
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          className="md:hidden mr-1"
+          onClick={() => setMobileMenuOpen(true)}
+          aria-label="Open navigation menu"
+        >
+          <Menu className="w-5 h-5 text-muted-foreground" />
+        </Button>
+
         {/* Page title */}
         <div className="flex-1 min-w-0">
           <h1 className="text-lg font-semibold text-foreground truncate">{title}</h1>
@@ -145,6 +161,70 @@ export function Topbar({ title, subtitle }: TopbarProps) {
           </div>
         </div>
       </header>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/60 z-50 md:hidden backdrop-blur-sm"
+            />
+            {/* Drawer Content */}
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed inset-y-0 left-0 w-72 bg-card border-r border-border p-6 z-50 md:hidden flex flex-col h-full overflow-y-auto"
+            >
+              <div className="flex items-center justify-between pb-4 border-b border-border mb-6">
+                <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3">
+                  <img src="/logo.svg" alt="Logo" className="w-8 h-8" />
+                  <span className="font-semibold text-sm text-foreground">Career Agents</span>
+                </Link>
+                <Button variant="ghost" size="icon-sm" onClick={() => setMobileMenuOpen(false)}>
+                  <X className="w-5 h-5" />
+                </Button>
+              </div>
+              <nav className="flex-1 space-y-6">
+                {NAV_ITEMS.map((section) => (
+                  <div key={section.section}>
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 mb-2">
+                      {section.section}
+                    </p>
+                    <div className="space-y-1">
+                      {section.items.map((item) => {
+                        const isActive = pathname.startsWith(item.href);
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={cn(
+                              "flex items-center gap-3 px-3 py-2 rounded-lg text-xs transition-colors",
+                              isActive
+                                ? "bg-primary/10 text-primary font-medium"
+                                : "text-muted-foreground hover:bg-muted/10 hover:text-foreground"
+                            )}
+                          >
+                            <item.icon className="w-4 h-4 shrink-0" />
+                            <span>{item.label}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Command Palette */}
       <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
