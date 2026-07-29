@@ -110,6 +110,22 @@ function getMatchDetails(resumeSkills, resumeTextLower, targetKeyword) {
   return { matched: false, type: 'none', confidence: 0 };
 }
 
+function writeFileSyncAtomic(filePath, content, options) {
+  const dir = path.dirname(filePath);
+  const tempPath = path.join(dir, path.basename(filePath) + '.tmp-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6));
+  try {
+    fs.writeFileSync(tempPath, content, options);
+    fs.renameSync(tempPath, filePath);
+  } catch (err) {
+    try {
+      if (fs.existsSync(tempPath)) {
+        fs.unlinkSync(tempPath);
+      }
+    } catch (_) {}
+    throw err;
+  }
+}
+
 function findShortestPath(graph, startQuery, endQuery) {
   const startLower = startQuery.toLowerCase().trim();
   const endLower = endQuery.toLowerCase().trim();
@@ -1105,7 +1121,7 @@ async function handleToolsCall(id, params) {
         const { resumeText } = toolArgs;
         const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_resume.txt');
         fs.mkdirSync(path.dirname(tempPath), { recursive: true });
-        fs.writeFileSync(tempPath, resumeText, 'utf8');
+        writeFileSyncAtomic(tempPath, resumeText, 'utf8');
         const { analyzeResumeStudio } = await import('../packages/resume/studio.js');
         const report = await analyzeResumeStudio(tempPath);
         sendResult(id, {
@@ -1166,7 +1182,7 @@ async function handleToolsCall(id, params) {
         const { resumeText, company } = toolArgs;
         const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_resume.txt');
         fs.mkdirSync(path.dirname(tempPath), { recursive: true });
-        fs.writeFileSync(tempPath, resumeText, 'utf8');
+        writeFileSyncAtomic(tempPath, resumeText, 'utf8');
         const { analyzeResumeStudio } = await import('../packages/resume/studio.js');
         const report = await analyzeResumeStudio(tempPath, company || '');
         sendResult(id, {
@@ -1211,7 +1227,7 @@ async function handleToolsCall(id, params) {
         const { profileText } = toolArgs;
         const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_linkedin.txt');
         fs.mkdirSync(path.dirname(tempPath), { recursive: true });
-        fs.writeFileSync(tempPath, profileText, 'utf8');
+        writeFileSyncAtomic(tempPath, profileText, 'utf8');
         const { analyzeLinkedinProfile } = await import('../packages/linkedin/analyzer.js');
         const report = await analyzeLinkedinProfile(tempPath);
         sendResult(id, {
@@ -1789,7 +1805,7 @@ async function handleToolsCall(id, params) {
         const buffer = await Packer.toBuffer(doc);
         const fullOutputPath = path.isAbsolute(outputPath) ? outputPath : path.join(root, outputPath);
         fs.mkdirSync(path.dirname(fullOutputPath), { recursive: true });
-        fs.writeFileSync(fullOutputPath, buffer);
+        writeFileSyncAtomic(fullOutputPath, buffer);
 
         sendResult(id, {
           content: [{
@@ -1891,7 +1907,7 @@ async function handleToolsCall(id, params) {
         const pdfBytes = await pdfDoc.save();
         const fullOutputPath = path.isAbsolute(outputPath) ? outputPath : path.join(root, outputPath);
         fs.mkdirSync(path.dirname(fullOutputPath), { recursive: true });
-        fs.writeFileSync(fullOutputPath, pdfBytes);
+        writeFileSyncAtomic(fullOutputPath, pdfBytes);
 
         sendResult(id, {
           content: [{
@@ -2361,7 +2377,7 @@ async function handleToolsCall(id, params) {
         const cleanFilename = path.basename(filename || 'mcp_uploaded_resume.txt');
         const tempPath = path.join(root, 'exports', 'reports', cleanFilename);
         fs.mkdirSync(path.dirname(tempPath), { recursive: true });
-        fs.writeFileSync(tempPath, content || '', 'utf8');
+        writeFileSyncAtomic(tempPath, content || '', 'utf8');
         sendResult(id, {
           content: [{
             type: 'text',
@@ -2375,7 +2391,7 @@ async function handleToolsCall(id, params) {
         const { resumeText, company } = toolArgs;
         const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_resume.txt');
         fs.mkdirSync(path.dirname(tempPath), { recursive: true });
-        fs.writeFileSync(tempPath, resumeText || '', 'utf8');
+        writeFileSyncAtomic(tempPath, resumeText || '', 'utf8');
         const { analyzeResumeStudio } = await import('../packages/resume/studio.js');
         const report = await analyzeResumeStudio(tempPath, company || '');
         sendResult(id, {
