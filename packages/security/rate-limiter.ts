@@ -61,6 +61,7 @@ interface RequestLimitOptions {
   rateLimitCount?: number; // Refill count (default: 30)
   rateLimitWindow?: number; // Window time in ms (default: 60000)
   burstLimit?: number;    // Burst tokens (default: 5)
+  isUser?: boolean;       // If the requester is an authenticated user
 }
 
 /**
@@ -73,9 +74,12 @@ export function enforceRequestLimits(
   options: RequestLimitOptions = {}
 ): Response | null {
   const maxSize = options.maxSize ?? 5 * 1024 * 1024; // 5MB default
-  const limitCount = options.rateLimitCount ?? 30;
+  const isUser = options.isUser ?? false;
+  
+  // Enforce Guest (20/min) vs User (60/min) limits
+  const limitCount = options.rateLimitCount ?? (isUser ? 60 : 20);
   const limitWindow = options.rateLimitWindow ?? 60000;
-  const burstLimit = options.burstLimit ?? 5;
+  const burstLimit = options.burstLimit ?? (isUser ? 10 : 5);
 
   // 1. Enforce payload size limit using Content-Length header
   const contentLengthStr = req.headers.get("content-length");

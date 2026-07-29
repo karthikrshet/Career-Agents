@@ -44,6 +44,7 @@ export function middleware(req: NextRequest) {
   res.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
   res.headers.set("Cross-Origin-Opener-Policy", "same-origin");
   res.headers.set("Cross-Origin-Resource-Policy", "same-origin");
+  res.headers.set("Cross-Origin-Embedder-Policy", "credentialless");
   res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
   // Content Security Policy

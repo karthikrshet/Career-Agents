@@ -109,3 +109,41 @@ export function escapeJSON(str: string): string {
   if (typeof str !== "string") return "";
   return JSON.stringify(str).slice(1, -1);
 }
+
+/**
+ * Escapes characters for safe inclusion in HTML attributes.
+ */
+export function escapeAttribute(str: string): string {
+  if (typeof str !== "string") return "";
+  return str.replace(/[&<>"']/g, (m) => {
+    switch (m) {
+      case "&": return "&amp;";
+      case "<": return "&lt;";
+      case ">": return "&gt;";
+      case '"': return "&quot;";
+      case "'": return "&#x27;";
+      default: return m;
+    }
+  });
+}
+
+/**
+ * Normalizes unicode, collapses spaces, removes control and null characters.
+ */
+export function normalizeAndSanitize(input: string, maxLength: number = 200): string {
+  if (typeof input !== "string") return "";
+  // 1. Normalize Unicode (NFKC)
+  let clean = input.normalize("NFKC");
+  // 2. Remove null bytes
+  clean = clean.replace(/\x00/g, "");
+  // 3. Remove control chars (\x00-\x1F and \x7F-\x9F)
+  clean = clean.replace(/[\x00-\x1F\x7F-\x9F]/g, "");
+  // 4. Strip dangerous unicode / characters
+  clean = clean.replace(/[\u200B-\u200D\uFEFF\u202A-\u202E]/g, "");
+  // 5. Strip dangerous characters for filesystem and command safety
+  clean = clean.replace(/[\$'"\\;`|*?~<>^\(\)\[\]\{\}]/g, "");
+  // 6. Trim and collapse spaces
+  clean = clean.replace(/\s+/g, " ").trim();
+  // 7. Max length
+  return clean.slice(0, maxLength);
+}
