@@ -22,6 +22,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
+import { useGatewayStore } from "@/lib/gateway-store";
 import { buildCareerContext } from "@/lib/ai";
 import { cn, timeAgo, generateId } from "@/lib/utils";
 import { PROVIDER_MODELS } from "@/lib/ai";
@@ -89,8 +90,10 @@ function CopilotWorkspace() {
   const [hydrated, setHydrated] = useState(false);
   
   // Custom Provider/Model overrides for workspace
-  const [activeProvider, setActiveProvider] = useState(settings.aiProvider.provider);
-  const [activeModel, setActiveModel] = useState(settings.aiProvider.model);
+  const activeProvider = useGatewayStore((s) => s.activeProvider);
+  const activeModel = useGatewayStore((s) => s.activeModel);
+  const setActiveProvider = useGatewayStore((s) => s.setProvider);
+  const setActiveModel = useGatewayStore((s) => s.setModel);
   const [showModelDropdown, setShowModelDropdown] = useState(false);
   
   // Voice listening
@@ -153,11 +156,7 @@ function CopilotWorkspace() {
     }
   }, [chatParam, copilotSessions, hydrated, currentSession, startCopilotSession]);
 
-  // Sync internal active values on settings changes
-  useEffect(() => {
-    setActiveProvider(settings.aiProvider.provider);
-    setActiveModel(settings.aiProvider.model);
-  }, [settings.aiProvider.provider, settings.aiProvider.model]);
+  // Centralized gateway configurations are read directly from useGatewayStore
 
   // Handle agent shortcuts from Command Palette
   useEffect(() => {
@@ -524,10 +523,10 @@ Recalculated tracker statistics and updated applications metrics.`);
           config: {
             provider: activeProvider,
             model: activeModel,
-            apiKey: settings.aiProvider.apiKey, // Pass client key if configured
-            baseUrl: settings.aiProvider.baseUrl, // Pass base url overrides if configured
-            temperature: settings.aiProvider.temperature,
-            maxTokens: settings.aiProvider.maxTokens,
+            apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey, // Pass client key if configured
+            baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl, // Pass base url overrides if configured
+            temperature: useGatewayStore.getState().temperature,
+            maxTokens: useGatewayStore.getState().maxTokens,
             streaming: true,
           },
           settings: {
@@ -535,7 +534,7 @@ Recalculated tracker statistics and updated applications metrics.`);
             internetMode,
             memoryEnabled,
             reasoningEnabled,
-            demoMode: typeof window !== "undefined" ? localStorage.getItem("demo_mode_enabled") === "true" : false,
+            demoMode: useGatewayStore.getState().demoMode,
           },
           context: {
             profile,
