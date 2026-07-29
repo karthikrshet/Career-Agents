@@ -59,15 +59,15 @@ Format:
 
 export async function POST(req: Request) {
   try {
+    const session = await getServerSession(authOptions);
     const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
-    const limitResponse = enforceRequestLimits(req, clientIp);
+    const limitResponse = enforceRequestLimits(req, clientIp, { isUser: !!session?.user });
     if (limitResponse) return limitResponse;
 
     const body = await req.json();
     const { action, company, role, mode, difficulty, responses, aiConfig } = body;
 
     // Server-side usage limits gating check
-    const session = await getServerSession(authOptions);
     let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
     let userId: string | null = null;
 
