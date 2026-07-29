@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Document, Packer, Paragraph, HeadingLevel, Table, TableRow, TableCell, WidthType } from "docx";
-import { escapeHTML } from "packages/security";
+import { escapeHTML, enforceRequestLimits } from "packages/security";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
+    const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
+    const limitResponse = enforceRequestLimits(req, clientIp, { isUser: !!session?.user });
+    if (limitResponse) return limitResponse;
+
     const { format, reportData } = await req.json();
 
     if (!reportData) {
