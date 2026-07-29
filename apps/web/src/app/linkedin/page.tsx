@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
+import { useGatewayStore } from "@/lib/gateway-store";
 import { cn, scoreToColor, scoreToGrade, scoreToBgColor } from "@/lib/utils";
 import type { LinkedInAnalysis } from "@/types";
 
@@ -95,7 +96,16 @@ export default function LinkedInPage() {
   }
 
   async function handleAIRewrite() {
-    if (!settings.aiProvider.apiKey) {
+    const activeProvider = useGatewayStore.getState().activeProvider;
+    const gatewayConfig = {
+      provider: activeProvider,
+      model: useGatewayStore.getState().activeModel,
+      apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey,
+      baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl,
+      temperature: useGatewayStore.getState().temperature,
+      maxTokens: useGatewayStore.getState().maxTokens,
+    };
+    if (!gatewayConfig.apiKey) {
       toast.error("Add your AI provider API key in Settings.");
       return;
     }
@@ -104,7 +114,7 @@ export default function LinkedInPage() {
       const res = await fetch("/api/linkedin/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ headline, summary, config: settings.aiProvider }),
+        body: JSON.stringify({ headline, summary, config: gatewayConfig }),
       });
       const data = await res.json();
       if (data.rewrite) {
