@@ -61,6 +61,8 @@ export default function SettingsPage() {
   const [baseUrl, setBaseUrl] = useState("");
   const [showKey, setShowKey] = useState(false);
   const gatewayProvider = useGatewayStore((s) => s.activeProvider) as AIProviderId;
+  const demoMode = useGatewayStore((s) => s.demoMode);
+  const activeModel = useGatewayStore((s) => s.activeModel);
   const [selectedProvider, setSelectedProvider] = useState<AIProviderId>(gatewayProvider || "openai");
   const [modelsCache, setModelsCache] = useState<Record<string, string[]>>({});
   const [loadingModels, setLoadingModels] = useState(false);
@@ -260,7 +262,7 @@ export default function SettingsPage() {
                       </div>
                       <input
                         type="checkbox"
-                        checked={useGatewayStore((s) => s.demoMode)}
+                        checked={demoMode}
                         onChange={(e) => useGatewayStore.getState().setDemoMode(e.target.checked)}
                         className="accent-primary w-4 h-4"
                       />
@@ -551,7 +553,7 @@ export default function SettingsPage() {
                       ) : (
                         <select
                           className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground focus:outline-none"
-                          value={useGatewayStore((s) => s.activeModel)}
+                          value={activeModel}
                           onChange={(e) => {
                             updateAIProvider({ model: e.target.value });
                             useGatewayStore.getState().setModel(e.target.value);

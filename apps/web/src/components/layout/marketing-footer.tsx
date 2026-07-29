@@ -83,7 +83,7 @@ export function MarketingFooter() {
             <h5 className="font-bold text-white text-[11px] uppercase tracking-wider mb-2">Company</h5>
             <ul className="space-y-3">
               <li><Link href="/about" className="hover:text-indigo-400 transition-colors">About Us</Link></li>
-              <li><a href="https://github.com/karthikrshet/Career-Agents" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">Careers</a></li>
+              <li><Link href="/careers" className="hover:text-indigo-400 transition-colors">Careers</Link></li>
               <li><Link href="/blog" className="hover:text-indigo-400 transition-colors">Blog</Link></li>
               <li><Link href="/changelog" className="hover:text-indigo-400 transition-colors">Changelog</Link></li>
               <li><Link href="/roadmap" className="hover:text-indigo-400 transition-colors">Roadmap</Link></li>
@@ -94,10 +94,10 @@ export function MarketingFooter() {
           <div className="space-y-4">
             <h5 className="font-bold text-white text-[11px] uppercase tracking-wider mb-2">Resources</h5>
             <ul className="space-y-3">
-              <li><Link href="/docs" className="hover:text-indigo-400 transition-colors">Help Center</Link></li>
-              <li><a href="https://github.com/karthikrshet/Career-Agents/discussions" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors">Community</a></li>
-              <li><Link href="/docs" className="hover:text-indigo-400 transition-colors">Career Guides</Link></li>
-              <li><Link href="/resume" className="hover:text-indigo-400 transition-colors">Resume Templates</Link></li>
+              <li><Link href="/help" className="hover:text-indigo-400 transition-colors">Help Center</Link></li>
+              <li><Link href="/community" className="hover:text-indigo-400 transition-colors">Community</Link></li>
+              <li><Link href="/guides" className="hover:text-indigo-400 transition-colors">Career Guides</Link></li>
+              <li><Link href="/templates" className="hover:text-indigo-400 transition-colors">Resume Templates</Link></li>
               <li><Link href="/interview" className="hover:text-indigo-400 transition-colors">Interview Questions</Link></li>
             </ul>
           </div>
@@ -108,8 +108,8 @@ export function MarketingFooter() {
               <li><Link href="/privacy" className="hover:text-indigo-400 transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-indigo-400 transition-colors">Terms of Service</Link></li>
               <li><Link href="/security" className="hover:text-indigo-400 transition-colors">Security Overview</Link></li>
-              <li><Link href="/privacy#cookies" className="hover:text-indigo-400 transition-colors">Cookie Policy</Link></li>
-              <li><Link href="/privacy#data-processing" className="hover:text-indigo-400 transition-colors">Data Processing</Link></li>
+              <li><Link href="/cookies" className="hover:text-indigo-400 transition-colors">Cookie Policy</Link></li>
+              <li><Link href="/dpa" className="hover:text-indigo-400 transition-colors">Data Processing (DPA)</Link></li>
             </ul>
           </div>
 
