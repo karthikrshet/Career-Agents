@@ -199,7 +199,10 @@ export default function JobsPage() {
         body: JSON.stringify({
           messages: [{ role: "user", content: prompts[type] }],
           context: { profile: { name: candidateName }, resumeAnalysis },
-          settings: { aiProvider: { provider: aiProvider, apiKey: aiKey, model: aiModel } },
+          settings: { 
+            aiProvider: { provider: aiProvider, apiKey: aiKey, model: aiModel },
+            demoMode: typeof window !== "undefined" ? localStorage.getItem("demo_mode_enabled") === "true" : false 
+          },
         }),
       });
 

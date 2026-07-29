@@ -250,7 +250,10 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no expl
         body: JSON.stringify({
           messages: [{ role: "user", content: prompt }],
           context: {},
-          settings: { aiProvider: settings.aiProvider },
+          settings: { 
+            aiProvider: settings.aiProvider, 
+            demoMode: typeof window !== "undefined" ? localStorage.getItem("demo_mode_enabled") === "true" : false 
+          },
         }),
       });
 
