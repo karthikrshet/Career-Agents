@@ -71,15 +71,19 @@ export async function POST(req: Request) {
     let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
     let userId: string | null = null;
 
-    if (session?.user?.email) {
-      const user = await prisma.user.findUnique({
-        where: { email: session.user.email },
-        select: { id: true, plan: true }
-      });
-      if (user) {
-        userId = user.id;
-        plan = (user.plan as any) || "free";
+    try {
+      if (session?.user?.email) {
+        const user = await prisma.user.findUnique({
+          where: { email: session.user.email },
+          select: { id: true, plan: true }
+        });
+        if (user) {
+          userId = user.id;
+          plan = (user.plan as any) || "free";
+        }
       }
+    } catch (error) {
+      console.error("Prisma user lookup failed, falling back to guest:", error);
     }
 
     if (action === "generate") {
@@ -87,21 +91,26 @@ export async function POST(req: Request) {
       startOfToday.setHours(0, 0, 0, 0);
 
       let currentSessionsCount = 0;
-      if (userId) {
-        currentSessionsCount = await prisma.interviewSession.count({
-          where: {
-            userId,
-            startedAt: { gte: startOfToday }
-          }
-        });
-      } else {
-        currentSessionsCount = await prisma.analyticsEvent.count({
-          where: {
-            sessionId: clientIp,
-            eventName: "interview_session",
-            timestamp: { gte: startOfToday }
-          }
-        });
+      try {
+        if (userId) {
+          currentSessionsCount = await prisma.interviewSession.count({
+            where: {
+              userId,
+              startedAt: { gte: startOfToday }
+            }
+          });
+        } else {
+          currentSessionsCount = await prisma.analyticsEvent.count({
+            where: {
+              sessionId: clientIp,
+              eventName: "interview_session",
+              timestamp: { gte: startOfToday }
+            }
+          });
+        }
+      } catch (error) {
+        console.error("Analytics database call failed (counting interview sessions):", error);
+        currentSessionsCount = 0; // Fallback safely
       }
 
       const { FeatureFlagsManager } = await import("@/lib/feature-flags");
@@ -114,13 +123,17 @@ export async function POST(req: Request) {
 
       // Log interview session event in database for guests
       if (!userId) {
-        await prisma.analyticsEvent.create({
-          data: {
-            sessionId: clientIp,
-            eventName: "interview_session",
-            properties: { company: company || "General" }
-          }
-        });
+        try {
+          await prisma.analyticsEvent.create({
+            data: {
+              sessionId: clientIp,
+              eventName: "interview_session",
+              properties: { company: company || "General" }
+            }
+          });
+        } catch (error) {
+          console.error("Analytics database call failed (creating interview session event):", error);
+        }
       }
 
       const provider = aiConfig?.provider || "gemini";

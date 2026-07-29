@@ -68,36 +68,45 @@ export async function POST(req: Request) {
     let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
     let userId: string | null = null;
 
-    if (session?.user?.email) {
-      const user = await prisma.user.findUnique({
-        where: { email: session.user.email },
-        select: { id: true, plan: true }
-      });
-      if (user) {
-        userId = user.id;
-        plan = (user.plan as any) || "free";
+    try {
+      if (session?.user?.email) {
+        const user = await prisma.user.findUnique({
+          where: { email: session.user.email },
+          select: { id: true, plan: true }
+        });
+        if (user) {
+          userId = user.id;
+          plan = (user.plan as any) || "free";
+        }
       }
+    } catch (error) {
+      console.error("Prisma user lookup failed, falling back to guest:", error);
     }
 
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
 
     let currentGithubCount = 0;
-    if (userId) {
-      currentGithubCount = await prisma.gitHubAnalysis.count({
-        where: {
-          userId,
-          analyzedAt: { gte: startOfToday }
-        }
-      });
-    } else {
-      currentGithubCount = await prisma.analyticsEvent.count({
-        where: {
-          sessionId: clientIp,
-          eventName: "github_analysis",
-          timestamp: { gte: startOfToday }
-        }
-      });
+    try {
+      if (userId) {
+        currentGithubCount = await prisma.gitHubAnalysis.count({
+          where: {
+            userId,
+            analyzedAt: { gte: startOfToday }
+          }
+        });
+      } else {
+        currentGithubCount = await prisma.analyticsEvent.count({
+          where: {
+            sessionId: clientIp,
+            eventName: "github_analysis",
+            timestamp: { gte: startOfToday }
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Analytics database call failed (counting github analyses):", error);
+      currentGithubCount = 0; // Fallback safely
     }
 
     const { FeatureFlagsManager } = await import("@/lib/feature-flags");
@@ -110,13 +119,17 @@ export async function POST(req: Request) {
 
     // Log GitHub analysis event in database for guests
     if (!userId) {
-      await prisma.analyticsEvent.create({
-        data: {
-          sessionId: clientIp,
-          eventName: "github_analysis",
-          properties: { username }
-        }
-      });
+      try {
+        await prisma.analyticsEvent.create({
+          data: {
+            sessionId: clientIp,
+            eventName: "github_analysis",
+            properties: { username }
+          }
+        });
+      } catch (error) {
+        console.error("Analytics database call failed (creating github analysis event):", error);
+      }
     }
 
     // Strict GitHub username validation
