@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -39,18 +40,35 @@ export default function LoginPage() {
     e.preventDefault();
     if (!email) { toast.error("Email is required"); return; }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800)); // simulate auth
-    setProfile({
-      id: generateId(),
-      name: name || email.split("@")[0],
-      email,
-      targetRole: "Software Engineer",
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    });
-    toast.success(`Welcome to Career Agents${name ? `, ${name}` : ""}!`);
-    router.push("/");
-    setLoading(false);
+    
+    try {
+      const res = await signIn("credentials", {
+        email,
+        name: name || email.split("@")[0],
+        redirect: false
+      });
+      
+      if (res?.error) {
+        toast.error(res.error || "Authentication failed");
+        setLoading(false);
+        return;
+      }
+      
+      setProfile({
+        id: generateId(),
+        name: name || email.split("@")[0],
+        email,
+        targetRole: "Software Engineer",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      });
+      toast.success(`Welcome to Career Agents${name ? `, ${name}` : ""}!`);
+      router.push("/");
+    } catch (err: any) {
+      toast.error(err.message || "Something went wrong during login");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const FEATURES = [
