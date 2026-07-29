@@ -1,6 +1,8 @@
 // apps/web/src/app/api/jobs/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { secureFetch } from "packages/security";
+import { secureFetch, escapeHTML, enforceRequestLimits } from "packages/security";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +25,11 @@ interface JobListing {
 }
 
 export async function GET(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
+  const limitResponse = enforceRequestLimits(req, clientIp, { isUser: !!session?.user });
+  if (limitResponse) return limitResponse;
+
   const now = Date.now();
   if (jobCache && (now - jobCache.timestamp < CACHE_DURATION)) {
     return NextResponse.json(jobCache.data);
@@ -233,11 +240,23 @@ export async function GET(req: NextRequest) {
     });
   }
 
-  if (jobs.length > 0) {
-    jobCache = { data: jobs, timestamp: now };
+  const cleanJobs = jobs.map(j => ({
+    ...j,
+    title: escapeHTML(j.title || ""),
+    company: escapeHTML(j.company || ""),
+    location: escapeHTML(j.location || ""),
+    salary: j.salary ? escapeHTML(j.salary) : undefined,
+    experience: escapeHTML(j.experience || ""),
+    tech: (j.tech || []).map(t => escapeHTML(t)),
+    source: escapeHTML(j.source || ""),
+    postedAt: escapeHTML(j.postedAt || "")
+  }));
+
+  if (cleanJobs.length > 0) {
+    jobCache = { data: cleanJobs, timestamp: now };
   }
 
-  return NextResponse.json(jobs);
+  return NextResponse.json(cleanJobs);
 }
 
 function timeAgo(date: Date): string {
