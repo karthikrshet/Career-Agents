@@ -1,9 +1,17 @@
 // apps/web/src/app/api/resume/export/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { Document, Packer, Paragraph, TextRun, HeadingLevel } from "docx";
+import { escapeHTML, escapeMarkdown, escapeLatex, enforceRequestLimits } from "packages/security";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
+    const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
+    const limitResponse = enforceRequestLimits(req, clientIp, { isUser: !!session?.user });
+    if (limitResponse) return limitResponse;
+
     const { format, analysis } = await req.json();
 
     if (!analysis) {
@@ -14,24 +22,24 @@ export async function POST(req: NextRequest) {
 
     if (format === "markdown") {
       const md = `# ATS Resume Analysis Report\n\n` +
-        `**File:** ${analysis.fileName}\n` +
-        `**Date:** ${dateStr}\n` +
+        `**File:** ${escapeMarkdown(analysis.fileName || "")}\n` +
+        `**Date:** ${escapeMarkdown(dateStr)}\n` +
         `**Overall ATS Score:** ${analysis.overallScore}/100\n\n` +
         `## Section Audit\n` +
         Object.entries(analysis.sections || {})
-          .map(([k, v]) => `- **${k}**: ${v ? "✓ Present" : "✗ Missing"}`)
+          .map(([k, v]) => `- **${escapeMarkdown(k)}**: ${v ? "✓ Present" : "✗ Missing"}`)
           .join("\n") +
         `\n\n## Missing Keywords\n` +
-        (analysis.missingKeywords?.join(", ") || "None") +
+        (analysis.missingKeywords?.map((k: string) => escapeMarkdown(k)).join(", ") || "None") +
         `\n\n## Recommendations\n` +
-        (analysis.recommendations?.map((r: string) => `- ${r}`).join("\n") || "None") +
+        (analysis.recommendations?.map((r: string) => `- ${escapeMarkdown(r)}`).join("\n") || "None") +
         `\n\n## STAR Impact Bullets Analysis\n` +
         (analysis.starAnalysis?.map((s: any) => 
           `### Rating: ${s.rating}/10\n` +
-          `- **Original:** ${s.bullet}\n` +
-          `- **Situation/Task:** ${s.situation}\n` +
-          `- **Action:** ${s.action}\n` +
-          `- **Result:** ${s.result}`
+          `- **Original:** ${escapeMarkdown(s.bullet || "")}\n` +
+          `- **Situation/Task:** ${escapeMarkdown(s.situation || "")}\n` +
+          `- **Action:** ${escapeMarkdown(s.action || "")}\n` +
+          `- **Result:** ${escapeMarkdown(s.result || "")}`
         ).join("\n\n") || "None") + "\n";
 
       return new NextResponse(md, {
@@ -69,21 +77,21 @@ export async function POST(req: NextRequest) {
 </head>
 <body>
   <h1>ATS Resume Analysis Report</h1>
-  <p><strong>File Name:</strong> ${analysis.fileName}</p>
-  <p><strong>Date Analyzed:</strong> ${dateStr}</p>
+  <p><strong>File Name:</strong> ${escapeHTML(analysis.fileName || "")}</p>
+  <p><strong>Date Analyzed:</strong> ${escapeHTML(dateStr)}</p>
   <p><strong>Overall ATS Score:</strong> <span class="metric">${analysis.overallScore}/100</span></p>
 
   <h2>Section Audit</h2>
   <ul>
-    ${Object.entries(analysis.sections || {}).map(([k, v]) => `<li><strong>${k}</strong>: ${v ? "✓ Present" : "✗ Missing"}</li>`).join("")}
+    ${Object.entries(analysis.sections || {}).map(([k, v]) => `<li><strong>${escapeHTML(k)}</strong>: ${v ? "✓ Present" : "✗ Missing"}</li>`).join("")}
   </ul>
 
   <h2>Missing Keywords</h2>
-  <div class="card">${analysis.missingKeywords?.join(", ") || "None identified"}</div>
+  <div class="card">${analysis.missingKeywords?.map((k: string) => escapeHTML(k)).join(", ") || "None identified"}</div>
 
   <h2>Recommendations</h2>
   <ul>
-    ${analysis.recommendations?.map((r: string) => `<li>${r}</li>`).join("") || "<li>None</li>"}
+    ${analysis.recommendations?.map((r: string) => `<li>${escapeHTML(r)}</li>`).join("") || "<li>None</li>"}
   </ul>
 </body>
 </html>`;
@@ -108,14 +116,14 @@ export async function POST(req: NextRequest) {
         `  \\href{mailto:email@domain.com}{email@domain.com} | Phone | GitHub | LinkedIn\n` +
         `\\end{center}\n\n` +
         `\\section{Summary}\n` +
-        `ATS Score: ${analysis.overallScore}/100. Optimized for keywords including: ${analysis.detectedKeywords?.slice(0, 10).join(", ") || ""}.\n\n` +
+        `ATS Score: ${analysis.overallScore}/100. Optimized for keywords including: ${analysis.detectedKeywords?.slice(0, 10).map((k: string) => escapeLatex(k)).join(", ") || ""}.\n\n` +
         `\\section{Skills}\n` +
-        ` ${analysis.detectedKeywords?.join(", ") || ""}\n\n` +
+        ` ${analysis.detectedKeywords?.map((k: string) => escapeLatex(k)).join(", ") || ""}\n\n` +
         `\\section{Experience}\n` +
         `\\textbf{Software Engineer} \\\\ \n` +
         `Tech Corp \\hfill City, State \\\\\n` +
         `\\begin{itemize}\n` +
-        (analysis.starAnalysis?.map((s: any) => `  \\item ${s.bullet}`).join("\n") || "  \\item Developed scalable services and APIs.") +
+        (analysis.starAnalysis?.map((s: any) => `  \\item ${escapeLatex(s.bullet || "")}`).join("\n") || "  \\item Developed scalable services and APIs.") +
         `\n\\end{itemize}\n` +
         `\\end{document}\n`;
 

@@ -1,10 +1,11 @@
 // apps/web/src/app/api/resume/evaluate/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { generate } from "../../../../../../../packages/ai/router";
-import { enforceRequestLimits } from "../../../../../../../packages/security";
+import { enforceRequestLimits, escapeHTML, escapeMarkdown } from "../../../../../../../packages/security";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import crypto from "crypto";
 
 export const dynamic = "force-dynamic";
 
@@ -37,8 +38,9 @@ const STRONG_VERB_MAP: Record<string, string> = {
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
     const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
-    const limitResponse = enforceRequestLimits(req, clientIp);
+    const limitResponse = enforceRequestLimits(req, clientIp, { isUser: !!session?.user });
     if (limitResponse) return limitResponse;
 
     const { text, fileName, config } = await req.json();
@@ -47,8 +49,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, error: "No resume text provided" }, { status: 400 });
     }
 
+    // Enforce 20 KB payload limit to prevent resource exhaustion / DoS
+    if (text.length > 20 * 1024) {
+      return NextResponse.json({
+        success: false,
+        error: "Resume text payload exceeds the maximum allowed size of 20 KB."
+      }, { status: 400 });
+    }
+
     // Server-side usage limits gating check
-    const session = await getServerSession(authOptions);
     let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
     let userId: string | null = null;
 
@@ -253,8 +262,31 @@ Return a JSON object matching this structure:
       recommendations.push("Excellent work! Focus on keeping metrics up to date as your roles progress.");
     }
 
-    const missingSkills = missingKeywords.slice(0, 5);
-    const analysisId = Math.random().toString(36).slice(2, 9);
+    const missingSkills = missingKeywords.slice(0, 5).map(s => escapeHTML(s));
+    const analysisId = `analysis-${crypto.randomBytes(3).toString("hex")}`;
+
+    // Clean/escape strings for client response & DB Storage
+    const cleanFileName = escapeHTML(fileName || "resume.pdf");
+    const cleanText = escapeHTML(text);
+    
+    const cleanWeakBullets = weakBullets.map((b: any) => ({
+      original: escapeHTML(b.original),
+      issue: escapeHTML(b.issue),
+      suggested: escapeHTML(b.suggested),
+    }));
+
+    const cleanStarAnalysis = starAnalysis.map((b: any) => ({
+      bullet: escapeHTML(b.bullet),
+      situation: escapeHTML(b.situation),
+      task: escapeHTML(b.task),
+      action: escapeHTML(b.action),
+      result: escapeHTML(b.result),
+      rating: typeof b.rating === "number" ? b.rating : 85,
+    }));
+
+    const cleanRecommendations = recommendations.map((r: any) => escapeHTML(r));
+    const cleanFoundKeywords = foundKeywords.map((k: any) => escapeHTML(k));
+    const cleanMissingKeywords = missingKeywords.map((k: any) => escapeHTML(k));
 
     // 7. Save to PostgreSQL if logged in
     if (session?.user) {
@@ -268,16 +300,16 @@ Return a JSON object matching this structure:
             await prisma.resumeAnalysis.create({
               data: {
                 userId: userRecord.id,
-                fileName,
-                rawText: text,
+                fileName: cleanFileName,
+                rawText: cleanText,
                 overallScore: atsScore,
                 atsScore,
                 sections: sections as any,
-                weakBullets: weakBullets as any,
-                missingKeywords: missingKeywords.slice(0, 10),
-                detectedKeywords: foundKeywords,
-                recommendations,
-                aiRewrite: JSON.stringify(starAnalysis),
+                weakBullets: cleanWeakBullets as any,
+                missingKeywords: cleanMissingKeywords.slice(0, 10),
+                detectedKeywords: cleanFoundKeywords,
+                recommendations: cleanRecommendations,
+                aiRewrite: JSON.stringify(cleanStarAnalysis),
               }
             });
 
@@ -302,17 +334,17 @@ Return a JSON object matching this structure:
 
     return NextResponse.json({
       id: analysisId,
-      fileName,
-      rawText: text,
+      fileName: cleanFileName,
+      rawText: cleanText,
       overallScore: atsScore,
       atsScore,
       sections,
-      weakBullets,
-      missingKeywords: missingKeywords.slice(0, 10),
-      detectedKeywords: foundKeywords,
-      starAnalysis,
+      weakBullets: cleanWeakBullets,
+      missingKeywords: cleanMissingKeywords.slice(0, 10),
+      detectedKeywords: cleanFoundKeywords,
+      starAnalysis: cleanStarAnalysis,
       missingSkills,
-      recommendations,
+      recommendations: cleanRecommendations,
       analyzedAt: new Date().toISOString(),
     });
   } catch (err: any) {
