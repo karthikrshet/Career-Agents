@@ -12,14 +12,14 @@ export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
     const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
-    const limitResponse = enforceRequestLimits(req, clientIp);
+    const limitResponse = enforceRequestLimits(req, clientIp, { isUser: !!session?.user });
     if (limitResponse) return limitResponse;
 
     const { messages, config, context, settings: clientSettings } = await req.json();
 
     // Server-side usage limits gating check
-    const session = await getServerSession(authOptions);
     let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
     let userId: string | null = null;
 
@@ -132,6 +132,7 @@ export async function POST(req: NextRequest) {
       streaming: true,
       retryCount: clientSettings?.retryCount ?? 3,
       retryDelayMs: clientSettings?.retryDelayMs ?? 1000,
+      demoMode: clientSettings?.demoMode || config?.demoMode || false,
     };
 
     let { systemPrompt, thinkingIndicator } = await processThroughBrain(
