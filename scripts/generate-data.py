@@ -686,7 +686,7 @@ npm run dev
 Open **[http://localhost:3000](http://localhost:3000)** or **[https://career-agents.vercel.app](https://career-agents.vercel.app)**.
 
 ### 3. 🔌 How to Connect MCP Protocol Server to your IDE
-Expose Career Agents tools directly to **Cursor AI**, **Claude Desktop**, **VS Code**, **Windsurf**, or **Aider**:
+Expose Career Agents tools directly to **Cursor AI**, **Claude Desktop**, **VS Code**, **Windsurf**, **Codex**, or **Aider**:
 
 **Command to register in IDE:**
 ```bash
@@ -710,6 +710,22 @@ Go to **Settings** -> **Features** -> **MCP** -> **Add new MCP Server**:
 - **Name:** `career-agents`
 - **Type:** `stdio`
 - **Command:** `node /absolute/path/to/Career-Agents/mcp/server.js`
+
+#### 📍 Codex Setup (`~/.codex/config.json` or CLI):
+```bash
+codex mcp add career-agents -- node /absolute/path/to/Career-Agents/mcp/server.js
+```
+Or in your JSON config:
+```json
+{{
+  "mcpServers": {{
+    "career-agents": {{
+      "command": "node",
+      "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
+    }}
+  }}
+}}
+```
 
 ### 4. 🖥️ Terminal CLI Utilities
 Run terminal commands anywhere using `scripts/cli.js`:
