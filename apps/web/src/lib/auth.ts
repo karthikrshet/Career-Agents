@@ -16,24 +16,40 @@ export const authOptions: AuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email) return null;
         
-        let user = await prisma.user.findUnique({
-          where: { email: credentials.email }
-        });
+        let user = null;
+        try {
+          if (process.env.DATABASE_URL) {
+            user = await prisma.user.findUnique({
+              where: { email: credentials.email }
+            });
+            
+            if (!user) {
+              user = await prisma.user.create({
+                data: {
+                  email: credentials.email,
+                  name: credentials.name || "Enterprise Candidate",
+                  targetRole: "Senior Software Engineer",
+                  settings: {
+                    create: {}
+                  },
+                  metrics: {
+                    create: {}
+                  }
+                }
+              });
+            }
+          }
+        } catch (err) {
+          console.warn("Prisma authorize database failure. Falling back to guest credentials:", err);
+        }
         
         if (!user) {
-          user = await prisma.user.create({
-            data: {
-              email: credentials.email,
-              name: credentials.name || "Enterprise Candidate",
-              targetRole: "Senior Software Engineer",
-              settings: {
-                create: {}
-              },
-              metrics: {
-                create: {}
-              }
-            }
-          });
+          user = {
+            id: `usr-guest-${Date.now()}`,
+            name: credentials.name || "Enterprise Candidate",
+            email: credentials.email,
+            image: null
+          };
         }
         
         return {
@@ -58,14 +74,24 @@ export const authOptions: AuthOptions = {
       if (session.user && token.sub) {
         (session.user as any).id = token.sub;
         
-        const userDb = await prisma.user.findUnique({
-          where: { id: token.sub },
-          select: { targetRole: true, targetCompany: true }
-        });
-        if (userDb) {
-          (session.user as any).targetRole = userDb.targetRole;
-          (session.user as any).targetCompany = userDb.targetCompany;
+        let targetRole = "Senior Software Engineer";
+        let targetCompany = "FAANG";
+        try {
+          if (process.env.DATABASE_URL) {
+            const userDb = await prisma.user.findUnique({
+              where: { id: token.sub },
+              select: { targetRole: true, targetCompany: true }
+            });
+            if (userDb) {
+              targetRole = userDb.targetRole || targetRole;
+              targetCompany = userDb.targetCompany || targetCompany;
+            }
+          }
+        } catch (err) {
+          console.warn("Prisma session database lookup failed. Serving defaults:", err);
         }
+        (session.user as any).targetRole = targetRole;
+        (session.user as any).targetCompany = targetCompany;
       }
       return session;
     },
@@ -78,19 +104,25 @@ export const authOptions: AuthOptions = {
     async signIn({ user, account }) {
       if (account?.provider === "github" || account?.provider === "google") {
         if (!user.email) return false;
-        const dbUser = await prisma.user.findUnique({
-          where: { email: user.email }
-        });
-        if (!dbUser) {
-          await prisma.user.create({
-            data: {
-              email: user.email,
-              name: user.name || "OAuth Candidate",
-              image: user.image,
-              settings: { create: {} },
-              metrics: { create: {} }
+        try {
+          if (process.env.DATABASE_URL) {
+            const dbUser = await prisma.user.findUnique({
+              where: { email: user.email }
+            });
+            if (!dbUser) {
+              await prisma.user.create({
+                data: {
+                  email: user.email,
+                  name: user.name || "OAuth Candidate",
+                  image: user.image,
+                  settings: { create: {} },
+                  metrics: { create: {} }
+                }
+              });
             }
-          });
+          }
+        } catch (err) {
+          console.warn("Prisma oauth signIn failed. Overriding check for demo:", err);
         }
       }
       return true;
