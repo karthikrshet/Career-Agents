@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
+import { useGatewayStore } from "@/lib/gateway-store";
 import { cn, generateId } from "@/lib/utils";
 
 // ─── Job data structure ──────────────────────────────────────────────────────
@@ -176,9 +177,15 @@ export default function JobsPage() {
   }
 
   async function handleGenerate(job: JobListing, type: "cover-letter" | "referral" | "followup") {
-    const aiKey = settings.aiProvider?.apiKey;
-    const aiProvider = settings.aiProvider?.provider || "gemini";
-    const aiModel = settings.aiProvider?.model;
+    const activeProvider = useGatewayStore.getState().activeProvider;
+    const gatewayConfig = {
+      provider: activeProvider,
+      model: useGatewayStore.getState().activeModel,
+      apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey,
+      baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl,
+      temperature: useGatewayStore.getState().temperature,
+      maxTokens: useGatewayStore.getState().maxTokens,
+    };
 
     setSelectedJob(job);
     setGenerating(type);
@@ -199,9 +206,10 @@ export default function JobsPage() {
         body: JSON.stringify({
           messages: [{ role: "user", content: prompts[type] }],
           context: { profile: { name: candidateName }, resumeAnalysis },
+          config: gatewayConfig,
           settings: { 
-            aiProvider: { provider: aiProvider, apiKey: aiKey, model: aiModel },
-            demoMode: typeof window !== "undefined" ? localStorage.getItem("demo_mode_enabled") === "true" : false 
+            ...settings,
+            demoMode: useGatewayStore.getState().demoMode 
           },
         }),
       });
