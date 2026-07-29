@@ -4,6 +4,7 @@ import { PROVIDER_REGISTRY } from "./provider-registry";
 import { classifyGatewayError } from "../utils/error-handler";
 import { recordRouterLog } from "./analytics";
 import { secureFetch, safeLogger } from "../../security";
+import crypto from "crypto";
 
 const ENV_KEY_MAP: Record<string, string> = {
   openai: "OPENAI_API_KEY",
@@ -29,6 +30,7 @@ export interface RouterConfig {
   streaming?: boolean;
   retryCount?: number;
   retryDelayMs?: number;
+  demoMode?: boolean;
 }
 
 const DEFAULT_FALLBACK_ORDER: AIProviderId[] = [
@@ -102,6 +104,11 @@ export async function routeCompletion(
     }
   }
 
+  // If the user's config specifies a direct provider order, honor the first element as primary!
+  if (config.providerOrder && config.providerOrder.length > 0) {
+    primaryProvider = config.providerOrder[0];
+  }
+
   // 2. Assemble execution chain fallback list starting with primary provider
   const providersOrder = config.providerOrder || DEFAULT_FALLBACK_ORDER;
   const executionChainList: AIProviderId[] = [
@@ -119,7 +126,32 @@ export async function routeCompletion(
   for (const providerId of executionChainList) {
     if (completed) break;
 
-    const registry = PROVIDER_REGISTRY[providerId];
+    let registry = null;
+    switch (providerId) {
+      case "openai":
+      case "claude":
+      case "anthropic":
+      case "gemini":
+      case "groq":
+      case "openrouter":
+      case "together":
+      case "deepseek":
+      case "mistral":
+      case "cohere":
+      case "azure":
+      case "ollama":
+      case "lmstudio":
+      case "xai":
+      case "fireworks":
+      case "perplexity":
+      case "ai21":
+      case "openai-compat":
+      case "custom":
+        registry = PROVIDER_REGISTRY[providerId];
+        break;
+      default:
+        continue;
+    }
     if (!registry) continue;
 
     // 1. Resolve key list with priority: Client-saved keys -> Env vars -> Provider Disabled (Empty)
@@ -158,7 +190,7 @@ export async function routeCompletion(
 
     for (let keyIdx = 0; keyIdx < keysToTry.length; keyIdx++) {
       const activeKey = keysToTry[keyIdx];
-      const maxRetries = config.retryCount ?? 3;
+      const maxRetries = Math.min(3, config.retryCount ?? 3);
       const retryDelay = config.retryDelayMs ?? 1000;
 
       let runStart = Date.now();
@@ -187,6 +219,7 @@ export async function routeCompletion(
               },
             }),
             signal,
+            timeout: 30000,
             allowedProvider: "gemini",
           });
 
@@ -240,6 +273,7 @@ export async function routeCompletion(
             headers,
             body: JSON.stringify(body),
             signal,
+            timeout: 30000,
             allowedProvider: providerId,
           });
 
@@ -303,7 +337,8 @@ export async function routeCompletion(
         lastError = err;
         safeLogger.warn(`Gateway failed executing prompt with provider ${providerId} and key index ${keyIdx} on attempt ${attempt}`, err);
         if (attempt < maxRetries - 1) {
-          await sleep(retryDelay);
+          const backoffDelay = retryDelay * Math.pow(2, attempt);
+          await sleep(backoffDelay);
         }
       }
     }
@@ -335,7 +370,7 @@ export async function routeCompletion(
 
   // Record logs
   const log: RouterLog = {
-    id: `log-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+    id: `log-${Date.now()}-${crypto.randomBytes(2).toString("hex")}`,
     timestamp: new Date().toISOString(),
     query,
     mode: config.mode,
@@ -352,7 +387,39 @@ export async function routeCompletion(
   recordRouterLog(log);
 
   if (!completed) {
-    throw new Error("AI Gateway: All configured providers in the fallback execution chain failed.");
+    if (config.demoMode) {
+      finalProvider = "openai";
+      finalModel = "gpt-4o-mini-mock";
+      
+      const lowerQuery = query.toLowerCase();
+      let mockResponse = "";
+      if (lowerQuery.includes("resume") || lowerQuery.includes("ats")) {
+        mockResponse = `[DEMO MODE: SIMULATED RESPONSE]\n\n**ATS Resume Optimization Analysis**\n\nI've analyzed your career profile context and resume bullets. Here is a STAR-focused recommendation to optimize your resume for applicant tracking systems:\n\n1. **Quantify Achievements**: Instead of *"Responsible for writing code"*, use: *"Engineered a scalable microservices architecture using Node.js and Go, reducing API latency by 45% and supporting 10k+ concurrent requests."*\n2. **Align with Job Keywords**: Inject missing technical keywords such as *React*, *Next.js*, *TypeScript*, and *System Design* to pass the semantic scanner.\n3. **Improve STAR Format**: Ensure each bullet clearly states the **Situation/Task**, **Action**, and measurable **Result**.`;
+      } else if (lowerQuery.includes("github") || lowerQuery.includes("code")) {
+        mockResponse = `[DEMO MODE: SIMULATED RESPONSE]\n\n**GitHub Profile & Code Quality Report**\n\nYour GitHub profile demonstrates a solid foundation. Here are 3 areas of improvement for FAANG-level positioning:\n\n1. **Consistent Contributions**: Maintain a steady green commit grid. It signals active learning and delivery capability.\n2. **Comprehensive documentation**: Ensure all projects contain clean READMEs, screenshots, configuration guides, and architecture diagrams.\n3. **Automated Testing & CI/CD**: Integrate GitHub Actions, testing frameworks (Vitest/Jest), and linting tools to demonstrate enterprise code readiness.`;
+      } else if (lowerQuery.includes("interview") || lowerQuery.includes("mock")) {
+        mockResponse = `[DEMO MODE: SIMULATED RESPONSE]\n\n**STAR Behavioral Interview Guidelines**\n\nWhen responding to behavioral questions (e.g., *"Tell me about a time you solved a complex bug"*), structure your response using the STAR framework:\n\n- **Situation**: Contextualize the bug, its business impact (e.g. site checkout down).\n- **Task**: Describe your specific responsibility in resolving it.\n- **Action**: Outline the exact steps, debug methodologies, and profiling tools you utilized.\n- **Result**: Highlight the outcome, latency reduction, and preventive measures implemented.`;
+      } else {
+        mockResponse = `[DEMO MODE: SIMULATED RESPONSE]\n\n**Career Operating System Copilot**\n\nHello! I am your AI Career Copilot. I'm connected to the Career Agents ecosystem, including the **Resume Studio**, **GitHub Analyzer**, **Job Hub**, and **STAR Interview Lab**.\n\nHow can I help you accelerate your tech career today? I can review your resume, suggest optimizations, generate outreach messages, or guide you through mock interviews.`;
+      }
+      
+      if (onChunk) {
+        const words = mockResponse.split(" ");
+        let currentText = "";
+        for (const word of words) {
+          const chunk = word + " ";
+          currentText += chunk;
+          onChunk(chunk);
+          await sleep(15);
+        }
+        finalContent = currentText;
+      } else {
+        finalContent = mockResponse;
+      }
+      completed = true;
+    } else {
+      throw new Error("AI Gateway Connection Issue: All configured providers in the fallback execution chain failed. Please verify your environment configurations or toggle Demo Mode.");
+    }
   }
 
   return finalContent;
