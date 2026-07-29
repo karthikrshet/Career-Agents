@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
+import { useGatewayStore } from "@/lib/gateway-store";
 import { cn } from "@/lib/utils";
 import type { AIProvider } from "@/types";
 
@@ -59,7 +60,8 @@ export default function SettingsPage() {
   const [apiKey, setApiKey] = useState("");
   const [baseUrl, setBaseUrl] = useState("");
   const [showKey, setShowKey] = useState(false);
-  const [selectedProvider, setSelectedProvider] = useState<AIProviderId>("openai");
+  const gatewayProvider = useGatewayStore((s) => s.activeProvider) as AIProviderId;
+  const [selectedProvider, setSelectedProvider] = useState<AIProviderId>(gatewayProvider || "openai");
   const [modelsCache, setModelsCache] = useState<Record<string, string[]>>({});
   const [loadingModels, setLoadingModels] = useState(false);
 
@@ -250,6 +252,19 @@ export default function SettingsPage() {
                         <option value="fr">Français</option>
                       </select>
                     </div>
+
+                    <div className="flex items-center justify-between p-3.5 rounded-xl bg-secondary/10 border border-border/40 mt-4">
+                      <div>
+                        <p className="text-xs font-semibold">Platform Demo Mode</p>
+                        <p className="text-[10px] text-muted-foreground">Force mock AI responses and bypass database checks for presentation events</p>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={useGatewayStore((s) => s.demoMode)}
+                        onChange={(e) => useGatewayStore.getState().setDemoMode(e.target.checked)}
+                        className="accent-primary w-4 h-4"
+                      />
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -361,6 +376,7 @@ export default function SettingsPage() {
                             onClick={() => {
                               setSelectedProvider(p.id);
                               updateAIProvider({ provider: p.id as any });
+                              useGatewayStore.getState().setProvider(p.id);
                             }}
                             className={cn(
                               "relative flex flex-col justify-between p-3.5 rounded-xl border text-left cursor-pointer transition-all text-xs",
@@ -535,14 +551,17 @@ export default function SettingsPage() {
                       ) : (
                         <select
                           className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground focus:outline-none"
-                          value={settings.aiProvider.model}
-                          onChange={(e) => updateAIProvider({ model: e.target.value })}
+                          value={useGatewayStore((s) => s.activeModel)}
+                          onChange={(e) => {
+                            updateAIProvider({ model: e.target.value });
+                            useGatewayStore.getState().setModel(e.target.value);
+                          }}
                         >
                           {(modelsCache[selectedProvider] || []).map((m) => (
                             <option key={m} value={m}>{m}</option>
                           ))}
                           {(!modelsCache[selectedProvider] || modelsCache[selectedProvider].length === 0) && (
-                            <option value={settings.aiProvider.model}>{settings.aiProvider.model}</option>
+                            <option value={useGatewayStore.getState().activeModel}>{useGatewayStore.getState().activeModel}</option>
                           )}
                         </select>
                       )}
