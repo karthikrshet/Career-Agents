@@ -341,6 +341,8 @@ export interface AppSettings {
   keys?: Record<string, string[]>; // [primary, secondary, backup]
   baseUrls?: Record<string, string>;
   modelNames?: Record<string, string>;
+  githubToken?: string;
+  linkedinKeywordScanner?: boolean;
 }
 
 // Plugin
