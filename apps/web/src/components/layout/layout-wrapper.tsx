@@ -5,18 +5,43 @@ import { Sidebar } from "./sidebar";
 import { Suspense } from "react";
 import { MarketingNavbar } from "./marketing-navbar";
 import { MarketingFooter } from "./marketing-footer";
+import { useStore } from "@/lib/store";
+import { useEffect } from "react";
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const theme = useStore((s) => s.settings.theme);
 
-  const marketingRoutes = [
-    "/features", "/pricing", "/enterprise", "/opensource",
-    "/roadmap", "/changelog", "/blog", "/docs", "/contact",
-    "/security", "/privacy", "/terms", "/careers", "/community",
-    "/help", "/templates", "/guides", "/cookies", "/dpa"
+  useEffect(() => {
+    const root = window.document.documentElement;
+    
+    function applyTheme() {
+      root.classList.remove("light", "dark");
+      if (theme === "system") {
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        root.classList.add(systemTheme);
+      } else {
+        root.classList.add(theme);
+      }
+    }
+
+    applyTheme();
+
+    if (theme === "system") {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      mediaQuery.addEventListener("change", applyTheme);
+      return () => mediaQuery.removeEventListener("change", applyTheme);
+    }
+  }, [theme]);
+
+  const consoleRoutes = [
+    "/dashboard", "/resume", "/github", "/linkedin", "/interview",
+    "/copilot", "/jobs", "/tracker", "/prephub", "/playground",
+    "/linkedin-ai", "/reports", "/workflows", "/marketplace",
+    "/mcp", "/settings", "/about", "/credits", "/demo"
   ];
 
-  const isMarketing = pathname === "/" || marketingRoutes.some(r => pathname === r || pathname.startsWith(r + "/"));
+  const isMarketing = !consoleRoutes.some(r => pathname === r || pathname.startsWith(r + "/"));
 
   if (isMarketing) {
     return (

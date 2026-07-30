@@ -85,7 +85,7 @@ export default function SettingsPage() {
   const [accountLinkedin, setAccountLinkedin] = useState(profile?.linkedinUrl || "");
 
   // GitHub token state
-  const [githubToken, setGithubToken] = useState("");
+  const [githubToken, setGithubToken] = useState(settings.githubToken || "");
 
   const [section, setSection] = useState<typeof SECTIONS[number]["id"]>("providers");
 
@@ -94,6 +94,10 @@ export default function SettingsPage() {
     setBaseUrl(settings.aiProvider.baseUrl || "");
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings.aiProvider.provider]);
+
+  useEffect(() => {
+    setGithubToken(settings.githubToken || "");
+  }, [settings.githubToken]);
 
   // Load dynamic models list when provider changes
   useEffect(() => {
@@ -194,7 +198,8 @@ export default function SettingsPage() {
     setPrimaryKeyInput(registered[0] || "");
     setSecondaryKeyInput(registered[1] || "");
     setBackupKeyInput(registered[2] || "");
-  }, [selectedProvider, settings.keys]);
+    setBaseUrl(settings.baseUrls?.[selectedProvider] || "");
+  }, [selectedProvider, settings.keys, settings.baseUrls]);
 
   // Usage statistics analytics compilation
   const analytics = compileUsageAnalytics();
@@ -204,17 +209,17 @@ export default function SettingsPage() {
     <div className="flex flex-col h-full overflow-auto">
       <Topbar title="Gateway Preferences" subtitle="Enterprise AI Provider Dashboard, health checker, routing logs, and credentials." />
 
-      <div className="flex-1 p-6">
-        <div className="flex gap-6 max-w-5xl mx-auto">
+      <div className="flex-1 p-4 md:p-6 overflow-x-hidden">
+        <div className="flex flex-col md:flex-row gap-6 max-w-5xl mx-auto">
           {/* Sidebar Navigation */}
-          <div className="w-56 shrink-0 space-y-0.5 border-r border-border/40 pr-4">
-            <p className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest px-3 mb-2">Workspace Config</p>
+          <div className="w-full md:w-56 shrink-0 space-y-0.5 md:border-r border-border/40 md:pr-4 flex md:flex-col overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 gap-1.5 md:gap-0.5 scrollbar-none">
+            <p className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest px-3 mb-2 hidden md:block">Workspace Config</p>
             {SECTIONS.map((s) => (
               <button
                 key={s.id}
                 onClick={() => setSection(s.id)}
                 className={cn(
-                  "sidebar-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all",
+                  "sidebar-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all shrink-0",
                   section === s.id
                     ? "bg-primary/10 border border-primary/20 text-foreground font-semibold"
                     : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
@@ -491,7 +496,7 @@ export default function SettingsPage() {
                           </div>
                           <div>
                             <span className="font-medium text-foreground block mb-0.5">Context limitation</span>
-                            <span className="font-mono">{PROVIDER_REGISTRY[selectedProvider].maxContext.toLocaleString()} tokens</span>
+                            <span className="font-mono">{PROVIDER_REGISTRY[selectedProvider].maxContext.toLocaleString("en-US")} tokens</span>
                           </div>
                           <div>
                             <span className="font-medium text-foreground block mb-0.5">Token usage</span>
@@ -513,6 +518,58 @@ export default function SettingsPage() {
                               </span>
                             </div>
                           )}
+                        </div>
+
+                        {/* Inline API Credentials config */}
+                        <div className="border-t border-border/40 pt-4 space-y-4">
+                          <div>
+                            <h5 className="font-semibold text-xs text-foreground uppercase tracking-wider">Configure API Credentials</h5>
+                            <p className="text-[10px] text-muted-foreground mt-0.5">Save keys client-side to test connection and run dashboard tools</p>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                              <label className="text-[10px] text-muted-foreground mb-1 block font-medium">Primary API Key / Token</label>
+                              <Input
+                                type="password"
+                                placeholder={`Enter ${PROVIDER_REGISTRY[selectedProvider]?.displayName || "AI"} API Key`}
+                                value={primaryKeyInput}
+                                onChange={(e) => setPrimaryKeyInput(e.target.value)}
+                                className="bg-secondary/40 border-border/60"
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[10px] text-muted-foreground mb-1 block font-medium">Custom Base URL (Optional)</label>
+                              <Input
+                                type="text"
+                                placeholder={PROVIDER_REGISTRY[selectedProvider]?.apiEndpoint || "Auto-configured"}
+                                value={baseUrl}
+                                onChange={(e) => setBaseUrl(e.target.value)}
+                                className="bg-secondary/40 border-border/60 font-mono text-[10.5px]"
+                              />
+                            </div>
+                          </div>
+                          <Button size="sm" onClick={() => {
+                            const keysMap = { ...settings.keys };
+                            const primary = primaryKeyInput.trim();
+                            keysMap[selectedProvider] = [primary].filter(Boolean);
+                            
+                            const baseUrlsMap = { ...settings.baseUrls };
+                            if (baseUrl.trim()) {
+                              baseUrlsMap[selectedProvider] = baseUrl.trim();
+                            } else {
+                              delete baseUrlsMap[selectedProvider];
+                            }
+
+                            updateSettings({ keys: keysMap, baseUrls: baseUrlsMap });
+                            updateAIProvider({
+                              provider: selectedProvider as any,
+                              apiKey: primary || undefined,
+                              baseUrl: baseUrl.trim() || undefined,
+                            });
+                            toast.success(`${PROVIDER_REGISTRY[selectedProvider]?.displayName || "AI"} credentials saved successfully`);
+                          }} className="w-full sm:w-auto">
+                            Save Credentials
+                          </Button>
                         </div>
                       </div>
                     )}
@@ -857,7 +914,10 @@ export default function SettingsPage() {
                       />
                     </div>
                     <div className="flex gap-2">
-                      <Button size="sm" onClick={() => { toast.success("GitHub credentials authenticated"); }}>
+                      <Button size="sm" onClick={() => {
+                        updateSettings({ githubToken });
+                        toast.success("GitHub Personal Access Token saved successfully");
+                      }}>
                         Save Token
                       </Button>
                     </div>
@@ -883,7 +943,12 @@ export default function SettingsPage() {
                         <p className="text-xs font-medium">Auto Keyword Density Scanner</p>
                         <p className="text-[10px] text-muted-foreground">Alert when target keywords fall below 2.5% density</p>
                       </div>
-                      <input type="checkbox" defaultChecked className="accent-primary" />
+                      <input
+                        type="checkbox"
+                        checked={settings.linkedinKeywordScanner ?? true}
+                        onChange={(e) => updateSettings({ linkedinKeywordScanner: e.target.checked })}
+                        className="accent-primary w-4 h-4"
+                      />
                     </div>
                   </CardContent>
                 </Card>

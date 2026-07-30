@@ -4,24 +4,10 @@ import Link from "next/link";
 import { MessageSquare, ArrowRight, GitBranch, ShieldAlert, Sparkles, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MarketingFooter } from "@/components/layout/marketing-footer";
 
 export default function CommunityPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
-      {/* Navbar Hero */}
-      <header className="border-b border-slate-900 bg-slate-950/60 backdrop-blur sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-bold text-white text-base tracking-tight hover:opacity-90 transition-opacity">
-            <span className="bg-gradient-to-r from-indigo-500 to-sky-400 bg-clip-text text-transparent">Career Agents</span>
-          </Link>
-          <Link href="/dashboard">
-            <Button size="sm" className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/10">
-              Launch Console
-            </Button>
-          </Link>
-        </div>
-      </header>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-16 border-b border-slate-900 bg-gradient-to-b from-indigo-950/20 via-slate-950 to-slate-950">
@@ -107,8 +93,6 @@ export default function CommunityPage() {
           </div>
         </div>
       </section>
-
-      <MarketingFooter />
     </div>
   );
 }

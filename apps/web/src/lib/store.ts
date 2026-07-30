@@ -27,6 +27,8 @@ const DEFAULT_SETTINGS: AppSettings = {
   retryCount: 3,
   retryDelayMs: 1000,
   providerOrder: ["groq", "gemini", "openai", "claude"],
+  githubToken: "",
+  linkedinKeywordScanner: true,
 };
 
 const DEFAULT_METRICS: CareerMetrics = {

@@ -182,6 +182,114 @@ const PROBLEMS_TEST_CASES: Record<string, Array<{ args: any[]; expected: any; in
   ]
 };
 
+interface ProblemDetails {
+  title: string;
+  difficulty: "Easy" | "Medium" | "Hard";
+  description: string;
+  examples: Array<{
+    input: string;
+    output: string;
+    explanation?: string;
+  }>;
+  constraints: string[];
+}
+
+const PROBLEMS: Record<string, ProblemDetails> = {
+  javascript: {
+    title: "1. Two Sum",
+    difficulty: "Easy",
+    description: "Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
+    examples: [
+      { input: "nums = [2,7,11,15], target = 9", output: "[0,1]", explanation: "Because nums[0] + nums[1] == 9, we return [0, 1]." },
+      { input: "nums = [3,2,4], target = 6", output: "[1,2]" }
+    ],
+    constraints: [
+      "2 <= nums.length <= 10^4",
+      "-10^9 <= nums[i] <= 10^9",
+      "-10^9 <= target <= 10^9",
+      "Only one valid answer exists."
+    ]
+  },
+  typescript: {
+    title: "1. Two Sum",
+    difficulty: "Easy",
+    description: "Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
+    examples: [
+      { input: "nums = [2,7,11,15], target = 9", output: "[0,1]" }
+    ],
+    constraints: [
+      "2 <= nums.length <= 10^4",
+      "Only one valid answer exists."
+    ]
+  },
+  python: {
+    title: "704. Binary Search",
+    difficulty: "Easy",
+    description: "Given an array of integers `nums` which is sorted in ascending order, and an integer `target`, write a function to search `target` in `nums`. If `target` exists, then return its index. Otherwise, return `-1`.\n\nYou must write an algorithm with O(log n) runtime complexity.",
+    examples: [
+      { input: "nums = [-1,0,3,5,9,12], target = 9", output: "4", explanation: "9 exists in nums and its index is 4" },
+      { input: "nums = [-1,0,3,5,9,12], target = 2", output: "-1", explanation: "2 does not exist in nums so return -1" }
+    ],
+    constraints: [
+      "1 <= nums.length <= 10^4",
+      "-10^4 < nums[i], target < 10^4",
+      "All the integers in nums are unique.",
+      "nums is sorted in ascending order."
+    ]
+  },
+  java: {
+    title: "104. Maximum Depth of Binary Tree",
+    difficulty: "Easy",
+    description: "Given the root of a binary tree, return its maximum depth.\n\nA binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.",
+    examples: [
+      { input: "root = [3,9,20,null,null,15,7]", output: "3" },
+      { input: "root = [1,null,2]", output: "2" }
+    ],
+    constraints: [
+      "The number of nodes in the tree is in the range [0, 10^4].",
+      "-100 <= Node.val <= 100"
+    ]
+  },
+  go: {
+    title: "206. Reverse Linked List",
+    difficulty: "Easy",
+    description: "Given the head of a singly linked list, reverse the list, and return the reversed list.",
+    examples: [
+      { input: "head = [1,2,3,4,5]", output: "[5,4,3,2,1]" },
+      { input: "head = []", output: "[]" }
+    ],
+    constraints: [
+      "The number of nodes in the list is the range [0, 5000].",
+      "-5000 <= Node.val <= 5000"
+    ]
+  },
+  rust: {
+    title: "Fibonacci Number with Memoization",
+    difficulty: "Easy",
+    description: "The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1.\n\nCompute the nth Fibonacci number efficiently using memoization to avoid redundant computations.",
+    examples: [
+      { input: "n = 10", output: "55" },
+      { input: "n = 20", output: "6765" }
+    ],
+    constraints: [
+      "0 <= n <= 30"
+    ]
+  },
+  cpp: {
+    title: "20. Valid Parentheses",
+    difficulty: "Easy",
+    description: "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.",
+    examples: [
+      { input: "s = \"()[]{}\"", output: "true" },
+      { input: "s = \"([)]\"", output: "false" }
+    ],
+    constraints: [
+      "1 <= s.length <= 10^4",
+      "s consists of parentheses only '()[]{}'."
+    ]
+  }
+};
+
 export default function PlaygroundPage() {
   const settings = useStore((s) => s.settings);
   const [language, setLanguage] = useState("javascript");
@@ -476,185 +584,235 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no expl
 
         {/* Editor + Output + Review */}
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-4 overflow-hidden min-h-0">
-          {/* Code Editor */}
-          <div className="flex flex-col overflow-hidden rounded-xl border border-border/60 bg-[#0d1117]">
-            <div className="flex items-center justify-between px-4 py-2 border-b border-border/30 bg-card/30">
-              <span className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest">editor</span>
-              <div className="flex gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/60" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/60" />
-              </div>
+          
+          {/* Left Column: Problem Details */}
+          <div className="flex flex-col bg-[#0d1117] rounded-xl border border-border/60 overflow-y-auto p-5 space-y-5">
+            <div className="flex items-center justify-between border-b border-border/30 pb-3">
+              <h2 className="text-base font-bold text-white tracking-tight">
+                {PROBLEMS[language]?.title || "Problem Description"}
+              </h2>
+              <Badge className={cn(
+                "text-[10px] px-2 py-0.5 rounded font-bold uppercase",
+                PROBLEMS[language]?.difficulty === "Easy" && "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+                PROBLEMS[language]?.difficulty === "Medium" && "bg-amber-500/10 text-amber-400 border border-amber-500/20",
+                PROBLEMS[language]?.difficulty === "Hard" && "bg-red-500/10 text-red-400 border border-red-500/20"
+              )}>
+                {PROBLEMS[language]?.difficulty || "Easy"}
+              </Badge>
             </div>
-            <textarea
-              ref={textareaRef}
-              value={code}
-              onChange={e => setCode(e.target.value)}
-              onKeyDown={handleTabKey}
-              spellCheck={false}
-              className="flex-1 p-4 bg-transparent text-sm font-mono text-foreground resize-none outline-none leading-relaxed"
-              style={{ fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" }}
-            />
+
+            <div className="text-xs text-slate-300 whitespace-pre-line leading-relaxed">
+              {PROBLEMS[language]?.description}
+            </div>
+
+            {/* Examples */}
+            <div className="space-y-4">
+              <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Examples</p>
+              {PROBLEMS[language]?.examples.map((ex, idx) => (
+                <div key={idx} className="p-3 bg-secondary/10 rounded-lg border border-border/40 space-y-1.5 font-mono text-[11px]">
+                  <p className="font-bold text-foreground">Example {idx + 1}:</p>
+                  <p className="text-muted-foreground">Input: <span className="text-slate-200">{ex.input}</span></p>
+                  <p className="text-muted-foreground">Output: <span className="text-emerald-400">{ex.output}</span></p>
+                  {ex.explanation && (
+                    <p className="text-muted-foreground">Explanation: <span className="text-slate-300">{ex.explanation}</span></p>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Constraints */}
+            <div className="space-y-2 border-t border-border/30 pt-4">
+              <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Constraints</p>
+              <ul className="list-disc pl-4 space-y-1 text-xs text-slate-400 font-mono">
+                {PROBLEMS[language]?.constraints.map((c, idx) => (
+                  <li key={idx}>{c}</li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Output + AI Review */}
-          <div className="flex flex-col gap-4 overflow-auto">
-            {/* LeetCode Tabbed Console */}
-            <div className="rounded-xl border border-border/60 bg-[#0d1117] overflow-hidden flex flex-col min-h-[220px]">
-              {/* Tab Switcher Headers */}
+          {/* Right Column: Code Editor + Console / Review */}
+          <div className="flex flex-col gap-4 overflow-y-auto lg:overflow-hidden min-h-0">
+            {/* Code Editor */}
+            <div className="flex flex-col overflow-hidden rounded-xl border border-border/60 bg-[#0d1117] min-h-[300px] lg:flex-1">
               <div className="flex items-center justify-between px-4 py-2 border-b border-border/30 bg-card/30">
-                <div className="flex gap-4">
-                  <button
-                    onClick={() => setActiveConsoleTab("output")}
-                    className={cn(
-                      "text-[10px] uppercase tracking-widest font-mono font-bold pb-0.5 border-b-2 transition-all",
-                      activeConsoleTab === "output" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    Console Output
-                  </button>
-                  <button
-                    onClick={() => setActiveConsoleTab("stdin")}
-                    className={cn(
-                      "text-[10px] uppercase tracking-widest font-mono font-bold pb-0.5 border-b-2 transition-all",
-                      activeConsoleTab === "stdin" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    Custom Testcase (Stdin)
-                  </button>
-                  <button
-                    onClick={() => setActiveConsoleTab("tests")}
-                    className={cn(
-                      "text-[10px] uppercase tracking-widest font-mono font-bold pb-0.5 border-b-2 transition-all",
-                      activeConsoleTab === "tests" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    Test Cases Results ({testResults.length})
-                  </button>
+                <span className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest">editor</span>
+                <div className="flex gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/60" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/60" />
                 </div>
-                {output && activeConsoleTab === "output" && (
-                  <button onClick={() => setOutput("")} className="text-[10px] text-muted-foreground hover:text-foreground">Clear</button>
-                )}
               </div>
-
-              {/* Tab Contents */}
-              <div className="p-4 flex-1 overflow-auto">
-                {activeConsoleTab === "output" && (
-                  <div>
-                    {output ? (
-                      <pre className="text-xs font-mono text-emerald-400 whitespace-pre-wrap leading-relaxed">{output}</pre>
-                    ) : (
-                      <p className="text-xs text-muted-foreground/40 font-mono">Click Run Code to execute your program...</p>
-                    )}
-                  </div>
-                )}
-
-                {activeConsoleTab === "stdin" && (
-                  <div className="space-y-2">
-                    <label className="text-[10px] text-muted-foreground font-mono uppercase tracking-wider block">Provide mock standard input stream (one line per prompt input read):</label>
-                    <textarea
-                      value={stdin}
-                      onChange={e => setStdin(e.target.value)}
-                      placeholder="e.g.&#10;input_line_1&#10;input_line_2"
-                      className="w-full h-24 p-3 bg-secondary/30 rounded-lg border border-border/50 text-xs font-mono text-foreground focus:outline-none resize-none"
-                    />
-                  </div>
-                )}
-
-                {activeConsoleTab === "tests" && (
-                  <div className="space-y-3">
-                    {testing ? (
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground font-mono py-4">
-                        <Loader2 className="w-3.5 h-3.5 animate-spin text-primary" />
-                        Running method against problem test cases...
-                      </div>
-                    ) : testResults.length > 0 ? (
-                      <div className="space-y-2">
-                        {testResults.map((t, index) => (
-                          <div key={index} className={cn("p-2.5 rounded-lg border text-xs", t.passed ? "bg-emerald-500/5 border-emerald-500/25" : "bg-red-500/5 border-red-500/25")}>
-                            <div className="flex items-center justify-between mb-1">
-                              <span className="font-bold font-mono">Case #{index + 1}</span>
-                              <Badge className={t.passed ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-red-500/10 text-red-400 border-red-500/20"}>
-                                {t.passed ? "Passed" : "Failed"}
-                              </Badge>
-                            </div>
-                            <p className="text-[10px] text-muted-foreground font-mono mt-1">Input: <span className="text-foreground">{t.input}</span></p>
-                            <p className="text-[10px] text-muted-foreground font-mono">Expected: <span className="text-emerald-400">{JSON.stringify(t.expected)}</span></p>
-                            {t.error ? (
-                              <p className="text-[10px] text-red-400 font-mono">Error: {t.error}</p>
-                            ) : (
-                              <p className="text-[10px] text-muted-foreground font-mono">Actual: <span className={t.passed ? "text-emerald-400" : "text-red-400"}>{JSON.stringify(t.actual)}</span></p>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="text-xs text-muted-foreground/40 font-mono">Click Run Tests to execute test case assertions against your method...</p>
-                    )}
-                  </div>
-                )}
-              </div>
+              <textarea
+                ref={textareaRef}
+                value={code}
+                onChange={e => setCode(e.target.value)}
+                onKeyDown={handleTabKey}
+                spellCheck={false}
+                className="flex-1 p-4 bg-transparent text-sm font-mono text-foreground resize-none outline-none leading-relaxed"
+                style={{ fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" }}
+              />
             </div>
 
-            {/* AI Review panel */}
-            <AnimatePresence>
-              {reviewing && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-center justify-center gap-3">
-                  <Loader2 className="w-5 h-5 animate-spin text-primary" />
-                  <p className="text-sm text-muted-foreground">Analyzing complexity and correctness...</p>
-                </motion.div>
-              )}
-
-              {review && !reviewing && (
-                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="rounded-xl border border-border/60 overflow-hidden">
-                  <div className="px-4 py-3 border-b border-border/30 bg-card/50 flex items-center justify-between">
-                    <span className="text-xs font-semibold flex items-center gap-2">
-                      <Brain className="w-3.5 h-3.5 text-primary" />
-                      AI Code Review
-                    </span>
-                    <Badge variant="outline" className={cn("text-[10px]",
-                      review.score >= 80 ? "border-emerald-500/30 text-emerald-400" :
-                        review.score >= 60 ? "border-amber-500/30 text-amber-400" : "border-red-500/30 text-red-400"
-                    )}>
-                      Score: {review.score}/100
-                    </Badge>
+            {/* Output + AI Review */}
+            <div className="flex flex-col gap-4 overflow-y-visible lg:overflow-y-auto lg:max-h-[350px] shrink-0">
+              {/* LeetCode Tabbed Console */}
+              <div className="rounded-xl border border-border/60 bg-[#0d1117] overflow-hidden flex flex-col min-h-[220px]">
+                {/* Tab Switcher Headers */}
+                <div className="flex items-center justify-between px-4 py-2 border-b border-border/30 bg-card/30">
+                  <div className="flex gap-4">
+                    <button
+                      onClick={() => setActiveConsoleTab("output")}
+                      className={cn(
+                        "text-[10px] uppercase tracking-widest font-mono font-bold pb-0.5 border-b-2 transition-all",
+                        activeConsoleTab === "output" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      Console Output
+                    </button>
+                    <button
+                      onClick={() => setActiveConsoleTab("stdin")}
+                      className={cn(
+                        "text-[10px] uppercase tracking-widest font-mono font-bold pb-0.5 border-b-2 transition-all",
+                        activeConsoleTab === "stdin" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      Custom Testcase (Stdin)
+                    </button>
+                    <button
+                      onClick={() => setActiveConsoleTab("tests")}
+                      className={cn(
+                        "text-[10px] uppercase tracking-widest font-mono font-bold pb-0.5 border-b-2 transition-all",
+                        activeConsoleTab === "tests" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      Test Cases Results ({testResults.length})
+                    </button>
                   </div>
-                  <div className="p-4 space-y-3">
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="bg-secondary/30 rounded-lg p-3">
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1 flex items-center gap-1">
-                          <Clock className="w-3 h-3" /> Time Complexity
-                        </p>
-                        <p className="text-sm font-mono font-bold text-foreground">{review.timeComplexity}</p>
-                      </div>
-                      <div className="bg-secondary/30 rounded-lg p-3">
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1 flex items-center gap-1">
-                          <BarChart3 className="w-3 h-3" /> Space Complexity
-                        </p>
-                        <p className="text-sm font-mono font-bold text-foreground">{review.spaceComplexity}</p>
-                      </div>
-                    </div>
+                  {output && activeConsoleTab === "output" && (
+                    <button onClick={() => setOutput("")} className="text-[10px] text-muted-foreground hover:text-foreground">Clear</button>
+                  )}
+                </div>
 
-                    <div className="bg-secondary/20 rounded-lg p-3">
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Correctness</p>
-                      <p className="text-xs text-foreground">{review.correctness}</p>
+                {/* Tab Contents */}
+                <div className="p-4 flex-1 overflow-auto">
+                  {activeConsoleTab === "output" && (
+                    <div>
+                      {output ? (
+                        <pre className="text-xs font-mono text-emerald-400 whitespace-pre-wrap leading-relaxed">{output}</pre>
+                      ) : (
+                        <p className="text-xs text-muted-foreground/40 font-mono">Click Run Code to execute your program...</p>
+                      )}
                     </div>
+                  )}
 
-                    {review.suggestions.length > 0 && (
-                      <div className="space-y-1.5">
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold">Optimization Tips</p>
-                        {review.suggestions.map((s, i) => (
-                          <div key={i} className="flex items-start gap-2 text-xs text-foreground/80">
-                            <Zap className="w-3 h-3 text-amber-400 shrink-0 mt-0.5" />
-                            <span>{s}</span>
-                          </div>
-                        ))}
+                  {activeConsoleTab === "stdin" && (
+                    <div className="space-y-2">
+                      <label className="text-[10px] text-muted-foreground font-mono uppercase tracking-wider block">Provide mock standard input stream (one line per prompt input read):</label>
+                      <textarea
+                        value={stdin}
+                        onChange={e => setStdin(e.target.value)}
+                        placeholder="e.g.&#10;input_line_1&#10;input_line_2"
+                        className="w-full h-24 p-3 bg-secondary/30 rounded-lg border border-border/50 text-xs font-mono text-foreground focus:outline-none resize-none"
+                      />
+                    </div>
+                  )}
+
+                  {activeConsoleTab === "tests" && (
+                    <div className="space-y-3">
+                      {testing ? (
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground font-mono py-4">
+                          <Loader2 className="w-3.5 h-3.5 animate-spin text-primary" />
+                          Running method against problem test cases...
+                        </div>
+                      ) : testResults.length > 0 ? (
+                        <div className="space-y-2">
+                          {testResults.map((t, index) => (
+                            <div key={index} className={cn("p-2.5 rounded-lg border text-xs", t.passed ? "bg-emerald-500/5 border-emerald-500/25" : "bg-red-500/5 border-red-500/25")}>
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="font-bold font-mono">Case #{index + 1}</span>
+                                <Badge className={t.passed ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-red-500/10 text-red-400 border-red-500/20"}>
+                                  {t.passed ? "Passed" : "Failed"}
+                                </Badge>
+                              </div>
+                              <p className="text-[10px] text-muted-foreground font-mono mt-1">Input: <span className="text-foreground">{t.input}</span></p>
+                              <p className="text-[10px] text-muted-foreground font-mono">Expected: <span className="text-emerald-400">{JSON.stringify(t.expected)}</span></p>
+                              {t.error ? (
+                                <p className="text-[10px] text-red-400 font-mono">Error: {t.error}</p>
+                              ) : (
+                                <p className="text-[10px] text-muted-foreground font-mono">Actual: <span className={t.passed ? "text-emerald-400" : "text-red-400"}>{JSON.stringify(t.actual)}</span></p>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-xs text-muted-foreground/40 font-mono">Click Run Tests to execute test case assertions against your method...</p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* AI Review panel */}
+              <AnimatePresence>
+                {reviewing && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-center justify-center gap-3">
+                    <Loader2 className="w-5 h-5 animate-spin text-primary" />
+                    <p className="text-sm text-muted-foreground">Analyzing complexity and correctness...</p>
+                  </motion.div>
+                )}
+
+                {review && !reviewing && (
+                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="rounded-xl border border-border/60 overflow-hidden">
+                    <div className="px-4 py-3 border-b border-border/30 bg-card/50 flex items-center justify-between">
+                      <span className="text-xs font-semibold flex items-center gap-2">
+                        <Brain className="w-3.5 h-3.5 text-primary" />
+                        AI Code Review
+                      </span>
+                      <Badge variant="outline" className={cn("text-[10px]",
+                        review.score >= 80 ? "border-emerald-500/30 text-emerald-400" :
+                          review.score >= 60 ? "border-amber-500/30 text-amber-400" : "border-red-500/30 text-red-400"
+                      )}>
+                        Score: {review.score}/100
+                      </Badge>
+                    </div>
+                    <div className="p-4 space-y-3">
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="bg-secondary/30 rounded-lg p-3">
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1 flex items-center gap-1">
+                            <Clock className="w-3 h-3" /> Time Complexity
+                          </p>
+                          <p className="text-sm font-mono font-bold text-foreground">{review.timeComplexity}</p>
+                        </div>
+                        <div className="bg-secondary/30 rounded-lg p-3">
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1 flex items-center gap-1">
+                            <BarChart3 className="w-3 h-3" /> Space Complexity
+                          </p>
+                          <p className="text-sm font-mono font-bold text-foreground">{review.spaceComplexity}</p>
+                        </div>
                       </div>
-                    )}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+
+                      <div className="bg-secondary/20 rounded-lg p-3">
+                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Correctness</p>
+                        <p className="text-xs text-foreground">{review.correctness}</p>
+                      </div>
+
+                      {review.suggestions.length > 0 && (
+                        <div className="space-y-1.5">
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold">Optimization Tips</p>
+                          {review.suggestions.map((s, i) => (
+                            <div key={i} className="flex items-start gap-2 text-xs text-foreground/80">
+                              <Zap className="w-3 h-3 text-amber-400 shrink-0 mt-0.5" />
+                              <span>{s}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </div>

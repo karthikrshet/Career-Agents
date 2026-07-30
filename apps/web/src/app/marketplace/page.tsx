@@ -282,7 +282,7 @@ export default function MarketplacePage() {
                       {selectedPlugin.name}
                       <Badge className="text-[9px] scale-90">{selectedPlugin.version}</Badge>
                     </h2>
-                    <p className="text-xs text-muted-foreground">By {selectedPlugin.author} · {selectedPlugin.downloads.toLocaleString()} installs</p>
+                    <p className="text-xs text-muted-foreground">By {selectedPlugin.author} · {selectedPlugin.downloads.toLocaleString("en-US")} installs</p>
                   </div>
                 </div>
                 <button onClick={() => setSelectedPlugin(null)} className="p-1 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground">
