@@ -1,0 +1,122 @@
+openapi: 3.0.3
+info:
+  title: Career Agents Enterprise API
+  description: Extension integration and background service communication gateway APIs for Career Agents.
+  version: 12.0.0
+servers:
+  - url: http://localhost:3000
+  - url: https://api.careeragents.ai
+paths:
+  /api/extension/auth:
+    post:
+      summary: Validate OAuth token
+      description: Exchanges an OAuth credential token for a verified extension JWT.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - token
+              properties:
+                token:
+                  type: string
+                  description: Provider identity token
+      responses:
+        '200':
+          description: Successful verification
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  user:
+                    type: object
+        '401':
+          description: Unauthorized
+  /api/extension/ats:
+    post:
+      summary: ATS Match Analysis
+      description: Run resume optimization checks on scraped job descriptions.
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - details
+              properties:
+                details:
+                  type: object
+                  required:
+                    - title
+                    - company
+                    - text
+                  properties:
+                    title:
+                      type: string
+                    company:
+                      type: string
+                    text:
+                      type: string
+      responses:
+        '200':
+          description: Match analysis completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  score:
+                    type: integer
+                  matchedSkills:
+                    type: array
+                    items:
+                      type: string
+                  missingSkills:
+                    type: array
+                    items:
+                      type: string
+  /api/extension/jobs:
+    post:
+      summary: Save Job opportunity
+      description: Record a scanned job opportunity to the tracker board.
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - details
+              properties:
+                details:
+                  type: object
+                  required:
+                    - title
+                    - company
+                    - url
+                  properties:
+                    title:
+                      type: string
+                    company:
+                      type: string
+                    url:
+                      type: string
+      responses:
+        '200':
+          description: Job successfully created
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

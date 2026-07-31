@@ -257,9 +257,10 @@ function generateSimplePdf(title: string, lines: string[]): Buffer {
   addObj("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>");
   addObj("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
 
-  let streamContent = `BT\n/F1 18 Tf\n70 780 Td\n(${title.replace(/[\(\)]/g, "\\$&")}) Tj\n/F1 9 Tf\n`;
+  const escapedTitle = title.replace(/\\/g, "\\\\").replace(/[\(\)]/g, "\\$&");
+  let streamContent = `BT\n/F1 18 Tf\n70 780 Td\n(${escapedTitle}) Tj\n/F1 9 Tf\n`;
   for (const line of lines) {
-    const escaped = line.replace(/[\(\)]/g, "\\$&");
+    const escaped = line.replace(/\\/g, "\\\\").replace(/[\(\)]/g, "\\$&");
     streamContent += `0 -14 Td\n(${escaped}) Tj\n`;
   }
   streamContent += "ET";

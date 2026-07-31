@@ -21,6 +21,7 @@ model User {
   targetRole      String?
   targetCompany   String?
   plan            String   @default("free")
+  role            String   @default("USER")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
@@ -36,6 +37,7 @@ model User {
   settings        UserSettings?
   accounts        Account[]
   sessions        Session[]
+  orgMemberships  OrganizationMember[]
 
   @@map("users")
 }
@@ -231,4 +233,43 @@ model ChatMessage {
   createdAt DateTime @default(now())
 
   @@map("chat_messages")
+}
+
+model Organization {
+  id          String                   @id @default(cuid())
+  name        String
+  slug        String                   @unique
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  members     OrganizationMember[]
+  invitations OrganizationInvitation[]
+
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  id             String       @id @default(cuid())
+  orgId          String       @map("org_id")
+  userId         String       @map("user_id")
+  role           String       @default("MEMBER")
+  createdAt      DateTime     @default(now())
+  organization   Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([orgId, userId])
+  @@map("organization_members")
+}
+
+model OrganizationInvitation {
+  id             String       @id @default(cuid())
+  orgId          String       @map("org_id")
+  email          String
+  role           String       @default("MEMBER")
+  token          String       @unique
+  expires        DateTime
+  createdAt      DateTime     @default(now())
+  organization   Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@unique([orgId, email])
+  @@map("organization_invitations")
 }

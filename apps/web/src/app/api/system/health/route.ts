@@ -62,7 +62,7 @@ export async function GET() {
   const checks: Record<string, { status: "Connected" | "Healthy" | "Partial" | "Missing" | "Offline" | "Disabled"; latency: number; details?: string }> = {};
 
   // 1. Environment variables check
-  const requiredEnv = ["DATABASE_URL", "NEXTAUTH_SECRET", "NEXTAUTH_URL"];
+  const requiredEnv = ["NEXTAUTH_SECRET", "NEXTAUTH_URL"];
   const missingEnv = requiredEnv.filter((k) => !process.env[k]);
   checks["Environment"] = {
     status: missingEnv.length === 0 ? "Healthy" : "Missing",
@@ -72,50 +72,58 @@ export async function GET() {
 
   // 2. Database connectivity check
   const dbStart = Date.now();
-  try {
-    await prisma.$queryRaw`SELECT 1`;
-    // Schema check: verify if required tables exist
+  if (!process.env.DATABASE_URL) {
+    checks["Database"] = { 
+      status: "Disabled", 
+      latency: 0, 
+      details: "DATABASE_URL not configured. Running in local-only Guest Mode." 
+    };
+  } else {
     try {
-      const missingTables: string[] = [];
-      const verifyTable = async (name: string, checkFn: () => Promise<any>) => {
-        try {
-          await checkFn();
-        } catch {
-          missingTables.push(name);
-        }
-      };
-
-      await verifyTable("users", () => prisma.user.count());
-      await verifyTable("accounts", () => prisma.account.count());
-      await verifyTable("sessions", () => prisma.session.count());
-      await verifyTable("chat_messages", () => (prisma as any).chatMessage.count());
-      await verifyTable("resumes", () => prisma.resumeAnalysis.count());
-      await verifyTable("workflows", () => (prisma as any).workflow.count());
-      await verifyTable("reports", () => (prisma as any).report.count());
-      await verifyTable("analytics_events", () => prisma.analyticsEvent.count());
-
-      if (missingTables.length === 0) {
-        checks["Database"] = { 
-          status: "Healthy", 
-          latency: Date.now() - dbStart, 
-          details: "Database connected and schema verified" 
+      await prisma.$queryRaw`SELECT 1`;
+      // Schema check: verify if required tables exist
+      try {
+        const missingTables: string[] = [];
+        const verifyTable = async (name: string, checkFn: () => Promise<any>) => {
+          try {
+            await checkFn();
+          } catch {
+            missingTables.push(name);
+          }
         };
-      } else {
+
+        await verifyTable("users", () => prisma.user.count());
+        await verifyTable("accounts", () => prisma.account.count());
+        await verifyTable("sessions", () => prisma.session.count());
+        await verifyTable("chat_messages", () => (prisma as any).chatMessage.count());
+        await verifyTable("resumes", () => prisma.resumeAnalysis.count());
+        await verifyTable("workflows", () => (prisma as any).workflow.count());
+        await verifyTable("reports", () => (prisma as any).report.count());
+        await verifyTable("analytics_events", () => prisma.analyticsEvent.count());
+
+        if (missingTables.length === 0) {
+          checks["Database"] = { 
+            status: "Healthy", 
+            latency: Date.now() - dbStart, 
+            details: "Database connected and schema verified" 
+          };
+        } else {
+          checks["Database"] = { 
+            status: "Partial", 
+            latency: Date.now() - dbStart, 
+            details: `Connected, but tables missing (run migrations): ${missingTables.join(", ")}` 
+          };
+        }
+      } catch (schemaErr: any) {
         checks["Database"] = { 
           status: "Partial", 
           latency: Date.now() - dbStart, 
-          details: `Connected, but tables missing (run migrations): ${missingTables.join(", ")}` 
+          details: `Connected, but schema check failed: ${schemaErr.message}` 
         };
       }
-    } catch (schemaErr: any) {
-      checks["Database"] = { 
-        status: "Partial", 
-        latency: Date.now() - dbStart, 
-        details: `Connected, but schema check failed: ${schemaErr.message}` 
-      };
+    } catch (err: any) {
+      checks["Database"] = { status: "Offline", latency: 0, details: err.message };
     }
-  } catch (err: any) {
-    checks["Database"] = { status: "Offline", latency: 0, details: err.message };
   }
 
   // 3. Redis check

@@ -42,6 +42,10 @@ Return only the improved resume text, no explanations.`,
 
     return NextResponse.json({ rewrite });
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    const reqId = "REQ-" + Math.floor(10000 + Math.random() * 90000);
+    console.error(`[${reqId}] Resume analyze API failed:`, e);
+    return NextResponse.json({ 
+      error: `Unable to evaluate because AI provider is unavailable. Reference ID: ${reqId}. Please try again.` 
+    }, { status: 500 });
   }
 }
