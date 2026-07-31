@@ -45,9 +45,82 @@ export async function POST(req: NextRequest) {
 
     let runResult: any = null;
 
-    try {
-      const { secureFetch } = await import("packages/security");
-      const res = await secureFetch("https://emkc.org/api/v2/piston/execute", {
+    // 1. Try Judge0 execution if configured
+    const judge0Url = process.env.JUDGE0_API_URL;
+    const judge0Key = process.env.JUDGE0_API_KEY;
+
+    if (judge0Url) {
+      try {
+        const { secureFetch } = await import("packages/security");
+        const headers: Record<string, string> = {
+          "Content-Type": "application/json",
+        };
+        if (judge0Key) {
+          if (judge0Url.includes("rapidapi.com")) {
+            headers["X-RapidAPI-Key"] = judge0Key;
+            headers["X-RapidAPI-Host"] = new URL(judge0Url).hostname;
+          } else {
+            headers["X-Auth-Token"] = judge0Key;
+          }
+        }
+
+        const judge0LangMapping: Record<string, number> = {
+          javascript: 93,
+          typescript: 94,
+          python: 92,
+          java: 91,
+          go: 95,
+          rust: 73,
+          cpp: 76,
+        };
+
+        const languageId = judge0LangMapping[language.toLowerCase()] || 93;
+        const sourceCodeBase64 = Buffer.from(code).toString("base64");
+        const stdinBase64 = Buffer.from(stdin || "").toString("base64");
+
+        const res = await secureFetch(`${judge0Url}/submissions?wait=true&base64_encoded=true`, {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            source_code: sourceCodeBase64,
+            language_id: languageId,
+            stdin: stdinBase64,
+          }),
+          allowedProvider: "judge0",
+          signal: AbortSignal.timeout(6000),
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const decodeB64 = (str: string | null) => str ? Buffer.from(str, "base64").toString("utf-8") : "";
+          const stdout = decodeB64(data.stdout);
+          const stderr = decodeB64(data.stderr);
+          const compileOutput = decodeB64(data.compile_output);
+          const message = decodeB64(data.message);
+
+          runResult = {
+            success: data.status?.id === 3,
+            stdout,
+            stderr: stderr || compileOutput || message || "",
+            code: data.status?.id === 3 ? 0 : data.status?.id || 1,
+            signal: null,
+            output: stdout || stderr || compileOutput || message || "",
+            compileLogs: compileOutput || "",
+            executionTime: data.time ? `${(parseFloat(data.time) * 1000).toFixed(1)}ms` : "N/A",
+            memory: data.memory ? `${(data.memory / 1024).toFixed(2)}MB` : "N/A",
+            statusDescription: data.status?.description || "N/A"
+          };
+        }
+      } catch (judge0Err) {
+        console.warn("Judge0 submission failed, falling back to Piston/Local.", judge0Err);
+      }
+    }
+
+    // 2. Try EMKC Piston fallback if Judge0 was not configured or failed
+    if (!runResult) {
+      try {
+        const { secureFetch } = await import("packages/security");
+        const res = await secureFetch("https://emkc.org/api/v2/piston/execute", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -72,6 +145,7 @@ export async function POST(req: NextRequest) {
     } catch (fetchErr) {
       console.warn("Piston API fetch failed or timed out. Falling back to local execution sandbox.", fetchErr);
     }
+  }
 
     if (!runResult) {
       // Local Execution Fallback

@@ -225,9 +225,9 @@ export async function routeCompletion(
 
           if (!res.ok) {
             const err = await res.text();
-            let errorMessage = `Google API returned status code ${res.status}: ${err}`;
+            let errorMessage = `API Gateway connection failed. The remote server returned status code ${res.status}.`;
             if (res.status === 429 || err.toLowerCase().includes("quota") || err.toLowerCase().includes("exhausted")) {
-              errorMessage = "Your Gemini API quota has been exceeded. Please retry in a few minutes, view the Google Developer Documentation link (https://ai.google.dev/gemini-api/docs/quota), or switch your provider/model settings (e.g. switch to OpenRouter, Groq, OpenAI, or mistral).";
+              errorMessage = "Your API quota has been exceeded. Please retry in a few minutes or switch your model settings.";
             }
             throw new Error(errorMessage);
           }
@@ -279,9 +279,9 @@ export async function routeCompletion(
 
           if (!res.ok) {
             const err = await res.text();
-            let errorMessage = `Provider API returned status code ${res.status}: ${err}`;
+            let errorMessage = `API Gateway connection failed. The remote server returned status code ${res.status}.`;
             if (res.status === 429 || err.toLowerCase().includes("quota") || err.toLowerCase().includes("exhausted")) {
-              errorMessage = `Your ${providerId.toUpperCase()} API quota has been exceeded. Please retry in a few minutes, view the provider's developer documentation, or switch your provider/model settings (e.g. switch to OpenRouter, Groq, OpenAI, or mistral).`;
+              errorMessage = "Your API quota has been exceeded. Please retry in a few minutes or switch your model settings.";
             }
             throw new Error(errorMessage);
           }

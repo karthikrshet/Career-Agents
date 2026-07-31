@@ -113,6 +113,7 @@ jobs:
         run: |
           npm install
           cd apps/web && npm install
+          cd apps/chrome-extension && npm install
       - name: Generate Data Models
         run: python scripts/generate-data.py
       - name: Validate Markdown References
@@ -123,3 +124,5 @@ jobs:
         run: cd apps/web && npm run type-check
       - name: Build Next.js Production Build
         run: cd apps/web && npm run build
+      - name: Build Chrome Extension
+        run: cd apps/chrome-extension && npm run build

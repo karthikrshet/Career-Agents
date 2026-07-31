@@ -95,6 +95,13 @@ export default function SettingsPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings.aiProvider.provider]);
 
+  // Sync selected provider when gateway store hydrates
+  useEffect(() => {
+    if (gatewayProvider) {
+      setSelectedProvider(gatewayProvider);
+    }
+  }, [gatewayProvider]);
+
   useEffect(() => {
     setGithubToken(settings.githubToken || "");
   }, [settings.githubToken]);
@@ -382,8 +389,24 @@ export default function SettingsPage() {
                             key={p.id}
                             onClick={() => {
                               setSelectedProvider(p.id);
-                              updateAIProvider({ provider: p.id as any });
+                              const defaultModels: Record<string, string> = {
+                                groq: "llama-3.3-70b-versatile",
+                                gemini: "gemini-2.5-flash",
+                                openai: "gpt-4o-mini",
+                                claude: "claude-3-5-sonnet-20241022",
+                                anthropic: "claude-3-5-sonnet-20241022",
+                                openrouter: "meta-llama/llama-3.1-405b",
+                                together: "meta-llama/Llama-3-70b-chat-hf",
+                                deepseek: "deepseek-chat",
+                                mistral: "mistral-large-latest",
+                                cohere: "command-r-plus",
+                                azure: "gpt-4o",
+                                xai: "grok-2",
+                              };
+                              const defaultModel = defaultModels[p.id] || "default";
+                              updateAIProvider({ provider: p.id as any, model: defaultModel });
                               useGatewayStore.getState().setProvider(p.id);
+                              useGatewayStore.getState().setModel(defaultModel);
                             }}
                             className={cn(
                               "relative flex flex-col justify-between p-3.5 rounded-xl border text-left cursor-pointer transition-all text-xs",

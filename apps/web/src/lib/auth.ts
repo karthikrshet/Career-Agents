@@ -3,6 +3,8 @@ import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import LinkedInProvider from "next-auth/providers/linkedin";
+import AzureADProvider from "next-auth/providers/azure-ad";
 import { prisma } from "./db";
 
 export const authOptions: AuthOptions = {
@@ -67,6 +69,15 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "mock-google-client-id",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "mock-google-client-secret",
+    }),
+    LinkedInProvider({
+      clientId: process.env.LINKEDIN_CLIENT_ID || "mock-linkedin-client-id",
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET || "mock-linkedin-client-secret",
+    }),
+    AzureADProvider({
+      clientId: process.env.AZURE_AD_CLIENT_ID || "mock-azure-ad-client-id",
+      clientSecret: process.env.AZURE_AD_CLIENT_SECRET || "mock-azure-ad-client-secret",
+      tenantId: process.env.AZURE_AD_TENANT_ID || "mock-azure-ad-tenant-id",
     })
   ],
   callbacks: {
@@ -76,15 +87,17 @@ export const authOptions: AuthOptions = {
         
         let targetRole = "Senior Software Engineer";
         let targetCompany = "FAANG";
+        let userRole = "USER";
         try {
           if (process.env.DATABASE_URL) {
             const userDb = await prisma.user.findUnique({
               where: { id: token.sub },
-              select: { targetRole: true, targetCompany: true }
+              select: { targetRole: true, targetCompany: true, role: true }
             });
             if (userDb) {
               targetRole = userDb.targetRole || targetRole;
               targetCompany = userDb.targetCompany || targetCompany;
+              userRole = userDb.role || userRole;
             }
           }
         } catch (err) {
@@ -92,6 +105,7 @@ export const authOptions: AuthOptions = {
         }
         (session.user as any).targetRole = targetRole;
         (session.user as any).targetCompany = targetCompany;
+        (session.user as any).role = userRole;
       }
       return session;
     },
@@ -102,7 +116,7 @@ export const authOptions: AuthOptions = {
       return token;
     },
     async signIn({ user, account }) {
-      if (account?.provider === "github" || account?.provider === "google") {
+      if (account?.provider === "github" || account?.provider === "google" || account?.provider === "linkedin" || account?.provider === "azure-ad") {
         if (!user.email) return false;
         try {
           if (process.env.DATABASE_URL) {
@@ -110,11 +124,19 @@ export const authOptions: AuthOptions = {
               where: { email: user.email }
             });
             if (!dbUser) {
+              let assignedRole = "USER";
+              if (user.email.endsWith("@careeragents.ai")) {
+                assignedRole = "ADMIN";
+              } else if (user.email.endsWith(".edu")) {
+                assignedRole = "UNIVERSITY_ADMIN";
+              }
+
               await prisma.user.create({
                 data: {
                   email: user.email,
                   name: user.name || "OAuth Candidate",
                   image: user.image,
+                  role: assignedRole,
                   settings: { create: {} },
                   metrics: { create: {} }
                 }

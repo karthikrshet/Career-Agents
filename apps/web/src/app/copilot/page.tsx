@@ -1551,17 +1551,17 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
             </div>
 
             {/* Bottom options row */}
-            <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <div className="flex items-center gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-2">
                 {/* Model Selector Dropdown (Issue 13) */}
                 <div className="relative">
                   <button
                     onClick={() => setShowModelDropdown(!showModelDropdown)}
-                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border/50 hover:bg-secondary hover:text-foreground transition-all"
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border/50 hover:bg-secondary hover:text-foreground transition-all text-[11px]"
                   >
                     <Cpu className="w-3.5 h-3.5 text-primary" />
                     <span className="font-semibold text-foreground uppercase">{activeProvider}:</span>
-                    <span className="max-w-[120px] truncate text-[11px]">{activeModel}</span>
+                    <span className="max-w-[100px] sm:max-w-[120px] truncate">{activeModel}</span>
                     <ChevronDown className="w-3 h-3 ml-1 text-muted-foreground" />
                   </button>
 
@@ -1601,7 +1601,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                 {/* Cognitive Config Settings Gear Button */}
                 <button
                   onClick={() => setIsConfigOpen(true)}
-                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border/50 hover:bg-secondary hover:text-foreground text-muted-foreground transition-all"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border/50 hover:bg-secondary hover:text-foreground text-muted-foreground transition-all text-[11px]"
                   title="Configure Model, Internet, Memory & Reasoning"
                 >
                   <Settings className="w-3.5 h-3.5 text-primary" />
@@ -1612,7 +1612,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                 {currentSession && (
                   <button
                     onClick={() => setIsExportOpen(true)}
-                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border/50 hover:bg-secondary hover:text-foreground text-muted-foreground transition-all"
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border/50 hover:bg-secondary hover:text-foreground text-muted-foreground transition-all text-[11px]"
                     title="Export or Share Chat"
                   >
                     <Download className="w-3.5 h-3.5 text-indigo-400" />
@@ -1621,9 +1621,9 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                 )}
               </div>
 
-              <div className="flex items-center gap-1.5">
-                <AlertCircle className="w-3 h-3 text-muted-foreground/85" />
-                <span>Context reads metrics & attachments automatically</span>
+              <div className="flex items-center gap-1.5 text-[10px] sm:text-xs">
+                <AlertCircle className="w-3 h-3 text-muted-foreground/85 shrink-0" />
+                <span className="truncate">Context reads metrics & attachments automatically</span>
               </div>
             </div>
           </div>

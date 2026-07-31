@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Career Agents Assistant",
+  "version": "11.0.0",
+  "description": "Enterprise AI Career OS Assistant. Analyze jobs, run ATS checks, auto-fill forms, and audit portfolios.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://*.linkedin.com/*",
+    "https://*.github.com/*",
+    "https://*.leetcode.com/*",
+    "https://*.hackerrank.com/*",
+    "https://*.wellfound.com/*",
+    "https://*.greenhouse.io/*",
+    "https://*.lever.co/*",
+    "http://localhost:3000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.linkedin.com/*",
+        "https://*.github.com/*",
+        "https://*.leetcode.com/*",
+        "https://*.hackerrank.com/*",
+        "https://*.wellfound.com/*",
+        "https://*.greenhouse.io/*",
+        "https://*.lever.co/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
