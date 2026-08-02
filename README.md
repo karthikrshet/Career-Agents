@@ -91,14 +91,14 @@ Career Agents takes a different approach:
 <summary>View Interview Lab Preview</summary>
 
 *Conducts mock interviews across 10 company tracks, featuring integrated coding canvases and scorecards.*
-![Mock Interview View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/mockinterviewpreview.png)
+![Mock Interview View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/interviewlab.png)
 </details>
 
 <details>
 <summary>View Marketplace Preview</summary>
 
 *Enable or disable plugin extensions and review required context permissions.*
-![Marketplace View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/marketplacepreview.png)
+![Marketplace View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/marketplace.png)
 </details>
 
 ---
