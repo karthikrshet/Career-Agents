@@ -7,7 +7,7 @@ import {
   Settings, Key, Cpu, Eye, EyeOff, CheckCircle, Loader2,
   Palette, Globe, User, Sparkles, Zap, GitBranch, Link2, Package, Database,
   Download, Keyboard, Terminal, Play, RefreshCw, BarChart2,
-  ListOrdered, ShieldCheck, Trash2, Save, Bell, Shield
+  ListOrdered, ShieldCheck, Trash2, Save, Bell, Shield, ChevronDown
 } from "lucide-react";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -217,10 +217,33 @@ export default function SettingsPage() {
       <Topbar title="Gateway Preferences" subtitle="Enterprise AI Provider Dashboard, health checker, routing logs, and credentials." />
 
       <div className="flex-1 p-4 md:p-6 overflow-x-hidden">
-        <div className="flex flex-col md:flex-row gap-6 max-w-5xl mx-auto">
-          {/* Sidebar Navigation */}
-          <div className="w-full md:w-56 shrink-0 space-y-0.5 md:border-r border-border/40 md:pr-4 flex md:flex-col overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 gap-1.5 md:gap-0.5 scrollbar-none">
-            <p className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest px-3 mb-2 hidden md:block">Workspace Config</p>
+        <div className="flex flex-col md:flex-row gap-6 max-w-7xl mx-auto">
+          {/* Mobile Section Selector Dropdown (md:hidden) */}
+          <div className="md:hidden w-full space-y-2 mb-2">
+            <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-400 block px-1">
+              Settings Section
+            </label>
+            <div className="relative">
+              <select
+                value={section}
+                onChange={(e) => setSection(e.target.value as any)}
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#090d18] border border-white/10 text-xs font-semibold text-white focus:outline-none focus:border-cyan-500/50 shadow-lg appearance-none cursor-pointer pr-10"
+              >
+                {SECTIONS.map((s, idx) => (
+                  <option key={s.id} value={s.id} className="bg-[#090d18] text-white">
+                    {idx + 1}. {s.label}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                <ChevronDown className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Sidebar Navigation (hidden md:flex) */}
+          <div className="hidden md:flex w-60 shrink-0 space-y-0.5 border-r border-white/10 pr-4 flex-col overflow-y-auto max-h-[calc(100vh-120px)] scrollbar-none no-scrollbar">
+            <p className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest px-3 mb-2">Workspace Config</p>
             {SECTIONS.map((s) => (
               <button
                 key={s.id}
