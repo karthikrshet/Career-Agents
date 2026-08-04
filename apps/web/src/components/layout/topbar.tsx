@@ -1,164 +1,231 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bell, Search, User, Globe, BookOpen, HelpCircle, MessageSquare, History, Menu, X } from "lucide-react";
+import {
+  Bell,
+  Search,
+  BookOpen,
+  MessageSquare,
+  History,
+  Menu,
+  X,
+  LayoutDashboard,
+  FileText,
+  Mic,
+  Briefcase,
+  Kanban,
+  Building2,
+  Code,
+  Link2,
+  BarChart3,
+  Bot,
+  Sparkles,
+  GitFork,
+  GitBranch,
+  Terminal,
+  Settings,
+  Info,
+  Award
+} from "lucide-react";
 import { useStore } from "@/lib/store";
-import { cn, scoreToColor } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { CommandPalette } from "@/components/layout/command-palette";
-import { NAV_ITEMS } from "./sidebar";
+
+const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
 
 interface TopbarProps {
   title: string;
   subtitle?: string;
+  className?: string;
 }
 
-export function Topbar({ title, subtitle }: TopbarProps) {
+const DEFAULT_SUBTITLES: Record<string, string> = {
+  "/dashboard": "Overview workspace and career readiness analytics",
+  "/resume": "ATS resume optimization, bullet rewrites, and keyword gaps",
+  "/interview": "AI-powered mock interviews with STAR scorecard",
+  "/jobs": "Explore open technical roles and AI matches",
+  "/tracker": "Kanban pipeline for tracking your job applications",
+  "/prephub": "Structured company preparation tracks",
+  "/playground": "Interactive code environment & algorithmic testing",
+  "/linkedin": "LinkedIn profile optimization & visibility scorer",
+  "/linkedin-ai": "AI content generator for LinkedIn posts and recruiter outreach",
+  "/reports": "Generate and export your career analysis reports",
+  "/copilot": "Real-time AI copilot stream & multi-agent assistance",
+  "/marketplace": "146 agent catalog and plugin integrations",
+  "/workflows": "Automated multi-agent execution pipelines",
+  "/github": "Live portfolio health audit from GitHub API",
+  "/mcp": "Model Context Protocol server & diagnostic endpoint",
+  "/settings": "Gateway preferences, API keys, and model routing",
+  "/credits": "Platform contributors, repository stats, and acknowledgements",
+};
+
+const MOBILE_NAV_GROUPS = [
+  {
+    section: "CAREER STUDIO",
+    items: [
+      { label: "Overview Workspace", href: "/dashboard", icon: LayoutDashboard },
+      { label: "Resume Studio", href: "/resume", icon: FileText },
+      { label: "STAR Interview Lab", href: "/interview", icon: Mic },
+      { label: "Job Hub", href: "/jobs", icon: Briefcase },
+      { label: "Job Tracker", href: "/tracker", icon: Kanban },
+      { label: "Prep Hub", href: "/prephub", icon: Building2 },
+      { label: "Code Playground", href: "/playground", icon: Code },
+      { label: "LinkedIn Optimizer", href: "/linkedin", icon: Link2 },
+      { label: "LinkedIn AI Content", href: "/linkedin-ai", icon: Sparkles },
+      { label: "Reports", href: "/reports", icon: BarChart3 },
+    ],
+  },
+  {
+    section: "AI ECOSYSTEM",
+    items: [
+      { label: "AI Copilot Stream", href: "/copilot", icon: Bot },
+      { label: "146 Agent Marketplace", href: "/marketplace", icon: Sparkles },
+      { label: "Workflow Pipelines", href: "/workflows", icon: GitFork },
+    ],
+  },
+  {
+    section: "DEVELOPER & SYSTEM",
+    items: [
+      { label: "GitHub Analyzer", href: "/github", icon: GitBranch },
+      { label: "MCP Protocol Server", href: "/mcp", icon: Terminal },
+      { label: "Settings", href: "/settings", icon: Settings },
+      { label: "Credits", href: "/credits", icon: Award },
+    ],
+  },
+];
+
+export function Topbar({ title, subtitle, className = "" }: TopbarProps) {
   const pathname = usePathname();
   const profile = useStore((s) => s.profile);
   const metrics = useStore((s) => s.metrics);
   const activityFeed = useStore((s) => s.activityFeed);
   const [showNotifications, setShowNotifications] = useState(false);
-  const [paletteOpen, setPaletteOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const recent = activityFeed.slice(0, 5);
+  const careerScore = metrics?.careerScore || 26;
+  const recent = activityFeed?.slice(0, 5) || [];
+  const displaySubtitle = subtitle || DEFAULT_SUBTITLES[pathname] || "AI Career Operating System";
 
-  // Global Cmd+K / Ctrl+K shortcut
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setPaletteOpen((prev) => !prev);
-      }
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, []);
+  const triggerCommandPalette = () => {
+    const event = new KeyboardEvent("keydown", {
+      key: "k",
+      metaKey: true,
+      bubbles: true,
+    });
+    window.dispatchEvent(event);
+  };
 
   return (
     <>
-      <header className="flex items-center gap-4 px-6 py-4 border-b border-border bg-card/30 backdrop-blur-sm">
-        {/* Mobile Menu Toggle */}
-        <Button
-          variant="ghost"
-          size="icon-sm"
-          className="md:hidden mr-1"
-          onClick={() => setMobileMenuOpen(true)}
-          aria-label="Open navigation menu"
-        >
-          <Menu className="w-5 h-5 text-muted-foreground" />
-        </Button>
-
-        {/* Page title */}
-        <div className="flex-1 min-w-0">
-          <h1 className="text-lg font-semibold text-foreground truncate">{title}</h1>
-          {subtitle && (
-            <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>
-          )}
-        </div>
-
-        {/* Right controls */}
-        <div className="flex items-center gap-2">
-          {/* Navigation Shortcut Buttons */}
-          <div className="hidden lg:flex items-center gap-1.5 mr-2 border-r border-border/50 pr-3">
-            <Link href="/" title="Landing Page" className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-md hover:bg-muted/10">
-              <Globe className="w-3.5 h-3.5" />
-            </Link>
-            <Link href="/docs" title="Documentation" className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-md hover:bg-muted/10">
-              <BookOpen className="w-3.5 h-3.5" />
-            </Link>
-            <a href="https://github.com/karthikrshet/Career-Agents" target="_blank" rel="noopener noreferrer" title="GitHub Repository" className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-md hover:bg-muted/10">
-              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-              </svg>
-            </a>
-            <Link href="/contact" title="Support Help" className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-md hover:bg-muted/10">
-              <HelpCircle className="w-3.5 h-3.5" />
-            </Link>
-            <a href="https://discord.gg/careeragents" target="_blank" rel="noopener noreferrer" title="Join Discord" className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-md hover:bg-muted/10">
-              <MessageSquare className="w-3.5 h-3.5" />
-            </a>
-            <Link href="/changelog" title="Changelog Updates" className="text-muted-foreground hover:text-foreground transition-colors p-1.5 rounded-md hover:bg-muted/10">
-              <History className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          {/* Search / Command Palette trigger */}
+      <header className={cn("sticky top-0 z-20 flex h-16 shrink-0 items-center justify-between gap-3 border-b border-white/10 bg-[#050814]/90 px-4 sm:px-6 backdrop-blur-md font-sans", className)}>
+        {/* Left Title Section */}
+        <div className="flex items-center gap-3 min-w-0">
           <Button
             variant="ghost"
-            size="sm"
-            className="hidden sm:flex items-center gap-2 text-muted-foreground hover:text-foreground border border-border/50 rounded-lg px-3 py-1.5 h-auto text-xs"
-            onClick={() => setPaletteOpen(true)}
-            id="topbar-command-palette-btn"
+            size="icon"
+            className="md:hidden text-slate-300 hover:text-white shrink-0 w-9 h-9"
+            onClick={() => setMobileMenuOpen(true)}
           >
-            <Search className="w-3.5 h-3.5" />
-            <span>Search</span>
-            <kbd className="ml-1 inline-flex items-center gap-0.5 rounded border border-border px-1 py-0.5 text-[10px] font-mono opacity-60">
-              ⌘K
-            </kbd>
+            <Menu className="w-5 h-5" />
           </Button>
+          <div className="min-w-0">
+            <h1 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-tight truncate">{title}</h1>
+            <p className="text-[10px] sm:text-xs text-slate-400 font-normal leading-tight mt-0.5 truncate max-w-[150px] sm:max-w-md">{displaySubtitle}</p>
+          </div>
+        </div>
 
-          {/* Score chip */}
-          {metrics.careerScore > 0 && (
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full glass border border-border text-xs font-medium">
-              <span className="text-muted-foreground">Score</span>
-              <span className={cn("font-bold", scoreToColor(metrics.careerScore))}>
-                {metrics.careerScore}
-              </span>
-            </div>
-          )}
+        {/* Right Action Icons & Score */}
+        <div className="flex items-center gap-2.5 shrink-0">
+          {/* Quick External Icons */}
+          <div className="hidden lg:flex items-center gap-1.5 pr-2 border-r border-white/10 text-slate-400">
+            <Link href="/docs" className="p-1.5 hover:text-cyan-300 rounded-lg hover:bg-white/5 transition-colors" title="Docs">
+              <BookOpen className="w-4 h-4" />
+            </Link>
+            <a href="https://github.com/karthikrshet/Career-Agents" target="_blank" rel="noopener noreferrer" className="p-1.5 hover:text-white rounded-lg hover:bg-white/5 transition-colors" title="GitHub">
+              <GithubIcon className="w-4 h-4" />
+            </a>
+            <a href="https://github.com/karthikrshet/Career-Agents/discussions" target="_blank" rel="noopener noreferrer" className="p-1.5 hover:text-indigo-300 rounded-lg hover:bg-white/5 transition-colors" title="Discussions">
+              <MessageSquare className="w-4 h-4" />
+            </a>
+          </div>
 
-          {/* Notifications */}
+          {/* Search Trigger */}
+          <button
+            onClick={triggerCommandPalette}
+            className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 text-xs text-slate-400 hover:text-slate-200 hover:bg-white/10 transition-colors"
+          >
+            <Search className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Search</span>
+            <kbd className="px-1.5 py-0.5 text-[10px] font-mono rounded bg-white/10 text-slate-300 border border-white/10">⌘K</kbd>
+          </button>
+
+          {/* Score Pill Badge */}
+          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-xl bg-indigo-950/60 border border-indigo-500/30 text-xs font-mono">
+            <span className="text-slate-400">Score</span>
+            <span className="font-bold text-indigo-300">{careerScore}</span>
+          </div>
+
+          {/* Notifications Dropdown */}
           <div className="relative">
             <Button
               variant="ghost"
-              size="icon-sm"
-              className="relative"
+              size="icon"
               onClick={() => setShowNotifications(!showNotifications)}
-              id="topbar-notifications-btn"
+              className="relative text-slate-400 hover:text-white hover:bg-white/5 rounded-xl"
             >
               <Bell className="w-4 h-4" />
               {recent.length > 0 && (
-                <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-primary" />
+                <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               )}
             </Button>
 
-            {showNotifications && (
-              <div className="absolute right-0 top-10 w-80 glass border border-border rounded-xl shadow-2xl z-50 overflow-hidden">
-                <div className="px-4 py-3 border-b border-border">
-                  <p className="text-sm font-semibold">Recent Activity</p>
-                </div>
-                {recent.length === 0 ? (
-                  <div className="px-4 py-6 text-center text-sm text-muted-foreground">
-                    No activity yet. Start by analyzing your resume.
+            <AnimatePresence>
+              {showNotifications && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  className="absolute right-0 mt-2 w-80 rounded-2xl bg-[#090d18] border border-white/10 p-4 shadow-2xl z-50 space-y-3"
+                >
+                  <div className="flex items-center justify-between text-xs font-semibold text-white border-b border-white/10 pb-2">
+                    <span>Recent Activity</span>
+                    <History className="w-3.5 h-3.5 text-slate-400" />
                   </div>
-                ) : (
-                  <div className="divide-y divide-border">
-                    {recent.map((entry) => (
-                      <div key={entry.id} className="px-4 py-3 hover:bg-secondary/30 transition-colors">
-                        <p className="text-sm font-medium text-foreground">{entry.title}</p>
-                        <p className="text-xs text-muted-foreground mt-0.5">{entry.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+                  {recent.length === 0 ? (
+                    <p className="text-xs text-slate-400 text-center py-4">No recent activity</p>
+                  ) : (
+                    <div className="space-y-2">
+                      {recent.map((act) => (
+                        <div key={act.id} className="text-xs space-y-0.5 p-2 rounded-lg bg-white/5 border border-white/10">
+                          <p className="font-medium text-white">{act.title}</p>
+                          <p className="text-[10px] text-slate-400">{act.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          {/* User avatar */}
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center cursor-pointer shrink-0">
-            {profile?.avatarUrl ? (
-              <img src={profile.avatarUrl} alt={profile.name} className="w-full h-full rounded-full object-cover" />
-            ) : (
-              <User className="w-4 h-4 text-white" />
-            )}
-          </div>
+          {/* User Profile Avatar */}
+          <Link href="/settings" className="flex items-center gap-2 pl-2 border-l border-white/10 hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 p-[1px] shadow-[0_0_12px_rgba(56,189,248,0.3)]">
+              <div className="w-full h-full bg-[#050814] rounded-full flex items-center justify-center text-cyan-300 font-extrabold text-xs">
+                {profile?.name ? profile.name[0].toUpperCase() : "U"}
+              </div>
+            </div>
+          </Link>
         </div>
       </header>
 
@@ -166,39 +233,38 @@ export function Topbar({ title, subtitle }: TopbarProps) {
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 z-50 md:hidden backdrop-blur-sm"
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 md:hidden"
             />
-            {/* Drawer Content */}
             <motion.div
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 left-0 w-72 bg-card border-r border-border p-6 z-50 md:hidden flex flex-col h-full overflow-y-auto"
+              className="fixed inset-y-0 left-0 w-72 bg-[#050814] border-r border-white/10 p-6 z-50 md:hidden flex flex-col h-full overflow-y-auto"
             >
-              <div className="flex items-center justify-between pb-4 border-b border-border mb-6">
+              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
                 <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3">
-                  <img src="/logo.svg" alt="Logo" className="w-8 h-8" />
-                  <span className="font-semibold text-sm text-foreground">Career Agents</span>
+                  <img src="/branding/logo.svg" alt="Logo" className="w-8 h-8" />
+                  <span className="font-extrabold text-sm text-white">Career Agents</span>
                 </Link>
-                <Button variant="ghost" size="icon-sm" onClick={() => setMobileMenuOpen(false)}>
+                <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} className="text-slate-400 hover:text-white">
                   <X className="w-5 h-5" />
                 </Button>
               </div>
+
               <nav className="flex-1 space-y-6">
-                {NAV_ITEMS.map((section) => (
+                {MOBILE_NAV_GROUPS.map((section: any) => (
                   <div key={section.section}>
-                    <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 mb-2">
+                    <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500 mb-2">
                       {section.section}
                     </p>
                     <div className="space-y-1">
-                      {section.items.map((item) => {
+                      {section.items.map((item: any) => {
                         const isActive = pathname.startsWith(item.href);
                         return (
                           <Link
@@ -206,14 +272,14 @@ export function Topbar({ title, subtitle }: TopbarProps) {
                             href={item.href}
                             onClick={() => setMobileMenuOpen(false)}
                             className={cn(
-                              "flex items-center gap-3 px-3 py-2 rounded-lg text-xs transition-colors",
+                              "flex items-center gap-3 px-3 py-2 rounded-xl text-xs transition-colors",
                               isActive
-                                ? "bg-primary/10 text-primary font-medium"
-                                : "text-muted-foreground hover:bg-muted/10 hover:text-foreground"
+                                ? "bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30"
+                                : "text-slate-400 hover:bg-white/5 hover:text-white"
                             )}
                           >
-                            <item.icon className="w-4 h-4 shrink-0" />
-                            <span>{item.label}</span>
+                            <item.icon className="w-4 h-4 shrink-0 text-cyan-400" />
+                            <span suppressHydrationWarning>{item.label}</span>
                           </Link>
                         );
                       })}
@@ -227,7 +293,7 @@ export function Topbar({ title, subtitle }: TopbarProps) {
       </AnimatePresence>
 
       {/* Command Palette */}
-      <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
+      <CommandPalette />
     </>
   );
 }
