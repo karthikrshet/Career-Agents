@@ -183,12 +183,12 @@ export default function DashboardPage() {
               <Zap className="w-5 h-5 text-primary" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-semibold">Set up your profile to get started</p>
-              <p className="text-xs text-muted-foreground mt-0.5">
+              <p className="text-xs font-semibold">Set up your profile to get started</p>
+              <p className="text-[11px] text-muted-foreground mt-0.5">
                 Tell Career Agents your name and target role to personalize your experience.
               </p>
             </div>
-            <Button size="sm" onClick={() => setShowSetup(true)}>Get Started</Button>
+            <Button size="sm" className="h-8 text-xs px-3" onClick={() => setShowSetup(true)}>Get Started</Button>
           </motion.div>
         )}
 
