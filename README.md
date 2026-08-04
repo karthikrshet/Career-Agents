@@ -105,7 +105,7 @@ Career Agents takes a different approach:
 
 ## Demo
 
-- **Live Demo Instance:** [https://career-os.dev](https://career-agents.vercel.app/) (Use fully in guest mode with no credentials needed)
+- **Live Demo Instance:** [https://career-agents.vercel.app](https://career-agents.vercel.app/) (Use fully in guest mode with no credentials needed)
 - **GitHub Repository:** [github.com/karthikrshet/Career-Agents](https://github.com/karthikrshet/Career-Agents)
 - **NPM Package Registry:** [npmjs.com/package/career-agents](https://www.npmjs.com/package/career-agents)
 - **Documentation index:** [docs/README.md](./docs/README.md)
