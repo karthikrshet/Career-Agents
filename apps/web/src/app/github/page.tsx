@@ -72,7 +72,7 @@ npm run dev
 
   return (
     <div className="flex flex-col h-full overflow-auto">
-      <Topbar title="GitBranch Analyzer" subtitle="Live portfolio health audit from the GitBranch API" />
+      <Topbar title="GitHub Analyzer" subtitle="Live portfolio health audit from the GitHub API" />
 
       <div className="flex-1 p-6 space-y-6">
         {/* Search bar */}
@@ -83,7 +83,7 @@ npm run dev
                 <GitBranch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
                   className="pl-9"
-                  placeholder="Enter GitBranch username (e.g. torvalds)"
+                  placeholder="Enter GitHub username (e.g. torvalds)"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleAnalyze()}
@@ -119,18 +119,27 @@ npm run dev
             >
               {/* Profile header */}
               <Card className="glass">
-                <CardContent className="p-6">
-                  <div className="flex flex-wrap items-start gap-5">
-                    <img
-                      src={data.avatarUrl}
-                      alt={data.name}
-                      className="w-16 h-16 rounded-full border-2 border-border"
-                    />
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4 sm:gap-5">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={data.avatarUrl}
+                        alt={data.name}
+                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-border shrink-0"
+                      />
+                      <div className="sm:hidden min-w-0">
+                        <h2 className="text-base font-bold truncate">{data.name}</h2>
+                        <p className="text-xs text-muted-foreground truncate">@{data.username}</p>
+                      </div>
+                    </div>
+
                     <div className="flex-1 min-w-0 text-left">
-                      <h2 className="text-lg font-bold">{data.name}</h2>
-                      <p className="text-sm text-muted-foreground">@{data.username}</p>
-                      {data.bio && <p className="text-sm mt-2 text-foreground/80">{data.bio}</p>}
-                      <div className="flex flex-wrap gap-4 mt-3">
+                      <div className="hidden sm:block">
+                        <h2 className="text-lg font-bold">{data.name}</h2>
+                        <p className="text-sm text-muted-foreground">@{data.username}</p>
+                      </div>
+                      {data.bio && <p className="text-xs sm:text-sm mt-1 sm:mt-2 text-foreground/80 leading-relaxed">{data.bio}</p>}
+                      <div className="flex flex-wrap gap-3 sm:gap-4 mt-3">
                         {[
                           { icon: Users, label: `${data.followers || 0} followers` },
                           { icon: Users, label: `${data.following || 0} following` },
@@ -139,24 +148,27 @@ npm run dev
                           { icon: GitFork, label: `${data.totalForks || 0} forks` },
                         ].map((s, idx) => (
                           <div key={idx} className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                            <s.icon className="w-3.5 h-3.5 text-primary" />
-                            {s.label}
+                            <s.icon className="w-3.5 h-3.5 text-primary shrink-0" />
+                            <span>{s.label}</span>
                           </div>
                         ))}
                       </div>
                     </div>
-                    {/* Score */}
-                    <div className={cn("rounded-xl p-5 text-center border", scoreToBgColor(data.portfolioScore))}>
-                      <div className="text-3xl font-bold tabular-nums">{data.portfolioScore}</div>
-                      <div className="text-xs mt-0.5 font-medium">{scoreToGrade(data.portfolioScore)}</div>
-                      <div className="text-[10px] opacity-70">Portfolio Score</div>
+
+                    {/* Score & Button */}
+                    <div className="flex sm:flex-col items-center sm:items-end justify-between gap-3 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-border/40">
+                      <div className={cn("rounded-xl p-3.5 sm:p-5 text-center border min-w-[100px]", scoreToBgColor(data.portfolioScore))}>
+                        <div className="text-2xl sm:text-3xl font-bold tabular-nums">{data.portfolioScore}</div>
+                        <div className="text-xs mt-0.5 font-medium">{scoreToGrade(data.portfolioScore)}</div>
+                        <div className="text-[10px] opacity-70">Portfolio Score</div>
+                      </div>
+                      <a href={`https://github.com/${data.username}`} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                        <Button size="sm" variant="outline" className="w-full text-xs">
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          View on GitHub
+                        </Button>
+                      </a>
                     </div>
-                    <a href={`https://github.com/${data.username}`} target="_blank" rel="noopener noreferrer">
-                      <Button size="sm" variant="outline">
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        View on GitBranch
-                      </Button>
-                    </a>
                   </div>
                 </CardContent>
               </Card>

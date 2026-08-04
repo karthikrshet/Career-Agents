@@ -155,8 +155,8 @@ export default function ReportsPage() {
           {[
             { label: "Career", value: metrics.careerScore },
             { label: "Resume", value: metrics.resumeScore },
-            { label: "GitBranch", value: metrics.githubScore },
-            { label: "Link2", value: metrics.linkedinScore },
+            { label: "GitHub", value: metrics.githubScore },
+            { label: "LinkedIn", value: metrics.linkedinScore },
             { label: "Interview", value: metrics.interviewScore },
           ].map((m) => (
             <Card key={m.label} className="glass">
@@ -174,7 +174,7 @@ export default function ReportsPage() {
         {!hasData && (
           <div className="glass rounded-xl p-6 text-center border border-amber-500/20 bg-amber-500/5">
             <p className="text-sm font-medium text-amber-400">No data to report yet</p>
-            <p className="text-xs text-muted-foreground mt-1">Complete at least one module (Resume, GitBranch, or Link2) to generate a report.</p>
+            <p className="text-xs text-muted-foreground mt-1">Complete at least one module (Resume, GitHub, or LinkedIn) to generate a report.</p>
           </div>
         )}
 
@@ -227,8 +227,8 @@ export default function ReportsPage() {
               <div className="space-y-2">
                 {[
                   { label: "Resume analyses", value: resumeAnalysis ? 1 : 0 },
-                  { label: "GitBranch audits", value: GitHubAnalysis ? 1 : 0 },
-                  { label: "Link2 analyses", value: linkedinAnalysis ? 1 : 0 },
+                  { label: "GitHub audits", value: GitHubAnalysis ? 1 : 0 },
+                  { label: "LinkedIn analyses", value: linkedinAnalysis ? 1 : 0 },
                   { label: "Interview sessions", value: interviewSessions.length },
                   { label: "Job applications", value: jobApplications.length },
                 ].map((item) => (
