@@ -620,6 +620,55 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
     return { thinking: "", content: text };
   };
 
+  const parseFileDirectives = (text: string) => {
+    const regex = /\[FILE_GENERATE:\s*type=["']([^"']+)["']\s*filename=["']([^"']+)["'](?:\s*title=["']([^"']+)["'])?\]/gi;
+    const files: { type: string; filename: string; title: string }[] = [];
+    let match;
+    let cleanText = text;
+    while ((match = regex.exec(text)) !== null) {
+      files.push({
+        type: match[1],
+        filename: match[2],
+        title: match[3] || match[2],
+      });
+    }
+    cleanText = cleanText.replace(regex, "").trim();
+
+    return { files, cleanText };
+  };
+
+  async function handleDownloadFile(type: string, filename: string, content: string, title?: string) {
+    try {
+      toast.loading(`Generating ${type.toUpperCase()} file (${filename})...`);
+      const res = await fetch("/api/copilot/generate-file", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type,
+          filename,
+          content,
+          title: title || filename,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to generate file");
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+      toast.dismiss();
+      toast.success(`Downloaded ${filename} successfully!`);
+    } catch (err: any) {
+      toast.dismiss();
+      toast.error(`File generation failed: ${err.message}`);
+    }
+  }
+
   const messages = currentSession?.messages || [];
 
   // Export Session as JSON
@@ -1198,15 +1247,66 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                         </div>
                       ) : (
                         <div className={cn(
-                          "rounded-2xl px-5 py-4 text-sm leading-relaxed",
+                          "rounded-2xl px-5 py-4 text-sm leading-relaxed space-y-3",
                           msg.role === "assistant"
-                            ? "bg-card border border-border/60 text-foreground prose prose-sm prose-invert max-w-none shadow-sm"
+                            ? "bg-card border border-border/60 text-foreground shadow-sm"
                             : "bg-primary/10 border border-primary/20 text-foreground"
                         )}>
                           {msg.role === "assistant" ? (
-                            <div className="prose prose-sm prose-invert max-w-none prose-p:my-1.5 prose-li:my-0.5">
-                              <ReactMarkdown>{content}</ReactMarkdown>
-                            </div>
+                            (() => {
+                              const { files, cleanText } = parseFileDirectives(content);
+                              return (
+                                <div className="space-y-4">
+                                  <div className="prose prose-sm prose-invert max-w-none prose-p:my-1.5 prose-li:my-0.5">
+                                    <ReactMarkdown>{cleanText}</ReactMarkdown>
+                                  </div>
+
+                                  {/* Downloadable Generated File Cards */}
+                                  {files.map((file, fIdx) => (
+                                    <div key={fIdx} className="p-3.5 rounded-xl bg-secondary/40 border border-cyan-500/30 flex items-center justify-between gap-3 shadow-md">
+                                      <div className="flex items-center gap-3 min-w-0">
+                                        <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center shrink-0">
+                                          {file.type === "excel" || file.type === "csv" ? (
+                                            <FileSpreadsheet className="w-5 h-5 text-emerald-400" />
+                                          ) : file.type === "zip" ? (
+                                            <Folder className="w-5 h-5 text-amber-400" />
+                                          ) : file.type === "docx" ? (
+                                            <FileText className="w-5 h-5 text-blue-400" />
+                                          ) : file.type === "pdf" ? (
+                                            <FileText className="w-5 h-5 text-red-400" />
+                                          ) : (
+                                            <FileCode className="w-5 h-5 text-cyan-400" />
+                                          )}
+                                        </div>
+                                        <div className="min-w-0">
+                                          <p className="text-xs font-bold text-white truncate">{file.title}</p>
+                                          <p className="text-[10px] text-slate-400 font-mono truncate">{file.filename} · Ready for download</p>
+                                        </div>
+                                      </div>
+                                      <Button
+                                        size="sm"
+                                        onClick={() => handleDownloadFile(file.type, file.filename, cleanText, file.title)}
+                                        className="h-8 text-xs bg-cyan-500 hover:bg-cyan-400 text-black font-bold shrink-0 gap-1.5"
+                                      >
+                                        <Download className="w-3.5 h-3.5" />
+                                        Download {file.type.toUpperCase()}
+                                      </Button>
+                                    </div>
+                                  ))}
+
+                                  {/* Quick Document Export Options Bar */}
+                                  <div className="pt-2 border-t border-border/40 flex flex-wrap items-center gap-1.5">
+                                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mr-1">Export Response:</span>
+                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("pdf", "Career_Doc.pdf", cleanText, "Career Document")}>📄 PDF</Button>
+                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("docx", "Career_Doc.docx", cleanText, "Career Document")}>📝 DOCX</Button>
+                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("excel", "Career_Data.csv", cleanText, "Career Data")}>📊 CSV</Button>
+                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("zip", "Archive.zip", cleanText, "Career Archive")}>📦 ZIP</Button>
+                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("md", "Career_Doc.md", cleanText, "Career Document")}>📑 MD</Button>
+                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("json", "Career_Data.json", cleanText, "Career Data")}>⚙️ JSON</Button>
+                                  </div>
+                                </div>
+                              );
+                            })()
                           ) : (
                             <p className="whitespace-pre-line">{content}</p>
                           )}
