@@ -576,6 +576,13 @@ Career Agents takes a different approach:
 </details>
 
 <details>
+<summary>View Coding Studio (LeetCode Workspace) Preview</summary>
+
+*Practice 240+ coding interview problems with 20-language execution, interactive algorithm visualizers, AI STAR interview coaching, and live virtual contests.*
+![Coding Studio View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/coding_studio_preview.png)
+</details>
+
+<details>
 <summary>View Marketplace Preview</summary>
 
 *Enable or disable plugin extensions and review required context permissions.*
@@ -601,6 +608,14 @@ Career Agents takes a different approach:
 - **Kanban Job Tracker:** Drags cards across Kanban lists (Wishlist, Applied, Interview, Offer, Rejected) to calculate progress metrics.
 - **Persistent Storage:** Zustand core with `persist` middleware synchronizes state with browser database systems or PostgreSQL tables.
 - **OAuth Authentication:** Integrates GitHub and Google NextAuth credentials with automatic profile sync.
+
+### Coding Studio (LeetCode Workspace)
+- **20-Language Compiler:** Live execution engine supporting C, C++, Java, Python, Python3, JavaScript, TypeScript, Go, Rust, Kotlin, Swift, Dart, PHP, Ruby, Scala, C#, Elixir, Erlang, Racket, and Bash via Judge0, Piston API, and local VM sandboxes.
+- **Policy-Compliant Problem Catalog:** 240+ problems with company tags (Google, Meta, Amazon, Microsoft, Apple, Netflix, Stripe, OpenAI), difficulty filters, and roadmaps (Blind 75, NeetCode 150, Top 150).
+- **Interactive Algorithm Visualizer:** Step-by-step animations for Two Pointers, Binary Search, Sorting, Stacks, Linked Lists, and Dynamic Programming (Kadane's).
+- **Data Structure Whiteboard Canvas:** Interactive drawing board for Trees, Graphs, Linked Lists, Heaps, and Flowcharts.
+- **AI STAR Coding & Behavioral Coach:** Provides hints, complexity analysis, dry runs, edge case checks, follow-up interview questions, and STAR responses.
+- **Virtual Contests & Profile Sync:** Practice contests with countdown timer, live leaderboard, upsolve mode, and public profile sync for LeetCode & GitHub handles.
 
 ### Artificial Intelligence
 - **146 Specialized Agents:** Executes prompt configurations derived from 19 domains of expert coaching.
@@ -628,6 +643,8 @@ Career Agents takes a different approach:
 | Feature Module | CLI Utility | Web Dashboard | MCP Server |
 |----------------|-------------|---------------|------------|
 | Agent Directory Search | ✅ | ✅ | ✅ |
+| Coding Studio / Compiler | ✅ | ✅ | ✅ |
+| Algorithm Visualizer | ❌ | ✅ | ✅ |
 | Resume ATS Scoring | ✅ | ✅ | ✅ |
 | GitHub Profile Wrapped | ✅ | ✅ | ✅ |
 | LinkedIn Headline Check | ✅ | ✅ | ✅ |
