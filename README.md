@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.svg" alt="Career Agents Logo" width="120" />
+<img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.png" alt="Career Agents Logo" width="120" />
 
 # Career Agents
 
@@ -63,14 +63,14 @@ Career Agents takes a different approach:
 <summary>View Dashboard Preview</summary>
 
 *Displays global metrics, 5-dimensional career scores, recent activity feeds, and quick actions.*
-![Dashboard View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/dashboard.png)
+![Dashboard View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/dashboard_preview.gif)
 </details>
 
 <details>
 <summary>View Resume Studio Preview</summary>
 
 *Scans document formatting, highlights missing keywords, and suggests bullet-point improvements.*
-![Resume Studio View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/resume.png)
+![Resume Studio View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/resume_studio_preview.gif)
 </details>
 
 <details>
@@ -84,32 +84,39 @@ Career Agents takes a different approach:
 <summary>View LinkedIn Optimizer Preview</summary>
 
 *Grades headline positioning, about summaries, and searches keyword density.*
-![LinkedIn Optimizer View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/linkedinoptimizer.png)
+![LinkedIn Optimizer View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/linkedin_optimizer_preview.gif)
 </details>
 
 <details>
 <summary>View Interview Lab Preview</summary>
 
 *Conducts mock interviews across 10 company tracks, featuring integrated coding canvases and scorecards.*
-![Mock Interview View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/interviewlab.png)
+![Mock Interview View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/mock_interview_preview.gif)
+</details>
+
+<details>
+<summary>View Coding Studio (LeetCode Workspace) Preview</summary>
+
+*Practice 240+ coding interview problems with 20-language execution, interactive algorithm visualizers, AI STAR interview coaching, and live virtual contests.*
+![Coding Studio View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/coding_studio_preview.png)
 </details>
 
 <details>
 <summary>View Marketplace Preview</summary>
 
 *Enable or disable plugin extensions and review required context permissions.*
-![Marketplace View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/marketplace.png)
+![Marketplace View](https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/docs/images/marketplace_preview.png)
 </details>
 
 ---
 
 ## Demo
 
-- **Live Demo Instance:** [https://career-agents.vercel.app](https://career-agents.vercel.app/) (Use fully in guest mode with no credentials needed)
+- **Live Demo Instance:** [career-os.dev](https://career-os.dev) (Use fully in guest mode with no credentials needed)
 - **GitHub Repository:** [github.com/karthikrshet/Career-Agents](https://github.com/karthikrshet/Career-Agents)
 - **NPM Package Registry:** [npmjs.com/package/career-agents](https://www.npmjs.com/package/career-agents)
 - **Documentation index:** [docs/README.md](./docs/README.md)
-
+- **Video Walkthrough:** [YouTube Video Walkthrough](https://youtube.com)
 
 ---
 
@@ -120,6 +127,14 @@ Career Agents takes a different approach:
 - **Kanban Job Tracker:** Drags cards across Kanban lists (Wishlist, Applied, Interview, Offer, Rejected) to calculate progress metrics.
 - **Persistent Storage:** Zustand core with `persist` middleware synchronizes state with browser database systems or PostgreSQL tables.
 - **OAuth Authentication:** Integrates GitHub and Google NextAuth credentials with automatic profile sync.
+
+### Coding Studio (LeetCode Workspace)
+- **20-Language Compiler:** Live execution engine supporting C, C++, Java, Python, Python3, JavaScript, TypeScript, Go, Rust, Kotlin, Swift, Dart, PHP, Ruby, Scala, C#, Elixir, Erlang, Racket, and Bash via Judge0, Piston API, and local VM sandboxes.
+- **Policy-Compliant Problem Catalog:** 240+ problems with company tags (Google, Meta, Amazon, Microsoft, Apple, Netflix, Stripe, OpenAI), difficulty filters, and roadmaps (Blind 75, NeetCode 150, Top 150).
+- **Interactive Algorithm Visualizer:** Step-by-step animations for Two Pointers, Binary Search, Sorting, Stacks, Linked Lists, and Dynamic Programming (Kadane's).
+- **Data Structure Whiteboard Canvas:** Interactive drawing board for Trees, Graphs, Linked Lists, Heaps, and Flowcharts.
+- **AI STAR Coding & Behavioral Coach:** Provides hints, complexity analysis, dry runs, edge case checks, follow-up interview questions, and STAR responses.
+- **Virtual Contests & Profile Sync:** Practice contests with countdown timer, live leaderboard, upsolve mode, and public profile sync for LeetCode & GitHub handles.
 
 ### Artificial Intelligence
 - **146 Specialized Agents:** Executes prompt configurations derived from 19 domains of expert coaching.
@@ -147,6 +162,8 @@ Career Agents takes a different approach:
 | Feature Module | CLI Utility | Web Dashboard | MCP Server |
 |----------------|-------------|---------------|------------|
 | Agent Directory Search | ✅ | ✅ | ✅ |
+| Coding Studio / Compiler | ✅ | ✅ | ✅ |
+| Algorithm Visualizer | ❌ | ✅ | ✅ |
 | Resume ATS Scoring | ✅ | ✅ | ✅ |
 | GitHub Profile Wrapped | ✅ | ✅ | ✅ |
 | LinkedIn Headline Check | ✅ | ✅ | ✅ |
