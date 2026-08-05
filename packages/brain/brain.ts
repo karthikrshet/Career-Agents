@@ -85,8 +85,18 @@ Limit your response to 120 words. Do not write introductory or conversational he
     agentResults.push(...results);
   }
 
-  // 6. Merge outputs intelligently
+  // 6. Merge outputs intelligently & inject 146 Specialist Agents context
   let agentPrompts = "";
+  if (matched.length > 0) {
+    agentPrompts += "\n\n=== 146 SPECIALIST AGENT MARKETPLACE CONTEXT ===\n";
+    agentPrompts += matched.map((a) => {
+      const prompt = getCachedAgentPrompt(a.filename);
+      const cleanPromptSnippet = prompt ? prompt.slice(0, 350).trim() : a.description;
+      return `[Specialist Agent Active: ${a.name} (Division: ${a.division})]\nGoal: ${a.description}\nCore Persona & Guidance: ${cleanPromptSnippet}`;
+    }).join("\n\n");
+    agentPrompts += "\n=============================================";
+  }
+
   if (agentResults.length > 0) {
     agentPrompts += "\n\n=== SPECIALIST AGENT CRITIQUES ===\n" + agentResults.join("\n\n") + "\n=================================";
   }

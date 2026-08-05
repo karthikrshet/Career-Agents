@@ -93,13 +93,23 @@ export function findMatchingAgents(query: string, limit: number = 3): AgentInfo[
       if (lq.includes(skill.toLowerCase())) score += 2;
     }
 
-    if (score >= 4) {
+    if (descLower.split(/\s+/).some(w => w.length > 3 && lq.includes(w))) {
+      score += 1;
+    }
+
+    if (score >= 1) {
       scored.push({ agent, score });
     }
   }
 
-  return scored
+  const results = scored
     .sort((a, b) => b.score - a.score)
-    .map(s => s.agent)
-    .slice(0, limit);
+    .map(s => s.agent);
+
+  if (results.length > 0) {
+    return results.slice(0, limit);
+  }
+
+  // Fallback: return core career & technical specialist agents from the 146 Agent Marketplace
+  return agents.slice(0, limit);
 }

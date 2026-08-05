@@ -49,6 +49,27 @@ interface FileAttachment {
   progress: number;
 }
 
+const markdownComponents = {
+  h1: ({ node, ...props }: any) => <h1 className="text-base font-bold text-foreground mt-3 mb-1.5 border-b border-border/40 pb-1" {...props} />,
+  h2: ({ node, ...props }: any) => <h2 className="text-sm font-bold text-foreground mt-2.5 mb-1" {...props} />,
+  h3: ({ node, ...props }: any) => <h3 className="text-xs font-bold text-foreground mt-2 mb-1" {...props} />,
+  h4: ({ node, ...props }: any) => <h4 className="text-xs font-semibold text-foreground mt-1.5 mb-0.5" {...props} />,
+  p: ({ node, ...props }: any) => <p className="text-xs leading-relaxed my-1.5 text-foreground/90" {...props} />,
+  li: ({ node, ...props }: any) => <li className="text-xs leading-normal my-0.5 text-foreground/90" {...props} />,
+  ul: ({ node, ...props }: any) => <ul className="list-disc pl-4 space-y-0.5 my-1" {...props} />,
+  ol: ({ node, ...props }: any) => <ol className="list-decimal pl-4 space-y-0.5 my-1" {...props} />,
+  code: ({ node, inline, className, children, ...props }: any) => 
+    inline ? (
+      <code className="bg-secondary/60 text-cyan-300 px-1 py-0.5 rounded text-[11px] font-mono" {...props}>
+        {children}
+      </code>
+    ) : (
+      <pre className="bg-black/70 p-3 rounded-lg overflow-x-auto text-[11px] font-mono my-2 text-slate-200 border border-border/40" {...props}>
+        <code>{children}</code>
+      </pre>
+    ),
+};
+
 function CopilotWorkspace() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -1258,7 +1279,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                               return (
                                 <div className="space-y-4">
                                   <div className="prose prose-sm prose-invert max-w-none prose-p:my-1.5 prose-li:my-0.5">
-                                    <ReactMarkdown>{cleanText}</ReactMarkdown>
+                                    <ReactMarkdown components={markdownComponents}>{cleanText}</ReactMarkdown>
                                   </div>
 
                                   {/* Downloadable Generated File Cards */}
@@ -1487,7 +1508,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                         )}
                         {content && (
                           <div className="bg-card border border-border/60 rounded-2xl px-5 py-4 text-sm leading-relaxed text-foreground prose prose-invert">
-                            <ReactMarkdown>{content + "▋"}</ReactMarkdown>
+                            <ReactMarkdown components={markdownComponents}>{content + "▋"}</ReactMarkdown>
                           </div>
                         )}
                         {!content && !thinking && (
