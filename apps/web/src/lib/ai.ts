@@ -31,6 +31,7 @@ const PROVIDER_ENDPOINTS: Record<AIProvider, string> = {
   mistral:    "https://api.mistral.ai/v1/chat/completions",
   cohere:     "https://api.cohere.ai/v1/chat/completions",
   xai:        "https://api.x.ai/v1/chat/completions",
+  grok:       "https://api.x.ai/v1/chat/completions",
 };
 
 export const PROVIDER_MODELS: Record<AIProvider, string[]> = {
@@ -48,6 +49,7 @@ export const PROVIDER_MODELS: Record<AIProvider, string[]> = {
   mistral:    ["mistral-large-latest", "codestral-latest"],
   cohere:     ["command-r-plus", "command-r"],
   xai:        ["grok-2", "grok-beta"],
+  grok:       ["grok-2", "grok-beta"],
 };
 
 // ─── OpenAI-compatible completion ─────────────────────────────────────────

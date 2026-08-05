@@ -52,6 +52,7 @@ export function AlgorithmVisualizer() {
 
   useEffect(() => {
     resetVisualization();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [algorithm]);
 
   useEffect(() => {

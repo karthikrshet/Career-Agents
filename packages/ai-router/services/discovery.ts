@@ -21,6 +21,7 @@ const STATIC_FALLBACK_MODELS: Record<AIProviderId, string[]> = {
   ollama: ["llama3.3", "mistral", "codellama", "deepseek-coder"],
   lmstudio: ["local-model"],
   xai: ["grok-2", "grok-beta"],
+  grok: ["grok-2", "grok-beta"],
   fireworks: ["accounts/fireworks/models/llama-v3-70b-instruct", "accounts/fireworks/models/mixtral-8x22b-instruct"],
   perplexity: ["llama-3.1-sonar-large-128k-online", "llama-3.1-sonar-small-128k-online"],
   ai21: ["jamba-1.5-large", "jamba-1.5-mini"],

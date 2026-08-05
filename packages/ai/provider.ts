@@ -14,6 +14,7 @@ export type AIProviderName =
   | "mistral"
   | "cohere"
   | "xai"
+  | "grok"
   | "deepseek"
   | "lmstudio";
 
