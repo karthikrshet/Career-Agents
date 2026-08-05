@@ -114,10 +114,14 @@ export async function routeCompletion(
 
   // 2. Assemble execution chain fallback list starting with primary provider
   const providersOrder = config.providerOrder || DEFAULT_FALLBACK_ORDER;
-  const executionChainList: AIProviderId[] = [
-    primaryProvider,
-    ...providersOrder.filter((p) => p !== primaryProvider),
-  ];
+  const executionChainList: AIProviderId[] = Array.from(
+    new Set([
+      primaryProvider,
+      ...providersOrder,
+      "groq",
+      "gemini"
+    ])
+  ) as AIProviderId[];
 
   const executionChain: RouterLog["executionChain"] = [];
   let finalContent = "";

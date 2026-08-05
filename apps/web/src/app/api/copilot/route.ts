@@ -206,11 +206,11 @@ export async function POST(req: NextRequest) {
           const reqId = "REQ-" + Math.floor(10000 + Math.random() * 90000);
           console.error(`[${reqId}] Copilot stream execution failed:`, e);
           const rawMsg = e?.message || "";
-          let userMsg = `We couldn't complete your request. (Ref: ${reqId})`;
-          if (rawMsg.includes("API Key is missing") || rawMsg.includes("all configured providers")) {
-            userMsg = "AI Provider key missing or invalid for active model. Please check Settings to add your key or enable Demo Mode.";
+          let userMsg = `AI Gateway connection error. (Ref: ${reqId})`;
+          if (rawMsg.includes("API Key is missing") || rawMsg.includes("all configured providers") || rawMsg.includes("model_not_found")) {
+            userMsg = "The active AI Provider model is unavailable or misconfigured. Please switch providers to Groq/Gemini in Settings or enable Demo Mode.";
           } else if (rawMsg.includes("quota") || rawMsg.includes("429")) {
-            userMsg = "API quota exceeded for active provider. Please try again shortly or switch providers in Settings.";
+            userMsg = "API quota exceeded for active provider. Please switch providers to Groq/Gemini in Settings.";
           }
 
           const errPayload = {
