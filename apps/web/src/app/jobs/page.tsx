@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { useGatewayStore } from "@/lib/gateway-store";
-import { cn, generateId } from "@/lib/utils";
+import { cn, generateId, resolveApiKey } from "@/lib/utils";
 
 // ─── Job data structure ──────────────────────────────────────────────────────
 interface JobListing {
@@ -181,7 +181,7 @@ export default function JobsPage() {
     const gatewayConfig = {
       provider: activeProvider,
       model: useGatewayStore.getState().activeModel,
-      apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey,
+      apiKey: resolveApiKey(activeProvider, settings),
       baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl,
       temperature: useGatewayStore.getState().temperature,
       maxTokens: useGatewayStore.getState().maxTokens,

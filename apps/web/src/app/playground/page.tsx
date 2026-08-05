@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { useGatewayStore } from "@/lib/gateway-store";
-import { cn } from "@/lib/utils";
+import { cn, resolveApiKey } from "@/lib/utils";
 
 // Import Modular Components
 import { WhiteboardModal } from "@/components/playground/whiteboard/WhiteboardModal";
@@ -318,7 +318,7 @@ Provide concise, high-value guidance. Include complexity breakdowns, dry runs, e
           config: {
             provider: activeProvider,
             model: useGatewayStore.getState().activeModel,
-            apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey,
+            apiKey: resolveApiKey(activeProvider, settings),
             temperature: 0.7,
             maxTokens: 2048,
           },

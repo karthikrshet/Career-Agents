@@ -14,7 +14,7 @@ import { Progress } from "@/components/ui/progress";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { useGatewayStore } from "@/lib/gateway-store";
-import { generateId, cn, scoreToColor, scoreToGrade } from "@/lib/utils";
+import { generateId, cn, scoreToColor, scoreToGrade, resolveApiKey } from "@/lib/utils";
 import type { InterviewSession, InterviewMode, InterviewDifficulty, InterviewRound } from "@/types";
 
 const COMPANIES = ["Google", "Meta", "Amazon", "Microsoft", "Apple", "Netflix", "Stripe", "Airbnb", "Uber", "OpenAI"];
@@ -169,7 +169,7 @@ export default function InterviewPage() {
           }),
           aiConfig: {
             provider: useGatewayStore.getState().activeProvider,
-            apiKey: settings.keys?.[useGatewayStore.getState().activeProvider]?.[0] || settings.aiProvider.apiKey,
+            apiKey: resolveApiKey(useGatewayStore.getState().activeProvider, settings),
             model: useGatewayStore.getState().activeModel,
             temperature: useGatewayStore.getState().temperature || 0.7
           }

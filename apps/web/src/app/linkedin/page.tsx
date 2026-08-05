@@ -106,10 +106,7 @@ export default function LinkedInPage() {
       temperature: useGatewayStore.getState().temperature,
       maxTokens: useGatewayStore.getState().maxTokens,
     };
-    if (!gatewayConfig.apiKey) {
-      toast.error("Add your AI provider API key in Settings.");
-      return;
-    }
+    // Allow request to proceed so server environment variables (Vercel) can be used as fallback
     setAiLoading(true);
     try {
       const res = await fetch("/api/linkedin/analyze", {
