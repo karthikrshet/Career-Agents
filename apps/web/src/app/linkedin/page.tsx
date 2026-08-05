@@ -14,7 +14,7 @@ import { Progress } from "@/components/ui/progress";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { useGatewayStore } from "@/lib/gateway-store";
-import { cn, scoreToColor, scoreToGrade, scoreToBgColor } from "@/lib/utils";
+import { cn, scoreToColor, scoreToGrade, scoreToBgColor, resolveApiKey } from "@/lib/utils";
 import type { LinkedInAnalysis } from "@/types";
 
 // ─── Local analysis engine ───────────────────────────────────────────────
@@ -97,10 +97,11 @@ export default function LinkedInPage() {
 
   async function handleAIRewrite() {
     const activeProvider = useGatewayStore.getState().activeProvider;
+    const resolvedKey = resolveApiKey(activeProvider, settings);
     const gatewayConfig = {
       provider: activeProvider,
       model: useGatewayStore.getState().activeModel,
-      apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey,
+      apiKey: resolvedKey,
       baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl,
       temperature: useGatewayStore.getState().temperature,
       maxTokens: useGatewayStore.getState().maxTokens,

@@ -200,10 +200,18 @@ export async function POST(req: NextRequest) {
         } catch (e: any) {
           const reqId = "REQ-" + Math.floor(10000 + Math.random() * 90000);
           console.error(`[${reqId}] Copilot stream execution failed:`, e);
+          const rawMsg = e?.message || "";
+          let userMsg = `We couldn't complete your request. (Ref: ${reqId})`;
+          if (rawMsg.includes("API Key is missing") || rawMsg.includes("all configured providers")) {
+            userMsg = "AI Provider key missing or invalid for active model. Please check Settings to add your key or enable Demo Mode.";
+          } else if (rawMsg.includes("quota") || rawMsg.includes("429")) {
+            userMsg = "API quota exceeded for active provider. Please try again shortly or switch providers in Settings.";
+          }
+
           const errPayload = {
             choices: [
               {
-                delta: { content: `\n\nWe couldn't complete your request. Reference ID: ${reqId}. Please try again. Backend logs may contain details. Frontend must never.` },
+                delta: { content: `\n\n${userMsg}` },
               },
             ],
           };
@@ -225,7 +233,7 @@ export async function POST(req: NextRequest) {
     console.error(`[${reqId}] Copilot API route failed:`, e);
     return NextResponse.json({
       success: false,
-      error: `We couldn't complete your request. Reference ID: ${reqId}. Please try again. Backend logs may contain details. Frontend must never.`
+      error: `Execution failed (Ref: ${reqId}). Please check AI provider settings.`
     }, { status: 500 });
   }
 }
