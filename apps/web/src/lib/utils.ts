@@ -88,4 +88,24 @@ export const LANGUAGE_COLORS: Record<string, string> = {
   HTML: "#e34c26",
 };
 
+export function resolveApiKey(provider: string, settings: any): string {
+  if (!settings) return "";
+  const prov = (provider || "").toLowerCase().trim();
+  const keys = settings.keys || {};
+  
+  if (keys[prov]?.[0]) return keys[prov][0];
+  if (prov === "grok" && keys["xai"]?.[0]) return keys["xai"][0];
+  if (prov === "xai" && keys["grok"]?.[0]) return keys["grok"][0];
+  
+  if (settings.aiProvider?.apiKey) {
+    const activeProv = (settings.aiProvider?.provider || "").toLowerCase().trim();
+    if (activeProv === prov || (prov === "grok" && activeProv === "xai") || (prov === "xai" && activeProv === "grok") || !keys[prov]?.length) {
+      return settings.aiProvider.apiKey;
+    }
+  }
 
+  const keyValues = Object.values(keys).flat().filter(Boolean);
+  if (keyValues.length > 0) return keyValues[0] as string;
+
+  return "";
+}

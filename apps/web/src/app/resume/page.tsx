@@ -18,7 +18,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { useGatewayStore } from "@/lib/gateway-store";
 import { analyzeResumeText } from "@/lib/resume-engine";
-import { cn, scoreToColor, scoreToGrade, scoreToBgColor } from "@/lib/utils";
+import { cn, scoreToColor, scoreToGrade, scoreToBgColor, resolveApiKey } from "@/lib/utils";
 import { AtsComparison } from "@/components/resume/AtsComparison";
 import type { ResumeAnalysis } from "@/types";
 
@@ -204,10 +204,11 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
   async function handleAIRewrite() {
     if (!resumeAnalysis) return;
     const activeProvider = useGatewayStore.getState().activeProvider;
+    const resolvedKey = resolveApiKey(activeProvider, settings);
     const gatewayConfig = {
       provider: activeProvider,
       model: useGatewayStore.getState().activeModel,
-      apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey,
+      apiKey: resolvedKey,
       baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl,
       temperature: useGatewayStore.getState().temperature,
       maxTokens: useGatewayStore.getState().maxTokens,

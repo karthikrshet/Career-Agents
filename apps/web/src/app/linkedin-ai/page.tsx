@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { useGatewayStore } from "@/lib/gateway-store";
-import { cn } from "@/lib/utils";
+import { cn, resolveApiKey } from "@/lib/utils";
 
 type ContentType = "post" | "article" | "comment" | "message" | "referral" | "recruiter" | "weekly-plan";
 
@@ -71,7 +71,7 @@ export default function LinkedInAIPage() {
           config: {
             provider: useGatewayStore.getState().activeProvider,
             model: useGatewayStore.getState().activeModel,
-            apiKey: settings.keys?.[useGatewayStore.getState().activeProvider]?.[0] || settings.aiProvider.apiKey,
+            apiKey: resolveApiKey(useGatewayStore.getState().activeProvider, settings),
             baseUrl: settings.baseUrls?.[useGatewayStore.getState().activeProvider] || settings.aiProvider.baseUrl,
             temperature: useGatewayStore.getState().temperature,
             maxTokens: useGatewayStore.getState().maxTokens,
