@@ -73,6 +73,7 @@ const DEFAULT_MODEL_NAMES: Record<AIProviderId, string> = {
   ollama: "llama3.3",
   lmstudio: "local-model",
   xai: "grok-2",
+  grok: "grok-2",
   fireworks: "accounts/fireworks/models/llama-v3-70b-instruct",
   perplexity: "llama-3.1-sonar-large-128k-online",
   ai21: "jamba-1.5-large",
@@ -144,6 +145,7 @@ export async function routeCompletion(
       case "ollama":
       case "lmstudio":
       case "xai":
+      case "grok":
       case "fireworks":
       case "perplexity":
       case "ai21":
