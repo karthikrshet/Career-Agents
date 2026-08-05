@@ -49,6 +49,36 @@ interface FileAttachment {
   progress: number;
 }
 
+function CodeBlock({ children, className }: { children: any; className?: string }) {
+  const [copied, setCopied] = useState(false);
+  const codeString = Array.isArray(children) ? children.join("") : String(children || "").replace(/\n$/, "");
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeString);
+    setCopied(true);
+    toast.success("Code copied to clipboard!");
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="relative group/code my-3 rounded-xl overflow-hidden border border-border/60 bg-[#0d1117] shadow-lg">
+      <div className="flex items-center justify-between px-3.5 py-1.5 bg-[#161b22] border-b border-border/40 text-[10px] text-muted-foreground font-mono">
+        <span className="text-cyan-400 font-semibold">{className?.replace("language-", "") || "code"}</span>
+        <button
+          onClick={handleCopy}
+          className="flex items-center gap-1 hover:text-white px-2 py-0.5 rounded bg-secondary/50 hover:bg-secondary transition-colors"
+        >
+          {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+          <span>{copied ? "Copied" : "Copy Code"}</span>
+        </button>
+      </div>
+      <pre className="p-3.5 overflow-x-auto text-[11.5px] font-mono leading-relaxed text-slate-200">
+        <code>{codeString}</code>
+      </pre>
+    </div>
+  );
+}
+
 const markdownComponents = {
   h1: ({ node, ...props }: any) => <h1 className="text-base font-bold text-foreground mt-3 mb-1.5 border-b border-border/40 pb-1" {...props} />,
   h2: ({ node, ...props }: any) => <h2 className="text-sm font-bold text-foreground mt-2.5 mb-1" {...props} />,
@@ -64,9 +94,7 @@ const markdownComponents = {
         {children}
       </code>
     ) : (
-      <pre className="bg-black/70 p-3 rounded-lg overflow-x-auto text-[11px] font-mono my-2 text-slate-200 border border-border/40" {...props}>
-        <code>{children}</code>
-      </pre>
+      <CodeBlock className={className}>{children}</CodeBlock>
     ),
 };
 
@@ -1329,9 +1357,9 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                       <div className="flex items-center justify-between text-[10px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity pt-1">
                         <div className="flex items-center gap-3">
                           <MessageActions
-                            content={content}
+                            content={parseFileDirectives(content).cleanText}
                             isAssistant={msg.role === "assistant"}
-                            onExport={msg.role === "assistant" ? (expType) => handleDownloadFile(expType, `Career_Document.${expType === "excel" ? "csv" : expType}`, content, "Career Document") : undefined}
+                            onExport={msg.role === "assistant" ? (expType) => handleDownloadFile(expType, `Career_Document.${expType === "excel" ? "csv" : expType}`, parseFileDirectives(content).cleanText, "Career Document") : undefined}
                             onRegenerate={msg.role === "assistant" ? () => {
                               const idx = messages.findIndex((m) => m.id === msg.id);
                               const slice = messages.slice(0, idx);
