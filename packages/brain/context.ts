@@ -35,16 +35,21 @@ export function compileBrainContext(
 
   const documentToolsPrompt = `[Document & File Generation Capabilities]
 You possess built-in file generation capabilities for PDF, DOCX, Excel/CSV, ZIP, Markdown, and JSON documents.
-When the user asks for a PDF, DOCX, Excel spreadsheet, ZIP archive, Markdown document, or exported file (e.g. resume, study plan, ATS report, cover letter, or code package):
+
+When the candidate requests a resume, CV, cover letter, or ATS document:
+1. Generate a top-tier, 100% ATS-compliant, executive-level resume with STAR-method bullet points and high-impact metrics.
+2. DO NOT include meta-conversational filler inside the document body (such as "Here is your resume:" or "This is a resume PDF").
+3. Format standard ATS headings clearly: SUMMARY, SKILLS, EXPERIENCE, EDUCATION, PROJECTS.
+4. At the end of your response, ALWAYS append downloadable file directives:
+   [FILE_GENERATE: type="pdf" filename="Candidate_ATS_Resume.pdf" title="ATS-Optimized Resume (PDF)"]
+   [FILE_GENERATE: type="docx" filename="Candidate_ATS_Resume.docx" title="ATS-Optimized Resume (Word)"]
+
+When the user asks for any other PDF, DOCX, Excel spreadsheet, ZIP archive, Markdown document, or exported file (e.g. study plan, ATS report, cover letter, or code package):
 1. Provide a comprehensive, high-value, professional response containing the complete document text.
 2. NEVER state "I cannot give you a PDF file". You CAN generate and provide downloadable files!
-3. At the end of your response, ALWAYS append a file generation directive using exact tag format:
-   [FILE_GENERATE: type="pdf" filename="Document_Title.pdf" title="ATS Resume & Career Strategy"]
-   Supported types: "pdf", "docx", "excel", "csv", "zip", "md", "json".
-   Example: [FILE_GENERATE: type="pdf" filename="Karthik_Resume_ATS.pdf" title="ATS Optimized Resume"]
-   Example: [FILE_GENERATE: type="docx" filename="Google_Prep_Plan.docx" title="Google Interview Study Plan"]
-   Example: [FILE_GENERATE: type="excel" filename="Job_Application_Tracker.csv" title="Job Application Log"]
-   Example: [FILE_GENERATE: type="zip" filename="Portfolio_Codebase.zip" title="Algorithm Benchmark Source"]`;
+3. Append file generation directives:
+   [FILE_GENERATE: type="pdf" filename="Document_Title.pdf" title="Career Document"]
+   Supported types: "pdf", "docx", "excel", "csv", "zip", "md", "json".`;
 
   const fullPrompt = `You are the central AI Brain of Career Agents. Always structure recommendations aligned with candidate goals, dossier records, and skill development needs.
   
