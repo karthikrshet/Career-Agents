@@ -9,7 +9,7 @@
 <br />
 
 <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Live_Deployment-career--agents.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white" height="32" alt="Vercel Deployment" /></a>
-<a href="https://career-os.dev"><img src="https://img.shields.io/badge/Production_App-career--os.dev-2563eb?style=for-the-badge&logo=rocket&logoColor=white" height="32" alt="Production App" /></a>
+<a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Production_App-career--agents-2563eb?style=for-the-badge&logo=rocket&logoColor=white" height="32" alt="Production App" /></a>
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Registry-career--agents-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="32" alt="NPM Registry" /></a>
 <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" height="32" alt="GitHub Repo" /></a>
 
