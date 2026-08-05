@@ -24,7 +24,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { useGatewayStore } from "@/lib/gateway-store";
 import { buildCareerContext } from "@/lib/ai";
-import { cn, timeAgo, generateId } from "@/lib/utils";
+import { cn, timeAgo, generateId, resolveApiKey } from "@/lib/utils";
 import { PROVIDER_MODELS } from "@/lib/ai";
 import { ModelPanel } from "@/components/copilot/ModelPanel";
 import { ChatExport } from "@/components/copilot/ChatExport";
@@ -524,7 +524,7 @@ Recalculated tracker statistics and updated applications metrics.`);
           config: {
             provider: activeProvider,
             model: activeModel,
-            apiKey: settings.keys?.[activeProvider]?.[0] || settings.aiProvider.apiKey, // Pass client key if configured
+            apiKey: resolveApiKey(activeProvider, settings), // Pass client key if configured, otherwise server fallback
             baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl, // Pass base url overrides if configured
             temperature: useGatewayStore.getState().temperature,
             maxTokens: useGatewayStore.getState().maxTokens,

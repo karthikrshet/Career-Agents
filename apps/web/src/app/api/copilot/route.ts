@@ -122,18 +122,23 @@ export async function POST(req: NextRequest) {
     const ALLOWED_PROVIDERS = new Set([
       "openai", "anthropic", "claude", "gemini", "groq", "openrouter",
       "together", "deepseek", "mistral", "cohere", "azure", "ollama",
-      "lmstudio", "xai", "fireworks", "perplexity", "ai21", "openai-compat", "custom"
+      "lmstudio", "xai", "grok", "fireworks", "perplexity", "ai21", "openai-compat", "custom"
     ]);
     if (!ALLOWED_PROVIDERS.has(provider)) {
       return NextResponse.json({ success: false, error: "Invalid AI provider specified" }, { status: 400 });
     }
     
+    const mergedKeys: Record<string, string[]> = { ...(clientSettings?.keys || {}) };
+    if (config?.apiKey && config.apiKey.trim()) {
+      mergedKeys[provider] = Array.from(new Set([config.apiKey, ...(mergedKeys[provider] || [])]));
+      if (provider === "grok") mergedKeys["xai"] = Array.from(new Set([config.apiKey, ...(mergedKeys["xai"] || [])]));
+      if (provider === "xai") mergedKeys["grok"] = Array.from(new Set([config.apiKey, ...(mergedKeys["grok"] || [])]));
+    }
+
     const gatewayConfig: RouterConfig = {
       mode: clientSettings?.routerMode || "balanced",
       providerOrder: clientSettings?.providerOrder || ["groq", "gemini", "openai", "claude"],
-      keys: clientSettings?.keys || {
-        [provider]: [config?.apiKey || ""]
-      },
+      keys: mergedKeys,
       baseUrls: clientSettings?.baseUrls || {
         [provider]: config?.baseUrl || ""
       },

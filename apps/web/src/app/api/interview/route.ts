@@ -136,8 +136,20 @@ export async function POST(req: Request) {
         }
       }
 
+function resolveServerApiKey(provider: string, clientKey?: string): string {
+  if (clientKey && clientKey.trim() !== "") return clientKey;
+  const p = (provider || "gemini").toLowerCase().trim();
+  if (p === "grok" || p === "xai") {
+    return process.env.XAI_API_KEY || process.env.GROK_API_KEY || process.env.GROQ_API_KEY || "";
+  }
+  if (p === "claude" || p === "anthropic") {
+    return process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY || "";
+  }
+  return process.env[`${p.toUpperCase()}_API_KEY`] || process.env.GROQ_API_KEY || process.env.GEMINI_API_KEY || process.env.OPENAI_API_KEY || process.env.XAI_API_KEY || "";
+}
+
       const provider = aiConfig?.provider || "gemini";
-      const apiKey = aiConfig?.apiKey || process.env[`${provider.toUpperCase()}_API_KEY` || ""];
+      const apiKey = resolveServerApiKey(provider, aiConfig?.apiKey);
       const hasKey = !!apiKey || ["ollama", "lmstudio"].includes(provider);
 
       if (!hasKey) {
@@ -160,7 +172,7 @@ Make them realistic and specific to the company culture and role.`;
 
   try {
     const provider = aiConfig?.provider || "gemini";
-    const apiKey = aiConfig?.apiKey || process.env[`${provider.toUpperCase()}_API_KEY` || ""];
+    const apiKey = resolveServerApiKey(provider, aiConfig?.apiKey);
 
     const raw = await generate({
       messages: [
@@ -191,7 +203,7 @@ async function evaluateAnswers({ responses, company, mode, aiConfig }: any) {
 
   try {
     const provider = aiConfig?.provider || "gemini";
-    const apiKey = aiConfig?.apiKey || process.env[`${provider.toUpperCase()}_API_KEY` || ""];
+    const apiKey = resolveServerApiKey(provider, aiConfig?.apiKey);
 
     if (!apiKey && !["ollama", "lmstudio"].includes(provider)) {
       throw new Error("API key not configured");
