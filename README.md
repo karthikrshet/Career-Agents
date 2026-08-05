@@ -60,12 +60,112 @@
 <img src="https://img.shields.io/badge/xAI_Grok_2-000000?style=for-the-badge&logo=x&logoColor=white" height="28" alt="xAI Grok" />
 <img src="https://img.shields.io/badge/Ollama_Local-000000?style=for-the-badge&logo=ollama&logoColor=white" height="28" alt="Ollama Local" />
 
-**IDE & MCP Protocol Clients**  
-<img src="https://img.shields.io/badge/Cursor_AI-000000?style=for-the-badge&logo=cursor&logoColor=white" height="28" alt="Cursor AI" />
-<img src="https://img.shields.io/badge/Claude_Desktop-D97706?style=for-the-badge&logo=anthropic&logoColor=white" height="28" alt="Claude Desktop" />
-<img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" height="28" alt="VS Code" />
-<img src="https://img.shields.io/badge/Windsurf-181717?style=for-the-badge&logo=windsurf&logoColor=white" height="28" alt="Windsurf" />
-<img src="https://img.shields.io/badge/Model_Context_Protocol-4F46E5?style=for-the-badge&logo=protocol&logoColor=white" height="28" alt="MCP Stdio Server" />
+---
+
+## ⚡ Quickstart, Installation & IDE Setup
+
+### 1. 🚀 How to Run Web App Locally (Under 5 Minutes)
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/karthikrshet/Career-Agents.git
+cd Career-Agents
+
+# 2. Install web dependencies
+cd apps/web
+npm install
+
+# 3. Setup environment configuration
+cp .env.example .env
+# Edit .env and enter a random NEXTAUTH_SECRET (e.g. openssl rand -base64 32)
+
+# 4. Start local development server
+npm run dev
+```
+Open **[http://localhost:3000](http://localhost:3000)** or **[https://career-agents.vercel.app](https://career-agents.vercel.app)** in your browser.
+
+- **Guest Mode (Default):** Zero credentials required! Runs locally saving dossier metrics to browser `localStorage`.
+- **Database Mode (Optional):** Set `DATABASE_URL` in `.env` to PostgreSQL and run `npx prisma db push`.
+
+---
+
+### 2. 🔌 How to Connect MCP Protocol Server to your IDE
+
+Expose Career Agents tools directly to **Cursor AI**, **Claude Desktop**, **VS Code**, **Windsurf**, or **Aider**:
+
+**Command to register in IDE:**
+```bash
+node /absolute/path/to/Career-Agents/mcp/server.js
+```
+
+#### 📍 Claude Desktop Setup (`claude_desktop_config.json`):
+```json
+{
+  "mcpServers": {
+    "career-agents": {
+      "command": "node",
+      "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
+    }
+  }
+}
+```
+
+#### 📍 Cursor AI Setup:
+Go to **Settings** -> **Features** -> **MCP** -> **Add new MCP Server**:
+- **Name:** `career-agents`
+- **Type:** `stdio`
+- **Command:** `node /absolute/path/to/Career-Agents/mcp/server.js`
+
+#### 📍 VS Code (Continue Extension Setup):
+Add to `.continue/config.json`:
+```json
+{
+  "experimental": {
+    "modelContextProtocol": [
+      {
+        "name": "career-agents",
+        "command": "node",
+        "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
+      }
+    ]
+  }
+}
+```
+
+---
+
+### 3. 🧩 How to Run & Enable Local Extensions & Plugins
+
+- **Marketplace Extensions (`/marketplace`):** Navigate to the **146 Agent Marketplace** in the web dashboard to toggle extensions like *STAR Behavioral Coach*, *LeetCode Complexity Tracker*, and *Salary Intelligence*.
+- **Custom Plugin Manifests (`packages/plugins`):** Drop a JSON manifest into the plugin directory to extend Copilot system prompts:
+  ```json
+  {
+    "id": "my-custom-plugin",
+    "name": "Custom Design Doc Plugin",
+    "permissions": ["read_profile", "write_copilot_context"],
+    "promptInjection": "Format all architectural outputs into clean RFC technical design documents."
+  }
+  ```
+
+---
+
+### 4. 🖥️ How to Run Terminal CLI Utilities
+
+Run terminal commands anywhere using `scripts/cli.js`:
+
+```bash
+# List all 146 agents and 19 divisions
+node scripts/cli.js list
+
+# Score PDF/Word resume against ATS standards
+node scripts/cli.js score resume.pdf
+
+# Run GitHub profile wrapped audit
+node scripts/cli.js github torvalds
+
+# Start interactive terminal STAR mock interview
+node scripts/cli.js mock google behavioral
+```
 
 ---
 
