@@ -33,10 +33,10 @@ import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts";
 import type { CopilotSession } from "@/types";
 
 const QUICK_ACTIONS = [
+  { label: "Generate ATS Resume (PDF)", icon: FileText, prompt: "Generate a fully ATS-optimized, high-impact resume for a Software Engineer role with STAR quantifiable bullets and downloadable PDF/Word files." },
   { label: "Analyze my resume", icon: FileText, prompt: "Review my resume scores and give me the 3 most important improvements I can make right now." },
   { label: "GitHub audit tips", icon: GitBranch, prompt: "Based on my GitHub profile data, what are the top things I should fix to get noticed by recruiters?" },
   { label: "Interview prep plan", icon: Mic, prompt: "Create a 2-week interview prep plan for a Senior Software Engineer role at a top tech company." },
-  { label: "Career roadmap", icon: Sparkles, prompt: "Based on my current scores and target role, give me a prioritized 30-day career action plan." },
 ];
 
 interface FileAttachment {
@@ -1293,17 +1293,6 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                                       </Button>
                                     </div>
                                   ))}
-
-                                  {/* Quick Document Export Options Bar */}
-                                  <div className="pt-2 border-t border-border/40 flex flex-wrap items-center gap-1.5">
-                                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mr-1">Export Response:</span>
-                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("pdf", "Career_Doc.pdf", cleanText, "Career Document")}>📄 PDF</Button>
-                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("docx", "Career_Doc.docx", cleanText, "Career Document")}>📝 DOCX</Button>
-                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("excel", "Career_Data.csv", cleanText, "Career Data")}>📊 CSV</Button>
-                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("zip", "Archive.zip", cleanText, "Career Archive")}>📦 ZIP</Button>
-                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("md", "Career_Doc.md", cleanText, "Career Document")}>📑 MD</Button>
-                                    <Button size="sm" variant="outline" className="h-6 text-[10px] px-2" onClick={() => handleDownloadFile("json", "Career_Data.json", cleanText, "Career Data")}>⚙️ JSON</Button>
-                                  </div>
                                 </div>
                               );
                             })()
@@ -1321,6 +1310,7 @@ Verify connectivity by clicking **Test Connection**, and then try again.`;
                           <MessageActions
                             content={content}
                             isAssistant={msg.role === "assistant"}
+                            onExport={msg.role === "assistant" ? (expType) => handleDownloadFile(expType, `Career_Document.${expType === "excel" ? "csv" : expType}`, cleanText, "Career Document") : undefined}
                             onRegenerate={msg.role === "assistant" ? () => {
                               const idx = messages.findIndex((m) => m.id === msg.id);
                               const slice = messages.slice(0, idx);
