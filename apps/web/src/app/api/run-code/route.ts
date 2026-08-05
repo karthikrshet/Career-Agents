@@ -20,17 +20,29 @@ export async function POST(req: NextRequest) {
     const languageMapping: Record<string, string> = {
       javascript: "javascript",
       typescript: "typescript",
-      python: "python",
+      python: "python3",
+      python3: "python3",
       java: "java",
       go: "go",
+      golang: "go",
       rust: "rust",
-      cpp: "cpp"
+      cpp: "cpp",
+      "c++": "cpp",
+      c: "c",
+      csharp: "csharp",
+      "c#": "csharp",
+      kotlin: "kotlin",
+      swift: "swift",
+      ruby: "ruby",
+      php: "php",
+      dart: "dart",
+      scala: "scala",
+      elixir: "elixir",
+      erlang: "erlang",
+      racket: "racket"
     };
 
-    const pistonLang = languageMapping[language.toLowerCase()];
-    if (!pistonLang) {
-      return NextResponse.json({ success: false, error: `Language "${language}" is not supported for execution.` }, { status: 400 });
-    }
+    const pistonLang = languageMapping[language.toLowerCase()] || language.toLowerCase();
 
     const payload = {
       language: pistonLang,
@@ -68,10 +80,25 @@ export async function POST(req: NextRequest) {
           javascript: 93,
           typescript: 94,
           python: 92,
+          python3: 92,
           java: 91,
           go: 95,
+          golang: 95,
           rust: 73,
           cpp: 76,
+          "c++": 76,
+          c: 75,
+          csharp: 51,
+          "c#": 51,
+          kotlin: 78,
+          swift: 83,
+          ruby: 72,
+          php: 68,
+          dart: 90,
+          scala: 81,
+          elixir: 57,
+          erlang: 58,
+          racket: 84
         };
 
         const languageId = judge0LangMapping[language.toLowerCase()] || 93;
