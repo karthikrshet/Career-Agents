@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -22,6 +22,33 @@ import { cn, scoreToColor, scoreToGrade, scoreToBgColor, resolveApiKey } from "@
 import { AtsComparison } from "@/components/resume/AtsComparison";
 import type { ResumeAnalysis } from "@/types";
 
+const ROLE_OPTIONS = [
+  { id: "software-engineer", label: "Software Engineer", category: "Engineering" },
+  { id: "frontend-engineer", label: "Frontend Engineer", category: "Engineering" },
+  { id: "backend-engineer", label: "Backend Engineer", category: "Engineering" },
+  { id: "fullstack-engineer", label: "Full Stack Engineer", category: "Engineering" },
+  { id: "ai-engineer", label: "AI / ML Engineer", category: "AI & Data" },
+  { id: "data-scientist", label: "Data Scientist / Analyst", category: "AI & Data" },
+  { id: "cloud-engineer", label: "Cloud / DevOps Engineer", category: "Infrastructure" },
+  { id: "cybersecurity-engineer", label: "Cybersecurity Engineer", category: "Infrastructure" },
+  { id: "solutions-architect", label: "Solutions Architect", category: "Architecture" },
+  { id: "product-manager", label: "Product Manager", category: "Product & Business" },
+  { id: "ux-designer", label: "UX / UI Designer", category: "Product & Business" },
+  { id: "financial-analyst", label: "Financial / Business Analyst", category: "Product & Business" },
+  { id: "marketing-manager", label: "Marketing & Growth", category: "Product & Business" },
+  { id: "qa-engineer", label: "QA & Test Automation", category: "Engineering" },
+  { id: "startup-founder", label: "Startup Founder", category: "Entrepreneurship" },
+];
+
+const AGENT_OPTIONS = [
+  { id: "ats-resume-reviewer", name: "ATS Resume Reviewer", description: "Forensic line-by-line ATS auditor" },
+  { id: "product-manager-coach", name: "Product Manager Coach", description: "Product metrics & roadmap reviewer" },
+  { id: "ai-engineer-career-coach", name: "AI Engineer Coach", description: "LLMs, RAG & MLOps auditor" },
+  { id: "backend-architect", name: "Backend Architect", description: "System design & API architecture auditor" },
+  { id: "career-pivot-to-tech-advisor", name: "Tech Pivot Advisor", description: "Transition & transferable skills coach" },
+  { id: "graduate-career-advisor", name: "Graduate Advisor", description: "Early-career & entry level specialist" },
+];
+
 type Step = "upload" | "analyzing" | "results";
 
 export default function ResumePage() {
@@ -32,6 +59,11 @@ export default function ResumePage() {
 
   const [step, setStep] = useState<Step>(resumeAnalysis ? "results" : "upload");
   const [analyzing, setAnalyzing] = useState(false);
+  const [targetRole, setTargetRole] = useState(profile?.targetRole || "software-engineer");
+  const [agentId, setAgentId] = useState("ats-resume-reviewer");
+  const [jobDescription, setJobDescription] = useState("");
+  const [showJdInput, setShowJdInput] = useState(false);
+
   const [pasteMode, setPasteMode] = useState(false);
   const [urlMode, setUrlMode] = useState(false);
   const [resumeUrl, setResumeUrl] = useState("");
@@ -43,11 +75,28 @@ export default function ResumePage() {
   const [cloudPlatform, setCloudPlatform] = useState<"google" | "dropbox" | null>(null);
   const [cloudConnecting, setCloudConnecting] = useState(false);
 
-  const processText = useCallback(async (text: string, name: string) => {
+  // Sync step with store when page mounts or rehydrates
+  useEffect(() => {
+    if (resumeAnalysis && step === "upload" && !analyzing) {
+      setStep("results");
+    }
+  }, [resumeAnalysis, step, analyzing]);
+
+  const processText = useCallback(async (
+    text: string,
+    name: string,
+    overrideRole?: string,
+    overrideJd?: string,
+    overrideAgent?: string
+  ) => {
     if (text.trim().length < 50) {
       toast.error("Resume text too short. Please upload a more complete resume.");
       return;
     }
+    const roleToUse = overrideRole || targetRole;
+    const jdToUse = overrideJd !== undefined ? overrideJd : jobDescription;
+    const agentToUse = overrideAgent || agentId;
+
     setStep("analyzing");
     setAnalyzing(true);
     try {
@@ -61,10 +110,14 @@ export default function ResumePage() {
         temperature: useGatewayStore.getState().temperature,
         maxTokens: useGatewayStore.getState().maxTokens,
       };
-      const analysis = await analyzeResumeText(text, name, gatewayConfig as any);
+      const analysis = await analyzeResumeText(text, name, gatewayConfig as any, {
+        targetRole: roleToUse,
+        jobDescription: jdToUse,
+        agentId: agentToUse,
+      });
       setResumeAnalysis(analysis);
       setStep("results");
-      toast.success(`Analysis complete — ${analysis.overallScore}% ATS score`);
+      toast.success(`Analysis complete — ${analysis.overallScore}% ATS score for ${analysis.targetRoleName || "Target Role"}`);
     } catch (e) {
       console.error(e);
       toast.error("Analysis failed. Please try again.");
@@ -72,7 +125,7 @@ export default function ResumePage() {
     } finally {
       setAnalyzing(false);
     }
-  }, [setResumeAnalysis, settings.keys, settings.baseUrls, settings.aiProvider]);
+  }, [targetRole, jobDescription, agentId, setResumeAnalysis, settings.keys, settings.baseUrls, settings.aiProvider]);
 
   async function handleUrlImport() {
     if (!resumeUrl.trim()) return;
@@ -99,20 +152,21 @@ export default function ResumePage() {
     setAnalyzing(true);
     try {
       const username = profile?.githubUsername || "candidate";
-      await new Promise((r) => setTimeout(r, 1200));
+      await new Promise((r) => setTimeout(r, 1000));
       const mockResume = `
 # Profile: ${profile?.name || "GitHub Engineer"}
 GitHub: https://github.com/${username}
+Target Role Focus: ${targetRole}
 
-## Technical Focus
-React, TypeScript, Next.js, Node.js, Python, PostgreSQL, REST APIs, Docker, CI/CD, AWS.
+## Core Competencies
+TypeScript, Next.js, Python, PostgreSQL, System Design, REST APIs, Microservices, CI/CD, Docker, AWS.
 
-## Public Projects
-- **Career Intelligence OS**: Decoupled multi-agent orchestration layer processing candidate metrics. Spacing and animations aligned. (GitHub stars: 24, forks: 8)
-- **Distributed Task Scheduler**: Designed high-throughput microservice in Go utilizing RabbitMQ queues.
+## Featured Engineering Projects
+- **Career Intelligence OS**: Multi-agent orchestration system processing career metrics and resume scoring.
+- **High Throughput Microservice**: Scalable distributed messaging consumer built with Go & RabbitMQ.
 
-## Work Experience
-Software Engineer - Developed systems, integrated third-party adapters, and optimized response latencies.
+## Professional Experience
+Senior Software Developer - Developed microservices, optimized query latency by 35%, and led deployment pipelines.
       `;
       await processText(mockResume, `github-${username}-portfolio.md`);
     } catch (err) {
@@ -126,22 +180,22 @@ Software Engineer - Developed systems, integrated third-party adapters, and opti
     setStep("analyzing");
     setAnalyzing(true);
     try {
-      await new Promise((r) => setTimeout(r, 1200));
+      await new Promise((r) => setTimeout(r, 1000));
       const mockResume = `
-# Profile: ${profile?.name || "Career Candidate"}
-Target Role: ${profile?.targetRole || "Software Engineer"}
+# Candidate Profile: ${profile?.name || "Career Candidate"}
+Target Role: ${targetRole}
 Email: ${profile?.email || "candidate@mail.com"}
 
-## Summary
-Experienced professional with expertise in technical problem solving and software architecture design.
+## Executive Summary
+Results-driven professional specializing in ${targetRole} strategic execution, cross-functional leadership, and scalable systems.
 
 ## Professional Experience
-Senior Software Developer at TechCorp (2024 - Present)
-- Spearheaded architecture refactors, lowering system overhead by 22%.
-- Led team of 4 to design microservices and external api connectors.
+Senior Specialist at Enterprise TechCorp (2023 - Present)
+- Led team of 6 to deliver high-impact roadmap features, boosting conversion by 28%.
+- Spearheaded workflow automation and reduced operational cycle time by 40%.
 
-## Education
-Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
+## Education & Credentials
+Bachelor of Science in Information Systems & Engineering (GPA: 3.8/4.0)
       `;
       await processText(mockResume, "linkedin-profile.md");
     } catch (err) {
@@ -157,7 +211,7 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
     setCloudConnecting(true);
     setTimeout(() => {
       setCloudConnecting(false);
-    }, 1500);
+    }, 1200);
   }
 
   const onDrop = useCallback(async (files: File[]) => {
@@ -213,7 +267,6 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
       temperature: useGatewayStore.getState().temperature,
       maxTokens: useGatewayStore.getState().maxTokens,
     };
-    // Allow request to proceed so server environment variables (Vercel) can be used as fallback
     setAiRewriting(true);
     try {
       const res = await fetch("/api/resume/analyze", {
@@ -222,6 +275,8 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
         body: JSON.stringify({
           text: resumeAnalysis.rawText,
           config: gatewayConfig,
+          targetRole: resumeAnalysis.targetRoleName || targetRole,
+          jobDescription: resumeAnalysis.jobDescription || jobDescription,
         }),
       });
       if (!res.ok) throw new Error(await res.text());
@@ -285,33 +340,100 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
               exit={{ opacity: 0, y: -16 }}
               className="max-w-2xl mx-auto space-y-4"
             >
-              <div className="text-center mb-8">
+              <div className="text-center mb-6">
                 <div className="w-14 h-14 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center mx-auto mb-4">
                   <FileText className="w-7 h-7 text-sky-400" />
                 </div>
                 <h2 className="text-xl font-semibold">Upload Your Resume</h2>
                 <p className="text-sm text-muted-foreground mt-2">
-                  Get an instant ATS score, weak bullet analysis, and missing keyword report.
+                  Get a real ATS score, role-specific keyword analysis, and STAR accomplishment audit powered by Career Agents.
                 </p>
               </div>
+
+              {/* Target Role & Career Agent Configuration */}
+              <Card className="glass p-4 border-primary/20 bg-secondary/10 space-y-3">
+                <div className="flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-wider">
+                  <Target className="w-4 h-4" />
+                  Target Role & Audit Persona
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <label className="text-xs text-muted-foreground font-medium">Target Job Role</label>
+                    <select
+                      className="w-full h-9 rounded-lg bg-background border border-border px-3 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                      value={targetRole}
+                      onChange={(e) => setTargetRole(e.target.value)}
+                    >
+                      {ROLE_OPTIONS.map((r) => (
+                        <option key={r.id} value={r.id}>
+                          {r.label} ({r.category})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-xs text-muted-foreground font-medium">Career Agent Auditor</label>
+                    <select
+                      className="w-full h-9 rounded-lg bg-background border border-border px-3 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                      value={agentId}
+                      onChange={(e) => setAgentId(e.target.value)}
+                    >
+                      {AGENT_OPTIONS.map((a) => (
+                        <option key={a.id} value={a.id}>
+                          {a.name} — {a.description}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="pt-1">
+                  <button
+                    type="button"
+                    onClick={() => setShowJdInput(!showJdInput)}
+                    className="text-xs text-sky-400 hover:text-sky-300 flex items-center gap-1 font-medium transition-colors"
+                  >
+                    {showJdInput ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                    {showJdInput ? "Hide Job Description" : "+ Add Specific Job Description for 1:1 ATS Match"}
+                  </button>
+                  <AnimatePresence>
+                    {showJdInput && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden pt-2"
+                      >
+                        <textarea
+                          className="w-full h-24 px-3 py-2 rounded-lg bg-background border border-border text-xs text-foreground resize-none focus:outline-none focus:ring-1 focus:ring-primary font-mono"
+                          placeholder="Paste target Job Description text here (e.g. required skills, responsibilities)..."
+                          value={jobDescription}
+                          onChange={(e) => setJobDescription(e.target.value)}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </Card>
 
               {/* Dropzone */}
               <div
                 {...getRootProps()}
                 className={cn(
-                  "relative rounded-2xl border-2 border-dashed p-12 text-center cursor-pointer transition-all duration-200",
+                  "relative rounded-2xl border-2 border-dashed p-10 text-center cursor-pointer transition-all duration-200",
                   isDragActive
                     ? "border-primary bg-primary/5"
                     : "border-border hover:border-primary/40 hover:bg-secondary/30"
                 )}
               >
                 <input {...getInputProps()} />
-                <Upload className={cn("w-10 h-10 mx-auto mb-3", isDragActive ? "text-primary" : "text-muted-foreground/40")} />
+                <Upload className={cn("w-9 h-9 mx-auto mb-3", isDragActive ? "text-primary" : "text-muted-foreground/40")} />
                 <p className="text-sm font-medium">
                   {isDragActive ? "Drop your resume here" : "Drag & drop your resume"}
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">PDF, DOCX, DOC, ODT, RTF, TXT, or MD supported</p>
-                <Button size="sm" className="mt-4" variant="outline">Browse Files</Button>
+                <Button size="sm" className="mt-4 text-xs" variant="outline">Browse Files</Button>
               </div>
 
               <div className="relative flex items-center gap-3">
@@ -348,7 +470,7 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
                         onClick={() => processText(pastedText, "pasted-resume.txt")}
                       >
                         <Zap className="w-4 h-4 mr-2" />
-                        Analyze Resume
+                        Analyze Resume for {ROLE_OPTIONS.find(r => r.id === targetRole)?.label || "Role"}
                       </Button>
                     </motion.div>
                   )}
@@ -385,15 +507,15 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
 
               {/* Integrations Import Grid */}
               <div className="space-y-2 pt-2">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Fast Import Integrations</p>
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Fast Import & Presets</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                   <Button variant="outline" size="sm" className="w-full text-xs" onClick={handleLinkedInImport}>
                     <Users className="w-3.5 h-3.5 mr-1.5 text-sky-400" />
-                    LinkedIn
+                    LinkedIn Profile
                   </Button>
                   <Button variant="outline" size="sm" className="w-full text-xs" onClick={handleGitHubImport}>
                     <GitBranch className="w-3.5 h-3.5 mr-1.5 text-indigo-400" />
-                    GitHub
+                    GitHub Portfolio
                   </Button>
                   <Button variant="outline" size="sm" className="w-full text-xs" onClick={() => triggerCloudLink("google")}>
                     <FileText className="w-3.5 h-3.5 mr-1.5 text-emerald-400" />
@@ -406,7 +528,7 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
                 </div>
               </div>
 
-              {/* Cloud Connect Dialog */}
+              {/* Cloud Connect & Sample Presets Dialog */}
               <AnimatePresence>
                 {cloudOpen && (
                   <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
@@ -414,35 +536,76 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
-                      className="w-full max-w-sm rounded-2xl border border-border bg-card p-6 shadow-xl space-y-4"
+                      className="w-full max-w-md rounded-2xl border border-border bg-card p-6 shadow-xl space-y-4"
                     >
                       <div className="text-center space-y-2">
                         <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
                           {cloudPlatform === "google" ? <FileText className="w-6 h-6 text-emerald-400" /> : <Download className="w-6 h-6 text-blue-400" />}
                         </div>
-                        <h3 className="font-semibold text-lg capitalize">{cloudPlatform} Drive</h3>
+                        <h3 className="font-semibold text-lg capitalize">{cloudPlatform} Drive Import</h3>
                         <p className="text-xs text-muted-foreground">
                           {cloudConnecting
                             ? "Connecting secure credentials session..."
-                            : "Account linked! Select a file to parse and analyze in the studio."}
+                            : "Select a sample role resume or import from drive:"}
                         </p>
                       </div>
                       
-                      <div className="flex gap-2">
+                      {!cloudConnecting && (
+                        <div className="space-y-2 pt-1">
+                          <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Role Presets</p>
+                          <div className="grid grid-cols-2 gap-2">
+                            <Button size="sm" variant="outline" className="text-xs justify-start" onClick={async () => {
+                              setCloudOpen(false);
+                              await processText(
+                                "SOFTWARE ENGINEER RESUME\nSummary: Software developer with 4 years experience building web apps.\nSkills: React, TypeScript, Node.js, PostgreSQL, REST APIs, Git, Docker.\nExperience: Software Engineer at Acme Corp (2022-Present)\n- Built user dashboards in React and Node.js.\n- Reduced API latencies by 20%.",
+                                "sample-software-engineer-resume.pdf",
+                                "software-engineer"
+                              );
+                            }}>
+                              💻 Software Eng
+                            </Button>
+                            <Button size="sm" variant="outline" className="text-xs justify-start" onClick={async () => {
+                              setCloudOpen(false);
+                              await processText(
+                                "PRODUCT MANAGER RESUME\nSummary: Data-driven PM focused on enterprise SaaS and user growth.\nSkills: Product Strategy, Roadmapping, OKRs, User Research, Wireframing, SQL, A/B Testing.\nExperience: Product Manager at SaaS Co (2023-Present)\n- Led cross-functional team of 8 to launch automated reporting feature, driving $120k ARR.\n- Conducted 30+ user interviews to refine product backlog.",
+                                "sample-product-manager-resume.pdf",
+                                "product-manager"
+                              );
+                            }}>
+                              📊 Product Manager
+                            </Button>
+                            <Button size="sm" variant="outline" className="text-xs justify-start" onClick={async () => {
+                              setCloudOpen(false);
+                              await processText(
+                                "AI ENGINEER RESUME\nSummary: Machine learning engineer specializing in LLMs, RAG, and vector search.\nSkills: Python, PyTorch, LLMs, RAG, LangChain, Vector Databases, FastAPI, Pinecone, Docker.\nExperience: AI Engineer at Cognitive Systems (2023-Present)\n- Architected RAG pipeline with Pinecone and Gemini API, handling 50k queries/day with <200ms latency.\n- Fine-tuned transformer model boosting domain accuracy by 18%.",
+                                "sample-ai-engineer-resume.pdf",
+                                "ai-engineer"
+                              );
+                            }}>
+                              🤖 AI Engineer
+                            </Button>
+                            <Button size="sm" variant="outline" className="text-xs justify-start" onClick={async () => {
+                              setCloudOpen(false);
+                              await processText(
+                                "DATA SCIENTIST RESUME\nSummary: Applied statistician & data scientist with expertise in predictive modeling.\nSkills: Python, R, SQL, Pandas, NumPy, Scikit-learn, Tableau, A/B Testing, Machine Learning.\nExperience: Data Scientist at Analytics Inc (2022-Present)\n- Built customer churn prediction model with 89% AUC-ROC.\n- Designed A/B tests that improved marketing campaign conversion rate by 14%.",
+                                "sample-data-scientist-resume.pdf",
+                                "data-scientist"
+                              );
+                            }}>
+                              📈 Data Scientist
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                      
+                      <div className="flex gap-2 pt-2">
                         {cloudConnecting ? (
                           <Button className="w-full text-xs" disabled>
                             <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                             Connecting Account...
                           </Button>
                         ) : (
-                          <>
-                            <Button className="w-full text-xs" variant="secondary" onClick={() => setCloudOpen(false)}>Close</Button>
-                            <Button className="w-full text-xs" onClick={async () => {
-                              setCloudOpen(false);
-                              toast.success(`Imported layout-resume.pdf from ${cloudPlatform === "google" ? "Google Drive" : "Dropbox"}`);
-                              await processText("Career Candidate Resume\nExperience: Software Engineer...", "layout-resume.pdf");
-                            }}>Mock Select File</Button>
-                          </>
+                          <Button className="w-full text-xs" variant="secondary" onClick={() => setCloudOpen(false)}>Cancel</Button>
                         )}
                       </div>
                     </motion.div>
@@ -483,6 +646,52 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
               animate={{ opacity: 1, y: 0 }}
               className="space-y-6"
             >
+              {/* Role Context Bar & Instant Switcher */}
+              <Card className="glass p-4 border-primary/20 bg-secondary/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                    <Target className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold text-foreground">Evaluated Target Role:</span>
+                      <Badge variant="default" className="text-xs bg-primary/20 text-primary border-primary/30">
+                        {analysis.targetRoleName || "Software Engineer"}
+                      </Badge>
+                      {analysis.agentId && (
+                        <Badge variant="outline" className="text-[10px] text-muted-foreground">
+                          Agent: {AGENT_OPTIONS.find(a => a.id === analysis.agentId)?.name || analysis.agentId}
+                        </Badge>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-muted-foreground mt-0.5">
+                      {analysis.jobDescription
+                        ? "Custom Job Description matching enabled"
+                        : "ATS scoring calculated against target role core skills and keywords"}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 w-full sm:w-auto">
+                  <span className="text-xs text-muted-foreground shrink-0 font-medium">Re-evaluate Role:</span>
+                  <select
+                    className="h-8 rounded-lg bg-background border border-border px-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary flex-1 sm:w-48"
+                    value={analysis.targetRole || targetRole}
+                    onChange={(e) => {
+                      const newRole = e.target.value;
+                      setTargetRole(newRole);
+                      processText(analysis.rawText, analysis.fileName, newRole);
+                    }}
+                  >
+                    {ROLE_OPTIONS.map((r) => (
+                      <option key={r.id} value={r.id}>
+                        {r.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </Card>
+
               {/* Score header */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4">
                 <Card className={cn("glass shrink-0 sm:w-auto text-center", scoreToBgColor(analysis.overallScore))}>
@@ -533,7 +742,7 @@ Bachelor of Science in Computer Engineering (GPA: 3.9/4.0)
                     </div>
                   </div>
 
-                  <Button size="sm" variant="ghost" onClick={() => { setStep("upload"); }} className="w-full">
+                  <Button size="sm" variant="ghost" onClick={() => { setResumeAnalysis(null as any); setStep("upload"); }} className="w-full">
                     <Upload className="w-4 h-4" />
                     New Resume
                   </Button>
