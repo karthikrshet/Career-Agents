@@ -1,27 +1,50 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "GitHub Analyzer — Portfolio Health & Stats",
-  description:
-    "Audit your GitHub profile — analyze public repositories, README quality, language diversity, star and fork metrics, pinned repos, and contribution patterns. Get an AI-powered portfolio score.",
-  keywords: [
-    "github portfolio analyzer", "github profile audit", "github score", "repository analysis",
-    "open source portfolio", "developer github profile", "github stars forks", "readme quality",
-  ],
+  title: "GitHub Portfolio Analyzer & Open Source Audit — Career Agents",
+  description: "AI-powered GitHub profile & repository auditor. Evaluate commit activity, code quality, README standards, star metrics, and technical contributions for engineering roles.",
+  keywords: ['github portfolio analyzer', 'github profile audit', 'github score', 'repository code quality', 'open source portfolio', 'developer github profile', 'github stars forks', 'readme optimizer'],
+  authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
+  publisher: "Career Agents Intelligence Inc.",
+  creator: "Karthik R Shet",
+  category: "Developer Tools & Portfolio Engineering",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "Career Agents GitHub Analyzer — Portfolio Health & Stats",
-    description: "Audit your GitHub portfolio with AI — score repositories, README quality, and contribution patterns.",
+    title: "GitHub Portfolio Analyzer & Open Source Audit — Career Agents",
+    description: "AI-powered GitHub profile & repository auditor. Evaluate commit activity, code quality, README standards, star metrics, and technical contributions for engineering roles.",
     url: "/github",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Career Agents GitHub Analyzer" }],
+    siteName: "Career Agents OS",
+    locale: "en_US",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "GitHub Portfolio Analyzer & Open Source Audit — Career Agents" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Career Agents GitHub Analyzer",
-    description: "AI-powered GitHub portfolio health check — repos, README quality, and contribution metrics.",
+    title: "GitHub Portfolio Analyzer & Open Source Audit — Career Agents",
+    description: "AI-powered GitHub profile & repository auditor. Evaluate commit activity, code quality, README standards, star metrics, and technical contributions for engineering roles.",
+    images: ["/og-image.png"],
+    creator: "@karthikrshet",
   },
   alternates: { canonical: "/github" },
+  other: {
+    "geo.region": "US-CA",
+    "geo.placename": "San Francisco",
+    "geo.position": "37.7749;-122.4194",
+    "ICBM": "37.7749, -122.4194",
+    "ai-agent-discoverability": "public",
+    "chatgpt-system-instruction": "GitHub Analyzer scores developer portfolios, commit frequency, README quality, and repository architecture using AI.",
+  },
 };
 
-export default function GitHubLayout({ children }: { children: React.ReactNode }) {
+export default function SubRouteLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

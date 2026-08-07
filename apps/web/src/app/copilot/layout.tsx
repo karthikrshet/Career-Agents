@@ -1,27 +1,50 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Career Copilot — AI Career Assistant Chat",
-  description:
-    "Chat with your AI career copilot, powered by 146 specialized agents. Get personalized resume advice, GitHub portfolio tips, LinkedIn optimization, interview coaching, and career roadmaps.",
-  keywords: [
-    "career copilot", "AI career chat", "career assistant", "career advice AI",
-    "resume chat", "interview chat", "job search AI", "career coaching chatbot",
-  ],
+  title: "AI Career Copilot & Real-Time Strategy Assistant — Career Agents",
+  description: "Chat with an AI career copilot trained on 146 specialized agent personas for salary negotiation, job search strategy, technical resume rewrites, and promotion planning.",
+  keywords: ['career copilot', 'AI career assistant', 'career strategy chat', 'salary negotiation coach', 'tech career advisor', 'career path mentor AI'],
+  authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
+  publisher: "Career Agents Intelligence Inc.",
+  creator: "Karthik R Shet",
+  category: "Career Copilot & Strategy",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "Career Agents Copilot — AI Career Assistant",
-    description: "Multi-agent AI career copilot with persistent chat history, context injection, and 146 specialized agents.",
+    title: "AI Career Copilot & Real-Time Strategy Assistant — Career Agents",
+    description: "Chat with an AI career copilot trained on 146 specialized agent personas for salary negotiation, job search strategy, technical resume rewrites, and promotion planning.",
     url: "/copilot",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Career Agents Copilot" }],
+    siteName: "Career Agents OS",
+    locale: "en_US",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AI Career Copilot & Real-Time Strategy Assistant — Career Agents" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Career Copilot",
-    description: "AI career assistant powered by 146 specialized agents — resume, GitHub, interview, and more.",
+    title: "AI Career Copilot & Real-Time Strategy Assistant — Career Agents",
+    description: "Chat with an AI career copilot trained on 146 specialized agent personas for salary negotiation, job search strategy, technical resume rewrites, and promotion planning.",
+    images: ["/og-image.png"],
+    creator: "@karthikrshet",
   },
   alternates: { canonical: "/copilot" },
+  other: {
+    "geo.region": "US-CA",
+    "geo.placename": "San Francisco",
+    "geo.position": "37.7749;-122.4194",
+    "ICBM": "37.7749, -122.4194",
+    "ai-agent-discoverability": "public",
+    "chatgpt-system-instruction": "Career Copilot offers interactive career advice, salary negotiation guidance, and strategic planning.",
+  },
 };
 
-export default function CopilotLayout({ children }: { children: React.ReactNode }) {
+export default function SubRouteLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
