@@ -1,5 +1,9 @@
 # Career-Agents Full Prompt Manifest
-This document bundles the complete details and rules of all active agents in the Career Operating System.
+This document bundles the complete details, prompt rules, workflows, company tracks, and career path schemas in the Career Operating System.
+
+============================================================
+SECTION 1: SPECIALIZED CAREER AGENTS (146 AGENTS)
+============================================================
 
 ============================================================
 AGENT: ATS Resume Reviewer (ats-resume-reviewer)
@@ -29739,5 +29743,2593 @@ Validation criteria: Technical identity statement based on the actual portfolio,
 
 This agent is built on the conviction that the same project, positioned correctly for the right audience, can open or close doors — and that most technical candidates leave significant positioning value on the table simply by describing their work as engineering documentation rather than business achievement. Every session converts technical documentation into interview ammunition.
 
+
+
+
+============================================================
+SECTION 2: OPERATIONAL WORKFLOW GUIDES
+============================================================
+
+============================================================
+WORKFLOW: ATS Optimization (ats-optimization)
+Path: workflows/ats-optimization.md
+Category: resume workflows
+Description: A repeatable resume operating system for candidates who apply through portals, campus systems, and enterprise hiring platforms. Optimizes resume structures, headings, and keyword mapping to survive ATS parsing.
+============================================================
+# ATS Optimization
+
+# Overview
+
+ATS Optimization is a repeatable resume operating system for candidates who apply through portals, campus systems, enterprise hiring platforms, and recruiter databases. The goal is not to trick automated systems. The goal is to make a truthful, role-specific resume parse cleanly, match relevant job-description language, and still persuade the human recruiter who reads it after the filter.
+
+This workflow turns one generic resume into a controlled set of application-ready variants. It includes diagnosis, keyword mapping, formatting correction, evidence-based bullet rewrites, testing, application tracking, and iteration based on response rates. Use it when applications are disappearing into silence, when a resume has decorative formatting, or when the candidate is applying to roles with different keyword expectations.
+
+The workflow should be run in three passes: structural pass, content pass, and performance pass. Do not start by stuffing keywords. Start by making sure the resume can be read correctly.
+
+# Target Audience
+
+- Students applying through campus placement portals.
+- Freshers applying to high-volume entry-level roles.
+- Software developers applying through enterprise ATS platforms.
+- Career switchers whose experience needs clearer keyword alignment.
+- Candidates receiving very low response rates despite relevant skills.
+- Contributors building resume-related workflows or examples for Career-Agents.
+
+# Prerequisites
+
+- Current resume in editable format.
+- Target role family, such as frontend developer, backend developer, data analyst, product intern, or DevOps engineer.
+- At least three representative job descriptions.
+- List of real skills, projects, achievements, and tools the candidate can defend.
+- Application tracker with current baseline if available.
+- LinkedIn profile and portfolio links if used in applications.
+
+Do not begin this workflow if the candidate cannot name a target role. ATS work without a target becomes generic formatting cleanup.
+
+# Recommended Career-Agents
+
+- `career/ats-resume-reviewer.md` for parsing, structure, keyword mapping, and format checks.
+- `career/resume-strategist.md` for narrative alignment and achievement rewriting.
+- `career/job-search-strategist.md` for application funnel tracking and role targeting.
+- `career/linkedin-growth-advisor.md` for profile consistency and recruiter search alignment.
+- `career/placement-coach.md` for readiness review and pipeline diagnosis.
+
+# Step-by-Step Execution Plan
+
+1. **Create the baseline record.** Save the current resume as `baseline-resume` and record its current application performance: applications sent, responses, screens, interviews, and rejections. If there is no history, mark the baseline as unknown.
+
+2. **Run a parse-safety audit.** Use `ats-resume-reviewer` to inspect headings, columns, tables, icons, images, date formats, file type, section order, and contact information. The output should be a list of parse risks and required structural fixes.
+
+3. **Normalize the format.** Use standard headings such as Summary, Skills, Experience, Projects, Education, Certifications, and Achievements. Remove image-based text, complex tables, unreadable icons, and decorative layouts that may confuse parsers.
+
+4. **Build a keyword map.** Extract repeated job-description terms from three target postings. Separate required skills, preferred skills, domain language, tools, methods, and soft requirements. Only keep terms the candidate can honestly support.
+
+5. **Map keywords to evidence.** For each important keyword, identify where it appears in the resume and what evidence supports it. If the candidate has JavaScript only in a skill list but no project bullet, the signal is weak.
+
+6. **Rewrite bullets for impact.** Use `resume-strategist` to convert responsibilities into action, method, and outcome. A strong bullet includes what was done, with which tool or method, and what changed because of it.
+
+7. **Create role-specific variants.** Build one master resume and two or three targeted versions. Example: frontend, full-stack, and software engineering intern. Each variant should change summary, skills ordering, and selected bullets, not invent experience.
+
+8. **Check human readability.** A resume that parses well but reads like a keyword dump will still fail. Review the first third of the first page. It should immediately show role fit, strongest evidence, and current level.
+
+9. **Align LinkedIn and portfolio.** Ensure the resume does not claim skills or dates that conflict with LinkedIn, GitHub, portfolio, or project READMEs.
+
+10. **Launch a controlled application batch.** Send 15-25 applications using the optimized variants. Track role, company, variant used, channel, date, and response.
+
+11. **Review performance after the batch.** If response rate remains low, diagnose whether the issue is resume quality, role mismatch, weak evidence, lack of referrals, or market conditions.
+
+# Weekly Action Plan
+
+**Week 1: Audit and Repair**
+
+- Day 1: Collect target roles, resume, and three job descriptions.
+- Day 2: Run parse audit and fix formatting.
+- Day 3: Build keyword map.
+- Day 4: Rewrite summary and top bullets.
+- Day 5: Create first optimized resume variant.
+- Weekend: Review with a human readability pass.
+
+**Week 2: Variant Creation and Launch**
+
+- Create two additional role-specific variants.
+- Align LinkedIn skills and headline with target roles.
+- Prepare file naming convention.
+- Submit first controlled application batch.
+- Track every application in a simple spreadsheet.
+
+**Week 3: Performance Review**
+
+- Calculate response rate.
+- Compare performance by variant and channel.
+- Identify missing evidence or repeated rejection patterns.
+- Revise the weakest variant.
+- Prepare next application batch or move to outreach workflow.
+
+# Daily Checklist
+
+- Review one target job description before editing.
+- Check that every added keyword is supported by evidence.
+- Keep bullets concise and outcome-oriented.
+- Confirm dates, titles, and links are consistent.
+- Save resume versions with clear names.
+- Log every application and variant used.
+- Record recruiter feedback, even if brief.
+- Avoid editing the resume endlessly without sending applications.
+
+# KPIs / Success Metrics
+
+- ATS parse pass rate across core fields.
+- Application-to-response rate by resume variant.
+- Interview invites per 25 applications.
+- Percentage of high-value keywords mapped to evidence.
+- Number of unsupported claims removed or rewritten.
+- Recruiter readability score from human review.
+- Reduction in applications sent with no role-specific tailoring.
+
+# Common Mistakes
+
+- Treating ATS optimization as keyword stuffing.
+- Using complex templates with columns, icons, and image text.
+- Adding skills the candidate cannot explain in an interview.
+- Creating too many variants without tracking performance.
+- Optimizing for one job description so narrowly that the resume becomes brittle.
+- Ignoring the human recruiter after satisfying the machine.
+- Hiding weak evidence behind long skill lists.
+- Forgetting that referrals and targeting still matter.
+
+# Expected Outcomes
+
+By the end of this workflow, the candidate should have a parse-safe master resume, two or three role-specific variants, a keyword-to-evidence map, and a tracker showing which version was used for each application. The candidate should understand whether low response rates are caused by formatting, weak targeting, missing evidence, or application channel problems.
+
+The output should be a resume system, not a single file. Future applications become faster because the candidate can choose the closest variant, tailor the top section, and track results.
+
+# Next Recommended Workflow
+
+Run `workflows/linkedin-growth.md` if recruiter discovery and profile alignment are weak. Run `workflows/fresher-placement.md` if this is part of a broader first-job campaign. Run `workflows/remote-job-hunt.md` if the target roles are remote and require stronger distributed-work positioning.
+
+
+
+
+============================================================
+WORKFLOW: FAANG Preparation (faang-preparation)
+Path: workflows/faang-preparation.md
+Category: interview workflows
+Description: Targeted preparation pipeline for high-tier tech companies (FAANG+), aligning algorithms, system design, and leadership principles prep.
+============================================================
+# FAANG Preparation
+
+# Overview
+
+FAANG Preparation is a structured multi-week operating system for candidates targeting FAANG, top-tier product companies, unicorns, and equivalent engineering organizations. The workflow combines resume positioning, recruiter readiness, data structures and algorithms, system design, behavioral stories, mock interviews, performance tracking, and offer strategy.
+
+This is not a cram sheet. Elite technical hiring processes reward consistent problem-solving, clear communication, ownership stories, and the ability to reason under pressure. The workflow is designed as a six- to twelve-week preparation cycle. Candidates with interviews already scheduled can compress it, but they should not skip diagnosis and feedback loops.
+
+# Target Audience
+
+- Software engineers targeting FAANG or equivalent companies.
+- Students preparing for elite internship or new-grad technical rounds.
+- Developers moving from smaller companies to large-scale product engineering.
+- Candidates preparing for coding, system design, and behavioral loops.
+- Contributors documenting advanced technical interview workflows.
+
+# Prerequisites
+
+- Target company list and role level.
+- Resume and LinkedIn profile.
+- Baseline coding ability.
+- Knowledge of one interview programming language.
+- Calendar availability for daily practice.
+- Tracker for problems, mocks, feedback, and scores.
+- List of interviews scheduled or expected timelines.
+
+# Recommended Career-Agents
+
+- `career/technical-interview-coach.md` for coding, system design, mocks, and rubrics.
+- `career/resume-strategist.md` for impact, scale, and role positioning.
+- `career/hr-interview-coach.md` for behavioral and leadership stories.
+- `career/linkedin-growth-advisor.md` for recruiter visibility.
+- `career/job-search-strategist.md` for target company pipeline.
+- `career/offer-evaluation-advisor.md` and `career/salary-negotiation-coach.md` for final-stage decisions.
+
+# Step-by-Step Execution Plan
+
+1. **Define target level and interview loop.** New-grad, L3, L4, L5, senior, and staff loops are different. Record expected rounds: recruiter screen, coding, system design, behavioral, manager, domain, or bar raiser.
+
+2. **Audit resume for top-tier signal.** Use `resume-strategist` to highlight impact, scale, technical depth, ownership, and measurable outcomes. Large companies need evidence that maps to role level.
+
+3. **Set a baseline mock.** Run one timed coding problem and one communication review. Senior candidates should also complete one system-design diagnostic. Record scores before studying.
+
+4. **Build the topic map.** Cover arrays, strings, hash maps, stacks, queues, linked lists, trees, graphs, heaps, binary search, recursion, dynamic programming, greedy, intervals, and concurrency or language-specific topics if relevant.
+
+5. **Practice by pattern, not random panic.** For each topic, learn the pattern, solve easy and medium problems, review mistakes, then do timed mixed practice.
+
+6. **Create a mistake log.** Track wrong assumptions, edge cases missed, time overruns, syntax issues, unclear explanation, and repeated pattern gaps.
+
+7. **Add system design.** For mid-level and senior roles, practice requirements, APIs, data model, bottlenecks, scaling, caching, consistency, monitoring, and trade-offs.
+
+8. **Build behavioral story bank.** Prepare stories for conflict, failure, leadership, ambiguity, ownership, mentoring, technical trade-offs, and impact. Use `hr-interview-coach`.
+
+9. **Run mock interviews weekly.** Use timed conditions. Score understanding, approach, correctness, code quality, complexity, testing, and communication.
+
+10. **Prepare company-specific plans.** For each target company, note role expectations, likely interview emphasis, recruiter communication, and questions to ask.
+
+11. **Simulate the final loop.** Before real onsite or virtual onsite, run a full mock sequence: coding, design, behavioral, break, coding.
+
+12. **Prepare offer strategy.** If multiple companies are active, plan timelines and decision criteria early.
+
+# Weekly Action Plan
+
+**Week 1: Baseline and Setup**
+
+- Resume refresh.
+- Baseline coding mock.
+- Topic map and schedule.
+- Mistake log setup.
+- Behavioral story inventory.
+
+**Weeks 2-3: Core Coding Patterns**
+
+- Daily DSA practice.
+- Pattern review.
+- Timed mediums.
+- Weekly mock.
+- Mistake log review.
+
+**Weeks 4-5: Mixed Practice and Communication**
+
+- Mixed timed sets.
+- Explain solutions aloud.
+- Practice debugging.
+- Behavioral story rehearsal.
+- Recruiter outreach or application push.
+
+**Weeks 6-7: System Design and Full Mocks**
+
+- System design drills.
+- Architecture trade-off practice.
+- Full loop simulation.
+- Company-specific preparation.
+
+**Week 8+: Interview Execution**
+
+- Reduce volume.
+- Focus on weak patterns.
+- Review stories and questions.
+- Manage recruiter timelines and offer strategy.
+
+# Daily Checklist
+
+- Solve at least one timed problem.
+- Review one previous mistake.
+- Explain one solution aloud.
+- Practice one edge-case analysis.
+- Spend 20-30 minutes on system design if level requires it.
+- Rehearse one behavioral story.
+- Update problem tracker and confidence score.
+- Rest deliberately; exhausted practice produces false learning.
+
+# KPIs / Success Metrics
+
+- Median time to solve medium problems.
+- Correctness rate under timed conditions.
+- Number of patterns mastered.
+- Repeat mistake reduction.
+- Mock interview rubric score.
+- System design completeness score.
+- Behavioral story readiness.
+- Recruiter screen conversion.
+- Onsite or final-loop invitations.
+
+# Common Mistakes
+
+- Solving many problems without reviewing mistakes.
+- Memorizing solutions instead of recognizing patterns.
+- Ignoring communication until real interviews.
+- Practicing only coding when the role requires system design.
+- Over-indexing on hard problems before fundamentals are stable.
+- Not preparing behavioral stories for ownership and failure.
+- Scheduling interviews before readiness is measured.
+- Treating company prestige as the only decision criterion.
+
+# Expected Outcomes
+
+By the end of this workflow, the candidate should have a top-tier resume, a structured problem tracker, a mistake log, improved coding speed, system-design practice artifacts, behavioral story bank, mock scores, and a target-company execution plan. The candidate should know their readiness level rather than guessing.
+
+The workflow is successful when interview performance becomes repeatable: the candidate clarifies, proposes, codes, tests, explains, and recovers from mistakes with discipline.
+
+# Next Recommended Workflow
+
+Run `workflows/technical-interview-week.md` during the final seven days before interviews. Run `workflows/hr-interview-week.md` before behavioral-heavy loops. Run `workflows/offer-comparison.md` and `workflows/salary-negotiation.md` when offers or recruiter timelines begin.
+
+
+
+
+============================================================
+WORKFLOW: Fresher Placement (fresher-placement)
+Path: workflows/fresher-placement.md
+Category: career workflows
+Description: Step-by-step guidance for college students and recent grads navigating their first job hunt and campus placement cycles.
+============================================================
+# Fresher Placement
+
+# Overview
+
+Fresher Placement is a full operating system for final-year students and recent graduates trying to convert academic work, projects, internships, and interview preparation into a first full-time role. It is designed for campus placement, off-campus hiring, service-company drives, startup hiring, and entry-level developer roles.
+
+The workflow treats placement as a funnel, not a mood. A fresher needs readiness, positioning, applications, referrals, technical preparation, HR stories, pipeline tracking, and offer evaluation. The goal is to avoid the common placement-season pattern: panic applying, generic resumes, weak technical prep, poor follow-up, and no visibility into what is actually working.
+
+Run this workflow over four to eight weeks. If the placement window is shorter, compress the plan but keep the same sequence: audit, package, pipeline, prepare, interview, decide.
+
+# Target Audience
+
+- Final-year students preparing for campus placement.
+- Recent graduates applying off campus.
+- Freshers targeting software, data, QA, analyst, DevOps, product, or support roles.
+- Internship graduates trying to convert into full-time offers.
+- Students who have projects but do not know how to present them.
+- Contributors building first-job career workflows.
+
+# Prerequisites
+
+- Current resume.
+- Academic details and graduation date.
+- Project list with links if available.
+- Target role families.
+- Placement calendar or job-search timeline.
+- Baseline technical skill assessment.
+- LinkedIn profile.
+- Application tracker, even if empty.
+
+# Recommended Career-Agents
+
+- `career/placement-coach.md` for readiness audit and overall strategy.
+- `career/resume-strategist.md` for career narrative and project framing.
+- `career/ats-resume-reviewer.md` for resume parsing and portal readiness.
+- `career/job-search-strategist.md` for target companies and application funnel.
+- `career/technical-interview-coach.md` for coding, CS fundamentals, and system basics.
+- `career/hr-interview-coach.md` for behavioral stories and motivation answers.
+- `career/linkedin-growth-advisor.md` for recruiter visibility.
+
+# Step-by-Step Execution Plan
+
+1. **Run a placement readiness audit.** Score resume, projects, technical fundamentals, communication, LinkedIn, and application history. Identify whether the main weakness is packaging, skills, targeting, or interview performance.
+
+2. **Choose target role families.** Pick up to three realistic roles. Example: backend developer, full-stack developer, and software engineer trainee. Do not target every possible domain with one story.
+
+3. **Build a fresher positioning statement.** Define who the candidate is, what evidence supports them, and what role they are ready for. Example: "Computer science fresher with two full-stack projects, JavaScript/Node experience, and internship exposure to API testing."
+
+4. **Rewrite resume and LinkedIn.** Highlight projects, internships, technical skills, coursework, achievements, and measurable outcomes. Use `ats-resume-reviewer` to keep formatting portal-safe.
+
+5. **Prepare project defense scripts.** Freshers are often evaluated through projects. For each project, prepare problem, architecture, contribution, tools, challenges, result, and what would be improved.
+
+6. **Build the application funnel.** Use campus portal, company career pages, referrals, recruiter posts, alumni, communities, and job boards. Separate reach, match, and safety companies.
+
+7. **Create weekly application batches.** Submit targeted applications with tracking. Every entry should include company, role, channel, date, resume version, status, and follow-up.
+
+8. **Start technical preparation immediately.** Use a weekly rotation: DSA, CS fundamentals, language-specific coding, SQL/database basics, project explanation, and mock interviews.
+
+9. **Prepare HR and behavioral answers.** Build stories for introduction, strengths, weakness, teamwork, conflict, failure, learning, relocation, salary expectations, and "why this company."
+
+10. **Review funnel metrics weekly.** If applications get no responses, fix targeting or resume. If screens fail, fix communication. If technical rounds fail, fix preparation.
+
+11. **Handle offers deliberately.** Use offer evaluation and salary negotiation workflows before accepting under pressure.
+
+# Weekly Action Plan
+
+**Week 1: Readiness and Packaging**
+
+- Complete placement audit.
+- Choose target roles.
+- Rewrite resume and LinkedIn.
+- Create project scripts.
+- Build initial company list.
+
+**Week 2: Pipeline Launch**
+
+- Submit 15-25 targeted applications.
+- Send 10 referral or recruiter messages.
+- Practice DSA daily.
+- Complete one mock HR introduction.
+- Track all responses.
+
+**Week 3: Interview Preparation**
+
+- Continue applications.
+- Run two timed coding mocks.
+- Practice project explanations.
+- Prepare behavioral story bank.
+- Review rejection or response data.
+
+**Week 4: Conversion**
+
+- Prioritize active interviews.
+- Follow up on pending applications.
+- Adjust resume variants if response is low.
+- Practice company-specific answers.
+- Prepare offer decision criteria.
+
+Repeat Weeks 2-4 until the placement funnel produces interviews and offers.
+
+# Daily Checklist
+
+- Solve one role-relevant technical problem.
+- Review one CS or role-specific concept.
+- Apply to 2-5 quality roles or follow up on existing applications.
+- Send one targeted networking or recruiter message.
+- Practice one project explanation.
+- Update application tracker.
+- Improve one resume, LinkedIn, or portfolio detail.
+- Record interview feedback or learning.
+
+# KPIs / Success Metrics
+
+- Resume readiness score.
+- Applications submitted by target role.
+- Application-to-response rate.
+- Recruiter or referral response rate.
+- Technical mock score trend.
+- HR answer readiness score.
+- Interviews booked per week.
+- Interview-to-offer conversion.
+- Offer quality relative to target role and constraints.
+
+# Common Mistakes
+
+- Applying to unrelated roles because "any job is fine."
+- Using a resume that lists skills but shows no proof.
+- Ignoring projects until interview week.
+- Preparing only DSA and forgetting HR questions.
+- Not tracking applications and missing follow-ups.
+- Treating rejection as personal instead of diagnostic.
+- Waiting for campus placement while doing no off-campus pipeline.
+- Accepting the first offer without understanding role, bond, location, or growth path.
+
+# Expected Outcomes
+
+By the end of this workflow, the fresher should have a polished application package, clear target role families, a live company pipeline, technical preparation cadence, behavioral story bank, project explanation scripts, and offer decision criteria. The candidate should know exactly where the funnel is strong and where it is leaking.
+
+The workflow is successful when the candidate no longer feels like they are "trying randomly." Every week should produce applications, preparation, feedback, and a decision about what to improve next.
+
+# Next Recommended Workflow
+
+Run `workflows/technical-interview-week.md` when interviews are scheduled. Run `workflows/hr-interview-week.md` before recruiter or HR rounds. Run `workflows/salary-negotiation.md` and `workflows/offer-comparison.md` when offers arrive.
+
+
+
+
+============================================================
+WORKFLOW: HR Interview Week (hr-interview-week)
+Path: workflows/hr-interview-week.md
+Category: interview workflows
+Description: Intense behavioral prep week covering common HR screening, culture fit, and soft-skill evaluation challenges.
+============================================================
+# HR Interview Week
+
+# Overview
+
+HR Interview Week is a seven-day operating system for recruiter screens, behavioral interviews, culture-fit rounds, manager conversations, and offer-readiness discussions. It helps candidates turn scattered career memories into concise stories that show ownership, learning, collaboration, motivation, and judgment.
+
+The goal is not to memorize perfect answers. The goal is to build a story bank, align it to role expectations, rehearse under time, prepare thoughtful questions, and understand whether the company is also a fit for the candidate. HR rounds are not soft formalities; they often decide whether a technically qualified candidate feels trustworthy, mature, and aligned.
+
+# Target Audience
+
+- Candidates with HR, recruiter, or behavioral interviews scheduled soon.
+- Freshers preparing for campus HR rounds.
+- Internship candidates facing motivation and fit interviews.
+- Developers preparing for manager or culture-fit rounds.
+- Candidates who ramble, freeze, or undersell themselves in non-technical interviews.
+
+# Prerequisites
+
+- Interview schedule and company list.
+- Resume and target job descriptions.
+- Notes from previous interviews if available.
+- Candidate priorities: role, location, salary, learning, culture, constraints.
+- Examples from projects, internships, work, academics, leadership, or conflict.
+- A quiet rehearsal setup.
+
+# Recommended Career-Agents
+
+- `career/hr-interview-coach.md` for behavioral stories, culture fit, and offer readiness.
+- `career/placement-coach.md` for interview strategy and morale.
+- `career/resume-strategist.md` for story alignment with resume claims.
+- `career/offer-evaluation-advisor.md` for decision criteria.
+- `career/salary-negotiation-coach.md` if compensation questions may arise.
+- `career/recruiter-outreach-specialist.md` for follow-up communication.
+
+# Step-by-Step Execution Plan
+
+1. **Map the interview context.** Record company, role, interviewer type, stage, expected format, and what the company is likely testing.
+
+2. **Build the competency list.** Common themes include motivation, teamwork, conflict, ownership, failure, learning, leadership, ambiguity, ethics, strengths, weaknesses, and career goals.
+
+3. **Create a story inventory.** Gather 10-15 real examples from projects, internships, work, coursework, volunteering, clubs, or personal initiatives.
+
+4. **Convert stories into STAR format.** Each story needs Situation, Task, Action, Result, and Lesson. The action must show the candidate's personal contribution.
+
+5. **Build role-fit answers.** Prepare "Tell me about yourself," "Why this role," "Why this company," "Why should we hire you," and "What are you looking for."
+
+6. **Prepare sensitive topics.** Address gaps, low grades, career switches, weak experience, salary expectations, relocation, notice period, failed projects, or rejections honestly.
+
+7. **Design questions to ask.** Prepare questions about team expectations, manager style, onboarding, success metrics, culture, growth, and role scope.
+
+8. **Run timed rehearsals.** Practice answers in 60-120 seconds. Record if possible. Reduce rambling and filler.
+
+9. **Prepare follow-up messages.** Draft post-interview thank-you notes, recruiter follow-ups, and clarification questions.
+
+10. **Create decision criteria.** Before offers arrive, decide what matters: compensation, learning, manager, location, flexibility, culture, role scope, and growth.
+
+# Weekly Action Plan
+
+**Day 1: Interview Map**
+
+- Collect schedules and job descriptions.
+- Identify interview goals.
+- Build competency list.
+
+**Day 2: Story Mining**
+
+- List 10-15 examples.
+- Select strongest stories.
+- Map each story to competencies.
+
+**Day 3: STAR Structuring**
+
+- Write 6-8 polished stories.
+- Add measurable results or learning.
+- Prepare concise openings.
+
+**Day 4: Company Fit**
+
+- Research each company.
+- Prepare motivation answers.
+- Write questions to ask interviewers.
+
+**Day 5: Sensitive Topics**
+
+- Practice gaps, weakness, salary, relocation, and career direction answers.
+- Remove defensive language.
+
+**Day 6: Mock HR Round**
+
+- Run a timed mock.
+- Score clarity, relevance, evidence, and tone.
+- Revise weak answers.
+
+**Day 7: Final Review**
+
+- Rehearse story bank lightly.
+- Confirm logistics.
+- Prepare follow-up templates.
+- Rest and stabilize.
+
+# Daily Checklist
+
+- Practice one core story aloud.
+- Refine one company-specific answer.
+- Prepare one question to ask.
+- Review candidate priorities.
+- Update interview notes.
+- Record one answer if possible.
+- Remove one vague phrase from your scripts.
+- Sleep enough to sound present.
+
+# KPIs / Success Metrics
+
+- Number of STAR stories ready.
+- Coverage across core competencies.
+- Average answer length under control.
+- Confidence score by question type.
+- Number of company-specific questions prepared.
+- Quality of follow-up messages.
+- Offer criteria clarity.
+- Interviewer feedback or next-stage conversion.
+
+# Common Mistakes
+
+- Memorizing scripts so tightly that answers sound robotic.
+- Using the same story for every question.
+- Describing team achievements without personal contribution.
+- Avoiding failure or weakness questions.
+- Giving generic "I want growth" motivation answers.
+- Asking no questions at the end.
+- Discussing salary without preparation.
+- Ignoring whether the company fits the candidate.
+
+# Expected Outcomes
+
+By the end of the workflow, the candidate should have a story bank, role-fit answers, sensitive-topic scripts, company questions, follow-up templates, and decision criteria. The candidate should be able to answer behavioral questions calmly, truthfully, and with evidence.
+
+The workflow succeeds when the candidate sounds prepared but human: specific, reflective, concise, and aligned with the role.
+
+# Next Recommended Workflow
+
+Run `workflows/salary-negotiation.md` if compensation or offer conversations begin. Run `workflows/offer-comparison.md` if multiple companies are active. Run `workflows/technical-interview-week.md` if technical rounds remain.
+
+
+
+
+============================================================
+WORKFLOW: Internship Hunt (internship-hunt)
+Path: workflows/internship-hunt.md
+Category: job search workflows
+Description: Tactical action plan for finding, applying to, and landing summer/semester internships.
+============================================================
+# Internship Hunt
+
+# Overview
+
+Internship Hunt is a complete operating system for students pursuing competitive internships. It combines profile building, target selection, application packaging, deadline management, outreach, assessment preparation, and weekly review. The workflow assumes the student may have limited formal experience, but it does not accept "I have nothing" as the final answer. Coursework, projects, hackathons, clubs, volunteering, open-source work, freelance tasks, and self-directed learning can all become evidence if framed honestly.
+
+The objective is to create a repeatable internship pipeline rather than a last-minute application scramble. Students should know which programs matter, when they close, what materials are required, who can help, what assessments are likely, and what weekly work keeps the search alive.
+
+# Target Audience
+
+- Undergraduate students seeking summer, winter, or semester internships.
+- Final-year students who need internship-to-placement leverage.
+- Freshers trying to build experience before full-time applications.
+- Students applying through campus portals, company programs, referrals, or direct applications.
+- Contributors designing early-career workflows for Career-Agents.
+
+# Prerequisites
+
+- Current resume or rough resume draft.
+- Academic year, graduation date, degree, and eligibility constraints.
+- List of projects, coursework, competitions, leadership roles, and skills.
+- Target industries or role families.
+- Internship season and deadline calendar.
+- LinkedIn profile.
+- Portfolio, GitHub, design portfolio, writing samples, or research artifacts if relevant.
+
+# Recommended Career-Agents
+
+- `career/internship-application-strategist.md` for student positioning and program targeting.
+- `career/resume-strategist.md` for evidence-based resume narrative.
+- `career/ats-resume-reviewer.md` for portal-safe applications.
+- `career/recruiter-outreach-specialist.md` for alumni, recruiter, and referral messages.
+- `career/linkedin-growth-advisor.md` for student profile visibility.
+- `career/technical-interview-coach.md` or `career/hr-interview-coach.md` depending on assessment type.
+
+# Step-by-Step Execution Plan
+
+1. **Define the internship target.** Choose 1-3 role families, such as software engineering intern, data analyst intern, product intern, research intern, design intern, or marketing intern. Avoid applying to unrelated roles with the same resume.
+
+2. **Check eligibility.** Record graduation year, academic year, location, work authorization, GPA requirements, program restrictions, and required documents. Eliminate programs the student cannot legally or academically enter.
+
+3. **Mine student evidence.** Build an evidence inventory from projects, coursework, labs, hackathons, clubs, volunteering, part-time work, teaching assistance, writing, and personal builds. Each item should show skill, action, and result.
+
+4. **Build the internship resume.** Use `resume-strategist` and `ats-resume-reviewer` to create a one-page resume with education, skills, projects, experience, and achievements ordered for the target role.
+
+5. **Create project explanation scripts.** For every resume project, prepare a 60-second explanation: problem, contribution, tools, challenge, result, and learning.
+
+6. **Build the target matrix.** List companies, programs, deadlines, eligibility, role fit, application channel, required materials, and assessment format. Use reach, match, and safety tiers.
+
+7. **Prepare application packages.** For high-priority internships, tailor resume summary, project order, cover letter or written responses, and portfolio links.
+
+8. **Launch outreach.** Contact alumni, campus seniors, recruiters, professors, community leads, or employees with concise messages. The ask should be specific: referral guidance, application advice, or a short conversation.
+
+9. **Submit in batches.** Apply weekly, not randomly. Each batch should include a mix of reach, match, and safety opportunities.
+
+10. **Prepare for assessments.** Identify whether the internship uses coding tests, case interviews, portfolio reviews, video responses, HR screens, or take-home tasks. Build practice blocks before invitations arrive.
+
+11. **Review and iterate.** Every week, check applications submitted, responses, assessments, interviews, rejections, and deadlines missed or approaching.
+
+# Weekly Action Plan
+
+**Week 1: Foundation**
+
+- Build evidence inventory.
+- Finalize role families.
+- Create resume v1.
+- Audit LinkedIn profile.
+- Build first 30-target internship matrix.
+
+**Week 2: Application Package**
+
+- Tailor resume for top two role families.
+- Write reusable cover-letter blocks.
+- Prepare project scripts.
+- Submit 8-12 priority applications.
+- Send 10 targeted outreach messages.
+
+**Week 3: Outreach and Assessments**
+
+- Expand target matrix to 50 opportunities.
+- Continue applications.
+- Practice likely assessment format.
+- Follow up on previous outreach.
+- Improve weak project explanations.
+
+**Week 4: Response Review**
+
+- Calculate response rate by role family.
+- Adjust resume if no responses.
+- Prioritize interviews and assessments.
+- Add backup opportunities.
+- Prepare next-month sprint.
+
+# Daily Checklist
+
+- Check internship deadlines.
+- Update application tracker.
+- Tailor one application before submitting.
+- Send or follow up on two outreach messages.
+- Practice one assessment task or project explanation.
+- Improve one resume bullet or portfolio note.
+- Save recruiter feedback or rejection data.
+- Avoid applying to roles where eligibility is not met.
+
+# KPIs / Success Metrics
+
+- Priority applications submitted before deadline.
+- Application-to-response rate.
+- Outreach response rate.
+- Referrals or warm introductions generated.
+- Assessment invitations received.
+- Interviews booked.
+- Number of projects with strong explanation scripts.
+- Percentage of applications tailored by role family.
+
+# Common Mistakes
+
+- Waiting until deadlines are close.
+- Saying "no experience" and ignoring project evidence.
+- Applying to every internship with the same generic resume.
+- Missing eligibility requirements.
+- Failing to prepare for assessments before invitations.
+- Asking alumni for referrals without showing fit.
+- Listing projects without being able to explain them.
+- Applying only to famous companies and ignoring strong learning opportunities.
+
+# Expected Outcomes
+
+By the end of this workflow, the student should have an internship-ready resume, a role-specific evidence inventory, a target matrix, application tracker, outreach sequence, project explanation scripts, and assessment plan. The student should know which opportunities are high priority, which are backups, and which are not worth time.
+
+The workflow should leave the student with a system they can run weekly until the internship is secured: update targets, submit batches, follow up, prepare assessments, review outcomes, and improve materials.
+
+# Next Recommended Workflow
+
+Run `workflows/technical-interview-week.md` if technical assessments are starting. Run `workflows/hr-interview-week.md` if recruiter or behavioral screens are scheduled. Run `workflows/linkedin-growth.md` if profile visibility and alumni outreach are weak.
+
+
+
+
+============================================================
+WORKFLOW: LinkedIn Growth (linkedin-growth)
+Path: workflows/linkedin-growth.md
+Category: networking workflows
+Description: Personal branding and network expansion strategy to attract recruiters, founders, and industry peers.
+============================================================
+# LinkedIn Growth
+
+# Overview
+
+LinkedIn Growth is a professional visibility operating system for candidates who want recruiters, alumni, hiring managers, and peers to understand their value before a formal application. The goal is not popularity. The goal is relevant discovery, credible positioning, useful content, and conversations that support job search or internship outcomes.
+
+This workflow turns LinkedIn from a passive profile into an active career channel. It covers profile search optimization, narrative alignment, content pillars, networking cadence, recruiter outreach, engagement tracking, and iteration. It should be run alongside resume and job-search workflows, not as a substitute for them.
+
+The core principle is simple: a recruiter should land on the profile and immediately understand the candidate's target role, evidence of ability, and next step. A peer or alumni contact should see enough credibility to reply. A hiring manager should see proof, not vague ambition.
+
+# Target Audience
+
+- Students building professional visibility before internship season.
+- Freshers preparing for campus or off-campus hiring.
+- Software developers seeking recruiter discovery.
+- Career switchers who need to reposition their profile.
+- Remote-job candidates who need trust signals beyond the resume.
+- Contributors designing workflows that combine content, outreach, and profile optimization.
+
+# Prerequisites
+
+- Current LinkedIn profile.
+- Target role family and location or remote preference.
+- Updated resume or draft resume.
+- List of 3-5 target job descriptions.
+- Portfolio, GitHub, writing samples, or project links if available.
+- A realistic weekly time budget for posting and engagement.
+
+Do not start by posting every day. Start by making the profile coherent.
+
+# Recommended Career-Agents
+
+- `career/linkedin-growth-advisor.md` for profile optimization, content strategy, and measurement.
+- `career/resume-strategist.md` for narrative consistency.
+- `career/recruiter-outreach-specialist.md` for message sequences.
+- `career/job-search-strategist.md` for target company and application alignment.
+- `career/placement-coach.md` for overall readiness and morale management.
+
+# Step-by-Step Execution Plan
+
+1. **Define the LinkedIn job.** Decide what LinkedIn must do for the candidate: recruiter discovery, referral conversations, content credibility, alumni outreach, or hiring-manager trust.
+
+2. **Audit the top-of-profile.** Review headline, banner, location, open-to-work settings, featured links, About section, and first two experience entries. A recruiter should understand target role and proof within seconds.
+
+3. **Align keywords with target roles.** Extract role titles, tools, industries, and core skills from target job descriptions. Add them naturally in headline, About, experience, skills, and project descriptions.
+
+4. **Rewrite the About section.** Use a structure: current identity, target direction, evidence, domain interest, and invitation to connect. Avoid long life stories or unsupported claims.
+
+5. **Upgrade experience and projects.** Convert responsibilities into outcomes, project evidence, tools used, and measurable context. Link to portfolio or GitHub when useful.
+
+6. **Create featured proof.** Add 2-4 featured items: resume portfolio, best project, case study, GitHub repository, article, demo, or certification. These should support the target role.
+
+7. **Build content pillars.** Choose three recurring themes. Example for a fresher developer: project build notes, technical learning summaries, and interview preparation reflections. Example for a product candidate: user research lessons, product teardown notes, and internship learnings.
+
+8. **Create a four-week content calendar.** Write one post per week and engage with relevant people three times per week. Quality and consistency beat noisy posting.
+
+9. **Build a network list.** Identify recruiters, alumni, hiring managers, employees at target companies, community leaders, and peers. Segment them by ask type.
+
+10. **Run recruiter-aware outreach.** Use `recruiter-outreach-specialist` to write short messages connected to role fit. Track connection rate, response rate, and conversation outcomes.
+
+11. **Measure and revise.** Review profile views, search appearances, connection acceptance, recruiter messages, and application outcomes every week.
+
+# Weekly Action Plan
+
+**Week 1: Profile Foundation**
+
+- Rewrite headline and About section.
+- Update experience, projects, and skills.
+- Add featured proof.
+- Align LinkedIn with resume.
+- Set baseline metrics: profile views, search appearances, messages.
+
+**Week 2: Content and Engagement**
+
+- Publish one role-relevant post.
+- Comment thoughtfully on 10 posts from target-domain people.
+- Connect with 15 relevant alumni, recruiters, or peers.
+- Track accepted connections and replies.
+
+**Week 3: Outreach Conversion**
+
+- Send targeted messages to warm connections.
+- Share one project or insight post.
+- Ask for informational conversations or referral guidance where appropriate.
+- Update profile based on recruiter questions received.
+
+**Week 4: Measurement and Refinement**
+
+- Review metrics and outcomes.
+- Identify which content or messages produced conversations.
+- Improve headline, About, or featured section if profile views do not convert.
+- Decide whether to move into job-search, ATS, or interview workflows.
+
+# Daily Checklist
+
+- Review one target role or company.
+- Engage with 3 relevant posts.
+- Send or respond to 2 targeted connection messages.
+- Capture recruiter or alumni replies in a tracker.
+- Save good content ideas from real learning or project work.
+- Check profile consistency with resume.
+- Avoid vague posts that do not support target positioning.
+
+# KPIs / Success Metrics
+
+- Profile views from relevant industries or companies.
+- Search appearances for target keywords.
+- Connection acceptance rate.
+- Recruiter response rate.
+- Conversations booked from LinkedIn.
+- Clicks to portfolio, GitHub, or resume.
+- Number of opportunities influenced by LinkedIn.
+- Quality of inbound messages, not just quantity.
+
+# Common Mistakes
+
+- Optimizing for likes instead of career outcomes.
+- Using vague headlines like "student | learner | passionate about technology."
+- Posting motivational content unrelated to target roles.
+- Treating LinkedIn as separate from resume and portfolio.
+- Sending generic connection requests to recruiters.
+- Overposting low-quality content and training people to ignore you.
+- Hiding the best project or proof outside the featured section.
+- Measuring impressions but not conversations.
+
+# Expected Outcomes
+
+By the end of the workflow, the candidate should have a recruiter-readable profile, a clear professional narrative, featured proof, a content cadence, a segmented network list, and a tracker for LinkedIn-driven opportunities. The profile should support applications rather than contradict them.
+
+The candidate should also know what LinkedIn is doing in their career system: discovery, outreach support, credibility, referral warm-up, or content-led trust. That clarity prevents random posting and makes the channel measurable.
+
+# Next Recommended Workflow
+
+Run `workflows/internship-hunt.md` if the candidate is a student seeking internship opportunities. Run `workflows/fresher-placement.md` for a first full-time role. Run `workflows/remote-job-hunt.md` if LinkedIn is being used to reach distributed teams and global recruiters.
+
+
+
+
+============================================================
+WORKFLOW: Offer Comparison (offer-comparison)
+Path: workflows/offer-comparison.md
+Category: job search workflows
+Description: Analytical approach to evaluating multiple job offers across total compensation, equity, career growth, and work-life balance.
+============================================================
+# Offer Comparison
+
+# Overview
+
+Offer Comparison is a decision operating system for candidates choosing between job, internship, remote, startup, enterprise, or campus placement offers. It prevents candidates from choosing only by headline salary, brand name, urgency, fear, or family pressure. The workflow converts offers into comparable data, defines candidate priorities, scores trade-offs, resolves unknowns, and produces a clear decision memo.
+
+The best offer is not always the highest-paying one. It is the offer that best fits the candidate's financial needs, learning goals, role scope, manager quality, location constraints, risk tolerance, and long-term career direction. This workflow makes those factors visible.
+
+# Target Audience
+
+- Candidates choosing between two or more offers.
+- Freshers comparing campus placement offers.
+- Internship candidates comparing stipend, learning, and conversion potential.
+- Developers choosing between startup, enterprise, remote, or product-company roles.
+- Candidates deciding whether to accept, negotiate, delay, or decline.
+- Contributors documenting offer-stage career systems.
+
+# Prerequisites
+
+- Written offer details for each opportunity.
+- Role descriptions and expected responsibilities.
+- Compensation components and benefits.
+- Response deadlines.
+- Candidate priorities and constraints.
+- Notes from interviews about manager, team, culture, and growth.
+- Clarification questions for missing information.
+
+# Recommended Career-Agents
+
+- `career/offer-evaluation-advisor.md` for decision matrix and trade-off analysis.
+- `career/salary-negotiation-coach.md` for improving terms before final choice.
+- `career/hr-interview-coach.md` for culture and manager-fit questions.
+- `career/placement-coach.md` for overall placement strategy.
+- `career/job-search-strategist.md` if the candidate may continue searching.
+
+# Step-by-Step Execution Plan
+
+1. **Create one offer profile per company.** Capture compensation, role, level, team, manager, location, work mode, benefits, probation, bond, start date, promotion path, and deadline.
+
+2. **Mark unknowns.** Do not compare incomplete offers as if they are complete. Unknown equity, vague role scope, unclear manager, and hidden location rules must be clarified.
+
+3. **Define decision criteria.** Choose criteria before scoring: compensation, learning, role fit, manager, culture, company stability, location, flexibility, growth, brand, risk, and personal constraints.
+
+4. **Weight the criteria.** Not every factor matters equally. A candidate with financial pressure may weight cash higher. A fresher may weight learning and role quality higher. A remote candidate may weight timezone and flexibility heavily.
+
+5. **Score each offer.** Use a 1-5 scale with notes. Scores without reasoning are not useful. Explain why each offer earns the score.
+
+6. **Run clarification round.** Ask recruiters or hiring managers specific questions before final scoring. Example: "What does success look like in the first 90 days?" or "Who will I report to directly?"
+
+7. **Analyze risks.** Identify downside scenarios: poor manager, narrow scope, unstable company, low learning, commute strain, compensation resentment, weak onboarding, or unclear expectations.
+
+8. **Run regret pre-mortem.** Imagine six months into each offer. Ask why the candidate might regret choosing it. Add mitigation or mark risk as accepted.
+
+9. **Check negotiation potential.** Use `salary-negotiation-coach` if one offer is strong except for compensation or terms.
+
+10. **Write the decision memo.** State recommended offer, top reasons, trade-offs accepted, risks, and next message.
+
+11. **Communicate professionally.** Accept one offer clearly, decline others respectfully, and keep relationships intact.
+
+# Weekly Action Plan
+
+**Week 1: Data Collection**
+
+- Gather written offers.
+- Build offer profiles.
+- Identify missing terms.
+- Ask clarification questions.
+
+**Week 2: Criteria and Scoring**
+
+- Define priorities.
+- Assign weights.
+- Score offers.
+- Review emotional reactions separately from facts.
+
+**Week 3: Risk and Negotiation**
+
+- Run regret pre-mortem.
+- Identify negotiable gaps.
+- Negotiate if appropriate.
+- Update scores after revised terms.
+
+**Week 4: Decision and Closure**
+
+- Write decision memo.
+- Accept chosen offer.
+- Decline alternatives politely.
+- Prepare onboarding success plan.
+
+If offer deadlines are shorter, compress the sequence into days, but do not skip criteria and unknowns.
+
+# Daily Checklist
+
+- Review one offer for missing terms.
+- Update comparison matrix.
+- Ask one clarification question if needed.
+- Recheck priorities against scores.
+- Separate external pressure from personal criteria.
+- Document recruiter replies.
+- Draft or revise decision memo.
+- Avoid accepting before written terms are clear.
+
+# KPIs / Success Metrics
+
+- Percentage of critical terms clarified.
+- Decision criteria completeness.
+- Priority alignment score.
+- Risk visibility score.
+- Negotiation improvement if attempted.
+- Confidence in final decision.
+- Ability to explain choice in one paragraph.
+- Timely acceptance and decline communication.
+
+# Common Mistakes
+
+- Choosing only by salary.
+- Choosing only by brand.
+- Ignoring manager and team quality.
+- Comparing offers with missing information.
+- Letting family, peers, or urgency override stated priorities.
+- Forgetting location, commute, timezone, or visa constraints.
+- Underestimating role scope and learning trajectory.
+- Declining poorly and damaging relationships.
+
+# Expected Outcomes
+
+By the end of this workflow, the candidate should have complete offer profiles, a weighted decision matrix, clarification answers, risk analysis, negotiation notes, and a decision memo. The candidate should understand not only which offer to choose, but what trade-offs they are accepting.
+
+The workflow succeeds when the candidate can say: "I chose this offer because it best matches my priorities, I understand the risks, and I know what I am giving up."
+
+# Next Recommended Workflow
+
+Run `workflows/salary-negotiation.md` before final acceptance if terms can improve. Run `workflows/hr-interview-week.md` if more culture or manager-fit conversations are needed. Run `workflows/remote-job-hunt.md` if comparing remote and onsite options.
+
+
+
+
+============================================================
+WORKFLOW: Remote Job Hunt (remote-job-hunt)
+Path: workflows/remote-job-hunt.md
+Category: job search workflows
+Description: Navigating the specialized remote job market, optimizing for global companies, and establishing remote collaboration proof.
+============================================================
+# Remote Job Hunt
+
+# Overview
+
+Remote Job Hunt is an operating system for candidates targeting fully remote, hybrid-remote, or globally distributed roles. Remote hiring is not just normal hiring with the commute removed. Recruiters and hiring managers look for evidence of async communication, documentation habits, ownership, reliability, timezone compatibility, and the ability to work with less supervision.
+
+This workflow helps candidates define the right remote role, build remote-specific positioning, find remote-friendly companies, prepare for asynchronous assessments, verify work conditions, and avoid roles that advertise remote flexibility but operate with hidden office expectations. It is especially useful for software developers, designers, product people, support specialists, and early-career candidates targeting distributed teams.
+
+# Target Audience
+
+- Software developers seeking remote-first roles.
+- Candidates applying across cities, countries, or time zones.
+- Professionals moving from office work to distributed teams.
+- Freshers who need to prove remote reliability.
+- Candidates evaluating remote offers and work conditions.
+- Contributors documenting remote career workflows.
+
+# Prerequisites
+
+- Target role and seniority level.
+- Resume and LinkedIn profile.
+- Portfolio, GitHub, writing samples, or proof of independent work.
+- Preferred timezone overlap and location constraints.
+- Remote work history if available.
+- List of remote job boards, companies, or communities.
+- Application tracker.
+
+# Recommended Career-Agents
+
+- `career/job-search-strategist.md` for remote company targeting and pipeline design.
+- `career/resume-strategist.md` for remote-readiness positioning.
+- `career/linkedin-growth-advisor.md` for recruiter discovery and remote availability.
+- `career/recruiter-outreach-specialist.md` for distributed-team outreach.
+- `career/technical-interview-coach.md` for async tests, take-homes, and remote technical rounds.
+- `career/offer-evaluation-advisor.md` for remote offer and timezone evaluation.
+
+# Step-by-Step Execution Plan
+
+1. **Define remote requirements.** Decide whether the candidate wants fully remote, hybrid, remote within country, remote across time zones, contractor, full-time employee, or async-first work. Record non-negotiables.
+
+2. **Clarify timezone fit.** Define preferred working hours, maximum meeting overlap, relocation willingness, and legal work location. Many remote roles fail because this is not clarified early.
+
+3. **Build remote-readiness evidence.** Identify examples of independent work, written communication, documentation, async collaboration, project ownership, open-source participation, distributed teamwork, or self-managed delivery.
+
+4. **Update resume and LinkedIn.** Add remote-relevant signals without forcing them. Examples: documented APIs, wrote onboarding notes, collaborated across time zones, shipped features independently, maintained project READMEs, contributed to distributed teams.
+
+5. **Create the remote company map.** Separate remote-first companies, remote-friendly companies, hybrid companies, contractor marketplaces, open-source ecosystems, and communities. Prioritize companies with explicit remote policies.
+
+6. **Build application channels.** Use remote job boards, company pages, LinkedIn, GitHub communities, Slack/Discord communities, alumni, recruiter posts, and founder-led hiring channels.
+
+7. **Write remote-specific outreach.** Messages should mention role fit and remote operating evidence, not just "I want remote." Recruiters care whether the candidate can succeed remotely.
+
+8. **Prepare for remote assessment formats.** Remote processes often include take-home projects, recorded screens, async written answers, pair programming, system design over video, and communication-heavy interviews.
+
+9. **Verify remote reality.** During interviews, ask about meeting expectations, overlap hours, documentation culture, onboarding, equipment, performance review, contractor vs employee status, benefits, and location restrictions.
+
+10. **Evaluate offers carefully.** A remote role may have lower commute cost but higher isolation, timezone strain, legal ambiguity, or weak onboarding. Use `offer-evaluation-advisor`.
+
+# Weekly Action Plan
+
+**Week 1: Remote Positioning**
+
+- Define remote constraints.
+- Rewrite resume and LinkedIn for remote evidence.
+- Build remote proof section in portfolio or GitHub.
+- Create first list of 40 remote-friendly companies.
+
+**Week 2: Pipeline Launch**
+
+- Submit 15 targeted remote applications.
+- Send 10 remote-specific outreach messages.
+- Join 2-3 relevant communities.
+- Prepare async writing sample or project explanation.
+
+**Week 3: Assessment Preparation**
+
+- Practice one take-home simulation.
+- Run one video technical mock.
+- Prepare written answers for remote collaboration questions.
+- Follow up with recruiters and contacts.
+
+**Week 4: Review and Verification**
+
+- Calculate response rate by channel.
+- Remove low-quality remote listings.
+- Prepare interview questions about remote culture.
+- Evaluate active opportunities for timezone and legal fit.
+
+# Daily Checklist
+
+- Review one remote-friendly company.
+- Apply to or follow up on 2-3 quality roles.
+- Send one targeted remote outreach message.
+- Improve one remote-readiness proof point.
+- Practice written communication: explain a project decision clearly.
+- Update tracker with timezone, location rules, and status.
+- Avoid roles with unclear remote policy until clarified.
+
+# KPIs / Success Metrics
+
+- Remote-specific applications submitted.
+- Response rate from remote-friendly companies.
+- Outreach reply rate.
+- Interviews in acceptable timezone windows.
+- Number of opportunities with verified remote policy.
+- Take-home or async assessment readiness.
+- Offer alignment with timezone, employment status, and flexibility needs.
+- Reduction in applications to fake-remote or unclear roles.
+
+# Common Mistakes
+
+- Applying to remote roles with no evidence of remote work habits.
+- Ignoring timezone overlap until late interviews.
+- Assuming "remote" means "work from anywhere."
+- Using generic outreach that does not mention remote readiness.
+- Underestimating written communication in remote hiring.
+- Accepting contractor terms without understanding benefits, taxes, or stability.
+- Failing to verify onboarding and manager support.
+- Treating remote work as a perk instead of an operating model.
+
+# Expected Outcomes
+
+By the end of the workflow, the candidate should have remote-ready application materials, a company and channel map, outreach templates, assessment preparation plan, remote culture questions, and an offer evaluation framework. The candidate should understand which remote opportunities are genuinely compatible with their location, schedule, and career goals.
+
+The workflow should reduce wasted applications to vague remote listings and increase conversations with teams that actually operate well in distributed environments.
+
+# Next Recommended Workflow
+
+Run `workflows/linkedin-growth.md` if recruiter discovery is important. Run `workflows/technical-interview-week.md` when remote technical interviews begin. Run `workflows/offer-comparison.md` when comparing remote, hybrid, and onsite offers.
+
+
+
+
+============================================================
+WORKFLOW: Salary Negotiation (salary-negotiation)
+Path: workflows/salary-negotiation.md
+Category: job search workflows
+Description: Tactics and script preparation for maximizing base salary, equity, and benefits during the offer stage.
+============================================================
+# Salary Negotiation
+
+# Overview
+
+Salary Negotiation is a structured operating system for turning an offer into a professional compensation conversation. It helps candidates analyze the full package, define leverage, prepare an ask, rehearse objections, negotiate respectfully, and decide when to accept. The workflow is designed to prevent two common failures: accepting too quickly out of fear, or making an aggressive ask without evidence.
+
+Negotiation is not a battle with the employer. It is a decision process where the candidate communicates value, market alignment, priorities, and flexibility. A good negotiation protects the relationship while improving terms or clarifying whether the offer is truly right.
+
+# Target Audience
+
+- Candidates with a written or verbal offer.
+- Freshers unsure whether entry-level offers can be discussed.
+- Developers evaluating base salary, bonus, equity, or remote benefits.
+- Internship candidates comparing stipends, conversion potential, or location support.
+- Candidates with multiple offers or final-stage processes.
+- Contributors documenting offer-stage workflows.
+
+# Prerequisites
+
+- Written offer or exact verbal terms.
+- Role title, level, location, employment type, and start date.
+- Compensation components: base, bonus, equity, stipend, benefits, relocation, signing bonus.
+- Candidate priorities and constraints.
+- Competing offers or active processes if any.
+- Deadline for response.
+- Market data or a plan to gather it.
+
+# Recommended Career-Agents
+
+- `career/salary-negotiation-coach.md` for leverage, ask planning, and scripts.
+- `career/offer-evaluation-advisor.md` for offer decomposition and decision criteria.
+- `career/hr-interview-coach.md` for conversation rehearsal.
+- `career/recruiter-outreach-specialist.md` for recruiter-facing written communication.
+- `career/placement-coach.md` for broader placement strategy.
+
+# Step-by-Step Execution Plan
+
+1. **Collect complete terms.** Do not negotiate from a vague number. Confirm base, bonus, equity, stipend, benefits, work mode, location, joining date, review cycle, bond, probation, and deadline.
+
+2. **Clarify priorities.** Decide what matters most: cash, stability, learning, title, location, remote flexibility, manager, equity, benefits, or start date.
+
+3. **Define floor, target, and stretch.** The floor is the minimum acceptable package. The target is the desired realistic improvement. The stretch is the ambitious ask that remains defensible.
+
+4. **Assess leverage.** Consider competing offers, scarce skills, company urgency, interview performance, timeline, alternatives, and willingness to walk away. Separate real leverage from wishful thinking.
+
+5. **Benchmark compensation.** Use credible market data when available. Adjust for geography, level, company stage, and role scope. If data is uncertain, label it as a range.
+
+6. **Choose negotiation levers.** Salary is not the only lever. Consider signing bonus, joining date, relocation, remote work, title, learning budget, review timeline, equipment, PTO, or equity.
+
+7. **Draft the ask.** The message should include appreciation, enthusiasm, specific request, evidence, and flexibility. Keep it short enough for a recruiter to forward internally.
+
+8. **Rehearse objections.** Prepare responses for "budget is fixed," "this is standard," "we need an answer today," "do you have another offer," and "what number are you expecting."
+
+9. **Send or discuss professionally.** Use email for precision or call for warmth, depending on recruiter relationship. After a call, summarize in writing.
+
+10. **Evaluate the response.** If improved, compare against target and floor. If declined, decide whether non-cash levers matter. If unclear, ask for clarification.
+
+11. **Close cleanly.** Accept, decline, or continue with a clear timeline and professional tone.
+
+# Weekly Action Plan
+
+**Week 1: Offer Analysis**
+
+- Gather terms.
+- Build total compensation table.
+- Define priorities.
+- Research market ranges.
+- Create floor, target, and stretch.
+
+**Week 2: Negotiation Preparation**
+
+- Assess leverage.
+- Choose levers.
+- Draft email and call script.
+- Rehearse objections.
+- Decide fallback actions.
+
+**Week 3: Execution**
+
+- Send negotiation request.
+- Track employer response.
+- Ask clarifying questions.
+- Evaluate revised terms.
+
+**Week 4: Closure**
+
+- Accept, decline, or request extension.
+- Confirm terms in writing.
+- Update decision record.
+- Prepare onboarding or next offer comparison.
+
+# Daily Checklist
+
+- Review offer terms for missing details.
+- Update compensation comparison.
+- Check deadline and recruiter communication.
+- Practice the ask aloud.
+- Refine one objection response.
+- Confirm the candidate's floor.
+- Avoid making emotional decisions after one message.
+- Keep all final terms documented.
+
+# KPIs / Success Metrics
+
+- Compensation uplift from original offer.
+- Improvement in non-cash terms.
+- Clarity of floor, target, and fallback.
+- Quality of negotiation script.
+- Response time and professionalism.
+- Candidate confidence before conversation.
+- Final offer alignment with priorities.
+- Zero unresolved critical terms before acceptance.
+
+# Common Mistakes
+
+- Negotiating before receiving complete terms.
+- Asking for more without evidence or rationale.
+- Treating the first "no" as the end of all discussion.
+- Bluffing about offers.
+- Apologizing repeatedly for negotiating.
+- Focusing only on salary while ignoring total value.
+- Missing response deadlines.
+- Accepting verbally before clarifying written terms.
+
+# Expected Outcomes
+
+By the end of the workflow, the candidate should have a complete offer breakdown, compensation benchmark, leverage assessment, negotiation range, script, objection responses, and final decision. Even if the employer does not improve the offer, the candidate should know they handled the process professionally and made an informed choice.
+
+The workflow succeeds when the candidate negotiates with clarity, respect, and evidence rather than fear or improvisation.
+
+# Next Recommended Workflow
+
+Run `workflows/offer-comparison.md` if multiple offers are active. Run `workflows/hr-interview-week.md` if additional recruiter conversations are pending. Run `workflows/fresher-placement.md` if the candidate is still building pipeline while negotiating.
+
+
+
+
+============================================================
+WORKFLOW: Technical Interview Week (technical-interview-week)
+Path: workflows/technical-interview-week.md
+Category: interview workflows
+Description: High-intensity technical prep covering DSA drills, system design practice, and clean code principles.
+============================================================
+# Technical Interview Week
+
+# Overview
+
+Technical Interview Week is a seven-day execution system for candidates with technical interviews scheduled soon. It is not meant to teach every concept from scratch. It is a readiness sprint that sharpens problem-solving, communication, debugging, system design, project explanation, and interview logistics before the real rounds.
+
+The workflow assumes the candidate already has some preparation history. If not, use it to identify the highest-risk gaps and stabilize performance quickly. The goal is to enter interview week with a plan for each day, a repeatable answering process, a mistake log, and clear rules for rest, review, and execution.
+
+# Target Audience
+
+- Software engineers with interviews within one week.
+- Freshers preparing for coding rounds or technical panels.
+- Internship candidates facing online assessments or technical screens.
+- Developers preparing for system design, pair programming, or take-home reviews.
+- Candidates who need structure after scattered practice.
+
+# Prerequisites
+
+- Interview schedule, company names, and role descriptions.
+- Known interview formats if available.
+- Resume and project list.
+- Preferred coding language.
+- Practice history or problem tracker.
+- At least one quiet block per day for focused work.
+- Tools for video interview, coding environment, and note taking.
+
+# Recommended Career-Agents
+
+- `career/technical-interview-coach.md` for mocks, rubrics, coding, and design practice.
+- `career/resume-strategist.md` for resume-linked technical story alignment.
+- `career/hr-interview-coach.md` for behavioral overlap in technical rounds.
+- `career/placement-coach.md` for readiness and pacing.
+- `career/offer-evaluation-advisor.md` if final rounds may lead to offers.
+
+# Step-by-Step Execution Plan
+
+1. **Map the interview week.** Record every round, expected format, duration, interviewer type, platform, and preparation risk. If format is unknown, prepare for the most likely version based on role.
+
+2. **Run a diagnostic mock.** Use `technical-interview-coach` for one timed problem or design prompt. Score understanding, approach, correctness, testing, communication, and time management.
+
+3. **Create a risk-ranked plan.** Choose the top three improvement areas for the week. Examples: graph traversal, dynamic programming basics, SQL joins, API design, system design scoping, or explaining projects.
+
+4. **Refresh core patterns.** Review high-yield patterns rather than trying to learn everything. Practice arrays, strings, maps, two pointers, sliding window, trees, graphs, heaps, binary search, and recursion as relevant.
+
+5. **Practice the interview script.** The candidate should consistently restate the problem, ask clarifying questions, propose approach, analyze complexity, code, test, and summarize.
+
+6. **Prepare project and resume defense.** Interviewers often ask about resume projects. Prepare architecture, trade-offs, bugs, performance, teamwork, and what would be improved.
+
+7. **Add system design if needed.** Practice requirements, APIs, storage, scaling, bottlenecks, caching, consistency, monitoring, and trade-offs. Keep answers scoped to role level.
+
+8. **Simulate real conditions.** Use timed mocks, no pausing, video on if remote, and a fresh editor. Review afterward.
+
+9. **Build a quick-reference sheet.** Include complexity reminders, language syntax pitfalls, testing checklist, project talking points, and questions to ask interviewers.
+
+10. **Taper before the interview.** The final day should emphasize confidence, review, logistics, and rest. Exhausted candidates make avoidable mistakes.
+
+# Weekly Action Plan
+
+**Day 1: Diagnose and Plan**
+
+- Confirm interview formats.
+- Run diagnostic mock.
+- Identify top three risks.
+- Set daily schedule.
+
+**Day 2: Coding Fundamentals**
+
+- Practice core patterns.
+- Review common edge cases.
+- Write clean code under time.
+- Log mistakes.
+
+**Day 3: Weak Area Deep Dive**
+
+- Focus on the weakest topic.
+- Solve fewer problems with deeper review.
+- Explain solutions aloud.
+- Create correction rules.
+
+**Day 4: System Design or Role-Specific Skills**
+
+- Practice one design prompt or domain task.
+- Review trade-offs.
+- Prepare architecture explanations.
+
+**Day 5: Mixed Mock Day**
+
+- Complete two timed mocks.
+- Include communication scoring.
+- Fix repeated issues.
+
+**Day 6: Resume and Project Defense**
+
+- Rehearse project explanations.
+- Practice technical follow-up questions.
+- Prepare interviewer questions.
+
+**Day 7: Final Readiness**
+
+- Review quick-reference sheet.
+- Test equipment and links.
+- Do light practice only.
+- Sleep and protect energy.
+
+# Daily Checklist
+
+- Confirm the next interview format.
+- Complete one timed practice block.
+- Review at least one mistake from the log.
+- Explain one solution aloud.
+- Test one edge-case set.
+- Practice one project explanation.
+- Update confidence score.
+- Stop before burnout; interview week rewards clarity.
+
+# KPIs / Success Metrics
+
+- Diagnostic-to-final mock score improvement.
+- Time to produce a correct approach.
+- Correctness rate under timed conditions.
+- Number of repeated mistakes reduced.
+- Communication clarity score.
+- Project explanation readiness.
+- System design structure score if applicable.
+- Candidate energy and confidence before interview day.
+
+# Common Mistakes
+
+- Trying to learn every topic in seven days.
+- Doing problem volume without reviewing mistakes.
+- Practicing silently and then struggling to explain live.
+- Ignoring project questions.
+- Skipping environment setup until interview day.
+- Over-practicing the night before.
+- Treating system design as memorized diagrams.
+- Forgetting to prepare questions for the interviewer.
+
+# Expected Outcomes
+
+By the end of this workflow, the candidate should have a risk-ranked preparation plan, refreshed technical patterns, mock feedback, mistake log, project defense notes, quick-reference sheet, and interview logistics checklist. The candidate should know how to approach a problem even when the prompt is unfamiliar.
+
+The ideal outcome is not perfection. It is controlled execution: clarify, reason, communicate, implement, test, and recover.
+
+# Next Recommended Workflow
+
+Run `workflows/hr-interview-week.md` if behavioral or manager rounds are scheduled. Run `workflows/offer-comparison.md` if final rounds are likely to produce multiple offers. Run `workflows/faang-preparation.md` for a longer preparation cycle after this sprint.
+
+
+
+
+============================================================
+SECTION 3: COMPANY INTERVIEW PREPARATION TRACKS
+============================================================
+
+============================================================
+COMPANY TRACK: Adobe (adobe)
+============================================================
+{
+  "id": "adobe",
+  "name": "Adobe",
+  "interview_process": [
+    "Recruiter screen",
+    "Technical phone screen: 1-2 coding and product-craft rounds (45-60 min)",
+    "Onsite loop: 3 technical coding/systems design rounds, 1 cross-functional collaboration round, 1 product craft/manager round (45 min each)"
+  ],
+  "skills": [
+    "Technical Depth & Product Framing",
+    "Product-Craft Story Development",
+    "Attention-to-Detail & UX Polish",
+    "Cross-Functional Collaboration"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "adobe-interview-coach",
+    "mock-interviewer",
+    "system-design-coach"
+  ],
+  "resources": [
+    "Adobe Tech Blog (blog.developer.adobe.com)",
+    "Adobe Creative Cloud / Document Cloud architecture publications",
+    "Autosaving and multi-device sync patterns"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Amazon (amazon)
+============================================================
+{
+  "id": "amazon",
+  "name": "Amazon",
+  "interview_process": [
+    "Online Assessment: coding test + system simulation (90 min)",
+    "Recruiter screen",
+    "Onsite Loop (The Loop): 3-4 coding/system design rounds, with each round dedicating 20+ minutes to behavioral questions testing the 16 Leadership Principles"
+  ],
+  "skills": [
+    "16 Leadership Principles (Customer Obsession, Ownership, Bias for Action)",
+    "STAR Behavioral Storytelling",
+    "Data Structures & Algorithms",
+    "System Design & Database selections"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "amazon-interview-coach",
+    "behavioral-interview-specialist",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Amazon Leadership Principles official guides",
+    "Amazon Science Blog",
+    "Amazon DynamoDB whitepapers"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Anthropic (anthropic)
+============================================================
+{
+  "id": "anthropic",
+  "name": "Anthropic",
+  "interview_process": [
+    "Initial technical chat (30 min)",
+    "Technical programming screen (45 min)",
+    "Onsite loop: 2 coding rounds, 1 system design / AI engineering round, 1 cultural fit round (45 min each)"
+  ],
+  "skills": [
+    "Data Structures & Algorithms",
+    "Generative AI & LLM Fine-Tuning",
+    "Alignment & Safety Principles",
+    "System Design & Scalability"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "openai-career-coach",
+    "technical-interview-coach",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Anthropic Research Blog",
+    "Constitutional AI documentation"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Atlassian (atlassian)
+============================================================
+{
+  "id": "atlassian",
+  "name": "Atlassian",
+  "interview_process": [
+    "Recruiter screen and interactive coding challenge",
+    "Onsite loop: 1 system design round, 1 coding round, 1 values fit round, 1 management/behavioral round"
+  ],
+  "skills": [
+    "Atlassian core values (Open Company No Bullshit)",
+    "Collaborative system design structures",
+    "Active listening and giving structured feedback",
+    "Frontend UI performance and layout"
+  ],
+  "preparation_workflow": "technical-interview-week",
+  "agents": [
+    "atlassian-interview-coach",
+    "behavioral-interview-specialist",
+    "group-discussion-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Atlassian Team Playbook",
+    "Atlassian core values slide deck",
+    "Jira & Confluence architecture scaling articles"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Databricks (databricks)
+============================================================
+{
+  "id": "databricks",
+  "name": "Databricks",
+  "interview_process": [
+    "Recruiter screen and algorithmic online assessment",
+    "Technical phone interview: distributed coding problem",
+    "Onsite loop: 2 database/systems design rounds, 2 systems coding rounds, 1 behavioral values round"
+  ],
+  "skills": [
+    "Distributed computing algorithms",
+    "Database internals (caching, query planning, indexing)",
+    "Concurrency and systems performance",
+    "Spark/Delta Lake execution logic"
+  ],
+  "preparation_workflow": "technical-interview-week",
+  "agents": [
+    "database-engineer",
+    "backend-architect",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Databricks Lakehouse architecture papers",
+    "Apache Spark internals guides",
+    "Databricks Engineering Blog"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Google (google)
+============================================================
+{
+  "id": "google",
+  "name": "Google",
+  "interview_process": [
+    "Recruiter screening phone call (30 min)",
+    "Technical phone screen: 1 DSA coding round (45 min)",
+    "Onsite loop: 3 DSA coding rounds, 1 System Design round, 1 Googliness & Leadership round (45 min each)"
+  ],
+  "skills": [
+    "Data Structures & Algorithms (graphs, dynamic programming, trees)",
+    "System Design & Scalability",
+    "Googliness (cultural fit, collaboration, ambiguity navigation)",
+    "Space & Time Complexity Analysis"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "google-interview-coach",
+    "technical-interview-coach",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Google Engineering Blog",
+    "Google SRE Books (sre.google)",
+    "Google Developers Channel"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Meta (meta)
+============================================================
+{
+  "id": "meta",
+  "name": "Meta",
+  "interview_process": [
+    "Technical phone screen: 2 DSA coding questions (45 min)",
+    "Onsite loop: 2 Coding rounds, 1 System Design round, 1 Behavioral/Culture round (45 min each)"
+  ],
+  "skills": [
+    "High-speed coding accuracy (solving 2 DSA questions in 35 minutes)",
+    "System Design scaling (focusing on caching, load balancing, message queues)",
+    "Meta core values (Focus on Impact, Move Fast)"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "meta-interview-coach",
+    "technical-interview-coach",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Meta Engineering Blog",
+    "React, PyTorch open-source docs",
+    "Meta System Design videos"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Microsoft (microsoft)
+============================================================
+{
+  "id": "microsoft",
+  "name": "Microsoft",
+  "interview_process": [
+    "Recruiter screen + initial technical screen",
+    "Onsite loop: 4 technical rounds covering coding, system design, and growth mindset scenarios"
+  ],
+  "skills": [
+    "CS Fundamentals (pointers, memory management, OOP)",
+    "Growth Mindset (learning from failure, collaboration)",
+    "Distributed Service Architecture"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "microsoft-interview-coach",
+    "technical-interview-coach",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Microsoft Engineering Blog",
+    "Azure Architecture Center",
+    "Microsoft Research Publications"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Netflix (netflix)
+============================================================
+{
+  "id": "netflix",
+  "name": "Netflix",
+  "interview_process": [
+    "Recruiter screen and phone technical interview",
+    "Onsite loop: 2 technical coding/system design rounds, 2 culture/behavioral rounds evaluating feedback loops and the culture slide deck"
+  ],
+  "skills": [
+    "Freedom & Responsibility slide deck principles",
+    "High-throughput CDN architectures",
+    "Autonomy and direct feedback loops (Radical Candor)",
+    "Resilience engineering (Chaos Monkey)"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "netflix-interview-coach",
+    "behavioral-interview-specialist",
+    "system-design-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Netflix Tech Blog",
+    "Netflix Culture Slide Deck",
+    "Netflix Chaos Engineering research papers"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Nvidia (nvidia)
+============================================================
+{
+  "id": "nvidia",
+  "name": "Nvidia",
+  "interview_process": [
+    "Recruiter call & screening (30 min)",
+    "Technical phone interview: C++ coding & systems concepts (45 min)",
+    "Onsite loop: 3 technical coding / systems architecture rounds, 1 AI/graphics round, 1 team fit round (45 min each)"
+  ],
+  "skills": [
+    "Systems Programming (C/C++, CUDA)",
+    "Parallel Computing & GPU Architecture",
+    "Data Structures & Algorithms",
+    "Deep Learning & Computer Vision"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "technical-interview-coach",
+    "system-design-coach",
+    "machine-learning-engineer",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Nvidia Developer Blog",
+    "CUDA Documentation"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: OpenAI (openai)
+============================================================
+{
+  "id": "openai",
+  "name": "OpenAI",
+  "interview_process": [
+    "Recruiter screen and take-home practical engineering assignment",
+    "Technical phone screen: review take-home assignment and coding test",
+    "Onsite loop: 4-5 rounds covering PyTorch coding, distributed training systems, AI safety/alignment, and executive values"
+  ],
+  "skills": [
+    "PyTorch scale training models",
+    "Transformer mechanics and scaling math",
+    "AI Safety & alignment criteria",
+    "GPU memory optimizations"
+  ],
+  "preparation_workflow": "technical-interview-week",
+  "agents": [
+    "llm-engineer",
+    "ai-agent-architect",
+    "ai-engineer-career-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "OpenAI Research Papers",
+    "Triton Compiler tutorials",
+    "Scaling Laws papers"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Oracle (oracle)
+============================================================
+{
+  "id": "oracle",
+  "name": "Oracle",
+  "interview_process": [
+    "Recruiter phone screen",
+    "Technical screening: 1-2 CS fundamentals and database queries rounds (45-60 min)",
+    "Onsite Loop: 3-4 rounds focused on CS fundamentals, database design, networking protocols, and systems design (45 min each)"
+  ],
+  "skills": [
+    "CS Fundamentals (OS, Networking)",
+    "Database Internals & SQL Design",
+    "Algorithmic Problem-Solving",
+    "Multi-Round Endurance"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "oracle-interview-coach",
+    "mock-interviewer",
+    "database-engineer",
+    "system-design-coach"
+  ],
+  "resources": [
+    "Oracle Database Concepts Manual",
+    "Oracle Architecture Blogs",
+    "Database indexing and transaction isolation level patterns"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Salesforce (salesforce)
+============================================================
+{
+  "id": "salesforce",
+  "name": "Salesforce",
+  "interview_process": [
+    "Recruiter screening phone call (30 min)",
+    "Technical screening: 1 coding round / portfolio review (45-60 min)",
+    "Onsite loop: 2 technical coding rounds, 1 system architecture round, 1 core values & trust-alignment round (45 min each)"
+  ],
+  "skills": [
+    "Core Values & Trust Alignment",
+    "Customer Success Orientation",
+    "System Architecture & SaaS Scaling",
+    "Data Structures & Algorithms"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "salesforce-interview-coach",
+    "mock-interviewer",
+    "system-design-coach"
+  ],
+  "resources": [
+    "Salesforce Core Values & Culture documentation",
+    "Salesforce Engineering Blog",
+    "SaaS Architecture and Multi-tenant design patterns"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Stripe (stripe)
+============================================================
+{
+  "id": "stripe",
+  "name": "Stripe",
+  "interview_process": [
+    "Recruiter screen and phone interview (coding/debugging)",
+    "Onsite loop: 1 practical integration coding round, 1 bug squash debugging round, 1 system architecture round, 1 leadership/behavioral round"
+  ],
+  "skills": [
+    "Practical API design and integration",
+    "Squashing bugs in large codebases",
+    "Clean code refactoring and design structures",
+    "Unit testing"
+  ],
+  "preparation_workflow": "technical-interview-week",
+  "agents": [
+    "code-reviewer",
+    "backend-architect",
+    "technical-interview-coach",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Stripe API Reference docs",
+    "Stripe Engineering Blog",
+    "Stripe developer workshops"
+  ]
+}
+
+
+
+============================================================
+COMPANY TRACK: Uber (uber)
+============================================================
+{
+  "id": "uber",
+  "name": "Uber",
+  "interview_process": [
+    "Recruiter screen and online coding test",
+    "Technical phone interview: coding and systems baseline questions",
+    "Onsite loop: 2 coding rounds, 2 system architecture scaling rounds, 1 behavioral bar raiser round"
+  ],
+  "skills": [
+    "Geohashing and spatial search coordinates index (H3, S2)",
+    "Real-time stream message scheduling",
+    "High write concurrency structures",
+    "Fault-tolerance modeling"
+  ],
+  "preparation_workflow": "faang-preparation",
+  "agents": [
+    "uber-interview-coach",
+    "system-design-coach",
+    "database-engineer",
+    "mock-interviewer"
+  ],
+  "resources": [
+    "Uber Engineering Blog",
+    "Uber H3 Geohashing spatial library guides",
+    "Uber ringpop/TChannel networking papers"
+  ]
+}
+
+
+
+============================================================
+SECTION 4: CAREER PATHS & SKILL BLUEPRINTS
+============================================================
+
+============================================================
+CAREER PATH: AI Engineer (ai-engineer)
+============================================================
+{
+  "id": "ai-engineer",
+  "name": "AI Engineer",
+  "description": "Specialist in integrating machine learning, large language models, retrieval augmented generation, and cognitive agents into product architectures.",
+  "core_skills": [
+    "LLMs & Prompt Engineering",
+    "RAG & Semantic Search",
+    "Python & PyTorch",
+    "Agentic Architectures",
+    "Model Orchestration"
+  ],
+  "recommended_divisions": [
+    "ai-engineering",
+    "ai-business",
+    "cloud"
+  ],
+  "recommended_agents": [
+    "ai-agent-architect",
+    "llm-engineer",
+    "rag-architect",
+    "ai-engineer-career-coach"
+  ],
+  "recommended_workflows": [
+    "technical-interview-week"
+  ]
+}
+
+
+
+============================================================
+CAREER PATH: Backend Engineer (backend-engineer)
+============================================================
+{
+  "id": "backend-engineer",
+  "name": "Backend Engineer",
+  "description": "Specialized engineer focused on server-side logic, API design, database structures, security, caching, and scalability.",
+  "core_skills": [
+    "API Design (REST/GraphQL)",
+    "Database Architecture & Indexing",
+    "Distributed Systems",
+    "Server-Side Languages (Go, Python, Java, Node.js)",
+    "Performance Engineering"
+  ],
+  "recommended_divisions": [
+    "engineering",
+    "data-engineering",
+    "interview"
+  ],
+  "recommended_agents": [
+    "backend-architect",
+    "database-engineer",
+    "system-design-coach"
+  ],
+  "recommended_workflows": [
+    "technical-interview-week"
+  ]
+}
+
+
+
+============================================================
+CAREER PATH: Cloud Engineer (cloud-engineer)
+============================================================
+{
+  "id": "cloud-engineer",
+  "name": "Cloud Engineer",
+  "description": "Focused on provisioning public cloud infrastructure, maintaining high availability, designing scalable networks, and managing containerized systems.",
+  "core_skills": [
+    "AWS / GCP / Azure",
+    "Terraform & IaC",
+    "Kubernetes & Containers",
+    "Networking & VPCs",
+    "Site Reliability (SRE)"
+  ],
+  "recommended_divisions": [
+    "cloud",
+    "engineering",
+    "cybersecurity"
+  ],
+  "recommended_agents": [
+    "aws-cloud-architect",
+    "kubernetes-specialist",
+    "terraform-specialist",
+    "site-reliability-engineer"
+  ],
+  "recommended_workflows": [
+    "technical-interview-week"
+  ]
+}
+
+
+
+============================================================
+CAREER PATH: Cybersecurity Engineer (cybersecurity-engineer)
+============================================================
+{
+  "id": "cybersecurity-engineer",
+  "name": "Cybersecurity Engineer",
+  "description": "Dedicated to securing software systems, identifying vulnerabilities, configuring access controls, and responding to security incidents.",
+  "core_skills": [
+    "Application Security & OWASP",
+    "Identity & Access Management (IAM)",
+    "Threat Modeling & Pen Testing",
+    "Incident Response & Forensics",
+    "Regulatory Compliance (SOC2/GDPR)"
+  ],
+  "recommended_divisions": [
+    "cybersecurity",
+    "cloud",
+    "engineering"
+  ],
+  "recommended_agents": [
+    "application-security-specialist",
+    "cloud-security-engineer",
+    "incident-response-specialist",
+    "governance-risk-compliance-advisor"
+  ],
+  "recommended_workflows": [
+    "technical-interview-week"
+  ]
+}
+
+
+
+============================================================
+CAREER PATH: DevOps Engineer (devops-engineer)
+============================================================
+{
+  "id": "devops-engineer",
+  "name": "DevOps Engineer",
+  "description": "Bridging development and operations to automate software delivery pipelines, manage configuration state, and ensure infrastructure reliability.",
+  "core_skills": [
+    "CI/CD Pipelines",
+    "Configuration Management",
+    "Infrastructure as Code",
+    "Monitoring & Logging",
+    "Build Tools & Packaging"
+  ],
+  "recommended_divisions": [
+    "cloud",
+    "engineering",
+    "cybersecurity"
+  ],
+  "recommended_agents": [
+    "devops-engineer",
+    "platform-engineer",
+    "site-reliability-engineer"
+  ],
+  "recommended_workflows": [
+    "technical-interview-week"
+  ]
+}
+
+
+
+============================================================
+CAREER PATH: Frontend Engineer (frontend-engineer)
+============================================================
+{
+  "id": "frontend-engineer",
+  "name": "Frontend Engineer",
+  "description": "Specialized engineer focused on client-side applications, user interfaces, performance optimization, and modern web frameworks.",
+  "core_skills": [
+    "JavaScript / TypeScript",
+    "React / Next.js",
+    "CSS & Styling",
+    "Web Vitals & Performance",
+    "API Integration"
+  ],
+  "recommended_divisions": [
+    "engineering",
+    "resume",
+    "career"
+  ],
+  "recommended_agents": [
+    "nextjs-performance-engineer",
+    "portfolio-reviewer",
+    "ats-resume-reviewer"
+  ],
+  "recommended_workflows": [
+    "ats-optimization",
+    "technical-interview-week"
+  ]
+}
+
+
+
+============================================================
+CAREER PATH: Full Stack Engineer (full-stack-engineer)
+============================================================
+{
+  "id": "full-stack-engineer",
+  "name": "Full Stack Engineer",
+  "description": "Versatile engineer capable of building and maintaining both client-side and server-side components of modern web applications.",
+  "core_skills": [
+    "Frontend Frameworks",
+    "Backend APIs",
+    "Database Design",
+    "Cloud Deployments",
+    "End-to-End Testing"
+  ],
+  "recommended_divisions": [
+    "engineering",
+    "cloud",
+    "career"
+  ],
+  "recommended_agents": [
+    "mern-architect",
+    "code-reviewer",
+    "placement-coach"
+  ],
+  "recommended_workflows": [
+    "fresher-placement",
+    "ats-optimization"
+  ]
+}
+
+
+
+============================================================
+CAREER PATH: Product Manager (product-manager)
+============================================================
+{
+  "id": "product-manager",
+  "name": "Product Manager",
+  "description": "Connecting technology, business, and design to define product features, scope releases, prioritize roadmaps, and align cross-functional teams.",
+  "core_skills": [
+    "Product Roadmap Planning",
+    "User Interviewing & Feedback",
+    "Prioritization Frameworks",
+    "Market & Competitor Analysis",
+    "Data-Driven Decisions"
+  ],
+  "recommended_divisions": [
+    "startup",
+    "career",
+    "networking"
+  ],
+  "recommended_agents": [
+    "product-manager",
+    "product-manager-coach",
+    "market-research-analyst"
+  ],
+  "recommended_workflows": [
+    "ats-optimization",
+    "salary-negotiation"
+  ]
+}
+
+
+
+============================================================
+CAREER PATH: Software Engineer (software-engineer)
+============================================================
+{
+  "id": "software-engineer",
+  "name": "Software Engineer",
+  "description": "Generalist software engineer focused on building robust applications, CS fundamentals, algorithms, and collaborative team delivery.",
+  "core_skills": [
+    "Data Structures & Algorithms",
+    "Object Oriented Design",
+    "System Design",
+    "Version Control (Git)",
+    "Testing & Debugging"
+  ],
+  "recommended_divisions": [
+    "engineering",
+    "interview",
+    "career"
+  ],
+  "recommended_agents": [
+    "google-interview-coach",
+    "technical-interview-coach",
+    "code-reviewer",
+    "mock-interviewer"
+  ],
+  "recommended_workflows": [
+    "faang-preparation",
+    "technical-interview-week",
+    "fresher-placement"
+  ]
+}
+
+
+
+============================================================
+CAREER PATH: Startup Founder (startup-founder)
+============================================================
+{
+  "id": "startup-founder",
+  "name": "Startup Founder",
+  "description": "Building a business from scratch, scoping MVPs, testing market fit, structuring go-to-market strategies, and managing early unit economics.",
+  "core_skills": [
+    "MVP Scoping & Validation",
+    "Go-To-Market Execution",
+    "Unit Economics & Token Economics",
+    "Outreach Systems Design",
+    "Founder Pitching & Narrative"
+  ],
+  "recommended_divisions": [
+    "startup",
+    "ai-business",
+    "gtm",
+    "freelancing"
+  ],
+  "recommended_agents": [
+    "founder-advisor",
+    "growth-strategist",
+    "ai-product-builder",
+    "market-research-analyst"
+  ],
+  "recommended_workflows": [
+    "linkedin-growth",
+    "remote-job-hunt"
+  ]
+}
+
+
+
+============================================================
+SECTION 5: INTELLIGENCE BUNDLES
+============================================================
+
+============================================================
+BUNDLE: AI Engineer & Scientist Bundle (ai-engineer-bundle)
+============================================================
+{
+  "id": "ai-engineer-bundle",
+  "name": "AI Engineer & Scientist Bundle",
+  "description": "System frameworks, fine-tuning scripts, MLOps orchestration, prompt formatting matrices, and RAG architectures for AI engineers.",
+  "agents": [
+    "ai-agent-architect",
+    "llm-engineer",
+    "rag-architect",
+    "prompt-engineer",
+    "ai-engineer-career-coach",
+    "mlops-engineer"
+  ],
+  "workflows": [
+    "technical-interview-week",
+    "faang-preparation"
+  ],
+  "career_paths": [
+    "ai-engineer",
+    "software-engineer"
+  ],
+  "skills": [
+    "Prompt Optimization",
+    "Vector Embeddings",
+    "Fine-Tuning",
+    "Agentic Loops",
+    "PyTorch Scale Training"
+  ],
+  "companies": [
+    "OpenAI",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "Databricks"
+  ]
+}
+
+
+
+============================================================
+BUNDLE: Career Switcher & Pivot Bundle (career-switch-bundle)
+============================================================
+{
+  "id": "career-switch-bundle",
+  "name": "Career Switcher & Pivot Bundle",
+  "description": "Guidance frameworks for mapping transferable skills, positioning resumes, and transitioning from non-technical/adjacent fields into tech.",
+  "agents": [
+    "career-pivot-to-tech-advisor",
+    "career-transition-coach",
+    "resume-strategist",
+    "personal-branding-advisor",
+    "placement-coach"
+  ],
+  "workflows": [
+    "ats-optimization",
+    "linkedin-growth",
+    "fresher-placement"
+  ],
+  "career_paths": [
+    "full-stack-engineer",
+    "product-manager",
+    "startup-founder"
+  ],
+  "skills": [
+    "Transferable Assets",
+    "Narrative Construction",
+    "Branding",
+    "Resume Revision",
+    "Interview Readiness"
+  ],
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Atlassian",
+    "Uber"
+  ]
+}
+
+
+
+============================================================
+BUNDLE: FAANG & Top Tech Prep Bundle (faang-bundle)
+============================================================
+{
+  "id": "faang-bundle",
+  "name": "FAANG & Top Tech Prep Bundle",
+  "description": "Pre-packaged prep assets and workflows optimized for passing high-bar coding, system design, and behavioral loops at FAANG and tier-1 companies.",
+  "agents": [
+    "google-interview-coach",
+    "amazon-interview-coach",
+    "meta-interview-coach",
+    "microsoft-interview-coach",
+    "system-design-coach",
+    "technical-interview-coach",
+    "behavioral-interview-specialist",
+    "mock-interviewer"
+  ],
+  "workflows": [
+    "faang-preparation",
+    "technical-interview-week",
+    "hr-interview-week"
+  ],
+  "career_paths": [
+    "software-engineer",
+    "ai-engineer",
+    "cloud-engineer",
+    "backend-engineer"
+  ],
+  "skills": [
+    "Data Structures & Algorithms",
+    "System Design",
+    "STAR Behavioral Method",
+    "Scalability",
+    "Concurrency"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Netflix",
+    "Uber"
+  ]
+}
+
+
+
+============================================================
+BUNDLE: Full Stack Developer Bundle (full-stack-bundle)
+============================================================
+{
+  "id": "full-stack-bundle",
+  "name": "Full Stack Developer Bundle",
+  "description": "Systems architectures, database optimizations, deployment validations, API patterns, and performance audits for full stack developers.",
+  "agents": [
+    "mern-architect",
+    "nextjs-performance-engineer",
+    "backend-architect",
+    "database-engineer",
+    "devops-engineer",
+    "code-reviewer"
+  ],
+  "workflows": [
+    "technical-interview-week",
+    "ats-optimization"
+  ],
+  "career_paths": [
+    "full-stack-engineer",
+    "frontend-engineer",
+    "backend-engineer"
+  ],
+  "skills": [
+    "React/Next.js",
+    "Node.js & Express",
+    "Schema Tuning",
+    "API Resiliency",
+    "CI/CD Pipelines"
+  ],
+  "companies": [
+    "Stripe",
+    "Meta",
+    "Netflix",
+    "Uber",
+    "Atlassian"
+  ]
+}
+
+
+
+============================================================
+BUNDLE: Internship Hunting Bundle (internship-bundle)
+============================================================
+{
+  "id": "internship-bundle",
+  "name": "Internship Hunting Bundle",
+  "description": "Optimized pipeline for college students and recent grads seeking high-value internships, final-year project guidance, and return offers.",
+  "agents": [
+    "internship-application-strategist",
+    "internship-success-coach",
+    "ats-resume-reviewer",
+    "networking-coach",
+    "graduate-career-advisor",
+    "final-year-project-advisor"
+  ],
+  "workflows": [
+    "internship-hunt",
+    "fresher-placement",
+    "ats-optimization"
+  ],
+  "career_paths": [
+    "software-engineer",
+    "frontend-engineer",
+    "backend-engineer",
+    "full-stack-engineer"
+  ],
+  "skills": [
+    "Resume Formatting",
+    "Cold Outreach",
+    "Networking",
+    "Project Management",
+    "Academic Defense"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Atlassian",
+    "Stripe"
+  ]
+}
+
+
+
+============================================================
+BUNDLE: Remote Job Hunting Bundle (remote-job-bundle)
+============================================================
+{
+  "id": "remote-job-bundle",
+  "name": "Remote Job Hunting Bundle",
+  "description": "Strategies, connection prompts, and automation tools for targeting remote-first global startups and distributed organizations.",
+  "agents": [
+    "remote-work-advisor",
+    "job-search-strategist",
+    "cold-outreach-specialist",
+    "linkedin-outreach-specialist",
+    "recruiter-communication-coach"
+  ],
+  "workflows": [
+    "remote-job-hunt",
+    "linkedin-growth",
+    "salary-negotiation"
+  ],
+  "career_paths": [
+    "software-engineer",
+    "full-stack-engineer",
+    "product-manager",
+    "startup-founder"
+  ],
+  "skills": [
+    "Async Communication",
+    "Remote Tooling",
+    "LinkedIn Branding",
+    "Cold Sourcing",
+    "Funnel Tracking"
+  ],
+  "companies": [
+    "Stripe",
+    "Atlassian",
+    "OpenAI",
+    "Databricks"
+  ]
+}
+
+
+
+============================================================
+BUNDLE: Startup Founder & Builder Bundle (startup-founder-bundle)
+============================================================
+{
+  "id": "startup-founder-bundle",
+  "name": "Startup Founder & Builder Bundle",
+  "description": "Decision support configs, MVP definitions, GTM waterfall enrichment, pricing structures, and competitive metrics for early-stage builders.",
+  "agents": [
+    "founder-advisor",
+    "growth-strategist",
+    "market-research-analyst",
+    "ai-product-builder",
+    "freelance-career-advisor"
+  ],
+  "workflows": [
+    "linkedin-growth",
+    "remote-job-hunt",
+    "offer-comparison"
+  ],
+  "career_paths": [
+    "startup-founder",
+    "product-manager",
+    "ai-engineer"
+  ],
+  "skills": [
+    "MVP Scoping",
+    "Competitor Audit",
+    "Growth Marketing",
+    "Unit Economics",
+    "GTM Waterfall Sourcing"
+  ],
+  "companies": [
+    "OpenAI",
+    "Stripe",
+    "Databricks"
+  ]
+}
 
 
