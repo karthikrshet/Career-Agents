@@ -1177,6 +1177,13 @@ async function main() {
       break;
     }
 
+    case 'pipeline':
+    case 'job-pipeline': {
+      const { runCareerPipelineCLI } = await import('../packages/pipeline/cli.js');
+      await runCareerPipelineCLI(args[1], args.slice(2));
+      break;
+    }
+
     case 'recommend':
       handleRecommendation();
       break;
