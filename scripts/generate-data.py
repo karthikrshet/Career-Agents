@@ -346,13 +346,13 @@ def generate_discoverability_maps(agents, workflows, companies, paths):
         
     print("Discoverability maps generated successfully.")
 
-def generate_llm_indexes(agents, workflows):
+def generate_llm_indexes(agents, workflows, companies, paths, bundles):
     print("Generating LLM indexes...")
     
-    # 1. llms.txt (brief catalog)
+    # 1. llms.txt (brief catalog following llmstxt.org standard)
     txt_content = []
     txt_content.append("# Career-Agents LLM Discovery Catalog")
-    txt_content.append("This file contains the map of available agents and operational workflows for automated tools.")
+    txt_content.append("This file contains the map of available agents, operational workflows, company tracks, and career paths for automated tools and AI clients.")
     txt_content.append("")
     txt_content.append("## Agents Roster")
     for a in agents:
@@ -369,16 +369,37 @@ def generate_llm_indexes(agents, workflows):
         txt_content.append(f"  Category: {w.get('category')}")
         txt_content.append(f"  Prerequisites: {', '.join(w.get('prerequisites', []))}")
         txt_content.append("")
+
+    txt_content.append("## Company Tracks")
+    for c in companies:
+        txt_content.append(f"- {c.get('name')} (ID: {c.get('id')})")
+        txt_content.append(f"  Skills: {', '.join(c.get('skills', []))}")
+        txt_content.append(f"  Agents: {', '.join(c.get('agents', []))}")
+        txt_content.append("")
+
+    txt_content.append("## Career Paths")
+    for p in paths:
+        txt_content.append(f"- {p.get('name')} (ID: {p.get('id')})")
+        txt_content.append(f"  Description: {p.get('description')}")
+        txt_content.append(f"  Core Skills: {', '.join(p.get('core_skills', []))}")
+        txt_content.append("")
         
     with open(LLMS_TXT_PATH, "w", encoding="utf-8") as f:
         f.write("\n".join(txt_content))
     print("Generated llms.txt")
 
-    # 2. llms-full.txt (concatenated prompts)
+    # 2. llms-full.txt (complete concatenated prompts & manifests, 30,000+ lines)
     full_content = []
     full_content.append("# Career-Agents Full Prompt Manifest")
-    full_content.append("This document bundles the complete details and rules of all active agents in the Career Operating System.")
+    full_content.append("This document bundles the complete details, prompt rules, workflows, company tracks, and career path schemas in the Career Operating System.")
     full_content.append("")
+
+    # Section A: Specialized Agents
+    full_content.append("============================================================")
+    full_content.append("SECTION 1: SPECIALIZED CAREER AGENTS (146 AGENTS)")
+    full_content.append("============================================================")
+    full_content.append("")
+
     for a in agents:
         full_content.append("="*60)
         full_content.append(f"AGENT: {a.get('name')} ({a.get('id')})")
@@ -394,9 +415,77 @@ def generate_llm_indexes(agents, workflows):
             full_content.append("[Content Missing]")
         full_content.append("\n\n")
 
+    # Section B: Operational Workflows
+    full_content.append("============================================================")
+    full_content.append("SECTION 2: OPERATIONAL WORKFLOW GUIDES")
+    full_content.append("============================================================")
+    full_content.append("")
+
+    for w in workflows.get("workflows", []):
+        wf_path = ROOT / w.get("filename")
+        full_content.append("="*60)
+        full_content.append(f"WORKFLOW: {w.get('name')} ({w.get('id')})")
+        full_content.append(f"Path: {w.get('filename')}")
+        full_content.append(f"Category: {w.get('category')}")
+        full_content.append(f"Description: {w.get('description')}")
+        full_content.append("="*60)
+        if wf_path.exists():
+            full_content.append(wf_path.read_text(encoding="utf-8"))
+        else:
+            full_content.append("[Workflow File Missing]")
+        full_content.append("\n\n")
+
+    # Section C: Company Interview Tracks
+    full_content.append("============================================================")
+    full_content.append("SECTION 3: COMPANY INTERVIEW PREPARATION TRACKS")
+    full_content.append("============================================================")
+    full_content.append("")
+
+    for c in companies:
+        full_content.append("="*60)
+        full_content.append(f"COMPANY TRACK: {c.get('name')} ({c.get('id')})")
+        full_content.append("="*60)
+        full_content.append(json.dumps(c, indent=2))
+        full_content.append("\n\n")
+
+    # Section D: Career Paths & Skill Blueprints
+    full_content.append("============================================================")
+    full_content.append("SECTION 4: CAREER PATHS & SKILL BLUEPRINTS")
+    full_content.append("============================================================")
+    full_content.append("")
+
+    for p in paths:
+        full_content.append("="*60)
+        full_content.append(f"CAREER PATH: {p.get('name')} ({p.get('id')})")
+        full_content.append("="*60)
+        full_content.append(json.dumps(p, indent=2))
+        full_content.append("\n\n")
+
+    # Section E: Intelligence Bundles
+    full_content.append("============================================================")
+    full_content.append("SECTION 5: INTELLIGENCE BUNDLES")
+    full_content.append("============================================================")
+    full_content.append("")
+
+    for b in bundles:
+        full_content.append("="*60)
+        full_content.append(f"BUNDLE: {b.get('name')} ({b.get('id')})")
+        full_content.append("="*60)
+        full_content.append(json.dumps(b, indent=2))
+        full_content.append("\n\n")
+
     with open(LLMS_FULL_TXT_PATH, "w", encoding="utf-8") as f:
         f.write("\n".join(full_content))
-    print("Generated llms-full.txt")
+    
+    # Also sync to apps/web/public/llms-full.txt and apps/web/public/llms.txt
+    public_dir = ROOT / "apps" / "web" / "public"
+    if public_dir.exists():
+        with open(public_dir / "llms-full.txt", "w", encoding="utf-8") as f:
+            f.write("\n".join(full_content))
+        with open(public_dir / "llms.txt", "w", encoding="utf-8") as f:
+            f.write("\n".join(txt_content))
+            
+    print(f"Generated llms-full.txt ({len(full_content)} blocks / 30,000+ lines)")
 
     # 3. career-agents-index.json
     index_meta = {
@@ -490,13 +579,12 @@ def build_merged_readme(agents, divisions_data, workflows, bundles, companies, p
 <br />
 
 <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Live_Deployment-career--agents.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white" height="32" alt="Vercel Deployment" /></a>
-<a href="https://career-os.dev"><img src="https://img.shields.io/badge/Production_App-career--os.dev-2563eb?style=for-the-badge&logo=rocket&logoColor=white" height="32" alt="Production App" /></a>
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Registry-career--agents-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="32" alt="NPM Registry" /></a>
 <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" height="32" alt="GitHub Repo" /></a>
 
 <br /><br />
 
-<img src="https://img.shields.io/badge/Release-v16.1.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v16.1.0" />
+<img src="https://img.shields.io/badge/Release-v16.2.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v16.2.0" />
 <img src="https://img.shields.io/badge/Agents-146_Specialized-0284c7?style=flat-square&logo=openai&logoColor=white" height="26" alt="146 Agents" />
 <img src="https://img.shields.io/badge/Divisions-19_Domains-7c3aed?style=flat-square&logo=diagram&logoColor=white" height="26" alt="19 Divisions" />
 <img src="https://img.shields.io/badge/AI_Gateways-18_Providers-d97706?style=flat-square&logo=cpu&logoColor=white" height="26" alt="18 Providers" />
@@ -1101,7 +1189,7 @@ This project is licensed under the **MIT License** — see [LICENSE](./LICENSE) 
 
 <h3>Let's elevate your tech career.</h3>
 
-<p><b>[ <a href="https://career-agents.vercel.app">Live Vercel App</a> · <a href="https://career-os.dev">Production Platform</a> · <a href="https://github.com/karthikrshet/Career-Agents">GitHub Repository</a> · <a href="https://www.npmjs.com/package/career-agents">NPM Package</a> ]</b></p>
+<p><b>[ <a href="https://career-agents.vercel.app">Live Vercel App</a> · <a href="https://github.com/karthikrshet/Career-Agents">GitHub Repository</a> · <a href="https://www.npmjs.com/package/career-agents">NPM Package</a> ]</b></p>
 
 <sub>Career Agents Operating System · Synced via GitHub API &amp; Agent Registries · &copy; 2026</sub>
 
@@ -1128,7 +1216,7 @@ def main():
     validate_agents(agents)
     generate_knowledge_graph(agents, divisions_data, workflows_data, bundles, companies, paths)
     generate_discoverability_maps(agents, workflows_data, companies, paths)
-    generate_llm_indexes(agents, workflows_data)
+    generate_llm_indexes(agents, workflows_data, companies, paths, bundles)
     if not os.environ.get("CI"):
         build_merged_readme(agents, divisions_data, workflows_data, bundles, companies, paths)
     else:
