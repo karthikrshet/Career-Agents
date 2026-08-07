@@ -166,10 +166,11 @@ export const useStore = create<CareerAgentsStore>()(
           get().updateResumeScore(0);
         } else {
           get().updateResumeScore(analysis.overallScore);
+          const roleLabel = analysis.targetRoleName || "General ATS Audit";
           get().addActivity({
             type: "resume",
             title: "Resume Analyzed",
-            description: `${analysis.fileName || "Resume"} scored ${analysis.overallScore}%`,
+            description: `${analysis.fileName || "Resume"} scored ${analysis.overallScore}% for ${roleLabel}`,
             score: analysis.overallScore,
           });
         }
