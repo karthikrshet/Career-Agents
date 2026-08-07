@@ -228,6 +228,94 @@ export async function GET(req: NextRequest) {
     console.error("RemoteOK fetch error:", err);
   }
 
+  // 4. Greenhouse Public Boards (Cloudflare, Figma, Datadog)
+  const greenhouseCompanies = ["cloudflare", "figma", "datadog"];
+  for (const c of greenhouseCompanies) {
+    try {
+      const res = await secureFetch(`https://boards-api.greenhouse.io/v1/boards/${c}/jobs`, {
+        allowedProvider: "custom"
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && Array.isArray(data.jobs)) {
+          data.slice(0, 10).forEach((item: any) => {
+            const title = item.title || "";
+            const loc = item.location?.name || "Remote / Worldwide";
+            const country = detectCountry(loc);
+            const exp = detectExpLevel(title, item.content || "");
+            const dom = detectDomain(title, item.content || "");
+            const companyName = c.charAt(0).toUpperCase() + c.slice(1);
+            rawJobs.push({
+              id: `gh-${c}-${item.id}`,
+              title,
+              company: companyName,
+              location: loc,
+              countryCode: country.code,
+              countryFlag: country.flag,
+              domainCategory: dom,
+              type: loc.toLowerCase().includes("remote") ? "Remote" : "Hybrid",
+              salary: title.toLowerCase().includes("senior") ? "$170k–$240k" : "$120k–$180k",
+              experience: exp.label,
+              experienceLevel: exp.level,
+              tech: extractTech(title),
+              source: `${companyName} Careers`,
+              sourceUrl: item.absolute_url || `https://boards.greenhouse.io/${c}`,
+              postedAt: "2d ago",
+              visaSponsorship: true,
+              description: `Join ${companyName} for ${title}. Location: ${loc}.`,
+            });
+          });
+        }
+      }
+    } catch (err) {
+      console.error(`Greenhouse fetch error for ${c}:`, err);
+    }
+  }
+
+  // 5. Lever Public Boards (Vercel, Linear)
+  const leverCompanies = ["vercel", "linear"];
+  for (const l of leverCompanies) {
+    try {
+      const leverRes = await secureFetch(`https://api.lever.co/v0/postings/${l}?mode=json`, {
+        allowedProvider: "custom"
+      });
+      if (leverRes.ok) {
+        const data = await leverRes.json();
+        if (Array.isArray(data)) {
+          data.slice(0, 8).forEach((item: any) => {
+            const title = item.title || "";
+            const loc = item.categories?.location || "Worldwide Remote";
+            const country = detectCountry(loc);
+            const exp = detectExpLevel(title, item.description || "");
+            const dom = detectDomain(title, item.description || "");
+            const companyName = l.charAt(0).toUpperCase() + l.slice(1);
+            rawJobs.push({
+              id: `lev-${l}-${item.id}`,
+              title,
+              company: companyName,
+              location: loc,
+              countryCode: country.code,
+              countryFlag: country.flag,
+              domainCategory: dom,
+              type: "Remote",
+              salary: title.toLowerCase().includes("senior") ? "$180k–$250k" : "$130k–$190k",
+              experience: exp.label,
+              experienceLevel: exp.level,
+              tech: extractTech(title + " " + (item.description || "")),
+              source: `${companyName} Careers`,
+              sourceUrl: item.hostedUrl || `https://jobs.lever.co/${l}`,
+              postedAt: item.createdAt ? timeAgo(new Date(item.createdAt)) : "3d ago",
+              visaSponsorship: true,
+              description: item.description?.replace(/<[^>]*>?/gm, "").slice(0, 300),
+            });
+          });
+        }
+      }
+    } catch (err) {
+      console.error(`Lever fetch error for ${l}:`, err);
+    }
+  }
+
   // Filter rawJobs according to requested params
   let filtered = rawJobs.filter(job => {
     if (queryParam) {
@@ -239,10 +327,27 @@ export async function GET(req: NextRequest) {
     }
 
     if (countryParam !== "all") {
+      const loc = job.location.toLowerCase();
+      const code = job.countryCode?.toLowerCase() || "";
+      const isRemote = job.type === "Remote" || loc.includes("remote") || loc.includes("worldwide") || loc.includes("anywhere") || loc.includes("global");
+
       if (countryParam === "remote") {
-        if (job.type !== "Remote" && !job.location.toLowerCase().includes("remote")) return false;
-      } else if (job.countryCode !== countryParam) {
-        return false;
+        if (!isRemote) return false;
+      } else if (countryParam === "in") {
+        const isIn = code === "in" || loc.includes("india") || loc.includes("bengaluru") || loc.includes("bangalore") || loc.includes("delhi") || loc.includes("mumbai") || loc.includes("hyderabad") || loc.includes("pune") || loc.includes("gurgaon") || isRemote;
+        if (!isIn) return false;
+      } else if (countryParam === "us") {
+        const isUs = code === "us" || loc.includes("us") || loc.includes("usa") || loc.includes("united states") || loc.includes("ca") || loc.includes("ny") || loc.includes("tx") || isRemote;
+        if (!isUs) return false;
+      } else if (countryParam === "uk") {
+        const isUk = code === "uk" || loc.includes("uk") || loc.includes("united kingdom") || loc.includes("london") || loc.includes("manchester") || isRemote;
+        if (!isUk) return false;
+      } else if (countryParam === "ca") {
+        const isCa = code === "ca" || loc.includes("canada") || loc.includes("toronto") || loc.includes("vancouver") || isRemote;
+        if (!isCa) return false;
+      } else if (countryParam === "de") {
+        const isDe = code === "de" || loc.includes("germany") || loc.includes("berlin") || loc.includes("munich") || loc.includes("europe") || loc.includes("eu") || isRemote;
+        if (!isDe) return false;
       }
     }
 

@@ -74,6 +74,17 @@ const EXPERIENCE_LEVELS = [
   { id: "lead", label: "8+ years (Staff / Lead)" },
 ];
 
+function getFlagEmoji(flagOrLoc?: string): string {
+  if (!flagOrLoc) return "🌐";
+  const s = flagOrLoc.toLowerCase().trim();
+  if (s.includes("in") || s.includes("india") || s.includes("bengaluru") || s.includes("delhi") || s.includes("mumbai") || s.includes("hyderabad") || s === "🇮🇳") return "🇮🇳";
+  if (s.includes("us") || s.includes("united states") || s.includes("california") || s.includes("san francisco") || s.includes("ny") || s === "🇺🇸") return "🇺🇸";
+  if (s.includes("uk") || s.includes("united kingdom") || s.includes("london") || s.includes("manchester") || s === "🇬🇧") return "🇬🇧";
+  if (s.includes("ca") || s.includes("canada") || s.includes("toronto") || s.includes("vancouver") || s === "🇨🇦") return "🇨🇦";
+  if (s.includes("de") || s.includes("germany") || s.includes("berlin") || s.includes("europe") || s.includes("eu") || s === "🇩🇪") return "🇩🇪";
+  return "🌐";
+}
+
 function atsColor(score?: number) {
   if (!score) return "text-muted-foreground";
   if (score >= 80) return "text-emerald-400";
@@ -253,31 +264,31 @@ export default function JobsPage() {
   const bookmarkedJobs = jobsList.filter(j => bookmarks.has(j.id));
 
   return (
-    <div className="flex h-full flex-col overflow-hidden">
+    <div className="flex h-full flex-col overflow-hidden font-sans">
       <Topbar title="Live Global Job Search & Online Scraper" subtitle={`${jobsList.length} live opportunities matched with ATS score`} />
 
       <div className="flex-1 overflow-y-auto p-6 space-y-6">
         {/* Search & Global Filter Bar */}
-        <div className="space-y-3 bg-card/40 border border-border/60 rounded-2xl p-4 glass">
+        <div className="space-y-3 bg-slate-900/60 border border-slate-800 rounded-2xl p-4 shadow-lg backdrop-blur-md">
           <div className="flex gap-3">
             <div className="relative flex-1">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
               <Input
                 placeholder="Search live jobs, companies, skills (e.g. React, Python, Remote, India)..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && fetchLiveJobs()}
-                className="pl-9 h-11 bg-background/60 border-border/60"
+                className="pl-9 h-11 bg-slate-950/80 border-slate-800 text-slate-100 placeholder:text-slate-500 font-sans focus:border-primary"
               />
             </div>
-            <Button onClick={fetchLiveJobs} disabled={loadingJobs} className="h-11 px-5 gap-2 font-semibold">
+            <Button onClick={fetchLiveJobs} disabled={loadingJobs} className="h-11 px-5 gap-2 font-semibold shadow-md">
               {loadingJobs ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
               Scrape Live Jobs
             </Button>
             <Button
               variant="outline"
               onClick={() => setShowFilters(v => !v)}
-              className={cn("h-11 gap-2", showFilters && "border-primary text-primary")}
+              className={cn("h-11 gap-2 border-slate-800 bg-slate-950/50 text-slate-200 hover:bg-slate-800 font-medium", showFilters && "border-primary text-primary")}
             >
               <Filter className="w-4 h-4" />
               Filters
@@ -291,15 +302,15 @@ export default function JobsPage() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-2 border-t border-border/40"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-3 border-t border-slate-800/80"
               >
                 {/* Country / Location Selector */}
                 <div>
-                  <label className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold block mb-1">Country / Location</label>
+                  <label className="text-[10px] text-slate-400 uppercase tracking-wider font-bold block mb-1">Country / Location</label>
                   <select
                     value={countryFilter}
                     onChange={e => setCountryFilter(e.target.value)}
-                    className="w-full bg-background border border-border/50 rounded-lg px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs font-sans text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer shadow-sm [&>option]:bg-slate-900 [&>option]:text-slate-100 [&>option]:py-1.5"
                   >
                     {COUNTRIES.map(c => <option key={c.id} value={c.id}>{c.flag} {c.label}</option>)}
                   </select>
@@ -307,11 +318,11 @@ export default function JobsPage() {
 
                 {/* Domain / Specialization Selector */}
                 <div>
-                  <label className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold block mb-1">Role Specialization</label>
+                  <label className="text-[10px] text-slate-400 uppercase tracking-wider font-bold block mb-1">Role Specialization</label>
                   <select
                     value={domainFilter}
                     onChange={e => setDomainFilter(e.target.value)}
-                    className="w-full bg-background border border-border/50 rounded-lg px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs font-sans text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer shadow-sm [&>option]:bg-slate-900 [&>option]:text-slate-100 [&>option]:py-1.5"
                   >
                     {DOMAINS.map(d => <option key={d.id} value={d.id}>{d.label}</option>)}
                   </select>
@@ -319,11 +330,11 @@ export default function JobsPage() {
 
                 {/* Experience Level Selector */}
                 <div>
-                  <label className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold block mb-1">Experience Level</label>
+                  <label className="text-[10px] text-slate-400 uppercase tracking-wider font-bold block mb-1">Experience Level</label>
                   <select
                     value={expFilter}
                     onChange={e => setExpFilter(e.target.value)}
-                    className="w-full bg-background border border-border/50 rounded-lg px-2.5 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs font-sans text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer shadow-sm [&>option]:bg-slate-900 [&>option]:text-slate-100 [&>option]:py-1.5"
                   >
                     {EXPERIENCE_LEVELS.map(e => <option key={e.id} value={e.id}>{e.label}</option>)}
                   </select>
@@ -331,24 +342,24 @@ export default function JobsPage() {
 
                 {/* Work Type & Visa */}
                 <div>
-                  <label className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold block mb-1">Work Setup & Visa</label>
+                  <label className="text-[10px] text-slate-400 uppercase tracking-wider font-bold block mb-1">Work Setup & Visa</label>
                   <div className="flex items-center gap-2 flex-wrap">
                     {(["All", "Remote", "Hybrid", "Onsite"] as const).map(t => (
                       <button
                         key={t}
                         onClick={() => setTypeFilter(t)}
-                        className={cn("px-2 py-1 rounded text-[10px] font-semibold border transition-all",
-                          typeFilter === t ? "bg-primary text-primary-foreground border-primary" : "border-border/50 text-muted-foreground hover:border-border hover:text-foreground")}
+                        className={cn("px-2.5 py-1 rounded-lg text-[10px] font-bold border transition-all",
+                          typeFilter === t ? "bg-primary text-primary-foreground border-primary shadow-sm" : "border-slate-800 bg-slate-950/60 text-slate-400 hover:border-slate-700 hover:text-slate-200")}
                       >
                         {t}
                       </button>
                     ))}
-                    <label className="flex items-center gap-1 text-[11px] text-foreground cursor-pointer ml-auto">
+                    <label className="flex items-center gap-1.5 text-[11px] text-slate-300 font-medium cursor-pointer ml-auto">
                       <input
                         type="checkbox"
                         checked={visaFilter}
                         onChange={e => setVisaFilter(e.target.checked)}
-                        className="w-3 h-3 rounded accent-primary"
+                        className="w-3.5 h-3.5 rounded accent-primary bg-slate-900 border-slate-700"
                       />
                       Visa Only
                     </label>
@@ -363,20 +374,20 @@ export default function JobsPage() {
           {/* Job Listings Column */}
           <div className="lg:col-span-2 space-y-3">
             <div className="flex items-center justify-between">
-              <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">
+              <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
                 {jobsList.length} Live Positions Found
               </p>
               {resumeAnalysis && (
-                <Badge variant="outline" className="text-[10px] border-emerald-500/30 text-emerald-400">
+                <Badge variant="outline" className="text-[10px] border-emerald-500/40 text-emerald-400 bg-emerald-500/5">
                   ATS Match active against: {resumeAnalysis.targetRoleName || "Target Role"}
                 </Badge>
               )}
             </div>
 
             {loadingJobs ? (
-              <div className="flex flex-col items-center justify-center py-20 gap-3 bg-card/20 rounded-2xl border border-border/40">
+              <div className="flex flex-col items-center justify-center py-20 gap-3 bg-slate-900/40 rounded-2xl border border-slate-800">
                 <Loader2 className="w-8 h-8 animate-spin text-primary" />
-                <p className="text-xs text-muted-foreground font-medium">Scraping live job opportunities from RemoteOK, Arbeitnow, Remotive & Greenhouse...</p>
+                <p className="text-xs text-slate-400 font-medium">Scraping live job opportunities from RemoteOK, Arbeitnow, Remotive, Greenhouse & Lever...</p>
               </div>
             ) : (
               <>
@@ -384,6 +395,7 @@ export default function JobsPage() {
                   const candidateKeywords = resumeAnalysis?.detectedKeywords || [];
                   const matchedTech = job.tech.filter(t => candidateKeywords.some(c => c.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(c.toLowerCase())));
                   const missingTech = job.tech.filter(t => !matchedTech.includes(t));
+                  const flag = getFlagEmoji(job.countryFlag || job.countryCode || job.location);
 
                   return (
                     <motion.div
@@ -394,8 +406,8 @@ export default function JobsPage() {
                     >
                       <Card
                         className={cn(
-                          "border-border/50 hover:border-primary/40 transition-all cursor-pointer group glass",
-                          selectedJob?.id === job.id && "border-primary/60 bg-primary/5"
+                          "border-slate-800/80 bg-slate-900/50 hover:border-primary/50 transition-all cursor-pointer group shadow-sm",
+                          selectedJob?.id === job.id && "border-primary/70 bg-primary/10 shadow-primary/5"
                         )}
                         onClick={() => { setSelectedJob(job); setGenerated(null); }}
                       >
@@ -403,22 +415,22 @@ export default function JobsPage() {
                           <div className="flex items-start justify-between gap-3">
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 flex-wrap mb-1">
-                                <span className="text-base">{job.countryFlag || "🌐"}</span>
-                                <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors truncate">
+                                <span className="text-base">{flag}</span>
+                                <h3 className="font-bold text-sm text-slate-100 group-hover:text-primary transition-colors truncate">
                                   {job.title}
                                 </h3>
                                 {job.atsMatch && (
-                                  <span className={cn("text-[11px] font-bold px-2 py-0.5 rounded-full bg-secondary/40 border border-border/30", atsColor(job.atsMatch))}>
+                                  <span className={cn("text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-950 border border-slate-800", atsColor(job.atsMatch))}>
                                     {job.atsMatch}% ATS Match
                                   </span>
                                 )}
                               </div>
-                              <div className="flex items-center gap-3 text-xs text-muted-foreground flex-wrap">
-                                <span className="flex items-center gap-1 font-medium text-foreground/90"><Building2 className="w-3 h-3 text-primary" /> {job.company}</span>
+                              <div className="flex items-center gap-3 text-xs text-slate-400 flex-wrap">
+                                <span className="flex items-center gap-1 font-semibold text-slate-200"><Building2 className="w-3 h-3 text-primary" /> {job.company}</span>
                                 <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-emerald-400" /> {job.location}</span>
                                 {job.salary && <span className="flex items-center gap-1"><DollarSign className="w-3 h-3 text-amber-400" /> {job.salary}</span>}
                                 <span className="flex items-center gap-1"><Briefcase className="w-3 h-3 text-sky-400" /> {job.experience}</span>
-                                <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {job.postedAt}</span>
+                                <span className="flex items-center gap-1"><Clock className="w-3 h-3 text-slate-500" /> {job.postedAt}</span>
                               </div>
                             </div>
 
@@ -427,8 +439,8 @@ export default function JobsPage() {
                                 onClick={e => { e.stopPropagation(); toggleBookmark(job.id); }}
                                 className={cn("p-1.5 rounded-lg border transition-all",
                                   bookmarks.has(job.id)
-                                    ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
-                                    : "text-muted-foreground border-border/40 hover:text-amber-400 hover:border-amber-500/30"
+                                    ? "text-amber-400 border-amber-500/40 bg-amber-500/10"
+                                    : "text-slate-400 border-slate-800 hover:text-amber-400 hover:border-amber-500/30"
                                 )}
                                 title="Bookmark Job"
                               >
@@ -439,7 +451,7 @@ export default function JobsPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={e => e.stopPropagation()}
-                                className="p-1.5 rounded-lg border border-border/40 text-muted-foreground hover:text-foreground hover:border-border transition-all"
+                                className="p-1.5 rounded-lg border border-slate-800 text-slate-400 hover:text-slate-100 hover:border-slate-700 transition-all"
                                 title="Open Original Job Link"
                               >
                                 <ExternalLink className="w-4 h-4" />
@@ -449,23 +461,23 @@ export default function JobsPage() {
 
                           {/* Tech keywords match badges */}
                           <div className="flex flex-wrap items-center gap-1.5 text-[10px]">
-                            <Badge variant="outline" className={cn("py-0 px-1.5 font-semibold",
-                              job.type === "Remote" ? "border-emerald-500/40 text-emerald-400 bg-emerald-500/5" :
-                                job.type === "Hybrid" ? "border-sky-500/40 text-sky-400 bg-sky-500/5" : "border-orange-500/40 text-orange-400 bg-orange-500/5"
+                            <Badge variant="outline" className={cn("py-0 px-1.5 font-bold",
+                              job.type === "Remote" ? "border-emerald-500/40 text-emerald-400 bg-emerald-500/10" :
+                                job.type === "Hybrid" ? "border-sky-500/40 text-sky-400 bg-sky-500/10" : "border-orange-500/40 text-orange-400 bg-orange-500/10"
                             )}>
                               {job.type}
                             </Badge>
                             {job.visaSponsorship && (
-                              <Badge variant="outline" className="py-0 px-1.5 border-violet-500/40 text-violet-400 bg-violet-500/5">Visa Sponsored ✓</Badge>
+                              <Badge variant="outline" className="py-0 px-1.5 border-violet-500/40 text-violet-400 bg-violet-500/10 font-bold">Visa Sponsored ✓</Badge>
                             )}
 
                             {matchedTech.map(t => (
-                              <Badge key={t} variant="outline" className="py-0 px-1.5 border-emerald-500/30 text-emerald-400 bg-emerald-500/5">
+                              <Badge key={t} variant="outline" className="py-0 px-1.5 border-emerald-500/40 text-emerald-300 bg-emerald-500/5 font-semibold">
                                 ✓ {t}
                               </Badge>
                             ))}
                             {missingTech.map(t => (
-                              <Badge key={t} variant="outline" className="py-0 px-1.5 border-amber-500/30 text-amber-400 bg-amber-500/5 opacity-80">
+                              <Badge key={t} variant="outline" className="py-0 px-1.5 border-amber-500/30 text-amber-300 bg-amber-500/5 font-semibold">
                                 + {t}
                               </Badge>
                             ))}
@@ -476,10 +488,11 @@ export default function JobsPage() {
                   );
                 })}
                 {jobsList.length === 0 && (
-                  <div className="text-center py-20 bg-card/20 rounded-2xl border border-border/40 text-muted-foreground space-y-3">
-                    <Search className="w-10 h-10 mx-auto opacity-30 text-primary" />
-                    <p className="text-sm font-medium">No jobs matching your exact country or domain filter.</p>
-                    <Button variant="outline" size="sm" onClick={() => { setQuery(""); setCountryFilter("all"); setDomainFilter("all"); setExpFilter("all"); setTypeFilter("All"); }}>
+                  <div className="text-center py-20 bg-slate-900/30 rounded-2xl border border-slate-800 text-slate-400 space-y-3">
+                    <Search className="w-10 h-10 mx-auto opacity-40 text-primary" />
+                    <p className="text-sm font-semibold text-slate-200">No jobs matching your query or selected filters.</p>
+                    <p className="text-xs text-slate-400 max-w-sm mx-auto">Try selecting "Global / All Locations" or clicking "Reset All Filters" to view all active remote opportunities.</p>
+                    <Button variant="outline" size="sm" onClick={() => { setQuery(""); setCountryFilter("all"); setDomainFilter("all"); setExpFilter("all"); setTypeFilter("All"); }} className="border-slate-700 bg-slate-900 text-slate-200">
                       Reset All Filters
                     </Button>
                   </div>
@@ -493,20 +506,20 @@ export default function JobsPage() {
             {selectedJob ? (
               <AnimatePresence mode="wait">
                 <motion.div key={selectedJob.id} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }}>
-                  <Card className="border-border/60 sticky top-4 glass">
+                  <Card className="border-slate-800 bg-slate-900/80 sticky top-4 shadow-xl backdrop-blur-md">
                     <CardContent className="p-5 space-y-4">
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xl">{selectedJob.countryFlag || "🌐"}</span>
-                          <h3 className="font-bold text-foreground leading-tight">{selectedJob.title}</h3>
+                          <span className="text-xl">{getFlagEmoji(selectedJob.countryFlag || selectedJob.countryCode || selectedJob.location)}</span>
+                          <h3 className="font-extrabold text-base text-slate-100 leading-tight">{selectedJob.title}</h3>
                         </div>
-                        <p className="text-xs text-muted-foreground">{selectedJob.company} · {selectedJob.location}</p>
-                        <p className="text-xs font-semibold text-primary mt-1">{selectedJob.salary || "Competitive Salary"} · {selectedJob.experience}</p>
+                        <p className="text-xs text-slate-400 font-medium">{selectedJob.company} · {selectedJob.location}</p>
+                        <p className="text-xs font-bold text-primary mt-1">{selectedJob.salary || "Competitive Salary"} · {selectedJob.experience}</p>
                       </div>
 
                       {/* Job Description preview if available */}
                       {selectedJob.description && (
-                        <div className="bg-secondary/30 border border-border/30 rounded-lg p-3 text-[11px] text-muted-foreground leading-relaxed line-clamp-4">
+                        <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-[11px] text-slate-300 leading-relaxed line-clamp-5">
                           {selectedJob.description}
                         </div>
                       )}
@@ -516,7 +529,7 @@ export default function JobsPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="text-xs h-9 gap-1.5"
+                          className="text-xs h-9 gap-1.5 border-slate-800 bg-slate-950/60 text-slate-200 hover:bg-slate-800 font-semibold"
                           onClick={() => handleSaveToTracker(selectedJob)}
                         >
                           <BookmarkCheck className="w-3.5 h-3.5 text-amber-400" />
@@ -525,7 +538,7 @@ export default function JobsPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="text-xs h-9 gap-1.5"
+                          className="text-xs h-9 gap-1.5 border-slate-800 bg-slate-950/60 text-slate-200 hover:bg-slate-800 font-semibold"
                           onClick={() => copyMissingKeywords(selectedJob)}
                         >
                           <Zap className="w-3.5 h-3.5 text-sky-400" />
@@ -533,8 +546,8 @@ export default function JobsPage() {
                         </Button>
                       </div>
 
-                      <div className="space-y-1.5 pt-2 border-t border-border/30">
-                        <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">AI Application Copilot</p>
+                      <div className="space-y-1.5 pt-2 border-t border-slate-800">
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">AI Application Copilot</p>
                         {[
                           { id: "cover-letter", label: "Tailored Cover Letter", icon: "📄" },
                           { id: "referral", label: "LinkedIn Referral Request", icon: "🤝" },
@@ -544,7 +557,7 @@ export default function JobsPage() {
                             key={action.id}
                             variant="outline"
                             size="sm"
-                            className="w-full justify-start gap-2 text-xs h-9"
+                            className="w-full justify-start gap-2 text-xs h-9 border-slate-800 bg-slate-950/60 text-slate-200 hover:bg-slate-800 font-medium"
                             onClick={() => handleGenerate(selectedJob, action.id as any)}
                             disabled={!!generating}
                           >
@@ -562,7 +575,7 @@ export default function JobsPage() {
                         href={selectedJob.sourceUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-bold hover:opacity-90 transition-opacity"
+                        className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-bold hover:opacity-90 transition-opacity shadow-md"
                       >
                         <ExternalLink className="w-4 h-4" />
                         Apply on {selectedJob.source}
@@ -570,14 +583,14 @@ export default function JobsPage() {
 
                       {/* Generated AI Content */}
                       {generated && (
-                        <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-2 pt-2 border-t border-border/30">
+                        <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-2 pt-2 border-t border-slate-800">
                           <div className="flex items-center justify-between">
-                            <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                               Generated {generated.type === "cover-letter" ? "Cover Letter" : generated.type === "referral" ? "Referral Request" : "Follow-up Email"}
                             </p>
-                            <button onClick={copyGenerated} className="text-[10px] text-primary hover:underline font-semibold">Copy Text</button>
+                            <button onClick={copyGenerated} className="text-[10px] text-primary hover:underline font-bold">Copy Text</button>
                           </div>
-                          <div className="bg-secondary/40 border border-border/50 rounded-lg p-3 text-xs text-foreground leading-relaxed max-h-64 overflow-y-auto whitespace-pre-wrap">
+                          <div className="bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 leading-relaxed max-h-64 overflow-y-auto whitespace-pre-wrap font-sans">
                             {generated.content}
                           </div>
                         </motion.div>
@@ -587,30 +600,30 @@ export default function JobsPage() {
                 </motion.div>
               </AnimatePresence>
             ) : (
-              <Card className="border-border/40">
+              <Card className="border-slate-800 bg-slate-900/40">
                 <CardContent className="p-8 text-center">
-                  <Briefcase className="w-10 h-10 mx-auto mb-3 text-muted-foreground/30" />
-                  <p className="text-sm text-muted-foreground">Select a job to view company details, match ATS keywords, and generate AI cover letters.</p>
+                  <Briefcase className="w-10 h-10 mx-auto mb-3 text-slate-600" />
+                  <p className="text-sm text-slate-400">Select a job to view company details, match ATS keywords, and generate AI cover letters.</p>
                 </CardContent>
               </Card>
             )}
 
             {/* Saved Jobs sidebar */}
             {bookmarkedJobs.length > 0 && (
-              <Card className="border-border/40">
+              <Card className="border-slate-800 bg-slate-900/40">
                 <CardContent className="p-4 space-y-2">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
                     <Star className="w-3 h-3 text-amber-400" /> Bookmarked Jobs ({bookmarkedJobs.length})
                   </p>
                   {bookmarkedJobs.map(j => (
                     <div
                       key={j.id}
                       onClick={() => { setSelectedJob(j); setGenerated(null); }}
-                      className="flex items-center justify-between text-xs cursor-pointer p-2 rounded-lg hover:bg-secondary/40 group"
+                      className="flex items-center justify-between text-xs cursor-pointer p-2 rounded-lg hover:bg-slate-800/60 group"
                     >
                       <div>
-                        <p className="text-foreground font-medium group-hover:text-primary transition-colors truncate max-w-[140px]">{j.title}</p>
-                        <p className="text-muted-foreground text-[10px]">{j.company} · {j.countryFlag}</p>
+                        <p className="text-slate-200 font-medium group-hover:text-primary transition-colors truncate max-w-[140px]">{j.title}</p>
+                        <p className="text-slate-400 text-[10px]">{j.company} · {getFlagEmoji(j.countryFlag || j.countryCode || j.location)}</p>
                       </div>
                       <BookmarkCheck className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                     </div>
