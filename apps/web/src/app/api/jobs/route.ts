@@ -6,23 +6,28 @@ import { authOptions } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
-let jobCache: { data: JobListing[]; timestamp: number } | null = null;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-
 interface JobListing {
   id: string;
   title: string;
   company: string;
   location: string;
+  countryCode: string;
+  countryFlag: string;
+  domainCategory: string;
   type: "Remote" | "Hybrid" | "Onsite";
   salary?: string;
   experience: string;
+  experienceLevel: "Entry" | "Mid" | "Senior" | "Lead";
   tech: string[];
   source: string;
   sourceUrl: string;
   postedAt: string;
   visaSponsorship: boolean;
+  description?: string;
 }
+
+let jobCache: { data: JobListing[]; timestamp: number; key: string } | null = null;
+const CACHE_DURATION = 3 * 60 * 1000; // 3 minutes
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -30,217 +35,237 @@ export async function GET(req: NextRequest) {
   const limitResponse = enforceRequestLimits(req, clientIp, { isUser: !!session?.user });
   if (limitResponse) return limitResponse;
 
+  const searchParams = req.nextUrl.searchParams;
+  const queryParam = (searchParams.get("q") || "").toLowerCase().trim();
+  const countryParam = (searchParams.get("country") || "all").toLowerCase().trim();
+  const domainParam = (searchParams.get("domain") || "all").toLowerCase().trim();
+  const experienceParam = (searchParams.get("experience") || "all").toLowerCase().trim();
+  const typeParam = searchParams.get("type") || "All";
+  const visaParam = searchParams.get("visa") === "true";
+
+  const cacheKey = `${queryParam}-${countryParam}-${domainParam}-${experienceParam}-${typeParam}-${visaParam}`;
   const now = Date.now();
-  if (jobCache && (now - jobCache.timestamp < CACHE_DURATION)) {
+  if (jobCache && jobCache.key === cacheKey && (now - jobCache.timestamp < CACHE_DURATION)) {
     return NextResponse.json(jobCache.data);
   }
 
-  const jobs: JobListing[] = [];
+  const rawJobs: JobListing[] = [];
 
-  // Helper to extract tech tags from text
   const extractTech = (text: string): string[] => {
-    const list = ["TypeScript", "JavaScript", "Python", "React", "Node.js", "Next.js", "Go", "Rust", "C++", "Java", "Ruby", "Docker", "Kubernetes", "AWS", "SQL", "GraphQL"];
+    const list = ["TypeScript", "JavaScript", "Python", "React", "Node.js", "Next.js", "Go", "Rust", "C++", "Java", "Ruby", "Docker", "Kubernetes", "AWS", "SQL", "GraphQL", "PostgreSQL", "MongoDB", "FastAPI", "PyTorch", "TensorFlow", "Tailwind CSS", "Vue.js", "System Design", "Microservices", "REST APIs", "CI/CD", "DevOps"];
     const found = list.filter(t => new RegExp(`\\b${t.replace(/[.+]/g, "\\$&")}\\b`, "i").test(text));
-    return found.length > 0 ? found : ["TypeScript", "React", "Node.js"];
+    return found.length > 0 ? found : ["TypeScript", "React", "Node.js", "System Design"];
   };
 
-  // 1. RemoteOK API
+  const detectDomain = (title: string, desc: string): string => {
+    const combined = `${title} ${desc}`.toLowerCase();
+    if (/ai|ml|machine learning|deep learning|data scientist|nlp|llm|rag|computer vision/i.test(combined)) return "ai-engineer";
+    if (/frontend|ui|react|vue|next\.js|angular|web developer/i.test(combined)) return "frontend-engineer";
+    if (/backend|api|server|golang|node|java|python|distributed systems|microservices/i.test(combined)) return "backend-engineer";
+    if (/full stack|fullstack|web engineer/i.test(combined)) return "fullstack-engineer";
+    if (/devops|cloud|infrastructure|sre|kubernetes|aws|terraform|sysadmin/i.test(combined)) return "cloud-engineer";
+    if (/security|cyber|penetration|soc|infosec/i.test(combined)) return "cybersecurity-engineer";
+    if (/product manager|pm|product owner|technical pm/i.test(combined)) return "product-manager";
+    if (/ux|ui|designer|design system|figma/i.test(combined)) return "ux-designer";
+    return "software-engineer";
+  };
+
+  const detectCountry = (loc: string): { code: string; flag: string } => {
+    const l = loc.toLowerCase();
+    if (l.includes("india") || l.includes("bengaluru") || l.includes("bangalore") || l.includes("delhi") || l.includes("mumbai") || l.includes("hyderabad") || l.includes("pune") || l.includes("gurgaon")) {
+      return { code: "in", flag: "🇮🇳" };
+    }
+    if (l.includes("united kingdom") || l.includes("london") || l.includes("uk") || l.includes("manchester") || l.includes("cambridge")) {
+      return { code: "uk", flag: "🇬🇧" };
+    }
+    if (l.includes("canada") || l.includes("toronto") || l.includes("vancouver") || l.includes("montreal")) {
+      return { code: "ca", flag: "🇨🇦" };
+    }
+    if (l.includes("germany") || l.includes("berlin") || l.includes("munich") || l.includes("hamburg") || l.includes("eu") || l.includes("europe")) {
+      return { code: "de", flag: "🇩🇪" };
+    }
+    if (l.includes("remote") || l.includes("worldwide") || l.includes("global") || l.includes("anywhere")) {
+      return { code: "remote", flag: "🌐" };
+    }
+    return { code: "us", flag: "🇺🇸" };
+  };
+
+  const detectExpLevel = (title: string, desc: string): { label: string; level: "Entry" | "Mid" | "Senior" | "Lead" } => {
+    const combined = `${title} ${desc}`.toLowerCase();
+    if (/junior|entry|intern|graduate|fresher|associate|0-2|1-2/i.test(combined)) {
+      return { label: "0–2 years (Entry)", level: "Entry" };
+    }
+    if (/staff|principal|lead|director|architect|head|vp|8\+/i.test(combined)) {
+      return { label: "8+ years (Staff/Lead)", level: "Lead" };
+    }
+    if (/senior|sr\.|tech lead|5\+/i.test(combined)) {
+      return { label: "5+ years (Senior)", level: "Senior" };
+    }
+    return { label: "2–5 years (Mid)", level: "Mid" };
+  };
+
+  // 1. Remotive Public API (Global Tech & Remote Jobs)
+  try {
+    const category = domainParam.includes("frontend") ? "frontend" : domainParam.includes("backend") ? "backend" : domainParam.includes("data") || domainParam.includes("ai") ? "data" : domainParam.includes("devops") ? "devops" : "software-dev";
+    const remotiveRes = await secureFetch(`https://remotive.com/api/remote-jobs?category=${category}&limit=25`, {
+      allowedProvider: "custom"
+    });
+    if (remotiveRes.ok) {
+      const data = await remotiveRes.json();
+      if (data && Array.isArray(data.jobs)) {
+        data.slice(0, 15).forEach((item: any) => {
+          const loc = item.candidate_required_location || "Worldwide Remote";
+          const country = detectCountry(loc);
+          const exp = detectExpLevel(item.title, item.description || "");
+          const dom = detectDomain(item.title, item.description || "");
+          rawJobs.push({
+            id: `rem-${item.id}`,
+            title: item.title,
+            company: item.company_name || "Tech Startup",
+            location: loc,
+            countryCode: country.code,
+            countryFlag: country.flag,
+            domainCategory: dom,
+            type: "Remote",
+            salary: item.salary || "$110k–$170k",
+            experience: exp.label,
+            experienceLevel: exp.level,
+            tech: item.tags && item.tags.length > 0 ? item.tags.slice(0, 5) : extractTech(item.title + " " + item.description),
+            source: "Remotive",
+            sourceUrl: item.url || "https://remotive.com",
+            postedAt: item.publication_date ? timeAgo(new Date(item.publication_date)) : "1d ago",
+            visaSponsorship: true,
+            description: item.description?.replace(/<[^>]*>?/gm, "").slice(0, 300),
+          });
+        });
+      }
+    }
+  } catch (err) {
+    console.error("Remotive fetch error:", err);
+  }
+
+  // 2. Arbeitnow Live Job API (EU, US, UK & Global Remote Jobs)
+  try {
+    const arbeitRes = await secureFetch("https://www.arbeitnow.com/api/job-board-api", {
+      allowedProvider: "custom"
+    });
+    if (arbeitRes.ok) {
+      const data = await arbeitRes.json();
+      if (data && Array.isArray(data.data)) {
+        data.slice(0, 15).forEach((item: any) => {
+          const loc = item.location || "Europe / Remote";
+          const country = detectCountry(loc);
+          const exp = detectExpLevel(item.title, item.description || "");
+          const dom = detectDomain(item.title, item.description || "");
+          rawJobs.push({
+            id: `arb-${item.slug || Math.random().toString(36).slice(2, 8)}`,
+            title: item.title,
+            company: item.company_name,
+            location: loc,
+            countryCode: country.code,
+            countryFlag: country.flag,
+            domainCategory: dom,
+            type: item.remote ? "Remote" : "Hybrid",
+            salary: exp.level === "Senior" ? "$130k–$190k" : "$90k–$140k",
+            experience: exp.label,
+            experienceLevel: exp.level,
+            tech: item.tags && item.tags.length > 0 ? item.tags.slice(0, 5) : extractTech(item.title + " " + item.description),
+            source: "Arbeitnow",
+            sourceUrl: item.url || "https://www.arbeitnow.com",
+            postedAt: "2d ago",
+            visaSponsorship: item.visa_sponsorship || false,
+            description: item.description?.replace(/<[^>]*>?/gm, "").slice(0, 300),
+          });
+        });
+      }
+    }
+  } catch (err) {
+    console.error("Arbeitnow fetch error:", err);
+  }
+
+  // 3. RemoteOK Live API
   try {
     const remoteOkRes = await secureFetch("https://remoteok.com/api", {
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
       },
-      allowedProvider: "custom" // RemoteOK is a public endpoint, allowed via public IP bounds
+      allowedProvider: "custom"
     });
 
     if (remoteOkRes.ok) {
       const data = await remoteOkRes.json();
       if (Array.isArray(data)) {
-        const listings = data.slice(1);
-        listings.slice(0, 10).forEach((item: any) => {
+        data.slice(1, 15).forEach((item: any) => {
           if (item?.position && item?.company) {
-            jobs.push({
+            const loc = item.location || "Worldwide Remote";
+            const country = detectCountry(loc);
+            const exp = detectExpLevel(item.position, item.description || "");
+            const dom = detectDomain(item.position, item.description || "");
+            rawJobs.push({
               id: `rok-${item.id || Math.random().toString(36).slice(2, 9)}`,
               title: item.position,
               company: item.company,
-              location: item.location || "Remote",
+              location: loc,
+              countryCode: country.code,
+              countryFlag: country.flag,
+              domainCategory: dom,
               type: "Remote",
-              salary: item.salary_min && item.salary_max ? `$${Math.round(item.salary_min / 1000)}k–$${Math.round(item.salary_max / 1000)}k` : "$110k–$160k",
-              experience: "2+ years",
+              salary: item.salary_min && item.salary_max ? `$${Math.round(item.salary_min / 1000)}k–$${Math.round(item.salary_max / 1000)}k` : "$110k–$175k",
+              experience: exp.label,
+              experienceLevel: exp.level,
               tech: item.tags || ["React", "Node.js", "TypeScript"],
               source: "RemoteOK",
               sourceUrl: item.url || "https://remoteok.com",
               postedAt: item.date ? timeAgo(new Date(item.date)) : "1d ago",
-              visaSponsorship: false
+              visaSponsorship: true,
+              description: item.description?.replace(/<[^>]*>?/gm, "").slice(0, 300),
             });
           }
         });
       }
     }
   } catch (err) {
-    console.error("RemoteOK fetch failed:", err);
+    console.error("RemoteOK fetch error:", err);
   }
 
-  // 2. Greenhouse Public Boards (Cloudflare, Figma)
-  const greenhouseCompanies = ["cloudflare", "figma"];
-  for (const c of greenhouseCompanies) {
-    try {
-      const res = await secureFetch(`https://boards-api.greenhouse.io/v1/boards/${c}/jobs`, {
-        allowedProvider: "custom"
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        if (data && Array.isArray(data.jobs)) {
-          data.jobs.slice(0, 8).forEach((item: any) => {
-            const title = item.title;
-            const companyName = c.charAt(0).toUpperCase() + c.slice(1);
-            jobs.push({
-              id: `gh-${c}-${item.id}`,
-              title,
-              company: companyName,
-              location: item.location?.name || "Remote / US",
-              type: item.location?.name?.toLowerCase().includes("remote") ? "Remote" : "Hybrid",
-              salary: title.toLowerCase().includes("senior") ? "$170k–$240k" : "$120k–$180k",
-              experience: title.toLowerCase().includes("senior") ? "5+ years" : "2+ years",
-              tech: extractTech(title),
-              source: `${companyName} Careers`,
-              sourceUrl: item.absolute_url || `https://boards.greenhouse.io/${c}`,
-              postedAt: "2d ago",
-              visaSponsorship: true
-            });
-          });
-        }
-      }
-    } catch (err) {
-      console.error(`Greenhouse fetch for ${c} failed:`, err);
+  // Filter rawJobs according to requested params
+  let filtered = rawJobs.filter(job => {
+    if (queryParam) {
+      const matchQ = job.title.toLowerCase().includes(queryParam) ||
+                     job.company.toLowerCase().includes(queryParam) ||
+                     job.location.toLowerCase().includes(queryParam) ||
+                     job.tech.some(t => t.toLowerCase().includes(queryParam));
+      if (!matchQ) return false;
     }
-  }
 
-  // 3. Lever Public Board (Vercel)
-  try {
-    const leverRes = await secureFetch("https://api.lever.co/v0/postings/vercel?mode=json", {
-      allowedProvider: "custom"
-    });
-
-    if (leverRes.ok) {
-      const data = await leverRes.json();
-      if (Array.isArray(data)) {
-        data.slice(0, 8).forEach((item: any) => {
-          jobs.push({
-            id: `lev-vercel-${item.id}`,
-            title: item.title,
-            company: "Vercel",
-            location: item.categories?.location || "Remote",
-            type: "Remote",
-            salary: item.title.toLowerCase().includes("senior") ? "$180k–$250k" : "$130k–$190k",
-            experience: item.title.toLowerCase().includes("senior") ? "5+ years" : "3+ years",
-            tech: extractTech(item.title + " " + (item.description || "")),
-            source: "Vercel Careers",
-            sourceUrl: item.hostedUrl || "https://jobs.lever.co/vercel",
-            postedAt: item.createdAt ? timeAgo(new Date(item.createdAt)) : "3d ago",
-            visaSponsorship: true
-          });
-        });
+    if (countryParam !== "all") {
+      if (countryParam === "remote") {
+        if (job.type !== "Remote" && !job.location.toLowerCase().includes("remote")) return false;
+      } else if (job.countryCode !== countryParam) {
+        return false;
       }
     }
-  } catch (err) {
-    console.error("Lever Vercel fetch failed:", err);
-  }
 
-  // 4. Hacker News Job Stories
-  try {
-    const hnRes = await secureFetch("https://hacker-news.firebaseio.com/v0/jobstories.json", {
-      allowedProvider: "custom"
-    });
-    if (hnRes.ok) {
-      const storyIds = await hnRes.json();
-      if (Array.isArray(storyIds)) {
-        const topIds = storyIds.slice(0, 5);
-        const detailsPromises = topIds.map(async (id) => {
-          try {
-            const detailRes = await secureFetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, { allowedProvider: "custom" });
-            if (detailRes.ok) {
-              return await detailRes.json();
-            }
-          } catch {}
-          return null;
-        });
-
-        const details = await Promise.all(detailsPromises);
-        details.forEach((item: any) => {
-          if (item && item.title) {
-            const titleText = item.title;
-            let company = "HN Startup";
-            let role = titleText;
-            const parts = titleText.split(" is hiring ");
-            if (parts.length > 1) {
-              company = parts[0];
-              role = parts[1];
-            } else {
-              const parts2 = titleText.split(" hiring ");
-              if (parts2.length > 1) {
-                company = parts2[0];
-                role = parts2[1];
-              }
-            }
-
-            jobs.push({
-              id: `hn-${item.id}`,
-              title: role.slice(0, 80),
-              company: company.slice(0, 50),
-              location: "Remote / Hybrid",
-              type: "Remote",
-              salary: "$130k–$190k",
-              experience: "3+ years",
-              tech: extractTech(role),
-              source: "Hacker News",
-              sourceUrl: `https://news.ycombinator.com/item?id=${item.id}`,
-              postedAt: item.time ? timeAgo(new Date(item.time * 1000)) : "4d ago",
-              visaSponsorship: false
-            });
-          }
-        });
+    if (domainParam !== "all") {
+      if (job.domainCategory !== domainParam && !job.title.toLowerCase().includes(domainParam.replace("-engineer", "").replace("-", " "))) {
+        return false;
       }
     }
-  } catch (err) {
-    console.error("HN Jobs fetch failed:", err);
-  }
 
-  // 5. Rich backup fallback list to guarantee page is populated
-  const fallbackJobs: JobListing[] = [
-    {
-      id: "fb-g1", title: "Senior Software Engineer, Core Systems", company: "Google", location: "Mountain View, CA",
-      type: "Hybrid", salary: "$190k–$290k", experience: "5+ years", tech: ["Go", "Python", "Kubernetes", "C++"],
-      source: "Google Careers", sourceUrl: "https://careers.google.com", postedAt: "2d ago", visaSponsorship: true
-    },
-    {
-      id: "fb-s1", title: "Senior Full Stack Engineer, Payments", company: "Stripe", location: "San Francisco, CA",
-      type: "Remote", salary: "$175k–$245k", experience: "4+ years", tech: ["Ruby", "TypeScript", "React", "Node.js"],
-      source: "Stripe Careers", sourceUrl: "https://stripe.com/jobs", postedAt: "3d ago", visaSponsorship: true
-    },
-    {
-      id: "fb-a1", title: "AI/ML Engineering Specialist", company: "Anthropic", location: "San Francisco, CA",
-      type: "Hybrid", salary: "$220k–$350k", experience: "3+ years", tech: ["Python", "PyTorch", "TypeScript", "AWS"],
-      source: "Anthropic Careers", sourceUrl: "https://anthropic.com/careers", postedAt: "1d ago", visaSponsorship: true
-    },
-    {
-      id: "fb-f1", title: "Frontend Engineer, Design Tools", company: "Figma", location: "San Francisco, CA",
-      type: "Hybrid", salary: "$150k–$210k", experience: "3+ years", tech: ["TypeScript", "React", "WebAssembly", "Rust"],
-      source: "Figma Careers", sourceUrl: "https://figma.com/careers", postedAt: "2d ago", visaSponsorship: false
-    }
-  ];
-
-  // Merge fallbacks if list is too small
-  if (jobs.length < 8) {
-    fallbackJobs.forEach(fb => {
-      if (!jobs.some(j => j.company === fb.company && j.title === fb.title)) {
-        jobs.push(fb);
+    if (experienceParam !== "all") {
+      if (job.experienceLevel.toLowerCase() !== experienceParam) {
+        return false;
       }
-    });
-  }
+    }
 
-  const cleanJobs = jobs.map(j => ({
+    if (typeParam !== "All" && job.type !== typeParam) return false;
+    if (visaParam && !job.visaSponsorship) return false;
+
+    return true;
+  });
+
+  // Sanitize and escape string fields for security
+  const cleanJobs = filtered.map(j => ({
     ...j,
     title: escapeHTML(j.title || ""),
     company: escapeHTML(j.company || ""),
@@ -249,22 +274,20 @@ export async function GET(req: NextRequest) {
     experience: escapeHTML(j.experience || ""),
     tech: (j.tech || []).map(t => escapeHTML(t)),
     source: escapeHTML(j.source || ""),
-    postedAt: escapeHTML(j.postedAt || "")
+    postedAt: escapeHTML(j.postedAt || ""),
+    description: j.description ? escapeHTML(j.description) : undefined,
   }));
 
-  if (cleanJobs.length > 0) {
-    jobCache = { data: cleanJobs, timestamp: now };
-  }
-
+  jobCache = { data: cleanJobs, timestamp: now, key: cacheKey };
   return NextResponse.json(cleanJobs);
 }
 
 function timeAgo(date: Date): string {
   const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
   let interval = seconds / 31536000;
-  if (interval > 1) return Math.floor(interval) + " years ago";
+  if (interval > 1) return Math.floor(interval) + "y ago";
   interval = seconds / 2592000;
-  if (interval > 1) return Math.floor(interval) + " months ago";
+  if (interval > 1) return Math.floor(interval) + "mo ago";
   interval = seconds / 86400;
   if (interval > 1) return Math.floor(interval) + "d ago";
   interval = seconds / 3600;
