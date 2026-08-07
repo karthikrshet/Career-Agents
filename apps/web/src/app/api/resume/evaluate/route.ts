@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
     const limitResponse = enforceRequestLimits(req, clientIp, { isUser: !!session?.user });
     if (limitResponse) return limitResponse;
 
-    const { text, fileName, config } = await req.json();
+    const { text, fileName, config, targetRole = "software-engineer", jobDescription = "", agentId = "ats-resume-reviewer" } = await req.json();
 
     if (!text) {
       return NextResponse.json({ success: false, error: "No resume text provided" }, { status: 400 });
@@ -56,6 +56,10 @@ export async function POST(req: NextRequest) {
         error: "Resume text payload exceeds the maximum allowed size of 20 KB."
       }, { status: 400 });
     }
+
+    // Load active keywords taxonomy for target role / job description
+    const { getRoleKeywords } = await import("@/lib/resume-engine");
+    const { keywords: activeRoleKeywords, roleName: targetRoleName } = getRoleKeywords(targetRole, jobDescription);
 
     // Server-side usage limits gating check
     let plan: "guest" | "free" | "pro" | "team" | "enterprise" = "guest";
@@ -118,7 +122,7 @@ export async function POST(req: NextRequest) {
           data: {
             sessionId: clientIp,
             eventName: "resume_scan",
-            properties: { fileName: fileName || "resume.pdf" }
+            properties: { fileName: fileName || "resume.pdf", targetRole }
           }
         });
       } catch (error) {
@@ -134,11 +138,11 @@ export async function POST(req: NextRequest) {
     // 1. Analyze Sections
     const lower = text.toLowerCase();
     const sections = {
-      hasExperience: /experience|work history|employment/i.test(lower),
-      hasEducation: /education|university|degree|bachelor|master|phd/i.test(lower),
-      hasSkills: /skills|technologies|tech stack|proficient/i.test(lower),
-      hasProjects: /projects?|portfolio|built|developed/i.test(lower),
-      hasSummary: /summary|objective|profile|about/i.test(lower),
+      hasExperience: /experience|work history|employment|career background|positions held/i.test(lower),
+      hasEducation: /education|university|college|degree|bachelor|master|phd|academic|certifications?/i.test(lower),
+      hasSkills: /skills|technologies|tech stack|proficient|competencies|expertise|tools|domain knowledge/i.test(lower),
+      hasProjects: /projects?|portfolio|built|developed|achievements|key builds|case studies/i.test(lower),
+      hasSummary: /summary|objective|profile|about|bio|executive summary|overview/i.test(lower),
     };
 
     // 2. Weak Bullets Analysis
@@ -175,32 +179,41 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 3. Keywords analysis
-    const foundKeywords = ATS_KEYWORDS.filter((kw) =>
+    // 3. Role Keywords analysis
+    const foundKeywords = activeRoleKeywords.filter((kw: string) =>
       new RegExp(`\\b${kw.replace(/[.+]/g, "\\$&")}\\b`, "i").test(text)
     );
-    const missingKeywords = ATS_KEYWORDS.filter((kw) => !foundKeywords.includes(kw));
+    const missingKeywords = activeRoleKeywords.filter((kw: string) => !foundKeywords.includes(kw));
 
-    // 4. Compute Initial ATS Score
-    let score = 50;
-    if (sections.hasExperience) score += 8;
-    if (sections.hasEducation) score += 5;
-    if (sections.hasSkills) score += 8;
-    if (sections.hasProjects) score += 5;
-    if (sections.hasSummary) score += 4;
-    score += Math.min(10, Math.round(text.split(/\s+/).length / 60));
-    score -= Math.min(20, weakBullets.length * 3);
-    score -= Math.min(10, missingKeywords.length);
-    const atsScore = Math.max(10, Math.min(100, score));
+    // 4. Compute Initial ATS Score for Target Role using Keyword Match Ratio
+    const keywordRatio = activeRoleKeywords.length > 0 ? (foundKeywords.length / activeRoleKeywords.length) : 0;
+    const keywordScore = Math.round(keywordRatio * 40);
 
-    // 5. Query AI Gateway for Accomplishment Bullet Review (STAR Framework)
+    let sectionScore = 0;
+    if (sections.hasExperience) sectionScore += 8;
+    if (sections.hasEducation) sectionScore += 5;
+    if (sections.hasSkills) sectionScore += 8;
+    if (sections.hasProjects) sectionScore += 5;
+    if (sections.hasSummary) sectionScore += 4;
+
+    const textLength = text.split(/\s+/).length;
+    let lengthScore = 5;
+    if (textLength >= 250) lengthScore += 5;
+    if (textLength >= 450) lengthScore += 5;
+
+    const bulletPenalty = Math.min(20, weakBullets.length * 3);
+
+    const rawScore = keywordScore + sectionScore + lengthScore - bulletPenalty;
+    const atsScore = Math.max(5, Math.min(100, Math.round(rawScore)));
+
+    // 5. Query AI Gateway for Accomplishment Bullet Review (STAR Framework & Persona)
     const bulletsToAnalyze = bulletCandidates.slice(0, 4).map((b: string) => b.replace(/^[-•]\s*/, "").trim());
     let starAnalysis = bulletsToAnalyze.map((b: string) => ({
       bullet: b,
-      situation: "Executing scale optimization routines.",
-      task: "Optimize service latencies and throughput.",
-      action: "Identified application bottlenecks and refactored code modules.",
-      result: "Boosted performance by 25% across microservices.",
+      situation: `Executing scale operations for ${targetRoleName}.`,
+      task: "Optimize service outcomes and throughput.",
+      action: "Identified domain bottlenecks and applied best practices.",
+      result: "Boosted performance by 25% across key metrics.",
       rating: 80,
     }));
     
@@ -212,14 +225,15 @@ export async function POST(req: NextRequest) {
 
     if (hasKey && bulletsToAnalyze.length > 0) {
       try {
-        const userPrompt = `Analyze these resume accomplishment bullets using the STAR framework:\n${bulletsToAnalyze.map((b: any, i: any) => `[Bullet ${i + 1}]: "${b}"`).join("\n")}
+        const jdContext = jobDescription ? `\nTarget Job Description Snippet: "${jobDescription.slice(0, 300)}"` : "";
+        const userPrompt = `Target Role: ${targetRoleName}${jdContext}\nAgent Audit ID: ${agentId}\n\nAnalyze these accomplishment bullets for ${targetRoleName} using the STAR framework:\n${bulletsToAnalyze.map((b: any, i: any) => `[Bullet ${i + 1}]: "${b}"`).join("\n")}
 
 Return a JSON object matching this structure:
 {
   "starAnalysis": [
     {
       "bullet": "original bullet",
-      "situation": "detailed context situation (e.g. legacy codebase scaling challenges)",
+      "situation": "detailed context situation relevant to ${targetRoleName}",
       "task": "target task objectives",
       "action": "exact actions taken by candidate",
       "result": "quantified business results",
@@ -227,14 +241,14 @@ Return a JSON object matching this structure:
     }
   ],
   "recommendations": [
-    "rec 1",
-    "rec 2"
+    "rec 1 relevant to ${targetRoleName}",
+    "rec 2 relevant to ${targetRoleName}"
   ]
 }`;
 
         const raw = await generate({
           messages: [
-            { role: "system", content: "You are an ATS resume auditor. Return ONLY a valid JSON block, no markdown wrappers, no conversational text." },
+            { role: "system", content: `You are an expert recruiter and career agent specializing in auditing resumes for ${targetRoleName}. Return ONLY a valid JSON block, no markdown wrappers, no conversational text.` },
             { role: "user", content: userPrompt },
           ],
           config: {
@@ -263,16 +277,16 @@ Return a JSON object matching this structure:
     // 6. Compile Recommendations list
     const recommendations: string[] = [];
     if (!sections.hasSummary) recommendations.push("Add a professional summary section at the top.");
-    if (!sections.hasProjects) recommendations.push("Include a Projects section showcasing 2-3 key builds.");
+    if (!sections.hasProjects) recommendations.push(`Include a Projects/Case Studies section highlighting ${targetRoleName} achievements.`);
     if (weakBullets.length > 2) recommendations.push("Rewrite passive-voice bullets with strong action verbs and quantified results.");
-    if (missingKeywords.length > 4) recommendations.push(`Add missing keywords to your Skills section: ${missingKeywords.slice(0, 4).join(", ")}.`);
+    if (missingKeywords.length > 4) recommendations.push(`Add missing ${targetRoleName} keywords to your Skills section: ${missingKeywords.slice(0, 4).join(", ")}.`);
     
     aiRecs.forEach(r => {
       if (recommendations.length < 6) recommendations.push(r);
     });
 
     if (recommendations.length === 0) {
-      recommendations.push("Excellent work! Focus on keeping metrics up to date as your roles progress.");
+      recommendations.push(`Excellent work for ${targetRoleName}! Keep metrics updated as your career progresses.`);
     }
 
     const missingSkills = missingKeywords.slice(0, 5).map(s => escapeHTML(s));
@@ -351,6 +365,10 @@ Return a JSON object matching this structure:
       rawText: cleanText,
       overallScore: atsScore,
       atsScore,
+      targetRole,
+      targetRoleName,
+      jobDescription: escapeHTML(jobDescription),
+      agentId,
       sections,
       weakBullets: cleanWeakBullets,
       missingKeywords: cleanMissingKeywords.slice(0, 10),
