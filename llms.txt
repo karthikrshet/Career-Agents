@@ -1,5 +1,5 @@
 # Career-Agents LLM Discovery Catalog
-This file contains the map of available agents and operational workflows for automated tools.
+This file contains the map of available agents, operational workflows, company tracks, and career paths for automated tools and AI clients.
 
 ## Agents Roster
 - ATS Resume Reviewer (ID: ats-resume-reviewer | Path: career/ats-resume-reviewer.md)
@@ -782,3 +782,105 @@ This file contains the map of available agents and operational workflows for aut
   Description: High-intensity technical prep covering DSA drills, system design practice, and clean code principles.
   Category: interview workflows
   Prerequisites: Upcoming technical interview scheduled within 7-14 days, Selection of programming language for coding rounds, List of core system design patterns reviewed
+
+## Company Tracks
+- Adobe (ID: adobe)
+  Skills: Technical Depth & Product Framing, Product-Craft Story Development, Attention-to-Detail & UX Polish, Cross-Functional Collaboration
+  Agents: adobe-interview-coach, mock-interviewer, system-design-coach
+
+- Amazon (ID: amazon)
+  Skills: 16 Leadership Principles (Customer Obsession, Ownership, Bias for Action), STAR Behavioral Storytelling, Data Structures & Algorithms, System Design & Database selections
+  Agents: amazon-interview-coach, behavioral-interview-specialist, system-design-coach, mock-interviewer
+
+- Anthropic (ID: anthropic)
+  Skills: Data Structures & Algorithms, Generative AI & LLM Fine-Tuning, Alignment & Safety Principles, System Design & Scalability
+  Agents: openai-career-coach, technical-interview-coach, system-design-coach, mock-interviewer
+
+- Atlassian (ID: atlassian)
+  Skills: Atlassian core values (Open Company No Bullshit), Collaborative system design structures, Active listening and giving structured feedback, Frontend UI performance and layout
+  Agents: atlassian-interview-coach, behavioral-interview-specialist, group-discussion-coach, mock-interviewer
+
+- Databricks (ID: databricks)
+  Skills: Distributed computing algorithms, Database internals (caching, query planning, indexing), Concurrency and systems performance, Spark/Delta Lake execution logic
+  Agents: database-engineer, backend-architect, system-design-coach, mock-interviewer
+
+- Google (ID: google)
+  Skills: Data Structures & Algorithms (graphs, dynamic programming, trees), System Design & Scalability, Googliness (cultural fit, collaboration, ambiguity navigation), Space & Time Complexity Analysis
+  Agents: google-interview-coach, technical-interview-coach, system-design-coach, mock-interviewer
+
+- Meta (ID: meta)
+  Skills: High-speed coding accuracy (solving 2 DSA questions in 35 minutes), System Design scaling (focusing on caching, load balancing, message queues), Meta core values (Focus on Impact, Move Fast)
+  Agents: meta-interview-coach, technical-interview-coach, system-design-coach, mock-interviewer
+
+- Microsoft (ID: microsoft)
+  Skills: CS Fundamentals (pointers, memory management, OOP), Growth Mindset (learning from failure, collaboration), Distributed Service Architecture
+  Agents: microsoft-interview-coach, technical-interview-coach, system-design-coach, mock-interviewer
+
+- Netflix (ID: netflix)
+  Skills: Freedom & Responsibility slide deck principles, High-throughput CDN architectures, Autonomy and direct feedback loops (Radical Candor), Resilience engineering (Chaos Monkey)
+  Agents: netflix-interview-coach, behavioral-interview-specialist, system-design-coach, mock-interviewer
+
+- Nvidia (ID: nvidia)
+  Skills: Systems Programming (C/C++, CUDA), Parallel Computing & GPU Architecture, Data Structures & Algorithms, Deep Learning & Computer Vision
+  Agents: technical-interview-coach, system-design-coach, machine-learning-engineer, mock-interviewer
+
+- OpenAI (ID: openai)
+  Skills: PyTorch scale training models, Transformer mechanics and scaling math, AI Safety & alignment criteria, GPU memory optimizations
+  Agents: llm-engineer, ai-agent-architect, ai-engineer-career-coach, mock-interviewer
+
+- Oracle (ID: oracle)
+  Skills: CS Fundamentals (OS, Networking), Database Internals & SQL Design, Algorithmic Problem-Solving, Multi-Round Endurance
+  Agents: oracle-interview-coach, mock-interviewer, database-engineer, system-design-coach
+
+- Salesforce (ID: salesforce)
+  Skills: Core Values & Trust Alignment, Customer Success Orientation, System Architecture & SaaS Scaling, Data Structures & Algorithms
+  Agents: salesforce-interview-coach, mock-interviewer, system-design-coach
+
+- Stripe (ID: stripe)
+  Skills: Practical API design and integration, Squashing bugs in large codebases, Clean code refactoring and design structures, Unit testing
+  Agents: code-reviewer, backend-architect, technical-interview-coach, mock-interviewer
+
+- Uber (ID: uber)
+  Skills: Geohashing and spatial search coordinates index (H3, S2), Real-time stream message scheduling, High write concurrency structures, Fault-tolerance modeling
+  Agents: uber-interview-coach, system-design-coach, database-engineer, mock-interviewer
+
+## Career Paths
+- AI Engineer (ID: ai-engineer)
+  Description: Specialist in integrating machine learning, large language models, retrieval augmented generation, and cognitive agents into product architectures.
+  Core Skills: LLMs & Prompt Engineering, RAG & Semantic Search, Python & PyTorch, Agentic Architectures, Model Orchestration
+
+- Backend Engineer (ID: backend-engineer)
+  Description: Specialized engineer focused on server-side logic, API design, database structures, security, caching, and scalability.
+  Core Skills: API Design (REST/GraphQL), Database Architecture & Indexing, Distributed Systems, Server-Side Languages (Go, Python, Java, Node.js), Performance Engineering
+
+- Cloud Engineer (ID: cloud-engineer)
+  Description: Focused on provisioning public cloud infrastructure, maintaining high availability, designing scalable networks, and managing containerized systems.
+  Core Skills: AWS / GCP / Azure, Terraform & IaC, Kubernetes & Containers, Networking & VPCs, Site Reliability (SRE)
+
+- Cybersecurity Engineer (ID: cybersecurity-engineer)
+  Description: Dedicated to securing software systems, identifying vulnerabilities, configuring access controls, and responding to security incidents.
+  Core Skills: Application Security & OWASP, Identity & Access Management (IAM), Threat Modeling & Pen Testing, Incident Response & Forensics, Regulatory Compliance (SOC2/GDPR)
+
+- DevOps Engineer (ID: devops-engineer)
+  Description: Bridging development and operations to automate software delivery pipelines, manage configuration state, and ensure infrastructure reliability.
+  Core Skills: CI/CD Pipelines, Configuration Management, Infrastructure as Code, Monitoring & Logging, Build Tools & Packaging
+
+- Frontend Engineer (ID: frontend-engineer)
+  Description: Specialized engineer focused on client-side applications, user interfaces, performance optimization, and modern web frameworks.
+  Core Skills: JavaScript / TypeScript, React / Next.js, CSS & Styling, Web Vitals & Performance, API Integration
+
+- Full Stack Engineer (ID: full-stack-engineer)
+  Description: Versatile engineer capable of building and maintaining both client-side and server-side components of modern web applications.
+  Core Skills: Frontend Frameworks, Backend APIs, Database Design, Cloud Deployments, End-to-End Testing
+
+- Product Manager (ID: product-manager)
+  Description: Connecting technology, business, and design to define product features, scope releases, prioritize roadmaps, and align cross-functional teams.
+  Core Skills: Product Roadmap Planning, User Interviewing & Feedback, Prioritization Frameworks, Market & Competitor Analysis, Data-Driven Decisions
+
+- Software Engineer (ID: software-engineer)
+  Description: Generalist software engineer focused on building robust applications, CS fundamentals, algorithms, and collaborative team delivery.
+  Core Skills: Data Structures & Algorithms, Object Oriented Design, System Design, Version Control (Git), Testing & Debugging
+
+- Startup Founder (ID: startup-founder)
+  Description: Building a business from scratch, scoping MVPs, testing market fit, structuring go-to-market strategies, and managing early unit economics.
+  Core Skills: MVP Scoping & Validation, Go-To-Market Execution, Unit Economics & Token Economics, Outreach Systems Design, Founder Pitching & Narrative
