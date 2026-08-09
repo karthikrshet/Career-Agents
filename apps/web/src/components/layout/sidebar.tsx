@@ -23,7 +23,8 @@ import {
   ChevronDown,
   ChevronRight,
   TrendingUp,
-  GitBranch
+  GitBranch,
+  Volume2
 } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { useStore } from "@/lib/store";
@@ -49,6 +50,7 @@ export function Sidebar() {
         { name: "Overview Workspace", href: "/dashboard", icon: LayoutDashboard },
         { name: "Resume Studio", href: "/resume", icon: FileText },
         { name: "STAR Interview Lab", href: "/interview", icon: Mic },
+        { name: "Voice Agent Lab", href: "/interview/voice", icon: Volume2 },
         { name: "Job Hub", href: "/jobs", icon: Briefcase },
         { name: "Job Tracker", href: "/tracker", icon: Kanban },
         { name: "Prep Hub", href: "/prephub", icon: Building2 },
