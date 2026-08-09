@@ -10,7 +10,7 @@ export default function DynamicVoiceInterviewPage() {
   const sessionId = typeof params?.sessionId === "string" ? params.sessionId : undefined;
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-[#03060f] text-slate-100 font-sans pb-24 overflow-y-auto">
+    <div className="flex flex-col w-full min-h-screen bg-[#03060f] text-slate-100 font-sans">
       <Topbar
         title={`AI Voice Session · ${sessionId || "Live"}`}
         subtitle="1-on-1 spoken mock interview with specialized AI interviewer"
