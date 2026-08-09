@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Volume2, Mic, Keyboard, Sliders } from "lucide-react";
+import { Volume2, Mic, Keyboard } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { VoiceMode } from "./types";

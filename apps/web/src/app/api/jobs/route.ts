@@ -29,6 +29,17 @@ interface JobListing {
 let jobCache: { data: JobListing[]; timestamp: number; key: string } | null = null;
 const CACHE_DURATION = 3 * 60 * 1000; // 3 minutes
 
+function sanitizeHtmlText(htmlStr: string | undefined | null): string {
+  if (!htmlStr) return "";
+  let current = String(htmlStr);
+  let previous = "";
+  while (current !== previous) {
+    previous = current;
+    current = current.replace(/<[^>]*>/g, "");
+  }
+  return current.replace(/\s+/g, " ").trim().slice(0, 300);
+}
+
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
   const clientIp = (req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1").trim();
@@ -135,7 +146,7 @@ export async function GET(req: NextRequest) {
             sourceUrl: item.url || "https://remotive.com",
             postedAt: item.publication_date ? timeAgo(new Date(item.publication_date)) : "1d ago",
             visaSponsorship: true,
-            description: item.description?.replace(/<[^>]*>?/gm, "").slice(0, 300),
+            description: sanitizeHtmlText(item.description),
           });
         });
       }
@@ -158,7 +169,7 @@ export async function GET(req: NextRequest) {
           const exp = detectExpLevel(item.title, item.description || "");
           const dom = detectDomain(item.title, item.description || "");
           rawJobs.push({
-            id: `arb-${item.slug || Math.random().toString(36).slice(2, 8)}`,
+            id: `arb-${item.slug || Date.now().toString(36)}`,
             title: item.title,
             company: item.company_name,
             location: loc,
@@ -174,7 +185,7 @@ export async function GET(req: NextRequest) {
             sourceUrl: item.url || "https://www.arbeitnow.com",
             postedAt: "2d ago",
             visaSponsorship: item.visa_sponsorship || false,
-            description: item.description?.replace(/<[^>]*>?/gm, "").slice(0, 300),
+            description: sanitizeHtmlText(item.description),
           });
         });
       }
@@ -202,7 +213,7 @@ export async function GET(req: NextRequest) {
             const exp = detectExpLevel(item.position, item.description || "");
             const dom = detectDomain(item.position, item.description || "");
             rawJobs.push({
-              id: `rok-${item.id || Math.random().toString(36).slice(2, 9)}`,
+              id: `rok-${item.id || Date.now().toString(36)}`,
               title: item.position,
               company: item.company,
               location: loc,
@@ -218,7 +229,7 @@ export async function GET(req: NextRequest) {
               sourceUrl: item.url || "https://remoteok.com",
               postedAt: item.date ? timeAgo(new Date(item.date)) : "1d ago",
               visaSponsorship: true,
-              description: item.description?.replace(/<[^>]*>?/gm, "").slice(0, 300),
+              description: sanitizeHtmlText(item.description),
             });
           }
         });
@@ -306,7 +317,7 @@ export async function GET(req: NextRequest) {
               sourceUrl: item.hostedUrl || `https://jobs.lever.co/${l}`,
               postedAt: item.createdAt ? timeAgo(new Date(item.createdAt)) : "3d ago",
               visaSponsorship: true,
-              description: item.description?.replace(/<[^>]*>?/gm, "").slice(0, 300),
+              description: sanitizeHtmlText(item.description),
             });
           });
         }

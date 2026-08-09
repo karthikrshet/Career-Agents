@@ -68,10 +68,15 @@ export async function POST(req: NextRequest) {
           "Content-Type": "application/json",
         };
         if (judge0Key) {
-          if (judge0Url.includes("rapidapi.com")) {
-            headers["X-RapidAPI-Key"] = judge0Key;
-            headers["X-RapidAPI-Host"] = new URL(judge0Url).hostname;
-          } else {
+          try {
+            const judge0Hostname = new URL(judge0Url).hostname;
+            if (judge0Hostname.endsWith("rapidapi.com")) {
+              headers["X-RapidAPI-Key"] = judge0Key;
+              headers["X-RapidAPI-Host"] = judge0Hostname;
+            } else {
+              headers["X-Auth-Token"] = judge0Key;
+            }
+          } catch (_) {
             headers["X-Auth-Token"] = judge0Key;
           }
         }
@@ -98,115 +103,104 @@ export async function POST(req: NextRequest) {
           scala: 81,
           elixir: 57,
           erlang: 58,
-          racket: 84
+          racket: 88,
         };
 
-        const languageId = judge0LangMapping[language.toLowerCase()] || 93;
-        const sourceCodeBase64 = Buffer.from(code).toString("base64");
-        const stdinBase64 = Buffer.from(stdin || "").toString("base64");
+        const languageId = judge0LangMapping[language.toLowerCase()];
 
-        const res = await secureFetch(`${judge0Url}/submissions?wait=true&base64_encoded=true`, {
+        if (languageId) {
+          const res = await secureFetch(`${judge0Url.replace(/\/$/, "")}/submissions?wait=true`, {
+            method: "POST",
+            headers,
+            body: JSON.stringify({
+              source_code: code,
+              language_id: languageId,
+              stdin: stdin || "",
+            }),
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            runResult = {
+              success: true,
+              stdout: data.stdout || "",
+              stderr: data.stderr || data.compile_output || "",
+              code: data.status?.id === 3 ? 0 : 1,
+              output: data.stdout || data.stderr || data.compile_output || "Executed via Judge0 API",
+              executionTime: data.time ? `${data.time}s` : "Unknown",
+              memory: data.memory ? `${data.memory} KB` : "Unknown",
+            };
+          }
+        }
+      } catch (jErr) {
+        console.warn("Judge0 execution failed, falling back to local runner:", jErr);
+      }
+    }
+
+    // 2. Try Piston API if configured or fallback
+    if (!runResult) {
+      const pistonUrl = process.env.PISTON_API_URL || "https://emkc.org/api/v2/piston";
+      try {
+        const { secureFetch } = await import("packages/security");
+        const res = await secureFetch(`${pistonUrl.replace(/\/$/, "")}/execute`, {
           method: "POST",
-          headers,
-          body: JSON.stringify({
-            source_code: sourceCodeBase64,
-            language_id: languageId,
-            stdin: stdinBase64,
-          }),
-          allowedProvider: "judge0",
-          signal: AbortSignal.timeout(6000),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
         });
 
         if (res.ok) {
           const data = await res.json();
-          const decodeB64 = (str: string | null) => str ? Buffer.from(str, "base64").toString("utf-8") : "";
-          const stdout = decodeB64(data.stdout);
-          const stderr = decodeB64(data.stderr);
-          const compileOutput = decodeB64(data.compile_output);
-          const message = decodeB64(data.message);
+          const runInfo = data.run || {};
 
           runResult = {
-            success: data.status?.id === 3,
-            stdout,
-            stderr: stderr || compileOutput || message || "",
-            code: data.status?.id === 3 ? 0 : data.status?.id || 1,
-            signal: null,
-            output: stdout || stderr || compileOutput || message || "",
-            compileLogs: compileOutput || "",
-            executionTime: data.time ? `${(parseFloat(data.time) * 1000).toFixed(1)}ms` : "N/A",
-            memory: data.memory ? `${(data.memory / 1024).toFixed(2)}MB` : "N/A",
-            statusDescription: data.status?.description || "N/A"
+            success: true,
+            stdout: runInfo.stdout || "",
+            stderr: runInfo.stderr || "",
+            code: runInfo.code ?? 0,
+            signal: runInfo.signal || null,
+            output: runInfo.output || runInfo.stdout || runInfo.stderr || "No output returned.",
+            compileLogs: data.compile?.output || "",
+            executionTime: "Piston Managed",
+            memory: "Piston Managed",
           };
         }
-      } catch (judge0Err) {
-        console.warn("Judge0 submission failed, falling back to Piston/Local.", judge0Err);
+      } catch (pErr) {
+        console.warn("Piston execution failed, falling back to local JS sandbox:", pErr);
       }
     }
 
-    // 2. Try EMKC Piston fallback if Judge0 was not configured or failed
+    // 3. Fallback: Local isolated VM execution for JS / TS
     if (!runResult) {
-      try {
-        const { secureFetch } = await import("packages/security");
-        const res = await secureFetch("https://emkc.org/api/v2/piston/execute", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        allowedProvider: "piston",
-        signal: AbortSignal.timeout(4000), // Enforce 4s timeout
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        runResult = {
-          success: true,
-          stdout: data.run?.stdout || "",
-          stderr: data.run?.stderr || "",
-          code: data.run?.code ?? 0,
-          signal: data.run?.signal || null,
-          output: data.run?.output || "",
-          compileLogs: data.compile?.output || data.compile?.stderr || "",
-          executionTime: data.run?.time ? `${(data.run.time * 1000).toFixed(1)}ms` : "N/A",
-          memory: data.run?.memory ? `${(data.run.memory / 1024 / 1024).toFixed(2)}MB` : "N/A",
-        };
-      }
-    } catch (fetchErr) {
-      console.warn("Piston API fetch failed or timed out. Falling back to local execution sandbox.", fetchErr);
-    }
-  }
-
-    if (!runResult) {
-      // Local Execution Fallback
       if (language.toLowerCase() === "javascript" || language.toLowerCase() === "typescript") {
         const start = Date.now();
         let stdout = "";
         let stderr = "";
+
+        let executableCode = code;
+
+        // Strip TypeScript annotations if JS/TS
+        executableCode = executableCode
+          .replace(/:\s*(string|number|boolean|any|void|object|unknown|never|\[\]|Array<[^>]+>)/g, "")
+          .replace(/interface\s+\w+\s*\{[\s\S]*?\}/g, "")
+          .replace(/type\s+\w+\s*=[\s\S]*?;/g, "");
+
         try {
-          // Transpile simple TypeScript type declarations to clean JavaScript
-          let executableCode = code;
-          if (language.toLowerCase() === "typescript") {
-            executableCode = code
-              .replace(/interface\s+\w+\s*\{[\s\S]*?\}/g, "")
-              .replace(/type\s+\w+\s*=[\s\S]*?;/g, "")
-              .replace(/:\s*(number|string|boolean|any|void|string\[\]|number\[\]|Record<[^>]+>)/g, "")
-              .replace(/as\s+(number|string|boolean|any|void|string\[\]|number\[\])/g, "");
-          }
-
-          let stdinIndex = 0;
           const stdinLines = (stdin || "").split("\n");
+          let stdinIndex = 0;
 
-          const sandbox = {
+          const sandbox: Record<string, any> = {
             console: {
               log: (...args: any[]) => {
-                stdout += args.map(a => typeof a === "object" ? JSON.stringify(a) : String(a)).join(" ") + "\n";
+                stdout += args.map((a) => (typeof a === "object" ? JSON.stringify(a) : String(a))).join(" ") + "\n";
               },
               error: (...args: any[]) => {
-                stderr += args.map(a => typeof a === "object" ? JSON.stringify(a) : String(a)).join(" ") + "\n";
+                stderr += args.map((a) => (typeof a === "object" ? JSON.stringify(a) : String(a))).join(" ") + "\n";
               },
               warn: (...args: any[]) => {
-                stdout += "[WARN] " + args.map(a => typeof a === "object" ? JSON.stringify(a) : String(a)).join(" ") + "\n";
-              }
+                stdout += "[WARN] " + args.map((a) => (typeof a === "object" ? JSON.stringify(a) : String(a))).join(" ") + "\n";
+              },
             },
-            readline: () => {
+            prompt: () => {
               return stdinLines[stdinIndex++] ?? null;
             },
             stdin: stdin || "",
@@ -231,7 +225,7 @@ export async function POST(req: NextRequest) {
             // Sequentially evaluate each test case
             for (const test of tests) {
               try {
-                const method = test.method || "twoSum";
+                const method = String(test.method || "twoSum").replace(/[^\w$]/g, "");
                 const argsString = JSON.stringify(test.args || []);
                 const testScript = new vm.Script(`
                   (function() {

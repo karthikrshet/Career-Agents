@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, Play, Square, Sparkles, Brain, Loader2 } from "lucide-react";
+import { Play, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "@/lib/store";
 import { useGatewayStore } from "@/lib/gateway-store";
@@ -46,6 +46,9 @@ interface VoiceInterviewShellProps {
 
 export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellProps) {
   const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   // Auto-load or auto-start session if initialSessionId URL param is present
   useEffect(() => {
     if (initialSessionId && mounted && fsmState === "CONFIGURING") {
@@ -282,11 +285,12 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
     }
   };
 
-  const startSession = async (overrideId?: string) => {
+  const startSession = async (overrideId?: any) => {
+    const validStringId = typeof overrideId === "string" && overrideId.trim() !== "" ? overrideId : null;
     const rawId = generateId();
-    const cleanRoleSlug = role.toLowerCase().replace(/[^a-z0-9]/g, "-");
-    const cleanCompanySlug = company.toLowerCase().replace(/[^a-z0-9]/g, "-");
-    const uniqueSlug = overrideId || `${cleanCompanySlug}-${cleanRoleSlug}-${rawId.slice(0, 8)}`;
+    const cleanRoleSlug = (role || "role").toLowerCase().replace(/[^a-z0-9]/g, "-");
+    const cleanCompanySlug = (company || "company").toLowerCase().replace(/[^a-z0-9]/g, "-");
+    const uniqueSlug = validStringId || `${cleanCompanySlug}-${cleanRoleSlug}-${rawId.slice(0, 8)}`;
 
     setSessionId(uniqueSlug);
     setHistory([]);

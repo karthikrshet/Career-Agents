@@ -11,13 +11,14 @@ function extractJobDetails() {
   const linkedinCompany = document.querySelector(".job-details-jobs-unified-top-card__company-name, .jobs-unified-top-card__company-name, .jobs-unified-top-card__subtitle a");
   const linkedinDescription = document.querySelector(".jobs-description-content__text, .jobs-description__container, #job-details");
 
-  if (window.location.hostname.includes("linkedin.com") && (linkedinTitle || linkedinDescription)) {
+  const host = window.location.hostname;
+  if ((host.endsWith("linkedin.com") || host === "linkedin.com") && (linkedinTitle || linkedinDescription)) {
     title = linkedinTitle ? linkedinTitle.innerText.trim() : "";
     company = linkedinCompany ? linkedinCompany.innerText.trim() : "";
     text = linkedinDescription ? linkedinDescription.innerText.trim() : "";
   }
   // 2. Lever details page
-  else if (window.location.hostname.includes("lever.co")) {
+  else if (host.endsWith("lever.co") || host === "lever.co") {
     const leverTitle = document.querySelector(".posting-header h2");
     const leverCompany = document.querySelector(".posting-header .company-logo") || { innerText: "Lever Posting" };
     const leverDesc = document.querySelector(".section.page-centered");
@@ -27,7 +28,7 @@ function extractJobDetails() {
     text = leverDesc ? leverDesc.innerText.trim() : "";
   }
   // 3. Greenhouse details page
-  else if (window.location.hostname.includes("greenhouse.io")) {
+  else if (host.endsWith("greenhouse.io") || host === "greenhouse.io") {
     const ghTitle = document.querySelector("#header h1");
     const ghCompany = document.querySelector(".company-name");
     const ghDesc = document.querySelector("#content");

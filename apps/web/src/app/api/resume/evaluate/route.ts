@@ -181,7 +181,7 @@ export async function POST(req: NextRequest) {
 
     // 3. Role Keywords analysis
     const foundKeywords = activeRoleKeywords.filter((kw: string) =>
-      new RegExp(`\\b${kw.replace(/[.+]/g, "\\$&")}\\b`, "i").test(text)
+      new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text)
     );
     const missingKeywords = activeRoleKeywords.filter((kw: string) => !foundKeywords.includes(kw));
 
