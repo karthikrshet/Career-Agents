@@ -4,8 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mic, Play, Square, ChevronRight, Loader2, Timer,
-  CheckCircle, AlertCircle, Star, Building2, Brain
+  CheckCircle, AlertCircle, Star, Building2, Brain, Sparkles
 } from "lucide-react";
+import Link from "next/link";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -236,6 +237,24 @@ export default function InterviewPage() {
               exit={{ opacity: 0, y: -16 }}
               className="max-w-2xl mx-auto space-y-6"
             >
+              {/* Voice Agent Promotion Card */}
+              <div className="relative overflow-hidden rounded-2xl border border-cyan-500/20 bg-gradient-to-r from-cyan-950/20 to-indigo-950/20 p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                    <Sparkles className="w-5 h-5 animate-pulse" />
+                  </div>
+                  <div className="text-left col-span-3">
+                    <p className="text-[10px] font-mono font-semibold text-cyan-400 uppercase tracking-wide">New Feature</p>
+                    <p className="text-xs font-bold text-white">Interactive AI Voice Agent Lab</p>
+                    <p className="text-[11px] text-slate-400 leading-normal">Practice mock interviews verbally with 146 specialized agents in 27 languages.</p>
+                  </div>
+                </div>
+                <Link href="/interview/voice">
+                  <Button size="sm" className="bg-cyan-500 hover:bg-cyan-600 text-white font-medium text-[10px] whitespace-nowrap shrink-0 border-0 h-8">
+                    Try Voice Agent <ChevronRight className="w-3 h-3 ml-1" />
+                  </Button>
+                </Link>
+              </div>
               <div className="text-center mb-8">
                 <div className="w-14 h-14 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mx-auto mb-4">
                   <Mic className="w-7 h-7 text-violet-400" />
