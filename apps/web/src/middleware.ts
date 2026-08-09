@@ -45,7 +45,7 @@ export function middleware(req: NextRequest) {
   res.headers.set("Cross-Origin-Opener-Policy", "same-origin");
   res.headers.set("Cross-Origin-Resource-Policy", "same-origin");
   res.headers.set("Cross-Origin-Embedder-Policy", "credentialless");
-  res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  res.headers.set("Permissions-Policy", "camera=(), microphone=(self), geolocation=()");
 
   // Content Security Policy
   const cspHeader = [
