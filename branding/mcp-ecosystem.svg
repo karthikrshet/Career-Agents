@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="100%" height="auto">
+  <defs>
+    <linearGradient id="mcpBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#030712" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+    <filter id="mcpShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="380" rx="16" fill="url(#mcpBg)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="480" y="42" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800" text-anchor="middle" letter-spacing="0.5">
+    🔌 ENTERPRISE MODEL CONTEXT PROTOCOL (MCP) ECOSYSTEM
+  </text>
+  <text x="480" y="64" fill="#94a3b8" font-family="sans-serif" font-size="11" text-anchor="middle">
+    Standardized JSON-RPC protocol bridging AI agent workspaces with real-time Career-Agents intelligence
+  </text>
+
+  <!-- Left: AI Coding IDEs -->
+  <g filter="url(#mcpShadow)">
+    <rect x="50" y="90" width="220" height="250" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <text x="70" y="120" fill="#38bdf8" font-family="sans-serif" font-size="14" font-weight="bold">AI Agent IDE Hosts</text>
+    
+    <rect x="70" y="140" width="180" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="85" y="163" fill="#f1f5f9" font-family="sans-serif" font-size="12">🪐 Google Antigravity</text>
+
+    <rect x="70" y="185" width="180" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="85" y="208" fill="#f1f5f9" font-family="sans-serif" font-size="12">⚡ Cursor IDE</text>
+
+    <rect x="70" y="230" width="180" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="85" y="253" fill="#f1f5f9" font-family="sans-serif" font-size="12">🤖 Claude Code / Desktop</text>
+
+    <rect x="70" y="275" width="180" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="85" y="298" fill="#f1f5f9" font-family="sans-serif" font-size="12">💻 VS Code / Codex</text>
+  </g>
+
+  <!-- Middle: MCP Server Core -->
+  <g filter="url(#mcpShadow)">
+    <rect x="340" y="90" width="280" height="250" rx="12" fill="#1e293b" stroke="#818cf8" stroke-width="2.5"/>
+    <rect x="360" y="105" width="240" height="32" rx="6" fill="url(#purpleGrad)"/>
+    <text x="480" y="126" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">Career Agents MCP Server</text>
+    
+    <text x="365" y="165" fill="#e2e8f0" font-family="sans-serif" font-size="11" font-weight="bold">Standard JSON-RPC 2.0 Stdio</text>
+    <text x="365" y="185" fill="#94a3b8" font-family="sans-serif" font-size="10">• career_pipeline_scan (8 ATS boards)</text>
+    <text x="365" y="205" fill="#94a3b8" font-family="sans-serif" font-size="10">• career_pipeline_track (State flow)</text>
+    <text x="365" y="225" fill="#94a3b8" font-family="sans-serif" font-size="10">• job_match &amp; analyze_job_posting</text>
+    <text x="365" y="245" fill="#94a3b8" font-family="sans-serif" font-size="10">• career_assessment &amp; gap_analysis</text>
+    <text x="365" y="265" fill="#94a3b8" font-family="sans-serif" font-size="10">• interview_plan &amp; company_dossier</text>
+    <text x="365" y="285" fill="#94a3b8" font-family="sans-serif" font-size="10">• generate_cover_letter &amp; resume_score</text>
+    
+    <rect x="365" y="300" width="230" height="24" rx="4" fill="#312e81" />
+    <text x="480" y="316" fill="#a5b4fc" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">🔒 Token Optimized: 80-85% Cost Reduction</text>
+  </g>
+
+  <!-- Connectors -->
+  <path d="M 270 215 L 340 215" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="4,4"/>
+  <path d="M 620 215 L 690 215" stroke="#34d399" stroke-width="2.5" stroke-dasharray="4,4"/>
+
+  <!-- Right: Career Registries & Intelligence Outputs -->
+  <g filter="url(#mcpShadow)">
+    <rect x="690" y="90" width="220" height="250" rx="12" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
+    <text x="710" y="120" fill="#34d399" font-family="sans-serif" font-size="14" font-weight="bold">Authoritative Data</text>
+    
+    <rect x="710" y="140" width="180" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="725" y="163" fill="#f1f5f9" font-family="sans-serif" font-size="11">🏛️ 167 Specialized Agents</text>
+
+    <rect x="710" y="185" width="180" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="725" y="208" fill="#f1f5f9" font-family="sans-serif" font-size="11">🌐 532 Knowledge Nodes</text>
+
+    <rect x="710" y="230" width="180" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="725" y="253" fill="#f1f5f9" font-family="sans-serif" font-size="11">🏢 20+ Tier-1 Company Tracks</text>
+
+    <rect x="710" y="275" width="180" height="36" rx="6" fill="#0f172a" stroke="#334155"/>
+    <text x="725" y="298" fill="#f1f5f9" font-family="sans-serif" font-size="11">🎯 Canonical Readiness Engine</text>
+  </g>
+</svg>
