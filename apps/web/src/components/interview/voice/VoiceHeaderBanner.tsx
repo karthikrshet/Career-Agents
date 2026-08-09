@@ -34,10 +34,16 @@ export function VoiceHeaderBanner({ onStartClick }: VoiceHeaderBannerProps) {
           </p>
         </div>
 
-        <div className="shrink-0 flex items-center gap-3">
+        <div className="shrink-0 flex items-center gap-2.5">
+          <Link
+            href="/interview"
+            className="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 hover:text-white font-semibold text-xs transition-all flex items-center gap-1.5"
+          >
+            <span>← Back to Interviews</span>
+          </Link>
           <button
             onClick={onStartClick}
-            className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs transition-all shadow-lg hover:scale-[1.02] active:scale-[0.98] flex items-center gap-1.5 border-0"
+            className="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs transition-all shadow-lg hover:scale-[1.02] active:scale-[0.98] flex items-center gap-1.5 border-0"
           >
             <span>Explore Voice Agents</span>
             <ArrowUpRight className="w-4 h-4" />
