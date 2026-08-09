@@ -40,7 +40,11 @@ const ALL_AGENTS = (agentRegistry?.agents || []) as AgentItem[];
 
 import { VoiceHeaderBanner } from "./VoiceHeaderBanner";
 
-export function VoiceInterviewShell() {
+interface VoiceInterviewShellProps {
+  initialSessionId?: string;
+}
+
+export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellProps) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -154,15 +158,18 @@ export function VoiceInterviewShell() {
 
       rec.onerror = (e: any) => {
         console.error("Speech Recognition error:", e);
-        if (e.error === "not-allowed" || e.error === "service-not-allowed") {
-          toast.info("Microphone permission blocked. Switched to Text Mode so you can type your answers.");
-          setVoiceMode("text");
+        const errType = e.error || "";
+        if (errType === "not-allowed" || errType === "service-not-allowed") {
+          setPermissionGranted(false);
           setIsListening(false);
-          if (fsmState === "LISTENING") {
+          // Only show toast if user was actively trying to record/listen
+          if (isListening || fsmState === "LISTENING") {
+            toast.info("Microphone access denied. Switched to Text Mode.");
+            setVoiceMode("text");
             setFsmState("WAITING_FOR_NEXT_QUESTION");
           }
-        } else if (e.error !== "no-speech") {
-          toast.error(`Speech input notice: ${e.error}`);
+        } else if (errType !== "no-speech" && (isListening || fsmState === "LISTENING")) {
+          toast.error(`Speech input notice: ${errType}`);
         }
       };
 
@@ -247,12 +254,20 @@ export function VoiceInterviewShell() {
   };
 
   const startSession = async () => {
-    const id = generateId();
-    setSessionId(id);
+    const rawId = generateId();
+    const cleanRoleSlug = role.toLowerCase().replace(/[^a-z0-9]/g, "-");
+    const cleanCompanySlug = company.toLowerCase().replace(/[^a-z0-9]/g, "-");
+    const uniqueSlug = `${cleanCompanySlug}-${cleanRoleSlug}-${rawId.slice(0, 8)}`;
+
+    setSessionId(uniqueSlug);
     setHistory([]);
     setTimerSec(0);
     setCurrentResponse("");
     setFsmState("STARTING");
+
+    if (typeof window !== "undefined") {
+      window.history.pushState(null, "", `/interview/voice/${uniqueSlug}`);
+    }
 
     try {
       const res = await fetch("/api/interview/voice", {
@@ -533,7 +548,38 @@ export function VoiceInterviewShell() {
             {interviewSessions.length > 0 && (
               <InterviewHistory
                 sessions={interviewSessions}
-                onSelectSession={(s) => toast.info(`Viewing session for ${s.company}`)}
+                onSelectSession={(s) => {
+                  if (typeof window !== "undefined") {
+                    window.history.pushState(null, "", `/interview/voice/${s.id}`);
+                  }
+                  if (s.scorecard) {
+                    setCompletedSessionData({
+                      id: s.id,
+                      agentId: selectedAgent.id,
+                      agentName: selectedAgent.name,
+                      company: s.company,
+                      role: s.role,
+                      mode: s.mode as any,
+                      difficulty: s.difficulty,
+                      language,
+                      targetDurationMinutes: durationMinutes,
+                      startedAt: s.startedAt,
+                      completedAt: s.completedAt || new Date().toISOString(),
+                      durationSeconds: 1200,
+                      history: (s.responses || []).map((r) => ({
+                        id: r.questionId,
+                        speaker: "candidate",
+                        content: r.answer,
+                        timestamp: r.submittedAt || new Date().toISOString(),
+                      })),
+                      scorecard: s.scorecard as any,
+                    });
+                    setFsmState("COMPLETED");
+                    toast.success(`Loaded session: ${s.company} — ${s.role}`);
+                  } else {
+                    toast.info(`Draft session loaded for ${s.company}`);
+                  }
+                }}
               />
             )}
           </motion.div>
@@ -551,6 +597,18 @@ export function VoiceInterviewShell() {
             {/* Top Bar Status */}
             <div className="flex items-center justify-between bg-[#080d21] border border-white/10 rounded-2xl p-4 shadow-xl">
               <div className="flex items-center gap-3">
+                <button
+                  onClick={() => {
+                    stopSpeaking();
+                    setFsmState("CONFIGURING");
+                    if (typeof window !== "undefined") {
+                      window.history.pushState(null, "", "/interview/voice");
+                    }
+                  }}
+                  className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-semibold text-slate-300 hover:text-white transition-all flex items-center gap-1 shrink-0"
+                >
+                  ← Back
+                </button>
                 <MicrophonePermission
                   status={getMicStatus()}
                   permissionGranted={permissionGranted}
