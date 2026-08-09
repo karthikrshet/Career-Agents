@@ -36,7 +36,7 @@
 
 > **Career Agents** is an open-source, local-first **AI Career Operating System** built for software engineers, tech candidates, and engineering managers. 
 > 
-> Unifying **146 specialized AI agents across 19 domain divisions**, a **20-language LeetCode Coding Studio with 240+ problems**, local heuristic **ATS Resume Grading**, public **GitHub Portfolio Auditing**, search-visibility **LinkedIn Profile Scanning**, and interactive **STAR Behavioral & System Design Mock Interviews** — it replaces generic ChatGPT prompts and static resume templates with a context-aware career intelligence cockpit,**146 Voice agents + 27 BCP-47 languages + Web Speech + dynamic follow-ups + STAR scorecards**.
+> Unifying **146 specialized AI agents across 19 domain divisions**, a **20-language LeetCode Coding Studio with 240+ problems**, local heuristic **ATS Resume Grading**, public **GitHub Portfolio Auditing**, search-visibility **LinkedIn Profile Scanning**, and interactive **STAR Behavioral & System Design Mock Interviews** — it replaces generic ChatGPT prompts and static resume templates with a context-aware career intelligence cockpit.
 
 ---
 
