@@ -58,13 +58,22 @@ export function resolveRequirements(target = {}) {
   }
 
   // 2. Load Career Path Requirements from career-paths/<role>.json
-  if (roleId) {
-    // Normalize role string to match career path filenames
-    const normalizedRoleId = roleId
-      .replace(/^(senior|staff|principal|lead|junior|mid)\s+/i, '')
-      .replace(/\s+/g, '-')
-      .replace(/\/ml/i, '')
-      .replace(/engineer.*$/, 'engineer');
+  if (roleId && typeof roleId === 'string') {
+    // Normalize role string safely without polynomial regex backtracking
+    let cleanRole = roleId.toLowerCase().trim();
+    const prefixes = ['senior ', 'staff ', 'principal ', 'lead ', 'junior ', 'mid '];
+    for (const p of prefixes) {
+      if (cleanRole.startsWith(p)) {
+        cleanRole = cleanRole.slice(p.length).trim();
+        break;
+      }
+    }
+    cleanRole = cleanRole.replace(/\/ml/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    if (cleanRole.includes('engineer')) {
+      const idx = cleanRole.indexOf('engineer');
+      cleanRole = cleanRole.slice(0, idx + 'engineer'.length);
+    }
+    const normalizedRoleId = cleanRole || 'ai-engineer';
 
     const possibleFiles = [
       path.join(root, 'career-paths', `${normalizedRoleId}.json`),

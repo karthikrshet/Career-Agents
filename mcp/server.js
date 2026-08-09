@@ -5,8 +5,8 @@ import { fileURLToPath } from 'url';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import exceljs from 'exceljs';
-import { calculateReadiness, resolveRequirements, normalizeCandidateProfile } from '../services/readiness.js';
-import { ApplicationTracker, ATSScanner, JDMatcher, CVBuilder, CoverLetterBuilder, InterviewCoach, OutreachGenerator, PipelineAnalytics, CompanyIntel } from '../packages/pipeline/index.js';
+import { calculateReadiness } from '../services/readiness.js';
+import { ApplicationTracker, ATSScanner, PipelineAnalytics } from '../packages/pipeline/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -57,51 +57,6 @@ function getFuzzyTerms(term) {
   }
   
   return Array.from(forms);
-}
-
-function getMatchDetails(resumeSkills, resumeTextLower, targetKeyword) {
-  const normTarget = targetKeyword.toLowerCase().trim();
-  
-  const hasDirectSkill = resumeSkills.some(s => s.toLowerCase() === normTarget);
-  const escapedTarget = normTarget.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
-  const wordRegex = new RegExp(`\\b${escapedTarget}\\b`, 'i');
-  const hasDirectText = wordRegex.test(resumeTextLower);
-  
-  if (hasDirectSkill || hasDirectText) {
-    return { matched: true, type: 'direct', confidence: 100 };
-  }
-  
-  for (const [groupName, members] of Object.entries(taxonomy)) {
-    const normMembers = members.map(m => m.toLowerCase());
-    if (normMembers.includes(normTarget)) {
-      for (const member of members) {
-        const normMember = member.toLowerCase();
-        const escapedMember = normMember.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
-        const memberRegex = new RegExp(`\\b${escapedMember}\\b`, 'i');
-        const hasMemberSkill = resumeSkills.some(s => s.toLowerCase() === normMember);
-        const hasMemberText = memberRegex.test(resumeTextLower);
-        
-        if (hasMemberSkill || hasMemberText) {
-          if (normTarget === groupName.toLowerCase()) {
-            return { matched: true, type: 'parent', confidence: 90 };
-          }
-          const targetCleaned = normTarget.replace(/[^a-z0-9]/g, '');
-          const memberCleaned = normMember.replace(/[^a-z0-9]/g, '');
-          const closelyRelated = (targetCleaned === memberCleaned) ||
-                                (normTarget.includes(normMember) || normMember.includes(normTarget)) ||
-                                (groupName === 'javascript' && ['javascript', 'js', 'typescript', 'ts'].includes(normTarget) && ['javascript', 'js', 'typescript', 'ts'].includes(normMember));
-          
-          if (closelyRelated) {
-            return { matched: true, type: 'alias', confidence: 95 };
-          } else {
-            return { matched: true, type: 'transferable', confidence: 75 };
-          }
-        }
-      }
-    }
-  }
-  
-  return { matched: false, type: 'none', confidence: 0 };
 }
 
 function writeFileSyncAtomic(filePath, content, options) {

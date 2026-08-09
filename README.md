@@ -68,6 +68,10 @@ Career Agents includes an enterprise-grade **Token Optimization Engine** built i
 > 
 > *The key idea is that Career Agents doesn't just find a job. It understands the job, evaluates candidate evidence against it, identifies what's missing, generates tailored application materials, prepares the candidate for the interview, and tracks what happens afterward.*
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/pipeline-workflow.svg" width="900" height="auto" alt="Career Agents Pipeline Architecture & Workflow" />
+</p>
+
 ### The Central Intelligence Loop
 
 ```text
