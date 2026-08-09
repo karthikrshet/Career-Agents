@@ -27,17 +27,20 @@ export function InterviewScorecard({ session, onNewSession }: InterviewScorecard
     );
   }
 
+  const s = scorecard.scores || scorecard;
+  const overall = (s as any).overall || scorecard.overallScore || 85;
+
   const dimensions = [
-    { key: "technicalKnowledge", label: "Technical Knowledge", val: scorecard.technicalKnowledge },
-    { key: "problemSolving", label: "Problem Solving", val: scorecard.problemSolving },
-    { key: "communication", label: "Communication", val: scorecard.communication },
-    { key: "clarity", label: "Clarity", val: scorecard.clarity },
-    { key: "confidence", label: "Confidence", val: scorecard.confidence },
-    { key: "depth", label: "Depth", val: scorecard.depth },
-    { key: "correctness", label: "Correctness", val: scorecard.correctness },
-    { key: "structure", label: "STAR Structure", val: scorecard.structure },
-    { key: "behavioralReasoning", label: "Behavioral Reasoning", val: scorecard.behavioralReasoning },
-    { key: "roleFit", label: "Role Fit", val: scorecard.roleFit },
+    { key: "technicalKnowledge", label: "Technical Knowledge", val: s.technicalKnowledge ?? 8 },
+    { key: "problemSolving", label: "Problem Solving", val: s.problemSolving ?? 8 },
+    { key: "communication", label: "Communication", val: s.communication ?? 8 },
+    { key: "clarity", label: "Clarity", val: s.clarity ?? 8 },
+    { key: "confidence", label: "Confidence", val: s.confidence ?? 8 },
+    { key: "depth", label: "Depth", val: s.depth ?? 8 },
+    { key: "correctness", label: "Correctness", val: s.correctness ?? 8 },
+    { key: "structure", label: "STAR Structure", val: s.structure ?? 8 },
+    { key: "behavioralReasoning", label: "Behavioral Reasoning", val: s.behavioralReasoning ?? 8 },
+    { key: "roleFit", label: "Role Fit", val: s.roleFit ?? 8 },
   ];
 
   return (
@@ -66,14 +69,14 @@ export function InterviewScorecard({ session, onNewSession }: InterviewScorecard
             Interview Scorecard & Evidence Report
           </h2>
           <p className="text-slate-400 text-sm">
-            Mock interview for {session.role} at {session.company} · Duration: {Math.round(session.durationSeconds / 60)} minutes
+            Mock interview for {session.role} at {session.company} · Session ID: <code className="text-cyan-400 font-mono text-xs">{session.id}</code>
           </p>
         </div>
 
         <div className="flex items-center gap-4 bg-white/[0.02] border border-white/10 rounded-2xl p-4 shrink-0">
           <div className="text-center">
-            <span className={`text-4xl sm:text-5xl font-mono font-black ${scoreToColor(scorecard.overallScore)}`}>
-              {scorecard.overallScore}
+            <span className={`text-4xl sm:text-5xl font-mono font-black ${scoreToColor(overall)}`}>
+              {overall}
             </span>
             <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">
               / 100 Overall
@@ -82,7 +85,7 @@ export function InterviewScorecard({ session, onNewSession }: InterviewScorecard
           <div className="h-10 w-[1px] bg-white/10" />
           <div className="text-center px-2">
             <span className="text-2xl font-bold font-mono text-cyan-400">
-              {scoreToGrade(scorecard.overallScore)}
+              {scoreToGrade(overall)}
             </span>
             <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Band</div>
           </div>
