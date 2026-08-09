@@ -816,156 +816,38 @@ Run terminal commands anywhere using `scripts/cli.js`:
 
 ---
 
-## 📸 Complete Product Visual Showcase
+---
 
-<div align="center">
+## ⚡ Core Capability Suites & Modules
 
-### 1. 🌐 Landing Page & Hero Cockpit
-*The entry point featuring system architecture stats, zero-key privacy guarantees, and instant live launch triggers.*
-![Landing Page Hero](./apps/web/public/images/hero_landing.png)
+Career Agents unifies the full career development lifecycle into focused, interoperable intelligence suites:
 
-<br />
+1. **⚡ MCP-Powered Job Search & Application Pipeline (`packages/pipeline/`)**
+   - Multi-ATS job board scanning (Greenhouse, Lever, Ashby, Workable, SmartRecruiters, RemoteOK, Arbeitnow, Himalayas).
+   - Canonical readiness evaluation (`services/readiness.js`) against extracted requirements.
+   - Tailored single-page ATS HTML/LaTeX resumes and executive 3-paragraph cover letters.
+   - Structured STAR+R interview question banks and <300-char recruiter outreach messaging.
+   - Dual-persistence application tracker (`pipeline-tracker.md`) and funnel conversion analytics.
 
-### 2. 🚀 Interactive Product Workspace Overview
-*Centralized system control panel inspecting active agent status streams, local SQLite database sync, and quick audit tools.*
-![Product Workspace Overview](./apps/web/public/images/workspace_overview.png)
+2. **🤖 167 Specialized AI Career Agents across 19 Divisions**
+   - Deep domain expertise across AI/ML, Backend, Frontend, Cloud, DevOps, System Design, Security, PM, Mobile, and more.
+   - Context-aware dynamic system prompt generation with zero token redundancy.
 
-<br />
+3. **📄 ATS Resume Studio & Heuristic Grading Engine**
+   - 20 professional, ATS-optimized single-page templates (Modern Tech, Minimalist, Academic, Executive, etc.).
+   - Local deterministic scoring for action-verb density, quantifiable metrics, section hierarchy, and keyword alignment.
 
-### 3. 💻 AI Copilot Stream Workspace
-*Context-aware chat workspace with multi-provider model switching, real-time SSE streaming, reasoning timeline traces, and downloadable PDF/Word file generation.*
-![AI Copilot Stream Workspace](./apps/web/public/images/copilot_stream_chat.png)
+4. **💻 20-Language Coding Studio & FAANG Problem Sets**
+   - 240+ curated LeetCode coding interview problems (Blind 75, NeetCode 150, Top 150).
+   - Interactive algorithm dry-run visualizers, whiteboard canvases, and timed virtual contests.
 
-<br />
+5. **🎙️ STAR Behavioral & Spoken Voice AI Interview Lab**
+   - Real-time spoken mock interviews with Web Speech API integration in 27 BCP-47 languages.
+   - 20+ Tier-1 company interview tracks with structured STAR parameter evaluation scorecards.
 
-### 4. ⚡ Next-Gen Coding Studio (LeetCode Workspace)
-*Practice 240+ coding interview problems with 20-language execution, algorithm visualizers, STAR coding coaches, and virtual contests.*
-![Coding Studio Main](./apps/web/public/images/coding_studio_main.png)
-
-<br />
-
-### 5. 📚 LeetCode Problem Catalog & FAANG Question Sets
-*Curated coding problem sets filtered by Blind 75, NeetCode 150, Top 150, or company sets (Google, Meta, Amazon, Microsoft, Apple, Netflix, Stripe, OpenAI).*
-![LeetCode Problem Catalog](./apps/web/public/images/problem_catalog_faang.png)
-
-<br />
-
-### 6. 🎨 Data Structure Whiteboard Canvas
-*Interactive visual whiteboard canvas for sketching binary trees, graphs, linked lists, system architecture flowcharts, and algorithm dry runs.*
-![Whiteboard Canvas](./apps/web/public/images/whiteboard_canvas.png)
-
-<br />
-
-### 7. 🔍 Step-by-Step Algorithm Visualizer
-*Step-by-step interactive animations for Two Pointers, Binary Search, Sorting, Stacks, Linked Lists, and Dynamic Programming (Kadane's).*
-![Algorithm Visualizer](./apps/web/public/images/algorithm_visualizer.png)
-
-<br />
-
-### 8. 🏆 Live Virtual Contests & Leaderboard
-*Participate in timed virtual coding contests with live countdown clocks, scoreboards, problem filters, and upsolve mode.*
-![Virtual Contests](./apps/web/public/images/virtual_contests.png)
-
-<br />
-
-### 9. 📄 ATS Resume Studio & 20 Built-In Templates
-*Check resume section density, scan action verbs, validate STAR metrics, detect weak bullets, and export to 20 styled ATS templates.*
-![ATS Resume Studio](./apps/web/public/images/resume_ats_studio.png)
-
-<br />
-
-### 10. 🎯 STAR Behavioral & Technical Mock Interview Lab
-*Conduct mock interviews across 10 company tracks featuring integrated code canvases, STAR parameter scorecards, and AI interviewer evaluation.*
-![STAR Mock Interview Lab](./apps/web/public/images/star_interview_lab.png)
-
-<br />
-
-### 11. 🏢 Target Company Tracks (FAANG & Tier-1 Tech)
-*Targeted interview prep modules tailored for Google, Meta, Amazon, Microsoft, Netflix, Apple, Uber, Stripe, Atlassian, and Databricks.*
-![Company Tracks](./apps/web/public/images/company_tracks.png)
-
-<br />
-
-### 12. 🐙 GitHub Profile Analyzer & Portfolio Wrapped
-*Integrates directly with the GitHub REST API to compute language distributions, repo star weights, documentation completeness scores, and commit heatmaps.*
-![GitHub Profile Analyzer](./apps/web/public/images/github_analyzer.png)
-
-<br />
-
-### 13. 👔 LinkedIn Profile Search Optimizer & AI Content Engine
-*Evaluate headline pipe architecture, summary keyword density, recruiter visibility scores, and generate AI-crafted post copy.*
-![LinkedIn Optimizer](./apps/web/public/images/linkedin_optimizer.png)
-![LinkedIn AI Content](./apps/web/public/images/linkedin_content_ai.png)
-
-<br />
-
-### 14. 💼 Job Hub Opportunities Search Engine
-*Search 30+ tech opportunities with automated ATS match scoring, one-click cover letter generation, and referral request drafting.*
-![Job Hub Opportunities Search](./apps/web/public/images/job_hub_engine.png)
-
-<br />
-
-### 15. 📊 Kanban Application Job Tracker
-*Drag-and-drop Kanban board managing applications across Wishlist, Applied, Interview, Offer, and Rejected stages with recruiter interaction logs.*
-![Kanban Application Job Tracker](./apps/web/public/images/kanban_tracker.png)
-
-<br />
-
-### 16. 🗺️ Prep Hub & Custom Study Roadmaps
-*Generates personalized step-by-step career roadmaps for Software Engineer, Senior Backend Developer, System Architect, and AI/ML Specialist.*
-![Prep Hub Study Roadmaps](./apps/web/public/images/prep_hub_roadmaps.png)
-
-<br />
-
-### 17. ⚡ Workflow Automation Pipelines
-*Run multi-agent automated pipelines connecting resume audits, GitHub scans, and mock interview questions into a single execution stream.*
-![Workflow Pipelines](./apps/web/public/images/workflow_pipelines.png)
-
-<br />
-
-### 18. 🧩 {num_agents} Agent Marketplace Extensions
-*Browse, search, and enable domain-specific agent extensions across 19 career divisions.*
-![Agent Marketplace Extensions](./apps/web/public/images/marketplace_agents.png)
-
-<br />
-
-### 19. 🔌 Model Context Protocol (MCP) Stdio Server
-*Exposes 25 career tools directly to local IDE environments including Cursor, Claude Desktop, VS Code, and Windsurf.*
-![MCP Protocol Server Setup](./apps/web/public/images/mcp_protocol_server.png)
-
-<br />
-
-### 20. 🎙️ AI Voice Agent Mock Interview Lab v1.0 (`/interview/voice`)
-*1-on-1 real-time spoken mock interviews with {num_agents} specialized AI agents, 27 BCP-47 languages, Web Speech API integration, reactive interviewer orb visualizers, dynamic follow-up questions, evidence-based STAR scorecards, and Vercel AI Key resolution.*
-![AI Voice Agent Lab](./apps/web/public/images/star_interview_lab.png)
-
-<br />
-
-### 21. ⚙️ Settings & Multi-Provider AI Gateway
-*Configure 18 AI providers, set default models, adjust temperature parameters, manage local API keys, and test response latency.*
-![Settings AI Gateway](./apps/web/public/images/settings_ai_gateway.png)
-
-<br />
-
-### 22. 📑 Reports & Comprehensive Dossier Diagnostics
-*Export complete career analysis dossiers into professional PDF documents, Word `.docx` files, Excel `.xlsx` spreadsheets, or Markdown.*
-![Reports Diagnostics](./apps/web/public/images/reports_diagnostics.png)
-![Dossier Export Reports](./apps/web/public/images/dossier_export_reports.png)
-
-<br />
-
-### 23. 📈 Dashboard Analytics & System Telemetry Logs
-*Track progress metrics over time, inspect live agent execution telemetry logs, and verify local SQLite database state.*
-![Dashboard Analytics](./apps/web/public/images/dashboard_analytics.png)
-![System Telemetry Logs](./apps/web/public/images/system_telemetry_logs.png)
-
-<br />
-
-### 24. 💳 Credits & Open Source Tech Stack Ecosystem
-*Review open-source libraries, platform contributors, and core maintainers.*
-![Credits & Ecosystem](./apps/web/public/images/credits_ecosystem.png)
-
-</div>
+6. **🔍 GitHub Portfolio & LinkedIn Search Optimization Auditing**
+   - Direct GitHub API repository quality audits, documentation coverage scores, and contribution heatmaps.
+   - LinkedIn headline pipe-structure analysis, recruiter search keyword density scoring, and AI content creation.
 
 ---
 
