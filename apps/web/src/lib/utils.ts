@@ -44,7 +44,15 @@ export function timeAgo(isoString: string): string {
 }
 
 export function generateId(): string {
-  return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  if (typeof crypto !== "undefined" && typeof crypto.getRandomValues === "function") {
+    const arr = new Uint8Array(8);
+    crypto.getRandomValues(arr);
+    return `${Date.now()}-${Array.from(arr, (b) => b.toString(16).padStart(2, "0")).join("")}`;
+  }
+  return `${Date.now()}-${Date.now().toString(36)}`;
 }
 
 export function truncate(str: string, n: number): string {

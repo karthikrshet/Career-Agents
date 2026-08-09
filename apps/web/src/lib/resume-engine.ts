@@ -221,7 +221,7 @@ function detectWeakBullets(lines: string[]): WeakBullet[] {
 
 function detectKeywords(text: string, keywordList: string[]): { found: string[]; missing: string[]; totalKeywords: number } {
   const found = keywordList.filter((kw) =>
-    new RegExp(`\\b${kw.replace(/[.+]/g, "\\$&")}\\b`, "i").test(text)
+    new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text)
   );
   const allMissing = keywordList.filter((kw) => !found.includes(kw));
   const missing = allMissing.slice(0, 8);
