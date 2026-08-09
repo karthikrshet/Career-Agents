@@ -29,7 +29,8 @@ import {
   Terminal,
   Settings,
   Info,
-  Award
+  Award,
+  Volume2
 } from "lucide-react";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
@@ -53,6 +54,7 @@ const DEFAULT_SUBTITLES: Record<string, string> = {
   "/dashboard": "Overview workspace and career readiness analytics",
   "/resume": "ATS resume optimization, bullet rewrites, and keyword gaps",
   "/interview": "AI-powered mock interviews with STAR scorecard",
+  "/interview/voice": "Live 1-on-1 spoken AI mock interviews in 27 languages",
   "/jobs": "Explore open technical roles and AI matches",
   "/tracker": "Kanban pipeline for tracking your job applications",
   "/prephub": "Structured company preparation tracks",
@@ -76,6 +78,7 @@ const MOBILE_NAV_GROUPS = [
       { label: "Overview Workspace", href: "/dashboard", icon: LayoutDashboard },
       { label: "Resume Studio", href: "/resume", icon: FileText },
       { label: "STAR Interview Lab", href: "/interview", icon: Mic },
+      { label: "Voice Agent Lab", href: "/interview/voice", icon: Volume2 },
       { label: "Job Hub", href: "/jobs", icon: Briefcase },
       { label: "Job Tracker", href: "/tracker", icon: Kanban },
       { label: "Prep Hub", href: "/prephub", icon: Building2 },
