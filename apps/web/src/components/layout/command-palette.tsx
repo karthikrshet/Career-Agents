@@ -15,7 +15,8 @@ import {
   ArrowRight,
   Sparkles,
   Command,
-  X
+  X,
+  Volume2
 } from "lucide-react";
 import agentRegistry from "../../../../../agent-registry.json";
 
@@ -31,6 +32,7 @@ export function CommandPalette() {
     { title: "Dashboard Workspace", category: "Pages", href: "/dashboard", icon: LayoutDashboard },
     { title: "Resume Studio", category: "Pages", href: "/resume", icon: FileText },
     { title: "Interview Lab", category: "Pages", href: "/interview", icon: Mic },
+    { title: "AI Voice Agent Lab", category: "Pages", href: "/interview/voice", icon: Volume2 },
     { title: "GitHub Code Auditor", category: "Pages", href: "/github", icon: GitBranch },
     { title: "AI Copilot Stream", category: "Pages", href: "/copilot", icon: Bot },
     { title: "Model Context Protocol (MCP)", category: "Developer", href: "/mcp", icon: Terminal },
