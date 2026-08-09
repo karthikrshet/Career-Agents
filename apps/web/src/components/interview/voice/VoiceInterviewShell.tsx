@@ -127,7 +127,17 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const recognitionRef = useRef<any>(null);
-  const isListeningRef = useRef(false);
+
+  const fsmStateRef = useRef(fsmState);
+  useEffect(() => {
+    fsmStateRef.current = fsmState;
+  }, [fsmState]);
+
+  const isListeningRef = useRef(isListening);
+  useEffect(() => {
+    isListeningRef.current = isListening;
+  }, [isListening]);
+
   const shouldKeepListeningRef = useRef(false);
   const baseTextRef = useRef("");
   const currentResponseRef = useRef("");
@@ -210,19 +220,20 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
       };
 
       rec.onerror = (e: any) => {
-        console.error("Speech Recognition error:", e);
+        console.warn("Speech Recognition error:", e);
         const errType = e.error || "";
         if (errType === "not-allowed" || errType === "service-not-allowed") {
           shouldKeepListeningRef.current = false;
           setPermissionGranted(false);
           setIsListening(false);
-          isListeningRef.current = false;
-          if (isListeningRef.current || fsmState === "LISTENING") {
+          if (isListeningRef.current || fsmStateRef.current === "LISTENING") {
             toast.info("Microphone access denied. Switched to Text Mode.");
             setVoiceMode("text");
             setFsmState("WAITING_FOR_NEXT_QUESTION");
           }
-        } else if (errType !== "no-speech" && (isListeningRef.current || fsmState === "LISTENING")) {
+        } else if (errType === "aborted") {
+          // Intentional stop/abort, ignore
+        } else if (errType !== "no-speech" && (isListeningRef.current || fsmStateRef.current === "LISTENING")) {
           toast.error(`Speech input notice: ${errType}`);
         }
       };
@@ -238,15 +249,22 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
           }
         }
         setIsListening(false);
-        isListeningRef.current = false;
-        if (fsmState === "LISTENING") {
+        if (fsmStateRef.current === "LISTENING") {
           setFsmState("WAITING_FOR_NEXT_QUESTION");
         }
       };
 
       recognitionRef.current = rec;
+
+      return () => {
+        shouldKeepListeningRef.current = false;
+        try {
+          rec.abort();
+        } catch (e) {}
+        recognitionRef.current = null;
+      };
     }
-  }, [language, SpeechRecognition, fsmState]);
+  }, [language, SpeechRecognition]);
 
   // TTS helper
   const speakQuestion = (text: string) => {
@@ -306,19 +324,28 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
         recognitionRef.current.stop();
       } catch (err) {}
       setIsListening(false);
-      isListeningRef.current = false;
       setFsmState("WAITING_FOR_NEXT_QUESTION");
     } else {
       stopSpeaking();
       baseTextRef.current = currentResponse;
       shouldKeepListeningRef.current = true;
       try {
+        recognitionRef.current.lang = language;
         recognitionRef.current.start();
         setIsListening(true);
-        isListeningRef.current = true;
         setFsmState("LISTENING");
       } catch (err) {
         console.error("Mic start failed:", err);
+        try {
+          recognitionRef.current.stop();
+          setTimeout(() => {
+            try {
+              recognitionRef.current.start();
+              setIsListening(true);
+              setFsmState("LISTENING");
+            } catch (e2) {}
+          }, 150);
+        } catch (e) {}
       }
     }
   };
