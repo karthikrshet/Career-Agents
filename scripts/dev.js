@@ -68,7 +68,7 @@ if (!fs.existsSync(prismaClientDir) && fs.existsSync(schemaPath)) {
 // 4. Start Next.js dev server
 console.log('⚡ Launching Next.js dev server...');
 try {
-  execSync('next dev', { cwd: path.join(__dirname, '../apps/web'), stdio: 'inherit' });
+  execSync('npx next dev', { cwd: path.join(__dirname, '../apps/web'), stdio: 'inherit' });
 } catch (err) {
   console.error('❌ Next.js dev server exited with error:', err.message);
   process.exit(1);
