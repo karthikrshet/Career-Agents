@@ -46,9 +46,38 @@ interface VoiceInterviewShellProps {
 
 export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellProps) {
   const [mounted, setMounted] = useState(false);
+  // Auto-load or auto-start session if initialSessionId URL param is present
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    if (initialSessionId && mounted && fsmState === "CONFIGURING") {
+      const existing = interviewSessions.find((s) => s.id === initialSessionId);
+      if (existing && existing.scorecard) {
+        setCompletedSessionData({
+          id: existing.id,
+          agentId: selectedAgent.id,
+          agentName: selectedAgent.name,
+          company: existing.company,
+          role: existing.role,
+          mode: existing.mode as any,
+          difficulty: existing.difficulty,
+          language,
+          targetDurationMinutes: durationMinutes,
+          startedAt: existing.startedAt,
+          completedAt: existing.completedAt || new Date().toISOString(),
+          durationSeconds: 1200,
+          history: (existing.responses || []).map((r) => ({
+            id: r.questionId,
+            speaker: "candidate",
+            content: r.answer,
+            timestamp: r.submittedAt || new Date().toISOString(),
+          })),
+          scorecard: existing.scorecard as any,
+        });
+        setFsmState("COMPLETED");
+      } else {
+        startSession(initialSessionId);
+      }
+    }
+  }, [initialSessionId, mounted]);
 
   const interviewSessions = useStore((s) => s.interviewSessions);
   const addInterviewSession = useStore((s) => s.addInterviewSession);
@@ -253,11 +282,11 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
     }
   };
 
-  const startSession = async () => {
+  const startSession = async (overrideId?: string) => {
     const rawId = generateId();
     const cleanRoleSlug = role.toLowerCase().replace(/[^a-z0-9]/g, "-");
     const cleanCompanySlug = company.toLowerCase().replace(/[^a-z0-9]/g, "-");
-    const uniqueSlug = `${cleanCompanySlug}-${cleanRoleSlug}-${rawId.slice(0, 8)}`;
+    const uniqueSlug = overrideId || `${cleanCompanySlug}-${cleanRoleSlug}-${rawId.slice(0, 8)}`;
 
     setSessionId(uniqueSlug);
     setHistory([]);
@@ -265,7 +294,7 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
     setCurrentResponse("");
     setFsmState("STARTING");
 
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && window.location.pathname !== `/interview/voice/${uniqueSlug}`) {
       window.history.pushState(null, "", `/interview/voice/${uniqueSlug}`);
     }
 
@@ -537,7 +566,7 @@ export function VoiceInterviewShell({ initialSessionId }: VoiceInterviewShellPro
                 />
 
                 <button
-                  onClick={startSession}
+                  onClick={() => startSession()}
                   className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-600 text-white font-bold text-sm shadow-lg hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 border-0"
                 >
                   <Play className="w-4 h-4 fill-current" /> Start Live Interview
