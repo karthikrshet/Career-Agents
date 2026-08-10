@@ -76,10 +76,10 @@ export function enforceRequestLimits(
   const maxSize = options.maxSize ?? 5 * 1024 * 1024; // 5MB default
   const isUser = options.isUser ?? false;
   
-  // Enforce Guest (20/min) vs User (60/min) limits
-  const limitCount = options.rateLimitCount ?? (isUser ? 60 : 20);
+  // Generous request limits for unrestricted application usage
+  const limitCount = options.rateLimitCount ?? (isUser ? 300 : 300);
   const limitWindow = options.rateLimitWindow ?? 60000;
-  const burstLimit = options.burstLimit ?? (isUser ? 10 : 5);
+  const burstLimit = options.burstLimit ?? (isUser ? 100 : 100);
 
   // 1. Enforce payload size limit using Content-Length header
   const contentLengthStr = req.headers.get("content-length");
