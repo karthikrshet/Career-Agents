@@ -44,13 +44,28 @@
 
 ---
 
-## 🎯 Executive Overview
+## 🎯 Executive Overview & What Is This
 
-> **Career Agents** is an open-source, local-first **AI Career Operating System** built for software engineers, tech candidates, and engineering leaders.
+> **"Companies use AI to filter candidates. Career Agents gives candidates AI to choose companies, crack top offers, and run their entire job search from one unified command center."**
 > 
-> Unifying **167 specialized AI agents across 19 domain divisions**, a **20-language LeetCode Coding Studio with 240+ problems**, local heuristic **ATS Resume Grading**, public **GitHub Portfolio Auditing**, search-visibility **LinkedIn Profile Scanning**, and interactive **STAR Behavioral & System Design Mock Interviews** — it replaces generic ChatGPT prompts and static resume templates with a context-aware career intelligence cockpit.
+> **Career Agents** is an open-source, local-first **AI Career Operating System** built for software engineers, tech candidates, and engineering leaders. Instead of juggling disconnected job boards, spreadsheets, and generic ChatGPT prompts, Career Agents unifies two foundational pillars:
+> 
+> 1. **🤖 167 Specialized AI Career Agents across 19 Domain Divisions**: Purpose-built expert agents with deep domain intelligence, interview question banks, system design rubrics, and career path roadmaps.
+> 2. **⚡ MCP-Powered Agentic Job Search Engine**: An autonomous end-to-end pipeline that scans ATS job portals, extracts requirements, evaluates deterministic candidate fit, drafts tailored resumes & cover letters, curates STAR interview practice, generates recruiter outreach, and tracks applications through live analytics.
 
-### ⚡ System-Wide Token Optimization Engine (80-85% Token Reduction)
+---
+
+## 🔒 Local-First Privacy & Data Sovereignty Guarantee
+
+> **🛡️ "Do Not Share My Personal Information" Guarantee:**
+> - **100% Local-First Execution:** Your CV, candidate profile, job applications, interview debriefs, and private notes stay on your machine. We do not collect, store, or sell any personal data.
+> - **Zero Server-Side Storage:** AI requests are dispatched directly from your browser or local CLI to the AI provider you configure.
+> - **Zero-Key Offline Fallback:** Heuristic ATS scoring, LeetCode coding practice, and local tracker management run completely offline with zero API key requirements.
+
+---
+
+## ⚡ System-Wide Token Optimization Engine (80-85% Token Reduction)
+
 - 🧬 **Prompt Minification:** Strips excessive whitespace, redundant blank lines, and decorative borders before transmission to remote LLMs.
 - 📉 **Sliding Context Window Compression:** In multi-turn chat, voice interviews, and MCP tool interactions, older assistant turns are automatically summarized into key highlights while preserving full context for the latest active turns.
 - 🔌 **MCP Server & CLI Token Efficiency:** All Model Context Protocol (MCP) responses for Cursor IDE, Claude Desktop, and VS Code are minified to eliminate payload bloat, saving users up to **85% in API key costs**.
