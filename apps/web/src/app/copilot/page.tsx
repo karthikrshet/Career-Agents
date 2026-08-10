@@ -515,33 +515,70 @@ Recalculated tracker statistics and updated applications metrics.`);
 
     try {
       abortRef.current = new AbortController();
-      const resumeAnalysis = useStore.getState().resumeAnalysis;
-      const GitHubAnalysis = useStore.getState().GitHubAnalysis;
-      const linkedinAnalysis = useStore.getState().linkedinAnalysis;
-      const interviewSessions = useStore.getState().interviewSessions || [];
-      const jobApplications = useStore.getState().jobApplications || [];
-      
-      let memoryContext = `\n\nAdditional Workspace Context:`;
-      if (resumeAnalysis?.atsScore) {
-        memoryContext += `\n- Resume ATS Score: ${resumeAnalysis.atsScore}/100. Keywords: ${resumeAnalysis.detectedKeywords?.slice(0, 3).join(", ")}. Recommendations: ${resumeAnalysis.recommendations?.slice(0, 3).join(", ")}. STAR items: ${resumeAnalysis.starAnalysis?.length || 0}`;
-      }
-      if (GitHubAnalysis?.portfolioScore) {
-        memoryContext += `\n- GitHub Portfolio Score: ${GitHubAnalysis.portfolioScore}/100. Repositories count: ${GitHubAnalysis.publicRepos || 0}. Stars: ${GitHubAnalysis.totalStars || 0}. Forks: ${GitHubAnalysis.totalForks || 0}`;
-      }
-      if (linkedinAnalysis?.overallScore) {
-        memoryContext += `\n- LinkedIn Profile Score: ${linkedinAnalysis.overallScore}/100. Visibility Index: ${linkedinAnalysis.visibilityIndex || "Medium"}. Suggested Skills: ${linkedinAnalysis.suggestedSkills?.slice(0, 3).join(", ")}`;
-      }
-      if (interviewSessions.length > 0) {
-        const lastSession = interviewSessions[interviewSessions.length - 1];
-        if (lastSession.scorecard) {
-          memoryContext += `\n- Last Mock Interview at ${lastSession.company} (${lastSession.mode}) score: ${lastSession.scorecard.overallScore}/100. Strengths identified: ${lastSession.scorecard.strengths?.slice(0, 2).join(", ")}`;
+
+      // Always read FRESH state directly from store (never stale React props)
+      const freshState = useStore.getState();
+      const resumeAnalysis = freshState.resumeAnalysis;
+      const GitHubAnalysis = freshState.GitHubAnalysis;
+      const linkedinAnalysis = freshState.linkedinAnalysis;
+      const interviewSessions = freshState.interviewSessions || [];
+      const jobApplications = freshState.jobApplications || [];
+      const freshMetrics = freshState.metrics; // Always use latest scores
+
+      // ── Build the uploaded data context ─────────────────────────────────
+      let uploadedDataContext = "";
+
+      // Resume: inject raw text content + scores
+      if (resumeAnalysis) {
+        const resumeScore = resumeAnalysis.overallScore || resumeAnalysis.atsScore || 0;
+        uploadedDataContext += `\n\n[RESUME UPLOADED: ${resumeAnalysis.fileName || "resume"}]`;
+        uploadedDataContext += `\n- ATS Score: ${resumeScore}/100`;
+        uploadedDataContext += `\n- Detected Keywords: ${(resumeAnalysis.detectedKeywords || []).join(", ") || "None"}`;
+        uploadedDataContext += `\n- Missing Keywords: ${(resumeAnalysis.missingKeywords || []).join(", ") || "None"}`;
+        uploadedDataContext += `\n- Recommendations: ${(resumeAnalysis.recommendations || []).slice(0, 3).join("; ") || "None"}`;
+        if (resumeAnalysis.rawText) {
+          // Inject first 3000 chars of resume text so AI can analyze actual content
+          const resumeSnippet = resumeAnalysis.rawText.slice(0, 3000).trim();
+          uploadedDataContext += `\n- Resume Full Text (first 3000 chars):\n${resumeSnippet}`;
         }
       }
-      if (jobApplications.length > 0) {
-        memoryContext += `\n- Active Job Applications: ${jobApplications.map(app => `${app.role} at ${app.company} (${app.status})`).join(", ")}`;
+
+      // GitHub: inject portfolio analysis data
+      if (GitHubAnalysis) {
+        uploadedDataContext += `\n\n[GITHUB ANALYSIS: @${GitHubAnalysis.username || "user"}]`;
+        uploadedDataContext += `\n- Portfolio Score: ${GitHubAnalysis.portfolioScore || 0}/100`;
+        uploadedDataContext += `\n- Public Repos: ${GitHubAnalysis.publicRepos || 0}, Stars: ${GitHubAnalysis.totalStars || 0}, Forks: ${GitHubAnalysis.totalForks || 0}`;
+        if (GitHubAnalysis.languages?.length) uploadedDataContext += `\n- Top Languages: ${GitHubAnalysis.languages.slice(0, 5).map(l => l.name).join(", ")}`;
+        if (GitHubAnalysis.recommendations?.length) uploadedDataContext += `\n- Recommendations: ${GitHubAnalysis.recommendations.slice(0, 3).join("; ")}`;
       }
-      
-      const systemContext = buildCareerContext(profile, metrics) + memoryContext;
+
+      // LinkedIn: inject profile analysis
+      if (linkedinAnalysis) {
+        uploadedDataContext += `\n\n[LINKEDIN ANALYSIS]`;
+        uploadedDataContext += `\n- Profile Score: ${linkedinAnalysis.overallScore || 0}/100`;
+        uploadedDataContext += `\n- Visibility Index: ${linkedinAnalysis.visibilityIndex || "Medium"}`;
+        if (linkedinAnalysis.suggestedSkills?.length) uploadedDataContext += `\n- Suggested Skills to Add: ${linkedinAnalysis.suggestedSkills.slice(0, 5).join(", ")}`;
+        if (linkedinAnalysis.summaryAnalysis?.suggestions?.length) uploadedDataContext += `\n- Summary Suggestions: ${linkedinAnalysis.summaryAnalysis.suggestions.slice(0, 3).join("; ")}`;
+      }
+
+      // Interview sessions
+      if (interviewSessions.length > 0) {
+        const lastSession = interviewSessions[interviewSessions.length - 1];
+        if (lastSession?.scorecard) {
+          uploadedDataContext += `\n\n[LAST MOCK INTERVIEW: ${lastSession.company || "Target"} (${lastSession.mode || "Technical"})]`;
+          uploadedDataContext += `\n- Score: ${lastSession.scorecard.overallScore || 0}/100`;
+          uploadedDataContext += `\n- Strengths: ${(lastSession.scorecard.strengths || []).slice(0, 2).join(", ")}`;
+          uploadedDataContext += `\n- Areas to Improve: ${(lastSession.scorecard.improvements || []).slice(0, 2).join(", ")}`;
+        }
+      }
+
+      // Job applications
+      if (jobApplications.length > 0) {
+        uploadedDataContext += `\n\n[JOB APPLICATIONS: ${jobApplications.length} active]`;
+        uploadedDataContext += `\n- ${jobApplications.slice(0, 5).map(app => `${app.role} at ${app.company} (${app.status})`).join(", ")}`;
+      }
+
+      const systemContext = buildCareerContext(profile, freshMetrics) + uploadedDataContext;
 
       // Construct multi-part visual payload if vision images are attached (Issue 6)
       const imageAttachments = attachments.filter((a) => a.type.startsWith("image/") && a.previewUrl);
