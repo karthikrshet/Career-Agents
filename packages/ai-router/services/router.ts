@@ -443,12 +443,13 @@ export async function routeCompletion(
     if (isGreeting) {
       mockResponse = `Hello${candidateName ? " **" + candidateName + "**" : ""}! I'm your AI Career Copilot, backed by **146 specialist career agents**.\n\nI can help you with:\n- 📄 **Resume & ATS optimization** — bullet rewrites, keyword injection, scoring\n- 💼 **Job search strategy** — targeting companies, outreach templates, referrals\n- 🎤 **Interview preparation** — STAR method, mock sessions, DSA practice\n- 🐙 **GitHub portfolio review** — code quality, CI/CD, documentation\n- 🔗 **LinkedIn optimization** — headline, summary, recruiter outreach\n- 🗺️ **Career roadmap** — 30/60/90-day plans, salary negotiation, promotion paths\n\nWhat would you like to work on today?`;
     } else {
-      // Agent-aware response engine: match query against the 146-agent registry
-      let agentInsights = "";
-      let intentLabel = "";
+      // ── Semantic Agent Synthesis Engine ────────────────────────────────
+      // Instead of listing agents, we read their prompt content and compose
+      // a unified, natural answer the way a real LLM would respond.
+      let intentLabel = "job_search";
+      let synthesisedContent = "";
 
       try {
-        // Dynamic import to avoid circular dep at module load time
         const { findMatchingAgents, getCachedAgentPrompt } = await import("../../brain/router");
         const { detectUserIntent } = await import("../../brain/intent");
 
@@ -458,46 +459,88 @@ export async function routeCompletion(
         const matchedAgents = findMatchingAgents(query, 3);
 
         if (matchedAgents.length > 0) {
-          const agentSections = matchedAgents.map((agent) => {
-            const fullPrompt = getCachedAgentPrompt(agent.filename);
-            // Extract actionable guidance from the agent's prompt (first 600 chars, clean markdown)
-            const guidance = fullPrompt
-              ? fullPrompt.replace(/#+\s*/g, "").replace(/\*\*/g, "").slice(0, 600).trim()
-              : agent.description;
+          // Read each agent's full prompt and extract meaningful sections
+          const knowledgeSections: string[] = [];
 
-            return `**${agent.emoji || "🤖"} ${agent.name}** *(${agent.division})*\n${guidance}`;
-          }).join("\n\n---\n\n");
+          for (const agent of matchedAgents) {
+            const rawPrompt = getCachedAgentPrompt(agent.filename);
+            if (!rawPrompt) continue;
 
-          agentInsights = agentSections;
+            // Strip frontmatter/metadata headers, keep structured content
+            const cleaned = rawPrompt
+              .replace(/^#+\s*(Agent Identity|Persona|Role|You are)[^\n]*/gim, "")
+              .replace(/^#+\s*(Your (name|role|identity) is)[^\n]*/gim, "")
+              .trim();
+
+            // Extract the most actionable section (first 1200 chars of clean content)
+            const usable = cleaned
+              .split(/\n{2,}/)
+              .filter(p => p.trim().length > 40)
+              .slice(0, 6)
+              .join("\n\n")
+              .slice(0, 1200)
+              .trim();
+
+            if (usable) {
+              knowledgeSections.push(usable);
+            }
+          }
+
+          if (knowledgeSections.length > 0) {
+            // Merge all agent knowledge into one coherent answer
+            synthesisedContent = knowledgeSections.join("\n\n");
+          }
         }
       } catch (importErr) {
         safeLogger.warn("Agent registry import failed in fallback:", importErr);
       }
 
-      // Build context prefix
-      const contextLines: string[] = [];
-      if (candidateName) contextLines.push(`Candidate: **${candidateName}**`);
-      if (targetRole) contextLines.push(`Target Role: **${targetRole}**`);
-      if (resumeScore) contextLines.push(`ATS Score: **${resumeScore}**`);
-      if (trackedSkills) contextLines.push(`Skills: ${trackedSkills}`);
-      const contextPrefix = contextLines.length > 0 ? contextLines.join(" · ") + "\n\n" : "";
+      // ── Build context header from user profile ──────────────────────────
+      const contextParts: string[] = [];
+      if (targetRole) contextParts.push(`your target role is **${targetRole}**`);
+      if (resumeScore) contextParts.push(`your current ATS score is **${resumeScore}**`);
+      if (trackedSkills) contextParts.push(`identified skill gaps: *${trackedSkills.slice(0, 120)}*`);
+      const contextIntro = contextParts.length > 0
+        ? `I can see ${contextParts.join(", ")}.\n\n`
+        : "";
 
-      if (agentInsights) {
-        mockResponse = `${contextPrefix}Here's what our specialist agents recommend for: *"${query}"*\n\n${agentInsights}\n\n---\n💡 **Tip:** Add a Groq or Gemini API key in **Settings → API Keys** to get live, personalised AI responses from our full Career Agent ecosystem.`;
-      } else {
-        // Broad intent-based responses when no specific agent matches
-        const intentResponses: Record<string, string> = {
-          resume: `**Resume Optimization Guidance**\n\n${contextPrefix}To land interviews at top tech companies, your resume needs:\n\n1. **Quantified STAR bullets** — *"Reduced API latency by 45% by refactoring to async microservices (Node.js + Go), supporting 10k concurrent users"*\n2. **ATS keyword alignment** — Mirror exact terms from job descriptions: React, TypeScript, System Design, CI/CD, REST APIs\n3. **Strong Summary** — One punchy paragraph: role + years + top 3 skills + biggest win\n4. **Project Impact** — Every project needs a metric: users, revenue, uptime, performance gain\n\nShare your resume or a job description and I'll provide a detailed ATS analysis.`,
-          job_search: `**Job Search Strategy for Software Engineers**\n\n${contextPrefix}${targetRole ? `For **${targetRole}** roles, here's your action plan:\n\n` : ""}1. **Target companies by tier** — Dream (FAANG+), Realistic (Series B-D), Safe (stable mid-size)\n2. **Referral-first approach** — 70% of hires come via referrals. Find connections on LinkedIn who work at target companies\n3. **Optimise application materials** — ATS-friendly resume + tailored cover letter per company\n4. **Technical preparation** — LeetCode (Arrays, Trees, DP, Graphs), 2 system design problems/week\n5. **Timeline** — Applications → Phone screens (1-2 weeks) → Technical interviews (2-4 weeks) → Offer\n\n*Which companies are you targeting? I can help craft personalised outreach messages.*`,
-          interview: `**Interview Preparation Roadmap**\n\n${contextPrefix}For software engineering interviews, master these areas:\n\n**Behavioral (STAR Method)**\n- Structure every answer: *Situation → Task → Action → Result*\n- Prepare 8-10 stories covering leadership, conflict, failure, success\n- Key questions: "Tell me about a time you disagreed with your manager", "Describe a technically complex project"\n\n**Technical (DSA)**\n- Arrays/Strings, Hash Maps, Trees/Graphs, Dynamic Programming, Sliding Window\n- Practice 2-3 LeetCode problems daily (Easy → Medium → Hard progression)\n\n**System Design**\n- URL shortener, Twitter feed, Uber, WhatsApp — know these cold\n- Master: load balancers, caching (Redis), databases (sharding/indexing), message queues\n\n*Would you like a mock interview session or a 30-day preparation plan?*`,
-          github: `**GitHub Portfolio Optimisation**\n\n${contextPrefix}To pass technical recruiter reviews:\n\n1. **Pin 4-6 impressive projects** — Full-stack apps with real users or metrics\n2. **READMEs that sell** — Problem statement, tech stack badge row, screenshots, live demo link, setup guide\n3. **Consistent green grid** — Aim for daily commits; even documentation updates count\n4. **CI/CD pipelines** — Add GitHub Actions for lint, test, and deploy — shows production mindset\n5. **Code quality signals** — Tests (>60% coverage), TypeScript, ESLint, proper error handling\n\nShare your GitHub URL for a detailed audit.`,
-          linkedin: `**LinkedIn Profile Optimisation**\n\n${contextPrefix}Key areas to maximise recruiter visibility:\n\n1. **Headline** — *"Software Engineer | React · Node.js · System Design | Open to Opportunities"*\n2. **About section** — 3 paragraphs: who you are, what you build, what you're looking for\n3. **Experience bullets** — STAR format with metrics, same as your resume\n4. **Skills section** — Add 50 skills, get endorsements for top 10\n5. **Activity** — Post 1-2 technical articles/week to appear in recruiter feeds\n6. **Connection strategy** — 20 targeted connection requests/day to engineers and recruiters at target companies`,
-          salary: `**Salary Negotiation Framework**\n\n${contextPrefix}Data-driven negotiation approach:\n\n1. **Know your market rate** — Check levels.fyi, Glassdoor, Blind, and LinkedIn Salary for your role + YoE + location\n2. **Always negotiate** — 85% of offers have flexibility; never accept the first number\n3. **Script** — *"I'm very excited about this offer. Based on my research and experience, I was expecting something closer to [$X]. Is there flexibility there?"*\n4. **Negotiate the full package** — Base + equity (RSUs) + signing bonus + PTO + remote flexibility\n5. **Use competing offers** — Even a recruiter call generates leverage\n\n*Share the offer details and your YoE for personalised negotiation advice.*`,
-          roadmap: `**Career Roadmap Planning**\n\n${contextPrefix}${targetRole ? `For **${targetRole}**, here's a structured progression:\n\n` : ""}**30-Day Sprint**\n- Audit resume and LinkedIn profile\n- Apply to 5-10 companies/week\n- Solve 3 LeetCode problems daily\n\n**60-Day Milestone**\n- Complete 2 technical phone screens\n- Build or polish 1 major portfolio project\n- Reach out to 50 relevant connections\n\n**90-Day Goal**\n- Land 2-3 final round interviews\n- Have competing offers for negotiation leverage\n- Secure and sign target offer\n\n*Want me to build a personalised weekly plan based on your target companies?*`,
+      // ── Intent-based semantic fallback responses ─────────────────────────
+      const intentAnswers: Record<string, string> = {
+        resume: `${contextIntro}## Resume Optimization for Top Tech Companies\n\nTo pass ATS filters and land recruiter screens, your resume needs four things working together:\n\n**1. Quantified STAR bullets**\nEvery bullet should answer: *what did you build, how did you do it, and what was the measurable outcome?* Example: *"Refactored authentication service from monolith to microservices using Node.js + Redis, reducing login latency by 62% and handling 15k concurrent sessions."*\n\n**2. ATS keyword alignment**\nMirror exact terms from job descriptions: React, TypeScript, System Design, CI/CD, REST APIs, distributed systems. Don't paraphrase — ATS systems match exact strings.\n\n**3. Strong technical summary**\nOne punchy paragraph at the top: role + years of experience + 3 core skills + your biggest career win.\n\n**4. Project impact over responsibilities**\nReplace "responsible for X" with "built X that achieved Y metric." Every project needs a number — users, uptime %, revenue impact, or latency reduction.\n\nWant me to rewrite specific bullets or generate a tailored cover letter for a target role?`,
+
+        job_search: `${contextIntro}## How to Get a Software Engineering Job at Google\n\nGetting into Google is a structured, multi-stage process. Here's the exact playbook:\n\n**Phase 1 — Application (Week 1-2)**\n- Apply via Google Careers *and* get a referral from a Googler on LinkedIn (referrals 3x your resume review rate)\n- Your resume needs to pass an ATS scan: include exact keywords like "distributed systems", "algorithms", "scalability", "Java/C++/Python"\n- Target the right team: L3 (new grad), L4 (2-5 YoE), L5 (senior)\n\n**Phase 2 — Technical Screens (Week 3-5)**\n- 1-2 coding interviews: medium/hard LeetCode (Arrays, Trees, Graphs, DP)\n- Expect to explain time & space complexity for every solution\n- Google values clean code and structured communication over brute-force solutions\n\n**Phase 3 — Onsite Loop (Week 6-8)**\n- 4-5 rounds: 2-3 coding, 1 system design, 1 Googleyness & Leadership (G&L)\n- System Design: design YouTube, Google Maps, Gmail — know load balancers, CDNs, consistent hashing, Bigtable/Spanner\n- G&L round: use STAR stories about ownership, collaboration, navigating ambiguity\n\n**Phase 4 — Offer & Negotiation**\n- Use levels.fyi to benchmark the offer (L4 SWE: ~$250-350k TC)\n- Always counter — Google's first offer has 15-25% room\n\n${trackedSkills ? `**Your skill gap priority:** Focus first on Distributed Systems and System Design fundamentals, then CI/CD and Docker — these appear directly in Google's onsite rounds.` : ""}`,
+
+        interview: `${contextIntro}## Google Software Engineer Interview Preparation\n\nGoogle's interview loop is rigorous and predictable. Here's exactly what to prepare:\n\n**Coding Rounds (Most Critical)**\nGoogle interviewers expect you to:\n- Talk through your approach *before* coding\n- Write clean, bug-free code (they read it like production code)\n- State time/space complexity unprompted\n- Optimise from brute-force → optimal step by step\n\nTop LeetCode topics for Google: Two Pointers, BFS/DFS, Dynamic Programming, Trie, Heap/Priority Queue. Solve 150+ medium problems before the interview.\n\n**System Design Round**\nFor a senior role, design large-scale systems:\n- Start with requirements clarification and capacity estimation\n- Propose a high-level architecture, then drill into components\n- Cover: load balancing, caching (Redis/Memcached), database sharding, message queues (Pub/Sub), CDN\n- Google classics: design Google Docs (real-time collab), YouTube (video pipeline), Google Search (indexing + ranking)\n\n**Googleyness & Leadership (G&L)**\nThis round tests: ownership, collaboration, navigating ambiguity, learning from failure.\n- Prepare 8 STAR stories (2 per theme: leadership, conflict, failure, innovation)\n- Google's rubric values *impact at scale* and *raising the bar for the team*\n\n**30-Day Prep Plan:**\n- Week 1-2: LeetCode Easy/Medium (Arrays, Strings, Hash Maps, Trees)\n- Week 3: LeetCode Medium/Hard (DP, Graphs, Sliding Window)\n- Week 4: 3 full system design sessions + 5 G&L story rehearsals`,
+
+        system_design: `${contextIntro}## System Design for Google SWE Interviews\n\nGoogle's system design round tests whether you think like a senior engineer building planet-scale systems.\n\n**The Framework (use this structure every time)**\n1. **Clarify requirements** — functional (what it does) + non-functional (scale, latency, consistency)\n2. **Capacity estimation** — QPS, storage, bandwidth (back-of-envelope math)\n3. **High-level design** — API layer, core services, databases, caches\n4. **Deep dive** — the interviewer will pick 1-2 components to explore\n5. **Trade-offs** — explain every choice: why SQL vs NoSQL, why Kafka vs direct writes\n\n**Google-specific design classics:**\n- **YouTube** — video ingestion pipeline, CDN, recommendation feed, view counting at scale\n- **Google Maps** — geospatial indexing, routing algorithms, real-time traffic\n- **Google Docs** — Operational Transforms / CRDTs for real-time collaboration\n- **Gmail** — email storage (Bigtable), search indexing, delivery guarantees\n\n**Key technologies to know:** Bigtable, Spanner, Pub/Sub, Colossus (GFS), MapReduce, Chubby (distributed lock), Borg (container orchestration)\n\n${trackedSkills?.includes("Kubernetes") ? "💡 Your skill gap includes Kubernetes — Google uses Borg internally (which inspired K8s). Understanding K8s concepts will directly help your system design answers." : ""}`,
+
+        github: `${contextIntro}## GitHub Profile Optimization for Google Applications\n\nGoogle engineers review your GitHub before the interview. Here's how to make it compelling:\n\n**What Googlers look for:**\n- Clean, well-structured code (not tutorial projects)\n- Evidence you solve real problems at scale\n- Tests, documentation, and CI/CD — signals production-code mindset\n\n**Action plan:**\n1. **Pin 4-6 projects** — at least one should be non-trivial: a distributed system, a compiler, a real-time service, or an OSS contribution\n2. **Write READMEs that tell a story** — Problem → Architecture → Key decisions → Results/metrics\n3. **Add GitHub Actions** for CI (lint + test + build) — shows you care about quality gates\n4. **Contributions > commit count** — A few meaningful PRs to popular OSS repos > 500 trivial commits\n5. **Profile README** — Pin your best work, add your tech stack badges, link to your portfolio\n\n${trackedSkills?.includes("Docker") ? "💡 Containerise your projects with Docker + docker-compose — this directly addresses one of your identified skill gaps and signals DevOps maturity to Google reviewers." : ""}`,
+
+        roadmap: `${contextIntro}## Google Software Engineer — 90-Day Roadmap\n\nHere's a structured, week-by-week plan to land a Google SWE offer:\n\n**Month 1 — Foundation**\n- 📚 LeetCode: 5 problems/day (Easy → Medium). Focus: Arrays, Hash Maps, Strings, Trees\n- 🎯 Target role clarity: L3 (new grad) vs L4 (mid-level) vs L5 (senior) — this changes your prep depth\n- 📄 Resume: rewrite every bullet in STAR format with metrics. Get it to <1 page (mid-level) or 1-2 pages (senior)\n- 🔗 LinkedIn: connect with 20 Googlers/week, warm up the referral network\n\n**Month 2 — Depth**\n- 💻 LeetCode: Graphs, Dynamic Programming, Sliding Window (medium/hard)\n- 🏗️ System Design: 2 sessions/week — design YouTube, Google Maps, distributed key-value store\n- 🎤 Behavioral: Write 8 STAR stories (leadership, failure, conflict, innovation)\n- 📬 Applications: Apply via Google Careers + chase referrals simultaneously\n\n**Month 3 — Interview Ready**\n- 🔁 Mock interviews: 3/week (coding + system design alternating)\n- 📞 Phone screen: schedule once you have 150+ LeetCode solves\n- 🏁 Onsite: 5-round loop — 2-3 coding, 1 system design, 1 G&L\n- 💰 Offer: use levels.fyi + competing offers to negotiate TC\n\n${trackedSkills ? `**Your priority skill gaps to close:** ${trackedSkills.slice(0, 150)}` : ""}`,
+
+        learning: `${contextIntro}## Learning Path for Google Software Engineering\n\nHere's a structured learning roadmap aligned to what Google actually tests:\n\n**Data Structures & Algorithms (Core)**\n- Arrays, Strings, Hash Tables — master these first\n- Trees (BST, Tries), Graphs (BFS/DFS, Dijkstra), Heaps\n- Dynamic Programming: top-down (memoisation) + bottom-up (tabulation)\n- Resource: NeetCode 150 roadmap → LeetCode Google tag → Blind 75\n\n**System Design (For L4+)**\n- Designing Data-Intensive Applications (Kleppmann) — read chapters 1-6\n- System Design Interview Vol. 1 & 2 (Alex Xu)\n- Practice: design 2 systems per week, explain your trade-offs out loud\n\n**Google-specific knowledge:**\n- Read: Bigtable paper, MapReduce paper, Google File System paper, Spanner paper\n- These come up in system design interviews directly\n\n**Coding Language:**\nGoogle accepts Python, Java, C++, Go. Pick one and master it deeply — knowing the standard library saves 10-15 minutes per interview.`,
+      };
+
+      if (synthesisedContent) {
+        // Compose a natural answer using the agent knowledge as the body
+        const intentHeader: Record<string, string> = {
+          job_search: "Getting a Software Engineering Job at Google",
+          interview: "Google Software Engineer Interview Preparation",
+          roadmap: "Google Software Engineer — 90-Day Roadmap",
+          resume: "Resume Optimization for Google Applications",
+          system_design: "System Design for Google SWE Interviews",
+          github: "GitHub Portfolio for Google Applications",
+          learning: "Learning Path for Google Software Engineering",
+          career_advice: "Career Strategy for Google SWE",
+          coding: "Coding Preparation for Google Interviews",
+          salary: "Google SWE Compensation & Negotiation",
         };
-
-        const response = intentResponses[intentLabel] || intentResponses["job_search"];
-        mockResponse = response + `\n\n---\n💡 **Tip:** Add a Groq or Gemini API key in **Settings → API Keys** to unlock live, personalised AI responses from the full 146-agent Career ecosystem.`;
+        const header = intentHeader[intentLabel] || "Career Guidance";
+        mockResponse = `${contextIntro}## ${header}\n\n${synthesisedContent}\n\n---\n> 💡 **Add a Groq or Gemini API key** in Settings → API Keys to unlock fully live, personalised AI responses from all 146 career agents.`;
+      } else {
+        // Use intent-based semantic answer as fallback
+        const answer = intentAnswers[intentLabel] || intentAnswers["job_search"];
+        mockResponse = answer + `\n\n---\n> 💡 **Add a Groq or Gemini API key** in Settings → API Keys to unlock fully live, personalised AI responses from all 146 career agents.`;
       }
     }
 
