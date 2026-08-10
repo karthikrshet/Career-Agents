@@ -19,6 +19,8 @@
 <img src="https://img.shields.io/badge/Release-v17.1.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v17.1.0" />
 <img src="https://img.shields.io/npm/dt/career-agents?style=flat-square&logo=npm&logoColor=white&color=cb3837" height="26" alt="Total Downloads" />
 <img src="https://img.shields.io/badge/Agents-167_Specialized-0284c7?style=flat-square&logo=openai&logoColor=white" height="26" alt="167 Agents" />
+<img src="https://img.shields.io/badge/OpenAI-GPT--4o_|_o1_|_o3--mini-412991?style=flat-square&logo=openai&logoColor=white" height="26" alt="OpenAI Ecosystem" />
+<img src="https://img.shields.io/badge/Codex_CLI-Native_Agentic_MCP-000000?style=flat-square&logo=openai&logoColor=white" height="26" alt="Codex CLI" />
 <img src="https://img.shields.io/badge/Voice_AI-167_Voice_Agents-06b6d4?style=flat-square&logo=google-cloud&logoColor=white" height="26" alt="167 Voice Agents" />
 <img src="https://img.shields.io/badge/Token_Saver-80--85%25_Reduction-10b981?style=flat-square&logo=lightning&logoColor=white" height="26" alt="Token Optimization" />
 <img src="https://img.shields.io/badge/Divisions-19_Domains-7c3aed?style=flat-square&logo=diagram&logoColor=white" height="26" alt="19 Divisions" />
@@ -688,6 +690,99 @@ Career Agents manages **167 specialized AI agents** categorized across **19 divi
 
 ---
 
+## ⚡ Codex Hackathon & OpenAI Ecosystem Showcase
+
+<div align="center">
+
+<img src="https://img.shields.io/badge/OpenAI-GPT--4o_|_o1_|_o3--mini-412991?style=for-the-badge&logo=openai&logoColor=white" height="32" alt="OpenAI Models" />
+<img src="https://img.shields.io/badge/Codex_CLI-Native_Agentic_MCP-000000?style=for-the-badge&logo=openai&logoColor=white" height="32" alt="Codex CLI" />
+<img src="https://img.shields.io/badge/ChatGPT-Custom_Actions_&_API-10a37f?style=for-the-badge&logo=openai&logoColor=white" height="32" alt="ChatGPT Integration" />
+<img src="https://img.shields.io/badge/MCP-JSON--RPC_Stdio_Server-4f46e5?style=for-the-badge&logo=lightning&logoColor=white" height="32" alt="MCP Server" />
+
+</div>
+
+### 🌟 How We Built Career Agents with Codex, ChatGPT, MCP, CLI & REST APIs
+
+Built for modern software engineers and developer hackathons, **Career Agents** harnesses the full power of the **OpenAI & Codex ecosystem** to transform passive job searching into an autonomous, agentic career acceleration engine:
+
+```text
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 AI CLIENT INTERFACES                                   │
+│  ┌───────────────────────┐  ┌────────────────────────┐  ┌───────────────────────────┐  │
+│  │   Codex CLI / Agent   │  │   ChatGPT / Custom GPT │  │  Cursor / Claude / VS Code│  │
+│  └───────────┬───────────┘  └───────────┬────────────┘  └─────────────┬─────────────┘  │
+└──────────────┼──────────────────────────┼─────────────────────────────┼────────────────┘
+               │ (MCP Stdio / Tools)      │ (REST API / SSE)            │ (MCP JSON-RPC)
+               ▼                          ▼                             ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                   CAREER AGENTS UNIFIED INTELLIGENCE GATEWAY                           │
+│                                                                                        │
+│  ⚡ Model Context Protocol (MCP) Server     📡 10+ Production REST APIs                 │
+│     - tools/list & tools/call handlers         - SSE Streaming (/api/copilot)          │
+│     - 80-85% Token Compression Engine          - Structured STAR Evals (/api/interview)│
+│                                                                                        │
+│  💻 High-Performance CLI Engine             🤖 Multi-Provider Router                    │
+│     - npx career-agents [command]              - GPT-4o, o1, o3-mini, Gemini, Claude    │
+└─────────────────────────────────────────┬──────────────────────────────────────────────┘
+                                          │
+                                          ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        CORE AGENTIC EXECUTION ENGINES                                  │
+│                                                                                        │
+│  1️⃣ Multi-ATS Job Scanner  2️⃣ Canonical Readiness    3️⃣ ATS Resume Studio            │
+│     (Greenhouse, Lever,        (Deterministic Blocks       (HTML & LaTeX Exporters     │
+│      Ashby, Workable, etc.)     A-G Skill Gap Matrix)       with 20 Templates)         │
+│                                                                                        │
+│  4️⃣ STAR Mock Interview   5️⃣ Recruiter Outreach     6️⃣ Funnel Analytics Tracker      │
+│     (20+ Company Tracks &      (<300 char LinkedIn         (pipeline-tracker.md &      │
+│      Voice AI Simulation)       Conversion Pitches)         Velocity Dashboard)        │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### 1. 🤖 OpenAI & ChatGPT Integration
+- **State-of-the-Art OpenAI Models:** Seamlessly powered by `gpt-4o`, `gpt-4o-mini`, `o1`, and `o3-mini` reasoning engines for multi-step career problem solving, architectural system design rubrics, and STAR behavioral answer evaluations.
+- **ChatGPT Custom Actions & System Instructions:** Every division and agent exports compliant system instructions and OpenAPI specs ready for direct import into custom ChatGPT GPTs.
+- **Zero Token Waste:** System-wide token compression minifies prompt payloads and sliding context windows, saving **80-85% in OpenAI token consumption**.
+
+#### 2. 🔌 Model Context Protocol (MCP) Integration
+- **Native Codex Agent Tooling:** Codex agents can discover, invoke, and chain Career Agents tools in real time via JSON-RPC stdio.
+- **Granular Tool Suite:** Exposes 10+ specialized MCP tools:
+  - `search_agents`: Query across 167 domain coaches and interview tracks.
+  - `score_resume`: Instant ATS score, quantifiable metrics audit, and keyword gaps.
+  - `match_readiness`: Canonical deterministic candidate-to-job matching (Blocks A-G).
+  - `scan_jobs`: Query live requisitions across Greenhouse, Ashby, Lever, Workable, etc.
+  - `build_resume`: Automated compilation to single-page HTML & LaTeX formats.
+  - `generate_cover_letter`: 3-paragraph executive narrative matching company engineering pillars.
+  - `interview_prep`: Curates STAR+R question banks tailored to specific FAANG/Tier-1 tracks.
+  - `recruiter_outreach`: Generates high-converting LinkedIn networking notes under 300 characters.
+  - `track_application`: Updates live status and logs application funnel transitions.
+
+#### 3. 💻 Terminal CLI & REST API Unification
+- **Zero-Install CLI (`npx career-agents`):** Run full candidate audits, ATS scoring, and pipeline operations directly from your terminal.
+- **Streaming REST API (`POST /api/copilot` & `/api/interview`):** High-throughput Server-Sent Events (SSE) streaming compatible with standard OpenAI SDK formats.
+
+---
+
+## 🎤 Presentation & Live Demo Guide (Codex Hackathon Pitch)
+
+Want to showcase Career Agents in under 2 minutes during your pitch or demo? Follow this sequence:
+
+```bash
+# Step 1: Register Career Agents in Codex with 1 command
+codex mcp add career-agents -- npx -y career-agents mcp
+
+# Step 2: Ask Codex to run an autonomous job search & readiness evaluation
+codex "Scan open AI Engineer roles at Stripe on Greenhouse, evaluate my profile against requirements, and output my Blocks A-G skill readiness score."
+
+# Step 3: Generate tailored ATS Resume & STAR interview questions
+codex "Compile a tailored single-page HTML resume and generate a STAR technical interview question bank for Google Staff Infrastructure Engineer."
+
+# Step 4: Check application pipeline funnel analytics in CLI
+npx career-agents pipeline stats
+```
+
+---
+
 ## 🔌 Model Context Protocol (MCP) Ecosystem & IDE Setup
 
 <p align="center">
@@ -696,13 +791,16 @@ Career Agents manages **167 specialized AI agents** categorized across **19 divi
 
 Expose Career Agents tools directly to your AI code editors via standard JSON-RPC stdio:
 
-### 1. Supported Editors & Tools
-- **Google Antigravity:** Integrated via `.agents/` skill bindings.
-- **Cursor AI:** Add stdio command `node /absolute/path/to/Career-Agents/mcp/server.js` under Settings -> Features -> MCP.
-- **Claude Desktop:** Add configuration block to `claude_desktop_config.json`.
-- **VS Code / Continue / Codex / Windsurf / Aider:** Configure stdio parameters pointing to the local server script.
+### 1. Codex CLI Registration (One Command)
+```bash
+# Global NPX Zero-Install Registration
+codex mcp add career-agents -- npx -y career-agents mcp
 
-### 2. Configuration Example (`claude_desktop_config.json`):
+# Local Repository Registration
+codex mcp add career-agents -- node /absolute/path/to/Career-Agents/mcp/server.js
+```
+
+### 2. Codex Configuration File (`codex_mcp.json` or `~/.codex/config.json`):
 ```json
 {
   "mcpServers": {
@@ -714,16 +812,27 @@ Expose Career Agents tools directly to your AI code editors via standard JSON-RP
 }
 ```
 
-### 3. Cursor AI Configuration:
+### 3. Claude Desktop Configuration (`claude_desktop_config.json`):
+```json
+{
+  "mcpServers": {
+    "career-agents": {
+      "command": "node",
+      "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
+    }
+  }
+}
+```
+
+### 4. Cursor AI Configuration:
 Go to **Settings** -> **Features** -> **MCP** -> **Add new MCP Server**:
 - **Name:** `career-agents`
 - **Type:** `stdio`
 - **Command:** `node /absolute/path/to/Career-Agents/mcp/server.js`
 
-### 4. Codex CLI Registration:
-```bash
-codex mcp add career-agents -- node /absolute/path/to/Career-Agents/mcp/server.js
-```
+### 5. Google Antigravity & VS Code / Continue / Windsurf:
+- **Google Antigravity:** Integrated via `.agents/` skill bindings.
+- **VS Code / Continue / Windsurf / Aider:** Configure stdio parameters pointing to `mcp/server.js` or `npx -y career-agents mcp`.
 
 ---
 
@@ -796,10 +905,10 @@ Open **[http://localhost:3000](http://localhost:3000)** or **[https://career-age
 
 | Provider | Status | Default Model | Free Tier | Streaming | Vision |
 |---|---|---|---|---|---|
-| **Groq** | ✅ Active | `llama-3.3-70b-versatile` | ✅ Yes | ✅ Yes | ❌ |
-| **Google Gemini** | ✅ Active | `gemini-2.5-pro` | ✅ Yes | ✅ Yes | ✅ Yes |
-| **OpenAI** | ✅ Active | `gpt-4o` | ❌ No | ✅ Yes | ✅ Yes |
+| **OpenAI** | ✅ Active | `gpt-4o` / `o1` / `o3-mini` | ❌ No | ✅ Yes | ✅ Yes |
 | **Anthropic Claude** | ✅ Active | `claude-3-5-sonnet-20241022`| ❌ No | ✅ Yes | ✅ Yes |
+| **Google Gemini** | ✅ Active | `gemini-2.5-pro` | ✅ Yes | ✅ Yes | ✅ Yes |
+| **Groq** | ✅ Active | `llama-3.3-70b-versatile` | ✅ Yes | ✅ Yes | ❌ |
 | **DeepSeek** | ✅ Active | `deepseek-chat` | ❌ Cheap | ✅ Yes | ❌ |
 | **OpenRouter** | ✅ Active | `meta-llama/llama-3.1-405b` | ✅ Yes | ✅ Yes | ✅ Yes |
 | **Together AI** | ✅ Active | `meta-llama/Llama-3-70b-chat`| ❌ No | ✅ Yes | ❌ |
@@ -821,9 +930,9 @@ Open **[http://localhost:3000](http://localhost:3000)** or **[https://career-age
 
 Career Agents exposes 10 REST endpoints. For request/response schemas, check [docs/API.md](./docs/API.md):
 
-- `POST /api/copilot` — Streams response tokens using SSE.
-- `POST /api/interview` — Generates questions or evaluates answers.
-- `POST /api/resume/analyze` — Evaluates resume text against ATS parameters.
+- `POST /api/copilot` — Streams response tokens using SSE (OpenAI/ChatGPT compatible).
+- `POST /api/interview` — Generates STAR questions or evaluates candidate answers.
+- `POST /api/resume/analyze` — Evaluates resume text against ATS parameters and JD requirements.
 - `POST /api/github/analyze` — Pulls public portfolio metrics from the GitHub API.
 - `POST /api/linkedin/analyze` — Optimizes LinkedIn headlines and summaries.
 - `POST /api/reports/generate` — Compiles and exports reports to PDF, Word, or Excel.
