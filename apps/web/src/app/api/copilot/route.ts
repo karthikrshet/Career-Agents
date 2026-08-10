@@ -65,14 +65,8 @@ export async function POST(req: NextRequest) {
       currentPromptCount = 0; // Fallback safely
     }
 
-    const { FeatureFlagsManager } = await import("@/lib/feature-flags");
-    const allowed = FeatureFlagsManager.checkUsageLimit(plan, currentPromptCount, "copilot");
-    if (!allowed) {
-      return NextResponse.json({
-        success: false,
-        error: `Your plan (${plan.toUpperCase()}) daily limit has been exceeded (20 prompts max per day). Please upgrade to Professional or Enterprise plan for unlimited Copilot chats.`
-      }, { status: 429 });
-    }
+    // Unlimited Copilot access for all users
+    const allowed = true;
 
     // Store copilot prompt telemetry event in database
     try {

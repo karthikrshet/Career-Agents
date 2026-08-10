@@ -15,42 +15,42 @@ export interface PlanLimits {
 
 export const PLAN_LIMITS: Record<UserPlan, PlanLimits> = {
   guest: {
-    resumeScansLimit: 5,
-    githubAuditsLimit: 2,
-    interviewSessionsLimit: 1,
-    copilotLimit: 20,
-    allowedModels: ["gemini-2.5-flash", "llama-3.3-70b-versatile"],
-    mcpAccess: false,
-    privateKnowledgeBase: false,
-    secondaryModelsAllowed: false,
-    dedicatedSupport: false,
+    resumeScansLimit: -1,
+    githubAuditsLimit: -1,
+    interviewSessionsLimit: -1,
+    copilotLimit: -1,
+    allowedModels: ["*"],
+    mcpAccess: true,
+    privateKnowledgeBase: true,
+    secondaryModelsAllowed: true,
+    dedicatedSupport: true,
   } as any,
   free: {
-    resumeScansLimit: 5,
-    githubAuditsLimit: 2,
-    interviewSessionsLimit: 1,
-    copilotLimit: 20,
-    allowedModels: ["gemini-2.5-flash", "llama-3.3-70b-versatile", "gpt-4o-mini"],
-    mcpAccess: false,
-    privateKnowledgeBase: false,
-    dedicatedSupport: false,
+    resumeScansLimit: -1,
+    githubAuditsLimit: -1,
+    interviewSessionsLimit: -1,
+    copilotLimit: -1,
+    allowedModels: ["*"],
+    mcpAccess: true,
+    privateKnowledgeBase: true,
+    dedicatedSupport: true,
   },
   pro: {
     resumeScansLimit: -1, // Unlimited
     githubAuditsLimit: -1, // Unlimited
     interviewSessionsLimit: -1, // Unlimited
     copilotLimit: -1, // Unlimited
-    allowedModels: ["gemini-2.5-flash", "llama-3.3-70b-versatile", "gpt-4o-mini", "gpt-4o", "claude-3-5-sonnet-20241022", "deepseek-chat"],
+    allowedModels: ["*"],
     mcpAccess: true,
-    privateKnowledgeBase: false,
-    dedicatedSupport: false,
+    privateKnowledgeBase: true,
+    dedicatedSupport: true,
   },
   team: {
     resumeScansLimit: -1,
     githubAuditsLimit: -1,
     interviewSessionsLimit: -1,
     copilotLimit: -1,
-    allowedModels: ["*"], // All models allowed
+    allowedModels: ["*"],
     mcpAccess: true,
     privateKnowledgeBase: true,
     dedicatedSupport: true,
@@ -73,29 +73,14 @@ export class FeatureFlagsManager {
   }
 
   static hasModelAccess(plan: UserPlan, model: string): boolean {
-    const limits = this.getPlanLimits(plan);
-    if (limits.allowedModels.includes("*")) return true;
-    return limits.allowedModels.some(m => model.toLowerCase().includes(m.toLowerCase()));
+    return true; // All models available to everyone without limit
   }
 
   static isFeatureGated(plan: UserPlan, feature: keyof PlanLimits): boolean {
-    const limits = this.getPlanLimits(plan);
-    const val = limits[feature];
-    if (typeof val === "boolean") {
-      return !val; // Gated if value is false
-    }
-    return false;
+    return false; // All features ungated for everyone
   }
 
   static checkUsageLimit(plan: UserPlan, currentCount: number, type: "resume" | "github" | "interview" | "copilot"): boolean {
-    const limits = this.getPlanLimits(plan);
-    let cap = 0;
-    if (type === "resume") cap = limits.resumeScansLimit;
-    else if (type === "github") cap = limits.githubAuditsLimit;
-    else if (type === "interview") cap = limits.interviewSessionsLimit;
-    else if (type === "copilot") cap = limits.copilotLimit;
-
-    if (cap === -1) return true; // Unlimited
-    return currentCount < cap;
+    return true; // Unlimited usage across all features and Career Copilot
   }
 }

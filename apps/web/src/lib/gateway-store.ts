@@ -21,7 +21,7 @@ export const useGatewayStore = create<GatewayState>()(
       activeModel: "llama3-70b-8192",
       temperature: 0.7,
       maxTokens: 4096,
-      demoMode: typeof window !== "undefined" ? localStorage.getItem("demo_mode_enabled") !== "false" : true,
+      demoMode: typeof window !== "undefined" ? localStorage.getItem("demo_mode_enabled") === "true" : false,
       setProvider: (activeProvider) => set({ activeProvider }),
       setModel: (activeModel) => set({ activeModel }),
       setTemperature: (temperature) => set({ temperature }),
