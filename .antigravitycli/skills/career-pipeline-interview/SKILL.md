@@ -6,14 +6,19 @@ license: MIT
 
 # career-pipeline-interview
 
-Generate behavioral & technical STAR question banks and company tracks
+Resolves authoritative interview loops from `companies/*.json` and curates structured STAR+R question banks across:
+- Leadership & Conflict
+- Complex Problem Solving
+- System Design & Architecture
+- Scale & Optimization
+- Incident Response & Reliability
 
 ## Usage
 
-`ash
-# Direct binary execution
-career-agents pipeline interview <company> [role]
+```bash
+career-agents pipeline interview <company> <role>
 
-# Workspace script execution (fallback)
-node ./scripts/cli.js pipeline interview <company> [role]
-`
+# Example:
+career-agents pipeline interview Google "AI/ML Infrastructure Engineer"
+```
+

@@ -6,14 +6,12 @@ license: MIT
 
 # career-pipeline-stats
 
-Display conversion funnel velocity and application performance stats
+Computes total applications, active in-flight counts, stage breakdowns, and interview-to-offer conversion rates with zero-denominator safety.
 
 ## Usage
 
-`ash
-# Direct binary execution
+```bash
 career-agents pipeline stats
+career-agents pipeline digest
+```
 
-# Workspace script execution (fallback)
-node ./scripts/cli.js pipeline stats
-`
