@@ -49,7 +49,10 @@ export async function processThroughBrain(
   // 5. Execute Specialist Agents in parallel via LLM Gateway
   const agentResults: string[] = [];
   
-  if (gatewayConfig && matched.length > 0) {
+  const hasKeys = Object.values(gatewayConfig?.keys || {}).some((arr: any) => Array.isArray(arr) && arr.some((k: string) => k && k.trim() !== ""));
+  const hasEnvKey = !!(process.env.GROQ_API_KEY || process.env.GEMINI_API_KEY || process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY || process.env.DEEPSEEK_API_KEY || process.env.OPENROUTER_API_KEY);
+
+  if (gatewayConfig && matched.length > 0 && (hasKeys || hasEnvKey)) {
     const promises = matched.map(async (agent) => {
       const prompt = getCachedAgentPrompt(agent.filename);
       const agentSystemPrompt = `You are the specialized agent "${agent.name}" (Role: ${agent.division}).
@@ -65,7 +68,9 @@ Limit your response to 120 words. Do not write introductory or conversational he
       try {
         const agentConfig = {
           ...gatewayConfig,
-          maxTokens: 1024,
+          maxTokens: 512,
+          retryCount: 0,
+          retryDelayMs: 100,
           streaming: false,
         };
         const response = await routeCompletion(

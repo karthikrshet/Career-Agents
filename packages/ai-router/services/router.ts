@@ -210,8 +210,8 @@ export async function routeCompletion(
 
     for (let keyIdx = 0; keyIdx < keysToTry.length; keyIdx++) {
       const activeKey = keysToTry[keyIdx];
-      const maxRetries = Math.min(3, config.retryCount ?? 3);
-      const retryDelay = config.retryDelayMs ?? 1000;
+      const maxRetries = Math.min(1, config.retryCount ?? 1);
+      const retryDelay = config.retryDelayMs ?? 500;
 
       let runStart = Date.now();
       let lastError: any = null;
@@ -239,7 +239,7 @@ export async function routeCompletion(
               },
             }),
             signal,
-            timeout: 30000,
+            timeout: 4000,
             allowedProvider: "gemini",
           });
 
@@ -293,7 +293,7 @@ export async function routeCompletion(
             headers,
             body: JSON.stringify(body),
             signal,
-            timeout: 30000,
+            timeout: 4000,
             allowedProvider: providerId,
           });
 
@@ -309,35 +309,56 @@ export async function routeCompletion(
           if (isStreaming) {
             const reader = res.body!.getReader();
             const decoder = new TextDecoder();
-            
-            try {
-              while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
+            let done = false;
 
-                const chunk = decoder.decode(value, { stream: true });
-                const lines = chunk.split("\n").filter((l) => l.startsWith("data: "));
-
+            while (!done) {
+              const { value, done: doneReading } = await reader.read();
+              done = doneReading;
+              const chunkValue = decoder.decode(value, { stream: !done });
+              
+              if (providerId === "claude" || providerId === "anthropic") {
+                const lines = chunkValue.split("\n");
                 for (const line of lines) {
-                  const dataStr = line.slice(6).trim();
-                  if (dataStr === "[DONE]") continue;
-
-                  try {
-                    const json = JSON.parse(dataStr);
-                    const delta = json.choices?.[0]?.delta?.content || json.delta?.text || "";
-                    if (delta) {
-                      responseText += delta;
-                      onChunk(delta);
-                    }
-                  } catch {}
+                  if (line.startsWith("data: ")) {
+                    const dataStr = line.slice(6).trim();
+                    if (dataStr === "[DONE]") continue;
+                    try {
+                      const eventObj = JSON.parse(dataStr);
+                      if (eventObj.type === "content_block_delta" && eventObj.delta?.text) {
+                        responseText += eventObj.delta.text;
+                        if (onChunk) onChunk(eventObj.delta.text);
+                      }
+                    } catch {}
+                  }
+                }
+              } else {
+                const lines = chunkValue.split("\n");
+                for (const line of lines) {
+                  if (line.startsWith("data: ")) {
+                    const dataStr = line.slice(6).trim();
+                    if (dataStr === "[DONE]") continue;
+                    try {
+                      const json = JSON.parse(dataStr);
+                      const deltaText = json.choices?.[0]?.delta?.content || "";
+                      if (deltaText) {
+                        responseText += deltaText;
+                        if (onChunk) onChunk(deltaText);
+                      }
+                    } catch {}
+                  }
                 }
               }
-            } finally {
-              reader.releaseLock();
             }
           } else {
             const json = await res.json();
-            responseText = json.choices?.[0]?.message?.content || json.content?.[0]?.text || "";
+            if (providerId === "claude" || providerId === "anthropic") {
+              responseText = json.content?.[0]?.text || "";
+            } else {
+              responseText = json.choices?.[0]?.message?.content || "";
+            }
+            if (onChunk) {
+              onChunk(responseText);
+            }
           }
         }
 
@@ -345,48 +366,31 @@ export async function routeCompletion(
         finalProvider = providerId;
         finalModel = model;
         completed = true;
-
-        executionChain.push({
-          provider: providerId,
-          model,
-          status: "success",
-          latencyMs: Date.now() - runStart,
-        });
-        break; // break attempt loop
+        break;
       } catch (err: any) {
         lastError = err;
-        safeLogger.warn(`Gateway failed executing prompt with provider ${providerId} and key index ${keyIdx} on attempt ${attempt}`, err);
+        safeLogger.warn(`Provider ${providerId} attempt ${attempt + 1} failed:`, err.message);
         if (attempt < maxRetries - 1) {
-          const backoffDelay = retryDelay * Math.pow(2, attempt);
-          await sleep(backoffDelay);
+          await sleep(retryDelay);
         }
       }
     }
 
-    if (completed) {
-      break; // break key loop
-    } else {
-      executionChain.push({
-        provider: providerId,
-        model,
-        status: "failed",
-        latencyMs: Date.now() - runStart,
-        error: lastError?.message || "Unknown execution error",
-      });
-    }
+    if (completed) break;
+
+    executionChain.push({
+      provider: providerId,
+      model,
+      latencyMs: Date.now() - runStart,
+      status: "failed",
+      error: lastError ? classifyGatewayError(lastError) : "Provider failed to respond",
+    });
   }
-}
 
   const durationMs = Date.now() - startTime;
-  const inputLen = messages.reduce((acc, m) => acc + m.content.length, 0);
-  const inputTokens = Math.round(inputLen / 4.1); // Estimate
-  const outputTokens = Math.round(finalContent.length / 4.1); // Estimate
-  
-  // Calculate cost estimation in USD
-  const registry = PROVIDER_REGISTRY[finalProvider];
-  const inputCost = (inputTokens / 1000000) * (registry?.pricing?.inputPerMillion || 0.0);
-  const outputCost = (outputTokens / 1000000) * (registry?.pricing?.outputPerMillion || 0.0);
-  const costUSD = inputCost + outputCost;
+  const inputTokens = Math.round(query.length / 4);
+  const outputTokens = Math.round(finalContent.length / 4);
+  const costUSD = (inputTokens * 0.0000015 + outputTokens * 0.000002);
 
   // Record logs
   const log: RouterLog = {
@@ -410,18 +414,49 @@ export async function routeCompletion(
     finalProvider = "openai";
     finalModel = "career-copilot-engine";
     
-    const lowerQuery = query.toLowerCase();
+    // Extract context details from system message
+    let candidateName = "";
+    let targetRole = "";
+    let resumeScore = "";
+    let trackedSkills = "";
+
+    const systemMsg = messages.find((m) => m.role === "system")?.content || "";
+    if (systemMsg) {
+      const nameMatch = systemMsg.match(/(?:Name|Candidate):\s*([^\n]+)/i);
+      if (nameMatch && !nameMatch[1].toLowerCase().includes("guest candidate")) {
+        candidateName = nameMatch[1].trim();
+      }
+      const roleMatch = systemMsg.match(/(?:Target Role|Role):\s*([^\n]+)/i);
+      if (roleMatch) targetRole = roleMatch[1].trim();
+
+      const scoreMatch = systemMsg.match(/(?:Resume ATS Score|Score):\s*(\d+%?)/i) || systemMsg.match(/Dashboard to\s*(\d+%?)/i);
+      if (scoreMatch) resumeScore = scoreMatch[1].trim();
+
+      const skillsMatch = systemMsg.match(/Tracked Skills:\s*([^\n]+)/i) || systemMsg.match(/Identified Skills:\s*([^\n]+)/i);
+      if (skillsMatch) trackedSkills = skillsMatch[1].trim();
+    }
+
+    const lowerQuery = query.toLowerCase().trim();
+    const isGreeting = /^(hi|hii|hiii|hello|hey|greetings|good morning|good evening)$/i.test(lowerQuery);
+    const isResume = /resum|resueme|ats|cv|curriculum|bullet|quantif|evalu|analy/i.test(lowerQuery);
+    const isJob = /job|work|career|hire|apply|get job|find job|opportunity|position|role|want job/i.test(lowerQuery);
+    const isInterview = /interview|intervew|mock|prep|star|behavioral|question|dsa|leetcode/i.test(lowerQuery);
+    const isGithub = /github|code|repo|git|portfolio|commit|project/i.test(lowerQuery);
+
     let mockResponse = "";
-    if (lowerQuery.includes("resume") || lowerQuery.includes("ats")) {
-      mockResponse = `**ATS Resume Optimization Analysis**\n\nI've analyzed your career profile context and resume bullets. Here is a STAR-focused recommendation to optimize your resume for applicant tracking systems:\n\n1. **Quantify Achievements**: Instead of *"Responsible for writing code"*, use: *"Engineered a scalable microservices architecture using Node.js and Go, reducing API latency by 45% and supporting 10k+ concurrent requests."*\n2. **Align with Job Keywords**: Inject missing technical keywords such as *React*, *Next.js*, *TypeScript*, and *System Design* to pass the semantic scanner.\n3. **Improve STAR Format**: Ensure each bullet clearly states the **Situation/Task**, **Action**, and measurable **Result**.`;
-    } else if (lowerQuery.includes("github") || lowerQuery.includes("code")) {
-      mockResponse = `**GitHub Profile & Code Quality Report**\n\nYour GitHub profile demonstrates a solid foundation. Here are 3 areas of improvement for FAANG-level positioning:\n\n1. **Consistent Contributions**: Maintain a steady green commit grid. It signals active learning and delivery capability.\n2. **Comprehensive documentation**: Ensure all projects contain clean READMEs, screenshots, configuration guides, and architecture diagrams.\n3. **Automated Testing & CI/CD**: Integrate GitHub Actions, testing frameworks (Vitest/Jest), and linting tools to demonstrate enterprise code readiness.`;
-    } else if (lowerQuery.includes("interview") || lowerQuery.includes("mock") || lowerQuery.includes("prep")) {
+
+    if (isGreeting) {
+      mockResponse = `Hello${candidateName ? " **" + candidateName + "**" : ""}! How can I assist you today with your software engineering goals, resume optimization, or interview prep?`;
+    } else if (isResume) {
+      mockResponse = `**ATS Resume Optimization Analysis**\n\n${candidateName ? `Candidate: **${candidateName}**\n` : ""}${targetRole ? `Target Role: **${targetRole}**\n` : ""}${resumeScore ? `ATS Match Score: **${resumeScore}**\n` : ""}I've analyzed your resume details context${trackedSkills ? ` (Detected skills: ${trackedSkills})` : ""}. Here are STAR-focused recommendations to optimize your resume for applicant tracking systems:\n\n1. **Quantify Achievements**: Instead of *"Responsible for writing code"*, use: *"Engineered a scalable microservices architecture using Node.js and Go, reducing API latency by 45% and supporting 10k+ concurrent requests."*\n2. **Align with Job Keywords**: Inject missing technical keywords such as *React*, *Next.js*, *TypeScript*, and *System Design* to pass the semantic scanner.\n3. **Improve STAR Format**: Ensure each bullet clearly states the **Situation/Task**, **Action**, and measurable **Result**.\n\nWould you like me to rewrite specific resume bullets or generate a tailored cover letter?`;
+    } else if (isJob) {
+      mockResponse = `**Actionable Guide to Securing a Software Engineering Job**\n\n${candidateName ? `Hello **${candidateName}**! ` : ""}Here is a structured, step-by-step roadmap to land target software engineering roles${targetRole ? ` (${targetRole})` : ""}:\n\n1. **Optimize Your Resume**: Quantify your engineering impact using the STAR method (Situation, Task, Action, Result). Highlight key skills matching job descriptions (e.g., React, Node.js, TypeScript, Distributed Systems).\n2. **Build FAANG-Ready Projects**: Develop 2-3 full-stack projects showcasing clean architecture, CI/CD pipelines, automated testing, and comprehensive documentation on GitHub.\n3. **Master Technical Interviews**: Practice DSA problems on LeetCode (focus on Arrays, Trees, Dynamic Programming, and Graphs) and practice System Design fundamentals.\n4. **Targeted Applications & Networking**: Engage directly with recruiters, request referrals on LinkedIn, and customize outreach messages tailored to target company tech stacks.\n5. **Practice STAR Interviewing**: Structure behavioral answers using clear Situation, Task, Action, and measurable Results.\n\nFeel free to ask me to analyze your resume, review your GitHub portfolio, or conduct a mock interview session!`;
+    } else if (isInterview) {
       mockResponse = `**STAR Behavioral Interview Guidelines**\n\nWhen responding to behavioral questions (e.g., *"Tell me about a time you solved a complex bug"*), structure your response using the STAR framework:\n\n- **Situation**: Contextualize the bug, its business impact (e.g. site checkout down).\n- **Task**: Describe your specific responsibility in resolving it.\n- **Action**: Outline the exact steps, debug methodologies, and profiling tools you utilized.\n- **Result**: Highlight the outcome, latency reduction, and preventive measures implemented.`;
-    } else if (lowerQuery.includes("job") || lowerQuery.includes("work") || lowerQuery.includes("career") || lowerQuery.includes("hire") || lowerQuery.includes("apply") || lowerQuery.includes("get")) {
-      mockResponse = `**Actionable Guide to Securing a Software Engineering Job**\n\nHere is a structured, step-by-step roadmap to land target software engineering roles:\n\n1. **Optimize Your Resume**: Quantify your engineering impact using the STAR method (Situation, Task, Action, Result). Highlight key skills matching job descriptions (e.g., React, Node.js, TypeScript, Distributed Systems).\n2. **Build FAANG-Ready Projects**: Develop 2-3 full-stack projects showcasing clean architecture, CI/CD pipelines, automated testing, and comprehensive documentation on GitHub.\n3. **Master Technical Interviews**: Practice DSA problems on LeetCode (focus on Arrays, Trees, Dynamic Programming, and Graphs) and practice System Design fundamentals.\n4. **Targeted Applications & Networking**: Engage directly with recruiters, request referrals on LinkedIn, and customize outreach messages tailored to target company tech stacks.\n5. **Practice STAR Interviewing**: Structure behavioral answers using clear Situation, Task, Action, and measurable Results.\n\nFeel free to ask me to analyze your resume, review your GitHub portfolio, or conduct a mock interview session!`;
+    } else if (isGithub) {
+      mockResponse = `**GitHub Profile & Code Quality Report**\n\nYour GitHub profile demonstrates a solid foundation. Here are 3 areas of improvement for FAANG-level positioning:\n\n1. **Consistent Contributions**: Maintain a steady green commit grid. It signals active learning and delivery capability.\n2. **Comprehensive documentation**: Ensure all projects contain clean READMEs, screenshots, configuration guides, and architecture diagrams.\n3. **Automated Testing & CI/CD**: Integrate GitHub Actions, testing frameworks (Vitest/Jest), and linting tools to demonstrate enterprise code readiness.`;
     } else {
-      mockResponse = `**Career Operating System Copilot**\n\nHello! I am your AI Career Copilot. I'm connected to the Career Agents ecosystem, including the **Resume Studio**, **GitHub Analyzer**, **Job Hub**, and **STAR Interview Lab**.\n\nHow can I help you accelerate your tech career today? I can review your resume, suggest optimizations, generate outreach messages, or guide you through mock interviews.`;
+      mockResponse = `**Career Operating System Copilot**\n\nHello${candidateName ? " **" + candidateName + "**" : ""}! I am your AI Career Copilot. I'm connected to the Career Agents ecosystem, including the **Resume Studio**, **GitHub Analyzer**, **Job Hub**, and **STAR Interview Lab**.\n\nHow can I help you accelerate your tech career today? I can review your resume, suggest optimizations, generate outreach messages, or guide you through mock interviews.`;
     }
     
     if (onChunk) {
@@ -431,7 +466,7 @@ export async function routeCompletion(
         const chunk = word + " ";
         currentText += chunk;
         onChunk(chunk);
-        await sleep(15);
+        await sleep(3);
       }
       finalContent = currentText;
     } else {
