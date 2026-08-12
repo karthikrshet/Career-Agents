@@ -72,7 +72,7 @@ export default function LoginPage() {
   };
 
   const FEATURES = [
-    "146 specialized AI career agents",
+    "167 specialized AI career agents",
     "Real ATS resume analysis engine",
     "Live GitHub portfolio scoring",
     "AI-powered mock interviews",
@@ -109,7 +109,7 @@ export default function LoginPage() {
             Platform
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Analyze resumes, audit GitHub, optimize LinkedIn, and crush interviews — all in one place with 146 specialized agents.
+            Analyze resumes, audit GitHub, optimize LinkedIn, and crush interviews — all in one place with 167 specialized agents.
           </p>
 
           <div className="space-y-3 mt-8">
@@ -132,7 +132,7 @@ export default function LoginPage() {
 
         {/* Bottom stats */}
         <div className="flex items-center gap-8 text-sm text-muted-foreground">
-          <div><span className="text-foreground font-semibold">146</span> AI Agents</div>
+          <div><span className="text-foreground font-semibold">167</span> AI Agents</div>
           <div><span className="text-foreground font-semibold">12+</span> Modules</div>
           <div><span className="text-foreground font-semibold">100%</span> Local First</div>
         </div>

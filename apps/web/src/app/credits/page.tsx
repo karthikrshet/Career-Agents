@@ -87,7 +87,7 @@ export default function CreditsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-xs text-muted-foreground leading-relaxed">
-                The open-source core behind Career Agents. It houses the 146 specialized AI career agents registry, 
+                The open-source core behind Career Agents. It houses the 167 specialized AI career agents registry, 
                 divisions database, schema models, and the local validation pipeline scripts. 
               </p>
 

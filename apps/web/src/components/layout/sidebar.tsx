@@ -64,7 +64,7 @@ export function Sidebar() {
       title: "AI ECOSYSTEM",
       items: [
         { name: "AI Copilot Stream", href: "/copilot", icon: Bot },
-        { name: "146 Agent Marketplace", href: "/marketplace", icon: Sparkles },
+        { name: "167 Agent Marketplace", href: "/marketplace", icon: Sparkles },
         { name: "Workflow Pipelines", href: "/workflows", icon: GitFork },
       ],
     },

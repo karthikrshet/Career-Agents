@@ -43,7 +43,7 @@ export default function OpenSourcePage() {
           </h1>
           <p className="text-sm text-slate-400 leading-relaxed mb-8">
             Career Agents is built on the philosophy of open transparency. Audit our security gating algorithms, 
-            run the MCP server locally, or extend our 146 agent prompt files.
+            run the MCP server locally, or extend our 167 agent prompt files.
           </p>
 
           <div className="flex flex-wrap gap-4">

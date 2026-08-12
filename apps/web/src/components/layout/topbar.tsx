@@ -63,7 +63,7 @@ const DEFAULT_SUBTITLES: Record<string, string> = {
   "/linkedin-ai": "AI content generator for LinkedIn posts and recruiter outreach",
   "/reports": "Generate and export your career analysis reports",
   "/copilot": "Real-time AI copilot stream & multi-agent assistance",
-  "/marketplace": "146 agent catalog and plugin integrations",
+  "/marketplace": "167 agent catalog and plugin integrations",
   "/workflows": "Automated multi-agent execution pipelines",
   "/github": "Live portfolio health audit from GitHub API",
   "/mcp": "Model Context Protocol server & diagnostic endpoint",
