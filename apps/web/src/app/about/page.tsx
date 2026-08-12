@@ -163,7 +163,7 @@ export default function AboutPage() {
           </CardContent>
         </Card>
 
-        {/* 146 Specialized Agents Registry */}
+        {/* 167 Specialized Agents Registry */}
         <Card className="glass text-left">
           <CardHeader className="pb-3 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex-1">
