@@ -2,24 +2,27 @@
   "id": "meta",
   "name": "Meta",
   "interview_process": [
-    "Technical phone screen: 2 DSA coding questions (45 min)",
-    "Onsite loop: 2 Coding rounds, 1 System Design round, 1 Behavioral/Culture round (45 min each)"
+    "Recruiter screening phone call (30 min)",
+    "Technical phone screen: 2 DSA coding problems in 45 min",
+    "Onsite loop: 2 DSA coding rounds (2 problems in 45 min each), 1 System Design round (Product or Systems Architecture), 1 Behavioral / Move Fast & Focus on Impact round"
   ],
   "skills": [
-    "High-speed coding accuracy (solving 2 DSA questions in 35 minutes)",
-    "System Design scaling (focusing on caching, load balancing, message queues)",
-    "Meta core values (Focus on Impact, Move Fast)"
+    "High-speed coding execution & accuracy",
+    "Meta-scale System Design (Feed, Messenger, TAO Caching)",
+    "Move Fast & Focus on Impact behavioral alignment",
+    "Social Graph & Distributed Systems"
   ],
   "preparation_workflow": "faang-preparation",
   "agents": [
     "meta-interview-coach",
+    "meta-swe-coach",
     "technical-interview-coach",
     "system-design-coach",
     "mock-interviewer"
   ],
   "resources": [
     "Meta Engineering Blog",
-    "React, PyTorch open-source docs",
-    "Meta System Design videos"
+    "Meta Open Source Repositories (React, PyTorch)",
+    "TAO: Meta Distributed Graph Store Paper"
   ]
 }

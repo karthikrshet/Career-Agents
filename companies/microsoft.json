@@ -2,24 +2,27 @@
   "id": "microsoft",
   "name": "Microsoft",
   "interview_process": [
-    "Recruiter screen + initial technical screen",
-    "Onsite loop: 4 technical rounds covering coding, system design, and growth mindset scenarios"
+    "Recruiter screening phone call (30 min)",
+    "First-round technical screen / OA: 1-2 coding problems (45-60 min)",
+    "Onsite loop (As-One Loop): 4-5 rounds covering CS Fundamentals & Coding, System Design, and Growth Mindset / Behavioral Alignment"
   ],
   "skills": [
-    "CS Fundamentals (pointers, memory management, OOP)",
-    "Growth Mindset (learning from failure, collaboration)",
-    "Distributed Service Architecture"
+    "Computer Science Fundamentals (OS, Networking, Data Structures)",
+    "Enterprise & Cloud System Architecture (Azure)",
+    "Collaborative Problem Solving & Growth Mindset",
+    "Multi-tenant SaaS & Identity Management"
   ],
   "preparation_workflow": "faang-preparation",
   "agents": [
     "microsoft-interview-coach",
+    "microsoft-swe-coach",
     "technical-interview-coach",
     "system-design-coach",
     "mock-interviewer"
   ],
   "resources": [
-    "Microsoft Engineering Blog",
+    "Microsoft Research Publications",
     "Azure Architecture Center",
-    "Microsoft Research Publications"
+    "Satya Nadella's Growth Mindset Framework"
   ]
 }
