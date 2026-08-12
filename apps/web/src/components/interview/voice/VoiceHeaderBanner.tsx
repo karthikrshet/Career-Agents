@@ -30,7 +30,7 @@ export function VoiceHeaderBanner({ onStartClick }: VoiceHeaderBannerProps) {
           </h1>
 
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Practice real-time spoken technical, DSA, system design, and behavioral mock interviews with 146 specialized AI agents across 27 BCP-47 languages with evidence-based STAR scorecards.
+            Practice real-time spoken technical, DSA, system design, and behavioral mock interviews with 167 specialized AI agents across 27 BCP-47 languages with evidence-based STAR scorecards.
           </p>
         </div>
 

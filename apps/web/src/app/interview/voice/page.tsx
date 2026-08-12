@@ -9,7 +9,7 @@ export default function VoiceInterviewPage() {
     <div className="flex flex-col w-full min-h-screen bg-[#03060f] text-slate-100 font-sans">
       <Topbar
         title="AI Voice Agent Lab v1.0"
-        subtitle="Practice real-time spoken technical, DSA, and behavioral mock interviews with 146 specialized AI interviewers"
+        subtitle="Practice real-time spoken technical, DSA, and behavioral mock interviews with 167 specialized AI interviewers"
       />
       <div className="flex-1 p-3 sm:p-5 w-full">
         <VoiceInterviewShell />
