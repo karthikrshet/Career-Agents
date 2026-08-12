@@ -9,6 +9,7 @@
       "description": "Renowned for deep algorithmic rigor, data structures expertise, distributed systems design, and Googliness/leadership qualities.",
       "agents": [
         "google-interview-coach",
+        "google-swe-coach",
         "technical-interview-coach",
         "system-design-coach",
         "mock-interviewer"
@@ -35,6 +36,7 @@
       "description": "Heavily focused on STAR-based behavioral stories demonstrating Amazon's 16 Leadership Principles, alongside practical coding and design.",
       "agents": [
         "amazon-interview-coach",
+        "amazon-swe-coach",
         "behavioral-interview-specialist",
         "system-design-coach",
         "mock-interviewer"
@@ -61,6 +63,7 @@
       "description": "Known for extremely fast-paced coding/correctness interviews and performance-focused system design questions.",
       "agents": [
         "meta-interview-coach",
+        "meta-swe-coach",
         "technical-interview-coach",
         "system-design-coach",
         "mock-interviewer"
@@ -82,11 +85,39 @@
       ]
     },
     {
+      "id": "apple",
+      "name": "Apple",
+      "description": "Focused on deep systems-level perfection, hardware-software integration, Swift/SwiftUI elegance, and secretive product excellence.",
+      "agents": [
+        "apple-interview-coach",
+        "apple-swe-coach",
+        "technical-interview-coach",
+        "system-design-coach",
+        "mock-interviewer"
+      ],
+      "workflows": [
+        "faang-preparation",
+        "technical-interview-week"
+      ],
+      "skills": [
+        "Swift & SwiftUI Architecture",
+        "Low-level Systems Programming (C/C++)",
+        "Hardware-Software Integration & OS Design",
+        "Product Excellence & Craftsmanship"
+      ],
+      "resources": [
+        "Apple Developer Documentation",
+        "WWDC Technical Sessions",
+        "Swift Evolution Proposals"
+      ]
+    },
+    {
       "id": "microsoft",
       "name": "Microsoft",
       "description": "Evaluates a blend of classical CS fundamentals, system scalability, and collaborative problem-solving using a Growth Mindset.",
       "agents": [
         "microsoft-interview-coach",
+        "microsoft-swe-coach",
         "technical-interview-coach",
         "system-design-coach",
         "mock-interviewer"
@@ -112,6 +143,7 @@
       "name": "OpenAI",
       "description": "Focuses on deep model scaling math, PyTorch scripting, distributed ML system training, and safety alignment concepts.",
       "agents": [
+        "openai-interview-coach",
         "openai-career-coach",
         "technical-interview-coach",
         "system-design-coach",
@@ -138,7 +170,8 @@
       "name": "Anthropic",
       "description": "Focuses on deep model alignment principles, constitutional AI frameworks, safety metrics, and advanced generative reasoning.",
       "agents": [
-        "openai-career-coach",
+        "anthropic-interview-coach",
+        "anthropic-ai-coach",
         "technical-interview-coach",
         "system-design-coach",
         "mock-interviewer"
@@ -163,6 +196,8 @@
       "name": "Nvidia",
       "description": "Rigorous systems programming interview loop focused on C++, CUDA parallel computing architectures, and GPU memory optimization.",
       "agents": [
+        "nvidia-interview-coach",
+        "nvidia-ai-coach",
         "technical-interview-coach",
         "system-design-coach",
         "mock-interviewer"
@@ -187,6 +222,7 @@
       "name": "Stripe",
       "description": "Unique practical engineering interviews focused on API integration, debugging real-world library files, and clean code refactoring.",
       "agents": [
+        "stripe-interview-coach",
         "code-reviewer",
         "backend-architect",
         "technical-interview-coach",
@@ -238,6 +274,7 @@
       "name": "Databricks",
       "description": "Emphasizes deep database design, stream processing architectures, compiler knowledge, and distributed systems algorithms.",
       "agents": [
+        "databricks-interview-coach",
         "database-engineer",
         "backend-architect",
         "system-design-coach",
@@ -264,6 +301,7 @@
       "description": "Rigorous focus on their Freedom and Responsibility slide deck, alongside high-scale distributed systems and CDN architectures.",
       "agents": [
         "netflix-interview-coach",
+        "netflix-swe-coach",
         "behavioral-interview-specialist",
         "system-design-coach",
         "mock-interviewer"

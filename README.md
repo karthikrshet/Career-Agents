@@ -10,13 +10,15 @@
 
 <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Live_Deployment-career--agents.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white" height="32" alt="Vercel Deployment" /></a>
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Registry-career--agents-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="32" alt="NPM Registry" /></a>
+<a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/dm/career-agents?style=for-the-badge&logo=npm&logoColor=white&color=cb3837" height="32" alt="NPM Downloads" /></a>
 <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" height="32" alt="GitHub Repo" /></a>
 
 <br /><br />
 
-<img src="https://img.shields.io/badge/Release-v16.3.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v16.3.0" />
-<img src="https://img.shields.io/badge/Agents-146_Specialized-0284c7?style=flat-square&logo=openai&logoColor=white" height="26" alt="146 Agents" />
-<img src="https://img.shields.io/badge/Voice_AI-146_Voice_Agents-06b6d4?style=flat-square&logo=google-cloud&logoColor=white" height="26" alt="146 Voice Agents" />
+<img src="https://img.shields.io/badge/Release-v17.0.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v17.0.0" />
+<img src="https://img.shields.io/npm/dt/career-agents?style=flat-square&logo=npm&logoColor=white&color=cb3837" height="26" alt="Total Downloads" />
+<img src="https://img.shields.io/badge/Agents-167_Specialized-0284c7?style=flat-square&logo=openai&logoColor=white" height="26" alt="167 Agents" />
+<img src="https://img.shields.io/badge/Voice_AI-167_Voice_Agents-06b6d4?style=flat-square&logo=google-cloud&logoColor=white" height="26" alt="167 Voice Agents" />
 <img src="https://img.shields.io/badge/Divisions-19_Domains-7c3aed?style=flat-square&logo=diagram&logoColor=white" height="26" alt="19 Divisions" />
 <img src="https://img.shields.io/badge/AI_Gateways-18_Providers-d97706?style=flat-square&logo=cpu&logoColor=white" height="26" alt="18 Providers" />
 <img src="https://img.shields.io/badge/MCP-Stdio_Protocol-4f46e5?style=flat-square&logo=lightning&logoColor=white" height="26" alt="MCP Server" />
@@ -36,7 +38,7 @@
 
 > **Career Agents** is an open-source, local-first **AI Career Operating System** built for software engineers, tech candidates, and engineering managers. 
 > 
-> Unifying **146 specialized AI agents across 19 domain divisions**, a **20-language LeetCode Coding Studio with 240+ problems**, local heuristic **ATS Resume Grading**, public **GitHub Portfolio Auditing**, search-visibility **LinkedIn Profile Scanning**, and interactive **STAR Behavioral & System Design Mock Interviews** — it replaces generic ChatGPT prompts and static resume templates with a context-aware career intelligence cockpit.
+> Unifying **167 specialized AI agents across 19 domain divisions**, a **20-language LeetCode Coding Studio with 240+ problems**, local heuristic **ATS Resume Grading**, public **GitHub Portfolio Auditing**, search-visibility **LinkedIn Profile Scanning**, and interactive **STAR Behavioral & System Design Mock Interviews** — it replaces generic ChatGPT prompts and static resume templates with a context-aware career intelligence cockpit.
 
 ---
 
@@ -136,7 +138,7 @@ Add to `.continue/config.json`:
 
 ### 3. 🧩 How to Run & Enable Local Extensions & Plugins
 
-- **Marketplace Extensions (`/marketplace`):** Navigate to the **146 Agent Marketplace** in the web dashboard to toggle extensions like *STAR Behavioral Coach*, *LeetCode Complexity Tracker*, and *Salary Intelligence*.
+- **Marketplace Extensions (`/marketplace`):** Navigate to the **167 Agent Marketplace** in the web dashboard to toggle extensions like *STAR Behavioral Coach*, *LeetCode Complexity Tracker*, and *Salary Intelligence*.
 - **Custom Plugin Manifests (`packages/plugins`):** Drop a JSON manifest into the plugin directory to extend Copilot system prompts:
   ```json
   {
@@ -154,7 +156,7 @@ Add to `.continue/config.json`:
 Run terminal commands anywhere using `scripts/cli.js`:
 
 ```bash
-# List all 146 agents and 19 divisions
+# List all 167 agents and 19 divisions
 node scripts/cli.js list
 
 # Score PDF/Word resume against ATS standards
@@ -276,7 +278,7 @@ node scripts/cli.js mock google behavioral
 
 <br />
 
-### 18. 🧩 146 Agent Marketplace Extensions
+### 18. 🧩 167 Agent Marketplace Extensions
 *Browse, search, and enable domain-specific agent extensions across 19 career divisions.*
 ![Agent Marketplace Extensions](./apps/web/public/images/marketplace_agents.png)
 
@@ -289,7 +291,7 @@ node scripts/cli.js mock google behavioral
 <br />
 
 ### 20. 🎙️ AI Voice Agent Mock Interview Lab v1.0 (`/interview/voice`)
-*1-on-1 real-time spoken mock interviews with 146 specialized AI agents, 27 BCP-47 languages, Web Speech API integration, reactive interviewer orb visualizers, dynamic follow-up questions, evidence-based STAR scorecards, and Vercel AI Key resolution.*
+*1-on-1 real-time spoken mock interviews with 167 specialized AI agents, 27 BCP-47 languages, Web Speech API integration, reactive interviewer orb visualizers, dynamic follow-up questions, evidence-based STAR scorecards, and Vercel AI Key resolution.*
 ![AI Voice Agent Lab](./apps/web/public/images/star_interview_lab.png)
 
 <br />
@@ -326,7 +328,7 @@ node scripts/cli.js mock google behavioral
 
 | Feature Module | CLI Utility | Web Dashboard | MCP Server |
 |----------------|:-----------:|:-------------:|:----------:|
-| **Agent Directory Search (146 Agents)** | ✅ | ✅ | ✅ |
+| **Agent Directory Search (167 Agents)** | ✅ | ✅ | ✅ |
 | **20-Language Coding Studio Compiler** | ✅ | ✅ | ✅ |
 | **240+ LeetCode Problem Catalog** | ✅ | ✅ | ✅ |
 | **Step-by-Step Algorithm Visualizer** | ❌ | ✅ | ✅ |
@@ -343,9 +345,9 @@ node scripts/cli.js mock google behavioral
 
 ---
 
-## 🤖 146 Agent Ecosystem (19 Divisions)
+## 🤖 167 Agent Ecosystem (19 Divisions)
 
-Career Agents manages **146 specialized AI agents** categorized across **19 divisions**. When a user sends a query to the Copilot, the routing engine tokenizes the input and compares it against agent names, descriptions, tags, and required skills to construct a matching scorecard:
+Career Agents manages **167 specialized AI agents** categorized across **19 divisions**. When a user sends a query to the Copilot, the routing engine tokenizes the input and compares it against agent names, descriptions, tags, and required skills to construct a matching scorecard:
 
 ```
 Score = (Exact Name Match * 15) + (Keyword Match * 3) + (Skill Match * 2) + (Domain Booster * 12)
@@ -410,6 +412,12 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 | [`Oracle Interview Coach`](./company-interviews/oracle-interview-coach.md) | Live | A fundamentals-first specialist who prepares candidates for Oracle's traditionally rigorous CS-fundamentals and systems-depth interview style, where solid, unglamorous engineering knowledge is genuinely rewarded. |
 | [`Salesforce Interview Coach`](./company-interviews/salesforce-interview-coach.md) | Live | A trust-and-customer-success specialist who prepares candidates for Salesforce's values-and-relationship-driven interview culture, where "trust is our #1 value" is treated as a real evaluation lens, not a slogan. |
 | [`Uber Interview Coach`](./company-interviews/uber-interview-coach.md) | Live | A scale-and-ownership specialist who prepares candidates for Uber's operationally intense, ownership-driven interview culture, where "built for scale, obsessed with the details that break at scale" is the actual bar. |
+| [`Apple Interview Coach`](./company-interviews/apple-interview-coach.md) | Live | A hardware-software craftsmanship and technical perfection coach who prepares candidates for Apple's deep systems loops, Swift/C++ architecture, and privacy-first product evaluation. |
+| [`Anthropic Interview Coach`](./company-interviews/anthropic-interview-coach.md) | Live | An AI safety, Constitutional AI, and research-engineering coach who prepares candidates for Anthropic's deep model architecture, scaling, and alignment interview loops. |
+| [`Databricks Interview Coach`](./company-interviews/databricks-interview-coach.md) | Live | A distributed systems, database internals, and Spark engine specialist who prepares candidates for Databricks' deep concurrency, storage engine, and query optimization loops. |
+| [`Nvidia Interview Coach`](./company-interviews/nvidia-interview-coach.md) | Live | A GPU architecture, CUDA kernel, and high-performance systems coach who prepares candidates for Nvidia's parallel computing, C++ performance, and AI hardware-software loops. |
+| [`OpenAI Interview Coach`](./company-interviews/openai-interview-coach.md) | Live | A frontier model research and distributed infrastructure coach who prepares candidates for OpenAI's rigorous technical loops, PyTorch/Triton mechanics, and AI safety culture. |
+| [`Stripe Interview Coach`](./company-interviews/stripe-interview-coach.md) | Live | A practical engineering, API craft, and production refactoring coach who prepares candidates for Stripe's unique hands-on coding, bug-squashing, and integration interview loops. |
 
 
 ### Engineering Division (`engineering`)
@@ -435,6 +443,7 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 | [`Leadership Interview Coach`](./interview/leadership-interview-coach.md) | Live | A leadership coaching specialist who prepares senior candidates for executive, management, and leadership interviews — focusing on vision, organization building, decision-making, and organizational conflict. |
 | [`Mock Interviewer`](./interview/mock-interviewer.md) | Live | A realistic, high-fidelity mock interviewer that conducts role-play simulations, dynamically probes candidate answers, handles follow-up queries, and provides rigorous feedback. |
 | [`System Design Coach`](./interview/system-design-coach.md) | Live | A technical interview coach specializing in distributed systems, scalability, and system design interviews — covering requirements gathering, API design, data modeling, high-level architecture, and deep-dive bottlenecks. |
+| [`Voice Mock Interviewer`](./interview/voice-mock-interviewer.md) | Live | A real-time voice-first mock interviewer supporting STT/TTS speech turn-taking, voice modulation diagnostics, semantic replies, and structured FAANG/MANGO 5-phase interview execution. |
 
 
 ### Networking Division (`networking`)
@@ -475,6 +484,8 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 | [`Resume Gap Strategist`](./resume/resume-gap-strategist.md) | Live | A career narrative specialist who helps candidates address employment gaps, academic breaks, career transitions, and non-traditional experiences with confidence. |
 | [`Technical Project Positioning Advisor`](./resume/technical-project-positioning-advisor.md) | Live | A portfolio and resume strategist who helps engineers showcase technical projects, open-source contributions, and product impact for maximum recruiter appeal. |
 | [`Resume Keyword Optimizer`](./resume/resume-keyword-optimizer.md) | Live | An ATS-oriented search optimization specialist who helps candidates align their resumes with target job descriptions using keyword mapping, context optimization, and phrase parsing strategies. |
+| [`Resume Humanizer`](./resume/resume-humanizer.md) | Live | A specialized career writing agent that de-robotifies AI-generated resumes into authentic, high-impact human professional narratives while preserving ATS keyword signaling. |
+| [`Document Exporter`](./resume/document-exporter.md) | Live | A specialized document layout and multi-format export engine that compiles resumes, cover letters, and portfolios into Word (.docx), PDF, HTML/CSS, and ATS plain-text templates. |
 
 
 ### Startup Division (`startup`)
@@ -503,6 +514,9 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 | [`MLOps Engineer`](./ai-engineering/mlops-engineer.md) | Live | Sets up continuous training pipelines, model registries, monitoring systems, and containerized deployment infrastructure. |
 | [`Prompt Engineer`](./ai-engineering/prompt-engineer.md) | Live | Designs systematic prompt templates, Few-Shot examples, Chain-of-Thought flows, and system instructions. |
 | [`RAG Architect`](./ai-engineering/rag-architect.md) | Live | Designs semantic search architectures, vector databases, chunking strategies, and metadata indexing pipelines. |
+| [`AI Infrastructure Architect`](./ai-engineering/ai-infrastructure-architect.md) | Live | An AI systems infrastructure specialist who architects distributed GPU training clusters, high-throughput vLLM/Triton serving pipelines, Ray cluster orchestration, and MLOps scaling. |
+| [`AI Agent Workflow Builder`](./ai-engineering/ai-agent-workflow-builder.md) | Live | An autonomous agent systems architect specializing in multi-agent orchestration, LangGraph, CrewAI, AutoGen, Model Context Protocol (MCP) tool integration, state machine control, and structured tool-call execution. |
+| [`Multimodal AI Engineer`](./ai-engineering/multimodal-ai-engineer.md) | Live | A vision, speech, and cross-modal AI systems specialist who architects Vision-Language Models (VLMs), audio-speech processing pipelines (STT/TTS, Realtime Voice APIs), text-to-image/video generative pipelines, and multimodal vector embeddings. |
 
 
 ### Cloud & Infrastructure Division (`cloud`)
@@ -600,12 +614,20 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 
 
 ### FAANG & Top Tech Division (`faang`)
-*Specialized coaches for top-tier tech companies (FAANG+), AI labs, and high-growth platform engineering teams.*
+*Specialized technical and career coaches for FAANG and top-tier tech companies, focusing on rigorous coding loops, system design, and culture fit.*
 
 | Agent Name | Status | Purpose / Description |
 | :--- | :---: | :--- |
 | [`OpenAI Career Coach`](./faang/openai-career-coach.md) | Live | A specialized coach for OpenAI interview loops, engineering culture, and AI research/engineering positions. |
 | [`Google SWE Coach`](./faang/google-swe-coach.md) | Live | A specialized technical coach for Google Software Engineering (SWE) loops, focusing on DS & Algorithms, complex complexity analysis, clean code structure, and Googleyness & Leadership (G&L). |
+| [`Meta SWE Coach`](./faang/meta-swe-coach.md) | Live | A high-speed execution, performance-focused system design, and impact-driven engineering coach for Meta's software engineering loops. |
+| [`Apple SWE Coach`](./faang/apple-swe-coach.md) | Live | A specialized low-level systems, Swift/C++ architecture, and hardware-software integration coach for Apple Software Engineering loops. |
+| [`Amazon SWE Coach`](./faang/amazon-swe-coach.md) | Live | A Leadership Principles, Bar Raiser standards, and high-scale distributed systems coach for Amazon SDE loops (SDE I, SDE II, Senior SDE). |
+| [`Netflix SWE Coach`](./faang/netflix-swe-coach.md) | Live | A high-concurrency distributed systems, microservices resilience, and Freedom & Responsibility culture coach for Netflix Senior SWE loops. |
+| [`Microsoft SWE Coach`](./faang/microsoft-swe-coach.md) | Live | A Growth Mindset, cloud architecture, and enterprise CS fundamentals coach for Microsoft Software Engineer loops (SDE I, SDE II, Senior SDE, Principal SDE). |
+| [`Anthropic AI Coach`](./faang/anthropic-ai-coach.md) | Live | A Constitutional AI, model alignment infrastructure, and transformer scaling coach for Anthropic research and engineering loops. |
+| [`Nvidia AI Coach`](./faang/nvidia-ai-coach.md) | Live | A GPU systems, CUDA kernel optimization, TensorRT compiler, and deep learning hardware acceleration coach for Nvidia engineering loops. |
+| [`FAANG Voice Mock Interviewer`](./faang/faang-voice-mock-interviewer.md) | Live | A voice-first FAANG & MANGO interview simulator tailored for Google, Meta, Amazon, Apple, Netflix, and OpenAI loops with company-specific pacing, voice modulation, and Bar Raiser evaluations. |
 
 
 ### AI Business Division (`ai-business`)
@@ -615,6 +637,7 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 | :--- | :---: | :--- |
 | [`AI Founder`](./ai-business/ai-founder.md) | Live | A strategic AI builder focused on scaling AI-first products, MVPs, and business models. |
 | [`AI Consultant`](./ai-business/ai-consultant.md) | Live | An enterprise AI strategist mapping company problems to LLM/RAG solutions, scoping APIs, drafting security/privacy architectures, and showing ROI. |
+| [`AI Product Growth Builder`](./ai-business/ai-product-growth-builder.md) | Live | An AI product strategy and growth architecture coach who specializes in scoping AI SaaS MVPs, designing retention loops for LLM products, managing token API cost structures, and building defensible AI monetization models. |
 
 
 ### Modern GTM Division (`gtm`)
@@ -695,7 +718,7 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 
 ---
 
-## 🏢 Company Interview Tracks (15 Companies)
+## 🏢 Company Interview Tracks (16 Companies)
 
 #### [Adobe](./companies/adobe.json)
 - **Interview Rounds**: Recruiter screen, Technical phone screen: 1-2 coding and product-craft rounds (45-60 min), Onsite loop: 3 technical coding/systems design rounds, 1 cross-functional collaboration round, 1 product craft/manager round (45 min each)
@@ -703,14 +726,19 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 - **Recommended Coaches**: adobe-interview-coach, mock-interviewer, system-design-coach
 
 #### [Amazon](./companies/amazon.json)
-- **Interview Rounds**: Online Assessment: coding test + system simulation (90 min), Recruiter screen, Onsite Loop (The Loop): 3-4 coding/system design rounds, with each round dedicating 20+ minutes to behavioral questions testing the 16 Leadership Principles
-- **Key Competency Focus**: 16 Leadership Principles (Customer Obsession, Ownership, Bias for Action), STAR Behavioral Storytelling, Data Structures & Algorithms, System Design & Database selections
-- **Recommended Coaches**: amazon-interview-coach, behavioral-interview-specialist, system-design-coach, mock-interviewer
+- **Interview Rounds**: Recruiter phone screen (30 min), Online Assessment (OA): 2 DSA coding challenges + Work Simulation + Work Style Assessment, Onsite loop (Full Loop): 4 rounds covering 16 Leadership Principles (STAR format), DSA Coding, Object-Oriented Design, and System Architecture with a Bar Raiser (45-60 min each)
+- **Key Competency Focus**: 16 Leadership Principles (STAR method), Customer Obsession & Operational Excellence, Distributed System Design (AWS Primitives), Object-Oriented Design & DSA
+- **Recommended Coaches**: amazon-interview-coach, amazon-swe-coach, behavioral-interview-specialist, system-design-coach, mock-interviewer
 
 #### [Anthropic](./companies/anthropic.json)
-- **Interview Rounds**: Initial technical chat (30 min), Technical programming screen (45 min), Onsite loop: 2 coding rounds, 1 system design / AI engineering round, 1 cultural fit round (45 min each)
-- **Key Competency Focus**: Data Structures & Algorithms, Generative AI & LLM Fine-Tuning, Alignment & Safety Principles, System Design & Scalability
-- **Recommended Coaches**: openai-career-coach, technical-interview-coach, system-design-coach, mock-interviewer
+- **Interview Rounds**: Recruiter screen & research alignment call (30 min), Technical screen: PyTorch / Deep Learning Math & Systems Coding (60 min), Onsite loop: 4-5 rounds covering Neural Network Coding, High-Scale ML Systems Architecture, Alignment & Constitutional AI Frameworks, and Research Culture
+- **Key Competency Focus**: AI Safety & Constitutional AI Frameworks, Transformer Scaling & Memory Bandwidth Profiling, PyTorch & Distributed Training Mechanics (FSDP), Empirical Research & Experiment Design
+- **Recommended Coaches**: anthropic-interview-coach, anthropic-ai-coach, technical-interview-coach, system-design-coach, mock-interviewer
+
+#### [Apple](./companies/apple.json)
+- **Interview Rounds**: Recruiter screening phone call (30 min), Technical phone screen / Domain deep-dive (45-60 min), Onsite loop: 4-6 rounds covering Systems Programming / DSA, Software Architecture, Domain Specialty, and Cross-functional Culture & Craft (45-60 min each)
+- **Key Competency Focus**: Swift, SwiftUI & Objective-C / C++ Architecture, Systems Programming & Memory Management (RAII, ARC, Pointers), Hardware-Software Integration & OS Design Fundamentals, Product Craft, Privacy Principles & Attention to Detail
+- **Recommended Coaches**: apple-interview-coach, apple-swe-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 #### [Atlassian](./companies/atlassian.json)
 - **Interview Rounds**: Recruiter screen and interactive coding challenge, Onsite loop: 1 system design round, 1 coding round, 1 values fit round, 1 management/behavioral round
@@ -718,39 +746,39 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 - **Recommended Coaches**: atlassian-interview-coach, behavioral-interview-specialist, group-discussion-coach, mock-interviewer
 
 #### [Databricks](./companies/databricks.json)
-- **Interview Rounds**: Recruiter screen and algorithmic online assessment, Technical phone interview: distributed coding problem, Onsite loop: 2 database/systems design rounds, 2 systems coding rounds, 1 behavioral values round
-- **Key Competency Focus**: Distributed computing algorithms, Database internals (caching, query planning, indexing), Concurrency and systems performance, Spark/Delta Lake execution logic
-- **Recommended Coaches**: database-engineer, backend-architect, system-design-coach, mock-interviewer
+- **Interview Rounds**: Recruiter screening phone call (30 min), Technical phone screen: Systems Coding / Database Algorithm round (60 min), Onsite loop: 4-5 rounds covering High-Concurrency Systems Coding, Storage Engine & Query Architecture, Distributed Infrastructure System Design, and Culture
+- **Key Competency Focus**: Distributed Query Engines & Vectorized Execution, Database Internals (LSM-trees, MVCC, Concurrency), Apache Spark & Delta Lake Internals, Systems Programming & Memory Management
+- **Recommended Coaches**: databricks-interview-coach, database-engineer, backend-architect, system-design-coach, mock-interviewer
 
 #### [Google](./companies/google.json)
 - **Interview Rounds**: Recruiter screening phone call (30 min), Technical phone screen: 1 DSA coding round (45 min), Onsite loop: 3 DSA coding rounds, 1 System Design round, 1 Googliness & Leadership round (45 min each)
 - **Key Competency Focus**: Data Structures & Algorithms (graphs, dynamic programming, trees), System Design & Scalability, Googliness (cultural fit, collaboration, ambiguity navigation), Space & Time Complexity Analysis
-- **Recommended Coaches**: google-interview-coach, technical-interview-coach, system-design-coach, mock-interviewer
+- **Recommended Coaches**: google-interview-coach, google-swe-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 #### [Meta](./companies/meta.json)
-- **Interview Rounds**: Technical phone screen: 2 DSA coding questions (45 min), Onsite loop: 2 Coding rounds, 1 System Design round, 1 Behavioral/Culture round (45 min each)
-- **Key Competency Focus**: High-speed coding accuracy (solving 2 DSA questions in 35 minutes), System Design scaling (focusing on caching, load balancing, message queues), Meta core values (Focus on Impact, Move Fast)
-- **Recommended Coaches**: meta-interview-coach, technical-interview-coach, system-design-coach, mock-interviewer
+- **Interview Rounds**: Recruiter screening phone call (30 min), Technical phone screen: 2 DSA coding problems in 45 min, Onsite loop: 2 DSA coding rounds (2 problems in 45 min each), 1 System Design round (Product or Systems Architecture), 1 Behavioral / Move Fast & Focus on Impact round
+- **Key Competency Focus**: High-speed coding execution & accuracy, Meta-scale System Design (Feed, Messenger, TAO Caching), Move Fast & Focus on Impact behavioral alignment, Social Graph & Distributed Systems
+- **Recommended Coaches**: meta-interview-coach, meta-swe-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 #### [Microsoft](./companies/microsoft.json)
-- **Interview Rounds**: Recruiter screen + initial technical screen, Onsite loop: 4 technical rounds covering coding, system design, and growth mindset scenarios
-- **Key Competency Focus**: CS Fundamentals (pointers, memory management, OOP), Growth Mindset (learning from failure, collaboration), Distributed Service Architecture
-- **Recommended Coaches**: microsoft-interview-coach, technical-interview-coach, system-design-coach, mock-interviewer
+- **Interview Rounds**: Recruiter screening phone call (30 min), First-round technical screen / OA: 1-2 coding problems (45-60 min), Onsite loop (As-One Loop): 4-5 rounds covering CS Fundamentals & Coding, System Design, and Growth Mindset / Behavioral Alignment
+- **Key Competency Focus**: Computer Science Fundamentals (OS, Networking, Data Structures), Enterprise & Cloud System Architecture (Azure), Collaborative Problem Solving & Growth Mindset, Multi-tenant SaaS & Identity Management
+- **Recommended Coaches**: microsoft-interview-coach, microsoft-swe-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 #### [Netflix](./companies/netflix.json)
-- **Interview Rounds**: Recruiter screen and phone technical interview, Onsite loop: 2 technical coding/system design rounds, 2 culture/behavioral rounds evaluating feedback loops and the culture slide deck
-- **Key Competency Focus**: Freedom & Responsibility slide deck principles, High-throughput CDN architectures, Autonomy and direct feedback loops (Radical Candor), Resilience engineering (Chaos Monkey)
-- **Recommended Coaches**: netflix-interview-coach, behavioral-interview-specialist, system-design-coach, mock-interviewer
+- **Interview Rounds**: Recruiter screening phone call (30 min), Technical phone screen: High-concurrency systems / Senior coding (60 min), Onsite loop: 4-5 rounds covering Senior Distributed System Design, Microservices Resilience & Chaos Engineering, Technical Deep-Dive, and Freedom & Responsibility Culture
+- **Key Competency Focus**: Freedom & Responsibility Culture Alignment, High-Concurrency Distributed Microservices, Chaos Engineering & Fault Isolation, Global Streaming & Edge CDN Architectures
+- **Recommended Coaches**: netflix-interview-coach, netflix-swe-coach, behavioral-interview-specialist, system-design-coach, mock-interviewer
 
 #### [Nvidia](./companies/nvidia.json)
-- **Interview Rounds**: Recruiter call & screening (30 min), Technical phone interview: C++ coding & systems concepts (45 min), Onsite loop: 3 technical coding / systems architecture rounds, 1 AI/graphics round, 1 team fit round (45 min each)
-- **Key Competency Focus**: Systems Programming (C/C++, CUDA), Parallel Computing & GPU Architecture, Data Structures & Algorithms, Deep Learning & Computer Vision
-- **Recommended Coaches**: technical-interview-coach, system-design-coach, machine-learning-engineer, mock-interviewer
+- **Interview Rounds**: Recruiter screening phone call (30 min), Technical phone screen: C++ Systems Programming / Parallel Algorithms (60 min), Onsite loop: 4-5 rounds covering CUDA Kernel Optimization, Systems C++, GPU Architecture & Interconnects, and AI Hardware Acceleration
+- **Key Competency Focus**: C++ Systems Programming & Memory Alignment, CUDA Parallel Computing & SIMT Execution Model, GPU Hardware Architecture & NVLink Topology, Deep Learning Acceleration & TensorRT Quantization
+- **Recommended Coaches**: nvidia-interview-coach, nvidia-ai-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 #### [OpenAI](./companies/openai.json)
-- **Interview Rounds**: Recruiter screen and take-home practical engineering assignment, Technical phone screen: review take-home assignment and coding test, Onsite loop: 4-5 rounds covering PyTorch coding, distributed training systems, AI safety/alignment, and executive values
-- **Key Competency Focus**: PyTorch scale training models, Transformer mechanics and scaling math, AI Safety & alignment criteria, GPU memory optimizations
-- **Recommended Coaches**: llm-engineer, ai-agent-architect, ai-engineer-career-coach, mock-interviewer
+- **Interview Rounds**: Recruiter screen & domain alignment call (30 min), Technical phone screen: PyTorch / Distributed Coding or Systems Deep Dive (60 min), Onsite loop: 4-5 rounds covering Neural Network Coding / Autograd, Distributed ML Systems Architecture, Applied AI / Infrastructure, and Mission & Safety Alignment (60 min each)
+- **Key Competency Focus**: PyTorch & Triton Distributed Training Mechanics, Transformer Architecture & KV Cache Optimizations, Frontier AI Infrastructure & LLM Serving, AI Safety, Alignment & Scaling Laws
+- **Recommended Coaches**: openai-interview-coach, openai-career-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 #### [Oracle](./companies/oracle.json)
 - **Interview Rounds**: Recruiter phone screen, Technical screening: 1-2 CS fundamentals and database queries rounds (45-60 min), Onsite Loop: 3-4 rounds focused on CS fundamentals, database design, networking protocols, and systems design (45 min each)
@@ -763,9 +791,9 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 - **Recommended Coaches**: salesforce-interview-coach, mock-interviewer, system-design-coach
 
 #### [Stripe](./companies/stripe.json)
-- **Interview Rounds**: Recruiter screen and phone interview (coding/debugging), Onsite loop: 1 practical integration coding round, 1 bug squash debugging round, 1 system architecture round, 1 leadership/behavioral round
-- **Key Competency Focus**: Practical API design and integration, Squashing bugs in large codebases, Clean code refactoring and design structures, Unit testing
-- **Recommended Coaches**: code-reviewer, backend-architect, technical-interview-coach, mock-interviewer
+- **Interview Rounds**: Recruiter screening phone call (30 min), Technical screen: Practical API design / Coding round (60 min), Onsite loop: 4-5 rounds covering Practical Engineering (Bug Hunting / Extension), API Design, System Architecture (Financial Systems & Idempotency), and Culture/Integration
+- **Key Competency Focus**: Practical API & SDK Ergonomics Design, Codebase Refactoring & Defensive Error Handling, Financial System Design & Idempotency, Backward Compatibility & Integration Testing
+- **Recommended Coaches**: stripe-interview-coach, code-reviewer, backend-architect, technical-interview-coach, mock-interviewer
 
 #### [Uber](./companies/uber.json)
 - **Interview Rounds**: Recruiter screen and online coding test, Technical phone interview: coding and systems baseline questions, Onsite loop: 2 coding rounds, 2 system architecture scaling rounds, 1 behavioral bar raiser round

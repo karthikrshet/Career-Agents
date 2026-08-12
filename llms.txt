@@ -182,6 +182,36 @@ This file contains the map of available agents, operational workflows, company t
   Stage: Growth | Level: Mid | Industry: All
   Skills: Interview Preparation, Technical Coding, System Design, Behavioral Interview, Craft-focused, Technically rigorous
 
+- Apple Interview Coach (ID: apple-interview-coach | Path: company-interviews/apple-interview-coach.md)
+  Description: A hardware-software craftsmanship and technical perfection coach who prepares candidates for Apple's deep systems loops, Swift/C++ architecture, and privacy-first product evaluation.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Interview Preparation, Systems Programming, Swift, Hardware-Software Integration
+
+- Anthropic Interview Coach (ID: anthropic-interview-coach | Path: company-interviews/anthropic-interview-coach.md)
+  Description: An AI safety, Constitutional AI, and research-engineering coach who prepares candidates for Anthropic's deep model architecture, scaling, and alignment interview loops.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Interview Preparation, AI Safety, Constitutional AI, PyTorch
+
+- Databricks Interview Coach (ID: databricks-interview-coach | Path: company-interviews/databricks-interview-coach.md)
+  Description: A distributed systems, database internals, and Spark engine specialist who prepares candidates for Databricks' deep concurrency, storage engine, and query optimization loops.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Interview Preparation, Distributed Systems, Database Internals, Spark
+
+- Nvidia Interview Coach (ID: nvidia-interview-coach | Path: company-interviews/nvidia-interview-coach.md)
+  Description: A GPU architecture, CUDA kernel, and high-performance systems coach who prepares candidates for Nvidia's parallel computing, C++ performance, and AI hardware-software loops.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Interview Preparation, CUDA, C++, GPU Architecture
+
+- OpenAI Interview Coach (ID: openai-interview-coach | Path: company-interviews/openai-interview-coach.md)
+  Description: A frontier model research and distributed infrastructure coach who prepares candidates for OpenAI's rigorous technical loops, PyTorch/Triton mechanics, and AI safety culture.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Interview Preparation, Distributed Training, PyTorch, Triton
+
+- Stripe Interview Coach (ID: stripe-interview-coach | Path: company-interviews/stripe-interview-coach.md)
+  Description: A practical engineering, API craft, and production refactoring coach who prepares candidates for Stripe's unique hands-on coding, bug-squashing, and integration interview loops.
+  Stage: Growth | Level: Mid | Industry: Tech
+  Skills: Interview Preparation, API Design, Refactoring, Debugging
+
 - Backend Architect (ID: backend-architect | Path: engineering/backend-architect.md)
   Description: An API and service-design reviewer who evaluates backend architecture for the failure modes that don't show up until real load, real edge cases, and real time have all had a chance to find them.
   Stage: Growth | Level: Senior | Industry: Tech
@@ -662,6 +692,41 @@ This file contains the map of available agents, operational workflows, company t
   Stage: Leadership | Level: Senior | Industry: Tech
   Skills: Distributed Systems, Scaling, DSA, FAANG Interview, Openai, Faang
 
+- Meta SWE Coach (ID: meta-swe-coach | Path: faang/meta-swe-coach.md)
+  Description: A high-speed execution, performance-focused system design, and impact-driven engineering coach for Meta's software engineering loops.
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: Algorithms, System Design, Distributed Systems, FAANG Interview
+
+- Apple SWE Coach (ID: apple-swe-coach | Path: faang/apple-swe-coach.md)
+  Description: A specialized low-level systems, Swift/C++ architecture, and hardware-software integration coach for Apple Software Engineering loops.
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: Systems Programming, Swift, C++, FAANG Interview
+
+- Amazon SWE Coach (ID: amazon-swe-coach | Path: faang/amazon-swe-coach.md)
+  Description: A Leadership Principles, Bar Raiser standards, and high-scale distributed systems coach for Amazon SDE loops (SDE I, SDE II, Senior SDE).
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: Distributed Systems, AWS, Leadership Principles, FAANG Interview
+
+- Netflix SWE Coach (ID: netflix-swe-coach | Path: faang/netflix-swe-coach.md)
+  Description: A high-concurrency distributed systems, microservices resilience, and Freedom & Responsibility culture coach for Netflix Senior SWE loops.
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: Microservices, Chaos Engineering, Distributed Systems, FAANG Interview
+
+- Microsoft SWE Coach (ID: microsoft-swe-coach | Path: faang/microsoft-swe-coach.md)
+  Description: A Growth Mindset, cloud architecture, and enterprise CS fundamentals coach for Microsoft Software Engineer loops (SDE I, SDE II, Senior SDE, Principal SDE).
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: Cloud Architecture, Azure, CS Fundamentals, FAANG Interview
+
+- Anthropic AI Coach (ID: anthropic-ai-coach | Path: faang/anthropic-ai-coach.md)
+  Description: A Constitutional AI, model alignment infrastructure, and transformer scaling coach for Anthropic research and engineering loops.
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: Constitutional AI, Transformers, AI Safety, FAANG Interview
+
+- Nvidia AI Coach (ID: nvidia-ai-coach | Path: faang/nvidia-ai-coach.md)
+  Description: A GPU systems, CUDA kernel optimization, TensorRT compiler, and deep learning hardware acceleration coach for Nvidia engineering loops.
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: CUDA, TensorRT, GPU Systems, FAANG Interview
+
 - AI Consultant (ID: ai-consultant | Path: ai-business/ai-consultant.md)
   Description: An enterprise AI strategist mapping company problems to LLM/RAG solutions, scoping APIs, drafting security/privacy architectures, and showing ROI.
   Stage: Growth | Level: Senior | Industry: All
@@ -732,6 +797,46 @@ This file contains the map of available agents, operational workflows, company t
   Stage: None | Level: None | Industry: None
   Skills: 
 
+- Voice Mock Interviewer (ID: voice-mock-interviewer | Path: interview/voice-mock-interviewer.md)
+  Description: A real-time voice-first mock interviewer supporting STT/TTS speech turn-taking, voice modulation diagnostics, semantic replies, and structured FAANG/MANGO 5-phase interview execution.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Voice Interviewing, Speech Turn-Taking, Voice Modulation, FAANG Process
+
+- FAANG Voice Mock Interviewer (ID: faang-voice-mock-interviewer | Path: faang/faang-voice-mock-interviewer.md)
+  Description: A voice-first FAANG & MANGO interview simulator tailored for Google, Meta, Amazon, Apple, Netflix, and OpenAI loops with company-specific pacing, voice modulation, and Bar Raiser evaluations.
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: FAANG Voice Interview, Voice Modulation, Bar Raiser Evaluation, Realtime Speech
+
+- Resume Humanizer (ID: resume-humanizer | Path: resume/resume-humanizer.md)
+  Description: A specialized career writing agent that de-robotifies AI-generated resumes into authentic, high-impact human professional narratives while preserving ATS keyword signaling.
+  Stage: Transition | Level: Mid | Industry: All
+  Skills: Resume Humanization, Anti-Cliche Writing, ATS Optimization, Human Voice
+
+- Document Exporter (ID: document-exporter | Path: resume/document-exporter.md)
+  Description: A specialized document layout and multi-format export engine that compiles resumes, cover letters, and portfolios into Word (.docx), PDF, HTML/CSS, and ATS plain-text templates.
+  Stage: All | Level: All | Industry: All
+  Skills: Word Export, PDF Generation, HTML Templates, ATS Plain Text
+
+- AI Infrastructure Architect (ID: ai-infrastructure-architect | Path: ai-engineering/ai-infrastructure-architect.md)
+  Description: An AI systems infrastructure specialist who architects distributed GPU training clusters, high-throughput vLLM/Triton serving pipelines, Ray cluster orchestration, and MLOps scaling.
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: GPU Clusters, vLLM, Triton Serving, Ray Orchestration
+
+- AI Agent Workflow Builder (ID: ai-agent-workflow-builder | Path: ai-engineering/ai-agent-workflow-builder.md)
+  Description: An autonomous agent systems architect specializing in multi-agent orchestration, LangGraph, CrewAI, AutoGen, Model Context Protocol (MCP) tool integration, state machine control, and structured tool-call execution.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: LangGraph, Multi-Agent Systems, MCP Protocol, Tool Calling
+
+- Multimodal AI Engineer (ID: multimodal-ai-engineer | Path: ai-engineering/multimodal-ai-engineer.md)
+  Description: A vision, speech, and cross-modal AI systems specialist who architects Vision-Language Models (VLMs), audio-speech processing pipelines (STT/TTS, Realtime Voice APIs), text-to-image/video generative pipelines, and multimodal vector embeddings.
+  Stage: Growth | Level: Senior | Industry: Tech
+  Skills: Vision Language Models, Realtime Voice APIs, WebRTC, Multimodal RAG
+
+- AI Product Growth Builder (ID: ai-product-growth-builder | Path: ai-business/ai-product-growth-builder.md)
+  Description: An AI product strategy and growth architecture coach who specializes in scoping AI SaaS MVPs, designing retention loops for LLM products, managing token API cost structures, and building defensible AI monetization models.
+  Stage: Leadership | Level: Senior | Industry: Tech
+  Skills: AI Product Strategy, Semantic Caching, LLM COGS Modeling, Retention Loops
+
 ## Workflows Roster
 - ATS Optimization (ID: ats-optimization | Path: workflows/ats-optimization.md)
   Description: A repeatable resume operating system for candidates who apply through portals, campus systems, and enterprise hiring platforms. Optimizes resume structures, headings, and keyword mapping to survive ATS parsing.
@@ -789,44 +894,48 @@ This file contains the map of available agents, operational workflows, company t
   Agents: adobe-interview-coach, mock-interviewer, system-design-coach
 
 - Amazon (ID: amazon)
-  Skills: 16 Leadership Principles (Customer Obsession, Ownership, Bias for Action), STAR Behavioral Storytelling, Data Structures & Algorithms, System Design & Database selections
-  Agents: amazon-interview-coach, behavioral-interview-specialist, system-design-coach, mock-interviewer
+  Skills: 16 Leadership Principles (STAR method), Customer Obsession & Operational Excellence, Distributed System Design (AWS Primitives), Object-Oriented Design & DSA
+  Agents: amazon-interview-coach, amazon-swe-coach, behavioral-interview-specialist, system-design-coach, mock-interviewer
 
 - Anthropic (ID: anthropic)
-  Skills: Data Structures & Algorithms, Generative AI & LLM Fine-Tuning, Alignment & Safety Principles, System Design & Scalability
-  Agents: openai-career-coach, technical-interview-coach, system-design-coach, mock-interviewer
+  Skills: AI Safety & Constitutional AI Frameworks, Transformer Scaling & Memory Bandwidth Profiling, PyTorch & Distributed Training Mechanics (FSDP), Empirical Research & Experiment Design
+  Agents: anthropic-interview-coach, anthropic-ai-coach, technical-interview-coach, system-design-coach, mock-interviewer
+
+- Apple (ID: apple)
+  Skills: Swift, SwiftUI & Objective-C / C++ Architecture, Systems Programming & Memory Management (RAII, ARC, Pointers), Hardware-Software Integration & OS Design Fundamentals, Product Craft, Privacy Principles & Attention to Detail
+  Agents: apple-interview-coach, apple-swe-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 - Atlassian (ID: atlassian)
   Skills: Atlassian core values (Open Company No Bullshit), Collaborative system design structures, Active listening and giving structured feedback, Frontend UI performance and layout
   Agents: atlassian-interview-coach, behavioral-interview-specialist, group-discussion-coach, mock-interviewer
 
 - Databricks (ID: databricks)
-  Skills: Distributed computing algorithms, Database internals (caching, query planning, indexing), Concurrency and systems performance, Spark/Delta Lake execution logic
-  Agents: database-engineer, backend-architect, system-design-coach, mock-interviewer
+  Skills: Distributed Query Engines & Vectorized Execution, Database Internals (LSM-trees, MVCC, Concurrency), Apache Spark & Delta Lake Internals, Systems Programming & Memory Management
+  Agents: databricks-interview-coach, database-engineer, backend-architect, system-design-coach, mock-interviewer
 
 - Google (ID: google)
   Skills: Data Structures & Algorithms (graphs, dynamic programming, trees), System Design & Scalability, Googliness (cultural fit, collaboration, ambiguity navigation), Space & Time Complexity Analysis
-  Agents: google-interview-coach, technical-interview-coach, system-design-coach, mock-interviewer
+  Agents: google-interview-coach, google-swe-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 - Meta (ID: meta)
-  Skills: High-speed coding accuracy (solving 2 DSA questions in 35 minutes), System Design scaling (focusing on caching, load balancing, message queues), Meta core values (Focus on Impact, Move Fast)
-  Agents: meta-interview-coach, technical-interview-coach, system-design-coach, mock-interviewer
+  Skills: High-speed coding execution & accuracy, Meta-scale System Design (Feed, Messenger, TAO Caching), Move Fast & Focus on Impact behavioral alignment, Social Graph & Distributed Systems
+  Agents: meta-interview-coach, meta-swe-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 - Microsoft (ID: microsoft)
-  Skills: CS Fundamentals (pointers, memory management, OOP), Growth Mindset (learning from failure, collaboration), Distributed Service Architecture
-  Agents: microsoft-interview-coach, technical-interview-coach, system-design-coach, mock-interviewer
+  Skills: Computer Science Fundamentals (OS, Networking, Data Structures), Enterprise & Cloud System Architecture (Azure), Collaborative Problem Solving & Growth Mindset, Multi-tenant SaaS & Identity Management
+  Agents: microsoft-interview-coach, microsoft-swe-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 - Netflix (ID: netflix)
-  Skills: Freedom & Responsibility slide deck principles, High-throughput CDN architectures, Autonomy and direct feedback loops (Radical Candor), Resilience engineering (Chaos Monkey)
-  Agents: netflix-interview-coach, behavioral-interview-specialist, system-design-coach, mock-interviewer
+  Skills: Freedom & Responsibility Culture Alignment, High-Concurrency Distributed Microservices, Chaos Engineering & Fault Isolation, Global Streaming & Edge CDN Architectures
+  Agents: netflix-interview-coach, netflix-swe-coach, behavioral-interview-specialist, system-design-coach, mock-interviewer
 
 - Nvidia (ID: nvidia)
-  Skills: Systems Programming (C/C++, CUDA), Parallel Computing & GPU Architecture, Data Structures & Algorithms, Deep Learning & Computer Vision
-  Agents: technical-interview-coach, system-design-coach, machine-learning-engineer, mock-interviewer
+  Skills: C++ Systems Programming & Memory Alignment, CUDA Parallel Computing & SIMT Execution Model, GPU Hardware Architecture & NVLink Topology, Deep Learning Acceleration & TensorRT Quantization
+  Agents: nvidia-interview-coach, nvidia-ai-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 - OpenAI (ID: openai)
-  Skills: PyTorch scale training models, Transformer mechanics and scaling math, AI Safety & alignment criteria, GPU memory optimizations
-  Agents: llm-engineer, ai-agent-architect, ai-engineer-career-coach, mock-interviewer
+  Skills: PyTorch & Triton Distributed Training Mechanics, Transformer Architecture & KV Cache Optimizations, Frontier AI Infrastructure & LLM Serving, AI Safety, Alignment & Scaling Laws
+  Agents: openai-interview-coach, openai-career-coach, technical-interview-coach, system-design-coach, mock-interviewer
 
 - Oracle (ID: oracle)
   Skills: CS Fundamentals (OS, Networking), Database Internals & SQL Design, Algorithmic Problem-Solving, Multi-Round Endurance
@@ -837,8 +946,8 @@ This file contains the map of available agents, operational workflows, company t
   Agents: salesforce-interview-coach, mock-interviewer, system-design-coach
 
 - Stripe (ID: stripe)
-  Skills: Practical API design and integration, Squashing bugs in large codebases, Clean code refactoring and design structures, Unit testing
-  Agents: code-reviewer, backend-architect, technical-interview-coach, mock-interviewer
+  Skills: Practical API & SDK Ergonomics Design, Codebase Refactoring & Defensive Error Handling, Financial System Design & Idempotency, Backward Compatibility & Integration Testing
+  Agents: stripe-interview-coach, code-reviewer, backend-architect, technical-interview-coach, mock-interviewer
 
 - Uber (ID: uber)
   Skills: Geohashing and spatial search coordinates index (H3, S2), Real-time stream message scheduling, High write concurrency structures, Fault-tolerance modeling

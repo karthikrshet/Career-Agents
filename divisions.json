@@ -487,7 +487,7 @@
     {
       "division": "company-interviews",
       "description": "Target-company-specific interview coaches for FAANG, tier-1 product companies, and tech giants.",
-      "count": 10,
+      "count": 16,
       "category": "Interview Prep",
       "emoji": "\ud83c\udfe2",
       "name": "Company Interviews",
@@ -631,6 +631,90 @@
             "company-interviews",
             "operationally sharp"
           ]
+        },
+        {
+          "id": "apple-interview-coach",
+          "file": "company-interviews/apple-interview-coach.md",
+          "name": "Apple Interview Coach",
+          "status": "live",
+          "description": "A hardware-software craftsmanship and technical perfection coach who prepares candidates for Apple's deep systems loops, Swift/C++ architecture, and privacy-first product evaluation.",
+          "tags": [
+            "apple",
+            "company-interviews",
+            "swift",
+            "systems-programming",
+            "privacy"
+          ]
+        },
+        {
+          "id": "anthropic-interview-coach",
+          "file": "company-interviews/anthropic-interview-coach.md",
+          "name": "Anthropic Interview Coach",
+          "status": "live",
+          "description": "An AI safety, Constitutional AI, and research-engineering coach who prepares candidates for Anthropic's deep model architecture, scaling, and alignment interview loops.",
+          "tags": [
+            "anthropic",
+            "company-interviews",
+            "ai-safety",
+            "constitutional-ai",
+            "transformers"
+          ]
+        },
+        {
+          "id": "databricks-interview-coach",
+          "file": "company-interviews/databricks-interview-coach.md",
+          "name": "Databricks Interview Coach",
+          "status": "live",
+          "description": "A distributed systems, database internals, and Spark engine specialist who prepares candidates for Databricks' deep concurrency, storage engine, and query optimization loops.",
+          "tags": [
+            "databricks",
+            "company-interviews",
+            "distributed-systems",
+            "spark",
+            "database-internals"
+          ]
+        },
+        {
+          "id": "nvidia-interview-coach",
+          "file": "company-interviews/nvidia-interview-coach.md",
+          "name": "Nvidia Interview Coach",
+          "status": "live",
+          "description": "A GPU architecture, CUDA kernel, and high-performance systems coach who prepares candidates for Nvidia's parallel computing, C++ performance, and AI hardware-software loops.",
+          "tags": [
+            "nvidia",
+            "company-interviews",
+            "cuda",
+            "gpu-architecture",
+            "cpp"
+          ]
+        },
+        {
+          "id": "openai-interview-coach",
+          "file": "company-interviews/openai-interview-coach.md",
+          "name": "OpenAI Interview Coach",
+          "status": "live",
+          "description": "A frontier model research and distributed infrastructure coach who prepares candidates for OpenAI's rigorous technical loops, PyTorch/Triton mechanics, and AI safety culture.",
+          "tags": [
+            "openai",
+            "company-interviews",
+            "pytorch",
+            "triton",
+            "distributed-training"
+          ]
+        },
+        {
+          "id": "stripe-interview-coach",
+          "file": "company-interviews/stripe-interview-coach.md",
+          "name": "Stripe Interview Coach",
+          "status": "live",
+          "description": "A practical engineering, API craft, and production refactoring coach who prepares candidates for Stripe's unique hands-on coding, bug-squashing, and integration interview loops.",
+          "tags": [
+            "stripe",
+            "company-interviews",
+            "api-design",
+            "refactoring",
+            "idempotency"
+          ]
         }
       ]
     },
@@ -732,7 +816,7 @@
     {
       "division": "interview",
       "description": "Specialized interview coaching, system design, mock interviewing, behavioral strategies, and group discussions.",
-      "count": 5,
+      "count": 6,
       "category": "Interview Prep",
       "emoji": "\ud83d\udde3\ufe0f",
       "name": "Interview",
@@ -806,6 +890,20 @@
             "architect-level",
             "scalability-obsessed",
             "trade-off-centered"
+          ]
+        },
+        {
+          "id": "voice-mock-interviewer",
+          "file": "interview/voice-mock-interviewer.md",
+          "name": "Voice Mock Interviewer",
+          "status": "live",
+          "description": "A real-time voice-first mock interviewer supporting STT/TTS speech turn-taking, voice modulation diagnostics, semantic replies, and structured FAANG/MANGO 5-phase interview execution.",
+          "tags": [
+            "interview",
+            "voice-first",
+            "voice-modulation",
+            "mock-interview",
+            "semantic-reply"
           ]
         }
       ]
@@ -961,7 +1059,7 @@
     {
       "division": "resume",
       "description": "Technical resume writing, achievement optimization, ATS formatting, design portfolios, and executive resumes.",
-      "count": 10,
+      "count": 12,
       "category": "Resume Engineering",
       "emoji": "\ud83d\udcc4",
       "name": "Resume",
@@ -1107,6 +1205,34 @@
             "analytical",
             "keyword-aligned"
           ]
+        },
+        {
+          "id": "resume-humanizer",
+          "file": "resume/resume-humanizer.md",
+          "name": "Resume Humanizer",
+          "status": "live",
+          "description": "A specialized career writing agent that de-robotifies AI-generated resumes into authentic, high-impact human professional narratives while preserving ATS keyword signaling.",
+          "tags": [
+            "resume",
+            "humanizer",
+            "de-robotify",
+            "authentic",
+            "anti-cliche"
+          ]
+        },
+        {
+          "id": "document-exporter",
+          "file": "resume/document-exporter.md",
+          "name": "Document Exporter",
+          "status": "live",
+          "description": "A specialized document layout and multi-format export engine that compiles resumes, cover letters, and portfolios into Word (.docx), PDF, HTML/CSS, and ATS plain-text templates.",
+          "tags": [
+            "resume",
+            "export",
+            "docx",
+            "pdf",
+            "ats-formatting"
+          ]
         }
       ]
     },
@@ -1180,7 +1306,7 @@
     {
       "division": "ai-engineering",
       "description": "Language models, prompt engineering, retrieval-augmented generation (RAG), cognitive agents, and machine learning operations (MLOps).",
-      "count": 10,
+      "count": 13,
       "category": "AI Engineering",
       "emoji": "\ud83e\udd16",
       "name": "AI Engineering",
@@ -1314,6 +1440,48 @@
             "research-oriented",
             "cognitive-first",
             "ai-engineering"
+          ]
+        },
+        {
+          "id": "ai-infrastructure-architect",
+          "file": "ai-engineering/ai-infrastructure-architect.md",
+          "name": "AI Infrastructure Architect",
+          "status": "live",
+          "description": "An AI systems infrastructure specialist who architects distributed GPU training clusters, high-throughput vLLM/Triton serving pipelines, Ray cluster orchestration, and MLOps scaling.",
+          "tags": [
+            "ai-infrastructure",
+            "gpu-clusters",
+            "vllm",
+            "triton",
+            "mlops"
+          ]
+        },
+        {
+          "id": "ai-agent-workflow-builder",
+          "file": "ai-engineering/ai-agent-workflow-builder.md",
+          "name": "AI Agent Workflow Builder",
+          "status": "live",
+          "description": "An autonomous agent systems architect specializing in multi-agent orchestration, LangGraph, CrewAI, AutoGen, Model Context Protocol (MCP) tool integration, state machine control, and structured tool-call execution.",
+          "tags": [
+            "ai-agents",
+            "langgraph",
+            "crewai",
+            "mcp-tools",
+            "orchestration"
+          ]
+        },
+        {
+          "id": "multimodal-ai-engineer",
+          "file": "ai-engineering/multimodal-ai-engineer.md",
+          "name": "Multimodal AI Engineer",
+          "status": "live",
+          "description": "A vision, speech, and cross-modal AI systems specialist who architects Vision-Language Models (VLMs), audio-speech processing pipelines (STT/TTS, Realtime Voice APIs), text-to-image/video generative pipelines, and multimodal vector embeddings.",
+          "tags": [
+            "multimodal-ai",
+            "vision-language",
+            "speech-audio",
+            "webrtc",
+            "vector-embeddings"
           ]
         }
       ]
@@ -2064,9 +2232,9 @@
     },
     {
       "division": "faang",
-      "description": "Specialized coaches for top-tier tech companies (FAANG+), AI labs, and high-growth platform engineering teams.",
-      "count": 2,
-      "category": "Interviews",
+      "description": "Specialized technical and career coaches for FAANG and top-tier tech companies, focusing on rigorous coding loops, system design, and culture fit.",
+      "count": 10,
+      "category": "Corporate & Tech Leaders",
       "emoji": "🧠",
       "name": "FAANG & Top Tech",
       "path": "faang/",
@@ -2098,13 +2266,125 @@
             "system-design",
             "googleyness"
           ]
+        },
+        {
+          "id": "meta-swe-coach",
+          "file": "faang/meta-swe-coach.md",
+          "name": "Meta SWE Coach",
+          "status": "live",
+          "description": "A high-speed execution, performance-focused system design, and impact-driven engineering coach for Meta's software engineering loops.",
+          "tags": [
+            "meta",
+            "faang",
+            "algorithms",
+            "system-design",
+            "move-fast"
+          ]
+        },
+        {
+          "id": "apple-swe-coach",
+          "file": "faang/apple-swe-coach.md",
+          "name": "Apple SWE Coach",
+          "status": "live",
+          "description": "A specialized low-level systems, Swift/C++ architecture, and hardware-software integration coach for Apple Software Engineering loops.",
+          "tags": [
+            "apple",
+            "faang",
+            "systems-programming",
+            "swift",
+            "hardware-software"
+          ]
+        },
+        {
+          "id": "amazon-swe-coach",
+          "file": "faang/amazon-swe-coach.md",
+          "name": "Amazon SWE Coach",
+          "status": "live",
+          "description": "A Leadership Principles, Bar Raiser standards, and high-scale distributed systems coach for Amazon SDE loops (SDE I, SDE II, Senior SDE).",
+          "tags": [
+            "amazon",
+            "faang",
+            "leadership-principles",
+            "bar-raiser",
+            "distributed-systems"
+          ]
+        },
+        {
+          "id": "netflix-swe-coach",
+          "file": "faang/netflix-swe-coach.md",
+          "name": "Netflix SWE Coach",
+          "status": "live",
+          "description": "A high-concurrency distributed systems, microservices resilience, and Freedom & Responsibility culture coach for Netflix Senior SWE loops.",
+          "tags": [
+            "netflix",
+            "faang",
+            "chaos-engineering",
+            "microservices",
+            "freedom-and-responsibility"
+          ]
+        },
+        {
+          "id": "microsoft-swe-coach",
+          "file": "faang/microsoft-swe-coach.md",
+          "name": "Microsoft SWE Coach",
+          "status": "live",
+          "description": "A Growth Mindset, cloud architecture, and enterprise CS fundamentals coach for Microsoft Software Engineer loops (SDE I, SDE II, Senior SDE, Principal SDE).",
+          "tags": [
+            "microsoft",
+            "faang",
+            "growth-mindset",
+            "azure",
+            "cs-fundamentals"
+          ]
+        },
+        {
+          "id": "anthropic-ai-coach",
+          "file": "faang/anthropic-ai-coach.md",
+          "name": "Anthropic AI Coach",
+          "status": "live",
+          "description": "A Constitutional AI, model alignment infrastructure, and transformer scaling coach for Anthropic research and engineering loops.",
+          "tags": [
+            "anthropic",
+            "faang",
+            "constitutional-ai",
+            "alignment",
+            "transformers"
+          ]
+        },
+        {
+          "id": "nvidia-ai-coach",
+          "file": "faang/nvidia-ai-coach.md",
+          "name": "Nvidia AI Coach",
+          "status": "live",
+          "description": "A GPU systems, CUDA kernel optimization, TensorRT compiler, and deep learning hardware acceleration coach for Nvidia engineering loops.",
+          "tags": [
+            "nvidia",
+            "faang",
+            "cuda",
+            "tensorrt",
+            "gpu-acceleration"
+          ]
+        },
+        {
+          "id": "faang-voice-mock-interviewer",
+          "file": "faang/faang-voice-mock-interviewer.md",
+          "name": "FAANG Voice Mock Interviewer",
+          "status": "live",
+          "description": "A voice-first FAANG & MANGO interview simulator tailored for Google, Meta, Amazon, Apple, Netflix, and OpenAI loops with company-specific pacing, voice modulation, and Bar Raiser evaluations.",
+          "tags": [
+            "faang",
+            "voice-first",
+            "mock-interview",
+            "voice-modulation",
+            "bar-raiser"
+          ]
         }
       ]
     },
     {
       "division": "ai-business",
       "description": "Strategic builders, technical PMs, and business architects focusing on launching and scaling AI-first startups, SaaS MVPs, and proprietary data loops.",
-      "count": 2,
+      "count": 3,
       "category": "Entrepreneurship",
       "emoji": "🚀",
       "name": "AI Business",
@@ -2136,6 +2416,20 @@
             "enterprise",
             "security",
             "roi"
+          ]
+        },
+        {
+          "id": "ai-product-growth-builder",
+          "file": "ai-business/ai-product-growth-builder.md",
+          "name": "AI Product Growth Builder",
+          "status": "live",
+          "description": "An AI product strategy and growth architecture coach who specializes in scoping AI SaaS MVPs, designing retention loops for LLM products, managing token API cost structures, and building defensible AI monetization models.",
+          "tags": [
+            "ai-business",
+            "ai-product",
+            "saas-mvp",
+            "unit-economics",
+            "semantic-caching"
           ]
         }
       ]
