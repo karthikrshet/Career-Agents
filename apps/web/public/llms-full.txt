@@ -2,7 +2,7 @@
 This document bundles the complete details, prompt rules, workflows, company tracks, and career path schemas in the Career Operating System.
 
 ============================================================
-SECTION 1: SPECIALIZED CAREER AGENTS (146 AGENTS)
+SECTION 1: SPECIALIZED CAREER AGENTS (167 AGENTS)
 ============================================================
 
 ============================================================

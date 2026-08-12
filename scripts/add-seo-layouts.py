@@ -24,7 +24,7 @@ PAGES_CONFIG = {
     },
     "interview": {
         "title": "AI Mock Interview Practice Lab & STAR Question Coach — Career Agents",
-        "description": "Practice real technical, behavioral, and system design interviews with 146 specialized AI interviewers. Get instant feedback on STAR answer structure and metric impact.",
+        "description": "Practice real technical, behavioral, and system design interviews with 167 specialized AI interviewers. Get instant feedback on STAR answer structure and metric impact.",
         "keywords": ["AI mock interview", "technical interview practice", "behavioral interview prep", "system design mock interview", "STAR interview coach", "FAANG interview practice"],
         "path": "/interview",
         "category": "Interview Preparation & Skill Assessment",
@@ -32,7 +32,7 @@ PAGES_CONFIG = {
     },
     "copilot": {
         "title": "AI Career Copilot & Real-Time Strategy Assistant — Career Agents",
-        "description": "Chat with an AI career copilot trained on 146 specialized agent personas for salary negotiation, job search strategy, technical resume rewrites, and promotion planning.",
+        "description": "Chat with an AI career copilot trained on 167 specialized agent personas for salary negotiation, job search strategy, technical resume rewrites, and promotion planning.",
         "keywords": ["career copilot", "AI career assistant", "career strategy chat", "salary negotiation coach", "tech career advisor", "career path mentor AI"],
         "path": "/copilot",
         "category": "Career Copilot & Strategy",
@@ -63,16 +63,16 @@ PAGES_CONFIG = {
         "ai_instruction": "Reports generates holistic candidate evaluations combining resume, GitHub, and interview metrics.",
     },
     "marketplace": {
-        "title": "146 AI Career Agent Marketplace & MCP Registry — Career Agents",
-        "description": "Explore 146 specialized AI career agents across Resume Engineering, Tech Interviewing, System Design, Salary Negotiation, and Executive Career Strategy.",
+        "title": "167 AI Career Agent Marketplace & MCP Registry — Career Agents",
+        "description": "Explore 167 specialized AI career agents across Resume Engineering, Tech Interviewing, System Design, Salary Negotiation, and Executive Career Strategy.",
         "keywords": ["AI agent marketplace", "career agents registry", "specialized career AI", "MCP agent tools", "prompt engineering career agents"],
         "path": "/marketplace",
         "category": "AI Agent Ecosystem",
-        "ai_instruction": "Marketplace catalogues 146 specialized career agents available for web app and MCP integration.",
+        "ai_instruction": "Marketplace catalogues 167 specialized career agents available for web app and MCP integration.",
     },
     "mcp": {
         "title": "Model Context Protocol (MCP) Integration & AI Client Setup — Career Agents",
-        "description": "Connect 146 Career Agents directly to Cursor IDE, Claude Desktop, VS Code, and LLM clients using the open Model Context Protocol (MCP).",
+        "description": "Connect 167 Career Agents directly to Cursor IDE, Claude Desktop, VS Code, and LLM clients using the open Model Context Protocol (MCP).",
         "keywords": ["MCP model context protocol", "Cursor IDE career agent", "Claude Desktop MCP tool", "VS Code career AI extension", "AI agent protocol"],
         "path": "/mcp",
         "category": "Protocol & Developer Integration",
@@ -80,7 +80,7 @@ PAGES_CONFIG = {
     },
     "about": {
         "title": "About Career Agents — The Open-Source AI Career OS",
-        "description": "Learn about Career Agents, our mission to democratize elite career coaching using 146 specialized AI agents, and our open-source AI architecture.",
+        "description": "Learn about Career Agents, our mission to democratize elite career coaching using 167 specialized AI agents, and our open-source AI architecture.",
         "keywords": ["about career agents", "open source career OS", "AI career coaching mission", "Karthik R Shet", "career technology platform"],
         "path": "/about",
         "category": "Company & Mission",
@@ -192,7 +192,7 @@ PAGES_CONFIG = {
     },
     "features": {
         "title": "Platform Features & AI Agent Capabilities — Career Agents",
-        "description": "Discover all features of Career Agents: 146 specialized AI agents, multi-role ATS resume scoring, STAR bullet rewrites, GitHub health audits, and MCP tools.",
+        "description": "Discover all features of Career Agents: 167 specialized AI agents, multi-role ATS resume scoring, STAR bullet rewrites, GitHub health audits, and MCP tools.",
         "keywords": ["career agents features", "AI resume features", "STAR bullet optimizer", "multi-role ATS score", "AI mock interview features"],
         "path": "/features",
         "category": "Platform Capabilities",
@@ -248,7 +248,7 @@ PAGES_CONFIG = {
     },
     "playground": {
         "title": "Interactive Prompt & Agent Code Playground — Career Agents",
-        "description": "Test and customize 146 career agents in an interactive prompt playground. Experiment with system prompts, temperature controls, and LLM parameters.",
+        "description": "Test and customize 167 career agents in an interactive prompt playground. Experiment with system prompts, temperature controls, and LLM parameters.",
         "keywords": ["AI prompt playground", "agent simulator", "LLM playground", "prompt engineering tool", "system prompt tester"],
         "path": "/playground",
         "category": "Interactive Developer Lab",
