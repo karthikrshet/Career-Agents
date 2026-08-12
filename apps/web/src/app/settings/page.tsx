@@ -732,6 +732,54 @@ export default function SettingsPage() {
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* Token Optimization Engine Card */}
+                <Card className="glass border-emerald-500/30 bg-emerald-950/10">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle className="text-base flex items-center gap-2 text-emerald-400">
+                          <Zap className="w-4 h-4 text-emerald-400" />
+                          Token Optimization Engine (80% Token Saver)
+                        </CardTitle>
+                        <CardDescription className="text-emerald-300/70">
+                          Minifies system prompts, prunes repetitive history, and compresses multi-turn context
+                        </CardDescription>
+                      </div>
+                      <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 font-mono text-[10px]">
+                        80% Reduction Active
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="flex items-center justify-between p-3 rounded-lg bg-emerald-950/20 border border-emerald-500/20">
+                      <div>
+                        <p className="text-xs font-semibold text-slate-200">Enable Token Optimizer</p>
+                        <p className="text-[10px] text-slate-400">Automated prompt minification & sliding context compression</p>
+                      </div>
+                      <input 
+                        type="checkbox" 
+                        checked={useGatewayStore((s) => s.optimizeTokens)} 
+                        onChange={(e) => useGatewayStore.getState().setOptimizeTokens(e.target.checked)} 
+                        className="accent-emerald-500 w-4 h-4 cursor-pointer" 
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-xs text-muted-foreground mb-1 block font-medium">Compression Aggressiveness</label>
+                      <select
+                        className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground focus:outline-none"
+                        value={useGatewayStore((s) => s.compressionLevel)}
+                        onChange={(e) => useGatewayStore.getState().setCompressionLevel(e.target.value as any)}
+                      >
+                        <option value="aggressive">Aggressive (Up to 80% Token Savings — Recommended)</option>
+                        <option value="medium">Balanced (Up to 50% Token Savings)</option>
+                        <option value="low">Light (Up to 25% Token Savings)</option>
+                        <option value="none">None (Disabled)</option>
+                      </select>
+                    </div>
+                  </CardContent>
+                </Card>
               </motion.div>
             )}
 

@@ -4,6 +4,7 @@ import { PROVIDER_REGISTRY } from "./provider-registry";
 import { classifyGatewayError } from "../utils/error-handler";
 import { recordRouterLog } from "./analytics";
 import { secureFetch, safeLogger } from "../../security";
+import { optimizeMessages, CompressionLevel } from "./token-optimizer";
 import crypto from "crypto";
 
 const ENV_KEY_MAP: Record<string, string> = {
@@ -33,6 +34,8 @@ export interface RouterConfig {
   retryCount?: number;
   retryDelayMs?: number;
   demoMode?: boolean;
+  optimizeTokens?: boolean;
+  compressionLevel?: CompressionLevel;
 }
 
 const DEFAULT_FALLBACK_ORDER: AIProviderId[] = [
@@ -89,6 +92,14 @@ export async function routeCompletion(
 ): Promise<string> {
   const startTime = Date.now();
   const query = messages[messages.length - 1]?.content || "";
+
+  // 0. Run Token Optimization Engine (Up to 80% Token Savings)
+  const optimizationLevel = config.optimizeTokens === false ? "none" : (config.compressionLevel || "aggressive");
+  const { optimizedMessages, originalTokens, optimizedTokens, tokensSaved, savingsPercentage } = optimizeMessages(
+    messages,
+    optimizationLevel
+  );
+  const activeMessages = optimizedMessages;
 
   // 1. Resolve Primary Provider based on selected Mode
   let primaryProvider = MODE_PRIMARY_PROVIDERS[config.mode] || "openai";
@@ -232,7 +243,7 @@ export async function routeCompletion(
               method: "POST",
               headers,
               body: JSON.stringify({
-                contents: [{ parts: [{ text: messages.map((m) => `${m.role}: ${m.content}`).join("\n") }] }],
+                contents: [{ parts: [{ text: activeMessages.map((m) => `${m.role}: ${m.content}`).join("\n") }] }],
                 generationConfig: {
                   temperature: config.temperature ?? 0.7,
                   maxOutputTokens: config.maxTokens || 4096,
@@ -275,14 +286,14 @@ export async function routeCompletion(
             const body = providerId === "claude" || providerId === "anthropic"
               ? {
                 model,
-                messages: messages.map((m) => ({ role: m.role === "system" ? "user" : m.role, content: m.content })),
+                messages: activeMessages.map((m) => ({ role: m.role === "system" ? "user" : m.role, content: m.content })),
                 max_tokens: config.maxTokens || 4096,
                 temperature: config.temperature ?? 0.7,
                 stream: isStreaming,
               }
               : {
                 model,
-                messages,
+                messages: activeMessages,
                 temperature: config.temperature ?? 0.7,
                 max_tokens: config.maxTokens || 4096,
                 stream: isStreaming,
@@ -389,11 +400,11 @@ export async function routeCompletion(
   }
 
   const durationMs = Date.now() - startTime;
-  const inputTokens = Math.round(query.length / 4);
+  const inputTokens = optimizedTokens;
   const outputTokens = Math.round(finalContent.length / 4);
   const costUSD = (inputTokens * 0.0000015 + outputTokens * 0.000002);
 
-  // Record logs
+  // Record logs with 80% Token Optimization metrics
   const log: RouterLog = {
     id: `log-${Date.now()}-${crypto.randomBytes(2).toString("hex")}`,
     timestamp: new Date().toISOString(),
@@ -404,6 +415,9 @@ export async function routeCompletion(
     finalModel,
     inputTokens,
     outputTokens,
+    originalInputTokens: originalTokens,
+    tokensSaved,
+    savingsPercentage,
     costUSD,
     durationMs,
     status: completed ? "completed" : "failed",
