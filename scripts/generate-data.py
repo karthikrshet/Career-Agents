@@ -634,10 +634,20 @@ def build_merged_readme(agents, divisions_data, workflows, bundles, companies, p
 
 ---
 
-## ⚡ Quickstart, Installation & IDE Setup
+## ⚡ Quickstart, NPM Installation & IDE Setup
 
-### 1. 🚀 How to Run Web App Locally (Under 5 Minutes)
+### 1. 📦 NPM & NPX Execution Guide
+```bash
+# Global NPM Installation
+npm install -g career-agents
 
+# Zero-Install NPX Execution
+npx career-agents list
+npx career-agents score my_resume.pdf
+npx career-agents mcp
+```
+
+### 2. 🚀 How to Run Web App Locally (Under 5 Minutes)
 ```bash
 # 1. Clone the repository
 git clone https://github.com/karthikrshet/Career-Agents.git
@@ -649,20 +659,13 @@ npm install
 
 # 3. Setup environment configuration
 cp .env.example .env
-# Edit .env and enter a random NEXTAUTH_SECRET (e.g. openssl rand -base64 32)
 
 # 4. Start local development server
 npm run dev
 ```
-Open **[http://localhost:3000](http://localhost:3000)** or **[https://career-agents.vercel.app](https://career-agents.vercel.app)** in your browser.
+Open **[http://localhost:3000](http://localhost:3000)** or **[https://career-agents.vercel.app](https://career-agents.vercel.app)**.
 
-- **Guest Mode (Default):** Zero credentials required! Runs locally saving dossier metrics to browser `localStorage`.
-- **Database Mode (Optional):** Set `DATABASE_URL` in `.env` to PostgreSQL and run `npx prisma db push`.
-
----
-
-### 2. 🔌 How to Connect MCP Protocol Server to your IDE
-
+### 3. 🔌 How to Connect MCP Protocol Server to your IDE
 Expose Career Agents tools directly to **Cursor AI**, **Claude Desktop**, **VS Code**, **Windsurf**, or **Aider**:
 
 **Command to register in IDE:**
@@ -688,56 +691,18 @@ Go to **Settings** -> **Features** -> **MCP** -> **Add new MCP Server**:
 - **Type:** `stdio`
 - **Command:** `node /absolute/path/to/Career-Agents/mcp/server.js`
 
-#### 📍 VS Code (Continue Extension Setup):
-Add to `.continue/config.json`:
-```json
-{{
-  "experimental": {{
-    "modelContextProtocol": [
-      {{
-        "name": "career-agents",
-        "command": "node",
-        "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
-      }}
-    ]
-  }}
-}}
-```
-
----
-
-### 3. 🧩 How to Run & Enable Local Extensions & Plugins
-
-- **Marketplace Extensions (`/marketplace`):** Navigate to the **{num_agents} Agent Marketplace** in the web dashboard to toggle extensions like *STAR Behavioral Coach*, *LeetCode Complexity Tracker*, and *Salary Intelligence*.
-- **Custom Plugin Manifests (`packages/plugins`):** Drop a JSON manifest into the plugin directory to extend Copilot system prompts:
-  ```json
-  {{
-    "id": "my-custom-plugin",
-    "name": "Custom Design Doc Plugin",
-    "permissions": ["read_profile", "write_copilot_context"],
-    "promptInjection": "Format all architectural outputs into clean RFC technical design documents."
-  }}
-  ```
-
----
-
-### 4. 🖥️ How to Run Terminal CLI Utilities
-
+### 4. 🖥️ Terminal CLI Utilities
 Run terminal commands anywhere using `scripts/cli.js`:
 
-```bash
-# List all {num_agents} agents and 19 divisions
-node scripts/cli.js list
-
-# Score PDF/Word resume against ATS standards
-node scripts/cli.js score resume.pdf
-
-# Run GitHub profile wrapped audit
-node scripts/cli.js github torvalds
-
-# Start interactive terminal STAR mock interview
-node scripts/cli.js mock google behavioral
-```
+| Command | Arguments | Purpose | Example |
+|---------|-----------|---------|---------|
+| `list` | None | Lists all registered divisions and agents | `node scripts/cli.js list` |
+| `doctor` | None | Performs health checks | `node scripts/cli.js doctor` |
+| `score` | `<filepath>` | Scans PDF/Word resumes and outputs ATS score | `node scripts/cli.js score resume.pdf` |
+| `review` | `<filepath>` | Performs weak bullet checking and verb audits | `node scripts/cli.js review resume.pdf` |
+| `github` | `<username>` | Runs portfolio wrapped check for target profile | `node scripts/cli.js github torvalds` |
+| `mock` | `<company> <mode>`| Starts a terminal mock interview drill | `node scripts/cli.js mock google behavioral` |
+| `roadmap`| `<target>` | Generates study roadmaps in markdown formats | `node scripts/cli.js roadmap "staff engineer"` |
 
 ---
 
@@ -866,27 +831,27 @@ node scripts/cli.js mock google behavioral
 
 <br />
 
-### 20. ⚙️ Settings & Multi-Provider AI Gateway
+### 21. ⚙️ Settings & Multi-Provider AI Gateway
 *Configure 18 AI providers, set default models, adjust temperature parameters, manage local API keys, and test response latency.*
 ![Settings AI Gateway](./apps/web/public/images/settings_ai_gateway.png)
 
 <br />
 
-### 21. 📑 Reports & Comprehensive Dossier Diagnostics
+### 22. 📑 Reports & Comprehensive Dossier Diagnostics
 *Export complete career analysis dossiers into professional PDF documents, Word `.docx` files, Excel `.xlsx` spreadsheets, or Markdown.*
 ![Reports Diagnostics](./apps/web/public/images/reports_diagnostics.png)
 ![Dossier Export Reports](./apps/web/public/images/dossier_export_reports.png)
 
 <br />
 
-### 22. 📈 Dashboard Analytics & System Telemetry Logs
+### 23. 📈 Dashboard Analytics & System Telemetry Logs
 *Track progress metrics over time, inspect live agent execution telemetry logs, and verify local SQLite database state.*
 ![Dashboard Analytics](./apps/web/public/images/dashboard_analytics.png)
 ![System Telemetry Logs](./apps/web/public/images/system_telemetry_logs.png)
 
 <br />
 
-### 23. 💳 Credits & Open Source Tech Stack Ecosystem
+### 24. 💳 Credits & Open Source Tech Stack Ecosystem
 *Review open-source libraries, platform contributors, and core maintainers.*
 ![Credits & Ecosystem](./apps/web/public/images/credits_ecosystem.png)
 
@@ -1233,30 +1198,37 @@ A: Keys are saved locally in your browser's `localStorage` and are never stored 
 
 ---
 
-## 👨‍💻 Author & Lead Contributor
+## 👨‍💻 Creator & Principal Lead Architect
 
 <div align="center">
 
 <br />
 
-<a href="https://github.com/karthikrshet">
-  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/karthik_shet.jpg" width="180" height="auto" style="border-radius: 50%; border: 4px solid #0284c7; box-shadow: 0 8px 24px rgba(0,0,0,0.3);" alt="Karthik R Shet - Creator & Lead Architect" />
-</a>
+<table align="center" style="border: none; border-collapse: collapse; background: transparent;">
+  <tr>
+    <td align="center" style="border: none; padding: 24px;">
+      <a href="https://github.com/karthikrshet">
+        <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/karthik_shet.jpg" width="210" height="auto" style="border-radius: 24px; border: 4px solid #0284c7; box-shadow: 0 16px 36px rgba(2, 132, 199, 0.35);" alt="Karthik Rajesh Shet" />
+      </a>
+      <br /><br />
+      <h2 style="margin: 8px 0; font-size: 1.8em; color: #0f172a;"><b>Karthik Rajesh Shet</b></h2>
+      <p style="font-size: 1.15em; font-weight: 600; color: #0284c7; margin-top: 4px;">Creator &amp; Principal Platform Architect</p>
+      <p style="margin-top: 12px;">
+        <a href="https://github.com/karthikrshet"><img src="https://img.shields.io/badge/GitHub-@karthikrshet-181717?style=for-the-badge&logo=github&logoColor=white" height="28" alt="GitHub Profile" /></a>
+        <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Platform-Career--Agents-000000?style=for-the-badge&logo=vercel&logoColor=white" height="28" alt="Vercel Live App" /></a>
+        <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Package-v17.0.0-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="28" alt="NPM Package" /></a>
+      </p>
+    </td>
+  </tr>
+</table>
 
-<br /><br />
+<br />
 
-### 🌟 **Karthik R Shet**
-**Creator & Principal Platform Architect**
-
-<p>
-  <a href="https://github.com/karthikrshet"><img src="https://img.shields.io/badge/GitHub-@karthikrshet-181717?style=for-the-badge&logo=github&logoColor=white" height="28" alt="GitHub Profile" /></a>
-  <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Platform-Career--Agents-000000?style=for-the-badge&logo=vercel&logoColor=white" height="28" alt="Vercel Live" /></a>
-  <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM-v17.0.0-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="28" alt="NPM Release" /></a>
-</p>
-
-<p align="center" style="max-width: 720px; font-size: 1.05em; line-height: 1.65; color: #374151;">
-  <i>"Designed, engineered, and architected by <b>Karthik R Shet</b> — a visionary full-stack software engineer and AI systems architect. Built with a relentless commitment to open-source excellence, <b>Career-Agents</b> unifies 167 domain-specialized AI agents, real-time voice interview engines, local ATS resume calibrators, and Model Context Protocol (MCP) integrations into an enterprise-grade career operating system for software engineers worldwide."</i>
-</p>
+<blockquote style="max-width: 780px; text-align: center; margin: 0 auto; padding: 20px 28px; border-left: 5px solid #0284c7; background: #f8fafc; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+  <p style="font-size: 1.1em; line-height: 1.7; color: #1e293b; font-style: italic; margin: 0;">
+    "Designed, engineered, and architected by <b>Karthik Rajesh Shet</b> — a visionary full-stack software engineer and AI systems architect. Built with a relentless commitment to open-source innovation, <b>Career-Agents</b> unifies 167 domain-specialized AI agents, real-time voice interview engines, local ATS resume calibrators, and Model Context Protocol (MCP) integrations into an enterprise-grade career operating system for software engineers worldwide."
+  </p>
+</blockquote>
 
 <br />
 
@@ -1270,7 +1242,7 @@ A: Keys are saved locally in your browser's `localStorage` and are never stored 
 
 <p><b>[ <a href="https://career-agents.vercel.app">Live Vercel App</a> · <a href="https://github.com/karthikrshet/Career-Agents">GitHub Repository</a> · <a href="https://www.npmjs.com/package/career-agents">NPM Package</a> ]</b></p>
 
-<sub>Career Agents Operating System · Designed & Built by Karthik R Shet · &copy; 2026</sub>
+<sub>Career Agents Operating System · Designed &amp; Built by Karthik Rajesh Shet · &copy; 2026</sub>
 
 </div>"""
 
