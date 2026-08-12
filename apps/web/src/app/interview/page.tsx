@@ -246,7 +246,7 @@ export default function InterviewPage() {
                   <div className="text-left col-span-3">
                     <p className="text-[10px] font-mono font-semibold text-cyan-400 uppercase tracking-wide">New Feature</p>
                     <p className="text-xs font-bold text-white">Interactive AI Voice Agent Lab</p>
-                    <p className="text-[11px] text-slate-400 leading-normal">Practice mock interviews verbally with 146 specialized agents in 27 languages.</p>
+                    <p className="text-[11px] text-slate-400 leading-normal">Practice mock interviews verbally with 167 specialized agents in 27 languages.</p>
                   </div>
                 </div>
                 <Link href="/interview/voice">

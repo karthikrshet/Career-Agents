@@ -9,7 +9,7 @@ const organizationSchema = {
   name: 'Career Agents',
   url: baseUrl,
   logo: `${baseUrl}/icons/icon-192.png`,
-  description: 'AI-powered career intelligence platform with 146 specialized agents',
+  description: 'AI-powered career intelligence platform with 167 specialized agents',
   foundingDate: '2024',
   sameAs: [
     'https://github.com/karthikrshet/Career-Agents',
@@ -28,14 +28,14 @@ const softwareSchema = {
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
   url: baseUrl,
-  description: 'Career Agents is an AI-powered career intelligence platform with 146 specialized agents for resume analysis, GitHub portfolio auditing, LinkedIn optimization, interview preparation, and job tracking.',
+  description: 'Career Agents is an AI-powered career intelligence platform with 167 specialized agents for resume analysis, GitHub portfolio auditing, LinkedIn optimization, interview preparation, and job tracking.',
   featureList: [
     'AI Resume ATS Analysis',
     'GitHub Portfolio Auditing',
     'LinkedIn Profile Optimization',
     'AI Mock Interview Practice',
     'Job Application Tracker',
-    '146 Specialized Career AI Agents',
+    '167 Specialized Career AI Agents',
     'Model Context Protocol (MCP) Integration',
     'Plugin Marketplace',
     'Career Copilot Chat',
@@ -101,7 +101,7 @@ const websiteSchema = {
   '@type': 'WebSite',
   name: 'Career Agents',
   url: baseUrl,
-  description: 'AI-powered career intelligence platform with 146 specialized agents',
+  description: 'AI-powered career intelligence platform with 167 specialized agents',
   potentialAction: {
     '@type': 'SearchAction',
     target: {
@@ -184,7 +184,7 @@ const faqSchema = {
       name: 'What is Career Agents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Career Agents is an AI-powered career intelligence platform featuring 146 specialized career agents that help job seekers optimize their resume, GitHub portfolio, LinkedIn profile, and interview performance.',
+        text: 'Career Agents is an AI-powered career intelligence platform featuring 167 specialized career agents that help job seekers optimize their resume, GitHub portfolio, LinkedIn profile, and interview performance.',
       },
     },
     {
@@ -216,7 +216,7 @@ const faqSchema = {
       name: 'What is MCP in Career Agents?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'MCP stands for Model Context Protocol. Career Agents exposes all 146 career agents as MCP tools, letting Cursor, Claude Desktop, VS Code, and other compatible AI clients connect directly to the agent registry.',
+        text: 'MCP stands for Model Context Protocol. Career Agents exposes all 167 career agents as MCP tools, letting Cursor, Claude Desktop, VS Code, and other compatible AI clients connect directly to the agent registry.',
       },
     },
     {

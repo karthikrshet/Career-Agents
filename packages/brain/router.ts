@@ -110,6 +110,6 @@ export function findMatchingAgents(query: string, limit: number = 3): AgentInfo[
     return results.slice(0, limit);
   }
 
-  // Fallback: return core career & technical specialist agents from the 146 Agent Marketplace
+  // Fallback: return core career & technical specialist agents from the 167 Agent Marketplace
   return agents.slice(0, limit);
 }

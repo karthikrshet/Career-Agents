@@ -5,13 +5,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const BLOG_POSTS = {
-  "orchestrating-146-specialized-agents": {
-    title: "Orchestrating 146 Specialized Agents Concurrently",
+  "orchestrating-167-specialized-agents": {
+    title: "Orchestrating 167 Specialized Agents Concurrently",
     author: "Lead Architect",
     date: "July 28, 2026",
     readTime: "6 min read",
     content: `
-At Career Agents, our primary challenge is helping developers navigate their careers with maximum coverage of various domains—ranging from FAANG companies to cybersecurity start-ups. In total, the system maintains **146 specialized AI agents**, each calibrated for highly target-specific prompt tasks.
+At Career Agents, our primary challenge is helping developers navigate their careers with maximum coverage of various domains—ranging from FAANG companies to cybersecurity start-ups. In total, the system maintains **167 specialized AI agents**, each calibrated for highly target-specific prompt tasks.
 
 ### The Problem: Single-Agent Coherence Bottlenecks
 Traditional chat agents suffer from prompt pollution when tasked with diverse operations simultaneously. An agent designed to check resume compliance under the ATS standards should not worry about how to structure a response for a Google behavioral mock interview.

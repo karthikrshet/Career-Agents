@@ -111,7 +111,7 @@ args = ["-y", "@karthikrshet/career-agents-mcp"]`,
 };
 
 const MCP_TOOLS = [
-  { name: "list_agents", description: "List all 146 career agents by division", params: "{ division?: string }" },
+  { name: "list_agents", description: "List all 167 career agents by division", params: "{ division?: string }" },
   { name: "run_agent", description: "Execute a specific agent with custom context", params: "{ agentId: string, context: string }" },
   { name: "search_agents", description: "Search agents by name, skill, or use case", params: "{ query: string }" },
   { name: "get_resume_tips", description: "Retrieve specific resume audit recommendations", params: "{ section?: string }" },
@@ -210,7 +210,7 @@ export default function MCPPage() {
       "Downloading career-agents-mcp bundle package...",
       "Configuring Cursor context mappings...",
       "Exposing search_agents schema tool payload...",
-      "Sync success: Active (146 agents, 19 divisions, 5 core schemas loaded)"
+      "Sync success: Active (167 agents, 19 divisions, 5 core schemas loaded)"
     ];
 
     for (let i = 0; i < steps.length; i++) {
@@ -236,14 +236,14 @@ export default function MCPPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold">Career Agents MCP Server Gateway</h3>
-                  <p className="text-xs text-muted-foreground">Expose all 146 career agents as MCP tools to any compatible AI client</p>
+                  <p className="text-xs text-muted-foreground">Expose all 167 career agents as MCP tools to any compatible AI client</p>
                 </div>
               </div>
               <Badge variant="success">Active Status</Badge>
             </div>
             <div className="flex flex-wrap gap-3">
               <div className="text-center px-4 py-2 glass rounded-lg">
-                <div className="text-xl font-bold text-primary">146</div>
+                <div className="text-xl font-bold text-primary">167</div>
                 <div className="text-[10px] text-muted-foreground">Agents</div>
               </div>
               <div className="text-center px-4 py-2 glass rounded-lg">
