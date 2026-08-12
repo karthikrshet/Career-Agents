@@ -7,11 +7,15 @@ export interface GatewayState {
   temperature: number;
   maxTokens: number;
   demoMode: boolean;
+  optimizeTokens: boolean;
+  compressionLevel: "none" | "low" | "medium" | "aggressive";
   setProvider: (provider: string) => void;
   setModel: (model: string) => void;
   setTemperature: (temp: number) => void;
   setMaxTokens: (tokens: number) => void;
   setDemoMode: (demo: boolean) => void;
+  setOptimizeTokens: (optimize: boolean) => void;
+  setCompressionLevel: (level: "none" | "low" | "medium" | "aggressive") => void;
 }
 
 export const useGatewayStore = create<GatewayState>()(
@@ -22,6 +26,8 @@ export const useGatewayStore = create<GatewayState>()(
       temperature: 0.7,
       maxTokens: 4096,
       demoMode: typeof window !== "undefined" ? localStorage.getItem("demo_mode_enabled") === "true" : false,
+      optimizeTokens: true,
+      compressionLevel: "aggressive",
       setProvider: (activeProvider) => set({ activeProvider }),
       setModel: (activeModel) => set({ activeModel }),
       setTemperature: (temperature) => set({ temperature }),
@@ -32,6 +38,8 @@ export const useGatewayStore = create<GatewayState>()(
         }
         set({ demoMode });
       },
+      setOptimizeTokens: (optimizeTokens) => set({ optimizeTokens }),
+      setCompressionLevel: (compressionLevel) => set({ compressionLevel }),
     }),
     {
       name: "career-agents-gateway-store",

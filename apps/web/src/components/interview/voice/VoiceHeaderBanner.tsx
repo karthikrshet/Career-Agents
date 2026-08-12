@@ -17,13 +17,21 @@ export function VoiceHeaderBanner({ onStartClick }: VoiceHeaderBannerProps) {
 
       <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-2 max-w-3xl">
-          <Badge
-            variant="outline"
-            className="border-amber-500/40 text-amber-400 bg-amber-500/10 font-mono text-[11px] uppercase tracking-wider px-3 py-1 rounded-full w-fit flex items-center gap-1.5"
-          >
-            <Sparkles className="w-3 h-3 text-amber-400" />
-            SPEECH & CONVERSATIONAL AI LAB v1.0
-          </Badge>
+          <div className="flex items-center gap-2 flex-wrap">
+            <Badge
+              variant="outline"
+              className="border-amber-500/40 text-amber-400 bg-amber-500/10 font-mono text-[11px] uppercase tracking-wider px-3 py-1 rounded-full w-fit flex items-center gap-1.5"
+            >
+              <Sparkles className="w-3 h-3 text-amber-400" />
+              SPEECH & CONVERSATIONAL AI LAB v1.0
+            </Badge>
+            <Badge
+              variant="outline"
+              className="border-emerald-500/40 text-emerald-400 bg-emerald-500/10 font-mono text-[11px] uppercase tracking-wider px-3 py-1 rounded-full w-fit flex items-center gap-1"
+            >
+              ⚡ 80% TOKEN SAVER ACTIVE
+            </Badge>
+          </div>
 
           <h1 className="text-xl sm:text-2xl font-black text-slate-100 tracking-tight leading-tight">
             Unlock 1-on-1 Spoken AI Voice Interviews
