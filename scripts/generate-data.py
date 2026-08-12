@@ -1035,7 +1035,48 @@ Expose Career Agents tools directly to your AI code editors:
 
 ---
 
-## ⚙️ Setup & Installation
+## 📦 NPM Package Installation & Usage
+
+You can install and execute **Career Agents** directly via **NPM** or **NPX**:
+
+### 1. 🌐 Global NPM Installation
+```bash
+# Install globally via NPM
+npm install -g career-agents
+
+# Execute CLI utilities anywhere
+career-agents list
+career-agents score my_resume.pdf
+career-agents github torvalds
+```
+
+### 2. ⚡ Zero-Install NPX Execution
+```bash
+# Run CLI directly without global installation
+npx career-agents list
+
+# Start local MCP Stdio Server for IDEs
+npx career-agents mcp
+
+# Audit resume against ATS standards
+npx career-agents score resume.pdf
+```
+
+### 3. 📦 Programmatic SDK Integration (Node.js / TypeScript)
+```typescript
+import {{ CareerAgents }} from 'career-agents';
+
+// Initialize SDK instance
+const agents = new CareerAgents();
+
+// Query 167 agent directory
+const matches = agents.matchAgents("Senior Backend Engineer system design");
+console.log(matches);
+```
+
+---
+
+## ⚙️ Setup & Local Development
 
 ### Prerequisites
 - Node.js >= 18.0.0 (Node 20 LTS recommended)
@@ -1190,9 +1231,38 @@ A: Keys are saved locally in your browser's `localStorage` and are never stored 
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see [LICENSE](./LICENSE) for details.
+---
+
+## 👨‍💻 Author & Lead Contributor
+
+<div align="center">
 
 <br />
+
+<a href="https://github.com/karthikrshet">
+  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/karthik_shet.jpg" width="180" height="auto" style="border-radius: 50%; border: 4px solid #0284c7; box-shadow: 0 8px 24px rgba(0,0,0,0.3);" alt="Karthik R Shet - Creator & Lead Architect" />
+</a>
+
+<br /><br />
+
+### 🌟 **Karthik R Shet**
+**Creator & Principal Platform Architect**
+
+<p>
+  <a href="https://github.com/karthikrshet"><img src="https://img.shields.io/badge/GitHub-@karthikrshet-181717?style=for-the-badge&logo=github&logoColor=white" height="28" alt="GitHub Profile" /></a>
+  <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Platform-Career--Agents-000000?style=for-the-badge&logo=vercel&logoColor=white" height="28" alt="Vercel Live" /></a>
+  <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM-v17.0.0-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="28" alt="NPM Release" /></a>
+</p>
+
+<p align="center" style="max-width: 720px; font-size: 1.05em; line-height: 1.65; color: #374151;">
+  <i>"Designed, engineered, and architected by <b>Karthik R Shet</b> — a visionary full-stack software engineer and AI systems architect. Built with a relentless commitment to open-source excellence, <b>Career-Agents</b> unifies 167 domain-specialized AI agents, real-time voice interview engines, local ATS resume calibrators, and Model Context Protocol (MCP) integrations into an enterprise-grade career operating system for software engineers worldwide."</i>
+</p>
+
+<br />
+
+</div>
+
+---
 
 <div align="center">
 
@@ -1200,7 +1270,7 @@ This project is licensed under the **MIT License** — see [LICENSE](./LICENSE) 
 
 <p><b>[ <a href="https://career-agents.vercel.app">Live Vercel App</a> · <a href="https://github.com/karthikrshet/Career-Agents">GitHub Repository</a> · <a href="https://www.npmjs.com/package/career-agents">NPM Package</a> ]</b></p>
 
-<sub>Career Agents Operating System · Synced via GitHub API &amp; Agent Registries · &copy; 2026</sub>
+<sub>Career Agents Operating System · Designed & Built by Karthik R Shet · &copy; 2026</sub>
 
 </div>"""
 
