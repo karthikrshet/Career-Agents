@@ -2,26 +2,27 @@
   "id": "databricks",
   "name": "Databricks",
   "interview_process": [
-    "Recruiter screen and algorithmic online assessment",
-    "Technical phone interview: distributed coding problem",
-    "Onsite loop: 2 database/systems design rounds, 2 systems coding rounds, 1 behavioral values round"
+    "Recruiter screening phone call (30 min)",
+    "Technical phone screen: Systems Coding / Database Algorithm round (60 min)",
+    "Onsite loop: 4-5 rounds covering High-Concurrency Systems Coding, Storage Engine & Query Architecture, Distributed Infrastructure System Design, and Culture"
   ],
   "skills": [
-    "Distributed computing algorithms",
-    "Database internals (caching, query planning, indexing)",
-    "Concurrency and systems performance",
-    "Spark/Delta Lake execution logic"
+    "Distributed Query Engines & Vectorized Execution",
+    "Database Internals (LSM-trees, MVCC, Concurrency)",
+    "Apache Spark & Delta Lake Internals",
+    "Systems Programming & Memory Management"
   ],
   "preparation_workflow": "technical-interview-week",
   "agents": [
+    "databricks-interview-coach",
     "database-engineer",
     "backend-architect",
     "system-design-coach",
     "mock-interviewer"
   ],
   "resources": [
-    "Databricks Lakehouse architecture papers",
-    "Apache Spark internals guides",
-    "Databricks Engineering Blog"
+    "Databricks Engineering Blog & Lakehouse Whitepapers",
+    "Apache Spark Internals Documentation",
+    "Delta Lake Architecture Specifications"
   ]
 }

@@ -15,6 +15,7 @@
   "preparation_workflow": "faang-preparation",
   "agents": [
     "google-interview-coach",
+    "google-swe-coach",
     "technical-interview-coach",
     "system-design-coach",
     "mock-interviewer"
