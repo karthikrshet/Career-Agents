@@ -386,6 +386,151 @@
       "type": "company"
     },
     {
+      "id": "apple-interview-coach",
+      "name": "Apple Interview Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-systems-programming",
+      "name": "Systems Programming",
+      "type": "skill"
+    },
+    {
+      "id": "skill-swift",
+      "name": "Swift",
+      "type": "skill"
+    },
+    {
+      "id": "skill-hardware-software-integration",
+      "name": "Hardware-Software Integration",
+      "type": "skill"
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "type": "company"
+    },
+    {
+      "id": "anthropic-interview-coach",
+      "name": "Anthropic Interview Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-ai-safety",
+      "name": "AI Safety",
+      "type": "skill"
+    },
+    {
+      "id": "skill-constitutional-ai",
+      "name": "Constitutional AI",
+      "type": "skill"
+    },
+    {
+      "id": "skill-pytorch",
+      "name": "PyTorch",
+      "type": "skill"
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "type": "company"
+    },
+    {
+      "id": "databricks-interview-coach",
+      "name": "Databricks Interview Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-distributed-systems",
+      "name": "Distributed Systems",
+      "type": "skill"
+    },
+    {
+      "id": "skill-database-internals",
+      "name": "Database Internals",
+      "type": "skill"
+    },
+    {
+      "id": "skill-spark",
+      "name": "Spark",
+      "type": "skill"
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks",
+      "type": "company"
+    },
+    {
+      "id": "nvidia-interview-coach",
+      "name": "Nvidia Interview Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-cuda",
+      "name": "CUDA",
+      "type": "skill"
+    },
+    {
+      "id": "skill-c++",
+      "name": "C++",
+      "type": "skill"
+    },
+    {
+      "id": "skill-gpu-architecture",
+      "name": "GPU Architecture",
+      "type": "skill"
+    },
+    {
+      "id": "nvidia",
+      "name": "Nvidia",
+      "type": "company"
+    },
+    {
+      "id": "openai-interview-coach",
+      "name": "OpenAI Interview Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-distributed-training",
+      "name": "Distributed Training",
+      "type": "skill"
+    },
+    {
+      "id": "skill-triton",
+      "name": "Triton",
+      "type": "skill"
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "type": "company"
+    },
+    {
+      "id": "stripe-interview-coach",
+      "name": "Stripe Interview Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-api-design",
+      "name": "API Design",
+      "type": "skill"
+    },
+    {
+      "id": "skill-refactoring",
+      "name": "Refactoring",
+      "type": "skill"
+    },
+    {
+      "id": "skill-debugging",
+      "name": "Debugging",
+      "type": "skill"
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "type": "company"
+    },
+    {
       "id": "backend-architect",
       "name": "Backend Architect",
       "type": "agent"
@@ -1216,11 +1361,6 @@
       "type": "agent"
     },
     {
-      "id": "skill-distributed-systems",
-      "name": "Distributed Systems",
-      "type": "skill"
-    },
-    {
       "id": "skill-scaling",
       "name": "Scaling",
       "type": "skill"
@@ -1244,11 +1384,6 @@
       "id": "skill-faang",
       "name": "Faang",
       "type": "skill"
-    },
-    {
-      "id": "openai",
-      "name": "OpenAI",
-      "type": "company"
     },
     {
       "id": "job-hunter-ai",
@@ -1361,6 +1496,96 @@
       "type": "agent"
     },
     {
+      "id": "meta-swe-coach",
+      "name": "Meta SWE Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-algorithms",
+      "name": "Algorithms",
+      "type": "skill"
+    },
+    {
+      "id": "apple-swe-coach",
+      "name": "Apple SWE Coach",
+      "type": "agent"
+    },
+    {
+      "id": "amazon-swe-coach",
+      "name": "Amazon SWE Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-aws",
+      "name": "AWS",
+      "type": "skill"
+    },
+    {
+      "id": "skill-leadership-principles",
+      "name": "Leadership Principles",
+      "type": "skill"
+    },
+    {
+      "id": "netflix-swe-coach",
+      "name": "Netflix SWE Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-microservices",
+      "name": "Microservices",
+      "type": "skill"
+    },
+    {
+      "id": "skill-chaos-engineering",
+      "name": "Chaos Engineering",
+      "type": "skill"
+    },
+    {
+      "id": "microsoft-swe-coach",
+      "name": "Microsoft SWE Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-cloud-architecture",
+      "name": "Cloud Architecture",
+      "type": "skill"
+    },
+    {
+      "id": "skill-azure",
+      "name": "Azure",
+      "type": "skill"
+    },
+    {
+      "id": "skill-cs-fundamentals",
+      "name": "CS Fundamentals",
+      "type": "skill"
+    },
+    {
+      "id": "anthropic-ai-coach",
+      "name": "Anthropic AI Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-transformers",
+      "name": "Transformers",
+      "type": "skill"
+    },
+    {
+      "id": "nvidia-ai-coach",
+      "name": "Nvidia AI Coach",
+      "type": "agent"
+    },
+    {
+      "id": "skill-tensorrt",
+      "name": "TensorRT",
+      "type": "skill"
+    },
+    {
+      "id": "skill-gpu-systems",
+      "name": "GPU Systems",
+      "type": "skill"
+    },
+    {
       "id": "ai-consultant",
       "name": "AI Consultant",
       "type": "agent"
@@ -1431,6 +1656,191 @@
       "type": "agent"
     },
     {
+      "id": "voice-mock-interviewer",
+      "name": "Voice Mock Interviewer",
+      "type": "agent"
+    },
+    {
+      "id": "skill-voice-interviewing",
+      "name": "Voice Interviewing",
+      "type": "skill"
+    },
+    {
+      "id": "skill-speech-turn-taking",
+      "name": "Speech Turn-Taking",
+      "type": "skill"
+    },
+    {
+      "id": "skill-voice-modulation",
+      "name": "Voice Modulation",
+      "type": "skill"
+    },
+    {
+      "id": "skill-faang-process",
+      "name": "FAANG Process",
+      "type": "skill"
+    },
+    {
+      "id": "faang-voice-mock-interviewer",
+      "name": "FAANG Voice Mock Interviewer",
+      "type": "agent"
+    },
+    {
+      "id": "skill-faang-voice-interview",
+      "name": "FAANG Voice Interview",
+      "type": "skill"
+    },
+    {
+      "id": "skill-bar-raiser-evaluation",
+      "name": "Bar Raiser Evaluation",
+      "type": "skill"
+    },
+    {
+      "id": "skill-realtime-speech",
+      "name": "Realtime Speech",
+      "type": "skill"
+    },
+    {
+      "id": "resume-humanizer",
+      "name": "Resume Humanizer",
+      "type": "agent"
+    },
+    {
+      "id": "skill-resume-humanization",
+      "name": "Resume Humanization",
+      "type": "skill"
+    },
+    {
+      "id": "skill-anti-cliche-writing",
+      "name": "Anti-Cliche Writing",
+      "type": "skill"
+    },
+    {
+      "id": "skill-human-voice",
+      "name": "Human Voice",
+      "type": "skill"
+    },
+    {
+      "id": "document-exporter",
+      "name": "Document Exporter",
+      "type": "agent"
+    },
+    {
+      "id": "skill-word-export",
+      "name": "Word Export",
+      "type": "skill"
+    },
+    {
+      "id": "skill-pdf-generation",
+      "name": "PDF Generation",
+      "type": "skill"
+    },
+    {
+      "id": "skill-html-templates",
+      "name": "HTML Templates",
+      "type": "skill"
+    },
+    {
+      "id": "skill-ats-plain-text",
+      "name": "ATS Plain Text",
+      "type": "skill"
+    },
+    {
+      "id": "ai-infrastructure-architect",
+      "name": "AI Infrastructure Architect",
+      "type": "agent"
+    },
+    {
+      "id": "skill-gpu-clusters",
+      "name": "GPU Clusters",
+      "type": "skill"
+    },
+    {
+      "id": "skill-vllm",
+      "name": "vLLM",
+      "type": "skill"
+    },
+    {
+      "id": "skill-triton-serving",
+      "name": "Triton Serving",
+      "type": "skill"
+    },
+    {
+      "id": "skill-ray-orchestration",
+      "name": "Ray Orchestration",
+      "type": "skill"
+    },
+    {
+      "id": "ai-agent-workflow-builder",
+      "name": "AI Agent Workflow Builder",
+      "type": "agent"
+    },
+    {
+      "id": "skill-langgraph",
+      "name": "LangGraph",
+      "type": "skill"
+    },
+    {
+      "id": "skill-multi-agent-systems",
+      "name": "Multi-Agent Systems",
+      "type": "skill"
+    },
+    {
+      "id": "skill-mcp-protocol",
+      "name": "MCP Protocol",
+      "type": "skill"
+    },
+    {
+      "id": "skill-tool-calling",
+      "name": "Tool Calling",
+      "type": "skill"
+    },
+    {
+      "id": "multimodal-ai-engineer",
+      "name": "Multimodal AI Engineer",
+      "type": "agent"
+    },
+    {
+      "id": "skill-vision-language-models",
+      "name": "Vision Language Models",
+      "type": "skill"
+    },
+    {
+      "id": "skill-realtime-voice-apis",
+      "name": "Realtime Voice APIs",
+      "type": "skill"
+    },
+    {
+      "id": "skill-webrtc",
+      "name": "WebRTC",
+      "type": "skill"
+    },
+    {
+      "id": "skill-multimodal-rag",
+      "name": "Multimodal RAG",
+      "type": "skill"
+    },
+    {
+      "id": "ai-product-growth-builder",
+      "name": "AI Product Growth Builder",
+      "type": "agent"
+    },
+    {
+      "id": "skill-ai-product-strategy",
+      "name": "AI Product Strategy",
+      "type": "skill"
+    },
+    {
+      "id": "skill-llm-cogs-modeling",
+      "name": "LLM COGS Modeling",
+      "type": "skill"
+    },
+    {
+      "id": "skill-retention-loops",
+      "name": "Retention Loops",
+      "type": "skill"
+    },
+    {
       "id": "ats-optimization",
       "name": "ATS Optimization",
       "type": "workflow"
@@ -1484,11 +1894,6 @@
       "id": "ai-engineer-bundle",
       "name": "AI Engineer & Scientist Bundle",
       "type": "bundle"
-    },
-    {
-      "id": "databricks",
-      "name": "Databricks",
-      "type": "company"
     },
     {
       "id": "skill-prompt-optimization",
@@ -1574,11 +1979,6 @@
       "id": "full-stack-bundle",
       "name": "Full Stack Developer Bundle",
       "type": "bundle"
-    },
-    {
-      "id": "stripe",
-      "name": "Stripe",
-      "type": "company"
     },
     {
       "id": "skill-react/next.js",
@@ -1966,38 +2366,63 @@
       "type": "skill"
     },
     {
-      "id": "skill-16-leadership-principles-(customer-obsession,-ownership,-bias-for-action)",
-      "name": "16 Leadership Principles (Customer Obsession, Ownership, Bias for Action)",
+      "id": "skill-16-leadership-principles-(star-method)",
+      "name": "16 Leadership Principles (STAR method)",
       "type": "skill"
     },
     {
-      "id": "skill-star-behavioral-storytelling",
-      "name": "STAR Behavioral Storytelling",
+      "id": "skill-customer-obsession-&-operational-excellence",
+      "name": "Customer Obsession & Operational Excellence",
       "type": "skill"
     },
     {
-      "id": "skill-system-design-&-database-selections",
-      "name": "System Design & Database selections",
+      "id": "skill-distributed-system-design-(aws-primitives)",
+      "name": "Distributed System Design (AWS Primitives)",
       "type": "skill"
     },
     {
-      "id": "anthropic",
-      "name": "Anthropic",
-      "type": "company"
-    },
-    {
-      "id": "skill-generative-ai-&-llm-fine-tuning",
-      "name": "Generative AI & LLM Fine-Tuning",
+      "id": "skill-object-oriented-design-&-dsa",
+      "name": "Object-Oriented Design & DSA",
       "type": "skill"
     },
     {
-      "id": "skill-alignment-&-safety-principles",
-      "name": "Alignment & Safety Principles",
+      "id": "skill-ai-safety-&-constitutional-ai-frameworks",
+      "name": "AI Safety & Constitutional AI Frameworks",
       "type": "skill"
     },
     {
-      "id": "skill-system-design-&-scalability",
-      "name": "System Design & Scalability",
+      "id": "skill-transformer-scaling-&-memory-bandwidth-profiling",
+      "name": "Transformer Scaling & Memory Bandwidth Profiling",
+      "type": "skill"
+    },
+    {
+      "id": "skill-pytorch-&-distributed-training-mechanics-(fsdp)",
+      "name": "PyTorch & Distributed Training Mechanics (FSDP)",
+      "type": "skill"
+    },
+    {
+      "id": "skill-empirical-research-&-experiment-design",
+      "name": "Empirical Research & Experiment Design",
+      "type": "skill"
+    },
+    {
+      "id": "skill-swift,-swiftui-&-objective-c-/-c++-architecture",
+      "name": "Swift, SwiftUI & Objective-C / C++ Architecture",
+      "type": "skill"
+    },
+    {
+      "id": "skill-systems-programming-&-memory-management-(raii,-arc,-pointers)",
+      "name": "Systems Programming & Memory Management (RAII, ARC, Pointers)",
+      "type": "skill"
+    },
+    {
+      "id": "skill-hardware-software-integration-&-os-design-fundamentals",
+      "name": "Hardware-Software Integration & OS Design Fundamentals",
+      "type": "skill"
+    },
+    {
+      "id": "skill-product-craft,-privacy-principles-&-attention-to-detail",
+      "name": "Product Craft, Privacy Principles & Attention to Detail",
       "type": "skill"
     },
     {
@@ -2021,28 +2446,33 @@
       "type": "skill"
     },
     {
-      "id": "skill-distributed-computing-algorithms",
-      "name": "Distributed computing algorithms",
+      "id": "skill-distributed-query-engines-&-vectorized-execution",
+      "name": "Distributed Query Engines & Vectorized Execution",
       "type": "skill"
     },
     {
-      "id": "skill-database-internals-(caching,-query-planning,-indexing)",
-      "name": "Database internals (caching, query planning, indexing)",
+      "id": "skill-database-internals-(lsm-trees,-mvcc,-concurrency)",
+      "name": "Database Internals (LSM-trees, MVCC, Concurrency)",
       "type": "skill"
     },
     {
-      "id": "skill-concurrency-and-systems-performance",
-      "name": "Concurrency and systems performance",
+      "id": "skill-apache-spark-&-delta-lake-internals",
+      "name": "Apache Spark & Delta Lake Internals",
       "type": "skill"
     },
     {
-      "id": "skill-spark/delta-lake-execution-logic",
-      "name": "Spark/Delta Lake execution logic",
+      "id": "skill-systems-programming-&-memory-management",
+      "name": "Systems Programming & Memory Management",
       "type": "skill"
     },
     {
       "id": "skill-data-structures-&-algorithms-(graphs,-dynamic-programming,-trees)",
       "name": "Data Structures & Algorithms (graphs, dynamic programming, trees)",
+      "type": "skill"
+    },
+    {
+      "id": "skill-system-design-&-scalability",
+      "name": "System Design & Scalability",
       "type": "skill"
     },
     {
@@ -2056,93 +2486,103 @@
       "type": "skill"
     },
     {
-      "id": "skill-high-speed-coding-accuracy-(solving-2-dsa-questions-in-35-minutes)",
-      "name": "High-speed coding accuracy (solving 2 DSA questions in 35 minutes)",
+      "id": "skill-high-speed-coding-execution-&-accuracy",
+      "name": "High-speed coding execution & accuracy",
       "type": "skill"
     },
     {
-      "id": "skill-system-design-scaling-(focusing-on-caching,-load-balancing,-message-queues)",
-      "name": "System Design scaling (focusing on caching, load balancing, message queues)",
+      "id": "skill-meta-scale-system-design-(feed,-messenger,-tao-caching)",
+      "name": "Meta-scale System Design (Feed, Messenger, TAO Caching)",
       "type": "skill"
     },
     {
-      "id": "skill-meta-core-values-(focus-on-impact,-move-fast)",
-      "name": "Meta core values (Focus on Impact, Move Fast)",
+      "id": "skill-move-fast-&-focus-on-impact-behavioral-alignment",
+      "name": "Move Fast & Focus on Impact behavioral alignment",
       "type": "skill"
     },
     {
-      "id": "skill-cs-fundamentals-(pointers,-memory-management,-oop)",
-      "name": "CS Fundamentals (pointers, memory management, OOP)",
+      "id": "skill-social-graph-&-distributed-systems",
+      "name": "Social Graph & Distributed Systems",
       "type": "skill"
     },
     {
-      "id": "skill-growth-mindset-(learning-from-failure,-collaboration)",
-      "name": "Growth Mindset (learning from failure, collaboration)",
+      "id": "skill-computer-science-fundamentals-(os,-networking,-data-structures)",
+      "name": "Computer Science Fundamentals (OS, Networking, Data Structures)",
       "type": "skill"
     },
     {
-      "id": "skill-distributed-service-architecture",
-      "name": "Distributed Service Architecture",
+      "id": "skill-enterprise-&-cloud-system-architecture-(azure)",
+      "name": "Enterprise & Cloud System Architecture (Azure)",
       "type": "skill"
     },
     {
-      "id": "skill-freedom-&-responsibility-slide-deck-principles",
-      "name": "Freedom & Responsibility slide deck principles",
+      "id": "skill-collaborative-problem-solving-&-growth-mindset",
+      "name": "Collaborative Problem Solving & Growth Mindset",
       "type": "skill"
     },
     {
-      "id": "skill-high-throughput-cdn-architectures",
-      "name": "High-throughput CDN architectures",
+      "id": "skill-multi-tenant-saas-&-identity-management",
+      "name": "Multi-tenant SaaS & Identity Management",
       "type": "skill"
     },
     {
-      "id": "skill-autonomy-and-direct-feedback-loops-(radical-candor)",
-      "name": "Autonomy and direct feedback loops (Radical Candor)",
+      "id": "skill-freedom-&-responsibility-culture-alignment",
+      "name": "Freedom & Responsibility Culture Alignment",
       "type": "skill"
     },
     {
-      "id": "skill-resilience-engineering-(chaos-monkey)",
-      "name": "Resilience engineering (Chaos Monkey)",
+      "id": "skill-high-concurrency-distributed-microservices",
+      "name": "High-Concurrency Distributed Microservices",
       "type": "skill"
     },
     {
-      "id": "nvidia",
-      "name": "Nvidia",
-      "type": "company"
-    },
-    {
-      "id": "skill-systems-programming-(c/c++,-cuda)",
-      "name": "Systems Programming (C/C++, CUDA)",
+      "id": "skill-chaos-engineering-&-fault-isolation",
+      "name": "Chaos Engineering & Fault Isolation",
       "type": "skill"
     },
     {
-      "id": "skill-parallel-computing-&-gpu-architecture",
-      "name": "Parallel Computing & GPU Architecture",
+      "id": "skill-global-streaming-&-edge-cdn-architectures",
+      "name": "Global Streaming & Edge CDN Architectures",
       "type": "skill"
     },
     {
-      "id": "skill-deep-learning-&-computer-vision",
-      "name": "Deep Learning & Computer Vision",
+      "id": "skill-c++-systems-programming-&-memory-alignment",
+      "name": "C++ Systems Programming & Memory Alignment",
       "type": "skill"
     },
     {
-      "id": "skill-pytorch-scale-training-models",
-      "name": "PyTorch scale training models",
+      "id": "skill-cuda-parallel-computing-&-simt-execution-model",
+      "name": "CUDA Parallel Computing & SIMT Execution Model",
       "type": "skill"
     },
     {
-      "id": "skill-transformer-mechanics-and-scaling-math",
-      "name": "Transformer mechanics and scaling math",
+      "id": "skill-gpu-hardware-architecture-&-nvlink-topology",
+      "name": "GPU Hardware Architecture & NVLink Topology",
       "type": "skill"
     },
     {
-      "id": "skill-ai-safety-&-alignment-criteria",
-      "name": "AI Safety & alignment criteria",
+      "id": "skill-deep-learning-acceleration-&-tensorrt-quantization",
+      "name": "Deep Learning Acceleration & TensorRT Quantization",
       "type": "skill"
     },
     {
-      "id": "skill-gpu-memory-optimizations",
-      "name": "GPU memory optimizations",
+      "id": "skill-pytorch-&-triton-distributed-training-mechanics",
+      "name": "PyTorch & Triton Distributed Training Mechanics",
+      "type": "skill"
+    },
+    {
+      "id": "skill-transformer-architecture-&-kv-cache-optimizations",
+      "name": "Transformer Architecture & KV Cache Optimizations",
+      "type": "skill"
+    },
+    {
+      "id": "skill-frontier-ai-infrastructure-&-llm-serving",
+      "name": "Frontier AI Infrastructure & LLM Serving",
+      "type": "skill"
+    },
+    {
+      "id": "skill-ai-safety,-alignment-&-scaling-laws",
+      "name": "AI Safety, Alignment & Scaling Laws",
       "type": "skill"
     },
     {
@@ -2181,23 +2621,23 @@
       "type": "skill"
     },
     {
-      "id": "skill-practical-api-design-and-integration",
-      "name": "Practical API design and integration",
+      "id": "skill-practical-api-&-sdk-ergonomics-design",
+      "name": "Practical API & SDK Ergonomics Design",
       "type": "skill"
     },
     {
-      "id": "skill-squashing-bugs-in-large-codebases",
-      "name": "Squashing bugs in large codebases",
+      "id": "skill-codebase-refactoring-&-defensive-error-handling",
+      "name": "Codebase Refactoring & Defensive Error Handling",
       "type": "skill"
     },
     {
-      "id": "skill-clean-code-refactoring-and-design-structures",
-      "name": "Clean code refactoring and design structures",
+      "id": "skill-financial-system-design-&-idempotency",
+      "name": "Financial System Design & Idempotency",
       "type": "skill"
     },
     {
-      "id": "skill-unit-testing",
-      "name": "Unit testing",
+      "id": "skill-backward-compatibility-&-integration-testing",
+      "name": "Backward Compatibility & Integration Testing",
       "type": "skill"
     },
     {
@@ -4070,6 +4510,246 @@
     {
       "source": "uber-interview-coach",
       "target": "amazon-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "apple-interview-coach",
+      "target": "company-interviews",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "apple-interview-coach",
+      "target": "skill-interview-preparation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple-interview-coach",
+      "target": "skill-systems-programming",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple-interview-coach",
+      "target": "skill-swift",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple-interview-coach",
+      "target": "skill-hardware-software-integration",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple-interview-coach",
+      "target": "apple",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "apple-interview-coach",
+      "target": "apple-swe-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "apple-interview-coach",
+      "target": "technical-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "anthropic-interview-coach",
+      "target": "company-interviews",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "anthropic-interview-coach",
+      "target": "skill-interview-preparation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic-interview-coach",
+      "target": "skill-ai-safety",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic-interview-coach",
+      "target": "skill-constitutional-ai",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic-interview-coach",
+      "target": "skill-pytorch",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic-interview-coach",
+      "target": "anthropic",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "anthropic-interview-coach",
+      "target": "anthropic-ai-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "anthropic-interview-coach",
+      "target": "technical-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "databricks-interview-coach",
+      "target": "company-interviews",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "databricks-interview-coach",
+      "target": "skill-interview-preparation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "databricks-interview-coach",
+      "target": "skill-distributed-systems",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "databricks-interview-coach",
+      "target": "skill-database-internals",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "databricks-interview-coach",
+      "target": "skill-spark",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "databricks-interview-coach",
+      "target": "databricks",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "databricks-interview-coach",
+      "target": "database-engineer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "databricks-interview-coach",
+      "target": "backend-architect",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "nvidia-interview-coach",
+      "target": "company-interviews",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "nvidia-interview-coach",
+      "target": "skill-interview-preparation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia-interview-coach",
+      "target": "skill-cuda",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia-interview-coach",
+      "target": "skill-c++",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia-interview-coach",
+      "target": "skill-gpu-architecture",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia-interview-coach",
+      "target": "nvidia",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "nvidia-interview-coach",
+      "target": "nvidia-ai-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "nvidia-interview-coach",
+      "target": "technical-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "openai-interview-coach",
+      "target": "company-interviews",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "openai-interview-coach",
+      "target": "skill-interview-preparation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "openai-interview-coach",
+      "target": "skill-distributed-training",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "openai-interview-coach",
+      "target": "skill-pytorch",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "openai-interview-coach",
+      "target": "skill-triton",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "openai-interview-coach",
+      "target": "openai",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "openai-interview-coach",
+      "target": "openai-career-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "openai-interview-coach",
+      "target": "technical-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "stripe-interview-coach",
+      "target": "company-interviews",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "stripe-interview-coach",
+      "target": "skill-interview-preparation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "stripe-interview-coach",
+      "target": "skill-api-design",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "stripe-interview-coach",
+      "target": "skill-refactoring",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "stripe-interview-coach",
+      "target": "skill-debugging",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "stripe-interview-coach",
+      "target": "stripe",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "stripe-interview-coach",
+      "target": "code-reviewer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "stripe-interview-coach",
+      "target": "backend-architect",
       "relation": "related_to_agent"
     },
     {
@@ -8818,6 +9498,286 @@
       "relation": "related_to_agent"
     },
     {
+      "source": "meta-swe-coach",
+      "target": "faang",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "meta-swe-coach",
+      "target": "skill-algorithms",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "meta-swe-coach",
+      "target": "skill-system-design",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "meta-swe-coach",
+      "target": "skill-distributed-systems",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "meta-swe-coach",
+      "target": "skill-faang-interview",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "meta-swe-coach",
+      "target": "meta",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "meta-swe-coach",
+      "target": "meta-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "meta-swe-coach",
+      "target": "google-swe-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "apple-swe-coach",
+      "target": "faang",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "apple-swe-coach",
+      "target": "skill-systems-programming",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple-swe-coach",
+      "target": "skill-swift",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple-swe-coach",
+      "target": "skill-c++",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple-swe-coach",
+      "target": "skill-faang-interview",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple-swe-coach",
+      "target": "apple",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "apple-swe-coach",
+      "target": "apple-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "apple-swe-coach",
+      "target": "google-swe-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "amazon-swe-coach",
+      "target": "faang",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "amazon-swe-coach",
+      "target": "skill-distributed-systems",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "amazon-swe-coach",
+      "target": "skill-aws",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "amazon-swe-coach",
+      "target": "skill-leadership-principles",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "amazon-swe-coach",
+      "target": "skill-faang-interview",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "amazon-swe-coach",
+      "target": "amazon",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "amazon-swe-coach",
+      "target": "amazon-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "amazon-swe-coach",
+      "target": "google-swe-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "netflix-swe-coach",
+      "target": "faang",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "netflix-swe-coach",
+      "target": "skill-microservices",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "netflix-swe-coach",
+      "target": "skill-chaos-engineering",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "netflix-swe-coach",
+      "target": "skill-distributed-systems",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "netflix-swe-coach",
+      "target": "skill-faang-interview",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "netflix-swe-coach",
+      "target": "netflix",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "netflix-swe-coach",
+      "target": "netflix-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "netflix-swe-coach",
+      "target": "google-swe-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "microsoft-swe-coach",
+      "target": "faang",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "microsoft-swe-coach",
+      "target": "skill-cloud-architecture",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "microsoft-swe-coach",
+      "target": "skill-azure",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "microsoft-swe-coach",
+      "target": "skill-cs-fundamentals",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "microsoft-swe-coach",
+      "target": "skill-faang-interview",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "microsoft-swe-coach",
+      "target": "microsoft",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "microsoft-swe-coach",
+      "target": "microsoft-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "microsoft-swe-coach",
+      "target": "google-swe-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "anthropic-ai-coach",
+      "target": "faang",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "anthropic-ai-coach",
+      "target": "skill-constitutional-ai",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic-ai-coach",
+      "target": "skill-transformers",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic-ai-coach",
+      "target": "skill-ai-safety",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic-ai-coach",
+      "target": "skill-faang-interview",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "anthropic-ai-coach",
+      "target": "anthropic",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "anthropic-ai-coach",
+      "target": "anthropic-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "anthropic-ai-coach",
+      "target": "openai-career-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "nvidia-ai-coach",
+      "target": "faang",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "nvidia-ai-coach",
+      "target": "skill-cuda",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia-ai-coach",
+      "target": "skill-tensorrt",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia-ai-coach",
+      "target": "skill-gpu-systems",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia-ai-coach",
+      "target": "skill-faang-interview",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia-ai-coach",
+      "target": "nvidia",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "nvidia-ai-coach",
+      "target": "nvidia-interview-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "nvidia-ai-coach",
+      "target": "google-swe-coach",
+      "relation": "related_to_agent"
+    },
+    {
       "source": "ai-consultant",
       "target": "ai-business",
       "relation": "belongs_to_division"
@@ -8991,6 +9951,316 @@
       "source": "technical-project-positioning-advisor",
       "target": "resume",
       "relation": "belongs_to_division"
+    },
+    {
+      "source": "voice-mock-interviewer",
+      "target": "interview",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "voice-mock-interviewer",
+      "target": "skill-voice-interviewing",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "voice-mock-interviewer",
+      "target": "skill-speech-turn-taking",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "voice-mock-interviewer",
+      "target": "skill-voice-modulation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "voice-mock-interviewer",
+      "target": "skill-faang-process",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "voice-mock-interviewer",
+      "target": "mock-interviewer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "voice-mock-interviewer",
+      "target": "faang-voice-mock-interviewer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "faang",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "skill-faang-voice-interview",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "skill-voice-modulation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "skill-bar-raiser-evaluation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "skill-realtime-speech",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "google",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "meta",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "amazon",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "apple",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "netflix",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "openai",
+      "relation": "relevant_to_company"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "voice-mock-interviewer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "faang-voice-mock-interviewer",
+      "target": "google-swe-coach",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "resume-humanizer",
+      "target": "resume",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "resume-humanizer",
+      "target": "skill-resume-humanization",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "resume-humanizer",
+      "target": "skill-anti-cliche-writing",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "resume-humanizer",
+      "target": "skill-ats-optimization",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "resume-humanizer",
+      "target": "skill-human-voice",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "resume-humanizer",
+      "target": "ats-resume-reviewer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "resume-humanizer",
+      "target": "document-exporter",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "document-exporter",
+      "target": "resume",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "document-exporter",
+      "target": "skill-word-export",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "document-exporter",
+      "target": "skill-pdf-generation",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "document-exporter",
+      "target": "skill-html-templates",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "document-exporter",
+      "target": "skill-ats-plain-text",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "document-exporter",
+      "target": "resume-humanizer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "document-exporter",
+      "target": "ats-resume-reviewer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "ai-infrastructure-architect",
+      "target": "ai-engineering",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "ai-infrastructure-architect",
+      "target": "skill-gpu-clusters",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-infrastructure-architect",
+      "target": "skill-vllm",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-infrastructure-architect",
+      "target": "skill-triton-serving",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-infrastructure-architect",
+      "target": "skill-ray-orchestration",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-infrastructure-architect",
+      "target": "llm-engineer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "ai-infrastructure-architect",
+      "target": "mlops-engineer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "ai-agent-workflow-builder",
+      "target": "ai-engineering",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "ai-agent-workflow-builder",
+      "target": "skill-langgraph",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-agent-workflow-builder",
+      "target": "skill-multi-agent-systems",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-agent-workflow-builder",
+      "target": "skill-mcp-protocol",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-agent-workflow-builder",
+      "target": "skill-tool-calling",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-agent-workflow-builder",
+      "target": "ai-agent-architect",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "ai-agent-workflow-builder",
+      "target": "llm-engineer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "multimodal-ai-engineer",
+      "target": "ai-engineering",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "multimodal-ai-engineer",
+      "target": "skill-vision-language-models",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "multimodal-ai-engineer",
+      "target": "skill-realtime-voice-apis",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "multimodal-ai-engineer",
+      "target": "skill-webrtc",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "multimodal-ai-engineer",
+      "target": "skill-multimodal-rag",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "multimodal-ai-engineer",
+      "target": "llm-engineer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "multimodal-ai-engineer",
+      "target": "computer-vision-engineer",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "ai-product-growth-builder",
+      "target": "ai-business",
+      "relation": "belongs_to_division"
+    },
+    {
+      "source": "ai-product-growth-builder",
+      "target": "skill-ai-product-strategy",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-product-growth-builder",
+      "target": "skill-semantic-caching",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-product-growth-builder",
+      "target": "skill-llm-cogs-modeling",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-product-growth-builder",
+      "target": "skill-retention-loops",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "ai-product-growth-builder",
+      "target": "ai-founder",
+      "relation": "related_to_agent"
+    },
+    {
+      "source": "ai-product-growth-builder",
+      "target": "ai-consultant",
+      "relation": "related_to_agent"
     },
     {
       "source": "ats-optimization",
@@ -10664,6 +11934,11 @@
     },
     {
       "source": "amazon",
+      "target": "amazon-swe-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "amazon",
       "target": "behavioral-interview-specialist",
       "relation": "requires_agent"
     },
@@ -10679,27 +11954,32 @@
     },
     {
       "source": "amazon",
-      "target": "skill-16-leadership-principles-(customer-obsession,-ownership,-bias-for-action)",
+      "target": "skill-16-leadership-principles-(star-method)",
       "relation": "requires_skill"
     },
     {
       "source": "amazon",
-      "target": "skill-star-behavioral-storytelling",
+      "target": "skill-customer-obsession-&-operational-excellence",
       "relation": "requires_skill"
     },
     {
       "source": "amazon",
-      "target": "skill-data-structures-&-algorithms",
+      "target": "skill-distributed-system-design-(aws-primitives)",
       "relation": "requires_skill"
     },
     {
       "source": "amazon",
-      "target": "skill-system-design-&-database-selections",
+      "target": "skill-object-oriented-design-&-dsa",
       "relation": "requires_skill"
     },
     {
       "source": "anthropic",
-      "target": "openai-career-coach",
+      "target": "anthropic-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "anthropic",
+      "target": "anthropic-ai-coach",
       "relation": "requires_agent"
     },
     {
@@ -10719,22 +11999,67 @@
     },
     {
       "source": "anthropic",
-      "target": "skill-data-structures-&-algorithms",
+      "target": "skill-ai-safety-&-constitutional-ai-frameworks",
       "relation": "requires_skill"
     },
     {
       "source": "anthropic",
-      "target": "skill-generative-ai-&-llm-fine-tuning",
+      "target": "skill-transformer-scaling-&-memory-bandwidth-profiling",
       "relation": "requires_skill"
     },
     {
       "source": "anthropic",
-      "target": "skill-alignment-&-safety-principles",
+      "target": "skill-pytorch-&-distributed-training-mechanics-(fsdp)",
       "relation": "requires_skill"
     },
     {
       "source": "anthropic",
-      "target": "skill-system-design-&-scalability",
+      "target": "skill-empirical-research-&-experiment-design",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple",
+      "target": "apple-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "apple",
+      "target": "apple-swe-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "apple",
+      "target": "technical-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "apple",
+      "target": "system-design-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "apple",
+      "target": "mock-interviewer",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "apple",
+      "target": "skill-swift,-swiftui-&-objective-c-/-c++-architecture",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple",
+      "target": "skill-systems-programming-&-memory-management-(raii,-arc,-pointers)",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple",
+      "target": "skill-hardware-software-integration-&-os-design-fundamentals",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "apple",
+      "target": "skill-product-craft,-privacy-principles-&-attention-to-detail",
       "relation": "requires_skill"
     },
     {
@@ -10779,6 +12104,11 @@
     },
     {
       "source": "databricks",
+      "target": "databricks-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "databricks",
       "target": "database-engineer",
       "relation": "requires_agent"
     },
@@ -10799,27 +12129,32 @@
     },
     {
       "source": "databricks",
-      "target": "skill-distributed-computing-algorithms",
+      "target": "skill-distributed-query-engines-&-vectorized-execution",
       "relation": "requires_skill"
     },
     {
       "source": "databricks",
-      "target": "skill-database-internals-(caching,-query-planning,-indexing)",
+      "target": "skill-database-internals-(lsm-trees,-mvcc,-concurrency)",
       "relation": "requires_skill"
     },
     {
       "source": "databricks",
-      "target": "skill-concurrency-and-systems-performance",
+      "target": "skill-apache-spark-&-delta-lake-internals",
       "relation": "requires_skill"
     },
     {
       "source": "databricks",
-      "target": "skill-spark/delta-lake-execution-logic",
+      "target": "skill-systems-programming-&-memory-management",
       "relation": "requires_skill"
     },
     {
       "source": "google",
       "target": "google-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "google",
+      "target": "google-swe-coach",
       "relation": "requires_agent"
     },
     {
@@ -10864,6 +12199,11 @@
     },
     {
       "source": "meta",
+      "target": "meta-swe-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "meta",
       "target": "technical-interview-coach",
       "relation": "requires_agent"
     },
@@ -10879,17 +12219,22 @@
     },
     {
       "source": "meta",
-      "target": "skill-high-speed-coding-accuracy-(solving-2-dsa-questions-in-35-minutes)",
+      "target": "skill-high-speed-coding-execution-&-accuracy",
       "relation": "requires_skill"
     },
     {
       "source": "meta",
-      "target": "skill-system-design-scaling-(focusing-on-caching,-load-balancing,-message-queues)",
+      "target": "skill-meta-scale-system-design-(feed,-messenger,-tao-caching)",
       "relation": "requires_skill"
     },
     {
       "source": "meta",
-      "target": "skill-meta-core-values-(focus-on-impact,-move-fast)",
+      "target": "skill-move-fast-&-focus-on-impact-behavioral-alignment",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "meta",
+      "target": "skill-social-graph-&-distributed-systems",
       "relation": "requires_skill"
     },
     {
@@ -10899,6 +12244,11 @@
     },
     {
       "source": "microsoft",
+      "target": "microsoft-swe-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "microsoft",
       "target": "technical-interview-coach",
       "relation": "requires_agent"
     },
@@ -10914,22 +12264,32 @@
     },
     {
       "source": "microsoft",
-      "target": "skill-cs-fundamentals-(pointers,-memory-management,-oop)",
+      "target": "skill-computer-science-fundamentals-(os,-networking,-data-structures)",
       "relation": "requires_skill"
     },
     {
       "source": "microsoft",
-      "target": "skill-growth-mindset-(learning-from-failure,-collaboration)",
+      "target": "skill-enterprise-&-cloud-system-architecture-(azure)",
       "relation": "requires_skill"
     },
     {
       "source": "microsoft",
-      "target": "skill-distributed-service-architecture",
+      "target": "skill-collaborative-problem-solving-&-growth-mindset",
+      "relation": "requires_skill"
+    },
+    {
+      "source": "microsoft",
+      "target": "skill-multi-tenant-saas-&-identity-management",
       "relation": "requires_skill"
     },
     {
       "source": "netflix",
       "target": "netflix-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "netflix",
+      "target": "netflix-swe-coach",
       "relation": "requires_agent"
     },
     {
@@ -10949,23 +12309,33 @@
     },
     {
       "source": "netflix",
-      "target": "skill-freedom-&-responsibility-slide-deck-principles",
+      "target": "skill-freedom-&-responsibility-culture-alignment",
       "relation": "requires_skill"
     },
     {
       "source": "netflix",
-      "target": "skill-high-throughput-cdn-architectures",
+      "target": "skill-high-concurrency-distributed-microservices",
       "relation": "requires_skill"
     },
     {
       "source": "netflix",
-      "target": "skill-autonomy-and-direct-feedback-loops-(radical-candor)",
+      "target": "skill-chaos-engineering-&-fault-isolation",
       "relation": "requires_skill"
     },
     {
       "source": "netflix",
-      "target": "skill-resilience-engineering-(chaos-monkey)",
+      "target": "skill-global-streaming-&-edge-cdn-architectures",
       "relation": "requires_skill"
+    },
+    {
+      "source": "nvidia",
+      "target": "nvidia-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "nvidia",
+      "target": "nvidia-ai-coach",
+      "relation": "requires_agent"
     },
     {
       "source": "nvidia",
@@ -10979,47 +12349,47 @@
     },
     {
       "source": "nvidia",
-      "target": "machine-learning-engineer",
-      "relation": "requires_agent"
-    },
-    {
-      "source": "nvidia",
       "target": "mock-interviewer",
       "relation": "requires_agent"
     },
     {
       "source": "nvidia",
-      "target": "skill-systems-programming-(c/c++,-cuda)",
+      "target": "skill-c++-systems-programming-&-memory-alignment",
       "relation": "requires_skill"
     },
     {
       "source": "nvidia",
-      "target": "skill-parallel-computing-&-gpu-architecture",
+      "target": "skill-cuda-parallel-computing-&-simt-execution-model",
       "relation": "requires_skill"
     },
     {
       "source": "nvidia",
-      "target": "skill-data-structures-&-algorithms",
+      "target": "skill-gpu-hardware-architecture-&-nvlink-topology",
       "relation": "requires_skill"
     },
     {
       "source": "nvidia",
-      "target": "skill-deep-learning-&-computer-vision",
+      "target": "skill-deep-learning-acceleration-&-tensorrt-quantization",
       "relation": "requires_skill"
     },
     {
       "source": "openai",
-      "target": "llm-engineer",
+      "target": "openai-interview-coach",
       "relation": "requires_agent"
     },
     {
       "source": "openai",
-      "target": "ai-agent-architect",
+      "target": "openai-career-coach",
       "relation": "requires_agent"
     },
     {
       "source": "openai",
-      "target": "ai-engineer-career-coach",
+      "target": "technical-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "openai",
+      "target": "system-design-coach",
       "relation": "requires_agent"
     },
     {
@@ -11029,22 +12399,22 @@
     },
     {
       "source": "openai",
-      "target": "skill-pytorch-scale-training-models",
+      "target": "skill-pytorch-&-triton-distributed-training-mechanics",
       "relation": "requires_skill"
     },
     {
       "source": "openai",
-      "target": "skill-transformer-mechanics-and-scaling-math",
+      "target": "skill-transformer-architecture-&-kv-cache-optimizations",
       "relation": "requires_skill"
     },
     {
       "source": "openai",
-      "target": "skill-ai-safety-&-alignment-criteria",
+      "target": "skill-frontier-ai-infrastructure-&-llm-serving",
       "relation": "requires_skill"
     },
     {
       "source": "openai",
-      "target": "skill-gpu-memory-optimizations",
+      "target": "skill-ai-safety,-alignment-&-scaling-laws",
       "relation": "requires_skill"
     },
     {
@@ -11124,6 +12494,11 @@
     },
     {
       "source": "stripe",
+      "target": "stripe-interview-coach",
+      "relation": "requires_agent"
+    },
+    {
+      "source": "stripe",
       "target": "code-reviewer",
       "relation": "requires_agent"
     },
@@ -11144,22 +12519,22 @@
     },
     {
       "source": "stripe",
-      "target": "skill-practical-api-design-and-integration",
+      "target": "skill-practical-api-&-sdk-ergonomics-design",
       "relation": "requires_skill"
     },
     {
       "source": "stripe",
-      "target": "skill-squashing-bugs-in-large-codebases",
+      "target": "skill-codebase-refactoring-&-defensive-error-handling",
       "relation": "requires_skill"
     },
     {
       "source": "stripe",
-      "target": "skill-clean-code-refactoring-and-design-structures",
+      "target": "skill-financial-system-design-&-idempotency",
       "relation": "requires_skill"
     },
     {
       "source": "stripe",
-      "target": "skill-unit-testing",
+      "target": "skill-backward-compatibility-&-integration-testing",
       "relation": "requires_skill"
     },
     {

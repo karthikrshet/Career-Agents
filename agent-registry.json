@@ -1490,6 +1490,240 @@
       "popularity_score": 90
     },
     {
+      "id": "apple-interview-coach",
+      "name": "Apple Interview Coach",
+      "division": "company-interviews",
+      "description": "A hardware-software craftsmanship and technical perfection coach who prepares candidates for Apple's deep systems loops, Swift/C++ architecture, and privacy-first product evaluation.",
+      "status": "live",
+      "filename": "company-interviews/apple-interview-coach.md",
+      "tags": [
+        "apple",
+        "company-interviews",
+        "swift",
+        "systems-programming",
+        "privacy"
+      ],
+      "color": "#A2AAAD",
+      "emoji": "🍏",
+      "vibe": "precise, craft-obsessed, low-level focused, privacy-conscious",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Interview Preparation",
+        "Systems Programming",
+        "Swift",
+        "Hardware-Software Integration"
+      ],
+      "companies": [
+        "Apple"
+      ],
+      "related_agents": [
+        "apple-swe-coach",
+        "technical-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 90
+    },
+    {
+      "id": "anthropic-interview-coach",
+      "name": "Anthropic Interview Coach",
+      "division": "company-interviews",
+      "description": "An AI safety, Constitutional AI, and research-engineering coach who prepares candidates for Anthropic's deep model architecture, scaling, and alignment interview loops.",
+      "status": "live",
+      "filename": "company-interviews/anthropic-interview-coach.md",
+      "tags": [
+        "anthropic",
+        "company-interviews",
+        "ai-safety",
+        "constitutional-ai",
+        "transformers"
+      ],
+      "color": "#D97706",
+      "emoji": "🤖",
+      "vibe": "academic, safety-focused, rigorous, research-forward",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Interview Preparation",
+        "AI Safety",
+        "Constitutional AI",
+        "PyTorch"
+      ],
+      "companies": [
+        "Anthropic"
+      ],
+      "related_agents": [
+        "anthropic-ai-coach",
+        "technical-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 92
+    },
+    {
+      "id": "databricks-interview-coach",
+      "name": "Databricks Interview Coach",
+      "division": "company-interviews",
+      "description": "A distributed systems, database internals, and Spark engine specialist who prepares candidates for Databricks' deep concurrency, storage engine, and query optimization loops.",
+      "status": "live",
+      "filename": "company-interviews/databricks-interview-coach.md",
+      "tags": [
+        "databricks",
+        "company-interviews",
+        "distributed-systems",
+        "spark",
+        "database-internals"
+      ],
+      "color": "#FF3621",
+      "emoji": "🧱",
+      "vibe": "systems-heavy, algorithmic, data-engine focused, performance-driven",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Interview Preparation",
+        "Distributed Systems",
+        "Database Internals",
+        "Spark"
+      ],
+      "companies": [
+        "Databricks"
+      ],
+      "related_agents": [
+        "database-engineer",
+        "backend-architect"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 88
+    },
+    {
+      "id": "nvidia-interview-coach",
+      "name": "Nvidia Interview Coach",
+      "division": "company-interviews",
+      "description": "A GPU architecture, CUDA kernel, and high-performance systems coach who prepares candidates for Nvidia's parallel computing, C++ performance, and AI hardware-software loops.",
+      "status": "live",
+      "filename": "company-interviews/nvidia-interview-coach.md",
+      "tags": [
+        "nvidia",
+        "company-interviews",
+        "cuda",
+        "gpu-architecture",
+        "cpp"
+      ],
+      "color": "#76B900",
+      "emoji": "⚡",
+      "vibe": "low-level, hardware-aware, performance-obsessed, mathematical",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Interview Preparation",
+        "CUDA",
+        "C++",
+        "GPU Architecture"
+      ],
+      "companies": [
+        "Nvidia"
+      ],
+      "related_agents": [
+        "nvidia-ai-coach",
+        "technical-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 93
+    },
+    {
+      "id": "openai-interview-coach",
+      "name": "OpenAI Interview Coach",
+      "division": "company-interviews",
+      "description": "A frontier model research and distributed infrastructure coach who prepares candidates for OpenAI's rigorous technical loops, PyTorch/Triton mechanics, and AI safety culture.",
+      "status": "live",
+      "filename": "company-interviews/openai-interview-coach.md",
+      "tags": [
+        "openai",
+        "company-interviews",
+        "pytorch",
+        "triton",
+        "distributed-training"
+      ],
+      "color": "#10A37F",
+      "emoji": "🟩",
+      "vibe": "cutting-edge, mathematical, infrastructure-heavy, mission-driven",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Interview Preparation",
+        "Distributed Training",
+        "PyTorch",
+        "Triton"
+      ],
+      "companies": [
+        "OpenAI"
+      ],
+      "related_agents": [
+        "openai-career-coach",
+        "technical-interview-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 96
+    },
+    {
+      "id": "stripe-interview-coach",
+      "name": "Stripe Interview Coach",
+      "division": "company-interviews",
+      "description": "A practical engineering, API craft, and production refactoring coach who prepares candidates for Stripe's unique hands-on coding, bug-squashing, and integration interview loops.",
+      "status": "live",
+      "filename": "company-interviews/stripe-interview-coach.md",
+      "tags": [
+        "stripe",
+        "company-interviews",
+        "api-design",
+        "refactoring",
+        "idempotency"
+      ],
+      "color": "#635BFF",
+      "emoji": "💳",
+      "vibe": "practical, craft-oriented, meticulous, API-obsessed",
+      "difficulty": "Hard",
+      "experience_level": "Mid",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Interview Preparation",
+        "API Design",
+        "Refactoring",
+        "Debugging"
+      ],
+      "companies": [
+        "Stripe"
+      ],
+      "related_agents": [
+        "code-reviewer",
+        "backend-architect"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 91
+    },
+    {
       "id": "backend-architect",
       "name": "Backend Architect",
       "division": "engineering",
@@ -5271,6 +5505,279 @@
       "popularity_score": 66
     },
     {
+      "id": "meta-swe-coach",
+      "name": "Meta SWE Coach",
+      "division": "faang",
+      "description": "A high-speed execution, performance-focused system design, and impact-driven engineering coach for Meta's software engineering loops.",
+      "status": "live",
+      "filename": "faang/meta-swe-coach.md",
+      "tags": [
+        "meta",
+        "faang",
+        "algorithms",
+        "system-design",
+        "move-fast"
+      ],
+      "color": "#0668E1",
+      "emoji": "🔷",
+      "vibe": "fast-paced, high-throughput, impact-driven, architectural",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "Algorithms",
+        "System Design",
+        "Distributed Systems",
+        "FAANG Interview"
+      ],
+      "companies": [
+        "Meta"
+      ],
+      "related_agents": [
+        "meta-interview-coach",
+        "google-swe-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 95
+    },
+    {
+      "id": "apple-swe-coach",
+      "name": "Apple SWE Coach",
+      "division": "faang",
+      "description": "A specialized low-level systems, Swift/C++ architecture, and hardware-software integration coach for Apple Software Engineering loops.",
+      "status": "live",
+      "filename": "faang/apple-swe-coach.md",
+      "tags": [
+        "apple",
+        "faang",
+        "systems-programming",
+        "swift",
+        "hardware-software"
+      ],
+      "color": "#A2AAAD",
+      "emoji": "🍏",
+      "vibe": "systems-focused, hardware-aware, craft-obsessed, low-latency",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "Systems Programming",
+        "Swift",
+        "C++",
+        "FAANG Interview"
+      ],
+      "companies": [
+        "Apple"
+      ],
+      "related_agents": [
+        "apple-interview-coach",
+        "google-swe-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 93
+    },
+    {
+      "id": "amazon-swe-coach",
+      "name": "Amazon SWE Coach",
+      "division": "faang",
+      "description": "A Leadership Principles, Bar Raiser standards, and high-scale distributed systems coach for Amazon SDE loops (SDE I, SDE II, Senior SDE).",
+      "status": "live",
+      "filename": "faang/amazon-swe-coach.md",
+      "tags": [
+        "amazon",
+        "faang",
+        "leadership-principles",
+        "bar-raiser",
+        "distributed-systems"
+      ],
+      "color": "#FF9900",
+      "emoji": "🟧",
+      "vibe": "principle-driven, operational, scale-focused, Bar-Raiser aligned",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "Distributed Systems",
+        "AWS",
+        "Leadership Principles",
+        "FAANG Interview"
+      ],
+      "companies": [
+        "Amazon"
+      ],
+      "related_agents": [
+        "amazon-interview-coach",
+        "google-swe-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 96
+    },
+    {
+      "id": "netflix-swe-coach",
+      "name": "Netflix SWE Coach",
+      "division": "faang",
+      "description": "A high-concurrency distributed systems, microservices resilience, and Freedom & Responsibility culture coach for Netflix Senior SWE loops.",
+      "status": "live",
+      "filename": "faang/netflix-swe-coach.md",
+      "tags": [
+        "netflix",
+        "faang",
+        "chaos-engineering",
+        "microservices",
+        "freedom-and-responsibility"
+      ],
+      "color": "#E50914",
+      "emoji": "🔴",
+      "vibe": "senior-level, autonomous, systems-rigorous, radical-candor",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "Microservices",
+        "Chaos Engineering",
+        "Distributed Systems",
+        "FAANG Interview"
+      ],
+      "companies": [
+        "Netflix"
+      ],
+      "related_agents": [
+        "netflix-interview-coach",
+        "google-swe-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 94
+    },
+    {
+      "id": "microsoft-swe-coach",
+      "name": "Microsoft SWE Coach",
+      "division": "faang",
+      "description": "A Growth Mindset, cloud architecture, and enterprise CS fundamentals coach for Microsoft Software Engineer loops (SDE I, SDE II, Senior SDE, Principal SDE).",
+      "status": "live",
+      "filename": "faang/microsoft-swe-coach.md",
+      "tags": [
+        "microsoft",
+        "faang",
+        "growth-mindset",
+        "azure",
+        "cs-fundamentals"
+      ],
+      "color": "#00A4EF",
+      "emoji": "🟦",
+      "vibe": "collaborative, structured, growth-mindset, cloud-native",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "Cloud Architecture",
+        "Azure",
+        "CS Fundamentals",
+        "FAANG Interview"
+      ],
+      "companies": [
+        "Microsoft"
+      ],
+      "related_agents": [
+        "microsoft-interview-coach",
+        "google-swe-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 92
+    },
+    {
+      "id": "anthropic-ai-coach",
+      "name": "Anthropic AI Coach",
+      "division": "faang",
+      "description": "A Constitutional AI, model alignment infrastructure, and transformer scaling coach for Anthropic research and engineering loops.",
+      "status": "live",
+      "filename": "faang/anthropic-ai-coach.md",
+      "tags": [
+        "anthropic",
+        "faang",
+        "constitutional-ai",
+        "alignment",
+        "transformers"
+      ],
+      "color": "#D97706",
+      "emoji": "🤖",
+      "vibe": "academic, safety-focused, mathematically-rigorous, empirical",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "Constitutional AI",
+        "Transformers",
+        "AI Safety",
+        "FAANG Interview"
+      ],
+      "companies": [
+        "Anthropic"
+      ],
+      "related_agents": [
+        "anthropic-interview-coach",
+        "openai-career-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 95
+    },
+    {
+      "id": "nvidia-ai-coach",
+      "name": "Nvidia AI Coach",
+      "division": "faang",
+      "description": "A GPU systems, CUDA kernel optimization, TensorRT compiler, and deep learning hardware acceleration coach for Nvidia engineering loops.",
+      "status": "live",
+      "filename": "faang/nvidia-ai-coach.md",
+      "tags": [
+        "nvidia",
+        "faang",
+        "cuda",
+        "tensorrt",
+        "gpu-acceleration"
+      ],
+      "color": "#76B900",
+      "emoji": "⚡",
+      "vibe": "low-level, hardware-accelerated, performance-obsessed, systems-heavy",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "CUDA",
+        "TensorRT",
+        "GPU Systems",
+        "FAANG Interview"
+      ],
+      "companies": [
+        "Nvidia"
+      ],
+      "related_agents": [
+        "nvidia-interview-coach",
+        "google-swe-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 96
+    },
+    {
       "id": "ai-consultant",
       "name": "AI Consultant",
       "division": "ai-business",
@@ -5570,6 +6077,309 @@
       "color": "#004D40",
       "emoji": "🔧",
       "vibe": "technical, narrative-bridging, impact-forward, dual-audience-aware"
+    },
+    {
+      "id": "voice-mock-interviewer",
+      "name": "Voice Mock Interviewer",
+      "division": "interview",
+      "description": "A real-time voice-first mock interviewer supporting STT/TTS speech turn-taking, voice modulation diagnostics, semantic replies, and structured FAANG/MANGO 5-phase interview execution.",
+      "status": "live",
+      "filename": "interview/voice-mock-interviewer.md",
+      "tags": [
+        "interview",
+        "voice-first",
+        "voice-modulation",
+        "mock-interview",
+        "semantic-reply"
+      ],
+      "color": "#8E44AD",
+      "emoji": "🎙️",
+      "vibe": "realistic, speech-aware, dynamic, conversational, firm",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Voice Interviewing",
+        "Speech Turn-Taking",
+        "Voice Modulation",
+        "FAANG Process"
+      ],
+      "companies": [],
+      "related_agents": [
+        "mock-interviewer",
+        "faang-voice-mock-interviewer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 95
+    },
+    {
+      "id": "faang-voice-mock-interviewer",
+      "name": "FAANG Voice Mock Interviewer",
+      "division": "faang",
+      "description": "A voice-first FAANG & MANGO interview simulator tailored for Google, Meta, Amazon, Apple, Netflix, and OpenAI loops with company-specific pacing, voice modulation, and Bar Raiser evaluations.",
+      "status": "live",
+      "filename": "faang/faang-voice-mock-interviewer.md",
+      "tags": [
+        "faang",
+        "voice-first",
+        "mock-interview",
+        "voice-modulation",
+        "bar-raiser"
+      ],
+      "color": "#FF9900",
+      "emoji": "🎙️",
+      "vibe": "rigorous, voice-first, company-calibrated, high-pressure",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "FAANG Voice Interview",
+        "Voice Modulation",
+        "Bar Raiser Evaluation",
+        "Realtime Speech"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Apple",
+        "Netflix",
+        "OpenAI"
+      ],
+      "related_agents": [
+        "voice-mock-interviewer",
+        "google-swe-coach"
+      ],
+      "related_workflows": [
+        "faang-preparation"
+      ],
+      "popularity_score": 97
+    },
+    {
+      "id": "resume-humanizer",
+      "name": "Resume Humanizer",
+      "division": "resume",
+      "description": "A specialized career writing agent that de-robotifies AI-generated resumes into authentic, high-impact human professional narratives while preserving ATS keyword signaling.",
+      "status": "live",
+      "filename": "resume/resume-humanizer.md",
+      "tags": [
+        "resume",
+        "humanizer",
+        "de-robotify",
+        "authentic",
+        "anti-cliche"
+      ],
+      "color": "#27AE60",
+      "emoji": "✍️",
+      "vibe": "authentic, human-first, articulate, anti-cliche, ATS-optimized",
+      "difficulty": "Medium",
+      "experience_level": "Mid",
+      "career_stage": "Transition",
+      "industry": "All",
+      "skills": [
+        "Resume Humanization",
+        "Anti-Cliche Writing",
+        "ATS Optimization",
+        "Human Voice"
+      ],
+      "companies": [],
+      "related_agents": [
+        "ats-resume-reviewer",
+        "document-exporter"
+      ],
+      "related_workflows": [
+        "fresher-placement"
+      ],
+      "popularity_score": 94
+    },
+    {
+      "id": "document-exporter",
+      "name": "Document Exporter",
+      "division": "resume",
+      "description": "A specialized document layout and multi-format export engine that compiles resumes, cover letters, and portfolios into Word (.docx), PDF, HTML/CSS, and ATS plain-text templates.",
+      "status": "live",
+      "filename": "resume/document-exporter.md",
+      "tags": [
+        "resume",
+        "export",
+        "docx",
+        "pdf",
+        "ats-formatting"
+      ],
+      "color": "#2980B9",
+      "emoji": "📄",
+      "vibe": "precise, layout-obsessed, multi-format, ATS-compliant, pixel-perfect",
+      "difficulty": "Easy",
+      "experience_level": "All",
+      "career_stage": "All",
+      "industry": "All",
+      "skills": [
+        "Word Export",
+        "PDF Generation",
+        "HTML Templates",
+        "ATS Plain Text"
+      ],
+      "companies": [],
+      "related_agents": [
+        "resume-humanizer",
+        "ats-resume-reviewer"
+      ],
+      "related_workflows": [
+        "fresher-placement"
+      ],
+      "popularity_score": 93
+    },
+    {
+      "id": "ai-infrastructure-architect",
+      "name": "AI Infrastructure Architect",
+      "division": "ai-engineering",
+      "description": "An AI systems infrastructure specialist who architects distributed GPU training clusters, high-throughput vLLM/Triton serving pipelines, Ray cluster orchestration, and MLOps scaling.",
+      "status": "live",
+      "filename": "ai-engineering/ai-infrastructure-architect.md",
+      "tags": [
+        "ai-infrastructure",
+        "gpu-clusters",
+        "vllm",
+        "triton",
+        "mlops"
+      ],
+      "color": "#34495E",
+      "emoji": "🏗️",
+      "vibe": "infrastructure-heavy, performance-obsessed, scale-focused, low-latency",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "GPU Clusters",
+        "vLLM",
+        "Triton Serving",
+        "Ray Orchestration"
+      ],
+      "companies": [],
+      "related_agents": [
+        "llm-engineer",
+        "mlops-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 96
+    },
+    {
+      "id": "ai-agent-workflow-builder",
+      "name": "AI Agent Workflow Builder",
+      "division": "ai-engineering",
+      "description": "An autonomous agent systems architect specializing in multi-agent orchestration, LangGraph, CrewAI, AutoGen, Model Context Protocol (MCP) tool integration, state machine control, and structured tool-call execution.",
+      "status": "live",
+      "filename": "ai-engineering/ai-agent-workflow-builder.md",
+      "tags": [
+        "ai-agents",
+        "langgraph",
+        "crewai",
+        "mcp-tools",
+        "orchestration"
+      ],
+      "color": "#8E44AD",
+      "emoji": "🤖",
+      "vibe": "agentic, systematic, stateful, tool-obsessed, robust",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "LangGraph",
+        "Multi-Agent Systems",
+        "MCP Protocol",
+        "Tool Calling"
+      ],
+      "companies": [],
+      "related_agents": [
+        "ai-agent-architect",
+        "llm-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 97
+    },
+    {
+      "id": "multimodal-ai-engineer",
+      "name": "Multimodal AI Engineer",
+      "division": "ai-engineering",
+      "description": "A vision, speech, and cross-modal AI systems specialist who architects Vision-Language Models (VLMs), audio-speech processing pipelines (STT/TTS, Realtime Voice APIs), text-to-image/video generative pipelines, and multimodal vector embeddings.",
+      "status": "live",
+      "filename": "ai-engineering/multimodal-ai-engineer.md",
+      "tags": [
+        "multimodal-ai",
+        "vision-language",
+        "speech-audio",
+        "webrtc",
+        "vector-embeddings"
+      ],
+      "color": "#9B59B6",
+      "emoji": "👁️",
+      "vibe": "cross-modal, vision-speech focused, creative-technical, low-latency",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Growth",
+      "industry": "Tech",
+      "skills": [
+        "Vision Language Models",
+        "Realtime Voice APIs",
+        "WebRTC",
+        "Multimodal RAG"
+      ],
+      "companies": [],
+      "related_agents": [
+        "llm-engineer",
+        "computer-vision-engineer"
+      ],
+      "related_workflows": [
+        "technical-interview-week"
+      ],
+      "popularity_score": 95
+    },
+    {
+      "id": "ai-product-growth-builder",
+      "name": "AI Product Growth Builder",
+      "division": "ai-business",
+      "description": "An AI product strategy and growth architecture coach who specializes in scoping AI SaaS MVPs, designing retention loops for LLM products, managing token API cost structures, and building defensible AI monetization models.",
+      "status": "live",
+      "filename": "ai-business/ai-product-growth-builder.md",
+      "tags": [
+        "ai-business",
+        "ai-product",
+        "saas-mvp",
+        "unit-economics",
+        "semantic-caching"
+      ],
+      "color": "#16A085",
+      "emoji": "📈",
+      "vibe": "commercial, growth-focused, unit-economics aware, product-obsessed",
+      "difficulty": "Hard",
+      "experience_level": "Senior",
+      "career_stage": "Leadership",
+      "industry": "Tech",
+      "skills": [
+        "AI Product Strategy",
+        "Semantic Caching",
+        "LLM COGS Modeling",
+        "Retention Loops"
+      ],
+      "companies": [],
+      "related_agents": [
+        "ai-founder",
+        "ai-consultant"
+      ],
+      "related_workflows": [
+        "startup-launch"
+      ],
+      "popularity_score": 96
     }
   ]
 }

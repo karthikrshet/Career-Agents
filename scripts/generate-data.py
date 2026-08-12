@@ -580,13 +580,15 @@ def build_merged_readme(agents, divisions_data, workflows, bundles, companies, p
 
 <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Live_Deployment-career--agents.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white" height="32" alt="Vercel Deployment" /></a>
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Registry-career--agents-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="32" alt="NPM Registry" /></a>
+<a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/dm/career-agents?style=for-the-badge&logo=npm&logoColor=white&color=cb3837" height="32" alt="NPM Downloads" /></a>
 <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" height="32" alt="GitHub Repo" /></a>
 
 <br /><br />
 
-<img src="https://img.shields.io/badge/Release-v16.3.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v16.3.0" />
-<img src="https://img.shields.io/badge/Agents-146_Specialized-0284c7?style=flat-square&logo=openai&logoColor=white" height="26" alt="146 Agents" />
-<img src="https://img.shields.io/badge/Voice_AI-146_Voice_Agents-06b6d4?style=flat-square&logo=google-cloud&logoColor=white" height="26" alt="146 Voice Agents" />
+<img src="https://img.shields.io/badge/Release-v17.0.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v17.0.0" />
+<img src="https://img.shields.io/npm/dt/career-agents?style=flat-square&logo=npm&logoColor=white&color=cb3837" height="26" alt="Total Downloads" />
+<img src="https://img.shields.io/badge/Agents-{num_agents}_Specialized-0284c7?style=flat-square&logo=openai&logoColor=white" height="26" alt="{num_agents} Agents" />
+<img src="https://img.shields.io/badge/Voice_AI-{num_agents}_Voice_Agents-06b6d4?style=flat-square&logo=google-cloud&logoColor=white" height="26" alt="{num_agents} Voice Agents" />
 <img src="https://img.shields.io/badge/Divisions-19_Domains-7c3aed?style=flat-square&logo=diagram&logoColor=white" height="26" alt="19 Divisions" />
 <img src="https://img.shields.io/badge/AI_Gateways-18_Providers-d97706?style=flat-square&logo=cpu&logoColor=white" height="26" alt="18 Providers" />
 <img src="https://img.shields.io/badge/MCP-Stdio_Protocol-4f46e5?style=flat-square&logo=lightning&logoColor=white" height="26" alt="MCP Server" />
@@ -706,7 +708,7 @@ Add to `.continue/config.json`:
 
 ### 3. 🧩 How to Run & Enable Local Extensions & Plugins
 
-- **Marketplace Extensions (`/marketplace`):** Navigate to the **146 Agent Marketplace** in the web dashboard to toggle extensions like *STAR Behavioral Coach*, *LeetCode Complexity Tracker*, and *Salary Intelligence*.
+- **Marketplace Extensions (`/marketplace`):** Navigate to the **{num_agents} Agent Marketplace** in the web dashboard to toggle extensions like *STAR Behavioral Coach*, *LeetCode Complexity Tracker*, and *Salary Intelligence*.
 - **Custom Plugin Manifests (`packages/plugins`):** Drop a JSON manifest into the plugin directory to extend Copilot system prompts:
   ```json
   {{
@@ -724,7 +726,7 @@ Add to `.continue/config.json`:
 Run terminal commands anywhere using `scripts/cli.js`:
 
 ```bash
-# List all 146 agents and 19 divisions
+# List all {num_agents} agents and 19 divisions
 node scripts/cli.js list
 
 # Score PDF/Word resume against ATS standards
@@ -846,7 +848,7 @@ node scripts/cli.js mock google behavioral
 
 <br />
 
-### 18. 🧩 146 Agent Marketplace Extensions
+### 18. 🧩 {num_agents} Agent Marketplace Extensions
 *Browse, search, and enable domain-specific agent extensions across 19 career divisions.*
 ![Agent Marketplace Extensions](./apps/web/public/images/marketplace_agents.png)
 
@@ -859,7 +861,7 @@ node scripts/cli.js mock google behavioral
 <br />
 
 ### 20. 🎙️ AI Voice Agent Mock Interview Lab v1.0 (`/interview/voice`)
-*1-on-1 real-time spoken mock interviews with 146 specialized AI agents, 27 BCP-47 languages, Web Speech API integration, reactive interviewer orb visualizers, dynamic follow-up questions, evidence-based STAR scorecards, and Vercel AI Key resolution.*
+*1-on-1 real-time spoken mock interviews with {num_agents} specialized AI agents, 27 BCP-47 languages, Web Speech API integration, reactive interviewer orb visualizers, dynamic follow-up questions, evidence-based STAR scorecards, and Vercel AI Key resolution.*
 ![AI Voice Agent Lab](./apps/web/public/images/star_interview_lab.png)
 
 <br />
@@ -913,7 +915,7 @@ node scripts/cli.js mock google behavioral
 
 ---
 
-## 🤖 146 Agent Ecosystem ({num_divs} Divisions)
+## 🤖 {num_agents} Agent Ecosystem ({num_divs} Divisions)
 
 Career Agents manages **{num_agents} specialized AI agents** categorized across **{num_divs} divisions**. When a user sends a query to the Copilot, the routing engine tokenizes the input and compares it against agent names, descriptions, tags, and required skills to construct a matching scorecard:
 
