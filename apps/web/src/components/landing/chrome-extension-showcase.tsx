@@ -4,18 +4,15 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle2,
-  AlertCircle,
   Zap,
   Sparkles,
-  Bookmark,
-  Send,
-  HelpCircle,
-  FileCheck,
-  Building,
+  ChevronRight,
   Globe,
   ExternalLink,
-  ChevronRight
+  ShieldCheck,
+  Check,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const ChromeIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -26,221 +23,212 @@ const ChromeIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <line x1="10.88" y1="21.94" x2="15.46" y2="14" />
   </svg>
 );
-import { Button } from "@/components/ui/button";
 
 export function ChromeExtensionShowcase() {
   const [step, setStep] = useState(1);
 
   const steps = [
-    { id: 1, title: "1. Detect Job Page", desc: "Auto-parses LinkedIn, Indeed, Glassdoor" },
-    { id: 2, title: "2. Real-Time ATS Score", desc: "Instantly audits match against your profile" },
-    { id: 3, title: "3. Skill Gap Analysis", desc: "Highlights missing keywords & experience" },
-    { id: 4, title: "4. One-Click Auto-Fill", desc: "Fills ATS form fields with calibrated data" },
-    { id: 5, title: "5. Generate Questions", desc: "Extracts custom company interview prep" },
+    { id: 1, title: "1. Detect Role", desc: "Auto-parses LinkedIn & Greenhouse" },
+    { id: 2, title: "2. Real-Time ATS", desc: "96.8% Instant match calibration" },
+    { id: 3, title: "3. Skill Gap", desc: "Identifies 2 missing keywords" },
+    { id: 4, title: "4. Auto-Fill", desc: "1-click tailored ATS form submission" },
+    { id: 5, title: "5. STAR Prep", desc: "Generates custom interview questions" },
   ];
 
   return (
-    <section id="extension" className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
+    <section id="extension" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 font-sans">
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono font-medium mb-4">
+      <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-sky-400 text-xs font-mono font-medium mb-3">
           <ChromeIcon className="w-3.5 h-3.5" /> Browser Copilot Extension
         </div>
-        <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Supercharge Job Applications{" "}
-          <span className="bg-gradient-to-r from-purple-400 via-pink-300 to-indigo-400 bg-clip-text text-transparent">
-            Right Inside Your Browser
-          </span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          Supercharge Applications <span className="text-sky-400">Right in Your Browser</span>
         </h2>
-        <p className="mt-4 text-base text-slate-300">
-          The Career Agents Chrome Extension seamlessly embeds into LinkedIn, Indeed, and company job portals. Parse roles, calculate real-time ATS match scores, auto-fill forms, and generate interview questions in seconds.
+        <p className="mt-3 text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+          The Career Agents Chrome Extension seamlessly embeds into LinkedIn, Indeed, and Greenhouse. Parse roles, calculate real-time ATS scores, and auto-fill forms in seconds.
         </p>
       </div>
 
-      {/* Step Selector Buttons */}
-      <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+      {/* Step Tabs Row */}
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-8 justify-start sm:justify-center">
         {steps.map((s) => (
           <button
             key={s.id}
             onClick={() => setStep(s.id)}
-            className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all shrink-0 flex items-center gap-1.5 ${
               step === s.id
-                ? "bg-purple-500/20 border border-purple-500/40 text-purple-300 shadow-[0_0_20px_rgba(168,85,247,0.25)]"
-                : "bg-white/5 border border-white/10 text-slate-400 hover:text-white"
+                ? "bg-sky-500 text-black font-bold shadow"
+                : "bg-[#070b14] border border-white/10 text-slate-400 hover:text-white"
             }`}
           >
-            {s.title}
+            <span>{s.title}</span>
           </button>
         ))}
       </div>
 
-      {/* Browser Window Mockup */}
-      <div className="relative rounded-2xl bg-[#090d18] border border-purple-500/20 shadow-[0_0_60px_rgba(168,85,247,0.15)] overflow-hidden backdrop-blur-2xl max-w-5xl mx-auto">
-        {/* Browser Top Bar */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10 bg-white/[0.03]">
-          <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
-            <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
-            <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
+      {/* Browser Simulation Container */}
+      <div className="rounded-2xl sm:rounded-3xl bg-[#070b14] border border-white/10 overflow-hidden shadow-2xl">
+        {/* Browser Top Navigation Bar */}
+        <div className="flex items-center gap-3 px-4 sm:px-6 py-3 border-b border-white/10 bg-white/[0.02]">
+          <div className="flex gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
           </div>
-          <div className="flex-1 max-w-md mx-auto px-3 py-1 rounded-lg bg-black/40 border border-white/10 flex items-center gap-2 text-xs text-slate-400 font-mono">
-            <Globe className="w-3.5 h-3.5 text-slate-500" />
-            <span className="text-slate-300">https://www.linkedin.com/jobs/view/3948201/</span>
+
+          <div className="flex-1 max-w-xl mx-auto flex items-center gap-2 px-3 py-1 rounded-lg bg-black/50 border border-white/10 text-xs font-mono text-slate-400">
+            <Globe className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+            <span className="text-slate-200 truncate">https://www.linkedin.com/jobs/view/3948201/</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[10px] font-mono font-bold flex items-center gap-1 border border-purple-500/30">
-              <ChromeIcon className="w-3 h-3" /> Extension Active
-            </span>
+
+          <div className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="hidden sm:inline">Copilot Active</span>
           </div>
         </div>
 
-        {/* Browser Page Body Split */}
-        <div className="grid grid-cols-1 md:grid-cols-3 min-h-[420px]">
-          {/* Left Column: Simulated LinkedIn Web Page */}
-          <div className="md:col-span-2 p-6 border-r border-white/10 bg-white/[0.01] space-y-4">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+        {/* Browser Body Split Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 p-4 sm:p-8 gap-6">
+          {/* Left: Job Page Preview (7 cols) */}
+          <div className="lg:col-span-7 space-y-4 p-5 sm:p-6 rounded-xl bg-black/40 border border-white/10 text-xs">
+            <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-4">
               <div>
-                <div className="text-xl font-bold text-white">Staff Infrastructure Software Engineer</div>
-                <div className="text-xs text-purple-400 font-medium mt-0.5 flex items-center gap-1">
-                  <Building className="w-3.5 h-3.5" /> Stripe • San Francisco, CA (Hybrid)
+                <h3 className="text-base sm:text-lg font-bold text-white">
+                  Staff Infrastructure Software Engineer
+                </h3>
+                <div className="text-sky-400 font-mono mt-0.5">
+                  Stripe • San Francisco, CA (Hybrid)
                 </div>
               </div>
-              <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold">
-                $260,000 - $340,000 / yr
+              <span className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 font-mono text-slate-300">
+                $260k - $340k
               </span>
             </div>
 
-            <div className="text-xs text-slate-300 space-y-3 leading-relaxed">
-              <p>
-                <strong className="text-white">About the role:</strong> Stripe is looking for a Staff Infrastructure Engineer to join our Core Storage and Database Platform team. You will lead the architectural evolution of our multi-region distributed databases handling trillions in volume.
-              </p>
-              <div>
-                <strong className="text-white">Requirements:</strong>
-                <ul className="list-disc pl-4 mt-1 space-y-1 text-slate-400">
-                  <li>8+ years building high-concurrency backend microservices in Go or C++</li>
-                  <li>Deep expertise in Raft consensus, Spanner, or distributed storage engines</li>
-                  <li>Track record of leading cross-functional platform engineering teams</li>
-                </ul>
+            <p className="text-slate-300 leading-relaxed font-normal">
+              Stripe is looking for a Staff Infrastructure Engineer to join our Core Storage and Database Platform team. You will lead the architectural evolution of our multi-region distributed databases.
+            </p>
+
+            <div className="space-y-1.5 pt-2">
+              <div className="font-semibold text-white">Core Requirements:</div>
+              <div className="flex items-center gap-2 text-slate-400">
+                <Check className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                <span>8+ years building high-concurrency backend services in Go or C++</span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-400">
+                <Check className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                <span>Deep expertise in Raft consensus, Spanner, or distributed storage</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Embedded Career Agents Floating Drawer */}
-          <div className="p-5 bg-[#0d1222] border-l border-purple-500/30 flex flex-col justify-between space-y-4 shadow-2xl">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-purple-400" />
-                  <span className="text-xs font-bold text-white">Career Agents Overlay</span>
+          {/* Right: Floating Copilot Panel (5 cols) */}
+          <div className="lg:col-span-5 p-5 sm:p-6 rounded-xl bg-[#090e1c] border border-sky-500/30 space-y-5">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+              <div className="flex items-center gap-2">
+                <div className="p-1.5 rounded-lg bg-sky-500/10 text-sky-400">
+                  <Sparkles className="w-4 h-4" />
                 </div>
-                <span className="text-[10px] font-mono text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded">
-                  Step {step}/5
-                </span>
+                <span className="font-bold text-white text-xs">Career Agents Copilot</span>
               </div>
-
-              <AnimatePresence mode="wait">
-                {step === 1 && (
-                  <motion.div
-                    key="step1"
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    className="space-y-3"
-                  >
-                    <div className="p-3 rounded-xl bg-purple-950/30 border border-purple-500/30 text-xs text-purple-200">
-                      <div className="font-bold flex items-center gap-1.5">
-                        <CheckCircle2 className="w-4 h-4 text-purple-400" /> Page Successfully Parsed
-                      </div>
-                      <div className="text-[11px] text-slate-300 mt-1">
-                        Parsed role title, company profile, tech stack requirements, and compensation bounds.
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {step === 2 && (
-                  <motion.div
-                    key="step2"
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    className="space-y-3 text-center"
-                  >
-                    <div className="relative w-24 h-24 mx-auto flex items-center justify-center rounded-full border-4 border-purple-400 text-3xl font-extrabold font-mono text-white shadow-[0_0_30px_rgba(168,85,247,0.4)]">
-                      94%
-                    </div>
-                    <div className="text-xs font-bold text-white">High ATS Compatibility Match</div>
-                    <p className="text-[11px] text-slate-400">
-                      Your master resume aligns with 18 of 19 primary candidate criteria.
-                    </p>
-                  </motion.div>
-                )}
-
-                {step === 3 && (
-                  <motion.div
-                    key="step3"
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    className="space-y-2 text-xs"
-                  >
-                    <div className="text-xs font-bold text-white">Detected Keyword Gaps:</div>
-                    <div className="p-2 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] flex items-center justify-between">
-                      <span>Distributed Raft Consensus</span>
-                      <span className="font-mono text-[10px]">Add +2 bullets</span>
-                    </div>
-                    <div className="p-2 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-[11px] flex items-center justify-between">
-                      <span>Multi-Region Failover</span>
-                      <span className="font-mono text-[10px]">Match Found</span>
-                    </div>
-                  </motion.div>
-                )}
-
-                {step === 4 && (
-                  <motion.div
-                    key="step4"
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    className="space-y-3 text-xs"
-                  >
-                    <div className="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-emerald-300">
-                      <div className="font-bold flex items-center gap-1.5">
-                        <FileCheck className="w-4 h-4 text-emerald-400" /> One-Click Auto-Fill Ready
-                      </div>
-                      <div className="text-[11px] text-slate-300 mt-1">
-                        Populated 12 application fields including Work Authorization, Portfolio URLs, and Tailored Summary.
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {step === 5 && (
-                  <motion.div
-                    key="step5"
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    className="space-y-2 text-xs"
-                  >
-                    <div className="text-xs font-bold text-white">Generated Stripe Specific Questions:</div>
-                    <div className="p-2.5 rounded bg-white/5 border border-white/10 text-slate-300 text-[11px]">
-                      "How do you approach database schema migrations at Stripe scale without locking tables?"
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <span className="text-[10px] font-mono text-sky-300 bg-sky-500/10 px-2 py-0.5 rounded">
+                Step {step}/5
+              </span>
             </div>
 
-            {/* Bottom Action Controls */}
-            <div className="pt-3 border-t border-white/10 flex items-center gap-2">
-              <Button
-                onClick={() => setStep((prev) => (prev < 5 ? prev + 1 : 1))}
-                className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-xs py-2 rounded-lg"
-              >
-                <span>{step < 5 ? "Next Step →" : "Restart Demo"}</span>
-              </Button>
-            </div>
+            <AnimatePresence mode="wait">
+              {step === 1 && (
+                <motion.div
+                  key="step1"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="space-y-3 font-mono text-xs"
+                >
+                  <div className="text-emerald-400 font-semibold">✓ Role Detected &amp; Parsed</div>
+                  <p className="text-slate-300 font-normal text-[11px] leading-relaxed">
+                    Extracted role title, tech stack requirements (Golang, Distributed Storage), and compensation bounds.
+                  </p>
+                  <div className="p-2.5 rounded-lg bg-black/40 border border-white/10 text-slate-400 text-[11px]">
+                    Candidate profile match ready for evaluation.
+                  </div>
+                </motion.div>
+              )}
+
+              {step === 2 && (
+                <motion.div
+                  key="step2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="space-y-3 font-mono text-xs"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400">Calibrated ATS Score:</span>
+                    <span className="text-lg font-bold text-emerald-400">96.8%</span>
+                  </div>
+                  <p className="text-slate-300 font-normal text-[11px] leading-relaxed">
+                    High signal match across Raft consensus, Go concurrency, and distributed data systems.
+                  </p>
+                </motion.div>
+              )}
+
+              {step === 3 && (
+                <motion.div
+                  key="step3"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="space-y-3 font-mono text-xs"
+                >
+                  <div className="text-sky-400 font-semibold">Skill Gap Diagnosis:</div>
+                  <div className="space-y-1 text-[11px] text-slate-300">
+                    <div>✓ Raft Consensus (Verified via GitHub)</div>
+                    <div>✓ Distributed Spanner (Calibrated in v2.4)</div>
+                    <div className="text-emerald-400">✓ 0 Critical missing skills</div>
+                  </div>
+                </motion.div>
+              )}
+
+              {step === 4 && (
+                <motion.div
+                  key="step4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="space-y-3 font-mono text-xs"
+                >
+                  <div className="text-emerald-400 font-semibold">✓ 1-Click Form Calibrated</div>
+                  <p className="text-slate-300 font-normal text-[11px] leading-relaxed">
+                    ATS application form fields populated with tailored cover note and verified resume JSON.
+                  </p>
+                </motion.div>
+              )}
+
+              {step === 5 && (
+                <motion.div
+                  key="step5"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="space-y-3 font-mono text-xs"
+                >
+                  <div className="text-sky-400 font-semibold">STAR Interview Focus:</div>
+                  <p className="text-slate-300 font-normal text-[11px] leading-relaxed">
+                    Generated 5 custom mock questions on distributed consensus failure modes and high-throughput microservices.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <button
+              onClick={() => setStep((prev) => (prev % 5) + 1)}
+              className="w-full py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-black font-semibold text-xs transition-colors flex items-center justify-center gap-1.5"
+            >
+              <span>{step === 5 ? "Restart Simulation" : "Next Copilot Step"}</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       </div>
