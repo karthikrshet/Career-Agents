@@ -1,144 +1,131 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   GitBranch,
   Code2,
-  Shield,
+  ShieldCheck,
   CheckCircle2,
-  Star,
-  GitFork,
+  ArrowRight,
+  Terminal,
+  Cpu,
   Check,
-  Zap,
-  Terminal
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function GitHubAnalyzerShowcase() {
+  const capabilities = [
+    { skill: "Distributed Systems & Raft", level: "Expert (L6+)", status: "Verified" },
+    { skill: "Model Context Protocol (MCP)", level: "Production", status: "Verified" },
+    { skill: "TypeScript & Next.js Architecture", level: "Senior", status: "Verified" },
+    { skill: "Docker & Container Tooling", level: "Advanced", status: "Verified" },
+  ];
+
   return (
-    <section className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
+    <section id="github" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 font-sans">
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono font-medium mb-4">
-          <GitBranch className="w-3.5 h-3.5" /> Repository & Codebase Audit
+      <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-sky-400 text-xs font-mono font-medium mb-3">
+          <GitBranch className="w-3.5 h-3.5" /> Repository &amp; Codebase Audit
         </div>
-        <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Audit GitHub Repositories for{" "}
-          <span className="bg-gradient-to-r from-purple-400 via-pink-300 to-cyan-400 bg-clip-text text-transparent">
-            Proof of Engineering
-          </span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          Audit GitHub Repositories for <span className="text-sky-400">Proof of Engineering</span>
         </h2>
-        <p className="mt-4 text-base text-slate-300">
+        <p className="mt-3 text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
           Turn public code repositories into verified technical evidence. Analyze architecture patterns, test coverage density, README clarity, and commit consistency.
         </p>
       </div>
 
-      {/* Main Glass Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Card 1: Repository Overview */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#090d18] border border-purple-500/20 backdrop-blur-2xl space-y-6">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <div className="flex items-center gap-2">
-              <Code2 className="w-5 h-5 text-purple-400" />
-              <span className="font-bold text-white">Repository Audit</span>
+      {/* Main Consolidated Code Inspector Panel */}
+      <div className="rounded-2xl sm:rounded-3xl bg-[#070b14] border border-white/10 overflow-hidden shadow-2xl p-6 sm:p-8 space-y-6">
+        {/* Repository Header Strip */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-sky-500/10 border border-sky-400/20 text-sky-400">
+              <Code2 className="w-5 h-5" />
             </div>
-            <span className="text-xs font-mono text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded">
-              Audited
+            <div>
+              <div className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                <span>karthikrshet/Career-Agents</span>
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  Verified Audit
+                </span>
+              </div>
+              <div className="text-xs text-slate-400 font-mono mt-0.5">
+                167 AI Agents • MIT License • TypeScript / Python Architecture
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs font-mono">
+            <span className="px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-slate-300">
+              CI/CD: Passed (0 errors)
             </span>
           </div>
+        </div>
 
-          <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-            <div className="text-sm font-bold text-white flex items-center justify-between">
-              <span>karthikrshet/Career-Agents</span>
-              <span className="text-xs font-mono text-purple-400">★ 2.4k</span>
+        {/* Audit Metrics & Capabilities Split */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Left: Health & Security Matrix (5 cols) */}
+          <div className="lg:col-span-5 space-y-3 font-mono text-xs">
+            <div className="text-slate-400 font-semibold text-[11px] uppercase tracking-wider">
+              Health &amp; Architectural Score:
             </div>
-            <p className="text-xs text-slate-400">
-              Open-source AI Career Operating System with 146 specialized agents & MCP tools.
-            </p>
+            <div className="space-y-2">
+              <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 flex items-center justify-between">
+                <span className="text-slate-300">Architecture Modularity</span>
+                <span className="text-emerald-400 font-bold">A+ (Clean DAG)</span>
+              </div>
+              <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 flex items-center justify-between">
+                <span className="text-slate-300">Test Suite Coverage</span>
+                <span className="text-sky-400 font-bold">92.4% Verified</span>
+              </div>
+              <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 flex items-center justify-between">
+                <span className="text-slate-300">Security Audit Score</span>
+                <span className="text-emerald-400 font-bold">98/100 (Clean)</span>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-3">
-            <div className="flex justify-between text-xs text-slate-300">
-              <span>Test Suite Coverage</span>
-              <span className="text-emerald-400 font-mono font-bold">98.4%</span>
+          {/* Right: Extracted Proof-of-Work Capabilities (7 cols) */}
+          <div className="lg:col-span-7 space-y-3 font-mono text-xs">
+            <div className="text-slate-400 font-semibold text-[11px] uppercase tracking-wider">
+              Verified Technical Competencies:
             </div>
-            <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
-              <div className="h-full bg-emerald-400 rounded-full" style={{ width: "98.4%" }} />
-            </div>
-
-            <div className="flex justify-between text-xs text-slate-300">
-              <span>README Documentation Density</span>
-              <span className="text-cyan-400 font-mono font-bold">94%</span>
-            </div>
-            <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
-              <div className="h-full bg-cyan-400 rounded-full" style={{ width: "94%" }} />
+            <div className="space-y-2">
+              {capabilities.map((c) => (
+                <div
+                  key={c.skill}
+                  className="p-3 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-2 text-slate-200">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                    <span className="font-sans text-xs">{c.skill}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] text-slate-400">{c.level}</span>
+                    <span className="px-2 py-0.5 rounded text-[10px] bg-sky-500/10 text-sky-300">
+                      {c.status}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Card 2: Security & Architecture Breakdown */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#090d18] border border-purple-500/20 backdrop-blur-2xl space-y-6">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <div className="flex items-center gap-2">
-              <Shield className="w-5 h-5 text-cyan-400" />
-              <span className="font-bold text-white">Security & Clean Code</span>
-            </div>
-            <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">
-              PASSED
-            </span>
+        {/* Action Bottom Bar */}
+        <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
+          <div className="text-slate-400 font-mono text-[11px]">
+            ✓ Output formatted for FAANG hiring manager and engineering lead review.
           </div>
-
-          <div className="space-y-3 text-xs">
-            <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-slate-200">
-              <span className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Zero Hardcoded Secrets
-              </span>
-              <span className="text-emerald-400 font-mono">Clean</span>
-            </div>
-            <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-slate-200">
-              <span className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Strict TypeScript Types
-              </span>
-              <span className="text-emerald-400 font-mono">100%</span>
-            </div>
-            <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-slate-200">
-              <span className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Modular Architecture
-              </span>
-              <span className="text-emerald-400 font-mono">Verified</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Card 3: Simulated Contribution Matrix Heatmap */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#090d18] border border-purple-500/20 backdrop-blur-2xl space-y-6">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <div className="flex items-center gap-2">
-              <Terminal className="w-5 h-5 text-indigo-400" />
-              <span className="font-bold text-white">Commit Heatmap Matrix</span>
-            </div>
-            <span className="text-xs font-mono text-cyan-300">365 Days Active</span>
-          </div>
-
-          <div className="grid grid-cols-12 gap-1.5 p-3 rounded-2xl bg-white/[0.02] border border-white/10">
-            {Array.from({ length: 60 }).map((_, i) => {
-              const intensity = i % 5;
-              const bg =
-                intensity === 4
-                  ? "bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.5)]"
-                  : intensity === 3
-                  ? "bg-cyan-500"
-                  : intensity === 2
-                  ? "bg-cyan-700/60"
-                  : intensity === 1
-                  ? "bg-white/10"
-                  : "bg-white/5";
-              return <div key={i} className={`h-4 rounded-sm ${bg}`} />;
-            })}
-          </div>
-
-          <div className="text-xs text-slate-400 text-center font-mono">
-            1,420 Commits in the last 12 months • 99.8% Code Quality Score
-          </div>
+          <Link href="/github">
+            <Button size="sm" className="bg-sky-500 hover:bg-sky-400 text-black font-semibold text-xs px-4 py-2 rounded-lg">
+              <span>Run Repository Audit</span>
+              <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
