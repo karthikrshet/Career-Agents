@@ -11,9 +11,12 @@ console.log('--- CAREER-AGENTS MCP SERVER INTEGRATION TESTS ---');
 
 const mcpProcess = spawn('node', [path.join(root, 'scripts', 'cli.js'), 'mcp']);
 
+const REQUEST_TIMEOUT_MS = 15000;
+
 let responseBuffer = '';
 const pendingRequests = new Map();
 let nextId = 1;
+let serverExit = null;
 
 mcpProcess.stdout.on('data', (data) => {
   responseBuffer += data.toString();
@@ -24,9 +27,27 @@ mcpProcess.stderr.on('data', (data) => {
   console.log(`[Stderr] ${data.toString().trim()}`);
 });
 
+mcpProcess.on('error', (err) => {
+  console.error(`MCP Server process failed to spawn: ${err.message}`);
+  serverExit = { code: null, reason: err.message };
+  rejectAllPending(new Error(`MCP server failed to spawn: ${err.message}`));
+});
+
 mcpProcess.on('close', (code) => {
   console.log(`MCP Server process closed with code ${code}`);
+  serverExit = { code, reason: `exited with code ${code}` };
+  // Without this, in-flight requests never settle, the event loop drains and
+  // Node exits 0 - making a crashed server look like a passing test run.
+  rejectAllPending(new Error(`MCP server exited with code ${code} before responding`));
 });
+
+function rejectAllPending(err) {
+  for (const [id, pending] of pendingRequests) {
+    pendingRequests.delete(id);
+    clearTimeout(pending.timer);
+    pending.reject(err);
+  }
+}
 
 function checkResponses() {
   const lines = responseBuffer.split('\n');
@@ -38,9 +59,10 @@ function checkResponses() {
       const response = JSON.parse(line);
       const { id } = response;
       if (id !== undefined && pendingRequests.has(id)) {
-        const resolve = pendingRequests.get(id);
+        const pending = pendingRequests.get(id);
         pendingRequests.delete(id);
-        resolve(response);
+        clearTimeout(pending.timer);
+        pending.resolve(response);
       }
     } catch (e) {
       console.error('Failed to parse line response:', line, e.message);
@@ -49,7 +71,12 @@ function checkResponses() {
 }
 
 function sendRequest(method, params) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
+    if (serverExit) {
+      reject(new Error(`MCP server unavailable (${serverExit.reason})`));
+      return;
+    }
+
     const id = nextId++;
     const payload = {
       jsonrpc: '2.0',
@@ -57,7 +84,11 @@ function sendRequest(method, params) {
       method,
       params
     };
-    pendingRequests.set(id, resolve);
+    const timer = setTimeout(() => {
+      pendingRequests.delete(id);
+      reject(new Error(`Timed out after ${REQUEST_TIMEOUT_MS}ms waiting for '${method}' response`));
+    }, REQUEST_TIMEOUT_MS);
+    pendingRequests.set(id, { resolve, reject, timer });
     mcpProcess.stdin.write(JSON.stringify(payload) + '\n');
   });
 }
@@ -70,6 +101,7 @@ async function runTests() {
 
   let passedCount = 0;
   let totalCount = 0;
+  let executionError = null;
 
   function assertTest(name, condition, details = '') {
     totalCount++;
@@ -395,17 +427,35 @@ async function runTests() {
   } catch (err) {
     console.error('Test Execution Error:', err);
     report.push(`\n**Execution Error:** ${err.message}`);
+    executionError = err;
   } finally {
     mcpProcess.kill();
-    
+
+    // A suite that ran no assertions is a failure, not a pass. Previously
+    // `totalCount === passedCount` was trivially true at 0 === 0, so a server
+    // that crashed on startup still exited 0.
+    const failures = [];
+    if (executionError) failures.push(`execution error: ${executionError.message}`);
+    if (totalCount === 0) failures.push('no tests executed');
+    if (passedCount !== totalCount) failures.push(`${totalCount - passedCount} of ${totalCount} tests failed`);
+
     report.push(`\n## Summary`);
     report.push(`- **Total tests**: ${totalCount}`);
     report.push(`- **Passed tests**: ${passedCount}`);
     report.push(`- **Failed tests**: ${totalCount - passedCount}`);
-    
-    fs.writeFileSync(path.join(root, 'docs', 'reports', 'MCP_TEST_REPORT.md'), report.join('\n'), 'utf8');
+    report.push(`- **Result**: ${failures.length === 0 ? 'PASS' : `FAIL (${failures.join('; ')})`}`);
+
+    const reportDir = path.join(root, 'docs', 'reports');
+    fs.mkdirSync(reportDir, { recursive: true });
+    fs.writeFileSync(path.join(reportDir, 'MCP_TEST_REPORT.md'), report.join('\n'), 'utf8');
     console.log('\n--- TESTS COMPLETED. REPORT GENERATED AT docs/reports/MCP_TEST_REPORT.md ---');
-    process.exit(totalCount === passedCount ? 0 : 1);
+
+    if (failures.length > 0) {
+      console.error(`MCP INTEGRATION TESTS FAILED: ${failures.join('; ')}`);
+      process.exit(1);
+    }
+    console.log(`=== ALL ${totalCount} MCP INTEGRATION TESTS PASSED ===`);
+    process.exit(0);
   }
 }
 

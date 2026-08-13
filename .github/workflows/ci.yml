@@ -24,7 +24,9 @@ jobs:
         run: npm install
       - name: Run validate script
         run: python scripts/validate.py
-      - name: Run CLI integration tests
+      - name: Run registry & doctor validation
+        run: npm run test:validate
+      - name: Run Node test suites
         run: npm test
 
   validate-frontmatter:

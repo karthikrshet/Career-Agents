@@ -11,7 +11,14 @@
     ".": "./scripts/sdk.js"
   },
   "scripts": {
-    "test": "node ./scripts/cli.js validate",
+    "test": "npm run test:unit && npm run test:cli && npm run test:resume && npm run test:github && npm run test:dashboard && npm run test:mcp",
+    "test:unit": "node scripts/test-unit.js",
+    "test:cli": "node scripts/test-cli.js",
+    "test:resume": "node scripts/test-resume.js",
+    "test:github": "node scripts/test-github.js",
+    "test:dashboard": "node scripts/test-dashboard.js",
+    "test:mcp": "node scripts/test-mcp.js",
+    "test:validate": "node ./scripts/cli.js validate",
     "clean": "node scripts/clean-dev.js",
     "dev": "node scripts/dev.js",
     "doctor": "node scripts/doctor.js",
