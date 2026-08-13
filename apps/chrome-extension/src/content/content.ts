@@ -1,6 +1,15 @@
 // apps/chrome-extension/src/content/content.ts
 import { JobDetails, AutofillProfile, CodeReviewPayload } from "../messaging/types";
 
+function hasHostnameMatch(urlStr: string, domains: string[]): boolean {
+  try {
+    const hostname = new URL(urlStr).hostname.toLowerCase();
+    return domains.some((d) => hostname === d || hostname.endsWith("." + d));
+  } catch {
+    return false;
+  }
+}
+
 function getJobMetadata(): JobDetails {
   let title = "";
   let company = "";
@@ -9,7 +18,7 @@ function getJobMetadata(): JobDetails {
 
   const href = window.location.href;
 
-  if (href.includes("linkedin.com")) {
+  if (hasHostnameMatch(href, ["linkedin.com"])) {
     const titleEl = document.querySelector(".job-details-jobs-unified-top-card__job-title, .jobs-unified-top-card__job-title, h1") as HTMLElement;
     const companyEl = document.querySelector(".job-details-jobs-unified-top-card__company-name, .jobs-unified-top-card__company-name, .job-details-jobs-unified-top-card__primary-description a") as HTMLElement;
     const locationEl = document.querySelector(".job-details-jobs-unified-top-card__primary-description span, .jobs-unified-top-card__bullet, .job-details-jobs-unified-top-card__workplace-type") as HTMLElement;
@@ -19,7 +28,7 @@ function getJobMetadata(): JobDetails {
     company = companyEl?.innerText.trim() || "LinkedIn Employer";
     location = locationEl?.innerText.trim() || "";
     text = descEl?.innerText.trim() || document.body.innerText.slice(0, 8000);
-  } else if (href.includes("greenhouse.io") || href.includes("lever.co")) {
+  } else if (hasHostnameMatch(href, ["greenhouse.io", "lever.co"])) {
     const titleEl = document.querySelector("h1, .app-title, .posting-header h2") as HTMLElement;
     const companyEl = document.querySelector(".company-name, .posting-header .company") as HTMLElement;
     const descEl = document.querySelector("#content, #main, .posting-page, .section-wrapper") as HTMLElement;
@@ -49,7 +58,7 @@ function getCodeProblemMetadata(): CodeReviewPayload {
   let codeSnippet = "";
   let language = "python";
 
-  if (href.includes("leetcode.com")) {
+  if (hasHostnameMatch(href, ["leetcode.com"])) {
     const titleEl = document.querySelector("div[class*='title'], h4[data-cy='question-title'], .mr-2") as HTMLElement;
     if (titleEl) title = titleEl.innerText.trim();
 
@@ -63,7 +72,7 @@ function getCodeProblemMetadata(): CodeReviewPayload {
 
     const langBtn = document.querySelector("button[id*='lang'], button[class*='lang']") as HTMLElement;
     if (langBtn) language = langBtn.innerText.toLowerCase();
-  } else if (href.includes("hackerrank.com")) {
+  } else if (hasHostnameMatch(href, ["hackerrank.com"])) {
     const titleEl = document.querySelector(".page-label, .challenge-title") as HTMLElement;
     if (titleEl) title = titleEl.innerText.trim();
 
@@ -97,7 +106,7 @@ function fillApplicationForm(profile: AutofillProfile): { success: boolean; fill
 
     const id = (input.id || "").toLowerCase();
     const name = (input.name || "").toLowerCase();
-    const placeholder = (input.placeholder || "").toLowerCase();
+    const placeholder = (input.getAttribute("placeholder") || "").toLowerCase();
     const ariaLabel = (input.getAttribute("aria-label") || "").toLowerCase();
     const autocomplete = (input.getAttribute("autocomplete") || "").toLowerCase();
     const dataAutomationId = (input.getAttribute("data-automation-id") || "").toLowerCase();

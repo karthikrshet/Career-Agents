@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Search, Mic, MicOff, Copy, Check, Sparkles, FileText, Code2, UserCheck, Settings, Send, Bot, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Search, Mic, MicOff, Copy, Check, Sparkles, Code2, UserCheck, Settings, Bot, Zap } from "lucide-react";
 import { getPreferences, savePreferences, StoragePreferences } from "../storage";
 import { JobDetails, CodeReviewPayload } from "../messaging/types";
 import { generateLiveInterviewAnswer, generateCodeReviewHints, generateRecruiterOutreachEmail } from "../services/api";
@@ -58,18 +58,13 @@ export function Sidepanel() {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs && tabs[0] && tabs[0].url) {
         const url = tabs[0].url;
-        let hostname = "webpage";
+        let hostname = "";
         try {
-          hostname = new URL(url).hostname.replace("www.", "");
+          hostname = new URL(url).hostname.toLowerCase();
         } catch {}
-        setActiveHost(hostname);
-        if (
-          url.includes("linkedin.com") ||
-          url.includes("lever.co") ||
-          url.includes("greenhouse.io") ||
-          url.includes("leetcode.com") ||
-          url.includes("hackerrank.com")
-        ) {
+        setActiveHost(hostname ? hostname.replace("www.", "") : "webpage");
+        const supportedDomains = ["linkedin.com", "lever.co", "greenhouse.io", "leetcode.com", "hackerrank.com", "wellfound.com", "workday.com", "indeed.com"];
+        if (supportedDomains.some((d) => hostname === d || hostname.endsWith("." + d))) {
           setIsSupportedSite(true);
         }
       }
@@ -494,6 +489,7 @@ ${portfolioLink}`;
                   </ul>
                 </div>
 
+                {/* Recruiter Outreach Card */}
                 <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     <h5 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider">Recruiter InMail Outreach</h5>
@@ -513,6 +509,29 @@ ${portfolioLink}`;
                     {recruiterEmail}
                   </div>
                 </div>
+
+                {/* Cover Letter Card */}
+                {coverLetter && (
+                  <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-2">
+                    <div className="flex items-center justify-between">
+                      <h5 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider">Tailored Cover Letter</h5>
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(coverLetter);
+                          setCopiedCl(true);
+                          setTimeout(() => setCopiedCl(false), 2000);
+                        }}
+                        className="flex items-center gap-1 text-[10px] text-slate-400 hover:text-white"
+                      >
+                        {copiedCl ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                        <span>{copiedCl ? "Copied" : "Copy"}</span>
+                      </button>
+                    </div>
+                    <div className="bg-black/30 border border-cyan-500/20 rounded-lg p-2.5 font-mono text-[10px] leading-relaxed max-h-40 overflow-y-auto whitespace-pre-wrap text-slate-300">
+                      {coverLetter}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>

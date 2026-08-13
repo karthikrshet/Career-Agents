@@ -1,6 +1,5 @@
 // apps/chrome-extension/src/services/api.ts
 import { getPreferences, savePreferences } from "../storage";
-import { JobDetails } from "../messaging/types";
 
 async function getAuthHeaders(): Promise<HeadersInit> {
   const prefs = await getPreferences();
