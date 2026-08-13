@@ -1,39 +1,34 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+// Imported from the module directly rather than the `packages/security` barrel,
+// which re-exports url-validator and would pull Node's `net`/`dns` into the
+// Edge runtime this middleware compiles to.
+import { checkRateLimit } from "packages/security/rate-limiter";
 
-// Simple IP-based in-memory rate limiter cache
-const rateLimitCache = new Map<string, { count: number; windowStart: number }>();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 60; // 60 requests per minute
+const RATE_LIMIT_BURST = 10;
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const res = NextResponse.next();
 
   // 1. Enforce Rate Limiting for API routes
+  //
+  // Delegates to packages/security/rate-limiter, which evicts idle buckets.
+  // The previous inline Map was never pruned, so it retained one entry per
+  // distinct client IP for the lifetime of the process.
   if (pathname.startsWith("/api/")) {
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || req.headers.get("x-real-ip") || "127.0.0.1";
-    const now = Date.now();
-    const clientLimit = rateLimitCache.get(ip);
 
-    if (!clientLimit) {
-      rateLimitCache.set(ip, { count: 1, windowStart: now });
-    } else {
-      if (now - clientLimit.windowStart < RATE_LIMIT_WINDOW_MS) {
-        if (clientLimit.count >= MAX_REQUESTS_PER_WINDOW) {
-          return new NextResponse(
-            JSON.stringify({ success: false, error: "Too many requests. Please try again later." }),
-            {
-              status: 429,
-              headers: { "Content-Type": "application/json", "Retry-After": "60" }
-            }
-          );
+    if (!checkRateLimit(ip, MAX_REQUESTS_PER_WINDOW, RATE_LIMIT_WINDOW_MS, RATE_LIMIT_BURST)) {
+      return new NextResponse(
+        JSON.stringify({ success: false, error: "Too many requests. Please try again later." }),
+        {
+          status: 429,
+          headers: { "Content-Type": "application/json", "Retry-After": "60" }
         }
-        clientLimit.count++;
-      } else {
-        clientLimit.count = 1;
-        clientLimit.windowStart = now;
-      }
+      );
     }
   }
 
