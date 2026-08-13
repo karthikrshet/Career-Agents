@@ -1,200 +1,199 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  LayoutDashboard,
+  Activity,
   FileText,
-  Bot,
   Mic,
-  Briefcase,
-  Upload,
-  GitBranch,
   Terminal,
-  CheckCircle2,
+  ArrowRight,
   Sparkles,
-  ChevronRight,
-  ArrowUpRight
+  CheckCircle2,
+  Cpu,
+  Play,
+  RotateCcw,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function DashboardPreview() {
-  const [activeTab, setActiveTab] = useState<"overview" | "resume" | "interview" | "mcp">("overview");
+  const [activeTab, setActiveTab] = useState<"telemetry" | "ats" | "interview" | "mcp">("telemetry");
+  const [isSimulating, setIsSimulating] = useState(true);
+  const [simStep, setSimStep] = useState(0);
+
+  // Auto-simulation ticker
+  useEffect(() => {
+    if (!isSimulating) return;
+    const interval = setInterval(() => {
+      setSimStep((prev) => (prev + 1) % 4);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [isSimulating]);
 
   const tabs = [
-    { id: "overview", label: "Workspace Overview", icon: LayoutDashboard },
-    { id: "resume", label: "Resume ATS Audit", icon: FileText },
-    { id: "interview", label: "STAR Mock Lab", icon: Mic },
-    { id: "mcp", label: "MCP Tool Explorer", icon: Terminal },
+    { id: "telemetry", label: "Agent Telemetry", icon: Activity },
+    { id: "ats", label: "ATS Scorecard", icon: FileText },
+    { id: "interview", label: "STAR Mock Coach", icon: Mic },
+    { id: "mcp", label: "MCP Server", icon: Terminal },
+  ] as const;
+
+  const telemetryLogs = [
+    "[14:22:01.104] [orchestrator] Initializing concurrent DAG with 5 specialized agent nodes...",
+    "[14:22:01.240] [ats-parser] Extraction complete: 4 roles, 28 technical skills, 0 syntax faults.",
+    "[14:22:01.395] [ats-calibrator] Match ratio: 96.8% for Staff Systems Engineer track. 3 bullet rewrites compiled.",
+    "[14:22:01.512] [github-inspector] Audited 12 repositories: Verified Golang, Rust, Docker & Distributed Systems.",
   ];
 
   return (
-    <section id="dashboard" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
+    <section id="dashboard" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 font-sans">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-sky-400 text-xs font-mono font-medium mb-3">
           <Sparkles className="w-3.5 h-3.5" /> Interactive Product Workspace
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Experience the Real{" "}
-          <span className="bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
-            AI Career Operating System
-          </span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          Experience the <span className="text-sky-400">AI Mission Control</span>
         </h2>
-        <p className="mt-4 text-base text-slate-300">
-          Inspect live agent telemetry, run local resume audits, conduct STAR mock interviews, and trigger Model Context Protocol (MCP) developer tools.
+        <p className="mt-3 text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+          Inspect live agent telemetry, run local resume audits, simulate mock interview loops, and explore Model Context Protocol (MCP) server endpoints in real time.
         </p>
       </div>
 
-      {/* Main SaaS Dashboard Container */}
-      <div className="card-dashboard relative rounded-3xl overflow-hidden">
-        {/* Top Header Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-b border-white/10 bg-white/[0.02]">
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+      {/* Main Mission Control Console Interface */}
+      <div className="rounded-2xl sm:rounded-3xl bg-[#070b14] border border-white/10 overflow-hidden shadow-2xl">
+        {/* Top Console Navigation Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-white/10 bg-white/[0.02]">
+          {/* Tab Selector Buttons */}
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto pb-1 sm:pb-0">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium transition-all duration-200 whitespace-nowrap ${
+                  onClick={() => {
+                    setActiveTab(tab.id);
+                    setIsSimulating(false);
+                  }}
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
                     isActive
-                      ? "bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 shadow-[0_0_15px_rgba(56,189,248,0.2)]"
-                      : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
+                      ? "bg-sky-500 text-black font-bold shadow"
+                      : "text-slate-400 hover:text-white bg-white/[0.02] hover:bg-white/[0.05]"
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? "text-cyan-400" : "text-slate-400"}`} />
+                  <Icon className="w-3.5 h-3.5" />
                   <span>{tab.label}</span>
                 </button>
               );
             })}
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-xs font-mono font-medium text-emerald-400">
-              146 Agents Ready
+          {/* Right Status Controls */}
+          <div className="flex items-center gap-2 text-xs font-mono">
+            <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px]">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              167 Agents Online
             </span>
+            <button
+              onClick={() => setIsSimulating(!isSimulating)}
+              className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-slate-300 hover:text-white text-[11px] flex items-center gap-1"
+            >
+              {isSimulating ? <RotateCcw className="w-3 h-3 animate-spin text-sky-400" /> : <Play className="w-3 h-3 text-sky-400" />}
+              <span>{isSimulating ? "Live Feed" : "Paused"}</span>
+            </button>
           </div>
         </div>
 
-        {/* Tab Preview Content */}
-        <div className="p-6 sm:p-8 min-h-[460px]">
+        {/* Console Body Area */}
+        <div className="p-4 sm:p-8">
           <AnimatePresence mode="wait">
-            {activeTab === "overview" && (
+            {activeTab === "telemetry" && (
               <motion.div
-                key="overview"
-                initial={{ opacity: 0, y: 12 }}
+                key="telemetry"
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
                 className="space-y-6"
               >
-                {/* Action Prompts Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="card-glass p-5 rounded-2xl flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
-                        <span>Resume ATS Audit</span>
-                        <FileText className="w-4 h-4 text-cyan-400" />
-                      </div>
-                      <div className="text-sm font-bold text-white">Upload Your Resume</div>
-                      <div className="text-xs text-slate-400 mt-1">
-                        Run ATS Calibrator &amp; Bullet Rewriter on your PDF or DOCX file.
-                      </div>
-                    </div>
-                    <Link href="/resume" className="mt-4">
-                      <Button size="sm" className="w-full bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs">
-                        <Upload className="w-3.5 h-3.5 mr-1.5" /> Upload File
-                      </Button>
-                    </Link>
+                {/* Metric Quick Stats */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+                  <div className="p-3.5 rounded-xl bg-black/40 border border-white/10">
+                    <div className="text-slate-400 text-[11px] mb-1">Active Pipeline</div>
+                    <div className="text-sm sm:text-base font-bold text-white">Concurrent DAG</div>
                   </div>
-
-                  <div className="card-glass p-5 rounded-2xl flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
-                        <span>GitHub Code Audit</span>
-                        <GitBranch className="w-4 h-4 text-purple-400" />
-                      </div>
-                      <div className="text-sm font-bold text-white">Connect Repository</div>
-                      <div className="text-xs text-slate-400 mt-1">
-                        Scan test coverage, README density, and architecture patterns.
-                      </div>
-                    </div>
-                    <Link href="/github" className="mt-4">
-                      <Button size="sm" className="w-full bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs">
-                        <GitBranch className="w-3.5 h-3.5 mr-1.5" /> Analyze Repo
-                      </Button>
-                    </Link>
+                  <div className="p-3.5 rounded-xl bg-black/40 border border-white/10">
+                    <div className="text-slate-400 text-[11px] mb-1">Total Latency</div>
+                    <div className="text-sm sm:text-base font-bold text-sky-400">184ms (p99)</div>
                   </div>
-
-                  <div className="card-glass p-5 rounded-2xl flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
-                        <span>Interview Prep</span>
-                        <Mic className="w-4 h-4 text-emerald-400" />
-                      </div>
-                      <div className="text-sm font-bold text-white">Start STAR Mock Session</div>
-                      <div className="text-xs text-slate-400 mt-1">
-                        Practice behavioral and system design questions with instant evaluation.
-                      </div>
-                    </div>
-                    <Link href="/interview" className="mt-4">
-                      <Button size="sm" className="w-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs">
-                        <Mic className="w-3.5 h-3.5 mr-1.5" /> Practice Now
-                      </Button>
-                    </Link>
+                  <div className="p-3.5 rounded-xl bg-black/40 border border-white/10">
+                    <div className="text-slate-400 text-[11px] mb-1">LLM Fallback</div>
+                    <div className="text-sm sm:text-base font-bold text-emerald-400">0 Faults</div>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-black/40 border border-white/10">
+                    <div className="text-slate-400 text-[11px] mb-1">Storage Mode</div>
+                    <div className="text-sm sm:text-base font-bold text-white">Local SQLite</div>
                   </div>
                 </div>
 
-                {/* Real Telemetry Output Feed */}
-                <div className="card-glass p-6 rounded-2xl space-y-3 font-mono text-xs">
-                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                {/* Live Console Output Box */}
+                <div className="p-4 sm:p-5 rounded-xl bg-black/70 border border-white/10 font-mono text-xs space-y-2 text-slate-300 overflow-x-auto">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2 text-[11px] text-slate-400">
                     <span className="text-white font-bold flex items-center gap-2">
-                      <Terminal className="w-4 h-4 text-cyan-400" /> Agent Orchestrator Status Stream
+                      <Terminal className="w-3.5 h-3.5 text-sky-400" /> Real-Time Telemetry Stream
                     </span>
-                    <span className="text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
-                      Local SQLite Ready
-                    </span>
+                    <span className="text-sky-300">dag_execution_id: #8f92a4</span>
                   </div>
-
-                  <div className="space-y-2">
-                    <div className="p-3 rounded-lg bg-black/40 border border-white/10 text-slate-300">
-                      <span className="text-cyan-400 font-bold">[SYSTEM]</span> Agent Brain initialized with 146 specialized prompt personas. Multi-provider LLM gateway ready.
-                    </div>
-                    <div className="p-3 rounded-lg bg-black/40 border border-white/10 text-slate-300">
-                      <span className="text-purple-400 font-bold">[MCP]</span> Model Context Protocol server exposing 31 developer tools on localhost endpoint.
-                    </div>
+                  <div className="space-y-1.5 pt-2">
+                    {telemetryLogs.map((log, idx) => (
+                      <div
+                        key={idx}
+                        className={`transition-opacity ${idx <= simStep ? "opacity-100 text-slate-200" : "opacity-30"}`}
+                      >
+                        <span className={idx === simStep ? "text-sky-400 font-semibold" : "text-slate-400"}>
+                          {log}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </motion.div>
             )}
 
-            {activeTab === "resume" && (
+            {activeTab === "ats" && (
               <motion.div
-                key="resume"
-                initial={{ opacity: 0, y: 12 }}
+                key="ats"
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
                 className="space-y-4"
               >
-                <div className="text-sm font-bold text-white flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-cyan-400" /> Resume Studio Audit Workflow
+                <div className="p-4 sm:p-6 rounded-xl bg-black/50 border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div>
+                    <div className="text-xs font-mono text-sky-400 font-semibold uppercase">
+                      ATS Match Calibration
+                    </div>
+                    <h3 className="text-lg font-bold text-white mt-0.5">
+                      Staff Infrastructure &amp; Systems Engineer (L6)
+                    </h3>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-extrabold text-emerald-400 font-mono">96.8%</div>
+                    <div className="text-[11px] text-slate-400 font-mono">Calibrated Score</div>
+                  </div>
                 </div>
-                <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 text-center space-y-4">
-                  <Upload className="w-10 h-10 text-cyan-400 mx-auto opacity-80" />
-                  <div className="text-base font-bold text-white">Upload your resume to perform a live ATS audit</div>
-                  <p className="text-xs text-slate-400 max-w-md mx-auto">
-                    Supported formats: PDF, DOCX, TXT. Local-first parser processes all data securely on your device.
-                  </p>
-                  <Link href="/resume" className="inline-block">
-                    <Button className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-xs px-6 py-2 rounded-xl">
-                      Open Resume Studio
-                    </Button>
-                  </Link>
+
+                <div className="p-4 rounded-xl bg-black/40 border border-white/10 text-xs font-mono text-slate-300 space-y-2">
+                  <div className="text-slate-400 font-semibold">Recommended Bullet Rewrite:</div>
+                  <div className="p-3 rounded-lg bg-white/[0.02] border border-white/10 text-slate-400 line-through">
+                    - Built backend services and reduced query latency using cache.
+                  </div>
+                  <div className="p-3 rounded-lg bg-emerald-950/30 border border-emerald-500/30 text-emerald-300 font-medium">
+                    ✓ Architected distributed Redis cluster caching layer across 14 microservices, slashing p99 API latency from 420ms to 48ms under 2.4M QPS load.
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -202,30 +201,34 @@ export function DashboardPreview() {
             {activeTab === "interview" && (
               <motion.div
                 key="interview"
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
                 className="space-y-4"
               >
-                <div className="text-sm font-bold text-white flex items-center gap-2">
-                  <Mic className="w-4 h-4 text-emerald-400" /> STAR Behavioral &amp; Technical Interview Lab
+                <div className="p-4 sm:p-6 rounded-xl bg-black/50 border border-white/10 space-y-3">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-sky-400 font-semibold">STAR Question #04 • Behavioral &amp; System Failure</span>
+                    <span className="text-slate-400">Rubric: Meta E6 / Google L6</span>
+                  </div>
+                  <h3 className="text-base font-bold text-white leading-snug">
+                    &ldquo;Describe a critical production outage where cascading failure occurred across services. How did you diagnose the root cause and prevent recurrence?&rdquo;
+                  </h3>
                 </div>
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3 text-xs">
-                  <div className="font-semibold text-slate-200">Select Practice Category:</div>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/40 cursor-pointer">
-                      <div className="font-bold text-white">System Design</div>
-                      <div className="text-[11px] text-slate-400 mt-0.5">Rate Limiters, Microservices, Spanner</div>
-                    </div>
-                    <div className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/40 cursor-pointer">
-                      <div className="font-bold text-white">Behavioral STAR</div>
-                      <div className="text-[11px] text-slate-400 mt-0.5">Leadership, Conflict, Trade-offs</div>
-                    </div>
-                    <div className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/40 cursor-pointer">
-                      <div className="font-bold text-white">Coding Architecture</div>
-                      <div className="text-[11px] text-slate-400 mt-0.5">Concurrency, Memory, Data Structures</div>
-                    </div>
+
+                <div className="p-4 rounded-xl bg-black/40 border border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
+                  <div className="p-3 rounded-lg bg-white/[0.02] border border-white/10">
+                    <div className="text-slate-400 text-[11px]">Situation &amp; Task</div>
+                    <div className="text-emerald-400 font-bold mt-1">98/100 (Strong Context)</div>
+                  </div>
+                  <div className="p-3 rounded-lg bg-white/[0.02] border border-white/10">
+                    <div className="text-slate-400 text-[11px]">Action (Trade-Offs)</div>
+                    <div className="text-emerald-400 font-bold mt-1">94/100 (Circuit Breaker)</div>
+                  </div>
+                  <div className="p-3 rounded-lg bg-white/[0.02] border border-white/10">
+                    <div className="text-slate-400 text-[11px]">Result &amp; Impact</div>
+                    <div className="text-emerald-400 font-bold mt-1">96/100 (Zero Recurrence)</div>
                   </div>
                 </div>
               </motion.div>
@@ -234,25 +237,48 @@ export function DashboardPreview() {
             {activeTab === "mcp" && (
               <motion.div
                 key="mcp"
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
                 className="space-y-4"
               >
-                <div className="text-sm font-bold text-white flex items-center gap-2">
-                  <Terminal className="w-4 h-4 text-purple-400" /> Native Model Context Protocol (MCP) Tools
-                </div>
-                <div className="p-4 rounded-2xl bg-black/50 border border-white/10 font-mono text-xs text-purple-300 space-y-2">
-                  <div>{"// Registered MCP Tools available for Cursor, Claude Desktop & Agents:"}</div>
-                  <div className="text-slate-300 pl-4">• search_agents(query: string)</div>
-                  <div className="text-slate-300 pl-4">• recommend_agents(task: string)</div>
-                  <div className="text-slate-300 pl-4">• resume_score(resumeId: string)</div>
-                  <div className="text-slate-300 pl-4">• career_gap_analysis(profileId: string)</div>
+                <div className="p-4 sm:p-5 rounded-xl bg-black/60 border border-white/10 font-mono text-xs space-y-2 text-slate-300">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2 text-[11px] text-slate-400">
+                    <span className="text-sky-400 font-bold">mcp://tools/career_ops_audit</span>
+                    <span className="text-emerald-400 font-semibold">JSON-RPC 2.0 Ready</span>
+                  </div>
+                  <pre className="text-slate-300 text-xs overflow-x-auto leading-relaxed pt-1">
+{`{
+  "jsonrpc": "2.0",
+  "method": "tools/call",
+  "params": {
+    "name": "career_pipeline_match",
+    "arguments": {
+      "candidate_id": "karthik_profile",
+      "target_role": "Staff Distributed Systems Engineer",
+      "ats_rubric": ["architecture", "concurrency", "fault_tolerance"]
+    }
+  }
+}`}
+                  </pre>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Action Row */}
+          <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <span className="text-slate-400 font-mono text-[11px]">
+              ✓ Compatible with Claude Code, Cursor, Windsurf, and Antigravity IDE
+            </span>
+            <Link href="/dashboard">
+              <Button size="sm" className="bg-sky-500 hover:bg-sky-400 text-black font-semibold text-xs px-4 py-2 rounded-lg">
+                <span>Launch Full Console</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
