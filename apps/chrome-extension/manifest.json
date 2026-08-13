@@ -6,17 +6,11 @@
   "permissions": [
     "activeTab",
     "storage",
-    "sidePanel"
+    "sidePanel",
+    "scripting"
   ],
   "host_permissions": [
-    "https://*.linkedin.com/*",
-    "https://*.github.com/*",
-    "https://*.leetcode.com/*",
-    "https://*.hackerrank.com/*",
-    "https://*.wellfound.com/*",
-    "https://*.greenhouse.io/*",
-    "https://*.lever.co/*",
-    "http://localhost:3000/*"
+    "<all_urls>"
   ],
   "background": {
     "service_worker": "background.js"
@@ -34,13 +28,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://*.linkedin.com/*",
-        "https://*.github.com/*",
-        "https://*.leetcode.com/*",
-        "https://*.hackerrank.com/*",
-        "https://*.wellfound.com/*",
-        "https://*.greenhouse.io/*",
-        "https://*.lever.co/*"
+        "<all_urls>"
       ],
       "js": ["content.js"],
       "run_at": "document_end"
