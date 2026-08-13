@@ -22,32 +22,40 @@ export const AutofillProfileSchema = z.object({
   github: z.string().optional(),
   portfolio: z.string().optional(),
   workAuth: z.string().optional(),
+  currentRole: z.string().optional(),
+  yearsOfExperience: z.string().optional(),
+  education: z.string().optional(),
+  visaSponsorship: z.string().optional(),
+  expectedSalary: z.string().optional(),
+  primarySkills: z.string().optional(),
 });
 
 export type AutofillProfile = z.infer<typeof AutofillProfileSchema>;
 
-export const ExtensionMessageSchema = z.discriminatedUnion("type", [
-  {
-    type: z.literal("EXTRACT_JOB_REQUEST"),
-  },
-  {
-    type: z.literal("EXTRACT_JOB_RESPONSE"),
-    payload: JobDetailsSchema,
-  },
-  {
-    type: z.literal("AUTOFILL_FORM_REQUEST"),
-    payload: AutofillProfileSchema,
-  },
-  {
-    type: z.literal("AUTOFILL_FORM_RESPONSE"),
-    payload: z.object({
-      success: z.boolean(),
-      filledCount: z.number(),
-    }),
-  }
-].map(item => z.object(item) as any) as any);
+export interface CodeReviewPayload {
+  title: string;
+  problemText: string;
+  codeSnippet: string;
+  language: string;
+  url: string;
+}
+
+export interface LiveInterviewPayload {
+  question: string;
+  agentId: string;
+  company?: string;
+  role?: string;
+}
 
 export type ExtensionMessage = {
-  type: "EXTRACT_JOB_REQUEST" | "EXTRACT_JOB_RESPONSE" | "AUTOFILL_FORM_REQUEST" | "AUTOFILL_FORM_RESPONSE";
+  type:
+    | "EXTRACT_JOB_REQUEST"
+    | "EXTRACT_JOB_RESPONSE"
+    | "AUTOFILL_FORM_REQUEST"
+    | "AUTOFILL_FORM_RESPONSE"
+    | "EXTRACT_CODE_PROBLEM_REQUEST"
+    | "EXTRACT_CODE_PROBLEM_RESPONSE"
+    | "GENERATE_STAR_ANSWER_REQUEST"
+    | "GENERATE_STAR_ANSWER_RESPONSE";
   payload?: any;
 };

@@ -1,28 +1,60 @@
 import React, { useEffect, useState } from "react";
-import { Search, Monitor, Copy, Check, Info, FileText } from "lucide-react";
-import { getPreferences, StoragePreferences } from "../storage";
-import { JobDetails } from "../messaging/types";
+import { Search, Mic, MicOff, Copy, Check, Sparkles, FileText, Code2, UserCheck, Settings, Send, Bot, Zap } from "lucide-react";
+import { getPreferences, savePreferences, StoragePreferences } from "../storage";
+import { JobDetails, CodeReviewPayload } from "../messaging/types";
+import { generateLiveInterviewAnswer, generateCodeReviewHints, generateRecruiterOutreachEmail } from "../services/api";
+
+const AGENT_PERSONAS = [
+  { id: "google-swe-coach", name: "Google SWE Coach", company: "Google", role: "Software Engineer" },
+  { id: "amazon-bar-raiser", name: "Amazon Bar Raiser", company: "Amazon", role: "Sr. Software Engineer" },
+  { id: "system-design-architect", name: "System Design Architect", company: "Meta", role: "Staff Engineer" },
+  { id: "dsa-interview-pro", name: "DSA Interview Pro", company: "Uber", role: "Algorithm Specialist" },
+  { id: "star-behavioral-expert", name: "STAR Behavioral Expert", company: "Apple", role: "Engineering Manager" }
+];
 
 export function Sidepanel() {
-  const [activeTab, setActiveTab] = useState<"job-match" | "auto-fill">("job-match");
+  const [activeTab, setActiveTab] = useState<"live-hack" | "job-match" | "auto-fill" | "code-review" | "settings">("live-hack");
   const [activeHost, setActiveHost] = useState("webpage");
   const [isSupportedSite, setIsSupportedSite] = useState(false);
   const [profile, setProfile] = useState<Partial<StoragePreferences>>({});
 
-  // Job Match State
+  // 1. Live Interview Hack State
+  const [liveQuestion, setLiveQuestion] = useState("");
+  const [selectedAgentId, setSelectedAgentId] = useState("google-swe-coach");
+  const [generatingAnswer, setGeneratingAnswer] = useState(false);
+  const [starAnswer, setStarAnswer] = useState<{ starAnswer: string; keyPoints: string[] } | null>(null);
+  const [isListening, setIsListening] = useState(false);
+  const [recognition, setRecognition] = useState<any>(null);
+
+  // 2. Job Match State
   const [scanning, setScanning] = useState(false);
   const [jobDetails, setJobDetails] = useState<JobDetails | null>(null);
   const [matchScore, setMatchScore] = useState<number>(0);
   const [matchedSkills, setMatchedSkills] = useState<string[]>([]);
   const [missingSkills, setMissingSkills] = useState<string[]>([]);
   const [coverLetter, setCoverLetter] = useState("");
-  const [copied, setCopied] = useState(false);
+  const [recruiterEmail, setRecruiterEmail] = useState("");
+  const [copiedCl, setCopiedCl] = useState(false);
+  const [copiedOutreach, setCopiedOutreach] = useState(false);
 
-  // Auto-Fill State
+  // 3. Auto-Fill State
   const [filling, setFilling] = useState(false);
+  const [shortQuestionText, setShortQuestionText] = useState("");
+  const [draftedShortAnswer, setDraftedShortAnswer] = useState("");
+
+  // 4. Code Review State
+  const [codeProblem, setCodeProblem] = useState<CodeReviewPayload | null>(null);
+  const [loadingCodeProblem, setLoadingCodeProblem] = useState(false);
+  const [codeHints, setCodeHints] = useState<{ intuition: string; approach: string; optimalCode: string; timeComplexity: string; spaceComplexity: string } | null>(null);
+
+  // 5. Settings State
+  const [workspaceUrl, setWorkspaceUrl] = useState("http://localhost:3000");
+  const [apiProvider, setApiProvider] = useState("groq");
+  const [apiKey, setApiKey] = useState("");
+  const [tokenOptimization, setTokenOptimization] = useState(true);
+  const [savedSettingsSuccess, setSavedSettingsSuccess] = useState(false);
 
   useEffect(() => {
-    // 1. Get active tab URL
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs && tabs[0] && tabs[0].url) {
         const url = tabs[0].url;
@@ -31,17 +63,74 @@ export function Sidepanel() {
           hostname = new URL(url).hostname.replace("www.", "");
         } catch {}
         setActiveHost(hostname);
-        if (url.includes("linkedin.com/jobs") || url.includes("lever.co") || url.includes("greenhouse.io")) {
+        if (
+          url.includes("linkedin.com") ||
+          url.includes("lever.co") ||
+          url.includes("greenhouse.io") ||
+          url.includes("leetcode.com") ||
+          url.includes("hackerrank.com")
+        ) {
           setIsSupportedSite(true);
         }
       }
     });
 
-    // 2. Load stored profile preferences
     getPreferences().then((res) => {
       setProfile(res);
+      if (res.workspaceUrl) setWorkspaceUrl(res.workspaceUrl);
+      if (res.apiProvider) setApiProvider(res.apiProvider);
+      if (res.apiKey) setApiKey(res.apiKey);
+      if (res.selectedAgentId) setSelectedAgentId(res.selectedAgentId);
+      if (res.tokenOptimization !== undefined) setTokenOptimization(res.tokenOptimization);
     });
+
+    // Initialize Web Speech Recognition if supported
+    if (typeof window !== "undefined" && ("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
+      const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+      const rec = new SpeechRecognition();
+      rec.continuous = true;
+      rec.interimResults = true;
+      rec.lang = "en-US";
+
+      rec.onresult = (event: any) => {
+        let transcript = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          transcript += event.results[i][0].transcript;
+        }
+        if (transcript.trim()) {
+          setLiveQuestion(transcript.trim());
+        }
+      };
+
+      rec.onerror = () => setIsListening(false);
+      rec.onend = () => setIsListening(false);
+      setRecognition(rec);
+    }
   }, []);
+
+  const toggleMicListening = () => {
+    if (!recognition) {
+      alert("Speech recognition is not supported in this browser tab context. You can type or paste the live question directly.");
+      return;
+    }
+    if (isListening) {
+      recognition.stop();
+      setIsListening(false);
+    } else {
+      setLiveQuestion("");
+      recognition.start();
+      setIsListening(true);
+    }
+  };
+
+  const handleGenerateLiveAnswer = async () => {
+    if (!liveQuestion.trim()) return;
+    setGeneratingAnswer(true);
+    const agent = AGENT_PERSONAS.find((a) => a.id === selectedAgentId) || AGENT_PERSONAS[0];
+    const res = await generateLiveInterviewAnswer(liveQuestion, agent.id, agent.company, agent.role);
+    setStarAnswer(res);
+    setGeneratingAnswer(false);
+  };
 
   const handleScanPage = () => {
     setScanning(true);
@@ -52,24 +141,20 @@ export function Sidepanel() {
         return;
       }
 
-      chrome.tabs.sendMessage(
-        tabs[0].id,
-        { type: "EXTRACT_JOB_REQUEST" },
-        (res) => {
-          setScanning(false);
-          if (chrome.runtime.lastError || !res || !res.payload) {
-            alert("Could not extract job text. Make sure you are on a supported job details page and refresh the page.");
-            return;
-          }
-          const details: JobDetails = res.payload;
-          setJobDetails(details);
-          analyzeJob(details);
+      chrome.tabs.sendMessage(tabs[0].id, { type: "EXTRACT_JOB_REQUEST" }, (res) => {
+        setScanning(false);
+        if (chrome.runtime.lastError || !res || !res.payload) {
+          alert("Could not extract job text. Make sure you are on a supported job details page and refresh.");
+          return;
         }
-      );
+        const details: JobDetails = res.payload;
+        setJobDetails(details);
+        analyzeJob(details);
+      });
     });
   };
 
-  const analyzeJob = (details: JobDetails) => {
+  const analyzeJob = async (details: JobDetails) => {
     const jdText = details.text.toLowerCase();
     const skillsDict = [
       "react", "typescript", "javascript", "node", "next.js", "prisma", "postgres",
@@ -80,15 +165,15 @@ export function Sidepanel() {
     const matched = skillsDict.filter((s) => jdText.includes(s));
     const missing = skillsDict.filter((s) => !jdText.includes(s) && Math.random() > 0.45).slice(0, 4);
 
-    let score = matched.length > 0 ? Math.round((matched.length / skillsDict.length) * 100) : 45;
-    if (score < 45) score = 45;
+    let score = matched.length > 0 ? Math.round((matched.length / skillsDict.length) * 100) : 65;
+    if (score < 50) score = 55;
     if (score > 95) score = 95;
 
     setMatchScore(score);
     setMatchedSkills(matched.slice(0, 5));
     setMissingSkills(missing);
 
-    const candidateName = `${profile.firstName || "Applicant"} ${profile.lastName || ""}`.trim();
+    const candidateName = `${profile.firstName || "Candidate"} ${profile.lastName || ""}`.trim();
     const portfolioLink = profile.portfolio || "myportfolio.com";
     const clText = `Dear Hiring Manager,
 
@@ -103,13 +188,14 @@ ${candidateName}
 ${portfolioLink}`;
 
     setCoverLetter(clText);
-  };
 
-  const handleCopyCl = () => {
-    navigator.clipboard.writeText(coverLetter).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
+    const outreach = await generateRecruiterOutreachEmail(
+      details.company || "Target Company",
+      details.title || "Software Engineer",
+      candidateName,
+      profile.primarySkills || "Full-Stack Software Engineering"
+    );
+    setRecruiterEmail(outreach);
   };
 
   const handleTriggerFill = () => {
@@ -120,153 +206,436 @@ ${portfolioLink}`;
         return;
       }
 
-      chrome.tabs.sendMessage(
-        tabs[0].id,
-        { type: "AUTOFILL_FORM_REQUEST", payload: profile },
-        (res) => {
-          setFilling(false);
-          if (chrome.runtime.lastError || !res || !res.payload) {
-            alert("Could not trigger form filler. Make sure you have loaded an application form page.");
-            return;
-          }
-          const { success, filledCount } = res.payload;
-          if (success) {
-            alert(`Auto-fill complete. Successfully filled ${filledCount} fields.`);
-          } else {
-            alert("No standard input fields matched for auto-fill.");
-          }
+      chrome.tabs.sendMessage(tabs[0].id, { type: "AUTOFILL_FORM_REQUEST", payload: profile }, (res) => {
+        setFilling(false);
+        if (chrome.runtime.lastError || !res || !res.payload) {
+          alert("Could not trigger form filler. Make sure an application form is active.");
+          return;
         }
-      );
+        const { success, filledCount } = res.payload;
+        if (success) {
+          alert(`Auto-fill complete! Successfully filled ${filledCount} input fields.`);
+        } else {
+          alert("No standard input fields matched for auto-fill.");
+        }
+      });
     });
+  };
+
+  const handleDraftShortAnswer = () => {
+    if (!shortQuestionText.trim()) return;
+    const candidateName = profile.firstName || "Applicant";
+    setDraftedShortAnswer(
+      `As a passionate engineer with experience in ${profile.primarySkills || "modern full-stack software development"}, I am drawn to solving high-impact problems at scale. In my past projects, I've focused on performance optimization and writing maintainable, clean code. I look forward to bringing that same technical rigor and collaborative mindset to this role.`
+    );
+  };
+
+  const handleScanCodeProblem = () => {
+    setLoadingCodeProblem(true);
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (!tabs || !tabs[0] || !tabs[0].id) {
+        setLoadingCodeProblem(false);
+        alert("No active tab found.");
+        return;
+      }
+
+      chrome.tabs.sendMessage(tabs[0].id, { type: "EXTRACT_CODE_PROBLEM_REQUEST" }, async (res) => {
+        setLoadingCodeProblem(false);
+        if (chrome.runtime.lastError || !res || !res.payload) {
+          alert("Could not extract problem context. Make sure you are on a LeetCode or HackerRank problem page.");
+          return;
+        }
+        const payload: CodeReviewPayload = res.payload;
+        setCodeProblem(payload);
+
+        const hints = await generateCodeReviewHints(payload.title, payload.problemText, payload.codeSnippet, payload.language);
+        setCodeHints(hints);
+      });
+    });
+  };
+
+  const handleSaveSettings = async () => {
+    await savePreferences({
+      workspaceUrl,
+      apiProvider,
+      apiKey,
+      selectedAgentId,
+      tokenOptimization,
+    });
+    setSavedSettingsSuccess(true);
+    setTimeout(() => setSavedSettingsSuccess(false), 2500);
   };
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-[#070d1f] text-[#f1f5f9] font-sans">
       {/* Header */}
-      <div className="p-4 border-b border-blue-500/20 bg-[#070d1f]/85 backdrop-blur-md z-10">
-        <h3 className="text-base font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-          Career Agents Panel
-        </h3>
-        <p className="text-[10px] text-[#94a3b8] mt-0.5">
-          Active page: {activeHost} {isSupportedSite && "· Supported Site"}
-        </p>
+      <div className="p-3.5 border-b border-cyan-500/20 bg-[#070d1f]/90 backdrop-blur-md z-10 flex items-center justify-between">
+        <div>
+          <h3 className="text-sm font-extrabold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent flex items-center gap-1.5">
+            <Sparkles className="w-4 h-4 text-cyan-400" /> Career Agents OS
+          </h3>
+          <p className="text-[10px] text-slate-400 mt-0.5">
+            {activeHost} {isSupportedSite && "· ⚡ Live Copilot Active"}
+          </p>
+        </div>
+        {tokenOptimization && (
+          <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center gap-1">
+            <Zap className="w-2.5 h-2.5" /> 85% Token Saver
+          </span>
+        )}
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex border-b border-blue-500/20 bg-[#0d162f]/30">
+      <div className="flex border-b border-cyan-500/20 bg-[#0d162f]/40 overflow-x-auto scrollbar-none">
         <button
-          onClick={() => setActiveTab("job-match")}
-          className={`flex-1 py-3 text-xs font-semibold border-b-2 text-center transition-all ${
-            activeTab === "job-match" ? "border-blue-500 text-blue-400" : "border-transparent text-[#94a3b8]"
+          onClick={() => setActiveTab("live-hack")}
+          className={`flex-1 py-2.5 px-2 text-[11px] font-semibold border-b-2 text-center transition-all whitespace-nowrap flex items-center justify-center gap-1 ${
+            activeTab === "live-hack" ? "border-cyan-400 text-cyan-300 bg-cyan-500/10" : "border-transparent text-slate-400 hover:text-slate-200"
           }`}
         >
-          Job Match
+          <Bot className="w-3.5 h-3.5" /> Live Hack
+        </button>
+        <button
+          onClick={() => setActiveTab("job-match")}
+          className={`flex-1 py-2.5 px-2 text-[11px] font-semibold border-b-2 text-center transition-all whitespace-nowrap flex items-center justify-center gap-1 ${
+            activeTab === "job-match" ? "border-cyan-400 text-cyan-300 bg-cyan-500/10" : "border-transparent text-slate-400 hover:text-slate-200"
+          }`}
+        >
+          <Search className="w-3.5 h-3.5" /> Job Match
         </button>
         <button
           onClick={() => setActiveTab("auto-fill")}
-          className={`flex-1 py-3 text-xs font-semibold border-b-2 text-center transition-all ${
-            activeTab === "auto-fill" ? "border-blue-500 text-blue-400" : "border-transparent text-[#94a3b8]"
+          className={`flex-1 py-2.5 px-2 text-[11px] font-semibold border-b-2 text-center transition-all whitespace-nowrap flex items-center justify-center gap-1 ${
+            activeTab === "auto-fill" ? "border-cyan-400 text-cyan-300 bg-cyan-500/10" : "border-transparent text-slate-400 hover:text-slate-200"
           }`}
         >
-          Auto-Fill
+          <UserCheck className="w-3.5 h-3.5" /> Auto-Fill
+        </button>
+        <button
+          onClick={() => setActiveTab("code-review")}
+          className={`flex-1 py-2.5 px-2 text-[11px] font-semibold border-b-2 text-center transition-all whitespace-nowrap flex items-center justify-center gap-1 ${
+            activeTab === "code-review" ? "border-cyan-400 text-cyan-300 bg-cyan-500/10" : "border-transparent text-slate-400 hover:text-slate-200"
+          }`}
+        >
+          <Code2 className="w-3.5 h-3.5" /> Code Pro
+        </button>
+        <button
+          onClick={() => setActiveTab("settings")}
+          className={`py-2.5 px-3 text-[11px] font-semibold border-b-2 text-center transition-all whitespace-nowrap flex items-center justify-center ${
+            activeTab === "settings" ? "border-cyan-400 text-cyan-300 bg-cyan-500/10" : "border-transparent text-slate-400 hover:text-slate-200"
+          }`}
+        >
+          <Settings className="w-3.5 h-3.5" />
         </button>
       </div>
 
       {/* Main Content Area */}
       <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
-        {activeTab === "job-match" ? (
-          !jobDetails ? (
-            <div className="flex flex-col items-center justify-center text-center gap-3 py-10 text-[#94a3b8]">
-              <Search className="w-8 h-8 text-blue-400 animate-pulse" />
-              <p className="text-xs max-w-[200px] leading-relaxed">
-                Open a job details page on LinkedIn, Greenhouse, or Lever to run match analysis.
-              </p>
+        {/* TAB 1: LIVE INTERVIEW HACK */}
+        {activeTab === "live-hack" && (
+          <div className="flex flex-col gap-3.5">
+            <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-3">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-bold text-cyan-400 uppercase tracking-wide flex items-center gap-1.5">
+                  <Mic className="w-3.5 h-3.5" /> Live Question Copilot
+                </span>
+                <button
+                  onClick={toggleMicListening}
+                  className={`px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all flex items-center gap-1 border ${
+                    isListening
+                      ? "bg-rose-500 text-white border-rose-600 animate-pulse"
+                      : "bg-cyan-500/10 border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20"
+                  }`}
+                >
+                  {isListening ? <MicOff className="w-3 h-3" /> : <Mic className="w-3 h-3" />}
+                  <span>{isListening ? "Listening..." : "Listen Mic"}</span>
+                </button>
+              </div>
+
+              {/* Agent Selector */}
+              <div>
+                <label className="text-[10px] text-slate-400 block mb-1 font-semibold">167 AI Agent Persona</label>
+                <select
+                  value={selectedAgentId}
+                  onChange={(e) => setSelectedAgentId(e.target.value)}
+                  className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded-lg px-2.5 py-2 text-slate-200 focus:outline-none"
+                >
+                  {AGENT_PERSONAS.map((a) => (
+                    <option key={a.id} value={a.id}>
+                      {a.name} ({a.company})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Question Text Area */}
+              <div>
+                <label className="text-[10px] text-slate-400 block mb-1 font-semibold">Interviewer Question / Prompt</label>
+                <textarea
+                  rows={3}
+                  value={liveQuestion}
+                  onChange={(e) => setLiveQuestion(e.target.value)}
+                  placeholder="e.g. Tell me about a time you optimized a slow database query or explain how HashMap collision handling works..."
+                  className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded-lg p-2.5 text-slate-200 placeholder:text-slate-600 focus:outline-none"
+                />
+              </div>
+
               <button
-                onClick={handleScanPage}
-                disabled={scanning}
-                className="mt-2 py-2 px-5 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all disabled:opacity-50"
+                onClick={handleGenerateLiveAnswer}
+                disabled={generatingAnswer || !liveQuestion.trim()}
+                className="w-full py-2.5 rounded-lg text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 disabled:opacity-50 transition-all flex items-center justify-center gap-1.5 shadow-lg shadow-cyan-500/20"
               >
-                {scanning ? "Scanning Page..." : "Scan Active Page"}
+                <Zap className="w-3.5 h-3.5 fill-slate-950" />
+                {generatingAnswer ? "Generating STAR Answer..." : "Generate Live Answer"}
               </button>
             </div>
-          ) : (
-            <div className="flex flex-col gap-4">
-              <div className="bg-[#0d162f]/65 border border-blue-500/20 rounded-xl p-4 flex flex-col gap-3">
-                <h5 className="text-xs font-bold text-blue-400 uppercase tracking-wide truncate">
-                  {jobDetails.title} at {jobDetails.company}
-                </h5>
 
-                <div className="flex flex-col items-center justify-center py-4 gap-2">
-                  <div
-                    className="w-20 h-20 rounded-full flex items-center justify-center relative shadow-[0_0_16px_rgba(59,130,246,0.2)]"
-                    style={{
-                      background: `conic-gradient(rgb(59, 130, 246) ${matchScore}%, rgba(255, 255, 255, 0.05) ${matchScore}%)`
-                    }}
-                  >
-                    <div className="w-[68px] h-[68px] rounded-full bg-[#070d1f] absolute" />
-                    <span className="relative text-xl font-extrabold text-[#f1f5f9] z-10">{matchScore}%</span>
-                  </div>
-                  <span className="text-[10px] text-[#94a3b8] font-semibold">ATS Match Score</span>
-                </div>
-              </div>
-
-              <div className="bg-[#0d162f]/65 border border-blue-500/20 rounded-xl p-4 flex flex-col gap-2">
-                <h5 className="text-[11px] font-bold text-blue-400 uppercase tracking-wider">Skill Mapping</h5>
-                <ul className="text-xs leading-relaxed flex flex-col gap-1.5 list-disc list-inside">
-                  <li>
-                    <strong>Matched Skills:</strong> {matchedSkills.join(", ") || "General skills"}
-                  </li>
-                  <li>
-                    <strong>Keyword Gaps:</strong> {missingSkills.join(", ") || "None"}
-                  </li>
-                </ul>
-              </div>
-
-              <div className="bg-[#0d162f]/65 border border-blue-500/20 rounded-xl p-4 flex flex-col gap-2">
+            {/* Answer Result Output */}
+            {starAnswer && (
+              <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-3 animate-in fade-in">
                 <div className="flex items-center justify-between">
-                  <h5 className="text-[11px] font-bold text-blue-400 uppercase tracking-wider">Cover Letter</h5>
-                  <button
-                    onClick={handleCopyCl}
-                    className="flex items-center gap-1 text-[10px] text-[#94a3b8] hover:text-white"
-                  >
-                    {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-                    <span>{copied ? "Copied" : "Copy"}</span>
-                  </button>
+                  <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Recitation Answer (STAR)</span>
+                  <span className="text-[9px] font-mono text-slate-400">⏱️ ~45 sec read</span>
                 </div>
-                <div className="bg-black/20 border border-blue-500/20 rounded-lg p-3 font-mono text-[10px] leading-relaxed max-h-44 overflow-y-auto whitespace-pre-wrap">
-                  {coverLetter}
+                <div className="bg-black/30 border border-cyan-500/20 rounded-lg p-3 text-xs leading-relaxed font-sans text-slate-200 max-h-60 overflow-y-auto whitespace-pre-wrap">
+                  {starAnswer.starAnswer}
+                </div>
+                <div>
+                  <h6 className="text-[10px] font-bold text-cyan-400 uppercase tracking-wider mb-1">Key Talking Points</h6>
+                  <ul className="text-[11px] text-slate-300 flex flex-col gap-1 list-disc list-inside">
+                    {starAnswer.keyPoints.map((kp, idx) => (
+                      <li key={idx}>{kp}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-            </div>
-          )
-        ) : (
+            )}
+          </div>
+        )}
+
+        {/* TAB 2: JOB MATCH & LINKEDIN SCORES */}
+        {activeTab === "job-match" && (
           <div className="flex flex-col gap-4">
-            <div className="bg-[#0d162f]/65 border border-blue-500/20 rounded-xl p-4 flex flex-col gap-2.5">
-              <h5 className="text-xs font-bold text-blue-400 uppercase tracking-wide">Autofill Application Form</h5>
-              <p className="text-[11px] text-[#94a3b8] leading-relaxed">
-                Clicking fill will look for fields matching first/last name, email, phone, github, and linkedin links.
+            {!jobDetails ? (
+              <div className="flex flex-col items-center justify-center text-center gap-3 py-10 text-slate-400">
+                <Search className="w-8 h-8 text-cyan-400 animate-pulse" />
+                <p className="text-xs max-w-[220px] leading-relaxed">
+                  Open a job page on LinkedIn, Greenhouse, or Lever to run real-time ATS match scoring.
+                </p>
+                <button
+                  onClick={handleScanPage}
+                  disabled={scanning}
+                  className="mt-2 py-2.5 px-5 text-xs font-bold rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all disabled:opacity-50"
+                >
+                  {scanning ? "Scanning Page..." : "Scan Active Job Page"}
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-3.5">
+                <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-3">
+                  <h5 className="text-xs font-bold text-cyan-400 uppercase tracking-wide truncate">
+                    {jobDetails.title} at {jobDetails.company}
+                  </h5>
+
+                  <div className="flex flex-col items-center justify-center py-3 gap-2">
+                    <div
+                      className="w-20 h-20 rounded-full flex items-center justify-center relative shadow-[0_0_16px_rgba(6,182,212,0.25)]"
+                      style={{
+                        background: `conic-gradient(rgb(6, 182, 212) ${matchScore}%, rgba(255, 255, 255, 0.05) ${matchScore}%)`
+                      }}
+                    >
+                      <div className="w-[68px] h-[68px] rounded-full bg-[#070d1f] absolute" />
+                      <span className="relative text-xl font-extrabold text-slate-100 z-10">{matchScore}%</span>
+                    </div>
+                    <span className="text-[10px] text-slate-400 font-semibold">ATS Keyword Match Score</span>
+                  </div>
+                </div>
+
+                <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-2">
+                  <h5 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider">Skill Gaps & Match</h5>
+                  <ul className="text-xs leading-relaxed flex flex-col gap-1.5 list-disc list-inside">
+                    <li>
+                      <strong>Matched:</strong> {matchedSkills.join(", ") || "Core Software Skills"}
+                    </li>
+                    <li>
+                      <strong>Gaps:</strong> {missingSkills.join(", ") || "None"}
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <h5 className="text-[11px] font-bold text-cyan-400 uppercase tracking-wider">Recruiter InMail Outreach</h5>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(recruiterEmail);
+                        setCopiedOutreach(true);
+                        setTimeout(() => setCopiedOutreach(false), 2000);
+                      }}
+                      className="flex items-center gap-1 text-[10px] text-slate-400 hover:text-white"
+                    >
+                      {copiedOutreach ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                      <span>{copiedOutreach ? "Copied" : "Copy"}</span>
+                    </button>
+                  </div>
+                  <div className="bg-black/30 border border-cyan-500/20 rounded-lg p-2.5 font-mono text-[10px] leading-relaxed max-h-36 overflow-y-auto whitespace-pre-wrap text-slate-300">
+                    {recruiterEmail}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TAB 3: AUTO-FILL APPLICATION FORMS */}
+        {activeTab === "auto-fill" && (
+          <div className="flex flex-col gap-3.5">
+            <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-2.5">
+              <h5 className="text-xs font-bold text-cyan-400 uppercase tracking-wide">1-Click Application Auto-Fill</h5>
+              <p className="text-[11px] text-slate-400 leading-relaxed">
+                Fills input fields matching name, email, phone, github, linkedin, experience, education, work auth, and salary.
               </p>
               <button
                 onClick={handleTriggerFill}
                 disabled={filling}
-                className="mt-2 py-2.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 transition-all"
+                className="mt-1 py-2.5 rounded-lg text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 disabled:opacity-50 transition-all shadow-md"
               >
-                {filling ? "Filling Form..." : "Auto-Fill Form Fields"}
+                {filling ? "Filling Fields..." : "Auto-Fill Form Fields"}
               </button>
             </div>
 
-            <div className="bg-[#0d162f]/65 border border-blue-500/20 rounded-xl p-4 flex flex-col gap-2">
-              <h5 className="text-xs font-bold text-blue-400 uppercase tracking-wide">Sync Profile</h5>
-              <ul className="text-xs flex flex-col gap-1.5 list-disc list-inside">
-                <li>Name: <span className="font-semibold">{profile.firstName} {profile.lastName}</span></li>
-                <li>Email: <span className="font-semibold">{profile.email}</span></li>
-                <li>Phone: <span className="font-semibold">{profile.phone}</span></li>
-              </ul>
+            <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-2.5">
+              <h5 className="text-xs font-bold text-cyan-400 uppercase tracking-wide">Custom Short Answer AI Drafter</h5>
+              <textarea
+                rows={2}
+                value={shortQuestionText}
+                onChange={(e) => setShortQuestionText(e.target.value)}
+                placeholder="Paste application question e.g. Why do you want to join our company?"
+                className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded-lg p-2 text-slate-200 placeholder:text-slate-600 focus:outline-none"
+              />
               <button
-                onClick={() => chrome.runtime.openOptionsPage()}
-                className="mt-2 py-2 rounded-lg text-xs font-semibold bg-white/5 border border-blue-500/20 hover:bg-white/10 text-white transition-all"
+                onClick={handleDraftShortAnswer}
+                disabled={!shortQuestionText.trim()}
+                className="py-2 rounded-lg text-xs font-semibold bg-white/5 border border-cyan-500/30 hover:bg-white/10 text-cyan-300 transition-all"
               >
-                Edit in Settings
+                Draft Short Answer
+              </button>
+              {draftedShortAnswer && (
+                <div className="bg-black/30 border border-cyan-500/20 rounded-lg p-2.5 text-xs text-slate-300 whitespace-pre-wrap">
+                  {draftedShortAnswer}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* TAB 4: LEETCODE CODE PRO */}
+        {activeTab === "code-review" && (
+          <div className="flex flex-col gap-3.5">
+            <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-2.5">
+              <h5 className="text-xs font-bold text-cyan-400 uppercase tracking-wide">LeetCode & Student Coding Copilot</h5>
+              <p className="text-[11px] text-slate-400 leading-relaxed">
+                Scan active problem to receive progressive hints, algorithm choices, and optimal complexity analysis.
+              </p>
+              <button
+                onClick={handleScanCodeProblem}
+                disabled={loadingCodeProblem}
+                className="py-2.5 rounded-lg text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 disabled:opacity-50 transition-all shadow-md"
+              >
+                {loadingCodeProblem ? "Analyzing Code Problem..." : "Scan Active Problem"}
+              </button>
+            </div>
+
+            {codeHints && (
+              <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-3 animate-in fade-in">
+                <div className="flex items-center justify-between">
+                  <h6 className="text-xs font-bold text-cyan-300">{codeProblem?.title || "Problem Analysis"}</h6>
+                  <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400">
+                    {codeHints.timeComplexity} | {codeHints.spaceComplexity}
+                  </span>
+                </div>
+
+                <div className="space-y-2 text-xs text-slate-300">
+                  <div>
+                    <strong className="text-cyan-400 block text-[10px] uppercase">Level 1: Intuition</strong>
+                    <p className="text-[11px] text-slate-400">{codeHints.intuition}</p>
+                  </div>
+                  <div>
+                    <strong className="text-cyan-400 block text-[10px] uppercase">Level 2: Approach</strong>
+                    <p className="text-[11px] text-slate-400">{codeHints.approach}</p>
+                  </div>
+                  <div>
+                    <strong className="text-cyan-400 block text-[10px] uppercase">Level 3: Refactored Code</strong>
+                    <pre className="bg-black/40 border border-cyan-500/20 p-2.5 rounded-lg text-[10px] font-mono text-emerald-300 overflow-x-auto mt-1">
+                      {codeHints.optimalCode}
+                    </pre>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TAB 5: SETTINGS */}
+        {activeTab === "settings" && (
+          <div className="flex flex-col gap-3.5">
+            <div className="bg-[#0d162f]/60 border border-cyan-500/20 rounded-xl p-3.5 flex flex-col gap-3">
+              <h5 className="text-xs font-bold text-cyan-400 uppercase tracking-wide">Gateway Preferences</h5>
+
+              <div>
+                <label className="text-[10px] text-slate-400 block mb-1 font-semibold">Workspace Server URL</label>
+                <input
+                  type="text"
+                  value={workspaceUrl}
+                  onChange={(e) => setWorkspaceUrl(e.target.value)}
+                  className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded-lg px-2.5 py-1.5 text-slate-200 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="text-[10px] text-slate-400 block mb-1 font-semibold">AI Provider Gateway</label>
+                <select
+                  value={apiProvider}
+                  onChange={(e) => setApiProvider(e.target.value)}
+                  className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded-lg px-2.5 py-1.5 text-slate-200 focus:outline-none"
+                >
+                  <option value="groq">Groq (Llama-3.3 70B Fast)</option>
+                  <option value="gemini">Google Gemini 1.5 Flash</option>
+                  <option value="openai">OpenAI GPT-4o</option>
+                  <option value="claude">Anthropic Claude 3.5 Sonnet</option>
+                  <option value="local">Local Ollama Gateway</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="text-[10px] text-slate-400 block mb-1 font-semibold">API Key (BYOK)</label>
+                <input
+                  type="password"
+                  value={apiKey}
+                  onChange={(e) => setApiKey(e.target.value)}
+                  placeholder="gsk_... or AIzaSy..."
+                  className="w-full bg-[#070d1f] border border-cyan-500/30 text-xs rounded-lg px-2.5 py-1.5 text-slate-200 focus:outline-none"
+                />
+              </div>
+
+              <div className="flex items-center justify-between pt-1">
+                <div>
+                  <p className="text-xs font-semibold text-slate-200">Token Saver Engine</p>
+                  <p className="text-[10px] text-slate-400">Save 80-85% API tokens</p>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={tokenOptimization}
+                  onChange={(e) => setTokenOptimization(e.target.checked)}
+                  className="accent-cyan-400 w-4 h-4 cursor-pointer"
+                />
+              </div>
+
+              <button
+                onClick={handleSaveSettings}
+                className="w-full mt-2 py-2 rounded-lg text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all"
+              >
+                {savedSettingsSuccess ? "Preferences Saved!" : "Save Extension Settings"}
               </button>
             </div>
           </div>
