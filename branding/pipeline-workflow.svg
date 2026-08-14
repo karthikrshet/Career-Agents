@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#030712" />
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="greenGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="amberGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="480" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Title Badge -->
+  <rect x="40" y="32" width="880" height="44" rx="8" fill="#1e293b" fill-opacity="0.6" stroke="#334155" />
+  <text x="480" y="60" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="0.5">
+    🚀 CAREER-AGENTS MCP-POWERED AGENTIC JOB SEARCH INTELLIGENCE ENGINE
+  </text>
+
+  <!-- Step 1: Scanner & Discovery -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="110" width="180" height="130" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <rect x="65" y="125" width="28" height="28" rx="6" fill="url(#blueGlow)"/>
+    <text x="79" y="144" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">1</text>
+    <text x="105" y="144" fill="#38bdf8" font-family="sans-serif" font-size="14" font-weight="bold">ATS Discovery</text>
+    <text x="65" y="175" fill="#94a3b8" font-family="sans-serif" font-size="11">Greenhouse · Lever · Ashby</text>
+    <text x="65" y="195" fill="#94a3b8" font-family="sans-serif" font-size="11">Workable · SmartRecruiters</text>
+    <text x="65" y="215" fill="#34d399" font-family="sans-serif" font-size="10" font-weight="bold">✓ 8 Unified ATS Feeds</text>
+  </g>
+
+  <!-- Connector 1 -> 2 -->
+  <path d="M 230 175 L 280 175" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4" />
+  <polygon points="280,171 288,175 280,179" fill="#38bdf8" />
+
+  <!-- Step 2: JD Parser & Readiness Engine -->
+  <g filter="url(#shadow)">
+    <rect x="290" y="100" width="200" height="150" rx="12" fill="#1e293b" stroke="#c084fc" stroke-width="2.5"/>
+    <rect x="305" y="115" width="28" height="28" rx="6" fill="url(#purpleGlow)"/>
+    <text x="319" y="134" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">2</text>
+    <text x="345" y="134" fill="#c084fc" font-family="sans-serif" font-size="14" font-weight="bold">Readiness Engine</text>
+    <text x="305" y="165" fill="#e2e8f0" font-family="sans-serif" font-size="11" font-weight="bold">services/readiness.js</text>
+    <text x="305" y="185" fill="#94a3b8" font-family="sans-serif" font-size="11">Deterministic Canonical Scoring</text>
+    <text x="305" y="205" fill="#94a3b8" font-family="sans-serif" font-size="11">Blocks A–G Rubric Analysis</text>
+    <text x="305" y="225" fill="#c084fc" font-family="sans-serif" font-size="10" font-weight="bold">✓ Pure Evidence Matching</text>
+  </g>
+
+  <!-- Connector 2 -> 3 (Branching) -->
+  <path d="M 490 150 L 540 150 L 540 135 L 560 135" stroke="#c084fc" stroke-width="2" stroke-dasharray="4,4" />
+  <polygon points="560,131 568,135 560,139" fill="#c084fc" />
+
+  <path d="M 490 200 L 540 200 L 540 215 L 560 215" stroke="#c084fc" stroke-width="2" stroke-dasharray="4,4" />
+  <polygon points="560,211 568,215 560,219" fill="#c084fc" />
+
+  <!-- Step 3A: ATS Resume & Cover Letter -->
+  <g filter="url(#shadow)">
+    <rect x="570" y="90" width="160" height="95" rx="10" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
+    <text x="585" y="115" fill="#34d399" font-family="sans-serif" font-size="12" font-weight="bold">📄 Document Studio</text>
+    <text x="585" y="135" fill="#94a3b8" font-family="sans-serif" font-size="10">Single-Page HTML &amp; LaTeX</text>
+    <text x="585" y="152" fill="#94a3b8" font-family="sans-serif" font-size="10">3-Paragraph Executive Cover</text>
+    <text x="585" y="170" fill="#34d399" font-family="sans-serif" font-size="9" font-weight="bold">✓ Action + Metric Bullets</text>
+  </g>
+
+  <!-- Step 3B: STAR Interview & Outreach -->
+  <g filter="url(#shadow)">
+    <rect x="570" y="195" width="160" height="95" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+    <text x="585" y="220" fill="#fbbf24" font-family="sans-serif" font-size="12" font-weight="bold">🎙️ Interview &amp; Prep</text>
+    <text x="585" y="240" fill="#94a3b8" font-family="sans-serif" font-size="10">STAR+R Question Banks</text>
+    <text x="585" y="257" fill="#94a3b8" font-family="sans-serif" font-size="10">Outreach (&lt;300 Chars)</text>
+    <text x="585" y="275" fill="#fbbf24" font-family="sans-serif" font-size="9" font-weight="bold">✓ Company Tracks Registry</text>
+  </g>
+
+  <!-- Connector to Tracker -->
+  <path d="M 730 135 L 755 135 L 755 175 L 780 175" stroke="#34d399" stroke-width="2" />
+  <path d="M 730 245 L 755 245 L 755 175 L 780 175" stroke="#fbbf24" stroke-width="2" />
+  <polygon points="780,171 788,175 780,179" fill="#38bdf8" />
+
+  <!-- Step 4: Tracker & Analytics -->
+  <g filter="url(#shadow)">
+    <rect x="790" y="110" width="130" height="130" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <rect x="805" y="125" width="28" height="28" rx="6" fill="url(#blueGlow)"/>
+    <text x="819" y="144" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">4</text>
+    <text x="840" y="144" fill="#38bdf8" font-family="sans-serif" font-size="13" font-weight="bold">Tracker</text>
+    <text x="805" y="175" fill="#94a3b8" font-family="sans-serif" font-size="10">pipeline-tracker.md</text>
+    <text x="805" y="195" fill="#94a3b8" font-family="sans-serif" font-size="10">State Machine Flow</text>
+    <text x="805" y="215" fill="#34d399" font-family="sans-serif" font-size="9" font-weight="bold">✓ Funnel Analytics</text>
+  </g>
+
+  <!-- Bottom Feature Bar -->
+  <rect x="40" y="320" width="880" height="130" rx="12" fill="#0f172a" stroke="#334155" />
+
+  <g transform="translate(60, 340)">
+    <text x="0" y="0" fill="#38bdf8" font-family="sans-serif" font-size="13" font-weight="bold">167 Specialized AI Agents</text>
+    <text x="0" y="20" fill="#94a3b8" font-family="sans-serif" font-size="11">19 Industry Divisions (AI Engineering,</text>
+    <text x="0" y="36" fill="#94a3b8" font-family="sans-serif" font-size="11">Cloud, System Design, PM, Security)</text>
+    <text x="0" y="58" fill="#34d399" font-family="sans-serif" font-size="11" font-weight="bold">✓ Zero Token Redundancy</text>
+  </g>
+
+  <g transform="translate(360, 340)">
+    <text x="0" y="0" fill="#c084fc" font-family="sans-serif" font-size="13" font-weight="bold">Multi-IDE Skill Standard</text>
+    <text x="0" y="20" fill="#94a3b8" font-family="sans-serif" font-size="11">Antigravity · Cursor · Claude Code ·</text>
+    <text x="0" y="36" fill="#94a3b8" font-family="sans-serif" font-size="11">OpenAI Codex · OpenCode · Grok</text>
+    <text x="0" y="58" fill="#c084fc" font-family="sans-serif" font-size="11" font-weight="bold">✓ Dual Global / Fallback CLI</text>
+  </g>
+
+  <g transform="translate(680, 340)">
+    <text x="0" y="0" fill="#34d399" font-family="sans-serif" font-size="13" font-weight="bold">Model Context Protocol (MCP)</text>
+    <text x="0" y="20" fill="#94a3b8" font-family="sans-serif" font-size="11">Standard JSON-RPC Tool Handshakes</text>
+    <text x="0" y="36" fill="#94a3b8" font-family="sans-serif" font-size="11">Real-time Readiness &amp; Matching</text>
+    <text x="0" y="58" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="bold">✓ 25+ Verified Integrations</text>
+  </g>
+
+</svg>
