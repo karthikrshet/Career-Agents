@@ -1,3 +1,5 @@
+
+
 /**
  * Career-Agents Pipeline · Multi-ATS Portal & Universal Job Board Scanner
  * Copyright (c) 2026 Karthik Rajesh Shet · MIT License
@@ -5,34 +7,57 @@
 
 import https from 'https';
 import http from 'http';
+import zlib from 'zlib';
 
-function fetchJSON(url, customHeaders = {}) {
+function fetchJSON(url, customHeaders = {}, timeoutMs = 25000) {
   return new Promise((resolve) => {
-    const client = url.startsWith('https') ? https : http;
-    const headers = {
-      'User-Agent': 'Career-Agents-Pipeline/1.0 (https://github.com/karthikrshet/Career-Agents)',
-      'Accept': 'application/json',
-      ...customHeaders
-    };
+    try {
+      const client = url.startsWith('https') ? https : http;
+      const headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Career-Agents/1.0',
+        'Accept': 'application/json, text/plain, */*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        ...customHeaders
+      };
 
-    client.get(url, { headers, timeout: 8000 }, (res) => {
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        return fetchJSON(res.headers.location, customHeaders).then(resolve);
-      }
-      if (res.statusCode < 200 || res.statusCode >= 300) {
-        return resolve({ error: `HTTP ${res.statusCode}` });
-      }
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          resolve(JSON.parse(data));
-        } catch (e) {
-          resolve({ error: 'Failed to parse JSON response' });
+      const req = client.get(url, { headers, timeout: timeoutMs }, (res) => {
+        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+          return fetchJSON(res.headers.location, customHeaders, timeoutMs).then(resolve);
         }
+        if (res.statusCode < 200 || res.statusCode >= 300) {
+          return resolve({ error: `HTTP ${res.statusCode}` });
+        }
+
+        let stream = res;
+        const encoding = res.headers['content-encoding'];
+        if (encoding === 'gzip') {
+          stream = res.pipe(zlib.createGunzip());
+        } else if (encoding === 'deflate') {
+          stream = res.pipe(zlib.createInflate());
+        } else if (encoding === 'br') {
+          stream = res.pipe(zlib.createBrotliDecompress());
+        }
+
+        let data = '';
+        stream.on('data', chunk => data += chunk);
+        stream.on('end', () => {
+          try {
+            resolve(JSON.parse(data));
+          } catch (e) {
+            resolve({ error: 'Failed to parse JSON response' });
+          }
+        });
+        stream.on('error', err => resolve({ error: err.message }));
       });
-    }).on('error', err => resolve({ error: err.message }))
-      .on('timeout', () => resolve({ error: 'Request timed out' }));
+
+      req.on('error', err => resolve({ error: err.message }));
+      req.on('timeout', () => {
+        req.destroy();
+        resolve({ error: 'Request timed out' });
+      });
+    } catch (e) {
+      resolve({ error: e.message });
+    }
   });
 }
 
@@ -84,11 +109,11 @@ export class ATSScanner {
   }
 
   /**
-   * 3. Scan Ashby Job Board
+   * 3. Scan Ashby Job Board (Supports high-payload compressed streaming)
    */
   static async scanAshby(companyToken) {
     const url = `https://api.ashbyhq.com/posting-api/job-board/${encodeURIComponent(companyToken)}`;
-    const res = await fetchJSON(url);
+    const res = await fetchJSON(url, {}, 30000);
     if (!res || res.error || !Array.isArray(res.jobs)) {
       return { success: false, error: res?.error || 'Invalid board', provider: 'Ashby', jobs: [] };
     }
@@ -97,10 +122,10 @@ export class ATSScanner {
       id: j.id,
       title: j.title,
       company: companyToken,
-      location: j.locationName || 'Remote',
-      url: j.jobUrl,
+      location: j.locationName || j.location || 'Remote',
+      url: j.jobUrl || `https://jobs.ashbyhq.com/${companyToken}/${j.id}`,
       updatedAt: j.publishedAt || '',
-      department: j.departmentName || ''
+      department: j.departmentName || j.department || ''
     }));
 
     return { success: true, provider: 'Ashby', count: jobs.length, jobs };
