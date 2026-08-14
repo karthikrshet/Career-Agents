@@ -1,5 +1,5 @@
 # Career Agents Readiness Scoring Regression Test Report
-Generated: 2026-08-14T20:52:09.737Z
+Generated: 2026-08-14T20:55:44.023Z
 
 ## Test Results Summary
 - **Total Tests**: 12
