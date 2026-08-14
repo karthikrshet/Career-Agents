@@ -992,6 +992,10 @@ Run terminal commands anywhere using `scripts/cli.js`:
 
 ## 🤖 {num_agents} Agent Ecosystem ({num_divs} Divisions)
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/divisions-map.svg" width="900" height="auto" alt="167 Agents across 19 Domain Divisions" />
+</p>
+
 Career Agents manages **{num_agents} specialized AI agents** categorized across **{num_divs} divisions**. When a user sends a query to the Copilot, the routing engine tokenizes the input and compares it against agent names, descriptions, tags, and required skills to construct a matching scorecard:
 
 ```
@@ -1087,6 +1091,10 @@ Career Agents features a multi-provider gateway supporting **18 AI backends** wi
 ---
 
 ## 🔌 Model Context Protocol (MCP) IDE Setup
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/mcp-ecosystem.svg" width="900" height="auto" alt="Career Agents MCP Ecosystem" />
+</p>
 
 Expose Career Agents tools directly to your AI code editors:
 
