@@ -64,7 +64,7 @@ export function PricingSection() {
             <div className="mt-6 pt-6 border-t border-white/10 space-y-3 text-xs text-slate-300">
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>All 146 Specialized AI Agents</span>
+                <span>All 167 Specialized AI Agents</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-emerald-400 shrink-0" />

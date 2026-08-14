@@ -1,49 +1,88 @@
 "use client";
 
 import React from "react";
-import { Building2, Code2, ShieldCheck } from "lucide-react";
+import { LogoLoop } from "@/components/react-bits";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiPython,
+  SiDocker,
+  SiKubernetes,
+  SiRust,
+  SiPostgresql,
+  SiGoogle,
+  SiApple,
+  SiVercel,
+  SiMeta,
+  SiStripe,
+} from "react-icons/si";
+import { Bot, Sparkles, Cloud, Building2 } from "lucide-react";
 
 export function TrustedCompanies() {
-  const targetCompanies = [
-    { name: "Google", domain: "Staff & Principal Software Roles" },
-    { name: "Meta", domain: "E6+ Distributed Systems Lead" },
-    { name: "Stripe", domain: "Core Infra & Payment Engineering" },
-    { name: "OpenAI", domain: "AI Systems & Model Infrastructure" },
-    { name: "Vercel", domain: "Frontend Architecture & Edge" },
-    { name: "Perplexity", domain: "Search & Retrieval Systems" },
-    { name: "Apple", domain: "Core OS Platform Engineering" },
-    { name: "Microsoft", domain: "Cloud & Cybersecurity Lead" },
-    { name: "Amazon", domain: "AWS Scalable Systems" },
+  const techLogos = [
+    { node: <SiReact className="w-4 h-4 text-sky-400" />, title: "React 19" },
+    { node: <SiNextdotjs className="w-4 h-4 text-white" />, title: "Next.js" },
+    { node: <SiTypescript className="w-4 h-4 text-sky-300" />, title: "TypeScript" },
+    { node: <SiTailwindcss className="w-4 h-4 text-sky-400" />, title: "Tailwind CSS" },
+    { node: <SiPython className="w-4 h-4 text-slate-300" />, title: "Python 3.12" },
+    { node: <Bot className="w-4 h-4 text-sky-400" />, title: "OpenAI API" },
+    { node: <SiDocker className="w-4 h-4 text-sky-400" />, title: "Docker" },
+    { node: <SiKubernetes className="w-4 h-4 text-sky-300" />, title: "Kubernetes" },
+    { node: <Cloud className="w-4 h-4 text-sky-400" />, title: "AWS Cloud" },
+    { node: <SiVercel className="w-4 h-4 text-white" />, title: "Vercel Edge" },
+    { node: <SiRust className="w-4 h-4 text-slate-300" />, title: "Rust Engine" },
+    { node: <SiPostgresql className="w-4 h-4 text-sky-400" />, title: "PostgreSQL" },
+  ];
+
+  const companyLogos = [
+    { node: <SiGoogle className="w-4 h-4 text-slate-300" />, title: "Google" },
+    { node: <SiMeta className="w-4 h-4 text-sky-400" />, title: "Meta" },
+    { node: <SiStripe className="w-4 h-4 text-sky-300" />, title: "Stripe" },
+    { node: <SiApple className="w-4 h-4 text-slate-300" />, title: "Apple" },
+    { node: <Sparkles className="w-4 h-4 text-sky-400" />, title: "OpenAI" },
+    { node: <Cloud className="w-4 h-4 text-sky-400" />, title: "Amazon" },
+    { node: <SiVercel className="w-4 h-4 text-white" />, title: "Vercel" },
+    { node: <Sparkles className="w-4 h-4 text-sky-400" />, title: "Perplexity" },
   ];
 
   return (
-    <section className="relative py-14 border-y border-white/10 bg-[#050814]/70 backdrop-blur-md overflow-hidden z-10">
+    <section className="relative py-10 sm:py-12 border-y border-white/10 bg-[#060a14] overflow-hidden z-10 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-6">
-        <p className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-widest">
-          Optimized for Applications &amp; Technical Interviews At Leading Companies
+        <p className="text-[11px] sm:text-xs font-mono font-medium text-slate-400 uppercase tracking-widest">
+          Calibrated For Technical Interviews &amp; Infrastructure At Leading Companies
         </p>
       </div>
 
-      {/* Edge Gradient Fades */}
-      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#050814] to-transparent z-20 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#050814] to-transparent z-20 pointer-events-none" />
+      <div className="space-y-4">
+        {/* Horizontal Tech Partners Loop */}
+        <LogoLoop
+          logos={techLogos}
+          speed={45}
+          direction="left"
+          logoHeight={34}
+          gap={36}
+          hoverSpeed={10}
+          scaleOnHover
+          fadeOut
+          fadeOutColor="#060a14"
+          ariaLabel="Supported Technologies"
+        />
 
-      {/* Marquee Track */}
-      <div className="flex overflow-hidden group">
-        <div className="flex gap-6 animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]">
-          {[...targetCompanies, ...targetCompanies].map((company, idx) => (
-            <div
-              key={`${company.name}-${idx}`}
-              className="card-glass flex items-center gap-3 px-5 py-3 rounded-xl hover:border-cyan-500/40 cursor-pointer"
-            >
-              <Building2 className="w-4 h-4 text-cyan-400 shrink-0" />
-              <div className="text-left">
-                <div className="text-sm font-bold text-slate-100 tracking-wide">{company.name}</div>
-                <div className="text-[10px] text-slate-400 font-medium">{company.domain}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Reverse Target Companies Loop */}
+        <LogoLoop
+          logos={companyLogos}
+          speed={40}
+          direction="right"
+          logoHeight={34}
+          gap={36}
+          hoverSpeed={10}
+          scaleOnHover
+          fadeOut
+          fadeOutColor="#060a14"
+          ariaLabel="Target Companies"
+        />
       </div>
     </section>
   );

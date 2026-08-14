@@ -2,12 +2,12 @@
 
 import React from "react";
 import { LenisProvider } from "@/components/ui/lenis-provider";
-import { CustomCursor } from "@/components/ui/custom-cursor";
 import { CommandPalette } from "@/components/layout/command-palette";
 import { MarketingNavbar } from "@/components/layout/navbar";
 import { HeroBackground3D } from "@/components/landing/hero-background-3d";
 import { HeroSection } from "@/components/landing/hero-section";
 import { TrustedCompanies } from "@/components/landing/trusted-companies";
+import { LaserFlowShowcase } from "@/components/landing/laser-flow-showcase";
 import { DashboardPreview } from "@/components/landing/dashboard-preview";
 import { CodingStudioShowcase } from "@/components/landing/coding-studio-showcase";
 import { AIWorkflowBuilder } from "@/components/landing/ai-workflow-builder";
@@ -26,25 +26,25 @@ export default function LandingPage() {
   return (
     <LenisProvider>
       <div className="relative min-h-screen bg-[#030712] text-white selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden font-sans antialiased">
-        {/* Custom Magnetic Mouse Cursor */}
-        <CustomCursor />
-
         {/* Global ⌘K Command Palette Modal */}
         <CommandPalette />
 
         {/* Unified Glassmorphic Navbar */}
         <MarketingNavbar />
 
-        {/* Hero Section Container with Performant 3D Background */}
+        {/* Hero Section Container with Antigravity 3D Particle Physics Canvas */}
         <div className="relative z-10">
           <HeroBackground3D />
           <HeroSection />
         </div>
 
-        {/* Targeted Companies Marquee */}
+        {/* Targeted Companies & Tech Partners Dual-Track LogoLoop Marquee */}
         <TrustedCompanies />
 
-        {/* Interactive Dashboard Showcase */}
+        {/* Interactive Laser Flow Architecture Spotlight Showcase */}
+        <LaserFlowShowcase />
+
+        {/* Interactive Product Workspace Dashboard */}
         <DashboardPreview />
 
         {/* Coding Studio & Playground Showcase */}
@@ -53,7 +53,7 @@ export default function LandingPage() {
         {/* Automated Agent Workflow Pipeline */}
         <AIWorkflowBuilder />
 
-        {/* 146 AI Agent Ecosystem Marketplace */}
+        {/* 167 AI Agent Ecosystem Marketplace */}
         <AgentMarketplace />
 
         {/* ATS Resume Studio Suite */}
@@ -77,7 +77,7 @@ export default function LandingPage() {
         {/* FAQ Accordion */}
         <FAQAccordion />
 
-        {/* High-Conversion CTA Banner */}
+        {/* High-Conversion CTA Banner with GradientWaves */}
         <CTASection />
 
         {/* Unified Enterprise Sitemap Footer */}
