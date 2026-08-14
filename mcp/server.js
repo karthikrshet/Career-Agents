@@ -6,6 +6,7 @@ import { Document, Packer, Paragraph, TextRun } from 'docx';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import exceljs from 'exceljs';
 import { calculateReadiness, resolveRequirements, normalizeCandidateProfile } from '../services/readiness.js';
+import { ApplicationTracker, ATSScanner, JDMatcher, CVBuilder, CoverLetterBuilder, InterviewCoach, OutreachGenerator, PipelineAnalytics, CompanyIntel } from '../packages/pipeline/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -779,6 +780,42 @@ const MCP_TOOLS = [
         role: { type: 'string', description: 'Role title' }
       },
       required: ['company', 'role']
+    }
+  },
+  {
+    name: 'career_pipeline_track',
+    description: 'Add or update job applications in the active pipeline tracker.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        action: { type: 'string', description: 'Action: "add", "status", "list", "dedup"' },
+        company: { type: 'string', description: 'Company name' },
+        role: { type: 'string', description: 'Role title' },
+        status: { type: 'string', description: 'Application status (e.g. applied, interview, offer, rejected)' },
+        link: { type: 'string', description: 'Job application URL' },
+        notes: { type: 'string', description: 'Notes or feedback' }
+      },
+      required: ['action']
+    }
+  },
+  {
+    name: 'career_pipeline_scan',
+    description: 'Scan Greenhouse, Lever, Ashby, Workable, or SmartRecruiters ATS job boards for open roles.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        boardToken: { type: 'string', description: 'Company board token (e.g. stripe, github, netlify, openai)' },
+        provider: { type: 'string', description: 'ATS provider (greenhouse, lever, ashby, workable, smartrecruiters)' }
+      },
+      required: ['boardToken']
+    }
+  },
+  {
+    name: 'career_pipeline_stats',
+    description: 'Retrieve live job application funnel analytics, conversion velocity, and stage breakdown.',
+    inputSchema: {
+      type: 'object',
+      properties: {}
     }
   }
 ];
@@ -2445,18 +2482,78 @@ async function handleToolsCall(id, params) {
 
       case 'interview_plan': {
         const { company, role } = toolArgs;
+        const track = InterviewCoach.getCompanyTrack(company);
+        const star = InterviewCoach.generateSTARBank([], role || 'Software Engineer');
         sendResult(id, {
           content: [{
             type: 'text',
             text: JSON.stringify({
               success: true,
-              planName: `Interview Prep Plan for ${role || 'Software Engineer'} at ${company || 'Target Company'}`,
-              timeline: [
-                { step: "Week 1", focus: "Data Structures & Core Coding Algorithms" },
-                { step: "Week 2", focus: "System Architecture Design" },
-                { step: "Week 3", focus: "STAR Behavioral Questions & Mock Preparation" }
-              ]
+              company: company || 'Target Company',
+              role: role || 'Software Engineer',
+              track: track || null,
+              starQuestions: star.questions
             }, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'career_pipeline_track': {
+        const { action = 'list', company, role, status = 'applied', link = '', notes = '' } = toolArgs;
+        const trackerPath = path.join(root, 'pipeline-tracker.md');
+        const tracker = ApplicationTracker.load(trackerPath);
+
+        let result = {};
+        if (action === 'add') {
+          if (!company || !role) throw new Error('Missing company or role');
+          const entry = tracker.addEntry({ company, role, status, link, appliedDate: new Date().toISOString().split('T')[0] });
+          tracker.save(trackerPath);
+          result = { success: true, message: 'Added application', entry };
+        } else if (action === 'status') {
+          if (!company || !status) throw new Error('Missing company or status');
+          const updated = tracker.updateStatus(company, status, notes);
+          tracker.save(trackerPath);
+          result = { success: !!updated, message: updated ? 'Updated status' : 'Application not found', entry: updated };
+        } else if (action === 'dedup') {
+          const { DedupEngine } = await import('../packages/pipeline/dedup.js');
+          const before = tracker.entries.length;
+          tracker.entries = DedupEngine.deduplicate(tracker.entries);
+          tracker.save(trackerPath);
+          result = { success: true, removedCount: before - tracker.entries.length, totalEntries: tracker.entries.length };
+        } else {
+          result = { success: true, count: tracker.entries.length, entries: tracker.entries, stats: tracker.getStats() };
+        }
+
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(result, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'career_pipeline_scan': {
+        const { boardToken, provider = 'greenhouse' } = toolArgs;
+        const scanRes = await ATSScanner.scan(boardToken, provider);
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(scanRes, null, 2)
+          }]
+        });
+        break;
+      }
+
+      case 'career_pipeline_stats': {
+        const trackerPath = path.join(root, 'pipeline-tracker.md');
+        const tracker = ApplicationTracker.load(trackerPath);
+        const stats = PipelineAnalytics.analyzePipeline(tracker.entries);
+        sendResult(id, {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(stats, null, 2)
           }]
         });
         break;

@@ -1,15 +1,24 @@
 /**
- * Career-Agents Pipeline · Multi-ATS Portal & Board Scanner
+ * Career-Agents Pipeline · Multi-ATS Portal & Universal Job Board Scanner
  * Copyright (c) 2026 Karthik Rajesh Shet · MIT License
  */
 
 import https from 'https';
 import http from 'http';
 
-function fetchJSON(url) {
+function fetchJSON(url, customHeaders = {}) {
   return new Promise((resolve) => {
     const client = url.startsWith('https') ? https : http;
-    client.get(url, { headers: { 'User-Agent': 'Career-Agents-Pipeline/1.0 (https://github.com/karthikrshet/Career-Agents)' } }, (res) => {
+    const headers = {
+      'User-Agent': 'Career-Agents-Pipeline/1.0 (https://github.com/karthikrshet/Career-Agents)',
+      'Accept': 'application/json',
+      ...customHeaders
+    };
+
+    client.get(url, { headers, timeout: 8000 }, (res) => {
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        return fetchJSON(res.headers.location, customHeaders).then(resolve);
+      }
       if (res.statusCode < 200 || res.statusCode >= 300) {
         return resolve({ error: `HTTP ${res.statusCode}` });
       }
@@ -22,24 +31,26 @@ function fetchJSON(url) {
           resolve({ error: 'Failed to parse JSON response' });
         }
       });
-    }).on('error', err => resolve({ error: err.message }));
+    }).on('error', err => resolve({ error: err.message }))
+      .on('timeout', () => resolve({ error: 'Request timed out' }));
   });
 }
 
 export class ATSScanner {
   /**
-   * Scan Greenhouse API for published openings.
+   * 1. Scan Greenhouse Board
    */
   static async scanGreenhouse(boardToken) {
     const url = `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(boardToken)}/jobs?content=true`;
     const res = await fetchJSON(url);
     if (!res || res.error || !Array.isArray(res.jobs)) {
-      return { success: false, error: res?.error || 'Invalid board', jobs: [] };
+      return { success: false, error: res?.error || 'Invalid board', provider: 'Greenhouse', jobs: [] };
     }
 
     const jobs = res.jobs.map(j => ({
       id: String(j.id),
       title: j.title,
+      company: boardToken,
       location: j.location?.name || 'Remote',
       url: j.absolute_url,
       updatedAt: j.updated_at,
@@ -50,21 +61,22 @@ export class ATSScanner {
   }
 
   /**
-   * Scan Lever API for active postings.
+   * 2. Scan Lever Postings
    */
   static async scanLever(companyToken) {
     const url = `https://api.lever.co/v0/postings/${encodeURIComponent(companyToken)}?mode=json`;
     const res = await fetchJSON(url);
     if (!res || res.error || !Array.isArray(res)) {
-      return { success: false, error: res?.error || 'Invalid board', jobs: [] };
+      return { success: false, error: res?.error || 'Invalid board', provider: 'Lever', jobs: [] };
     }
 
     const jobs = res.map(j => ({
       id: j.id,
       title: j.text,
+      company: companyToken,
       location: j.categories?.location || 'Remote',
       url: j.hostedUrl,
-      updatedAt: new Date(j.createdAt).toISOString(),
+      updatedAt: j.createdAt ? new Date(j.createdAt).toISOString() : '',
       team: j.categories?.team || ''
     }));
 
@@ -72,18 +84,19 @@ export class ATSScanner {
   }
 
   /**
-   * Scan Ashby API for open roles.
+   * 3. Scan Ashby Job Board
    */
   static async scanAshby(companyToken) {
     const url = `https://api.ashbyhq.com/posting-api/job-board/${encodeURIComponent(companyToken)}`;
     const res = await fetchJSON(url);
     if (!res || res.error || !Array.isArray(res.jobs)) {
-      return { success: false, error: res?.error || 'Invalid board', jobs: [] };
+      return { success: false, error: res?.error || 'Invalid board', provider: 'Ashby', jobs: [] };
     }
 
     const jobs = res.jobs.map(j => ({
       id: j.id,
       title: j.title,
+      company: companyToken,
       location: j.locationName || 'Remote',
       url: j.jobUrl,
       updatedAt: j.publishedAt || '',
@@ -94,18 +107,19 @@ export class ATSScanner {
   }
 
   /**
-   * Scan Workable API for published openings.
+   * 4. Scan Workable Accounts
    */
   static async scanWorkable(companyToken) {
     const url = `https://apply.workable.com/api/v1/widget/accounts/${encodeURIComponent(companyToken)}`;
     const res = await fetchJSON(url);
     if (!res || res.error || !Array.isArray(res.jobs)) {
-      return { success: false, error: res?.error || 'Invalid board', jobs: [] };
+      return { success: false, error: res?.error || 'Invalid board', provider: 'Workable', jobs: [] };
     }
 
     const jobs = res.jobs.map(j => ({
       id: j.shortcode || j.id,
       title: j.title,
+      company: companyToken,
       location: `${j.city || ''}, ${j.country || ''}`.replace(/^,\s*|,\s*$/g, '') || 'Remote',
       url: j.url || `https://apply.workable.com/${companyToken}/j/${j.shortcode}/`,
       updatedAt: j.published_on || ''
@@ -115,18 +129,19 @@ export class ATSScanner {
   }
 
   /**
-   * Scan SmartRecruiters API for active postings.
+   * 5. Scan SmartRecruiters Postings
    */
   static async scanSmartRecruiters(companyToken) {
     const url = `https://api.smartrecruiters.com/v1/companies/${encodeURIComponent(companyToken)}/postings`;
     const res = await fetchJSON(url);
     if (!res || res.error || !Array.isArray(res.content)) {
-      return { success: false, error: res?.error || 'Invalid board', jobs: [] };
+      return { success: false, error: res?.error || 'Invalid board', provider: 'SmartRecruiters', jobs: [] };
     }
 
     const jobs = res.content.map(j => ({
       id: j.id,
       title: j.name,
+      company: companyToken,
       location: j.location?.city ? `${j.location.city}, ${j.location.country}` : 'Remote',
       url: `https://jobs.smartrecruiters.com/${companyToken}/${j.id}`,
       updatedAt: j.releasedDate || ''
@@ -136,15 +151,87 @@ export class ATSScanner {
   }
 
   /**
-   * Universal scanner dispatcher supporting Greenhouse, Lever, Ashby, Workable, SmartRecruiters.
+   * 6. Scan RemoteOK Public Feed
    */
-  static async scan(boardToken, providerType = 'greenhouse') {
-    const type = providerType.toLowerCase();
-    if (type === 'lever') return ATSScanner.scanLever(boardToken);
-    if (type === 'ashby') return ATSScanner.scanAshby(boardToken);
-    if (type === 'workable') return ATSScanner.scanWorkable(boardToken);
-    if (type === 'smartrecruiters' || type === 'smart') return ATSScanner.scanSmartRecruiters(boardToken);
-    return ATSScanner.scanGreenhouse(boardToken);
+  static async scanRemoteOK(query = '') {
+    const url = `https://remoteok.com/api${query ? `?tag=${encodeURIComponent(query)}` : ''}`;
+    const res = await fetchJSON(url);
+    if (!Array.isArray(res)) {
+      return { success: false, error: 'Failed to fetch RemoteOK feed', provider: 'RemoteOK', jobs: [] };
+    }
+
+    const jobs = res.filter(j => j && j.position).map(j => ({
+      id: String(j.id || j.epoch),
+      title: j.position,
+      company: j.company || 'Unknown',
+      location: j.location || 'Remote',
+      url: j.url || `https://remoteok.com/remote-jobs/${j.id}`,
+      tags: j.tags || [],
+      updatedAt: j.date || ''
+    }));
+
+    return { success: true, provider: 'RemoteOK', count: jobs.length, jobs };
+  }
+
+  /**
+   * 7. Scan Arbeitnow European Tech Feed
+   */
+  static async scanArbeitnow() {
+    const url = `https://www.arbeitnow.com/api/job-board-api`;
+    const res = await fetchJSON(url);
+    if (!res || !Array.isArray(res.data)) {
+      return { success: false, error: 'Failed to fetch Arbeitnow feed', provider: 'Arbeitnow', jobs: [] };
+    }
+
+    const jobs = res.data.map(j => ({
+      id: j.slug || String(Math.random()),
+      title: j.title,
+      company: j.company_name,
+      location: j.location || (j.remote ? 'Remote' : 'Europe'),
+      url: j.url,
+      tags: j.tags || [],
+      updatedAt: new Date(j.created_at * 1000).toISOString()
+    }));
+
+    return { success: true, provider: 'Arbeitnow', count: jobs.length, jobs };
+  }
+
+  /**
+   * 8. Scan Himalayas Remote Jobs
+   */
+  static async scanHimalayas() {
+    const url = `https://himalayas.app/jobs/api`;
+    const res = await fetchJSON(url);
+    if (!res || !Array.isArray(res.jobs)) {
+      return { success: false, error: 'Failed to fetch Himalayas feed', provider: 'Himalayas', jobs: [] };
+    }
+
+    const jobs = res.jobs.map(j => ({
+      id: j.id || j.slug,
+      title: j.title,
+      company: j.companyName,
+      location: j.location || 'Remote',
+      url: j.applicationLink || `https://himalayas.app/jobs/${j.slug}`,
+      tags: j.categories || [],
+      updatedAt: j.pubDate || ''
+    }));
+
+    return { success: true, provider: 'Himalayas', count: jobs.length, jobs };
+  }
+
+  /**
+   * Universal Dispatcher supporting all 8 ATS and public job portals
+   */
+  static async scan(boardOrQuery, provider = 'greenhouse') {
+    const p = provider.toLowerCase();
+    if (p === 'lever') return ATSScanner.scanLever(boardOrQuery);
+    if (p === 'ashby') return ATSScanner.scanAshby(boardOrQuery);
+    if (p === 'workable') return ATSScanner.scanWorkable(boardOrQuery);
+    if (p === 'smartrecruiters' || p === 'smart') return ATSScanner.scanSmartRecruiters(boardOrQuery);
+    if (p === 'remoteok' || p === 'remote_ok') return ATSScanner.scanRemoteOK(boardOrQuery);
+    if (p === 'arbeitnow') return ATSScanner.scanArbeitnow();
+    if (p === 'himalayas') return ATSScanner.scanHimalayas();
+    return ATSScanner.scanGreenhouse(boardOrQuery);
   }
 }
 
