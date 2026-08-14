@@ -632,6 +632,76 @@ Career Agents includes an enterprise-grade **Token Optimization Engine** built i
 
 ---
 
+## ⚡ MCP-Powered Agentic Job Search Pipeline & Intelligence Loop
+
+> **"Job searching is fragmented across job boards, resumes, interview preparation, networking, and application tracking. Career Agents turns that fragmented process into one MCP-powered agentic workflow."**
+> 
+> *The key idea is that Career Agents doesn't just find a job. It understands the job, evaluates candidate evidence against it, identifies what's missing, generates tailored application materials, prepares the candidate for the interview, and tracks what happens afterward.*
+
+### The Central Intelligence Loop
+
+```text
+Job Description / ATS Query
+            ↓
+  Requirement Extraction
+            ↓
+Candidate Evidence Matching
+            ↓
+  Deterministic Readiness Score
+            ↓
+  Strengths & Skill Gaps
+            ↓
+┌───────────────────────┬───────────────────────┐
+│                       │                       │
+Tailored Resume         Cover Letter Draft      Interview Preparation
+(HTML & LaTeX)          (3-Paragraph Executive) (STAR Question Bank)
+│                       │                       │
+└───────────────────────┼───────────────────────┘
+                        ↓
+            Recruiter Outreach (<300 chars)
+                        ↓
+             Application Tracker
+             (pipeline-tracker.md)
+                        ↓
+           Funnel Performance Analytics
+```
+
+### End-to-End Pipeline Commands
+
+```bash
+# 1. Scan ATS job boards (Greenhouse, Lever, Ashby, Workable, SmartRecruiters, RemoteOK, Arbeitnow, Himalayas)
+career-agents pipeline scan stripe greenhouse
+career-agents pipeline scan netlify lever
+career-agents pipeline scan openai ashby
+
+# 2. Evaluate candidate profile readiness against raw job descriptions
+career-agents pipeline match jd.txt Google "AI/ML Infrastructure Engineer"
+
+# 3. Compile ATS single-page resume (HTML & LaTeX)
+career-agents pipeline cv profile.json --html
+career-agents pipeline cv profile.json --latex
+
+# 4. Generate strategic 3-paragraph tailored cover letter
+career-agents pipeline cover Google "AI/ML Infrastructure Engineer"
+
+# 5. Build STAR interview question bank and company track
+career-agents pipeline interview Google "AI/ML Infrastructure Engineer"
+
+# 6. Draft concise recruiter networking outreach note
+career-agents pipeline outreach "Sarah Jenkins" Google "AI/ML Infrastructure Engineer"
+
+# 7. Track applications with live status state machine
+career-agents pipeline add Google "AI/ML Infrastructure Engineer" https://careers.google.com/jobs/123
+career-agents pipeline status Google interviewing "Scheduled Technical Screen Round 1"
+
+# 8. View live pipeline conversion funnel analytics
+career-agents pipeline stats
+career-agents pipeline digest
+career-agents pipeline doctor
+```
+
+---
+
 ## 💻 Tech Stack & Integrations
 
 **Frontend & Architecture**  
