@@ -1,5 +1,5 @@
 /**
- * Career-Agents Pipeline · ATS Portal & Board Scanner
+ * Career-Agents Pipeline · Multi-ATS Portal & Board Scanner
  * Copyright (c) 2026 Karthik Rajesh Shet · MIT License
  */
 
@@ -7,7 +7,7 @@ import https from 'https';
 import http from 'http';
 
 function fetchJSON(url) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const client = url.startsWith('https') ? https : http;
     client.get(url, { headers: { 'User-Agent': 'Career-Agents-Pipeline/1.0 (https://github.com/karthikrshet/Career-Agents)' } }, (res) => {
       if (res.statusCode < 200 || res.statusCode >= 300) {
@@ -46,7 +46,7 @@ export class ATSScanner {
       departments: (j.departments || []).map(d => d.name)
     }));
 
-    return { success: true, count: jobs.length, jobs };
+    return { success: true, provider: 'Greenhouse', count: jobs.length, jobs };
   }
 
   /**
@@ -68,7 +68,7 @@ export class ATSScanner {
       team: j.categories?.team || ''
     }));
 
-    return { success: true, count: jobs.length, jobs };
+    return { success: true, provider: 'Lever', count: jobs.length, jobs };
   }
 
   /**
@@ -90,7 +90,61 @@ export class ATSScanner {
       department: j.departmentName || ''
     }));
 
-    return { success: true, count: jobs.length, jobs };
+    return { success: true, provider: 'Ashby', count: jobs.length, jobs };
+  }
+
+  /**
+   * Scan Workable API for published openings.
+   */
+  static async scanWorkable(companyToken) {
+    const url = `https://apply.workable.com/api/v1/widget/accounts/${encodeURIComponent(companyToken)}`;
+    const res = await fetchJSON(url);
+    if (!res || res.error || !Array.isArray(res.jobs)) {
+      return { success: false, error: res?.error || 'Invalid board', jobs: [] };
+    }
+
+    const jobs = res.jobs.map(j => ({
+      id: j.shortcode || j.id,
+      title: j.title,
+      location: `${j.city || ''}, ${j.country || ''}`.replace(/^,\s*|,\s*$/g, '') || 'Remote',
+      url: j.url || `https://apply.workable.com/${companyToken}/j/${j.shortcode}/`,
+      updatedAt: j.published_on || ''
+    }));
+
+    return { success: true, provider: 'Workable', count: jobs.length, jobs };
+  }
+
+  /**
+   * Scan SmartRecruiters API for active postings.
+   */
+  static async scanSmartRecruiters(companyToken) {
+    const url = `https://api.smartrecruiters.com/v1/companies/${encodeURIComponent(companyToken)}/postings`;
+    const res = await fetchJSON(url);
+    if (!res || res.error || !Array.isArray(res.content)) {
+      return { success: false, error: res?.error || 'Invalid board', jobs: [] };
+    }
+
+    const jobs = res.content.map(j => ({
+      id: j.id,
+      title: j.name,
+      location: j.location?.city ? `${j.location.city}, ${j.location.country}` : 'Remote',
+      url: `https://jobs.smartrecruiters.com/${companyToken}/${j.id}`,
+      updatedAt: j.releasedDate || ''
+    }));
+
+    return { success: true, provider: 'SmartRecruiters', count: jobs.length, jobs };
+  }
+
+  /**
+   * Universal scanner dispatcher supporting Greenhouse, Lever, Ashby, Workable, SmartRecruiters.
+   */
+  static async scan(boardToken, providerType = 'greenhouse') {
+    const type = providerType.toLowerCase();
+    if (type === 'lever') return ATSScanner.scanLever(boardToken);
+    if (type === 'ashby') return ATSScanner.scanAshby(boardToken);
+    if (type === 'workable') return ATSScanner.scanWorkable(boardToken);
+    if (type === 'smartrecruiters' || type === 'smart') return ATSScanner.scanSmartRecruiters(boardToken);
+    return ATSScanner.scanGreenhouse(boardToken);
   }
 }
 

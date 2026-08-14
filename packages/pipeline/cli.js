@@ -96,14 +96,7 @@ export async function runCareerPipelineCLI(subcommand, args = []) {
         return;
       }
       console.log(`\n${c.cyan}Scanning ${atsType.toUpperCase()} board for '${boardToken}'...${c.reset}`);
-      let res;
-      if (atsType.toLowerCase() === 'lever') {
-        res = await ATSScanner.scanLever(boardToken);
-      } else if (atsType.toLowerCase() === 'ashby') {
-        res = await ATSScanner.scanAshby(boardToken);
-      } else {
-        res = await ATSScanner.scanGreenhouse(boardToken);
-      }
+      const res = await ATSScanner.scan(boardToken, atsType);
 
       if (!res.success) {
         console.log(`${c.yellow}Scanner warning: ${res.error || 'Failed to fetch jobs'}${c.reset}\n`);
