@@ -71,6 +71,7 @@
     "templates",
     "scripts",
     "packages",
+    "services",
     "plugins",
     "features.json",
     "launcher",

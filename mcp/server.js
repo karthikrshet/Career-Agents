@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import exceljs from 'exceljs';
+import { calculateReadiness, resolveRequirements, normalizeCandidateProfile } from '../services/readiness.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,25 +21,6 @@ try {
 } catch (e) {
   // Ignored in server setup
 }
-
-const COMPANY_STACKS = {
-  salesforce: ['apex', 'agentforce', 'graphql', 'lwc', 'crm', 'saas', 'salesforce core values & trust alignment', 'customer success orientation', 'system architecture & saas scaling', 'data structures & algorithms'],
-  google: ['algorithms', 'distributed systems', 'go', 'c++', 'python', 'system design', 'scalability', 'java'],
-  stripe: ['apis', 'ruby', 'typescript', 'pci compliance', 'react', 'node.js', 'postgresql', 'testing'],
-  meta: ['react', 'graphql', 'system design', 'algorithms', 'c++', 'python', 'distributed systems'],
-  amazon: ['aws', 'java', 'c++', 'system design', 'algorithms', 'scalability', 'cloud architecture'],
-  apple: ['swift', 'swiftui', 'objective-c', 'c++', 'metal', 'coreml', 'systems programming', 'privacy', 'hardware-software'],
-  netflix: ['java', 'spring boot', 'microservices', 'distributed systems', 'system design', 'aws', 'cdn', 'chaos engineering'],
-  microsoft: ['c#', '.net', 'azure', 'typescript', 'c++', 'system design', 'distributed systems', 'growth mindset'],
-  openai: ['python', 'pytorch', 'triton', 'distributed training', 'llms', 'cuda', 'transformers', 'ai safety'],
-  anthropic: ['python', 'pytorch', 'constitutional ai', 'llms', 'ai safety', 'transformers', 'distributed training'],
-  nvidia: ['c++', 'cuda', 'gpu architecture', 'parallel computing', 'tensorrt', 'deep learning acceleration', 'systems programming'],
-  databricks: ['scala', 'python', 'spark', 'delta lake', 'distributed query engines', 'c++', 'concurrency', 'etl'],
-  uber: ['go', 'java', 'geohashing', 'h3', 'distributed systems', 'real-time streaming', 'system design', 'kafka'],
-  adobe: ['c++', 'javascript', 'typescript', 'react', 'cloud architecture', 'creative cloud', 'system design'],
-  atlassian: ['java', 'react', 'typescript', 'microservices', 'aws', 'confluence', 'jira', 'system design'],
-  oracle: ['java', 'c++', 'sql', 'database internals', 'operating systems', 'cloud infrastructure', 'networking']
-};
 
 function hasWord(text, term) {
   const cleanTerm = term.replace(/-/g, ' ').toLowerCase().trim();
@@ -1054,21 +1036,23 @@ async function handleToolsCall(id, params) {
       }
 
       case 'career_assessment': {
+        const profileInput = toolArgs.careerProfile || toolArgs.profile || toolArgs.resume || toolArgs;
+        const target = {
+          company: toolArgs.company || toolArgs.targetCompany || toolArgs.target_company || (typeof profileInput === 'object' ? (profileInput.targetCompany || profileInput.target_company || profileInput.company || '') : '') || 'google',
+          role: toolArgs.role || toolArgs.targetRole || toolArgs.target_role || (typeof profileInput === 'object' ? (profileInput.targetRole || profileInput.target_role || profileInput.role || '') : '') || 'software-engineer'
+        };
+
+        const readiness = calculateReadiness(profileInput, target);
+
         let { roadmapScore, resumeScore, interviewScore, networkingScore, portfolioScore } = toolArgs;
         if (toolArgs.careerProfile && typeof toolArgs.careerProfile === 'object') {
-          const profile = toolArgs.careerProfile;
-          roadmapScore = roadmapScore ?? profile.roadmapScore ?? profile.roadmap_score;
-          resumeScore = resumeScore ?? profile.resumeScore ?? profile.resume_score;
-          interviewScore = interviewScore ?? profile.interviewScore ?? profile.interview_score;
-          networkingScore = networkingScore ?? profile.networkingScore ?? profile.networking_score;
-          portfolioScore = portfolioScore ?? profile.portfolioScore ?? profile.portfolio_score;
+          const p = toolArgs.careerProfile;
+          roadmapScore = roadmapScore ?? p.roadmapScore ?? p.roadmap_score;
+          resumeScore = resumeScore ?? p.resumeScore ?? p.resume_score;
+          interviewScore = interviewScore ?? p.interviewScore ?? p.interview_score;
+          networkingScore = networkingScore ?? p.networkingScore ?? p.networking_score;
+          portfolioScore = portfolioScore ?? p.portfolioScore ?? p.portfolio_score;
         }
-
-        roadmapScore = roadmapScore ?? 2;
-        resumeScore = resumeScore ?? 2;
-        interviewScore = interviewScore ?? 2;
-        networkingScore = networkingScore ?? 2;
-        portfolioScore = portfolioScore ?? 2;
 
         const getSubscore = (val) => {
           if (val === 1) return 20;
@@ -1076,31 +1060,29 @@ async function handleToolsCall(id, params) {
           return 100;
         };
 
-        const career = getSubscore(roadmapScore);
-        const resume = getSubscore(resumeScore);
-        const interview = getSubscore(interviewScore);
-        const networking = getSubscore(networkingScore);
-        const portfolio = getSubscore(portfolioScore);
+        const legacyCombined = (roadmapScore !== undefined || resumeScore !== undefined || interviewScore !== undefined || networkingScore !== undefined || portfolioScore !== undefined)
+          ? Math.round((
+              getSubscore(roadmapScore ?? 2) +
+              getSubscore(resumeScore ?? 2) +
+              getSubscore(interviewScore ?? 2) +
+              getSubscore(networkingScore ?? 2) +
+              getSubscore(portfolioScore ?? 2)
+            ) / 5)
+          : 60;
 
-        const combinedScore = Math.round((career + resume + interview + networking + portfolio) / 5);
+        const effectiveScore = readiness.readinessScore !== null ? readiness.readinessScore : legacyCombined;
 
         const recommendations = [];
         const roadmap = [];
-        if (career < 80) {
+
+        if (readiness.gaps.length > 0) {
+          readiness.gaps.slice(0, 3).forEach(gap => {
+            recommendations.push(`Develop target competency for ${gap}.`);
+            roadmap.push(`Milestone: Acquire and demonstrate verified evidence for ${gap}`);
+          });
+        } else if (effectiveScore < 80) {
           recommendations.push('Define clear long-term career roadmaps using: career_path software-engineer');
           roadmap.push('career_path: software-engineer (Define milestone-based roadmap)');
-        }
-        if (resume < 80) {
-          recommendations.push('Format and check ATS compliance by running: resume_score tool');
-          roadmap.push('workflow: ats-optimization (Check ATS compliance)');
-        }
-        if (interview < 80) {
-          recommendations.push('Schedule mock interview loop preparation via: company_track google');
-          roadmap.push('company_track: google (Practice mock interview loops)');
-        }
-        if (networking < 80) {
-          recommendations.push('Review outbound outreach strategy blueprints in: workflow_lookup remote-job-hunt');
-          roadmap.push('workflow: remote-job-hunt (Build referral pipeline)');
         }
 
         if (roadmap.length === 0) {
@@ -1111,7 +1093,12 @@ async function handleToolsCall(id, params) {
           content: [{
             type: 'text',
             text: JSON.stringify({
-              career_score: combinedScore,
+              career_score: effectiveScore,
+              readinessScore: readiness.readinessScore,
+              confidence: readiness.confidence,
+              dataCoverage: readiness.dataCoverage,
+              missingEvidence: readiness.missingEvidence,
+              components: readiness.components,
               recommendations,
               roadmap
             }, null, 2)
@@ -1592,16 +1579,26 @@ async function handleToolsCall(id, params) {
             }
           });
           
-          // Fallback to check COMPANY_STACKS
-          for (const [coId, skills] of Object.entries(COMPANY_STACKS)) {
-            const fuzzyForms = getFuzzyTerms(targetLower);
-            const hasSkill = skills.some(s => fuzzyForms.includes(s.toLowerCase()));
-            if (hasSkill) {
-              const coNode = graph.nodes.find(n => n.id === coId && n.type === 'company');
-              if (coNode && !connectedCompanies.some(c => c.id === coId)) {
-                connectedCompanies.push(coNode);
-                coRelations.push(`${coNode.name} → (requires_skill_stack) → ${target}`);
-              }
+          // Check companies/*.json registry for required skill stack
+          const companiesDir = path.join(root, 'companies');
+          if (fs.existsSync(companiesDir)) {
+            const companyFiles = fs.readdirSync(companiesDir).filter(f => f.endsWith('.json'));
+            for (const cFile of companyFiles) {
+              try {
+                const coData = JSON.parse(fs.readFileSync(path.join(companiesDir, cFile), 'utf8'));
+                const coId = coData.id || path.basename(cFile, '.json');
+                const skills = (coData.skills || []).map(s => s.toLowerCase());
+                const fuzzyForms = getFuzzyTerms(targetLower);
+                const hasSkill = skills.some(s => fuzzyForms.some(f => s.includes(f) || f.includes(s))) ||
+                  (coData.interview_process || []).some(ip => fuzzyForms.some(f => ip.toLowerCase().includes(f)));
+                if (hasSkill) {
+                  const coNode = graph.nodes.find(n => n.id === coId && n.type === 'company') || { id: coId, name: coData.name || coId };
+                  if (!connectedCompanies.some(c => c.id === coId)) {
+                    connectedCompanies.push(coNode);
+                    coRelations.push(`${coNode.name} → (requires_skill_stack) → ${target}`);
+                  }
+                }
+              } catch {}
             }
           }
           
@@ -1663,64 +1660,15 @@ async function handleToolsCall(id, params) {
           return;
         }
 
-        let resumeData;
-        try {
-          resumeData = JSON.parse(resume);
-        } catch (e) {
-          resumeData = {
-            skills: resume.match(/\b(React|Next\.js|Node\.js|Express|Python|Go|Java|SQL|AWS|Docker|Kubernetes|Git)\b/gi) || [],
-            summary: resume
-          };
-        }
+        const target = {
+          company: target_company,
+          role: toolArgs.target_role || toolArgs.targetRole || toolArgs.role || ''
+        };
 
-        const coId = target_company.toLowerCase().trim();
-        const coFile = path.join(root, 'companies', `${coId}.json`);
-        let companyData = { name: target_company, skills: [] };
-        if (fs.existsSync(coFile)) {
-          companyData = loadJSON(coFile);
-        }
+        const readiness = calculateReadiness(resume, target);
 
-        const companyStack = COMPANY_STACKS[coId] || companyData.skills.map(s => s.toLowerCase()) || [];
-        const resumeSkills = (resumeData.skills || []).map(s => s.toLowerCase());
-        const resumeTextLower = JSON.stringify(resumeData).toLowerCase();
-
-        const strengths = [];
-        const weaknesses = [];
-
-        companyStack.forEach(skill => {
-          const match = getMatchDetails(resumeSkills, resumeTextLower, skill);
-          const capSkill = skill.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-          if (match.matched) {
-            strengths.push(capSkill);
-          } else {
-            weaknesses.push(capSkill);
-          }
-        });
-
-        // Salesforce-specific calibration
-        if (coId === 'salesforce') {
-          const typicalStrengths = ['React', 'AI Agents', 'Product Ownership'];
-          typicalStrengths.forEach(ts => {
-            const first = ts.toLowerCase().split(' ')[0];
-            if (resumeTextLower.includes(first) || resumeSkills.some(s => s.toLowerCase().includes(first))) {
-              if (!strengths.includes(ts)) strengths.push(ts);
-            }
-          });
-          
-          const typicalWeaknesses = ['Apex', 'Agentforce', 'GraphQL'];
-          typicalWeaknesses.forEach(tw => {
-            if (!resumeTextLower.includes(tw.toLowerCase()) && !resumeSkills.some(s => s.toLowerCase().includes(tw.toLowerCase()))) {
-              if (!weaknesses.includes(tw)) weaknesses.unshift(tw);
-            }
-          });
-        }
-
-        if (strengths.length === 0) {
-          strengths.push('Software Engineering', 'Problem Solving');
-        }
-        if (weaknesses.length === 0) {
-          weaknesses.push('SaaS Architecture');
-        }
+        const strengths = readiness.strengths;
+        const weaknesses = readiness.gaps;
 
         const priorityActions = [];
         weaknesses.slice(0, 3).forEach((w, index) => {
@@ -1731,18 +1679,15 @@ async function handleToolsCall(id, params) {
           } else if (w.toLowerCase().includes('agentforce')) {
             priorityActions.push(`${index + 1}. Create Agentforce Demo`);
           } else {
-            priorityActions.push(`${index + 1}. Study and build projects using ${w}`);
+            priorityActions.push(`${index + 1}. Study and build projects focusing on ${w}`);
           }
         });
 
         if (priorityActions.length === 0) {
-          priorityActions.push('1. Review system design interview track.');
+          priorityActions.push('1. Review system design interview track and maintain active project repository.');
         }
 
-        const estimatedReadiness = coId === 'salesforce' ? 72 : Math.min(95, Math.max(40, Math.round((strengths.length / Math.max(1, companyStack.length)) * 100)));
-        const confidenceScore = 85;
-
-        const summaryText = `Strengths:\n${strengths.map(s => `- ${s}`).join('\n')}\n\nWeaknesses:\n${weaknesses.map(w => `- ${w}`).join('\n')}\n\nPriority Actions:\n${priorityActions.join('\n')}\n\nEstimated Readiness:\n${estimatedReadiness}%\n\nConfidence:\n${confidenceScore}%`;
+        const summaryText = `Strengths:\n${strengths.length > 0 ? strengths.map(s => `- ${s}`).join('\n') : '- None identified from provided evidence'}\n\nWeaknesses / Gaps:\n${weaknesses.length > 0 ? weaknesses.map(w => `- ${w}`).join('\n') : '- None'}\n\nPriority Actions:\n${priorityActions.join('\n')}\n\nEstimated Readiness:\n${readiness.readinessScore !== null ? `${readiness.readinessScore}%` : 'Provisional / Insufficient Data'}\n\nConfidence:\n${readiness.confidence}%`;
 
         sendResult(id, {
           content: [{
@@ -1751,12 +1696,18 @@ async function handleToolsCall(id, params) {
               strengths,
               weaknesses,
               priority_actions: priorityActions,
-              estimated_readiness: estimatedReadiness,
-              confidence: confidenceScore,
+              estimated_readiness: readiness.readinessScore,
+              readinessScore: readiness.readinessScore,
+              confidence: readiness.confidence,
+              dataCoverage: readiness.dataCoverage,
+              missingEvidence: readiness.missingEvidence,
+              components: readiness.components,
+              isProvisional: readiness.isProvisional,
               summary: summaryText
             }, null, 2)
           }]
         });
+        break;
       }
 
       case 'generate_resume_docx': {
@@ -2294,16 +2245,32 @@ async function handleToolsCall(id, params) {
 
       case 'career_action_plan': {
         const { resume: candResume, targetRole, targetCompany } = toolArgs;
+        const target = {
+          company: targetCompany || '',
+          role: targetRole || ''
+        };
+        const readiness = calculateReadiness(candResume, target);
+
         const actionItems = [
-          { phase: 'Phase 1: Deep Dive in Target Tech Stack', action: `Master core advanced components of ${targetRole}.` },
+          { phase: 'Phase 1: Deep Dive in Target Tech Stack', action: `Master core advanced components of ${targetRole || 'target role'}.` },
           { phase: 'Phase 2: Project Architecture Portfolio', action: 'Build 1-2 open-source showcase projects.' },
           { phase: 'Phase 3: Community & Referrals Networking', action: `Connect with 5-10 engineers at ${targetCompany || 'target companies'}.` }
         ];
 
-        if (targetRole.toLowerCase().includes('frontend') || targetRole.toLowerCase().includes('react')) {
+        if (targetRole && (targetRole.toLowerCase().includes('frontend') || targetRole.toLowerCase().includes('react'))) {
           actionItems[0].action += ' Review next.js SSR optimization guidelines and tailwind custom styling builds.';
-        } else if (targetRole.toLowerCase().includes('backend') || targetRole.toLowerCase().includes('node')) {
+        } else if (targetRole && (targetRole.toLowerCase().includes('backend') || targetRole.toLowerCase().includes('node'))) {
           actionItems[0].action += ' Practice designing PostgreSQL schemas, index optimization, and Redis caching implementations.';
+        } else if (targetRole && (targetRole.toLowerCase().includes('ai') || targetRole.toLowerCase().includes('ml'))) {
+          actionItems[0].action += ' Build and evaluate RAG pipelines, fine-tuning scripts, and agentic workflows.';
+        }
+
+        if (readiness.gaps.length > 0) {
+          const topGaps = readiness.gaps.slice(0, 2).join(' & ');
+          actionItems.unshift({
+            phase: 'Phase 0: Close Critical Readiness Gaps',
+            action: `Prioritize evidence acquisition and project builds for: ${topGaps}.`
+          });
         }
 
         sendResult(id, {
@@ -2313,7 +2280,12 @@ async function handleToolsCall(id, params) {
               target_role: targetRole,
               target_company: targetCompany || 'General Tech',
               action_items: actionItems,
-              ready_estimate: '85%'
+              ready_estimate: readiness.readinessScore !== null ? `${readiness.readinessScore}%` : null,
+              readinessScore: readiness.readinessScore,
+              confidence: readiness.confidence,
+              dataCoverage: readiness.dataCoverage,
+              missingEvidence: readiness.missingEvidence,
+              components: readiness.components
             }, null, 2)
           }]
         });
