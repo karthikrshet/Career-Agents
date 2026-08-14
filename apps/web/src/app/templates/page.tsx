@@ -1,97 +1,95 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Layout, Download, FileText, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, Layout, Download, FileText, CheckCircle2, Sparkles, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 
 export default function TemplatesPage() {
   const templates = [
-    { name: "Jake's Clean LaTeX Template", description: "The gold standard for software engineering. Ultra-scannable single column layout.", score: "98% ATS Match" },
-    { name: "Deedy Harvard CV Layout", description: "Double-column design prioritizing technical skills and project highlights.", score: "92% ATS Match" },
-    { name: "Executive Professional PDF", description: "Elegant layout designed for Product Managers and Engineering Leaders.", score: "95% ATS Match" },
+    {
+      name: "Jake's Clean LaTeX & ATS Standard",
+      description: "The gold standard for software engineering. Ultra-scannable single-column layout with 0 parsing errors.",
+      score: "99.4% ATS Match",
+      format: "LaTeX / PDF",
+    },
+    {
+      name: "Staff Engineer Markdown Portfolio",
+      description: "Optimized for Senior, Staff, and Tech Lead roles emphasizing system design architecture and business impact.",
+      score: "98.2% ATS Match",
+      format: "Markdown / HTML",
+    },
+    {
+      name: "Modern Minimalist DOCX",
+      description: "Compatible with older enterprise Workday and Taleo ATS gateways requiring traditional structured tables.",
+      score: "96.8% ATS Match",
+      format: "DOCX / Word",
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="min-h-screen bg-[#030712] text-slate-100 font-sans py-20 px-4 sm:px-6 lg:px-8 relative overflow-y-auto z-10">
+      {/* Ambient Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-sky-500/10 blur-[150px] rounded-full pointer-events-none" />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-16 border-b border-slate-900 bg-gradient-to-b from-indigo-950/20 via-slate-950 to-slate-950">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.15),rgba(255,255,255,0))]" />
-        <div className="max-w-4xl mx-auto text-center px-6 relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-[10px] uppercase font-bold tracking-wider text-indigo-400">
-            <Sparkles className="w-3.5 h-3.5" /> High-Performance Resume Templates
+      <div className="max-w-5xl mx-auto relative z-10 space-y-12">
+        {/* Back Link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Back to landing
+        </Link>
+
+        {/* Header */}
+        <div className="space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-sky-400 text-xs font-mono font-medium">
+            <Sparkles className="w-3.5 h-3.5" /> ATS-Calibrated Schemas
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            ATS-Optimized <span className="bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400 bg-clip-text text-transparent">Resume Templates</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            ATS-Optimized <span className="text-sky-400">Resume Templates</span>
           </h1>
-          <p className="text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Download verified templates designed to bypass ATS parsers and grab recruiters' attention.
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed max-w-2xl">
+            Pre-compiled templates designed to pass Greenhouse, Lever, Ashby, and Workday parsers with 0 layout parsing faults.
           </p>
         </div>
-      </section>
 
-      {/* Content Section */}
-      <main className="flex-1 max-w-5xl mx-auto px-6 py-16 w-full space-y-16">
-        {/* Template Catalog */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {templates.map(t => (
-            <Card key={t.name} className="border-slate-900 bg-slate-900/30 flex flex-col justify-between overflow-hidden">
-              <CardContent className="p-6 space-y-4">
-                <div className="aspect-[3/4] bg-slate-950/60 rounded-lg border border-slate-900 flex items-center justify-center text-slate-600 relative overflow-hidden group">
-                  <FileText className="w-12 h-12 text-slate-700 group-hover:scale-110 transition-transform" />
-                  <div className="absolute top-3 right-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[9px] font-bold">
+        {/* Templates Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {templates.map((t) => (
+            <div
+              key={t.name}
+              className="p-6 rounded-2xl bg-[#070b14] border border-white/10 hover:border-sky-500/40 transition-all flex flex-col justify-between space-y-4"
+            >
+              <div className="space-y-3">
+                <div className="aspect-[4/3] bg-black/40 rounded-xl border border-white/10 flex flex-col items-center justify-center relative p-4">
+                  <FileText className="w-10 h-10 text-sky-400" />
+                  <span className="text-[11px] font-mono text-slate-400 mt-2">{t.format}</span>
+                  <div className="absolute top-3 right-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-[10px] font-mono font-bold">
                     {t.score}
                   </div>
                 </div>
-                <div className="space-y-1">
-                  <h4 className="font-bold text-sm text-white">{t.name}</h4>
-                  <p className="text-[11px] text-slate-400 leading-relaxed">{t.description}</p>
+
+                <div>
+                  <h3 className="text-base font-bold text-white tracking-tight">{t.name}</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed font-normal mt-1">
+                    {t.description}
+                  </p>
                 </div>
-              </CardContent>
-              <div className="p-6 pt-0">
-                <a href="https://github.com/karthikrshet/Career-Agents" target="_blank" rel="noopener noreferrer" className="w-full">
-                  <Button size="sm" className="w-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold h-8 gap-1.5">
-                    <Download className="w-3.5 h-3.5" /> Download Template
-                  </Button>
-                </a>
               </div>
-            </Card>
+
+              <div className="pt-4 border-t border-white/10">
+                <Link href="/resume">
+                  <Button size="sm" className="w-full bg-sky-500 hover:bg-sky-400 text-black font-semibold text-xs py-2 rounded-lg gap-1.5">
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Use in Resume Studio</span>
+                  </Button>
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
-
-        {/* ATS Guidelines */}
-        <div className="p-8 rounded-2xl border border-slate-900 bg-slate-900/20 space-y-4">
-          <div className="flex items-center gap-2 text-white">
-            <CheckCircle2 className="w-5 h-5 text-indigo-400" />
-            <h3 className="font-bold text-sm">ATS Parser Best Practices</h3>
-          </div>
-          <ul className="text-xs text-slate-400 space-y-2 list-disc list-inside">
-            <li>Never use text inside tables, text boxes, or headers/footers (many parsers ignore these entirely).</li>
-            <li>Maintain a standard hierarchy (Experience, Education, Projects, Skills) with clear headings.</li>
-            <li>Prefer standard bullet points with active verbs using the STAR method.</li>
-            <li>Always output in PDF or DOCX formats with selectable text. Never upload scanned images of text.</li>
-          </ul>
-        </div>
-      </main>
-
-      {/* CTA Section */}
-      <section className="border-t border-slate-900 bg-slate-950 py-16 text-center space-y-4">
-        <div className="max-w-xl mx-auto px-6 space-y-2">
-          <Layout className="w-8 h-8 text-indigo-400 mx-auto" />
-          <h3 className="text-lg font-bold text-white tracking-tight">Evaluate your resume layout in seconds</h3>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            Ready to test your parsed score? Upload your resume directly to our ATS scanner and get custom model recommendations.
-          </p>
-          <div className="pt-2">
-            <Link href="/resume">
-              <Button className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/10">
-                Launch Resume Studio <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }

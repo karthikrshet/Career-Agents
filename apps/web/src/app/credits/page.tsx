@@ -2,11 +2,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Award, GitBranch, GitFork, Star, AlertCircle, ExternalLink, HelpCircle, Code2, Globe, Heart, Download } from "lucide-react";
-import { Topbar } from "@/components/layout/topbar";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Award,
+  GitBranch,
+  GitFork,
+  Star,
+  ExternalLink,
+  Code2,
+  Heart,
+  Copy,
+  Check,
+  ArrowLeft,
+  Sparkles,
+} from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 
 interface Contributor {
@@ -23,12 +33,11 @@ export default function CreditsPage() {
   const [contributors, setContributors] = useState<Contributor[]>([
     { login: "karthikrshet", avatar_url: "https://avatars.githubusercontent.com/u/49699332?v=4", html_url: "https://github.com/karthikrshet", contributions: 124 },
     { login: "claudecode", avatar_url: "https://avatars.githubusercontent.com/u/14855122?v=4", html_url: "https://github.com/anthropic", contributions: 42 },
-    { login: "deepmind-agent", avatar_url: "https://avatars.githubusercontent.com/u/1283838?v=4", html_url: "https://github.com/google", contributions: 37 }
+    { login: "deepmind-agent", avatar_url: "https://avatars.githubusercontent.com/u/1283838?v=4", html_url: "https://github.com/google", contributions: 37 },
   ]);
   const [cloneCopied, setCloneCopied] = useState(false);
 
   useEffect(() => {
-    // Dynamic GitHub API fetch (Priority 10)
     async function fetchGitHubStats() {
       try {
         const repoRes = await fetch("https://api.github.com/repos/karthikrshet/Career-Agents");
@@ -47,7 +56,7 @@ export default function CreditsPage() {
           }
         }
       } catch (err) {
-        console.warn("GitHub API rate limit exceeded or connection offline. Using cached premium stats.");
+        console.warn("GitHub API offline or rate-limited. Using cached stats.");
       }
     }
     fetchGitHubStats();
@@ -61,158 +70,124 @@ export default function CreditsPage() {
   }
 
   return (
-    <div className="flex flex-col h-full overflow-auto">
-      <Topbar title="Credits & Open Source" subtitle="Platform contributors, stats, and acknowledgements" />
+    <div className="min-h-screen bg-[#030712] text-slate-100 font-sans py-20 px-4 sm:px-6 lg:px-8 relative overflow-y-auto z-10">
+      {/* Ambient Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-sky-500/10 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="flex-1 p-6 space-y-6">
-        {/* Repository Integration Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          
-          {/* Main GitHub Card */}
-          <Card className="glass lg:col-span-2 text-left relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-indigo-500/10 to-transparent rounded-full blur-2xl pointer-events-none" />
-            <CardHeader className="pb-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center border border-border/40">
-                  <GitBranch className="w-5 h-5 text-foreground" />
-                </div>
-                <div>
-                  <CardTitle className="text-base flex items-center gap-2">
-                    karthikrshet/Career-Agents
-                    <Badge variant="secondary" className="text-[9px] scale-90">v2.4.0</Badge>
-                  </CardTitle>
-                  <CardDescription>Official Open Source Career Agents Repository</CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                The open-source core behind Career Agents. It houses the 167 specialized AI career agents registry, 
-                divisions database, schema models, and the local validation pipeline scripts. 
-              </p>
+      <div className="max-w-5xl mx-auto relative z-10 space-y-12">
+        {/* Back Link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Back to landing
+        </Link>
 
-              {/* Stats badges */}
-              <div className="flex flex-wrap gap-2.5 pt-2">
-                <a href="https://github.com/karthikrshet/Career-Agents" target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="outline" className="h-8 text-[11px] px-2.5 flex items-center gap-1.5 bg-secondary/20">
-                    <Star className="w-3.5 h-3.5 text-amber-400" />
-                    <span>{stars} Stars</span>
-                  </Button>
-                </a>
-                <a href="https://github.com/karthikrshet/Career-Agents/fork" target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="outline" className="h-8 text-[11px] px-2.5 flex items-center gap-1.5 bg-secondary/20">
-                    <GitFork className="w-3.5 h-3.5 text-sky-400" />
-                    <span>{forks} Forks</span>
-                  </Button>
-                </a>
-                <a href="https://github.com/karthikrshet/Career-Agents/issues" target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="outline" className="h-8 text-[11px] px-2.5 flex items-center gap-1.5 bg-secondary/20">
-                    <AlertCircle className="w-3.5 h-3.5 text-red-400" />
-                    <span>{openIssues} Open Issues</span>
-                  </Button>
-                </a>
-                <Badge variant="success" className="text-[10px] h-8 px-2.5 bg-emerald-500/10 border-emerald-500/20 text-emerald-400">MIT License</Badge>
-              </div>
-
-              {/* Action Buttons row */}
-              <div className="flex flex-wrap gap-2 pt-2 border-t border-border/20">
-                <a href="https://github.com/karthikrshet/Career-Agents" target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" className="h-8 text-[10px] px-2.5">⭐ Star Repo</Button>
-                </a>
-                <a href="https://github.com/karthikrshet/Career-Agents/fork" target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="outline" className="h-8 text-[10px] px-2.5 bg-secondary/40">🍴 Fork</Button>
-                </a>
-                <a href="https://github.com/sponsors/karthikrshet" target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="outline" className="h-8 text-[10px] px-2.5 text-rose-400 border-rose-500/30 hover:bg-rose-500/10 bg-secondary/40">❤️ Sponsor</Button>
-                </a>
-                <a href="https://github.com/karthikrshet/Career-Agents/releases" target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="ghost" className="h-8 text-[10px] px-2.5">📦 Releases</Button>
-                </a>
-                <a href="https://github.com/karthikrshet/Career-Agents/discussions" target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="ghost" className="h-8 text-[10px] px-2.5">💬 Discussions</Button>
-                </a>
-              </div>
-
-              {/* Clone container */}
-              <div className="flex gap-2 items-center bg-secondary/20 p-2.5 rounded-lg border border-border/50">
-                <span className="text-[10px] font-mono text-muted-foreground select-all flex-1 truncate">
-                  git clone https://github.com/karthikrshet/Career-Agents.git
-                </span>
-                <Button size="sm" variant="outline" className="h-7 text-[10px] bg-background" onClick={copyCloneUrl}>
-                  {cloneCopied ? "Copied" : "Clone"}
-                </Button>
-                <a href="https://github.com/karthikrshet/Career-Agents/archive/refs/heads/main.zip" download>
-                  <Button size="sm" variant="outline" className="h-7 text-[10px] px-2 bg-background" title="Download ZIP">
-                    <Download className="w-3.5 h-3.5" />
-                  </Button>
-                </a>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Contributors Card */}
-          <Card className="glass lg:col-span-1 text-left flex flex-col justify-between">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-base flex items-center gap-2">
-                <Award className="w-4 h-4 text-violet-400" />
-                Contributors
-              </CardTitle>
-              <CardDescription>Core developers shaping Career Agents</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                {contributors.map((c) => (
-                  <a
-                    key={c.login}
-                    href={c.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-secondary/40 transition-colors border border-transparent hover:border-border/30"
-                  >
-                    <img src={c.avatar_url} alt={c.login} className="w-7 h-7 rounded-full bg-secondary" />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-semibold text-foreground truncate">{c.login}</p>
-                      <p className="text-[9px] text-muted-foreground">{c.contributions} contributions</p>
-                    </div>
-                    <ExternalLink className="w-3 h-3 text-muted-foreground/60 shrink-0" />
-                  </a>
-                ))}
-              </div>
-              <div className="text-[10px] text-muted-foreground text-center border-t border-border/20 pt-2.5">
-                Join our open source effort on GitHub.
-              </div>
-            </CardContent>
-          </Card>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-sky-400 text-xs font-mono font-medium">
+            <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> Open Source &amp; Credits
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Credits &amp; <span className="text-sky-400">Acknowledgments</span>
+          </h1>
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+            Recognizing the open-source community, contributors, and core libraries powering the Career Agents ecosystem.
+          </p>
         </div>
 
-        {/* Tech Stack & Roadmaps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card className="glass text-left">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                <Code2 className="w-4 h-4 text-indigo-400" /> Technology Stack
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2.5 text-xs text-foreground/80 leading-relaxed font-sans">
-              <div>• <b>Core UI:</b> Next.js 14, React 18, Tailwind CSS, Framer Motion, Radix UI.</div>
-              <div>• <b>State Management:</b> Zustand persistence middleware.</div>
-              <div>• <b>AI Router Orchestration:</b> Multi-agent classifier models via packages/ai gateways.</div>
-              <div>• <b>Database Schema:</b> Prisma ORM supporting SQLite (development) and PostgreSQL (production).</div>
-            </CardContent>
-          </Card>
+        {/* GitHub Live Stats */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs">
+          <div className="p-5 rounded-2xl bg-[#070b14] border border-white/10 flex items-center justify-between">
+            <div>
+              <div className="text-slate-400">GitHub Stars</div>
+              <div className="text-2xl font-bold text-white mt-1">{stars}</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-sky-500/10 border border-sky-400/20 text-sky-400">
+              <Star className="w-4 h-4 fill-current" />
+            </div>
+          </div>
 
-          <Card className="glass text-left">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                <Globe className="w-4 h-4 text-emerald-400" /> Technology Roadmap
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2.5 text-xs text-foreground/80 leading-relaxed font-sans">
-              <div>• <b>v2.5.0:</b> Real-time collaborative mockup tests inside Interview room.</div>
-              <div>• <b>v2.6.0:</b> Complete OAuth sync bindings with Google Drive and Dropbox file lockers.</div>
-              <div>• <b>v2.7.0:</b> Direct offline evaluation models support via WebGPU inside browsers.</div>
-            </CardContent>
-          </Card>
+          <div className="p-5 rounded-2xl bg-[#070b14] border border-white/10 flex items-center justify-between">
+            <div>
+              <div className="text-slate-400">Forks &amp; Clones</div>
+              <div className="text-2xl font-bold text-white mt-1">{forks}</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-sky-500/10 border border-sky-400/20 text-sky-400">
+              <GitFork className="w-4 h-4" />
+            </div>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-[#070b14] border border-white/10 flex items-center justify-between">
+            <div>
+              <div className="text-slate-400">Resolved Issues</div>
+              <div className="text-2xl font-bold text-emerald-400 mt-1">{openIssues} Active</div>
+            </div>
+            <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+              <GitBranch className="w-4 h-4" />
+            </div>
+          </div>
+        </div>
+
+        {/* Clone Command Bar */}
+        <div className="p-5 rounded-2xl bg-[#070b14] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+          <div className="flex items-center gap-2 text-slate-300 w-full sm:w-auto overflow-x-auto">
+            <span className="text-sky-400 font-bold">$</span>
+            <span>git clone https://github.com/karthikrshet/Career-Agents.git</span>
+          </div>
+
+          <Button
+            onClick={copyCloneUrl}
+            size="sm"
+            className="bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 text-xs px-4 py-2 rounded-lg shrink-0"
+          >
+            {cloneCopied ? <Check className="w-3.5 h-3.5 text-emerald-400 mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5 text-sky-400" />}
+            <span>{cloneCopied ? "Copied" : "Copy Command"}</span>
+          </Button>
+        </div>
+
+        {/* Contributors List */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <h2 className="text-base font-bold text-white">Core Contributors</h2>
+            <a
+              href="https://github.com/karthikrshet/Career-Agents/graphs/contributors"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono text-sky-400 hover:text-sky-300 flex items-center gap-1"
+            >
+              <span>View GitHub Graph</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {contributors.map((c) => (
+              <a
+                key={c.login}
+                href={c.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-xl bg-[#070b14] border border-white/10 hover:border-sky-500/40 transition-colors flex items-center gap-3"
+              >
+                <img
+                  src={c.avatar_url}
+                  alt={c.login}
+                  className="w-10 h-10 rounded-full border border-white/10"
+                />
+                <div>
+                  <div className="text-xs font-bold text-white flex items-center gap-1.5">
+                    <span>@{c.login}</span>
+                    <ExternalLink className="w-3 h-3 text-slate-500" />
+                  </div>
+                  <div className="text-[11px] font-mono text-slate-400 mt-0.5">
+                    {c.contributions} Commits
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </div>
