@@ -6,14 +6,15 @@ license: MIT
 
 # career-pipeline-cv
 
-Compile ATS single-page HTML and LaTeX resumes
+Generates high-converting, single-page semantic ATS HTML and Overleaf-compatible LaTeX (`resume.tex`) resumes strictly backed by verified candidate achievements.
 
 ## Usage
 
-`ash
-# Direct binary execution
-career-agents pipeline cv [profile.json] [--latex|--html]
+```bash
+career-agents pipeline cv <profileJsonPath> [--html | --latex]
 
-# Workspace script execution (fallback)
-node ./scripts/cli.js pipeline cv [profile.json] [--latex|--html]
-`
+# Examples:
+career-agents pipeline cv profile.json --html
+career-agents pipeline cv profile.json --latex
+```
+

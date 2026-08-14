@@ -6,14 +6,11 @@ license: MIT
 
 # career-pipeline-upskill
 
-Generate 30-day skill gap remediation plans
+Constructs a structured 30-day roadmap with daily milestones, hands-on projects, and authoritative reading to bridge identified skill gaps.
 
 ## Usage
 
-`ash
-# Direct binary execution
-career-agents pipeline upskill <skills...>
+```bash
+career-agents pipeline upskill <skillGap>
+```
 
-# Workspace script execution (fallback)
-node ./scripts/cli.js pipeline upskill <skills...>
-`
