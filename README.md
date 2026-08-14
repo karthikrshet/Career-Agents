@@ -16,7 +16,7 @@
 
 <br /><br />
 
-<img src="https://img.shields.io/badge/Release-v17.0.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v17.0.0" />
+<img src="https://img.shields.io/badge/Release-v17.1.0_Enterprise-059669?style=flat-square&logo=git&logoColor=white" height="26" alt="Release v17.1.0" />
 <img src="https://img.shields.io/npm/dt/career-agents?style=flat-square&logo=npm&logoColor=white&color=cb3837" height="26" alt="Total Downloads" />
 <img src="https://img.shields.io/badge/Agents-167_Specialized-0284c7?style=flat-square&logo=openai&logoColor=white" height="26" alt="167 Agents" />
 <img src="https://img.shields.io/badge/Voice_AI-167_Voice_Agents-06b6d4?style=flat-square&logo=google-cloud&logoColor=white" height="26" alt="167 Voice Agents" />
@@ -36,7 +36,7 @@
 
 ---
 
-## 🏆 Candidate Breakthroughs & Proven Job Offers
+## 🏆 Candidate Breakthroughs & Proven Placement Highlights
 
 > 💰 **₹85 LPA Software Engineering Offer Landed:** Candidates using Career Agents' ATS Resume Studio, STAR Interview Lab, and FAANG Company Tracks successfully cracked top-tier software engineering roles — securing compensation offers up to **₹85 LPA**!
 > 
@@ -44,27 +44,22 @@
 
 ---
 
-## ⚡ System-Wide Token Optimization Engine (80-85% Token Reduction)
+## 🎯 Executive Overview
 
-Career Agents includes an enterprise-grade **Token Optimization Engine** built into the AI Router Gateway, CLI tool, MCP Server, and Web Workspace to reduce LLM token usage by **80-85%** across all interfaces:
-
-- 🧬 **Prompt Minification:** Strips excessive whitespace, redundant blank lines, and decorative ASCII borders from system prompts before transmission to remote LLMs.
-- 📉 **Sliding Context Window Compression:** In multi-turn chat, voice interviews, and MCP tool interactions, older assistant turns are automatically summarized into key highlights while preserving full context for the latest active turns.
-- 🔌 **MCP Server & CLI Token Efficiency:** All Model Context Protocol (MCP) server responses for Cursor IDE, Claude Desktop, and VS Code are minified to eliminate payload bloat, saving users up to **85% in API key costs**.
-
----
-
-## 🎯 Executive Overview & Profile
-
-> **Career Agents** is an open-source, local-first **AI Career Operating System** built for software engineers, tech candidates, and engineering managers. 
+> **Career Agents** is an open-source, local-first **AI Career Operating System** built for software engineers, tech candidates, and engineering leaders.
 > 
 > Unifying **167 specialized AI agents across 19 domain divisions**, a **20-language LeetCode Coding Studio with 240+ problems**, local heuristic **ATS Resume Grading**, public **GitHub Portfolio Auditing**, search-visibility **LinkedIn Profile Scanning**, and interactive **STAR Behavioral & System Design Mock Interviews** — it replaces generic ChatGPT prompts and static resume templates with a context-aware career intelligence cockpit.
 
+### ⚡ System-Wide Token Optimization Engine (80-85% Token Reduction)
+- 🧬 **Prompt Minification:** Strips excessive whitespace, redundant blank lines, and decorative borders before transmission to remote LLMs.
+- 📉 **Sliding Context Window Compression:** In multi-turn chat, voice interviews, and MCP tool interactions, older assistant turns are automatically summarized into key highlights while preserving full context for the latest active turns.
+- 🔌 **MCP Server & CLI Token Efficiency:** All Model Context Protocol (MCP) responses for Cursor IDE, Claude Desktop, and VS Code are minified to eliminate payload bloat, saving users up to **85% in API key costs**.
+
 ---
 
-## ⚡ MCP-Powered Agentic Job Search Pipeline & Intelligence Loop
+## ⚡ MCP-Powered Agentic Job Search Pipeline & Central Intelligence Loop
 
-> **"Job searching is fragmented across job boards, resumes, interview preparation, networking, and application tracking. Career Agents turns that fragmented process into one MCP-powered agentic workflow."**
+> **"Job searching is fragmented across job boards, resumes, interview preparation, networking, and application tracking. Career Agents turns that fragmented process into one unified agentic workflow."**
 > 
 > *The key idea is that Career Agents doesn't just find a job. It understands the job, evaluates candidate evidence against it, identifies what's missing, generates tailored application materials, prepares the candidate for the interview, and tracks what happens afterward.*
 
@@ -75,16 +70,20 @@ Career Agents includes an enterprise-grade **Token Optimization Engine** built i
 ### The Central Intelligence Loop
 
 ```text
-Job Description / ATS Query
-            ↓
-  Requirement Extraction
-            ↓
-Candidate Evidence Matching
-            ↓
-  Deterministic Readiness Score
-            ↓
-  Strengths & Skill Gaps
-            ↓
+Target Job Description / ATS Query
+                ↓
+    Multi-ATS Job Board Scanner
+(Greenhouse, Lever, Ashby, Workable, SmartRecruiters, RemoteOK, Arbeitnow, Himalayas)
+                ↓
+      Requirement Extraction
+                ↓
+    Candidate Evidence Matching
+                ↓
+     CANONICAL READINESS ENGINE
+       (services/readiness.js)
+                ↓
+       Strengths & Skill Gaps
+                ↓
 ┌───────────────────────┬───────────────────────┐
 │                       │                       │
 Tailored Resume         Cover Letter Draft      Interview Preparation
@@ -108,7 +107,7 @@ career-agents pipeline scan stripe greenhouse
 career-agents pipeline scan netlify lever
 career-agents pipeline scan openai ashby
 
-# 2. Evaluate candidate profile readiness against raw job descriptions
+# 2. Evaluate candidate profile readiness against raw job descriptions (Blocks A-G Report)
 career-agents pipeline match jd.txt Google "AI/ML Infrastructure Engineer"
 
 # 3. Compile ATS single-page resume (HTML & LaTeX)
@@ -121,7 +120,7 @@ career-agents pipeline cover Google "AI/ML Infrastructure Engineer"
 # 5. Build STAR interview question bank and company track
 career-agents pipeline interview Google "AI/ML Infrastructure Engineer"
 
-# 6. Draft concise recruiter networking outreach note
+# 6. Draft concise recruiter networking outreach note (<300 chars)
 career-agents pipeline outreach "Sarah Jenkins" Google "AI/ML Infrastructure Engineer"
 
 # 7. Track applications with live status state machine
@@ -136,125 +135,13 @@ career-agents pipeline doctor
 
 ---
 
-## 💻 Tech Stack & Integrations
-
-**Frontend & Architecture**  
-<img src="https://img.shields.io/badge/Next.js_14-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" height="28" alt="Next.js 14" />
-<img src="https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" height="28" alt="React 18" />
-<img src="https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" height="28" alt="TypeScript 5" />
-<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" height="28" alt="Tailwind CSS" />
-<img src="https://img.shields.io/badge/Zustand-443e38?style=for-the-badge&logo=state&logoColor=white" height="28" alt="Zustand State" />
-<img src="https://img.shields.io/badge/Prisma_Postgres-2D3748?style=for-the-badge&logo=prisma&logoColor=white" height="28" alt="Prisma Postgres" />
-<img src="https://img.shields.io/badge/Local_SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" height="28" alt="Local SQLite" />
-
-**AI Provider Gateways**  
-<img src="https://img.shields.io/badge/Groq_Llama_3.3-F55036?style=for-the-badge&logo=groq&logoColor=white" height="28" alt="Groq" />
-<img src="https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google-gemini&logoColor=white" height="28" alt="Gemini" />
-<img src="https://img.shields.io/badge/OpenAI_GPT--4o-412991?style=for-the-badge&logo=openai&logoColor=white" height="28" alt="OpenAI" />
-<img src="https://img.shields.io/badge/Anthropic_Claude-D97706?style=for-the-badge&logo=anthropic&logoColor=white" height="28" alt="Claude" />
-<img src="https://img.shields.io/badge/DeepSeek_V3-0066FF?style=for-the-badge&logo=deepseek&logoColor=white" height="28" alt="DeepSeek" />
-<img src="https://img.shields.io/badge/xAI_Grok_2-000000?style=for-the-badge&logo=x&logoColor=white" height="28" alt="xAI Grok" />
-<img src="https://img.shields.io/badge/Ollama_Local-000000?style=for-the-badge&logo=ollama&logoColor=white" height="28" alt="Ollama Local" />
-
----
-
-## ⚡ Quickstart, NPM Installation & IDE Setup
-
-### 1. 📦 NPM & NPX Execution Guide
-```bash
-# Global NPM Installation
-npm install -g career-agents
-
-# Zero-Install NPX Execution
-npx career-agents list
-npx career-agents score my_resume.pdf
-npx career-agents mcp
-```
-
-### 2. 🚀 How to Run Web App Locally (Under 5 Minutes)
-```bash
-# 1. Clone the repository
-git clone https://github.com/karthikrshet/Career-Agents.git
-cd Career-Agents
-
-# 2. Install web dependencies
-cd apps/web
-npm install
-
-# 3. Setup environment configuration
-cp .env.example .env
-
-# 4. Start local development server
-npm run dev
-```
-Open **[http://localhost:3000](http://localhost:3000)** or **[https://career-agents.vercel.app](https://career-agents.vercel.app)**.
-
-### 3. 🔌 How to Connect MCP Protocol Server to your IDE
-Expose Career Agents tools directly to **Cursor AI**, **Claude Desktop**, **VS Code**, **Windsurf**, **Codex**, or **Aider**:
-
-**Command to register in IDE:**
-```bash
-node /absolute/path/to/Career-Agents/mcp/server.js
-```
-
-#### 📍 Claude Desktop Setup (`claude_desktop_config.json`):
-```json
-{
-  "mcpServers": {
-    "career-agents": {
-      "command": "node",
-      "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
-    }
-  }
-}
-```
-
-#### 📍 Cursor AI Setup:
-Go to **Settings** -> **Features** -> **MCP** -> **Add new MCP Server**:
-- **Name:** `career-agents`
-- **Type:** `stdio`
-- **Command:** `node /absolute/path/to/Career-Agents/mcp/server.js`
-
-#### 📍 Codex Setup (`~/.codex/config.json` or CLI):
-```bash
-codex mcp add career-agents -- node /absolute/path/to/Career-Agents/mcp/server.js
-```
-Or in your JSON config:
-```json
-{
-  "mcpServers": {
-    "career-agents": {
-      "command": "node",
-      "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
-    }
-  }
-}
-```
-
-### 4. 🖥️ Terminal CLI Utilities
-Run terminal commands anywhere using `scripts/cli.js`:
-
-| Command | Arguments | Purpose | Example |
-|---------|-----------|---------|---------|
-| `list` | None | Lists all registered divisions and agents | `node scripts/cli.js list` |
-| `doctor` | None | Performs health checks | `node scripts/cli.js doctor` |
-| `score` | `<filepath>` | Scans PDF/Word resumes and outputs ATS score | `node scripts/cli.js score resume.pdf` |
-| `review` | `<filepath>` | Performs weak bullet checking and verb audits | `node scripts/cli.js review resume.pdf` |
-| `github` | `<username>` | Runs portfolio wrapped check for target profile | `node scripts/cli.js github torvalds` |
-| `mock` | `<company> <mode>`| Starts a terminal mock interview drill | `node scripts/cli.js mock google behavioral` |
-| `roadmap`| `<target>` | Generates study roadmaps in markdown formats | `node scripts/cli.js roadmap "staff engineer"` |
-
----
-
----
-
 ## ⚡ Core Capability Suites & Modules
 
 Career Agents unifies the full career development lifecycle into focused, interoperable intelligence suites:
 
 1. **⚡ MCP-Powered Job Search & Application Pipeline (`packages/pipeline/`)**
-   - Multi-ATS job board scanning (Greenhouse, Lever, Ashby, Workable, SmartRecruiters, RemoteOK, Arbeitnow, Himalayas).
-   - Canonical readiness evaluation (`services/readiness.js`) against extracted requirements.
+   - Multi-ATS job board scanning across 8 major providers with gzip/brotli streaming decompression.
+   - Canonical readiness evaluation (`services/readiness.js`) against extracted requirements without artificial floors.
    - Tailored single-page ATS HTML/LaTeX resumes and executive 3-paragraph cover letters.
    - Structured STAR+R interview question banks and <300-char recruiter outreach messaging.
    - Dual-persistence application tracker (`pipeline-tracker.md`) and funnel conversion analytics.
@@ -286,6 +173,12 @@ Career Agents unifies the full career development lifecycle into focused, intero
 | Feature Module | CLI Utility | Web Dashboard | MCP Server |
 |----------------|:-----------:|:-------------:|:----------:|
 | **Agent Directory Search (167 Agents)** | ✅ | ✅ | ✅ |
+| **Multi-ATS Job Board Scanner (8 Providers)** | ✅ | ✅ | ✅ |
+| **Canonical Readiness Scoring Engine** | ✅ | ✅ | ✅ |
+| **ATS Resume Builder (HTML & LaTeX)** | ✅ | ✅ | ✅ |
+| **3-Paragraph Executive Cover Letter** | ✅ | ✅ | ✅ |
+| **Recruiter Outreach Generator (<300 chars)** | ✅ | ✅ | ✅ |
+| **Application Lifecycle Tracker & Analytics** | ✅ | ✅ | ✅ |
 | **20-Language Coding Studio Compiler** | ✅ | ✅ | ✅ |
 | **240+ LeetCode Problem Catalog** | ✅ | ✅ | ✅ |
 | **Step-by-Step Algorithm Visualizer** | ❌ | ✅ | ✅ |
@@ -293,9 +186,8 @@ Career Agents unifies the full career development lifecycle into focused, intero
 | **20 ATS Resume Templates & Calibrator** | ✅ | ✅ | ✅ |
 | **GitHub Profile Wrapped Audit** | ✅ | ✅ | ✅ |
 | **LinkedIn Headline & Keyword Audit** | ✅ | ✅ | ✅ |
-| **STAR Mock Interview Engine (10 Tracks)** | ✅ | ✅ | ✅ |
-| **Job Opportunities Hub & ATS Match** | ❌ | ✅ | ✅ |
-| **Kanban Application Tracker** | ❌ | ✅ | ✅ |
+| **STAR Mock Interview Engine (20 Tracks)** | ✅ | ✅ | ✅ |
+| **Voice AI Mock Interview Lab (27 Languages)**| ❌ | ✅ | ❌ |
 | **Multi-Provider AI Router (18 Backends)**| ✅ | ✅ | ✅ |
 | **PDF / DOCX / XLSX Dossier Exporter** | ❌ | ✅ | ✅ |
 | **Local SQLite & Offline Guest Mode** | ✅ | ✅ | ✅ |
@@ -308,13 +200,7 @@ Career Agents unifies the full career development lifecycle into focused, intero
   <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/divisions-map.svg" width="900" height="auto" alt="167 Agents across 19 Domain Divisions" />
 </p>
 
-Career Agents manages **167 specialized AI agents** categorized across **19 divisions**. When a user sends a query to the Copilot, the routing engine tokenizes the input and compares it against agent names, descriptions, tags, and required skills to construct a matching scorecard:
-
-```
-Score = (Exact Name Match * 15) + (Keyword Match * 3) + (Skill Match * 2) + (Domain Booster * 12)
-```
-
-The top matching agents with score >= 5 are loaded dynamically, reading their raw Markdown prompt instructions from disk and appending them to the LLM system context.
+Career Agents manages **167 specialized AI agents** categorized across **19 divisions**. 
 
 ### Division Summary Table
 
@@ -620,8 +506,6 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 
 
 
-*For the complete agent registry, see [docs/AGENTS.md](./docs/AGENTS.md).*
-
 ---
 
 ## 🗺️ Curated Career Paths (10 Paths)
@@ -789,45 +673,114 @@ The top matching agents with score >= 5 are loaded dynamically, reading their ra
 
 ---
 
-## 🏗️ System Architecture & Data Flow
+## 🔌 Model Context Protocol (MCP) Ecosystem & IDE Setup
 
-### 1. Web Application & AI Router Request Flow
+<p align="center">
+  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/mcp-ecosystem.svg" width="900" height="auto" alt="Career Agents MCP Ecosystem" />
+</p>
 
-```mermaid
-sequenceDiagram
-    participant User as User / Browser
-    participant Client as Next.js 14 App Client
-    participant Router as Multi-Provider AI Gateway
-    participant LLM as AI Provider (Groq / Gemini / OpenAI / Claude)
-    participant DB as Browser LocalStorage / SQLite / Postgres
-    
-    User->>Client: Send Copilot Query / Resume File
-    Client->>Router: Forward Query + Active User Dossier
-    Router->>Router: Match 167 Agent Registry & Compile System Prompt
-    Router->>LLM: Dispatch Request with Fallback Chain
-    LLM-->>Router: Stream Tokens via Server-Sent Events (SSE)
-    Router-->>User: Render Real-Time Markdown & Code Output
-    Client->>DB: Persist Session Metrics & Chat History
+Expose Career Agents tools directly to your AI code editors via standard JSON-RPC stdio:
+
+### 1. Supported Editors & Tools
+- **Google Antigravity:** Integrated via `.agents/` skill bindings.
+- **Cursor AI:** Add stdio command `node /absolute/path/to/Career-Agents/mcp/server.js` under Settings -> Features -> MCP.
+- **Claude Desktop:** Add configuration block to `claude_desktop_config.json`.
+- **VS Code / Continue / Codex / Windsurf / Aider:** Configure stdio parameters pointing to the local server script.
+
+### 2. Configuration Example (`claude_desktop_config.json`):
+```json
+{
+  "mcpServers": {
+    "career-agents": {
+      "command": "node",
+      "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
+    }
+  }
+}
 ```
 
-### 2. Model Context Protocol (MCP) Stdio Architecture
+### 3. Cursor AI Configuration:
+Go to **Settings** -> **Features** -> **MCP** -> **Add new MCP Server**:
+- **Name:** `career-agents`
+- **Type:** `stdio`
+- **Command:** `node /absolute/path/to/Career-Agents/mcp/server.js`
 
-```mermaid
-graph LR
-    IDE[Developer Editor / Client] -->|JSON-RPC via stdio| MCPServer[mcp/server.js MCP Server]
-    MCPServer -->|Read Registries| Registry[(agent-registry.json)]
-    MCPServer -->|Execute Tools| CoreScripts[scripts/cli.js / Resume / GitHub Engine]
-    CoreScripts -->|Structured Response Payload| IDE
+### 4. Codex CLI Registration:
+```bash
+codex mcp add career-agents -- node /absolute/path/to/Career-Agents/mcp/server.js
 ```
 
 ---
 
-## 🌐 AI Gateway & Supported Providers (18 Backends)
+## 🚀 Quickstart, Installation & CLI Utilities
 
-Career Agents features a multi-provider gateway supporting **18 AI backends** with zero-key guest fallbacks:
+### 1. 📦 NPM & NPX Zero-Install Execution
+```bash
+# Global NPM Installation
+npm install -g career-agents
+
+# Zero-Install NPX Execution
+npx career-agents list
+npx career-agents score my_resume.pdf
+npx career-agents mcp
+```
+
+### 2. 💻 Local Web Workspace Setup (Under 5 Minutes)
+```bash
+# 1. Clone the repository
+git clone https://github.com/karthikrshet/Career-Agents.git
+cd Career-Agents
+
+# 2. Install web application dependencies
+cd apps/web
+npm install
+
+# 3. Setup environment variables
+cp .env.example .env
+
+# 4. Start local development server
+npm run dev
+```
+Open **[http://localhost:3000](http://localhost:3000)** or **[https://career-agents.vercel.app](https://career-agents.vercel.app)**.
+
+### 3. 🖥️ Terminal CLI Utilities Reference
+
+| Command | Arguments | Purpose | Example |
+|---|---|---|---|
+| `list` | None | Lists all registered divisions and agents | `node scripts/cli.js list` |
+| `doctor` | None | Performs environment, registry, and dependency health checks | `node scripts/cli.js doctor` |
+| `score` | `<filepath>` | Scans PDF/Word resumes and outputs ATS score | `node scripts/cli.js score resume.pdf` |
+| `review` | `<filepath>` | Performs weak bullet checking and action verb audits | `node scripts/cli.js review resume.pdf` |
+| `github` | `<username>` | Runs portfolio wrapped check for target profile | `node scripts/cli.js github torvalds` |
+| `mock` | `<company> <mode>`| Starts a terminal mock interview drill | `node scripts/cli.js mock google behavioral` |
+| `roadmap`| `<target>` | Generates study roadmaps in markdown formats | `node scripts/cli.js roadmap "staff engineer"` |
+| `pipeline scan` | `<token> <provider>` | Scans ATS job boards for open requisitions | `node scripts/cli.js pipeline scan stripe greenhouse` |
+| `pipeline match`| `<jd> <co> <role>` | Evaluates candidate fit and prints Blocks A-G report | `node scripts/cli.js pipeline match jd.txt Google "AI Eng"` |
+| `pipeline cv` | `<profile> [--html\|--latex]` | Compiles ATS single-page HTML or LaTeX resume | `node scripts/cli.js pipeline cv profile.json --html` |
+| `pipeline cover` | `<co> <role>` | Generates tailored 3-paragraph executive cover letter | `node scripts/cli.js pipeline cover Google "AI Eng"` |
+| `pipeline interview` | `<co> <role>` | Curates STAR+R question banks and company track | `node scripts/cli.js pipeline interview Google "AI Eng"` |
+| `pipeline outreach` | `<recruiter> <co> <role>` | Generates concise recruiter note (<300 chars) | `node scripts/cli.js pipeline outreach "Sarah" Google "AI Eng"` |
+| `pipeline add` | `<co> <role> <url>` | Adds new job requisition to pipeline tracker | `node scripts/cli.js pipeline add Google "AI Eng" http://...` |
+| `pipeline status` | `<co> <status> [notes]` | Updates lifecycle status in pipeline tracker | `node scripts/cli.js pipeline status Google interviewing "Round 1"` |
+| `pipeline stats` | None | Computes application funnel conversion analytics | `node scripts/cli.js pipeline stats` |
+
+---
+
+## 💻 Tech Stack & AI Provider Gateways
+
+**Frontend & Local Architecture**  
+<img src="https://img.shields.io/badge/Next.js_14-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" height="28" alt="Next.js 14" />
+<img src="https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" height="28" alt="React 18" />
+<img src="https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" height="28" alt="TypeScript 5" />
+<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" height="28" alt="Tailwind CSS" />
+<img src="https://img.shields.io/badge/Zustand-443e38?style=for-the-badge&logo=state&logoColor=white" height="28" alt="Zustand State" />
+<img src="https://img.shields.io/badge/Prisma_Postgres-2D3748?style=for-the-badge&logo=prisma&logoColor=white" height="28" alt="Prisma Postgres" />
+<img src="https://img.shields.io/badge/Local_SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" height="28" alt="Local SQLite" />
+
+**AI Provider Gateways (18 Backends Supported)**
 
 | Provider | Status | Default Model | Free Tier | Streaming | Vision |
-|----------|--------|--------------|-----------|-----------|--------|
+|---|---|---|---|---|---|
 | **Groq** | ✅ Active | `llama-3.3-70b-versatile` | ✅ Yes | ✅ Yes | ❌ |
 | **Google Gemini** | ✅ Active | `gemini-2.5-pro` | ✅ Yes | ✅ Yes | ✅ Yes |
 | **OpenAI** | ✅ Active | `gpt-4o` | ❌ No | ✅ Yes | ✅ Yes |
@@ -849,127 +802,6 @@ Career Agents features a multi-provider gateway supporting **18 AI backends** wi
 
 ---
 
-## 🔌 Model Context Protocol (MCP) IDE Setup
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/mcp-ecosystem.svg" width="900" height="auto" alt="Career Agents MCP Ecosystem" />
-</p>
-
-Expose Career Agents tools directly to your AI code editors:
-
-### Supported Editors
-- **Cursor AI:** Add stdio command `node /absolute/path/to/Career-Agents/mcp/server.js` under Settings -> Features -> MCP.
-- **Claude Desktop:** Add configuration block to `claude_desktop_config.json`.
-- **VS Code (Continue Extension):** Add to `.continue/config.json`.
-- **Windsurf / Aider / Roo Code / Bolt:** Configure stdio parameters to point to the local server script.
-
-### Configuration Example (`claude_desktop_config.json`)
-```json
-{
-  "mcpServers": {
-    "career-agents": {
-      "command": "node",
-      "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
-    }
-  }
-}
-```
-
----
-
-## 📦 NPM Package Installation & Usage
-
-You can install and execute **Career Agents** directly via **NPM** or **NPX**:
-
-### 1. 🌐 Global NPM Installation
-```bash
-# Install globally via NPM
-npm install -g career-agents
-
-# Execute CLI utilities anywhere
-career-agents list
-career-agents score my_resume.pdf
-career-agents github torvalds
-```
-
-### 2. ⚡ Zero-Install NPX Execution
-```bash
-# Run CLI directly without global installation
-npx career-agents list
-
-# Start local MCP Stdio Server for IDEs
-npx career-agents mcp
-
-# Audit resume against ATS standards
-npx career-agents score resume.pdf
-```
-
-### 3. 📦 Programmatic SDK Integration (Node.js / TypeScript)
-```typescript
-import { CareerAgents } from 'career-agents';
-
-// Initialize SDK instance
-const agents = new CareerAgents();
-
-// Query 167 agent directory
-const matches = agents.matchAgents("Senior Backend Engineer system design");
-console.log(matches);
-```
-
----
-
-## ⚙️ Setup & Local Development
-
-### Prerequisites
-- Node.js >= 18.0.0 (Node 20 LTS recommended)
-- Git
-- Python 3.9+ (required for data compilation scripts)
-
-### Quick Start (Under 5 Minutes)
-```bash
-# 1. Clone the repository
-git clone https://github.com/karthikrshet/Career-Agents.git
-cd Career-Agents
-
-# 2. Install web application dependencies
-cd apps/web
-npm install
-
-# 3. Setup environment variables
-cp .env.example .env
-# Edit .env and enter a random NEXTAUTH_SECRET (e.g. openssl rand -base64 32)
-
-# 4. Run local development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) or [https://career-agents.vercel.app](https://career-agents.vercel.app) to access the platform.
-
-### Database Modes
-- **Guest Mode (Default):** Runs without configuring a database. All dossier metrics and sessions are saved locally in your browser using Zustand's `persist` storage manager.
-- **Database Mode:** Set `DATABASE_URL` in `.env` to a PostgreSQL instance, then push the Prisma schema:
-  ```bash
-  npx prisma db push
-  ```
-
----
-
-## 💻 CLI Terminal Utilities
-
-Run terminal commands using `scripts/cli.js`:
-
-| Command | Arguments | Purpose | Example |
-|---------|-----------|---------|---------|
-| `list` | None | Lists all registered divisions and agents | `node scripts/cli.js list` |
-| `doctor` | None | Performs environment and dependency health checks | `node scripts/cli.js doctor` |
-| `score` | `<filepath>` | Scans PDF/Word resumes and outputs ATS score | `node scripts/cli.js score resume.pdf` |
-| `review` | `<filepath>` | Performs weak bullet checking and verb audits | `node scripts/cli.js review resume.pdf` |
-| `github` | `<username>` | Runs portfolio wrapped check for target profile | `node scripts/cli.js github torvalds` |
-| `mock` | `<company> <mode>`| Starts a terminal mock interview drill | `node scripts/cli.js mock google behavioral` |
-| `roadmap`| `<target>` | Generates study roadmaps in markdown formats | `node scripts/cli.js roadmap "staff engineer"` |
-
----
-
 ## 📡 REST API Reference
 
 Career Agents exposes 10 REST endpoints. For request/response schemas, check [docs/API.md](./docs/API.md):
@@ -987,46 +819,13 @@ Career Agents exposes 10 REST endpoints. For request/response schemas, check [do
 
 ---
 
-## 📋 Environment Variables
-
-| Variable | Required | Default | Description / Security Notes |
-|----------|----------|---------|------------------------------|
-| `NEXTAUTH_SECRET` | Yes | None | Secret key used to encrypt user sessions. Never share this. |
-| `NEXTAUTH_URL` | Yes | `http://localhost:3000` | Canonical URL of your app deployment. |
-| `DATABASE_URL` | No | None | Postgres connection string. If blank, app operates in Guest Mode. |
-| `JWT_SECRET` | No | None | Secret key used to sign session cookies. |
-| `UPLOAD_LIMIT_MB` | No | `10` | Maximum allowed file upload size for resume parsing. |
-| `DEFAULT_PROVIDER` | No | `gemini` | Fallback default gateway provider. |
-| `DEFAULT_MODEL` | No | `gemini-2.5-flash` | Fallback default gateway model. |
-| `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` | No | None | OAuth application keys generated via GitHub Developer settings. |
-| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | No | None | OAuth application keys generated via Google Cloud Console. |
-| `OPENAI_API_KEY` | No | None | Server-side fallback key for OpenAI. |
-| `ANTHROPIC_API_KEY` | No | None | Server-side fallback key for Anthropic Claude. |
-| `GEMINI_API_KEY` | No | None | Server-side fallback key for Google Gemini. |
-| `GROQ_API_KEY` | No | None | Server-side fallback key for Groq. |
-| `DEEPSEEK_API_KEY` | No | None | Server-side fallback key for DeepSeek. |
-| `OPENROUTER_API_KEY` | No | None | Server-side fallback key for OpenRouter. |
-| `MISTRAL_API_KEY` | No | None | Server-side fallback key for Mistral. |
-| `COHERE_API_KEY` | No | None | Server-side fallback key for Cohere. |
-| `TOGETHER_API_KEY` | No | None | Server-side fallback key for Together AI. |
-| `XAI_API_KEY` | No | None | Server-side fallback key for xAI Grok. |
-| `GITHUB_TOKEN` | No | None | Read-only GitHub PAT used to increase GitHub API limit to 5000/hr. |
-| `LOG_LEVEL` | No | `info` | Logging verbosity level on NextJS console. |
-
----
-
-## 🔒 Enterprise Security & Privacy
+## 🔒 Enterprise Security, Privacy & Validation
 
 - **Zero-Key Storage:** API keys entered by users are stored strictly in the browser's `localStorage` and never transmitted to database servers.
 - **Session Protection:** NextAuth JWT tokens are signed using `NEXTAUTH_SECRET` and saved in secure HttpOnly, SameSite=Lax cookies.
 - **Strict Headers:** Includes Content Security Policy (CSP), HTTP Strict Transport Security (HSTS), and XSS safeguards.
 
----
-
-## 🛠️ Development & Validation Pipeline
-
-Before submitting changes, run the full validation suite:
-
+### Full Validation Suite
 ```bash
 # 1. Type Safety Check
 npm run type-check
@@ -1037,41 +836,21 @@ npm run lint
 # 3. Generate Databases & Index Maps
 python scripts/generate-data.py
 
-# 4. Validate Schema Integrity & Links
+# 4. Validate Schema Integrity & Relative Links
 python scripts/validate.py
+
+# 5. MCP Server Integration Suite
+node scripts/test-mcp.js
+
+# 6. Readiness Regression Suite
+node scripts/test-readiness-regression.js
 ```
 
 ---
 
-## 🗺️ Roadmap & Releases
-
-- **v10.0.0 (Founder Event Edition):** Immersive AI Career Operating System redesign and multi-provider fallback chains.
-- **v12.0.0:** Monorepo package isolation and OpenAPI documentation layouts.
-- **v14.0.0:** Enterprise OAuth authentication and RBAC roles.
-- **v17.0.0 (Current Release):** 20-Language Coding Studio with 240+ problems, 20 ATS Resume Templates, 18 AI Provider Gateways, 167 Agent Ecosystem, and stdio MCP server.
-
----
-
-## 🤝 Contributing & Sponsorship
-
-We welcome contributions from software engineers around the world:
-- **Branching:** Create features on branches prefixed with `feature/` or `fix/`.
-- **Validation:** Pull Requests must pass `npm run type-check` and `python scripts/validate.py`.
-- **Sponsors:** Support ongoing development on [GitHub Sponsors](https://github.com/sponsors/karthikrshet)!
-
----
-
-## ❓ FAQ
-
-**Q: Can I use Career Agents without an API key?**  
-A: Yes! Resume ATS scoring, LeetCode coding practice, and GitHub profile audits run 100% offline. AI chat features use zero-key guest fallbacks out of the box.
-
-**Q: Where are my API keys saved?**  
-A: Keys are saved locally in your browser's `localStorage` and are never stored on any server.
-
----
-
 ## 📄 License
+
+Distributed under the **MIT License**. See [LICENSE](./LICENSE) for more details.
 
 ---
 
@@ -1094,7 +873,7 @@ A: Keys are saved locally in your browser's `localStorage` and are never stored 
         <a href="https://karthikrajeshshet.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-karthikrajeshshet.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white" height="28" alt="Personal Portfolio" /></a>
         <a href="https://github.com/karthikrshet"><img src="https://img.shields.io/badge/GitHub-@karthikrshet-181717?style=for-the-badge&logo=github&logoColor=white" height="28" alt="GitHub Profile" /></a>
         <a href="https://career-agents.vercel.app"><img src="https://img.shields.io/badge/Platform-Career--Agents-000000?style=for-the-badge&logo=vercel&logoColor=white" height="28" alt="Vercel Live App" /></a>
-        <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Package-v17.0.0-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="28" alt="NPM Package" /></a>
+        <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Package-v17.1.0-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="28" alt="NPM Package" /></a>
       </p>
     </td>
   </tr>
