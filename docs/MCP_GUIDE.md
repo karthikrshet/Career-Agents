@@ -64,6 +64,26 @@ Add the configuration block to `~/.codeium/windsurf/mcp_config.json`:
 }
 ```
 
+### 4. OpenAI Codex
+
+Configure Codex via the CLI:
+```bash
+codex mcp add career-agents -- npx -y career-agents mcp
+```
+
+Or add the configuration block to your Codex config (`~/.codex/config.json` or project `codex_mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "career-agents": {
+      "command": "npx",
+      "args": ["-y", "career-agents", "mcp"]
+    }
+  }
+}
+```
+
 ---
 
 ## Protocol Capabilities

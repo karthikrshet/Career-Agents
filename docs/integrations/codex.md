@@ -1,37 +1,63 @@
 # Codex Integration Guide
 
-This guide documents how to integrate and use **Career-Agents** with **Codex**.
+This guide documents how to integrate and use **Career-Agents** with **OpenAI Codex** and the **Codex Agent Runtime**, including native Model Context Protocol (MCP) server support.
 
-## Installation Guide
+---
 
-Codex runs as an agentic backend server or packaging runtime. Ensure Codex command-line tools or SDK is installed:
+## 🔌 Model Context Protocol (MCP) Server Setup
+
+The recommended way to use Career Agents in Codex is via the stdio MCP server.
+
+### 1. Register via Codex CLI
 ```bash
-pip install codex-agent-runtime
+# Using local repository CLI
+codex mcp add career-agents -- node d:/CodeMyFYP-Agents/scripts/cli.js mcp
+
+# Or using npx
+codex mcp add career-agents -- npx -y career-agents mcp
 ```
 
-## Usage Guide
+### 2. Register via JSON Configuration File
+Add the server definition into your `~/.codex/config.json`, `.codex/config.json`, or workspace `codex_mcp.json`:
 
-Codex processes structured system instructions and tool schemas. Initialize the Codex runtime in your project directory:
-```bash
-codex init --workspace .
-```
-
-## Agent Loading Guide
-
-Codex supports reading agent rules and tool bounds via JSON files. You can export any Career Agent into a Codex-ready configuration file:
-```bash
-career-agents run google-interview-coach --export json
-```
-Then load it into your Codex runtime configuration file:
 ```json
 {
-  "agent_config": "./build/exports/google-interview-coach.json",
+  "mcpServers": {
+    "career-agents": {
+      "command": "node",
+      "args": ["d:/CodeMyFYP-Agents/scripts/cli.js", "mcp"]
+    }
+  }
+}
+```
+
+Once configured, Codex can directly call all 25+ Career Agents MCP tools such as `recommend_agents`, `resume_score`, `company_track`, `roadmap`, and `workflow_lookup`.
+
+---
+
+## 📦 Agent Manifest Loading (Alternative)
+
+Codex also supports reading structured system prompt instructions from exported agent configurations.
+
+### 1. Export Agent Config
+Export any Career Agent into a Codex-ready JSON configuration:
+```bash
+career-agents use google-interview-coach codex
+```
+
+### 2. Load into Codex Runtime
+Reference the exported JSON file in your Codex configuration:
+```json
+{
+  "system_instructions_file": "./exports/use/google-interview-coach.codex.json",
   "tools": ["terminal", "fs_reader"]
 }
 ```
 
-## Best Practices
+---
+
+## 💡 Best Practices
 
 - **Strict Validation**: Always run `career-agents doctor` prior to loading config files to ensure JSON syntax matches Codex expectations.
-- **Tool Mapping**: Map appropriate terminal tool schemas so the Codex agent can call CLI helper commands directly.
-- **State Logs**: Review Codex state runtime logs to verify if system instructions are parsed properly.
+- **Offline & Private**: All MCP tool executions (ATS scoring, company tracks, workflow lookups) run 100% locally and offline without external API dependencies.
+- **State Logs**: Review Codex state runtime logs to verify that the `career-agents` MCP server connects with green status.
