@@ -32,11 +32,11 @@ const c = {
 
 async function runEndToEndScenario() {
   console.log(`\n${c.bold}${c.cyan}================================================================${c.reset}`);
-  console.log(`${c.bold}🚀 CAREER-AGENTS END-TO-END JOB SEARCH PIPELINE DEMONSTRATION${c.reset}`);
+  console.log(`${c.bold}🚀 CAREER-AGENTS END-TO-END AGENTIC WORKFLOW DEMONSTRATION${c.reset}`);
   console.log(`${c.bold}${c.cyan}================================================================${c.reset}\n`);
 
-  // Target Candidate Profile
-  const candidateProfile = {
+  // Target Candidate Profile (Representative Demo Fixture)
+  const candidateFixture = {
     name: 'Karthik Rajesh Shet',
     title: 'Senior Software Engineer (AI/ML & Distributed Systems)',
     email: 'karthikrshet@gmail.com',
@@ -99,7 +99,7 @@ Requirements:
 
   // 2. STEP 2: JD Parser & Requirement Extraction
   console.log(`\n${c.bold}[Step 2/10] Parsing JD Requirements & Keywords...${c.reset}`);
-  const matchResult = JDMatcher.evaluateMatch(candidateProfile, sampleJD, 'Google', 'AI/ML Infrastructure Engineer');
+  const matchResult = JDMatcher.evaluateMatch(candidateFixture, sampleJD, 'Google', 'AI/ML Infrastructure Engineer');
   console.log(`  ✓ Extracted Technical Skills: ${matchResult.extractedSkills.join(', ')}`);
 
   // 3. STEP 3: Canonical Readiness Scoring Engine
@@ -113,8 +113,8 @@ Requirements:
 
   // 5. STEP 5: ATS-Optimized HTML & LaTeX Resume Generation
   console.log(`\n${c.bold}[Step 5/10] Compiling ATS Single-Page Resume (HTML & LaTeX)...${c.reset}`);
-  const resumeHTML = CVBuilder.generateHTML(candidateProfile);
-  const resumeLaTeX = CVBuilder.generateLaTeX(candidateProfile);
+  const resumeHTML = CVBuilder.generateHTML(candidateFixture);
+  const resumeLaTeX = CVBuilder.generateLaTeX(candidateFixture);
   const htmlPath = path.join(root, 'resume-demo.html');
   const texPath = path.join(root, 'resume-demo.tex');
   fs.writeFileSync(htmlPath, resumeHTML, 'utf8');
@@ -122,34 +122,37 @@ Requirements:
   console.log(`  ✓ Generated HTML Resume : ${htmlPath} (${resumeHTML.length} bytes)`);
   console.log(`  ✓ Generated LaTeX Resume: ${texPath} (${resumeLaTeX.length} bytes)`);
 
-  // 6. STEP 6: Strategic Tailored Cover Letter
+  // 6. STEP 6: Strategic 3-Paragraph Tailored Cover Letter
   console.log(`\n${c.bold}[Step 6/10] Generating Strategic 3-Paragraph Cover Letter...${c.reset}`);
   const coverLetter = CoverLetterBuilder.generateCoverLetter({
+    candidate: candidateFixture,
     companyName: 'Google',
     jobTitle: 'AI/ML Infrastructure Engineer',
-    targetFocus: 'Large-scale distributed model training and high-throughput GPU cluster orchestration',
+    targetFocus: 'large-scale distributed model training and high-throughput GPU cluster orchestration',
     highlights: [
-      'Scaled distributed GPU training clusters for 70B+ LLMs at ScaleAI, improving training throughput by 38%',
-      'Architected inference microservices serving 45,000 QPS with p99 latency <25ms'
+      'scaled distributed GPU training clusters for 70B+ parameter LLMs at ScaleAI, improving training throughput by 38%',
+      'architected inference microservices serving 45,000 QPS with p99 latency <25ms'
     ]
   });
-  console.log(`  ✓ Cover letter successfully drafted (${coverLetter.split('\n\n').length} paragraphs, ${coverLetter.length} chars)`);
+  const bodyParagraphs = coverLetter.split('\n\n').slice(2, 5);
+  console.log(`  ✓ Cover letter successfully drafted (${bodyParagraphs.length} executive body paragraphs, ${coverLetter.length} total chars)`);
 
   // 7. STEP 7: Company Track & STAR Interview Question Bank
   console.log(`\n${c.bold}[Step 7/10] Building STAR Interview Prep Track from Registry...${c.reset}`);
   const googleTrack = InterviewCoach.getCompanyTrack('Google');
-  const starBank = InterviewCoach.generateSTARBank(matchResult.identifiedStrengths, 'AI/ML Infrastructure Engineer');
+  const starBank = InterviewCoach.generateSTARBank(matchResult.strengths || [], 'AI/ML Infrastructure Engineer');
   console.log(`  ✓ Resolved Track: ${googleTrack?.name || 'Google'} (Interview Stages: ${googleTrack?.interview_stages?.join(' → ') || 'Technical Screen → Onsite Loop'})`);
   console.log(`  ✓ Curated ${starBank.questions.length} STAR Scenarios across: ${starBank.questions.map(q => q.category).join(', ')}`);
 
-  // 8. STEP 8: Recruiter Networking Outreach
+  // 8. STEP 8: Recruiter Networking Outreach (Sample Recruiter Fixture)
   console.log(`\n${c.bold}[Step 8/10] Drafting Recruiter LinkedIn Connection Message...${c.reset}`);
   const outreachNote = OutreachGenerator.generateLinkedInNote({
-    recipientName: 'Sarah Jenkins',
+    candidateName: candidateFixture.name,
+    recipientName: 'Sarah Jenkins (Recruiter Fixture)',
     company: 'Google',
     role: 'AI/ML Infrastructure Engineer'
   });
-  console.log(`  ✓ LinkedIn Note (${outreachNote.length} chars): "${c.gray}${outreachNote}${c.reset}"`);
+  console.log(`  ✓ LinkedIn Note (${outreachNote.length} chars, strict limit <300): "${c.gray}${outreachNote}${c.reset}"`);
 
   // 9. STEP 9: Application Pipeline Tracker State Transition
   console.log(`\n${c.bold}[Step 9/10] Ingesting into Application Pipeline Tracker...${c.reset}`);
@@ -160,7 +163,7 @@ Requirements:
     role: 'AI/ML Infrastructure Engineer',
     status: 'applied',
     link: 'https://careers.google.com/jobs/results/12345678',
-    notes: 'Submitted tailored ATS resume and customized cover letter.'
+    notes: 'Submitted tailored ATS resume and customized 3-paragraph cover letter.'
   });
   tracker.updateStatus('Google', 'interviewing', 'Scheduled Technical Screen Round 1 on System Design');
   tracker.save(trackerPath);
