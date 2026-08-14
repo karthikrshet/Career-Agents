@@ -1,134 +1,125 @@
 "use client";
 
 import Link from "next/link";
-import { Briefcase, ArrowRight, Star, Heart, MapPin, Zap } from "lucide-react";
+import { Briefcase, ArrowRight, Star, Heart, MapPin, Zap, ArrowLeft, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { MarketingFooter } from "@/components/layout/marketing-footer";
 
 export default function CareersPage() {
   const jobs = [
-    { title: "Senior AI Research Engineer", dept: "Engineering", loc: "San Francisco / Remote", type: "Full-time" },
-    { title: "Staff Frontend Developer (Next.js)", dept: "Engineering", loc: "New York / Remote", type: "Full-time" },
-    { title: "AI Product Designer", dept: "Design", loc: "London / Hybrid", type: "Full-time" },
-    { title: "Developer Relations Manager", dept: "Marketing", loc: "Remote", type: "Full-time" },
+    { title: "Staff Distributed Systems Engineer", dept: "Core Runtime", loc: "San Francisco / Remote", type: "Full-time", track: "Go / Raft / Concurrency" },
+    { title: "Senior AI Compiler & Model Engineer", dept: "Agent Architecture", loc: "New York / Remote", type: "Full-time", track: "MCP / PyTorch / LLM Routing" },
+    { title: "Staff Frontend Engineer (Next.js & WebGL)", dept: "Product Experience", loc: "Remote", type: "Full-time", track: "TypeScript / Canvas / Three.js" },
+    { title: "Developer Relations & Ecosystem Lead", dept: "Open Source", loc: "Remote", type: "Full-time", track: "Community & Integrations" },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="min-h-screen bg-[#030712] text-slate-100 font-sans py-20 px-4 sm:px-6 lg:px-8 relative overflow-y-auto z-10">
+      {/* Ambient Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-sky-500/10 blur-[150px] rounded-full pointer-events-none" />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-16 border-b border-slate-900 bg-gradient-to-b from-indigo-950/20 via-slate-950 to-slate-950">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.15),rgba(255,255,255,0))]" />
-        <div className="max-w-4xl mx-auto text-center px-6 relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-[10px] uppercase font-bold tracking-wider text-indigo-400">
-            <Star className="w-3.5 h-3.5" /> Join the Agentic Career Future
+      <div className="max-w-5xl mx-auto relative z-10 space-y-14">
+        {/* Back Link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Back to landing
+        </Link>
+
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-sky-400 text-xs font-mono font-medium">
+            <Star className="w-3.5 h-3.5" /> Join Our Team
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Build the Operating System for <span className="bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400 bg-clip-text text-transparent">Modern Careers</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Build the Operating System for <span className="text-sky-400">Engineering Careers</span>
           </h1>
-          <p className="text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            We are creating an open-source multi-agent platform designed to evaluate resumes, audit portfolios, run mock interviews, and optimize professional footprints.
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+            Help us engineer an open-source multi-agent platform empowering software engineers with 167 specialized agents, local ATS auditing, and Model Context Protocol (MCP) tooling.
           </p>
         </div>
-      </section>
 
-      {/* Content Section */}
-      <main className="flex-1 max-w-5xl mx-auto px-6 py-16 w-full space-y-16">
         {/* Core Values */}
-        <div className="space-y-6 text-center">
-          <h2 className="text-2xl font-bold text-white tracking-tight">Our Core Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="border-slate-900 bg-slate-900/30">
-              <CardContent className="p-6 text-left space-y-3">
-                <div className="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-                  <Zap className="w-5 h-5" />
-                </div>
-                <h4 className="font-bold text-white text-sm">Open & Collaborative</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  We believe open source builds better, safer, and more transparent tools. All our registries and maps are public.
-                </p>
-              </CardContent>
-            </Card>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-6 rounded-2xl bg-[#070b14] border border-white/10 space-y-3">
+            <div className="p-2 w-fit rounded-lg bg-sky-500/10 border border-sky-400/20 text-sky-400">
+              <Zap className="w-4 h-4" />
+            </div>
+            <h3 className="font-bold text-white text-sm">Open &amp; Transparent</h3>
+            <p className="text-xs text-slate-400 leading-relaxed font-normal">
+              We believe open source builds better, safer tools. All our agent registries, schemas, and pipelines are fully public.
+            </p>
+          </div>
 
-            <Card className="border-slate-900 bg-slate-900/30">
-              <CardContent className="p-6 text-left space-y-3">
-                <div className="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
-                  <Heart className="w-5 h-5" />
-                </div>
-                <h4 className="font-bold text-white text-sm">Empowering Engineers</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  We help engineers master technical interviews, analyze ATS resume gates, and chart optimal paths forward.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="p-6 rounded-2xl bg-[#070b14] border border-white/10 space-y-3">
+            <div className="p-2 w-fit rounded-lg bg-sky-500/10 border border-sky-400/20 text-sky-400">
+              <Heart className="w-4 h-4" />
+            </div>
+            <h3 className="font-bold text-white text-sm">Candidate-First</h3>
+            <p className="text-xs text-slate-400 leading-relaxed font-normal">
+              We empower software engineers with uncompromised local privacy, eliminating proprietary black-box recruiter barriers.
+            </p>
+          </div>
 
-            <Card className="border-slate-900 bg-slate-900/30">
-              <CardContent className="p-6 text-left space-y-3">
-                <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                  <Briefcase className="w-5 h-5" />
-                </div>
-                <h4 className="font-bold text-white text-sm">Agent-First Mentality</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  We run highly focused specialist agents collaborating over common graphs and model contexts.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="p-6 rounded-2xl bg-[#070b14] border border-white/10 space-y-3">
+            <div className="p-2 w-fit rounded-lg bg-sky-500/10 border border-sky-400/20 text-sky-400">
+              <ShieldCheck className="w-4 h-4" />
+            </div>
+            <h3 className="font-bold text-white text-sm">Rigorous Engineering</h3>
+            <p className="text-xs text-slate-400 leading-relaxed font-normal">
+              From WebGL shaders to JSON-RPC tools and sub-100ms vector search, we prioritize performance and test integrity.
+            </p>
           </div>
         </div>
 
-        {/* Opportunities list */}
+        {/* Open Roles */}
         <div className="space-y-6">
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold text-white tracking-tight">Open Opportunities</h2>
-            <p className="text-xs text-slate-400 mt-1">Explore current openings across our core platform and infrastructure engineering teams.</p>
+          <div className="flex items-center justify-between border-b border-white/10 pb-4">
+            <div>
+              <h2 className="text-lg font-bold text-white">Open Roles</h2>
+              <p className="text-xs text-slate-400 mt-0.5">Explore full-time engineering and developer relations positions</p>
+            </div>
+            <span className="text-xs font-mono text-sky-400 bg-sky-500/10 px-2.5 py-1 rounded-md border border-sky-400/20">
+              4 Roles Open
+            </span>
           </div>
+
           <div className="space-y-3">
-            {jobs.map(job => (
-              <div 
+            {jobs.map((job) => (
+              <div
                 key={job.title}
-                className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-5 rounded-xl border border-slate-900 bg-slate-900/10 hover:border-slate-800 hover:bg-slate-900/30 transition-all gap-4"
+                className="p-5 rounded-2xl bg-[#070b14] border border-white/10 hover:border-sky-500/40 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
               >
-                <div>
-                  <h4 className="font-bold text-sm text-white">{job.title}</h4>
-                  <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-400 mt-1.5">
-                    <span className="bg-slate-900 border border-slate-800 px-2 py-0.5 rounded">{job.dept}</span>
-                    <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-slate-500" /> {job.loc}</span>
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-sm sm:text-base font-bold text-white">{job.title}</h3>
+                    <span className="text-[10px] font-mono bg-white/[0.04] text-slate-300 px-2 py-0.5 rounded border border-white/10">
+                      {job.type}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400 font-mono">
+                    <span>{job.dept}</span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-sky-400" /> {job.loc}
+                    </span>
+                    <span>•</span>
+                    <span className="text-sky-300">{job.track}</span>
                   </div>
                 </div>
-                <Link href="/contact" className="w-full sm:w-auto">
-                  <Button variant="outline" size="sm" className="w-full h-8 text-xs border-slate-800 text-slate-300 hover:bg-slate-900">
-                    Apply Now <ArrowRight className="w-3 h-3 ml-1.5" />
+
+                <Link href="/contact">
+                  <Button size="sm" className="bg-sky-500 hover:bg-sky-400 text-black font-semibold text-xs px-4 py-2 rounded-lg shrink-0">
+                    <span>Apply Now</span>
+                    <ArrowRight className="w-3 h-3 ml-1" />
                   </Button>
                 </Link>
               </div>
             ))}
           </div>
         </div>
-      </main>
-
-      {/* CTA Section */}
-      <section className="border-t border-slate-900 bg-slate-950 py-16 text-center space-y-6">
-        <div className="max-w-2xl mx-auto px-6 space-y-3">
-          <h3 className="text-xl font-bold text-white tracking-tight">Want to contribute to the Career OS core framework?</h3>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            Career Agents is built on open standards, model context protocols, and public index registries. Find us on GitHub and make your first pull request.
-          </p>
-          <div className="pt-2 flex justify-center gap-3">
-            <a href="https://github.com/karthikrshet/Career-Agents" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-md text-xs">
-                Browse Repository
-              </Button>
-            </a>
-            <Link href="/contact">
-              <Button variant="outline" className="border-slate-800 text-slate-300 hover:bg-slate-950 text-xs">
-                Contact Recruiting
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
+      </div>
     </div>
   );
 }
