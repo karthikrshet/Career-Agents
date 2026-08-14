@@ -125,11 +125,8 @@ export async function runCareerPipelineCLI(subcommand, args = []) {
         return;
       }
 
-      const matchRes = JDMatcher.evaluateMatch({}, jdText, company, role);
-      console.log(`\n${c.bold}${c.cyan}=== Job Requirement Readiness Match ===${c.reset}`);
-      console.log(`Target: ${matchRes.company} · ${matchRes.role}`);
-      console.log(`Readiness: ${matchRes.readinessScore !== null ? `${matchRes.readinessScore}%` : 'Provisional'}`);
-      console.log(`Detected Skills: ${matchRes.extractedSkills.join(', ')}\n`);
+      const report = JDMatcher.generateReport({}, jdText, company, role);
+      console.log(`\n${report}\n`);
       break;
     }
 

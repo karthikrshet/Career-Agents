@@ -11,5 +11,9 @@ Compile ATS single-page HTML and LaTeX resumes
 ## Usage
 
 `ash
+# Direct binary execution
 career-agents pipeline cv [profile.json] [--latex|--html]
+
+# Workspace script execution (fallback)
+node ./scripts/cli.js pipeline cv [profile.json] [--latex|--html]
 `

@@ -11,5 +11,9 @@ Evaluate candidate readiness against raw job descriptions using canonical scorin
 ## Usage
 
 `ash
+# Direct binary execution
 career-agents pipeline match <jd-file> [company] [role]
+
+# Workspace script execution (fallback)
+node ./scripts/cli.js pipeline match <jd-file> [company] [role]
 `
