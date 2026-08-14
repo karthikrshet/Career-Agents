@@ -6,14 +6,14 @@ license: MIT
 
 # career-pipeline-outreach
 
-Generate high-converting recruiter LinkedIn notes and follow-up emails
+Generates concise LinkedIn connection requests strictly verified under 300 characters, alongside formal application follow-up emails.
 
 ## Usage
 
-`ash
-# Direct binary execution
-career-agents pipeline outreach <name> <company> <role>
+```bash
+career-agents pipeline outreach <recruiterName> <company> <role>
 
-# Workspace script execution (fallback)
-node ./scripts/cli.js pipeline outreach <name> <company> <role>
-`
+# Example:
+career-agents pipeline outreach "Sarah Jenkins" Google "AI/ML Infrastructure Engineer"
+```
+

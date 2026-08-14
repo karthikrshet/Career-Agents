@@ -6,14 +6,26 @@ license: MIT
 
 # career-pipeline-scan
 
-Scan ATS job boards for open roles (Greenhouse, Lever, Ashby, Workable, SmartRecruiters, RemoteOK, Arbeitnow, Himalayas)
+Scan 8 major ATS job board providers for active job postings with native streaming compression.
+
+## Supported Providers
+- `greenhouse` (e.g. Stripe, Figma, Airbnb)
+- `lever` (e.g. Netlify, Spotify)
+- `ashby` (e.g. OpenAI, Notion, Ramp — auto gzip/brotli decompression)
+- `workable`
+- `smartrecruiters`
+- `remoteok`
+- `arbeitnow`
+- `himalayas`
 
 ## Usage
 
-`ash
-# Direct binary execution
-career-agents pipeline scan <token> [provider]
+```bash
+career-agents pipeline scan <companyToken> [provider]
 
-# Workspace script execution (fallback)
-node ./scripts/cli.js pipeline scan <token> [provider]
-`
+# Examples:
+career-agents pipeline scan openai ashby
+career-agents pipeline scan stripe greenhouse
+career-agents pipeline scan netlify lever
+```
+

@@ -6,14 +6,21 @@ license: MIT
 
 # career-pipeline-tracker
 
-Manage live application pipeline tracker, statuses, and updates
+Tracks job applications through a complete lifecycle state machine:
+`bookmarked` → `applied` → `screening` → `interviewing` → `offer` → `accepted` / `rejected` / `withdrawn`
+
+Persists in dual Markdown table (`pipeline-tracker.md`) and JSON format.
 
 ## Usage
 
-`ash
-# Direct binary execution
-career-agents pipeline tracker
+```bash
+# Add new application
+career-agents pipeline add <company> <role> <url>
 
-# Workspace script execution (fallback)
-node ./scripts/cli.js pipeline tracker
-`
+# Update status
+career-agents pipeline status <company> <status> [notes]
+
+# List active applications
+career-agents pipeline list
+```
+
