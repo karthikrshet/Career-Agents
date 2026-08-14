@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { MessageSquare, Heart } from "lucide-react";
+import { MessageSquare, Heart, ShieldCheck, Terminal, Bot } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
-import { toast } from "sonner";
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -28,15 +27,6 @@ const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export function Footer() {
-  const [email, setEmail] = useState("");
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    toast.success("Subscribed! Check your inbox for open-source ecosystem updates.");
-    setEmail("");
-  };
-
   const columns = [
     {
       title: "PRODUCT",
@@ -45,7 +35,7 @@ export function Footer() {
         { name: "Resume Studio", href: "/resume" },
         { name: "GitHub Analyzer", href: "/github" },
         { name: "Interview Lab", href: "/interview" },
-        { name: "Job Hub", href: "/jobs" },
+        { name: "Coding Studio", href: "/playground" },
         { name: "Pricing", href: "/pricing" },
       ],
     },
@@ -95,38 +85,28 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative border-t border-white/10 bg-[#030612] text-slate-400 py-16 px-4 sm:px-6 lg:px-12 z-10 font-sans">
-      <div className="max-w-7xl mx-auto space-y-16">
-        {/* Top Section: Brand Header & Newsletter Form */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-white/[0.08]">
-          {/* Logo & Description */}
-          <div className="max-w-xl space-y-3">
+    <footer className="relative border-t border-white/10 bg-[#030612] text-slate-400 py-14 px-4 sm:px-6 lg:px-12 z-10 font-sans">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Top Brand Header */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-10 border-b border-white/[0.08]">
+          <div className="space-y-2">
             <Logo size="lg" variant="footer" showVersion={true} />
-            <p className="text-xs text-slate-400 leading-relaxed max-w-lg">
-              The 146-agent Career Operating System. Join our newsletter to get weekly open-source ecosystem updates, registry models, and career frameworks.
+            <p className="text-xs text-slate-400 max-w-lg leading-relaxed font-normal">
+              The Open-Source AI Career Operating System with 167 specialized agents across 19 technical divisions.
             </p>
           </div>
 
-          {/* Newsletter Input Form */}
-          <form onSubmit={handleSubscribe} className="flex items-center w-full sm:w-auto">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="developer@career-agents.com"
-              className="w-full sm:w-72 bg-[#090d18] border border-white/10 text-xs px-4 py-2.5 rounded-l-xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50"
-              required
-            />
-            <button
-              type="submit"
-              className="bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs px-5 py-2.5 rounded-r-xl transition-colors shrink-0"
-            >
-              Subscribe
-            </button>
-          </form>
+          <div className="flex items-center gap-3 text-xs font-mono text-slate-400">
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10">
+              <ShieldCheck className="w-3.5 h-3.5 text-sky-400" /> Local-First
+            </span>
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10">
+              <Terminal className="w-3.5 h-3.5 text-sky-400" /> MCP Ready
+            </span>
+          </div>
         </div>
 
-        {/* Middle Section: 5 Columns Sitemap */}
+        {/* Sitemap Columns */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {columns.map((col) => (
             <div key={col.title} className="space-y-4">
@@ -166,14 +146,12 @@ export function Footer() {
         {/* Bottom Section Bar */}
         <div className="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div className="flex flex-wrap items-center gap-3">
-            <span>© {new Date().getFullYear()} Career Agents. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Career Agents.</span>
             <span>•</span>
             <span className="flex items-center gap-1.5 text-emerald-400 font-mono">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               All Systems Operational
             </span>
-            <span>•</span>
-            <span className="font-mono text-slate-400">v16.0.0</span>
             <span>•</span>
             <Link href="/credits" className="hover:text-cyan-300 transition-colors flex items-center gap-1 text-slate-400">
               <span>Built with</span>
