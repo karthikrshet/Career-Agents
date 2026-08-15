@@ -1,11 +1,9 @@
-// apps/web/src/app/pricing/page.tsx
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, CheckCircle2, Zap } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Zap, ArrowRight, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 export default function PricingPage() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
@@ -14,30 +12,31 @@ export default function PricingPage() {
   const plans = [
     {
       id: "free",
-      name: "Free / Guest",
+      name: "Community & Local",
       price: { monthly: { usd: 0, inr: 0 }, yearly: { usd: 0, inr: 0 } },
       desc: "Instant career audits without any signup or credentials required.",
       features: [
-        "3 Resume STAR evaluations",
-        "1 GitHub repository analysis",
-        "1 Interview Lab session (Text/Chat)",
-        "Standard latency fallback routing"
-      ]
+        "167 open-source agents access",
+        "Local SQLite browser database",
+        "ATS resume structure parser",
+        "Standard latency fallback routing",
+        "Community GitHub support",
+      ],
     },
     {
       id: "pro",
-      name: "Professional",
+      name: "Professional Candidate",
       price: { monthly: { usd: 29, inr: 2400 }, yearly: { usd: 19, inr: 1600 } },
-      desc: "For active job seekers target-matching interviews at tech companies.",
+      desc: "For active software engineers target-matching senior & staff interview loops.",
       features: [
         "Unlimited resume STAR evaluations",
         "Unlimited GitHub repository audits",
-        "Unlimited Mock Interviews with voice critique",
-        "Advanced models (Claude 3.5 Sonnet, GPT-4o)",
-        "MCP Server tools integration",
-        "Priority API queue access"
+        "Voice STAR mock coach with audio rubric",
+        "31 Model Context Protocol (MCP) tools",
+        "Claude 3.5 Sonnet & GPT-4o gateways",
+        "Priority API execution queue",
       ],
-      popular: true
+      popular: true,
     },
     {
       id: "team",
@@ -46,11 +45,11 @@ export default function PricingPage() {
       desc: "Collaborative workspaces for bootcamps, university cohorts, and recruitment firms.",
       features: [
         "Everything in Professional",
-        "Shared candidate workspaces",
-        "Collaborative candidate scorecards",
+        "Shared candidate pipeline workspaces",
+        "Collaborative ATS scorecards",
         "Private RAG vector database sync",
-        "Dedicated onboarding support"
-      ]
+        "Dedicated onboarding support",
+      ],
     },
     {
       id: "enterprise",
@@ -62,150 +61,161 @@ export default function PricingPage() {
         "Private VPC deployment (AWS, GCP)",
         "SSO, SAML, and custom RBAC policies",
         "99.9% API availability SLA",
-        "Dedicated account engineers",
-        "Zero-retention data privacy guarantees"
-      ]
-    }
+        "Zero-retention privacy guarantees",
+      ],
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans relative py-20">
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-900/10 blur-[150px] pointer-events-none" />
+    <div className="min-h-screen bg-[#030712] text-slate-100 font-sans py-20 px-4 sm:px-6 lg:px-8 relative overflow-y-auto z-10">
+      {/* Ambient Lighting Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-sky-500/10 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-6">
-        <Link href="/" className="inline-flex items-center gap-2 text-xs text-slate-500 hover:text-white transition mb-12">
+      <div className="max-w-6xl mx-auto relative z-10 space-y-12">
+        {/* Back Link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+        >
           <ArrowLeft className="w-3.5 h-3.5" />
           Back to landing
         </Link>
 
-        <div className="text-center max-w-xl mx-auto mb-16">
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-6">
-            Simple Pricing Plans
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-sky-400 text-xs font-mono font-medium">
+            Transparent Pricing
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Transparent Plans for <span className="text-sky-400">Engineering Careers</span>
           </h1>
-          <p className="text-sm text-slate-400 leading-relaxed mb-8">
-            Upgrade your token counts and specialist models as your job search scales.
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+            Run open-source agents locally for free or scale with high-throughput cloud LLM gateways and voice mock infrastructure.
           </p>
 
-          <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 bg-slate-950 border border-slate-900 p-2 rounded-xl">
-            {/* Billing Cycle Toggle */}
-            <div className="flex bg-slate-900 rounded-lg p-1 border border-slate-800">
+          {/* Toggle Controls */}
+          <div className="flex items-center justify-center gap-4 pt-4 text-xs font-mono">
+            <div className="p-1 rounded-lg bg-[#070b14] border border-white/10 flex items-center gap-1">
               <button
                 onClick={() => setBillingCycle("monthly")}
-                className={cn(
-                  "px-3 py-1.5 rounded text-xs font-semibold transition",
-                  billingCycle === "monthly" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"
-                )}
+                className={`px-3 py-1 rounded-md transition-colors ${
+                  billingCycle === "monthly" ? "bg-sky-500 text-black font-semibold" : "text-slate-400 hover:text-white"
+                }`}
               >
                 Monthly
               </button>
               <button
                 onClick={() => setBillingCycle("yearly")}
-                className={cn(
-                  "px-3 py-1.5 rounded text-xs font-semibold transition",
-                  billingCycle === "yearly" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"
-                )}
+                className={`px-3 py-1 rounded-md transition-colors ${
+                  billingCycle === "yearly" ? "bg-sky-500 text-black font-semibold" : "text-slate-400 hover:text-white"
+                }`}
               >
-                Yearly (Save 30%)
+                Yearly (Save 35%)
               </button>
             </div>
 
-            {/* Currency Selector */}
-            <div className="flex bg-slate-900 rounded-lg p-1 border border-slate-800">
+            <div className="p-1 rounded-lg bg-[#070b14] border border-white/10 flex items-center gap-1">
               <button
                 onClick={() => setCurrency("usd")}
-                className={cn(
-                  "px-3.5 py-1.5 rounded text-xs font-semibold transition",
-                  currency === "usd" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"
-                )}
+                className={`px-2.5 py-1 rounded-md transition-colors ${
+                  currency === "usd" ? "bg-white/10 text-white font-semibold" : "text-slate-400"
+                }`}
               >
-                USD
+                USD ($)
               </button>
               <button
                 onClick={() => setCurrency("inr")}
-                className={cn(
-                  "px-3.5 py-1.5 rounded text-xs font-semibold transition",
-                  currency === "inr" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"
-                )}
+                className={`px-2.5 py-1 rounded-md transition-colors ${
+                  currency === "inr" ? "bg-white/10 text-white font-semibold" : "text-slate-400"
+                }`}
               >
-                INR
+                INR (₹)
               </button>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-          {plans.map(plan => {
-            const hasPrice = typeof plan.price !== "string";
-            const price = hasPrice
-              ? (plan.price as any)[billingCycle][currency]
-              : "Custom";
+        {/* Pricing Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+          {plans.map((plan) => {
+            const isPopular = plan.popular;
+            const price =
+              typeof plan.price === "string"
+                ? plan.price
+                : currency === "usd"
+                ? `$${plan.price[billingCycle].usd}`
+                : `₹${plan.price[billingCycle].inr}`;
 
             return (
               <div
                 key={plan.id}
-                className={cn(
-                  "border rounded-2xl p-6 flex flex-col justify-between relative",
-                  plan.popular
-                    ? "border-indigo-500 bg-indigo-950/10 shadow-lg shadow-indigo-600/5"
-                    : "border-slate-900 bg-slate-950/40"
-                )}
+                className={`p-6 rounded-2xl bg-[#070b14] flex flex-col justify-between transition-all border ${
+                  isPopular
+                    ? "border-sky-500/60 shadow-[0_0_30px_rgba(14,165,233,0.15)]"
+                    : "border-white/10 hover:border-white/20"
+                }`}
               >
-                {plan.popular && (
-                  <span className="bg-indigo-600 text-white text-[8px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full absolute top-0 right-6 -translate-y-1/2">
-                    Most Popular
-                  </span>
-                )}
-
-                <div>
-                  <h4 className="text-xs font-bold text-slate-400 mb-2">{plan.name}</h4>
-                  <div className="flex items-baseline gap-1.5 mb-2">
-                    <span className="text-3xl font-extrabold text-white">
-                      {hasPrice ? `${currency === "usd" ? "$" : "₹"}${price}` : "Custom"}
-                    </span>
-                    {hasPrice && <span className="text-[10px] text-slate-500">/mo</span>}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-base font-bold text-white">{plan.name}</h3>
+                    {isPopular && (
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-500/10 text-sky-400 border border-sky-400/30">
+                        Popular
+                      </span>
+                    )}
                   </div>
-                  <p className="text-[10px] text-slate-500 leading-relaxed mb-6">{plan.desc}</p>
 
-                  <ul className="space-y-3 text-[10px] text-slate-400">
-                    {plan.features.map(f => (
-                      <li key={f} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 shrink-0 mt-0.5" />
-                        <span>{f}</span>
-                      </li>
+                  <div>
+                    <div className="text-3xl font-black text-white font-mono">{price}</div>
+                    {typeof plan.price !== "string" && (
+                      <div className="text-xs text-slate-400 font-mono mt-0.5">
+                        per user / {billingCycle === "monthly" ? "month" : "year"}
+                      </div>
+                    )}
+                  </div>
+
+                  <p className="text-xs text-slate-400 font-normal leading-relaxed">
+                    {plan.desc}
+                  </p>
+
+                  {/* Feature Checklist */}
+                  <div className="pt-2 border-t border-white/10 space-y-2 text-xs">
+                    {plan.features.map((feat) => (
+                      <div key={feat} className="flex items-start gap-2 text-slate-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0 mt-0.5" />
+                        <span>{feat}</span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
-                <div className="mt-8">
-                  <Button
-                    className={cn(
-                      "w-full text-xs py-2 rounded-lg font-semibold transition",
-                      plan.popular
-                        ? "bg-indigo-600 hover:bg-indigo-500 text-white"
-                        : "bg-slate-900 hover:bg-slate-800 text-slate-300"
-                    )}
-                  >
-                    Select Plan
-                  </Button>
+                <div className="pt-6">
+                  <Link href="/dashboard">
+                    <Button
+                      size="sm"
+                      className={`w-full text-xs font-semibold py-2 rounded-lg transition-all ${
+                        isPopular
+                          ? "bg-sky-500 hover:bg-sky-400 text-black shadow-sm"
+                          : "bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10"
+                      }`}
+                    >
+                      <span>{plan.id === "free" ? "Start Free" : "Get Started"}</span>
+                      <ArrowRight className="w-3 h-3 ml-1" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             );
           })}
         </div>
 
-        <div className="border border-slate-900 bg-slate-950/60 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-indigo-500/10 rounded-lg flex items-center justify-center border border-indigo-500/20 shrink-0">
-              <Zap className="w-5 h-5 text-indigo-400" />
-            </div>
-            <div>
-              <h4 className="text-xs font-bold text-white mb-1">Developer Sponsorship Program</h4>
-              <p className="text-[10px] text-slate-500 leading-relaxed">Are you a core open-source contributor or student? Email us for free Professional tier upgrades.</p>
-            </div>
+        {/* Security Assurance */}
+        <div className="p-6 rounded-2xl bg-[#070b14] border border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400">
+          <div className="flex items-center gap-2 text-white font-medium">
+            <ShieldCheck className="w-4 h-4 text-sky-400" />
+            <span>Local-first architecture guarantee: Your resumes are never sold or trained upon.</span>
           </div>
-          <Button variant="outline" className="border-slate-800 text-slate-300 hover:text-white hover:bg-slate-900 text-xs font-semibold px-4 py-2 rounded-lg">
-            Apply Sponsor
-          </Button>
+          <div>Cancel or switch plans anytime with single-click billing management.</div>
         </div>
       </div>
     </div>

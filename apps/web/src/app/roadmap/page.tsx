@@ -1,7 +1,6 @@
-// apps/web/src/app/roadmap/page.tsx
 "use client";
 
-import { ArrowLeft, CheckCircle2, Circle, Clock } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Circle, Clock, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 export default function RoadmapPage() {
@@ -9,59 +8,93 @@ export default function RoadmapPage() {
     {
       quarter: "Q1 2026",
       status: "completed",
-      title: "Core AI Gateway & RAG Caching",
-      desc: "SSRF prevention routing layers, cost estimation counters, fallback provider loops, and hybrid vector search."
+      title: "167-Agent Registry & Multi-Division Architecture",
+      desc: "Compiled 167 specialized AI agents across 19 technical divisions with deterministic JSON validation tests.",
     },
     {
       quarter: "Q2 2026",
       status: "completed",
-      title: "Multi-Agent Orchestrator Pipeline",
-      desc: "Simultaneous execution loops for specialist agent selections and structured JSON outputs validations."
+      title: "Model Context Protocol (MCP) Server Integration",
+      desc: "Native JSON-RPC 2.0 protocol supporting 31 tool endpoints for Claude Code, Cursor, Windsurf, and Antigravity.",
     },
     {
       quarter: "Q3 2026",
-      status: "active",
-      title: "PostgreSQL Session Sync & NextAuth",
-      desc: "Replacing guest localStorage stores with database persistence and role access rules."
+      status: "completed",
+      title: "20-Language Coding Studio & Algorithm Sandbox",
+      desc: "In-browser execution engine for Python, C++, TypeScript, Rust, Go, and Java with test judge telemetry.",
     },
     {
       quarter: "Q4 2026",
+      status: "active",
+      title: "Voice STAR Mock Interview Simulation & Waveforms",
+      desc: "Real-time voice dialog coach with live latency measurement and L6 Staff architecture scoring rubrics.",
+    },
+    {
+      quarter: "Q1 2027",
       status: "planned",
-      title: "VS Code & Browser Extension Connectors",
-      desc: "Direct integration to highlight weak accomplishments syntax or pull interview scorecards right from IDE environments."
-    }
+      title: "Collaborative Cohort Workspaces & Team Calibration",
+      desc: "Shared recruitment and university pipeline dashboards with local SQLite synchronization.",
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans relative py-20">
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-900/10 blur-[150px] pointer-events-none" />
+    <div className="min-h-screen bg-[#030712] text-slate-100 font-sans py-20 px-4 sm:px-6 lg:px-8 relative overflow-y-auto z-10">
+      {/* Ambient Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-sky-500/10 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-6">
-        <Link href="/" className="inline-flex items-center gap-2 text-xs text-slate-500 hover:text-white transition mb-12">
+      <div className="max-w-4xl mx-auto relative z-10 space-y-10">
+        {/* Back Link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+        >
           <ArrowLeft className="w-3.5 h-3.5" />
           Back to landing
         </Link>
 
-        <h1 className="text-3xl font-extrabold text-white mb-6">Development Roadmap</h1>
-        <p className="text-sm text-slate-400 mb-12 max-w-2xl leading-relaxed">
-          Track our milestones as we build the Open Source AI Career Operating System.
-        </p>
+        {/* Header */}
+        <div className="space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-sky-400 text-xs font-mono font-medium">
+            <Sparkles className="w-3.5 h-3.5" /> Engineering Milestones
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Development <span className="text-sky-400">Roadmap</span>
+          </h1>
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed max-w-2xl">
+            Track our progress as we build the open-source AI Career Operating System for software engineers worldwide.
+          </p>
+        </div>
 
-        <div className="space-y-8 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-900">
-          {roadmapItems.map(item => (
+        {/* Timeline Flow */}
+        <div className="space-y-6 relative before:absolute before:left-3.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-white/10">
+          {roadmapItems.map((item) => (
             <div key={item.quarter} className="relative pl-10">
-              <div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-slate-950 flex items-center justify-center border border-slate-900 z-10">
+              <div className="absolute left-0 top-1.5 w-7 h-7 rounded-full bg-[#070b14] flex items-center justify-center border border-white/10 z-10">
                 {item.status === "completed" && <CheckCircle2 className="w-4 h-4 text-emerald-400" />}
-                {item.status === "active" && <Clock className="w-4 h-4 text-indigo-400 animate-pulse" />}
+                {item.status === "active" && <Clock className="w-4 h-4 text-sky-400 animate-pulse" />}
                 {item.status === "planned" && <Circle className="w-4 h-4 text-slate-600" />}
               </div>
 
-              <div>
-                <span className="text-[9px] uppercase tracking-widest text-indigo-500 font-bold bg-indigo-500/5 px-2 py-0.5 rounded border border-indigo-500/10">
-                  {item.quarter}
-                </span>
-                <h3 className="text-sm font-bold text-white mt-2 mb-1">{item.title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed max-w-xl">{item.desc}</p>
+              <div className="p-5 rounded-2xl bg-[#070b14] border border-white/10 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] uppercase tracking-wider text-sky-400 font-bold font-mono">
+                    {item.quarter}
+                  </span>
+                  <span
+                    className={`text-[10px] font-mono px-2 py-0.5 rounded ${
+                      item.status === "completed"
+                        ? "bg-emerald-500/10 text-emerald-400"
+                        : item.status === "active"
+                        ? "bg-sky-500/10 text-sky-400"
+                        : "bg-white/[0.04] text-slate-500"
+                    }`}
+                  >
+                    {item.status === "completed" ? "Shipped" : item.status === "active" ? "In Progress" : "Planned"}
+                  </span>
+                </div>
+
+                <h3 className="text-base font-bold text-white tracking-tight">{item.title}</h3>
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">{item.desc}</p>
               </div>
             </div>
           ))}
