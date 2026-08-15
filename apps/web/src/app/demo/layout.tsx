@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Live Interactive Platform Demo — Career Agents",
   description: "Experience a live interactive walk-through of ATS resume scoring, GitHub portfolio auditing, LinkedIn optimization, and AI mock interviews.",
-  keywords: ['career agents demo', 'live ATS score test', 'AI resume test drive', 'interactive platform demo', 'career OS preview'],
+  keywords: ['career agents demo', 'live ATS score test', 'AI resume test drive', 'interactive platform demo', 'career agents preview'],
   authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
   publisher: "Career Agents Intelligence Inc.",
   creator: "Karthik R Shet",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Live Interactive Platform Demo — Career Agents",
     description: "Experience a live interactive walk-through of ATS resume scoring, GitHub portfolio auditing, LinkedIn optimization, and AI mock interviews.",
     url: "/demo",
-    siteName: "Career Agents OS",
+    siteName: "Career Agents",
     locale: "en_US",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Live Interactive Platform Demo — Career Agents" }],
   },

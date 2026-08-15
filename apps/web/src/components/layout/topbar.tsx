@@ -117,7 +117,7 @@ export function Topbar({ title, subtitle, className = "" }: TopbarProps) {
 
   const careerScore = metrics?.careerScore || 26;
   const recent = activityFeed?.slice(0, 5) || [];
-  const displaySubtitle = subtitle || DEFAULT_SUBTITLES[pathname] || "AI Career Operating System";
+  const displaySubtitle = subtitle || DEFAULT_SUBTITLES[pathname] || "AI Career Intelligence Platform";
 
   const triggerCommandPalette = () => {
     const event = new KeyboardEvent("keydown", {

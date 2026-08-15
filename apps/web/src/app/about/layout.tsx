@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Career Agents — The Open-Source AI Career OS",
-  description: "Learn about Career Agents, our mission to democratize elite career coaching using 146 specialized AI agents, and our open-source AI architecture.",
-  keywords: ['about career agents', 'open source career OS', 'AI career coaching mission', 'Karthik R Shet', 'career technology platform'],
+  title: "About Career Agents — Open-Source AI Career Intelligence Platform",
+  description: "Learn about Career Agents, our mission to democratize elite career coaching using 167 specialized AI agents, and our open-source AI architecture.",
+  keywords: ['about career agents', 'open source career agents', 'AI career coaching mission', 'Karthik R Shet', 'career technology platform'],
   authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
   publisher: "Career Agents Intelligence Inc.",
   creator: "Karthik R Shet",
@@ -20,17 +20,17 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "About Career Agents — The Open-Source AI Career OS",
-    description: "Learn about Career Agents, our mission to democratize elite career coaching using 146 specialized AI agents, and our open-source AI architecture.",
+    title: "About Career Agents — Open-Source AI Career Intelligence Platform",
+    description: "Learn about Career Agents, our mission to democratize elite career coaching using 167 specialized AI agents, and our open-source AI architecture.",
     url: "/about",
-    siteName: "Career Agents OS",
+    siteName: "Career Agents",
     locale: "en_US",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "About Career Agents — The Open-Source AI Career OS" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "About Career Agents — AI Career Intelligence Platform" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Career Agents — The Open-Source AI Career OS",
-    description: "Learn about Career Agents, our mission to democratize elite career coaching using 146 specialized AI agents, and our open-source AI architecture.",
+    title: "About Career Agents — Open-Source AI Career Intelligence Platform",
+    description: "Learn about Career Agents, our mission to democratize elite career coaching using 167 specialized AI agents, and our open-source AI architecture.",
     images: ["/og-image.png"],
     creator: "@karthikrshet",
   },

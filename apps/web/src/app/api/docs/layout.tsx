@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Complete developer reference and endpoint documentation for Career Agents. Integrate resume parsing, interview coaching, GitHub audits, and provider gateway routes directly into your own tools.",
   keywords: [
-    "career OS API", "developer docs", "resume parser API", "interview coach API",
+    "career agents API", "developer docs", "resume parser API", "interview coach API",
     "GitHub audit API", "copilot streams", "open source developer reference",
   ],
   openGraph: {

@@ -92,7 +92,7 @@ export function Footer() {
           <div className="space-y-2">
             <Logo size="lg" variant="footer" showVersion={true} />
             <p className="text-xs text-slate-400 max-w-lg leading-relaxed font-normal">
-              The Open-Source AI Career Operating System with 167 specialized agents across 19 technical divisions.
+              The Open-Source AI Career Intelligence Platform with 167 specialized agents across 19 technical divisions.
             </p>
           </div>
 

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact Career Agents Team & Enterprise Support",
   description: "Get in touch with the Career Agents core maintainers for technical support, enterprise inquiries, partnership opportunities, or feedback.",
-  keywords: ['contact career agents', 'technical support', 'enterprise inquiry', 'Karthik R Shet contact', 'career OS support'],
+  keywords: ['contact career agents', 'technical support', 'enterprise inquiry', 'Karthik R Shet contact', 'career agents support'],
   authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
   publisher: "Career Agents Intelligence Inc.",
   creator: "Karthik R Shet",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Contact Career Agents Team & Enterprise Support",
     description: "Get in touch with the Career Agents core maintainers for technical support, enterprise inquiries, partnership opportunities, or feedback.",
     url: "/contact",
-    siteName: "Career Agents OS",
+    siteName: "Career Agents",
     locale: "en_US",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Contact Career Agents Team & Enterprise Support" }],
   },

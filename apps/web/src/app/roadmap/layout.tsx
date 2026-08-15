@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Product Roadmap & Future Capabilities — Career Agents",
   description: "Explore upcoming features for Career Agents: multi-agent autonomous job application bots, real-time voice mock interviews, and advanced MCP tooling.",
-  keywords: ['product roadmap', 'future features', 'AI career OS roadmap', 'upcoming agent releases', 'feature requests'],
+  keywords: ['product roadmap', 'future features', 'AI career roadmap', 'upcoming agent releases', 'feature requests'],
   authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
   publisher: "Career Agents Intelligence Inc.",
   creator: "Karthik R Shet",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Product Roadmap & Future Capabilities — Career Agents",
     description: "Explore upcoming features for Career Agents: multi-agent autonomous job application bots, real-time voice mock interviews, and advanced MCP tooling.",
     url: "/roadmap",
-    siteName: "Career Agents OS",
+    siteName: "Career Agents",
     locale: "en_US",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Product Roadmap & Future Capabilities — Career Agents" }],
   },

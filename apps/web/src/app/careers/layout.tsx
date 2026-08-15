@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Join Career Agents — Open Roles & Contributions",
-  description: "Explore opportunities to join or contribute to Career Agents. Help us build the open-source AI career operating system.",
-  keywords: ['career agents jobs', 'open source contributions', 'AI developer jobs', 'career OS careers', 'remote engineering jobs'],
+  description: "Explore opportunities to join or contribute to Career Agents. Help us build the open-source AI career intelligence platform.",
+  keywords: ['career agents jobs', 'open source contributions', 'AI developer jobs', 'career agents careers', 'remote engineering jobs'],
   authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
   publisher: "Career Agents Intelligence Inc.",
   creator: "Karthik R Shet",
@@ -21,16 +21,16 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Join Career Agents — Open Roles & Contributions",
-    description: "Explore opportunities to join or contribute to Career Agents. Help us build the open-source AI career operating system.",
+    description: "Explore opportunities to join or contribute to Career Agents. Help us build the open-source AI career intelligence platform.",
     url: "/careers",
-    siteName: "Career Agents OS",
+    siteName: "Career Agents",
     locale: "en_US",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Join Career Agents — Open Roles & Contributions" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Join Career Agents — Open Roles & Contributions",
-    description: "Explore opportunities to join or contribute to Career Agents. Help us build the open-source AI career operating system.",
+    description: "Explore opportunities to join or contribute to Career Agents. Help us build the open-source AI career intelligence platform.",
     images: ["/og-image.png"],
     creator: "@karthikrshet",
   },

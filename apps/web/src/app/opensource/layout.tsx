@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Open Source Initiative & GitHub Repository — Career Agents",
   description: "Career Agents is 100% open source. Explore our GitHub repository, agent registries, division schemas, and validation scripts under the MIT license.",
-  keywords: ['open source career OS', 'github repository', 'MIT license', 'open source AI project', 'career agents codebase'],
+  keywords: ['open source career agents', 'github repository', 'MIT license', 'open source AI project', 'career agents codebase'],
   authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
   publisher: "Career Agents Intelligence Inc.",
   creator: "Karthik R Shet",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Open Source Initiative & GitHub Repository — Career Agents",
     description: "Career Agents is 100% open source. Explore our GitHub repository, agent registries, division schemas, and validation scripts under the MIT license.",
     url: "/opensource",
-    siteName: "Career Agents OS",
+    siteName: "Career Agents",
     locale: "en_US",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Open Source Initiative & GitHub Repository — Career Agents" }],
   },
