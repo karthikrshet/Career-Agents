@@ -11,15 +11,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 
-// Preset Job Descriptions for instant 1-click judge evaluation
-const PRESETS = [
+// Production benchmark tracks for live interactive testing
+const BENCHMARK_TRACKS = [
   {
-    id: "openai",
-    name: "OpenAI · Research Systems Engineer",
-    company: "OpenAI",
+    id: "ai-systems",
+    name: "AI Systems Track · Research Engineer",
+    company: "AI Research Labs",
     role: "Research Systems Engineer",
     portal: "Greenhouse",
-    jdText: "OpenAI is seeking a Research Systems Engineer to build high-throughput GPU training infrastructure and distributed tensor parallelism clusters. Requirements: Deep expertise in PyTorch, CUDA, Triton, Python, C++, and Kubernetes. Experience optimizing P99 training latency, collective communications (NCCL), and failure recovery across thousands of GPUs.",
+    jdText: "High-throughput GPU training infrastructure and distributed tensor parallelism clusters. Requirements: Deep expertise in PyTorch, CUDA, Triton, Python, C++, and Kubernetes. Experience optimizing P99 training latency, collective communications (NCCL), and failure recovery across thousands of GPUs.",
     candidateMatch: 88,
     evidenceSkills: ["Python", "PyTorch", "Kubernetes", "Distributed Systems", "C++"],
     gaps: ["Triton Kernel Optimization", "NCCL Custom Rings"],
@@ -31,12 +31,12 @@ const PRESETS = [
     starScenario: "Describe a situation where a distributed training job failed at scale. (Situation: 1024-GPU cluster deadlock; Task: isolate bottleneck; Action: instrumented NCCL ring telemetry; Result: recovered 99.4% training throughput)."
   },
   {
-    id: "google",
-    name: "Google · Staff Infrastructure Engineer",
-    company: "Google",
+    id: "distributed-systems",
+    name: "Distributed Systems Track · Staff Engineer",
+    company: "Cloud Core Platform",
     role: "Staff Infrastructure Engineer",
     portal: "Direct ATS",
-    jdText: "Google Core Systems is looking for a Staff Engineer to lead global storage consensus and Spanner/Bigtable telemetry pipelines. Requirements: 8+ years experience in Go/Java, Paxos/Raft consensus algorithms, distributed databases, high throughput gRPC APIs, and zero-downtime database migrations.",
+    jdText: "Global storage consensus and telemetry pipelines. Requirements: 8+ years experience in Go/Java, Paxos/Raft consensus algorithms, distributed databases, high throughput gRPC APIs, and zero-downtime database migrations.",
     candidateMatch: 92,
     evidenceSkills: ["Go", "Distributed Consensus (Raft)", "gRPC", "PostgreSQL", "Kafka"],
     gaps: ["Multi-region Spanner Paxos Tuning"],
@@ -51,12 +51,12 @@ const PRESETS = [
     starScenario: "How do you resolve a consensus split-brain in an asynchronous multi-region cluster? (Explain leader election terms, quorum lease timers, and deterministic WAL replay)."
   },
   {
-    id: "stripe",
-    name: "Stripe · Tech Lead, Payments Platform",
-    company: "Stripe",
-    role: "Tech Lead, Payments Platform",
+    id: "financial-platform",
+    name: "FinTech Platform Track · Tech Lead",
+    company: "Payments Infrastructure",
+    role: "Tech Lead, Settlement Platform",
     portal: "Lever",
-    jdText: "Stripe is looking for a Tech Lead to drive our global payment settlement idempotency engine. Requirements: Strong experience in Ruby, Go, Java, PostgreSQL, distributed transactions, 2-phase commit, and fault-tolerant financial ledger architectures.",
+    jdText: "Global payment settlement idempotency engine. Requirements: Strong experience in Ruby, Go, Java, PostgreSQL, distributed transactions, 2-phase commit, and fault-tolerant financial ledger architectures.",
     candidateMatch: 95,
     evidenceSkills: ["Go", "PostgreSQL", "Distributed Transactions", "Idempotency Keys", "Redis"],
     gaps: ["ISO 20022 Financial Messaging"],
@@ -73,7 +73,7 @@ const MCP_TOOLS_PREVIEW = [
     name: "search_jobs",
     desc: "Scan Greenhouse, Lever, and Ashby portals for live active vacancies.",
     params: { keywords: "Distributed Systems Engineer", location: "Remote" },
-    sampleOutput: { totalFound: 42, activePortals: ["Greenhouse", "Lever", "Ashby"], topMatch: "Stripe Core Platform" }
+    sampleOutput: { totalFound: 42, activePortals: ["Greenhouse", "Lever", "Ashby"], topMatch: "Core Platform Engineer" }
   },
   {
     name: "resume_score",
@@ -95,8 +95,8 @@ const MCP_TOOLS_PREVIEW = [
   }
 ];
 
-export default function HackathonShowcasePage() {
-  const [activePreset, setActivePreset] = useState(PRESETS[0]);
+export default function DemoPage() {
+  const [activeTrack, setActiveTrack] = useState(BENCHMARK_TRACKS[0]);
   const [activeTab, setActiveTab] = useState<"blocks" | "comparator" | "mcp" | "matrix">("blocks");
   const [copiedLatex, setCopiedLatex] = useState(false);
   const [selectedMcpTool, setSelectedMcpTool] = useState(MCP_TOOLS_PREVIEW[0]);
@@ -104,7 +104,7 @@ export default function HackathonShowcasePage() {
   const [mcpOutput, setMcpOutput] = useState<any>(MCP_TOOLS_PREVIEW[0].sampleOutput);
 
   const handleCopyLatex = () => {
-    navigator.clipboard.writeText(activePreset.latexCvSnippet);
+    navigator.clipboard.writeText(activeTrack.latexCvSnippet);
     setCopiedLatex(true);
     toast.success("Jake's ATS LaTeX resume snippet copied to clipboard!");
     setTimeout(() => setCopiedLatex(false), 2000);
@@ -120,21 +120,21 @@ export default function HackathonShowcasePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030712] text-slate-100 flex flex-col font-sans relative overflow-x-hidden selection:bg-sky-500/30 selection:text-sky-200">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-b from-sky-500/10 via-indigo-500/5 to-transparent blur-3xl pointer-events-none" />
+    <div className="w-full bg-[#030712] text-slate-100 flex flex-col font-sans relative overflow-x-hidden selection:bg-sky-500/30 selection:text-sky-200">
+      {/* Ambient Lighting Gradients */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[400px] bg-gradient-to-b from-sky-500/10 via-indigo-500/5 to-transparent blur-3xl pointer-events-none" />
 
-      {/* Top Banner */}
-      <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-semibold mb-4 animate-pulse">
+      {/* Header Container */}
+      <div className="pt-28 pb-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-semibold mb-4">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>OpenAI Codex Community Hackathon · Bengaluru Showcase Station</span>
+          <span>Interactive Intelligence Lab · Enterprise Scenario Simulator</span>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
           <div>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Live Agentic Showcase & Interactive Lab
+              Interactive Intelligence Lab
             </h1>
             <p className="text-sm text-slate-400 mt-1 max-w-2xl">
               Experience the end-to-end Career-Agents workflow: ATS job scanning, deterministic Blocks A–G matching, Jake's LaTeX CV generation, and live MCP tool execution.
@@ -150,14 +150,14 @@ export default function HackathonShowcasePage() {
             </Link>
             <Link href="/resume">
               <Button size="sm" className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs gap-2">
-                <span>Launch Full App</span>
+                <span>Launch Full Platform</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Button>
             </Link>
           </div>
         </div>
 
-        {/* Showcase Nav Tabs */}
+        {/* Tab Navigation */}
         <div className="flex items-center gap-2 mt-6 overflow-x-auto pb-2">
           <button
             onClick={() => setActiveTab("blocks")}
@@ -209,52 +209,52 @@ export default function HackathonShowcasePage() {
         </div>
       </div>
 
-      {/* Main Content Viewports */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-20 flex-1">
+      {/* Main Content Sections */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-24 flex-1">
         {/* TAB 1: BLOCKS A-G EVALUATION */}
         {activeTab === "blocks" && (
           <div className="space-y-6 animate-in fade-in duration-200">
-            {/* Presets Bar */}
+            {/* Benchmark Tracks Bar */}
             <div className="flex flex-wrap items-center gap-2.5 p-3 rounded-2xl bg-white/[0.02] border border-white/10">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider px-2">Judge Presets:</span>
-              {PRESETS.map((preset) => (
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider px-2">Benchmark Tracks:</span>
+              {BENCHMARK_TRACKS.map((track) => (
                 <button
-                  key={preset.id}
-                  onClick={() => setActivePreset(preset)}
+                  key={track.id}
+                  onClick={() => setActiveTrack(track)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                    activePreset.id === preset.id
+                    activeTrack.id === track.id
                       ? "bg-sky-500/20 text-sky-300 border border-sky-400/40 shadow-sm"
                       : "bg-white/5 text-slate-400 hover:text-white border border-white/5"
                   }`}
                 >
-                  {preset.name}
+                  {track.name}
                 </button>
               ))}
             </div>
 
             {/* Evaluation Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Left Column: Job Description & Extracted Signals */}
+              {/* Left Column */}
               <div className="lg:col-span-5 space-y-4">
                 <Card className="bg-[#070b14] border-white/10">
                   <CardContent className="p-5 space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-mono text-sky-400 uppercase font-bold">Target Job Description</span>
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-slate-300">Portal: {activePreset.portal}</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-slate-300">Portal: {activeTrack.portal}</span>
                     </div>
                     <p className="text-xs text-slate-300 font-mono bg-black/40 p-3.5 rounded-xl border border-white/5 leading-relaxed">
-                      {activePreset.jdText}
+                      {activeTrack.jdText}
                     </p>
 
                     <div className="space-y-2 pt-2 border-t border-white/5">
                       <div className="text-xs font-bold text-white">Extracted Core Requirements:</div>
                       <div className="flex flex-wrap gap-1.5">
-                        {activePreset.evidenceSkills.map((s) => (
+                        {activeTrack.evidenceSkills.map((s) => (
                           <span key={s} className="text-[11px] px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-medium">
                             ✓ {s}
                           </span>
                         ))}
-                        {activePreset.gaps.map((g) => (
+                        {activeTrack.gaps.map((g) => (
                           <span key={g} className="text-[11px] px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">
                             ▲ Gap: {g}
                           </span>
@@ -272,18 +272,18 @@ export default function HackathonShowcasePage() {
                       <span>Block F: Tailored STAR+R Scenario</span>
                     </div>
                     <p className="text-xs text-slate-300 leading-relaxed bg-black/40 p-3 rounded-xl border border-white/5">
-                      {activePreset.starScenario}
+                      {activeTrack.starScenario}
                     </p>
                   </CardContent>
                 </Card>
               </div>
 
-              {/* Right Column: Jake's LaTeX CV & Canonical Report Card */}
+              {/* Right Column */}
               <div className="lg:col-span-7 space-y-4">
                 {/* Score Banner */}
                 <div className="grid grid-cols-3 gap-3">
                   <div className="p-4 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-center">
-                    <div className="text-2xl font-extrabold text-sky-400">{activePreset.candidateMatch}%</div>
+                    <div className="text-2xl font-extrabold text-sky-400">{activeTrack.candidateMatch}%</div>
                     <div className="text-[11px] text-slate-400 font-medium mt-0.5">Readiness Score</div>
                   </div>
                   <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-center">
@@ -316,7 +316,7 @@ export default function HackathonShowcasePage() {
                     </div>
 
                     <pre className="text-[11px] text-sky-300 font-mono bg-black/60 p-4 rounded-xl border border-white/5 overflow-x-auto leading-relaxed">
-                      {activePreset.latexCvSnippet}
+                      {activeTrack.latexCvSnippet}
                     </pre>
 
                     <div className="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-white/5">
@@ -333,11 +333,10 @@ export default function HackathonShowcasePage() {
         {/* TAB 2: EVIDENCE-FIRST VS NAIVE AI */}
         {activeTab === "comparator" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in duration-200">
-            {/* Naive ChatGPT */}
             <Card className="bg-[#10070c] border-rose-500/20">
               <CardContent className="p-6 space-y-4">
                 <div className="flex items-center justify-between border-b border-rose-500/20 pb-3">
-                  <span className="text-sm font-bold text-rose-400">Standard AI / ChatGPT Wrapper</span>
+                  <span className="text-sm font-bold text-rose-400">Standard AI / Generic Prompt Wrapper</span>
                   <span className="text-[10px] uppercase font-bold text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20">Unsafe</span>
                 </div>
                 <ul className="space-y-3 text-xs text-slate-300">
@@ -357,7 +356,6 @@ export default function HackathonShowcasePage() {
               </CardContent>
             </Card>
 
-            {/* Career-Agents Evidence-First */}
             <Card className="bg-[#040e1a] border-sky-500/30 shadow-lg shadow-sky-500/5">
               <CardContent className="p-6 space-y-4">
                 <div className="flex items-center justify-between border-b border-sky-500/20 pb-3">
@@ -387,7 +385,6 @@ export default function HackathonShowcasePage() {
         {activeTab === "mcp" && (
           <div className="space-y-6 animate-in fade-in duration-200">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Tool Selector */}
               <div className="lg:col-span-4 space-y-2">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Select MCP Server Tool:</span>
                 {MCP_TOOLS_PREVIEW.map((tool) => (
@@ -409,7 +406,6 @@ export default function HackathonShowcasePage() {
                 ))}
               </div>
 
-              {/* Tool Execution Box */}
               <div className="lg:col-span-8 space-y-4">
                 <Card className="bg-[#070b14] border-white/10">
                   <CardContent className="p-5 space-y-4">
@@ -488,7 +484,7 @@ export default function HackathonShowcasePage() {
             </div>
           </div>
         )}
-      </main>
+      </div>
     </div>
   );
 }

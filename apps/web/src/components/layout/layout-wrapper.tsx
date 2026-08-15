@@ -37,7 +37,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
     "/dashboard", "/resume", "/github", "/linkedin", "/interview",
     "/copilot", "/jobs", "/tracker", "/prephub", "/playground",
     "/linkedin-ai", "/reports", "/workflows", "/marketplace",
-    "/mcp", "/settings", "/credits", "/demo"
+    "/mcp", "/settings", "/credits"
   ];
 
   const isMarketing = !consoleRoutes.some(r => pathname === r || pathname.startsWith(r + "/"));

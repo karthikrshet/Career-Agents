@@ -155,7 +155,7 @@ export function Sidebar() {
         <span className="flex items-center gap-1.5 text-emerald-400">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> Local SQLite Ready
         </span>
-        <span className="text-slate-500">v16.0</span>
+        <span className="text-slate-500">v17.0</span>
       </div>
     </aside>
   );
