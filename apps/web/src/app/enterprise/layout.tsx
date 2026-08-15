@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Enterprise Career Intelligence & Organization Solutions — Career Agents",
+  title: "Enterprise Career Intelligence Solutions — Career Agents",
   description: "Deploy Career Agents across universities, bootcamps, outplacement agencies, and engineering teams. Self-hosted and local LLM options available.",
-  keywords: ['enterprise career platform', 'university career OS', 'bootcamp career tools', 'outplacement AI platform', 'self-hosted career OS'],
+  keywords: ['enterprise career platform', 'university career platform', 'bootcamp career tools', 'outplacement AI platform', 'self-hosted career intelligence'],
   authors: [{ name: "Karthik R Shet", url: "https://github.com/karthikrshet" }],
   publisher: "Career Agents Intelligence Inc.",
   creator: "Karthik R Shet",
@@ -20,16 +20,16 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Enterprise Career Intelligence & Organization Solutions — Career Agents",
+    title: "Enterprise Career Intelligence Solutions — Career Agents",
     description: "Deploy Career Agents across universities, bootcamps, outplacement agencies, and engineering teams. Self-hosted and local LLM options available.",
     url: "/enterprise",
-    siteName: "Career Agents OS",
+    siteName: "Career Agents",
     locale: "en_US",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Enterprise Career Intelligence & Organization Solutions — Career Agents" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Enterprise Career Intelligence Solutions — Career Agents" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Enterprise Career Intelligence & Organization Solutions — Career Agents",
+    title: "Enterprise Career Intelligence Solutions — Career Agents",
     description: "Deploy Career Agents across universities, bootcamps, outplacement agencies, and engineering teams. Self-hosted and local LLM options available.",
     images: ["/og-image.png"],
     creator: "@karthikrshet",

@@ -1,6 +1,6 @@
 {
-  "name": "Career OS",
-  "short_name": "Career OS",
+  "name": "Career Agents",
+  "short_name": "Career Agents",
   "description": "AI-powered career intelligence platform with 146 specialized agents for resume, GitHub, LinkedIn, interview, and job tracking.",
   "start_url": "/",
   "display": "standalone",

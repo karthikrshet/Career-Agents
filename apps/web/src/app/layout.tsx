@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: "Career Agents — AI Career Intelligence Platform & ATS Resume Studio",
-    template: "%s | Career Agents AI OS",
+    template: "%s | Career Agents",
   },
   description:
     "Career Agents is an enterprise-grade AI career intelligence platform with 167 specialized agents for real-time ATS resume scoring, GitHub portfolio auditing, LinkedIn optimization, AI mock interviews, STAR accomplishments, and automated job tracking.",
   keywords: [
-    "career OS", "AI career platform", "resume analyzer", "ATS score", "GitHub portfolio audit",
+    "career agents", "AI career platform", "resume analyzer", "ATS score", "GitHub portfolio audit",
     "LinkedIn optimizer", "interview prep AI", "job tracker", "career copilot", "AI agents",
     "career intelligence", "software engineer career", "technical interview prep", "STAR method",
     "Model Context Protocol MCP", "career coaching AI", "resume ATS checker", "Product Manager resume score",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: "Career Agents — AI Career Intelligence Platform & ATS Resume Studio",
     description:
       "167 specialized AI agents for resume ATS scoring, GitHub auditing, LinkedIn optimization, and mock interview practice. Open source career copilot.",
-    siteName: "Career Agents OS",
+    siteName: "Career Agents",
     locale: "en_US",
     images: [
       {
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Career Agents — AI Career Intelligence OS",
+    title: "Career Agents — AI Career Intelligence Platform",
     description:
       "167 specialized AI agents for resume ATS scoring, GitHub portfolio reviews, LinkedIn optimization, and interview coaching.",
     images: [`${baseUrl}/og-image.png`],

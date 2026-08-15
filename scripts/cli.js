@@ -18,7 +18,7 @@ const toolsPath = path.join(root, 'tools.json');
 const workflowsPath = path.join(root, 'workflow-registry.json');
 const searchIndexPath = path.join(root, 'search-index.json');
 const knowledgeGraphPath = path.join(root, 'knowledge-graph.json');
-const careerOsPath = path.join(root, 'career-agents.json');
+const careerAgentsPath = path.join(root, 'career-agents.json');
 
 const bundlesDir = path.join(root, 'bundles');
 const companiesDir = path.join(root, 'companies');
@@ -57,7 +57,7 @@ ${c.purple}${c.bold}   ______                               ___                 
 / /___/ /_/ / /  /  __/  __/ /  /  __/ ___ / /_/ /  __/ / / / /_/__  ) 
 \\____/\\__,_/_/   \\___/\\___/_/   \\___/_/  |_\\__, /\\___/_/ /_/\\__/____/  
                                           /____/                       
-                     ${c.cyan}THE CAREER OPERATING SYSTEM${c.reset}
+                     ${c.cyan}AI CAREER INTELLIGENCE PLATFORM${c.reset}
   `);
 }
 
@@ -526,10 +526,10 @@ function calculateScores(answers, questions) {
   const networkingScore = getSubscore(answers[3]);
   const portfolioScore = getSubscore(answers[4]);
 
-  const combinedOSScore = Math.round((careerScore + resumeScore + interviewScore + networkingScore + portfolioScore) / 5);
+  const combinedScore = Math.round((careerScore + resumeScore + interviewScore + networkingScore + portfolioScore) / 5);
 
   console.log(`\n==========================================`);
-  console.log(`   CAREER OS COMPLIANCE REPORT CARD`);
+  console.log(`   CAREER AGENTS COMPLIANCE REPORT CARD`);
   console.log(`==========================================`);
   console.log(`  • Career Strategy Score : ${getColorForScore(careerScore)}${careerScore}%${c.reset}`);
   console.log(`  • Resume Formatting     : ${getColorForScore(resumeScore)}${resumeScore}%${c.reset}`);
@@ -537,7 +537,7 @@ function calculateScores(answers, questions) {
   console.log(`  • Networking Outreach   : ${getColorForScore(networkingScore)}${networkingScore}%${c.reset}`);
   console.log(`  • Portfolio Proof-of-Work: ${getColorForScore(portfolioScore)}${portfolioScore}%${c.reset}`);
   console.log(`------------------------------------------`);
-  console.log(`  ${c.bold}COMBINED CAREER OS SCORE  : ${getColorForScore(combinedOSScore)}${combinedOSScore}%${c.reset}`);
+  console.log(`  ${c.bold}COMBINED CAREER AGENTS SCORE: ${getColorForScore(combinedScore)}${combinedScore}%${c.reset}`);
   console.log(`==========================================\n`);
 
   console.log(`${c.bold}Growth Strategy Recommendations:${c.reset}`);
@@ -754,7 +754,7 @@ function runDoctor() {
 
   console.log('\n==========================================');
   if (errors === 0) {
-    console.log(`${c.green}Everything is green! Your Career Operating System is healthy.${c.reset}`);
+    console.log(`${c.green}Everything is green! Your Career Agents workspace is healthy.${c.reset}`);
   } else {
     console.log(`${c.red}Doctor found ${errors} diagnostics warnings. Please resolve.${c.reset}`);
     process.exit(1);
@@ -1178,7 +1178,9 @@ async function main() {
     }
 
     case 'pipeline':
-    case 'job-pipeline': {
+    case 'job-pipeline':
+    case 'ops':
+    case 'career-ops': {
       const { runCareerPipelineCLI } = await import('../packages/pipeline/cli.js');
       await runCareerPipelineCLI(args[1], args.slice(2));
       break;

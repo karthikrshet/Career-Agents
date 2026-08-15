@@ -11,7 +11,7 @@ export default function Loading() {
         </div>
       </div>
       <div className="space-y-1.5 text-center font-mono">
-        <p className="text-xs font-semibold text-white tracking-wide">Career Agents AI OS</p>
+        <p className="text-xs font-semibold text-white tracking-wide">Career Agents Platform</p>
         <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
           <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
           <span>Initializing workspace runtime...</span>

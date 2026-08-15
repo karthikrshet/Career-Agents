@@ -69,7 +69,7 @@ export function Logo({
         </div>
         {showTagline && (
           <span className="text-[10px] text-slate-400 font-normal">
-            AI Career Operating System
+            AI Career Intelligence Platform
           </span>
         )}
       </div>
