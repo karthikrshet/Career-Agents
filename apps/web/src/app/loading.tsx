@@ -1,19 +1,21 @@
-import { Zap } from "lucide-react";
+"use client";
+
+import React from "react";
 
 export default function Loading() {
   return (
-    <div className="flex flex-col h-full items-center justify-center gap-4">
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg animate-pulse">
-        <Zap className="w-6 h-6 text-white" />
-      </div>
-      <div className="space-y-2 text-center">
-        <div className="h-1.5 w-32 bg-primary/20 rounded-full overflow-hidden relative">
-          <div
-            className="absolute top-0 left-0 h-full w-16 bg-primary/70 rounded-full"
-            style={{ animation: "slide 1.5s ease-in-out infinite" }}
-          />
+    <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 bg-[#030712] text-slate-100 font-sans z-50">
+      <div className="relative flex items-center justify-center">
+        <div className="w-12 h-12 rounded-2xl bg-[#070b14] border border-sky-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(14,165,233,0.25)]">
+          <div className="w-6 h-6 rounded-full border-2 border-sky-400 border-t-transparent animate-spin" />
         </div>
-        <p className="text-xs text-muted-foreground">Loading Career Agents...</p>
+      </div>
+      <div className="space-y-1.5 text-center font-mono">
+        <p className="text-xs font-semibold text-white tracking-wide">Career Agents AI OS</p>
+        <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
+          <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+          <span>Initializing workspace runtime...</span>
+        </div>
       </div>
     </div>
   );

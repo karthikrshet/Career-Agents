@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { TrendingUp } from "lucide-react";
 
 export interface LogoProps {
   size?: "sm" | "md" | "lg";
@@ -15,7 +14,6 @@ export interface LogoProps {
 
 export function Logo({
   size = "md",
-  variant = "standalone",
   showVersion = false,
   showTagline = false,
   className = "",
@@ -27,32 +25,31 @@ export function Logo({
   };
 
   const textSizes = {
-    sm: "text-xs sm:text-sm font-bold",
-    md: "text-sm sm:text-base font-extrabold",
-    lg: "text-lg sm:text-xl font-extrabold",
+    sm: "text-sm font-bold",
+    md: "text-base font-bold",
+    lg: "text-lg font-bold",
   };
 
   const px = iconPixelSizes[size];
 
   return (
     <Link href="/" className={`inline-flex items-center gap-2.5 group select-none ${className}`}>
-      {/* Circular Glowing Logo Graphic */}
-      <div className="relative flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+      {/* Circular Logo Icon */}
+      <div className="relative flex items-center justify-center shrink-0">
         <div
-          className="rounded-full bg-gradient-to-tr from-cyan-500/20 to-indigo-500/20 border border-cyan-400/40 flex items-center justify-center shadow-[0_0_15px_rgba(56,189,248,0.3)]"
+          className="rounded-full bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center p-1"
           style={{ width: px, height: px }}
         >
           <Image
             src="/branding/logo.svg"
             alt="Career Agents"
-            width={px}
-            height={px}
-            style={{ width: px, height: px }}
+            width={px - 8}
+            height={px - 8}
+            style={{ width: "auto", height: "auto" }}
             className="object-contain"
             priority
             onError={(e) => {
-              // Fallback to vector icon if image fails
-              e.currentTarget.style.display = 'none';
+              e.currentTarget.style.display = "none";
             }}
           />
         </div>
@@ -65,14 +62,14 @@ export function Logo({
             Career Agents
           </span>
           {showVersion && (
-            <span className="px-2 py-0.5 text-[9px] font-mono font-bold rounded-md bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 uppercase tracking-wider">
-              OPEN SOURCE
+            <span className="px-1.5 py-0.5 text-[9px] font-mono font-medium rounded bg-white/[0.06] border border-white/10 text-slate-300 uppercase">
+              Open Source
             </span>
           )}
         </div>
         {showTagline && (
-          <span className="text-[10px] text-slate-400 font-medium tracking-wide">
-            v16.0 • AI Career OS
+          <span className="text-[10px] text-slate-400 font-normal">
+            AI Career Operating System
           </span>
         )}
       </div>
