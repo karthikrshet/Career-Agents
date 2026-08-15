@@ -5,11 +5,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Sparkles,
   ShieldCheck,
   Zap,
   ChevronRight,
-  Terminal
+  Terminal,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -22,68 +21,74 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[80vh] pt-32 pb-16 flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden z-10 font-sans">
+    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden z-10 font-sans">
       {/* Top Release Pill Badge */}
       <motion.div
-        initial={{ opacity: 0, y: -15 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-cyan-500/30 backdrop-blur-xl shadow-[0_0_20px_rgba(56,189,248,0.15)] hover:border-cyan-400/50 transition-all cursor-pointer group mb-6"
+        transition={{ duration: 0.4 }}
+        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm hover:border-sky-500/30 transition-all cursor-pointer group mb-6 max-w-full"
       >
-        <span className="flex h-2 w-2 relative">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+        <span className="flex h-2 w-2 relative shrink-0">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
         </span>
-        <span className="text-xs font-semibold text-cyan-300">
-          Career Agents v15.0 Enterprise
+        <span className="text-[11px] sm:text-xs font-medium text-slate-200 truncate">
+          167 AI Agents Across 19 Divisions
         </span>
-        <span className="text-xs text-slate-500">|</span>
-        <span className="text-xs text-slate-300 group-hover:text-white flex items-center gap-1 transition-colors">
-          The AI Career Operating System
-          <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+        <span className="text-slate-600 hidden sm:inline">|</span>
+        <span className="text-[11px] sm:text-xs text-sky-400 font-medium group-hover:text-sky-300 items-center gap-1 hidden sm:flex transition-colors">
+          Explore Registry
+          <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
         </span>
       </motion.div>
 
       {/* Main Headline */}
-      <motion.h1
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="max-w-4xl font-extrabold text-white tracking-tight"
-      >
-        <span>Career Agents</span>
-        <br />
-        <span className="bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(56,189,248,0.3)]">
+      <div className="max-w-4xl space-y-3">
+        <motion.h1
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-[1.1]"
+        >
+          Career Agents
+        </motion.h1>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-2xl sm:text-4xl md:text-5xl font-bold text-sky-400 tracking-tight leading-snug"
+        >
           The AI Career Operating System
-        </span>
-      </motion.h1>
+        </motion.h2>
+      </div>
 
       {/* Subtitle */}
       <motion.p
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="mt-5 max-w-2xl text-base sm:text-lg text-slate-300 font-normal leading-relaxed"
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="mt-5 max-w-2xl text-sm sm:text-base md:text-lg text-slate-300 font-normal leading-relaxed px-2"
       >
-        An open-source AI platform empowering software engineers, candidates, and recruiters using{" "}
-        <span className="text-cyan-300 font-semibold">146 specialized AI agents</span>, real-time ATS scoring, STAR interview drills, and Model Context Protocol (MCP) tool integration.
+        An open-source platform empowering software engineers and technical candidates with{" "}
+        <span className="text-white font-semibold">167 specialized AI agents</span>, local-first ATS resume auditing, STAR mock interview labs, and Model Context Protocol (MCP) tool integration.
       </motion.p>
 
       {/* Primary Actions Row */}
       <motion.div
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="mt-8 flex flex-wrap items-center justify-center gap-3.5 max-w-xl"
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto"
       >
-        <Link href="/dashboard" data-cursor="magnetic">
+        <Link href="/dashboard" className="w-full sm:w-auto">
           <Button
-            size="lg"
-            className="relative group bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-semibold text-xs px-7 py-5 rounded-xl shadow-[0_0_25px_rgba(56,189,248,0.35)] hover:shadow-[0_0_35px_rgba(56,189,248,0.55)] transition-all duration-200"
+            size="sm"
+            className="w-full sm:w-auto bg-sky-500 hover:bg-sky-400 text-black font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-lg shadow-md transition-all duration-200"
           >
-            <Sparkles className="w-4 h-4 mr-2 text-cyan-200 group-hover:rotate-12 transition-transform" />
             <span>Launch Platform</span>
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
           </Button>
         </Link>
 
@@ -91,15 +96,15 @@ export function HeroSection() {
           href="https://github.com/karthikrshet/Career-Agents"
           target="_blank"
           rel="noopener noreferrer"
-          data-cursor="pointer"
+          className="w-full sm:w-auto"
         >
           <Button
-            size="lg"
+            size="sm"
             variant="outline"
-            className="bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 hover:text-white border-white/10 hover:border-cyan-500/40 text-xs font-medium px-5 py-5 rounded-xl backdrop-blur-md transition-all"
+            className="w-full sm:w-auto bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 hover:text-white border-white/10 hover:border-white/20 text-xs sm:text-sm font-medium px-5 py-2.5 rounded-lg transition-all"
           >
-            <GithubIcon className="w-4 h-4 mr-2" />
-            <span>GitHub Repository</span>
+            <GithubIcon className="w-3.5 h-3.5 mr-1.5" />
+            <span>Open Source on GitHub</span>
           </Button>
         </a>
       </motion.div>
@@ -108,17 +113,17 @@ export function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.4 }}
-        className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400 font-medium"
+        transition={{ duration: 0.6, delay: 0.5 }}
+        className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-slate-400 font-medium"
       >
-        <span className="flex items-center gap-1.5">
-          <ShieldCheck className="w-4 h-4 text-cyan-400" /> 100% Local-First Data Security
+        <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/5">
+          <ShieldCheck className="w-3.5 h-3.5 text-sky-400" /> Local-First Security
         </span>
-        <span className="flex items-center gap-1.5">
-          <Zap className="w-4 h-4 text-amber-400" /> 15+ LLM Provider Gateways
+        <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/5">
+          <Zap className="w-3.5 h-3.5 text-sky-400" /> 15+ LLM Gateways
         </span>
-        <span className="flex items-center gap-1.5">
-          <Terminal className="w-4 h-4 text-emerald-400" /> Model Context Protocol (MCP)
+        <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/5">
+          <Terminal className="w-3.5 h-3.5 text-sky-400" /> MCP Ready
         </span>
       </motion.div>
     </section>
