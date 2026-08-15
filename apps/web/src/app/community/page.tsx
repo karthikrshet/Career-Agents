@@ -1,98 +1,85 @@
 "use client";
 
 import Link from "next/link";
-import { MessageSquare, ArrowRight, GitBranch, ShieldAlert, Sparkles, Heart } from "lucide-react";
+import { MessageSquare, ArrowRight, GitBranch, Sparkles, Heart, ArrowLeft, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 
 export default function CommunityPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="min-h-screen bg-[#030712] text-slate-100 font-sans py-20 px-4 sm:px-6 lg:px-8 relative overflow-y-auto z-10">
+      {/* Ambient Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-sky-500/10 blur-[150px] rounded-full pointer-events-none" />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-16 border-b border-slate-900 bg-gradient-to-b from-indigo-950/20 via-slate-950 to-slate-950">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.15),rgba(255,255,255,0))]" />
-        <div className="max-w-4xl mx-auto text-center px-6 relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-[10px] uppercase font-bold tracking-wider text-indigo-400">
-            <Sparkles className="w-3.5 h-3.5" /> Platform Community Ecosystem
+      <div className="max-w-5xl mx-auto relative z-10 space-y-12">
+        {/* Back Link */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Back to landing
+        </Link>
+
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-sky-400 text-xs font-mono font-medium">
+            <Users className="w-3.5 h-3.5" /> Global Developer Community
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Connect with thousands of <span className="bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400 bg-clip-text text-transparent">AI Engineers</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Connect with Thousands of <span className="text-sky-400">Software Engineers</span>
           </h1>
-          <p className="text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Discuss prompt strategies, custom agent definitions, workflow extensions, and share interview preparation guides.
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+            Discuss interview strategy, design custom agent prompt templates, and participate in RFC proposals for the Career Agents ecosystem.
           </p>
         </div>
-      </section>
 
-      {/* Content Section */}
-      <main className="flex-1 max-w-5xl mx-auto px-6 py-16 w-full space-y-12">
-        {/* Core Spaces */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="border-slate-900 bg-slate-900/30">
-            <CardContent className="p-6 space-y-4">
-              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+        {/* Community Channels */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-6 rounded-2xl bg-[#070b14] border border-white/10 space-y-4 flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="p-2.5 w-fit rounded-xl bg-sky-500/10 border border-sky-400/20 text-sky-400">
                 <GitBranch className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-white">GitHub Discussions</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Ask questions, share ideas, and showcase what you've built using the Career Agents framework. Participate in the RFC process for registry upgrades.
+              <h3 className="text-base font-bold text-white">GitHub Discussions &amp; RFCs</h3>
+              <p className="text-xs text-slate-400 leading-relaxed font-normal">
+                Ask architectural questions, propose new specialized agent roles, and contribute to the open-source pipeline roadmap.
               </p>
-              <a href="https://github.com/karthikrshet/Career-Agents/discussions" target="_blank" rel="noopener noreferrer" className="inline-block">
-                <Button size="sm" className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold h-8">
-                  Open Discussions <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                </Button>
-              </a>
-            </CardContent>
-          </Card>
+            </div>
+            <a
+              href="https://github.com/karthikrshet/Career-Agents/discussions"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="sm" className="bg-sky-500 hover:bg-sky-400 text-black font-semibold text-xs px-4 py-2 rounded-lg">
+                <span>Open Discussions</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+              </Button>
+            </a>
+          </div>
 
-          <Card className="border-slate-900 bg-slate-900/30">
-            <CardContent className="p-6 space-y-4">
-              <div className="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
+          <div className="p-6 rounded-2xl bg-[#070b14] border border-white/10 space-y-4 flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="p-2.5 w-fit rounded-xl bg-sky-500/10 border border-sky-400/20 text-sky-400">
                 <MessageSquare className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-white">Discord Chat Server</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Join real-time channels to chat with other job seekers and developers. Get support for local MCP setup and VM compiling execution.
+              <h3 className="text-base font-bold text-white">Community Discord Server</h3>
+              <p className="text-xs text-slate-400 leading-relaxed font-normal">
+                Join live audio mock prep channels, share interview feedback, and get troubleshooting support for local MCP setups.
               </p>
-              <a href="https://discord.gg/careeragents" target="_blank" rel="noopener noreferrer" className="inline-block">
-                <Button size="sm" variant="outline" className="border-slate-800 text-slate-300 hover:bg-slate-900 text-xs font-semibold h-8">
-                  Join Discord <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                </Button>
-              </a>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Community Guidelines */}
-        <div className="p-8 rounded-2xl border border-slate-900 bg-slate-900/20 space-y-4">
-          <div className="flex items-center gap-2 text-white">
-            <ShieldAlert className="w-5 h-5 text-indigo-400" />
-            <h3 className="font-bold text-sm">Community Code of Conduct</h3>
-          </div>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            We are dedicated to providing a harassment-free community experience for everyone, regardless of background, gender, sexual orientation, disability, physical appearance, or technology choices. We expect cooperation from all participants to help ensure a safe, inclusive, and welcoming environment.
-          </p>
-        </div>
-      </main>
-
-      {/* CTA Section */}
-      <section className="border-t border-slate-900 bg-slate-950 py-16 text-center space-y-4">
-        <div className="max-w-xl mx-auto px-6 space-y-2">
-          <Heart className="w-8 h-8 text-rose-500 mx-auto animate-pulse" />
-          <h3 className="text-lg font-bold text-white tracking-tight">Contributing to Career Agents</h3>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            As an open-source tool, we rely heavily on community contributions. Whether you submit bug reports, improve docs, or implement new agents, you make the platform better.
-          </p>
-          <div className="pt-2">
-            <Link href="/opensource">
-              <Button className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/10">
-                Explore Open Source Program
+            </div>
+            <a
+              href="https://discord.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="sm" variant="outline" className="bg-white/[0.04] hover:bg-white/[0.08] text-white border-white/10 text-xs font-medium px-4 py-2 rounded-lg">
+                <span>Join Discord</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5 text-sky-400" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
