@@ -813,7 +813,7 @@ Career Agents manages **{num_agents} specialized AI agents** categorized across 
 
 ---
 
-## ⚡ Codex Hackathon & OpenAI Ecosystem Showcase
+## ⚡ OpenAI Ecosystem, Codex & ChatGPT Architecture Showcase
 
 <div align="center">
 
@@ -826,7 +826,7 @@ Career Agents manages **{num_agents} specialized AI agents** categorized across 
 
 ### 🌟 How We Built Career Agents with Codex, ChatGPT, MCP, CLI & REST APIs
 
-Built for modern software engineers and developer hackathons, **Career Agents** harnesses the full power of the **OpenAI & Codex ecosystem** to transform passive job searching into an autonomous, agentic career acceleration engine:
+Built for modern software engineers, tech professionals, and AI practitioners, **Career Agents** harnesses the full power of the **OpenAI & Codex ecosystem** to transform passive job searching into an autonomous, agentic career acceleration engine:
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
@@ -886,9 +886,9 @@ Built for modern software engineers and developer hackathons, **Career Agents** 
 
 ---
 
-## 🎤 Presentation & Live Demo Guide (Codex Hackathon Pitch)
+## 🎤 Quick Live Demo & Workflow Walkthrough
 
-Want to showcase Career Agents in under 2 minutes during your pitch or demo? Follow this sequence:
+Want to run Career Agents in under 2 minutes? Follow this interactive command sequence:
 
 ```bash
 # Step 1: Register Career Agents in Codex with 1 command

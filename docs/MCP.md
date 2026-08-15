@@ -1,245 +1,104 @@
-# Career Agents — MCP Server
+# Model Context Protocol Guide
 
-Model Context Protocol integration for AI-native IDE experiences.
-
----
-
-## What Is MCP?
-
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard that lets AI assistants (like Claude, Cursor, Continue) access external tools and data sources. Career Agents implements an MCP server that exposes your career intelligence tools directly inside your code editor.
-
-With the Career Agents MCP server, your AI assistant can:
-- Search and recommend career agents
-- Analyze your GitHub profile
-- Review your resume for ATS compliance
-- Look up company-specific interview prep tracks
-- Generate career roadmaps
-- Match job postings to your skills
-- Build structured interview prep plans
+This document describes how to integrate the Career Agents Model Context Protocol (MCP) server with compatible developer environments.
 
 ---
 
-## Available MCP Tools
+## Overview
 
-The Career Agents MCP server (`mcp/server.js`) exposes the following tools:
-
-| Tool | Description |
-|---|---|
-| `search_agents` | Search the 146-agent registry by keyword, domain, or skill |
-| `recommend_agents` | Get agent recommendations for a specific career situation |
-| `career_assessment` | Assess a career profile and generate a gap analysis |
-| `resume_score` | Score a resume text for ATS compatibility |
-| `resume_review` | Full resume review with weak bullet detection and keyword analysis |
-| `job_match` | Match a candidate profile to a job description |
-| `company_track` | Get company-specific interview prep track (Google, Meta, etc.) |
-| `career_path` | Look up available career paths from the registry |
-| `workflow_lookup` | Fetch workflow definitions (fresher-placement, internship-hunt, etc.) |
-| `agent_details` | Get full details and system prompt for a specific agent |
-| `knowledge_graph` | Query the career knowledge graph for relationships |
-| `career_gap_analysis` | Analyze skill gaps between current profile and target role |
-| `analyze_github_profile` | Analyze a GitHub user's public profile and repositories |
-| `linkedin_profile_review` | Review and optimize a LinkedIn profile description |
-| `linkedin_review` | Score and improve a LinkedIn headline and summary |
-| `career_action_plan` | Generate a structured career action plan |
-| `github_review` | Score a GitHub profile with improvement recommendations |
-| `career_dashboard` | Get an overview of career scores and metrics |
-| `mock_interview` | Generate interview questions for a company and role |
-| `roadmap` | Build a career roadmap from current to target state |
-| `search_jobs` | Search for relevant job postings |
-| `analyze_job_posting` | Analyze a job posting URL for key requirements |
-| `generate_resume_docx` | Generate a resume as a `.docx` file |
-| `generate_interview_prep_pdf` | Generate a company-specific interview prep guide as PDF |
-| `generate_career_roadmap_xlsx` | Generate a career roadmap as an Excel spreadsheet |
+The Model Context Protocol (MCP) server enables language model assistants to query Career Agents databases, execute resume reviews, evaluate repository metadata, and construct roadmap paths natively within their workspace.
 
 ---
 
-## Protocol Details
+## Stdio Server Transport
 
-- **Protocol:** stdio (JSON-RPC 2.0 over stdin/stdout)
-- **Rate Limit:** 200 requests per minute
-- **Logs:** Written to `exports/logs/mcp.log` and `exports/logs/mcp_audit.log`
-- **Data sources:** `agent-registry.json`, `companies.json`, `career-paths.json`, `workflow-registry.json`, `knowledge-graph.json`, `search-index.json`
-
----
-
-## Installation
-
-### Prerequisites
-
-- Node.js ≥ 18
-- Career Agents repository cloned locally
+The MCP server runs over standard input/output (stdio). Start the transport layer using:
 
 ```bash
-git clone https://github.com/karthikrshet/Career-Agents.git
-cd Career-Agents
-npm install
-```
-
-### Run the MCP Server
-
-```bash
-node mcp/server.js
-```
-
-Or install globally via npm:
-
-```bash
-npm install -g career-agents
-career-agents
+npx -y career-agents mcp
 ```
 
 ---
 
-## IDE Configuration
+## Editor Configurations
 
-### Cursor
+### 1. Claude Desktop
 
-Add to `~/.cursor/mcp.json` (or `<project>/.cursor/mcp.json` for project-level):
+Add the server definition to your local configuration file:
+- **Windows**: `%APPDATA%/Claude/claude_desktop_config.json`
+- **macOS/Linux**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 
 ```json
 {
   "mcpServers": {
     "career-agents": {
-      "command": "node",
-      "args": ["/absolute/path/to/Career-Agents/mcp/server.js"],
-      "env": {}
+      "command": "npx",
+      "args": ["-y", "career-agents", "mcp"]
     }
   }
 }
 ```
 
-If installed globally:
-```json
-{
-  "mcpServers": {
-    "career-agents": {
-      "command": "career-agents",
-      "args": [],
-      "env": {}
-    }
-  }
-}
-```
+### 2. Cursor
 
-Restart Cursor. The MCP tools will appear in the AI assistant panel.
+Configure Cursor to connect to the Stdio server:
+1. Navigate to **Cursor Settings** -> **Features** -> **MCP**.
+2. Click **Add New MCP Server**.
+3. Apply the following options:
+   - **Name**: `career-agents`
+   - **Type**: `stdio`
+   - **Command**: `npx -y career-agents mcp`
 
----
+### 3. Windsurf
 
-### Claude Desktop
-
-Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or  
-`%APPDATA%\Claude\claude_desktop_config.json` (Windows):
+Add the configuration block to `~/.codeium/windsurf/mcp_config.json`:
 
 ```json
 {
   "mcpServers": {
     "career-agents": {
-      "command": "node",
-      "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
+      "command": "npx",
+      "args": ["-y", "career-agents", "mcp"]
     }
   }
 }
 ```
 
-Restart Claude Desktop. You can now ask Claude to use career tools directly.
+### 4. OpenAI Codex
 
-**Example prompts:**
-- `"Use career-agents to find the best agents for interview prep"`
-- `"Analyze my GitHub profile @username using career-agents"`
-- `"Generate a career roadmap from Junior SWE to Staff Engineer"`
-
----
-
-### VS Code with Continue
-
-Add to your Continue config (`~/.continue/config.json`):
-
-```json
-{
-  "mcpServers": [
-    {
-      "name": "career-agents",
-      "command": "node",
-      "args": ["/absolute/path/to/Career-Agents/mcp/server.js"]
-    }
-  ]
-}
-```
-
----
-
-### Aider
-
-Run alongside Aider using the `--mcp-server` flag (if supported by your Aider version):
-
+Configure Codex via the CLI:
 ```bash
-aider --mcp-server "node /path/to/Career-Agents/mcp/server.js"
+codex mcp add career-agents -- npx -y career-agents mcp
+```
+
+Or add the configuration block to your Codex config (`~/.codex/config.json` or project `codex_mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "career-agents": {
+      "command": "npx",
+      "args": ["-y", "career-agents", "mcp"]
+    }
+  }
+}
 ```
 
 ---
 
-### Bolt.new / Bolt Desktop
+## Protocol Capabilities
 
-In Bolt settings, add a custom MCP server:
-- **Command:** `node`
-- **Args:** `/absolute/path/to/Career-Agents/mcp/server.js`
+### 1. Resources
+Exposes static index registries to client LLMs over standard URI schemas:
+- `career-agents://registry/agents`: Lists name, division, and description metadata of all 146 active coaches.
+- `career-agents://registry/workflows`: Catalog of step-by-step career path blueprints.
 
----
-
-## Using MCP Tools
-
-Once configured, you can invoke career tools naturally in your AI conversation:
-
-```
-"Search for agents related to system design interviews"
-→ Calls: search_agents({ query: "system design" })
-
-"What are the interview prep tracks for Meta?"
-→ Calls: company_track({ company: "meta" })
-
-"Analyze github.com/torvalds"
-→ Calls: analyze_github_profile({ username: "torvalds" })
-
-"Generate interview questions for a Google L5 behavioral round"
-→ Calls: mock_interview({ company: "google", role: "Software Engineer", level: "L5", mode: "behavioral" })
-
-"Build a career roadmap from junior engineer to staff engineer"
-→ Calls: roadmap({ from: "junior engineer", to: "staff engineer" })
-```
-
----
-
-## MCP Registry Data
-
-The MCP server reads and exposes data from these registry files:
-
-| Registry | Description | Records |
-|---|---|---|
-| `agent-registry.json` | All 146 AI agents with metadata | 146 agents |
-| `divisions.json` | 19 career divisions with agent groupings | 19 divisions |
-| `companies.json` | Company interview prep tracks | Multiple companies |
-| `career-paths.json` | Pre-defined career path progressions | Multiple paths |
-| `workflow-registry.json` | Multi-step career workflows | Multiple workflows |
-| `knowledge-graph.json` | Agent + skill relationship graph | Nodes + edges |
-| `search-index.json` | Full-text search index | All entities |
-
----
-
-## Troubleshooting
-
-**MCP server not connecting:**
-- Verify Node.js ≥ 18 is installed: `node --version`
-- Check the absolute path to `mcp/server.js` is correct
-- Check IDE MCP logs for errors
-
-**Tools not appearing:**
-- Restart your IDE/Claude Desktop after updating the config
-- Verify JSON config syntax is valid (no trailing commas)
-
-**Rate limit errors:**
-- The server allows 200 requests/minute
-- Reduce frequency or restart the server to reset the counter
-
-**Permission errors:**
-- Ensure the `exports/logs/` directory is writable
-- The server creates this directory automatically if it doesn't exist
+### 2. Tools
+Exposes functional endpoints to run execution blocks:
+- `recommend_agents`: Suggests agent coaches based on user profiles.
+- `resume_review`: Audits formatting and content patterns on target resumes.
+- `github_review`: Grades developer repository write-ups and README configurations.
+- `linkedin_review`: Scans headlines and profile summary keyword hooks.
+- `career_dashboard`: Serializes progress metrics checklist files.
+- `mock_interview`: Initiates conversational STAR feedback sessions.
+- `roadmap`: Details target 30-60-90 day readiness steps.
