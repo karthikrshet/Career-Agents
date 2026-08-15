@@ -214,13 +214,25 @@ function validateRegistryJSON(filename, parsed) {
   }
 }
 
+/**
+ * Returns true only if resolvedPath is the project root or sits inside it.
+ *
+ * A bare `startsWith(root)` prefix match is not containment: with root
+ * `/srv/career-agents`, the sibling path `/srv/career-agents-evil/secrets.json`
+ * passes. Comparing against `root + path.sep` forces a directory boundary.
+ */
+function isInsideRoot(resolvedPath) {
+  const resolvedRoot = path.resolve(root);
+  if (resolvedPath === resolvedRoot) return true;
+  return resolvedPath.startsWith(resolvedRoot + path.sep);
+}
+
 function loadJSON(filePath) {
   try {
     if (!fs.existsSync(filePath)) return null;
 
     const resolvedPath = path.resolve(filePath);
-    const resolvedRoot = path.resolve(root);
-    if (!resolvedPath.startsWith(resolvedRoot)) {
+    if (!isInsideRoot(resolvedPath)) {
       log(`Security Warning: Prevented safe access bypass attempt to ${filePath}`);
       return null;
     }
@@ -267,17 +279,35 @@ export function startMcpServer() {
       const request = JSON.parse(line);
       const { jsonrpc, id, method, params } = request;
 
+      // JSON-RPC 2.0: a message without an `id` is a notification, and a
+      // server must never send any response to one - not even an error.
+      const isNotification = id === undefined || id === null;
+
       if (jsonrpc !== '2.0') {
-        sendError(id, -32600, 'Invalid Request (JSON-RPC version must be 2.0)');
+        if (!isNotification) {
+          sendError(id, -32600, 'Invalid Request (JSON-RPC version must be 2.0)');
+        }
+        return;
+      }
+
+      // Notifications are handled here and never fall through to the request
+      // dispatch below, so no code path can emit a response for one.
+      if (isNotification) {
+        // MCP clients send `notifications/initialized`; the bare `initialized`
+        // spelling is kept for backwards compatibility with older callers.
+        if (method === 'notifications/initialized' || method === 'initialized') {
+          log('Initialized notification received.');
+        } else {
+          // notifications/cancelled, notifications/progress, and any future
+          // additions are ignored silently rather than answered with an error.
+          log(`Ignoring unhandled notification: ${method}`);
+        }
         return;
       }
 
       switch (method) {
         case 'initialize':
           handleInitialize(id, params);
-          break;
-        case 'initialized':
-          log('Initialized notification received.');
           break;
         case 'tools/list':
           handleToolsList(id);
@@ -326,7 +356,9 @@ function sendResult(id, result) {
 function sendError(id, code, message, data = null) {
   const errorPayload = {
     jsonrpc: '2.0',
-    id,
+    // JSON.stringify omits undefined values, which would drop the required
+    // `id` member entirely. The spec requires null when the id is unknown.
+    id: id === undefined ? null : id,
     error: {
       code,
       message
@@ -2607,8 +2639,7 @@ function handleResourcesRead(id, params) {
 
   try {
     const resolvedPath = path.resolve(fpath);
-    const resolvedRoot = path.resolve(root);
-    if (!resolvedPath.startsWith(resolvedRoot)) {
+    if (!isInsideRoot(resolvedPath)) {
       auditLog('resources/read', params, false, `Traversal protection triggered`);
       sendError(id, -32603, `Access denied: Traversal protection triggered.`);
       return;

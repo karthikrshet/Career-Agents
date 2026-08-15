@@ -8,18 +8,34 @@ interface TokenBucket {
 
 const buckets = new Map<string, TokenBucket>();
 
+const BUCKET_TTL_MS = 5 * 60 * 1000;
+const SWEEP_INTERVAL_MS = 60 * 1000;
+let lastSweep = 0;
+
 /**
- * Clean up rate limit maps to prevent memory leaks over time.
+ * Drop buckets untouched for longer than the TTL, so the map does not grow
+ * once per distinct IP forever.
+ *
+ * This sweeps lazily on call rather than from a module-scope setInterval: a
+ * background timer keeps the Node event loop alive and is not a good fit for
+ * the Edge runtime that Next.js middleware runs on.
  */
-setInterval(() => {
-  const now = Date.now();
+function sweepExpiredBuckets(now: number): void {
+  if (now - lastSweep < SWEEP_INTERVAL_MS) return;
+  lastSweep = now;
   buckets.forEach((bucket, ip) => {
-    // If the bucket has not been accessed in over 5 minutes, delete it
-    if (now - bucket.lastRefill > 5 * 60 * 1000) {
+    if (now - bucket.lastRefill > BUCKET_TTL_MS) {
       buckets.delete(ip);
     }
   });
-}, 60 * 1000);
+}
+
+/**
+ * Exposed for tests and diagnostics.
+ */
+export function _bucketCount(): number {
+  return buckets.size;
+}
 
 /**
  * Sliding Token Bucket rate-limiter.
@@ -32,6 +48,7 @@ export function checkRateLimit(
   burst: number = 10
 ): boolean {
   const now = Date.now();
+  sweepExpiredBuckets(now);
   const maxCapacity = limit + burst;
 
   const bucket = buckets.get(ip) || {
