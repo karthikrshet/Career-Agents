@@ -179,6 +179,13 @@ export function MarketingNavbar() {
             </Link>
 
             <Link
+              href="/demo"
+              className="px-3 py-1.5 font-medium text-sky-400 hover:text-sky-300 hover:bg-sky-500/10 rounded-full transition-colors border border-sky-500/30 shadow-[0_0_12px_rgba(56,189,248,0.2)]"
+            >
+              ★ Live Demo
+            </Link>
+
+            <Link
               href="/docs"
               className="px-3 py-1.5 font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-colors"
             >
