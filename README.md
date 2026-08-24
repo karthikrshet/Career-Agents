@@ -13,6 +13,8 @@
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Registry-career--agents-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="32" alt="NPM Registry" /></a>
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/dm/career-agents?style=for-the-badge&logo=npm&logoColor=white&color=cb3837" height="32" alt="NPM Downloads" /></a>
 <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" height="32" alt="GitHub Repo" /></a>
+[![Product Hunt](https://img.shields.io/badge/Product%20Hunt-Career%20Agents-DA552F?logo=producthunt\&logoColor=white)](https://www.producthunt.com/posts/career-agents/maker-invite?code=QOzMDO)
+
 
 <br /><br />
 
