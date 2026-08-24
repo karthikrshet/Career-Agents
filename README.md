@@ -13,7 +13,7 @@
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/badge/NPM_Registry-career--agents-cb3837?style=for-the-badge&logo=npm&logoColor=white" height="32" alt="NPM Registry" /></a>
 <a href="https://www.npmjs.com/package/career-agents"><img src="https://img.shields.io/npm/dm/career-agents?style=for-the-badge&logo=npm&logoColor=white&color=cb3837" height="32" alt="NPM Downloads" /></a>
 <a href="https://github.com/karthikrshet/Career-Agents"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" height="32" alt="GitHub Repo" /></a>
-[![Product Hunt](https://img.shields.io/badge/Product%20Hunt-Career%20Agents-DA552F?logo=producthunt\&logoColor=white)](https://www.producthunt.com/posts/career-agents/maker-invite?code=QOzMDO)
+<a href="https://www.producthunt.com/products/career-agents?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-career-agents" target="_blank" rel="noopener noreferrer"><img alt="Career Agents - AI agents that help you find, prepare for, and land jobs | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1231200&amp;theme=light&amp;t=1787600133046"></a>
 
 
 <br /><br />
