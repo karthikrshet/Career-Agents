@@ -1,6 +1,6 @@
 // GitHub REST API client — real data, no mocks
 
-import type { GitHubAnalysis, GitHubRepo } from "@/types";
+import type { GitHubAnalysis, GitHubRepo, GitHubRepoDetails } from "@/types";
 import { LANGUAGE_COLORS, generateId } from "@/lib/utils";
 
 const GITHUB_API = "https://api.github.com";
@@ -119,6 +119,8 @@ export async function analyzeGitHubProfile(
       hasLicense: !!r.license,
       hasCi: false, // would need extra API call per repo
       url: r.html_url,
+      openIssuesCount: r.open_issues_count ?? 0,
+      defaultBranch: r.default_branch || "main",
     }));
 
   // Simulated contribution heatmap (52 values) — real data needs GraphQL token
@@ -153,5 +155,92 @@ export async function analyzeGitHubProfile(
   };
 }
 
+export async function fetchRepoDetails(
+  owner: string,
+  repo: string,
+  token?: string
+): Promise<GitHubRepoDetails> {
+  const headers = makeHeaders(token);
 
+  // Fetch README (raw text)
+  const readmePromise = fetch(`${GITHUB_API}/repos/${owner}/${repo}/readme`, {
+    headers: {
+      ...headers,
+      Accept: "application/vnd.github.v3.raw",
+    },
+  })
+    .then(async (res) => {
+      if (res.ok) {
+        return await res.text();
+      }
+      return null;
+    })
+    .catch(() => null);
 
+  // Fetch Contributors (top 5)
+  const contributorsPromise = fetch(`${GITHUB_API}/repos/${owner}/${repo}/contributors?per_page=5`, {
+    headers,
+  })
+    .then(async (res) => {
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          return data.map((c: any) => c.login).filter(Boolean);
+        }
+      }
+      return [];
+    })
+    .catch(() => []);
+
+  // Fetch Recent Pull Requests (up to 4, all states)
+  const pullsPromise = fetch(`${GITHUB_API}/repos/${owner}/${repo}/pulls?state=all&per_page=4`, {
+    headers,
+  })
+    .then(async (res) => {
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          return data.map((pr: any) => ({
+            id: pr.number,
+            title: pr.title,
+            status: pr.merged_at ? ("merged" as const) : pr.state === "open" ? ("open" as const) : ("closed" as const),
+            url: pr.html_url,
+            createdAt: pr.created_at,
+          }));
+        }
+      }
+      return [];
+    })
+    .catch(() => []);
+
+  // Fetch Repo info for exact issues count and default branch
+  const repoPromise = fetch(`${GITHUB_API}/repos/${owner}/${repo}`, {
+    headers,
+  })
+    .then(async (res) => {
+      if (res.ok) {
+        const data = await res.json();
+        return {
+          openIssuesCount: data.open_issues_count ?? 0,
+          defaultBranch: data.default_branch || "main",
+        };
+      }
+      return { openIssuesCount: 0, defaultBranch: "main" };
+    })
+    .catch(() => ({ openIssuesCount: 0, defaultBranch: "main" }));
+
+  const [readmeContent, contributors, pulls, repoInfo] = await Promise.all([
+    readmePromise,
+    contributorsPromise,
+    pullsPromise,
+    repoPromise,
+  ]);
+
+  return {
+    readmeContent,
+    contributors,
+    pulls,
+    openIssuesCount: repoInfo.openIssuesCount,
+    defaultBranch: repoInfo.defaultBranch,
+  };
+}

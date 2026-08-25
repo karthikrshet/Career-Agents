@@ -167,6 +167,22 @@ export interface GitHubAnalysis {
   analyzedAt: string;
 }
 
+export interface GitHubPullRequest {
+  id: number;
+  title: string;
+  status: "open" | "closed" | "merged";
+  url: string;
+  createdAt: string;
+}
+
+export interface GitHubRepoDetails {
+  readmeContent: string | null;
+  contributors: string[];
+  openIssuesCount: number;
+  pulls: GitHubPullRequest[];
+  defaultBranch: string;
+}
+
 export interface GitHubRepo {
   name: string;
   description: string;
@@ -177,6 +193,8 @@ export interface GitHubRepo {
   hasLicense: boolean;
   hasCi: boolean;
   url: string;
+  openIssuesCount?: number;
+  defaultBranch?: string;
 }
 
 // Link2
