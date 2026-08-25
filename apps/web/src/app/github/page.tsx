@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   GitBranch, Search, Star, GitFork, Users, BookOpen,
   Loader2, ExternalLink, AlertCircle, CheckCircle,
-  TrendingUp, Code2, Award, X, Shield, Info, Terminal, Copy
+  TrendingUp, Code2, Award, X, Shield, Info, Terminal, Copy,
+  GitPullRequest, FileText
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
@@ -17,8 +18,9 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
-import { analyzeGitHubProfile } from "@/lib/github-api";
+import { analyzeGitHubProfile, fetchRepoDetails } from "@/lib/github-api";
 import { cn, scoreToColor, scoreToGrade, scoreToBgColor } from "@/lib/utils";
+import type { GitHubRepo, GitHubRepoDetails } from "@/types";
 
 export default function GitHubPage() {
   const GitHubAnalysis = useStore((s) => s.GitHubAnalysis);
@@ -28,7 +30,9 @@ export default function GitHubPage() {
 
   const [username, setUsername] = useState(profile?.githubUsername || "");
   const [loading, setLoading] = useState(false);
-  const [selectedRepo, setSelectedRepo] = useState<any | null>(null);
+  const [selectedRepo, setSelectedRepo] = useState<GitHubRepo | null>(null);
+  const [repoDetails, setRepoDetails] = useState<GitHubRepoDetails | null>(null);
+  const [loadingDetails, setLoadingDetails] = useState(false);
 
   async function handleAnalyze() {
     const u = username.trim().replace(/^@/, "");
@@ -45,30 +49,28 @@ export default function GitHubPage() {
     }
   }
 
-  const data = GitHubAnalysis;
-
-  // Mock README data generator
-  function getMockReadme(repoName: string) {
-    return `# ${repoName}
-    
-## Project Overview
-This repository provides primary microservice modules and algorithmic logic patterns tailored for Career Agents portfolio configurations.
-
-### 🚀 Quick Start
-\`\`\`bash
-# Install dependencies
-npm install
-
-# Start local server
-npm run dev
-\`\`\`
-
-### 🛠️ Architecture Specs
-- Built with TypeScript & React frameworks
-- Strict ESD-level defensive coding guards
-- Configured with CI actions pipeline
-`;
+  async function handleSelectRepo(repo: GitHubRepo) {
+    setSelectedRepo(repo);
+    setRepoDetails(null);
+    setLoadingDetails(true);
+    try {
+      const details = await fetchRepoDetails(
+        data?.username || username.trim().replace(/^@/, ""),
+        repo.name,
+        settings.githubToken
+      );
+      setRepoDetails({
+        ...details,
+        defaultBranch: repo.defaultBranch || "main",
+      });
+    } catch (err) {
+      console.error("Failed to load repo details", err);
+    } finally {
+      setLoadingDetails(false);
+    }
   }
+
+  const data = GitHubAnalysis;
 
   return (
     <div className="flex flex-col h-full overflow-auto">
@@ -268,15 +270,7 @@ npm run dev
                     {data.pinnedRepos.slice(0, 4).map((repo) => (
                       <div
                         key={repo.name}
-                        onClick={() => setSelectedRepo({
-                          ...repo,
-                          contributors: ["octocat", "karthikrshet", "dependabot[bot]"],
-                          issuesCount: 4,
-                          pulls: [
-                            { id: 1, title: "Build config cache support", status: "merged" },
-                            { id: 2, title: "Add star prompts layout", status: "open" }
-                          ]
-                        })}
+                        onClick={() => handleSelectRepo(repo)}
                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-secondary/40 border border-transparent hover:border-border/30 cursor-pointer transition-all group"
                       >
                         <div className="flex-1 min-w-0">
@@ -360,108 +354,260 @@ npm run dev
       {/* Repository Detail Modal */}
       <AnimatePresence>
         {selectedRepo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="w-full max-w-2xl rounded-2xl border border-border bg-card shadow-2xl overflow-hidden flex flex-col text-left"
+              initial={{ opacity: 0, scale: 0.96, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 10 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className="w-full max-w-2xl rounded-2xl border border-border/80 bg-card/95 backdrop-blur-xl shadow-2xl overflow-hidden flex flex-col text-left max-h-[85vh]"
             >
-              <div className="p-6 border-b border-border/50 flex justify-between items-start">
-                <div className="flex gap-3 items-center">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <BookOpen className="w-5 h-5 text-primary" />
+              {/* Modal Header */}
+              <div className="p-5 border-b border-border/50 flex justify-between items-start bg-secondary/10">
+                <div className="flex gap-3.5 items-center">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                    <BookOpen className="w-5 h-5" />
                   </div>
                   <div>
-                    <h2 className="text-base font-bold flex items-center gap-2">
-                      {selectedRepo.name}
-                      <Badge variant="secondary" className="text-[10px]">{selectedRepo.language}</Badge>
-                    </h2>
-                    <p className="text-xs text-muted-foreground flex items-center gap-3">
-                      <span>⭐ {selectedRepo.stars} stars</span>
-                      <span>🍴 {selectedRepo.forks} forks</span>
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-base font-bold text-foreground">
+                        {selectedRepo.name}
+                      </h2>
+                      {selectedRepo.language && (
+                        <Badge variant="secondary" className="text-[10px] px-2 py-0.5 border border-border/50">
+                          {selectedRepo.language}
+                        </Badge>
+                      )}
+                    </div>
+                    <div className="text-xs text-muted-foreground flex items-center gap-3 mt-1">
+                      <span className="flex items-center gap-1">
+                        <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400/20" /> {selectedRepo.stars} stars
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <GitFork className="w-3.5 h-3.5 text-indigo-400" /> {selectedRepo.forks} forks
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <button onClick={() => setSelectedRepo(null)} className="p-1 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground">
+                <button
+                  onClick={() => setSelectedRepo(null)}
+                  className="p-1.5 rounded-lg hover:bg-secondary/60 text-muted-foreground hover:text-foreground transition-colors"
+                >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
-              <div className="p-6 space-y-5 overflow-y-auto max-h-[420px] text-xs leading-relaxed">
+              {/* Modal Body */}
+              <div className="p-5 sm:p-6 space-y-5 overflow-y-auto flex-1 text-xs leading-relaxed custom-scrollbar">
                 {/* Clone Block */}
                 <div className="space-y-1.5">
-                  <h4 className="font-semibold text-muted-foreground uppercase tracking-wider text-[10px] flex items-center gap-1">
+                  <h4 className="font-semibold text-muted-foreground uppercase tracking-wider text-[10px] flex items-center gap-1.5">
                     <Terminal className="w-3.5 h-3.5 text-primary" /> Clone Repository
                   </h4>
-                  <div className="flex items-center gap-2 p-2.5 rounded-lg border border-border bg-secondary/15 font-mono text-[10px]">
-                    <span className="flex-1 truncate select-all">git clone https://github.com/{data?.username || "dev"}/{selectedRepo.name}.git</span>
-                    <button
+                  <div className="flex items-center gap-2 p-2.5 rounded-xl border border-border/60 bg-secondary/20 font-mono text-[11px]">
+                    <span className="flex-1 truncate select-all text-foreground/90">
+                      git clone https://github.com/{data?.username || username.trim().replace(/^@/, "") || "user"}/{selectedRepo.name}.git
+                    </span>
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      className="h-7 w-7 text-muted-foreground hover:text-foreground"
                       onClick={() => {
-                        navigator.clipboard.writeText(`git clone https://github.com/${data?.username || "dev"}/${selectedRepo.name}.git`);
+                        navigator.clipboard.writeText(
+                          `git clone https://github.com/${data?.username || username.trim().replace(/^@/, "") || "user"}/${selectedRepo.name}.git`
+                        );
                         toast.success("Clone command copied");
                       }}
-                      className="text-muted-foreground hover:text-foreground p-0.5 rounded transition-colors"
                       title="Copy clone command"
                     >
                       <Copy className="w-3.5 h-3.5" />
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  {/* Contributors */}
-                  <div className="space-y-1.5">
-                    <h4 className="font-semibold text-muted-foreground uppercase tracking-wider text-[10px]">Contributors</h4>
-                    <div className="flex flex-wrap gap-1.5">
-                      {selectedRepo.contributors.map((contrib: string) => (
-                        <Badge key={contrib} variant="outline" className="text-[10px] tracking-normal font-normal">
-                          @{contrib}
-                        </Badge>
-                      ))}
-                    </div>
+                {loadingDetails ? (
+                  <div className="py-12 flex flex-col items-center justify-center gap-3 text-muted-foreground">
+                    <Loader2 className="w-6 h-6 animate-spin text-primary" />
+                    <span className="text-xs">Fetching repository details & README...</span>
                   </div>
-
-                  {/* Issues & PRs summary */}
-                  <div className="space-y-1.5">
-                    <h4 className="font-semibold text-muted-foreground uppercase tracking-wider text-[10px]">Issues & Pull Requests</h4>
-                    <div className="flex items-center gap-2">
-                      <Badge variant="destructive" className="text-[10px]">{selectedRepo.issuesCount} Open Issues</Badge>
-                      <Badge variant="default" className="text-[10px]">{selectedRepo.pulls.length} Pull Requests</Badge>
-                    </div>
-                  </div>
-                </div>
-
-                {/* PR list block */}
-                <div className="space-y-2">
-                  <h4 className="font-semibold text-muted-foreground uppercase tracking-wider text-[10px]">Recent Pull Requests</h4>
-                  <div className="space-y-1.5">
-                    {selectedRepo.pulls.map((pr: any) => (
-                      <div key={pr.id} className="flex justify-between items-center p-2 rounded border border-border/60 bg-secondary/5">
-                        <span className="font-medium text-foreground">{pr.title}</span>
-                        <Badge variant={pr.status === "merged" ? "success" : "warning"} className="text-[9px] scale-90">
-                          {pr.status}
-                        </Badge>
+                ) : (
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Contributors */}
+                      <div className="space-y-1.5 p-3.5 rounded-xl border border-border/50 bg-secondary/10">
+                        <h4 className="font-semibold text-muted-foreground uppercase tracking-wider text-[10px] flex items-center gap-1.5">
+                          <Users className="w-3.5 h-3.5 text-indigo-400" /> Contributors
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {repoDetails && repoDetails.contributors.length > 0 ? (
+                            repoDetails.contributors.map((contrib: string) => (
+                              <a
+                                key={contrib}
+                                href={`https://github.com/${contrib}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex"
+                              >
+                                <Badge variant="outline" className="text-[10px] hover:bg-secondary/60 hover:text-foreground transition-colors cursor-pointer">
+                                  @{contrib}
+                                </Badge>
+                              </a>
+                            ))
+                          ) : (
+                            <span className="text-muted-foreground text-[11px]">No external contributors listed</span>
+                          )}
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
 
-                {/* README Markdown */}
-                <div className="space-y-1.5 pt-2 border-t border-border/40">
-                  <h4 className="font-semibold text-muted-foreground uppercase tracking-wider text-[10px] flex items-center gap-1">
-                    <Info className="w-3.5 h-3.5 text-primary" /> README.md
-                  </h4>
-                  <div className="p-4 rounded-xl border border-border/80 bg-card prose prose-sm prose-invert max-w-none prose-p:my-1.5 prose-li:my-0.5">
-                    <ReactMarkdown>{getMockReadme(selectedRepo.name)}</ReactMarkdown>
-                  </div>
-                </div>
+                      {/* Issues & PRs summary */}
+                      <div className="space-y-1.5 p-3.5 rounded-xl border border-border/50 bg-secondary/10">
+                        <h4 className="font-semibold text-muted-foreground uppercase tracking-wider text-[10px] flex items-center gap-1.5">
+                          <GitPullRequest className="w-3.5 h-3.5 text-emerald-400" /> Issues & Pull Requests
+                        </h4>
+                        <div className="flex items-center gap-2 pt-1 flex-wrap">
+                          <Badge variant="outline" className="text-[10px] bg-rose-500/10 text-rose-400 border-rose-500/20">
+                            {repoDetails ? repoDetails.openIssuesCount : (selectedRepo.openIssuesCount ?? 0)} Open Issues
+                          </Badge>
+                          <Badge variant="outline" className="text-[10px] bg-primary/10 text-primary border-primary/20">
+                            {repoDetails ? repoDetails.pulls.length : 0} Recent PRs
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* PR list block */}
+                    {repoDetails && repoDetails.pulls.length > 0 && (
+                      <div className="space-y-2">
+                        <h4 className="font-semibold text-muted-foreground uppercase tracking-wider text-[10px] flex items-center gap-1.5">
+                          <GitPullRequest className="w-3.5 h-3.5 text-primary" /> Recent Pull Requests
+                        </h4>
+                        <div className="space-y-1.5">
+                          {repoDetails.pulls.map((pr) => (
+                            <a
+                              key={pr.id}
+                              href={pr.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex justify-between items-center p-2.5 rounded-xl border border-border/50 bg-secondary/15 hover:bg-secondary/30 transition-colors group"
+                            >
+                              <div className="flex items-center gap-2 min-w-0 pr-2">
+                                <span className="text-[10px] font-mono text-muted-foreground">#{pr.id}</span>
+                                <span className="font-medium text-foreground text-xs truncate group-hover:text-primary transition-colors">
+                                  {pr.title}
+                                </span>
+                              </div>
+                              <Badge
+                                variant={pr.status === "merged" ? "success" : pr.status === "open" ? "default" : "secondary"}
+                                className="text-[9px] capitalize shrink-0"
+                              >
+                                {pr.status}
+                              </Badge>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* README Markdown */}
+                    <div className="space-y-2 pt-2 border-t border-border/40">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-semibold text-muted-foreground uppercase tracking-wider text-[10px] flex items-center gap-1.5">
+                          <FileText className="w-3.5 h-3.5 text-primary" /> README.md
+                        </h4>
+                        {repoDetails?.readmeContent && (
+                          <span className="text-[10px] text-muted-foreground">Live from repository</span>
+                        )}
+                      </div>
+                      
+                      <div className="p-4 rounded-xl border border-border/70 bg-card/60 backdrop-blur text-foreground overflow-x-auto text-xs leading-relaxed">
+                        {repoDetails?.readmeContent ? (
+                          <ReactMarkdown
+                            components={{
+                              h1: ({ children }) => (
+                                <h1 className="text-sm font-bold text-white pb-1.5 mb-2 mt-3 border-b border-border/40 flex items-center gap-1.5">
+                                  {children}
+                                </h1>
+                              ),
+                              h2: ({ children }) => (
+                                <h2 className="text-xs font-semibold text-white/95 mb-1.5 mt-3 flex items-center gap-1">
+                                  {children}
+                                </h2>
+                              ),
+                              h3: ({ children }) => (
+                                <h3 className="text-[11px] font-medium text-white/90 mb-1 mt-2">
+                                  {children}
+                                </h3>
+                              ),
+                              p: ({ children }) => (
+                                <p className="text-[11px] text-slate-300 my-1.5 leading-relaxed font-normal">
+                                  {children}
+                                </p>
+                              ),
+                              ul: ({ children }) => (
+                                <ul className="list-disc list-inside space-y-0.5 my-1.5 text-[11px] text-slate-300">
+                                  {children}
+                                </ul>
+                              ),
+                              ol: ({ children }) => (
+                                <ol className="list-decimal list-inside space-y-0.5 my-1.5 text-[11px] text-slate-300">
+                                  {children}
+                                </ol>
+                              ),
+                              li: ({ children }) => (
+                                <li className="text-[11px] text-slate-300 leading-relaxed font-normal">
+                                  {children}
+                                </li>
+                              ),
+                              code: ({ inline, className, children, ...props }: any) => {
+                                if (inline) {
+                                  return (
+                                    <code className="px-1.5 py-0.5 rounded bg-secondary/60 text-[10px] font-mono text-sky-300 border border-border/50" {...props}>
+                                      {children}
+                                    </code>
+                                  );
+                                }
+                                return (
+                                  <pre className="p-3 rounded-lg bg-secondary/35 border border-border/60 text-[10px] font-mono overflow-x-auto my-2 text-slate-200">
+                                    <code {...props}>{children}</code>
+                                  </pre>
+                                );
+                              },
+                              a: ({ href, children }) => (
+                                <a
+                                  href={href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-sky-400 underline underline-offset-2 hover:text-sky-300 transition-colors"
+                                >
+                                  {children}
+                                </a>
+                              ),
+                              blockquote: ({ children }) => (
+                                <blockquote className="border-l-2 border-primary/50 pl-3 italic my-2 text-slate-300 text-[11px]">
+                                  {children}
+                                </blockquote>
+                              ),
+                            }}
+                          >
+                            {repoDetails.readmeContent}
+                          </ReactMarkdown>
+                        ) : (
+                          <div className="py-8 text-center text-muted-foreground flex flex-col items-center gap-2">
+                            <Info className="w-5 h-5 opacity-40" />
+                            <p className="text-xs">No README file found in the root of this repository.</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
 
-              <div className="p-4 border-t border-border/50 bg-secondary/20 flex gap-2 justify-end">
+              {/* Modal Footer */}
+              <div className="p-4 border-t border-border/50 bg-secondary/20 flex gap-2 justify-end items-center">
                 <a href={selectedRepo.url} target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" variant="outline" className="text-xs">
-                    <ExternalLink className="w-3.5 h-3.5" /> View Pinned Project
+                  <Button size="sm" variant="outline" className="text-xs gap-1.5">
+                    <ExternalLink className="w-3.5 h-3.5" /> View on GitHub
                   </Button>
                 </a>
                 <Button size="sm" className="text-xs" onClick={() => setSelectedRepo(null)}>
