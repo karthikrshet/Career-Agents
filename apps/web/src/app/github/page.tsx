@@ -20,6 +20,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { analyzeGitHubProfile, fetchRepoDetails } from "@/lib/github-api";
 import { cn, scoreToColor, scoreToGrade, scoreToBgColor } from "@/lib/utils";
+import { RepoCaseStudyModal } from "@/components/github/RepoCaseStudyModal";
 import type { GitHubRepo, GitHubRepoDetails } from "@/types";
 
 export default function GitHubPage() {
@@ -31,6 +32,7 @@ export default function GitHubPage() {
   const [username, setUsername] = useState(profile?.githubUsername || "");
   const [loading, setLoading] = useState(false);
   const [selectedRepo, setSelectedRepo] = useState<GitHubRepo | null>(null);
+  const [caseStudyRepo, setCaseStudyRepo] = useState<GitHubRepo | null>(null);
   const [repoDetails, setRepoDetails] = useState<GitHubRepoDetails | null>(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
 
@@ -75,6 +77,13 @@ export default function GitHubPage() {
   return (
     <div className="flex flex-col h-full overflow-auto">
       <Topbar title="GitHub Analyzer" subtitle="Live portfolio health audit from the GitHub API" />
+
+      {/* Architecture Case Study Modal */}
+      <RepoCaseStudyModal
+        repo={caseStudyRepo}
+        open={!!caseStudyRepo}
+        onClose={() => setCaseStudyRepo(null)}
+      />
 
       <div className="flex-1 p-6 space-y-6">
         {/* Search bar */}
@@ -285,6 +294,16 @@ export default function GitHubPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-3 shrink-0 text-xs text-muted-foreground">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setCaseStudyRepo(repo);
+                            }}
+                            className="text-[10px] px-2 py-1 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 flex items-center gap-1 font-semibold transition-all"
+                          >
+                            <BookOpen className="w-3 h-3" />
+                            <span>Case Study</span>
+                          </button>
                           <span className="flex items-center gap-1">
                             <Star className="w-3 h-3 text-amber-400" /> {repo.stars}
                           </span>

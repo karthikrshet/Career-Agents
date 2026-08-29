@@ -4,7 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Link2, Zap, Loader2, AlertCircle, Copy,
-  CheckCircle, TrendingUp, Eye, Target, RefreshCw
+  CheckCircle, TrendingUp, Eye, Target, RefreshCw,
+  Sparkles, Share2, Award, MessageSquare
 } from "lucide-react";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -15,6 +16,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { useGatewayStore } from "@/lib/gateway-store";
 import { cn, scoreToColor, scoreToGrade, scoreToBgColor, resolveApiKey } from "@/lib/utils";
+import { LinkedInPostGenerator } from "@/components/linkedin/LinkedInPostGenerator";
 import type { LinkedInAnalysis } from "@/types";
 
 // ─── Local analysis engine ───────────────────────────────────────────────
@@ -38,8 +40,8 @@ function analyzeLinkedIn(headline: string, summary: string): LinkedInAnalysis {
     headlineIssues.push("Include your primary job title in the headline.");
 
   const rewrites = [
-    `${headline || "Senior Software Engineer"} | Full-Stack Expert | TypeScript · React · System Design`,
-    `Building ${headline || "scalable systems"} | ${wordCount > 0 ? "Open to" : "Seeking"} Senior IC & Staff Roles`,
+    `${headline || "Senior Software Engineer"} | Distributed Systems & Cloud Architecture | Go · TypeScript · PostgreSQL`,
+    `Building high-throughput scalable services | Ex-[Previous Co] | Open to Senior & Staff SWE Loops`,
   ];
 
   const missingKeywords = LINKEDIN_KEYWORDS.filter(
@@ -52,9 +54,9 @@ function analyzeLinkedIn(headline: string, summary: string): LinkedInAnalysis {
   );
 
   const summaryIssues: string[] = [];
-  if (wordCount < 100) summaryIssues.push("Write at least 100 words for maximum Link2 search visibility.");
-  if (PASSIVE_PATTERNS.some((p) => p.test(summary))) summaryIssues.push("Replace passive phrases (responsible for, helped, assisted) with active verbs.");
-  if (!/contact|email|schedule|reach/i.test(summary)) summaryIssues.push("End with a clear call-to-action (e.g., contact, email, link).");
+  if (wordCount < 100) summaryIssues.push("Write at least 100 words for maximum LinkedIn search visibility.");
+  if (PASSIVE_PATTERNS.some((p) => p.test(summary))) summaryIssues.push("Replace passive phrases (responsible for, helped) with active verbs.");
+  if (!/contact|email|schedule|reach/i.test(summary)) summaryIssues.push("End with a clear call-to-action (e.g. email or calendar link).");
 
   const baseScore = 40;
   let score = baseScore;
@@ -70,7 +72,7 @@ function analyzeLinkedIn(headline: string, summary: string): LinkedInAnalysis {
     visibilityIndex: score >= 70 ? "High" : score >= 50 ? "Medium" : "Low",
     headlineAnalysis: { current: headline, issues: headlineIssues, rewrites },
     summaryAnalysis: { wordCount, keywordDensity, missingKeywords, suggestions: summaryIssues },
-    suggestedSkills: ["System Design", "TypeScript", "Distributed Systems", "CI/CD", "Agile"],
+    suggestedSkills: ["System Design", "TypeScript", "Distributed Systems", "CI/CD", "PostgreSQL", "AWS"],
     analyzedAt: new Date().toISOString(),
   };
 }
@@ -80,237 +82,189 @@ export default function LinkedInPage() {
   const setLinkedinAnalysis = useStore((s) => s.setLinkedinAnalysis);
   const settings = useStore((s) => s.settings);
 
-  const [headline, setHeadline] = useState("");
-  const [summary, setSummary] = useState("");
+  const [headline, setHeadline] = useState(
+    "Senior Software Engineer | Full-Stack & Cloud Architecture | TypeScript · React · Go · PostgreSQL"
+  );
+  const [summary, setSummary] = useState(
+    "Senior Software Engineer with 6+ years of experience architecting distributed backend services and high-scale web platforms. Proven track record of reducing API latency by 42% and processing 15M+ daily requests. Passionate about developer tooling, clean code architecture, and mentoring engineering teams. Reach out at: alex@example.com."
+  );
   const [loading, setLoading] = useState(false);
-  const [aiLoading, setAiLoading] = useState(false);
 
   async function handleAnalyze() {
-    if (!headline.trim()) { toast.error("Enter your Link2 headline"); return; }
+    if (!headline.trim()) {
+      toast.error("Enter your LinkedIn headline");
+      return;
+    }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 400));
     const result = analyzeLinkedIn(headline, summary);
     setLinkedinAnalysis(result);
     setLoading(false);
-    toast.success(`Profile analyzed — ${result.overallScore}% visibility score`);
-  }
-
-  async function handleAIRewrite() {
-    const activeProvider = useGatewayStore.getState().activeProvider;
-    const resolvedKey = resolveApiKey(activeProvider, settings);
-    const gatewayConfig = {
-      provider: activeProvider,
-      model: useGatewayStore.getState().activeModel,
-      apiKey: resolvedKey,
-      baseUrl: settings.baseUrls?.[activeProvider] || settings.aiProvider.baseUrl,
-      temperature: useGatewayStore.getState().temperature,
-      maxTokens: useGatewayStore.getState().maxTokens,
-    };
-    // Allow request to proceed so server environment variables (Vercel) can be used as fallback
-    setAiLoading(true);
-    try {
-      const res = await fetch("/api/linkedin/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ headline, summary, config: gatewayConfig }),
-      });
-      const data = await res.json();
-      if (data.rewrite) {
-        setLinkedinAnalysis({ ...linkedinAnalysis!, headlineAnalysis: { ...linkedinAnalysis!.headlineAnalysis, rewrites: [data.rewrite, ...linkedinAnalysis!.headlineAnalysis.rewrites] } });
-        toast.success("AI rewrite generated");
-      }
-    } catch {
-      toast.error("AI rewrite failed");
-    } finally {
-      setAiLoading(false);
-    }
+    toast.success(`Profile analyzed — ${result.overallScore}% recruiter search score`);
   }
 
   const data = linkedinAnalysis;
 
   return (
-    <div className="flex flex-col h-full overflow-auto">
-      <Topbar title="Link2 Optimizer" subtitle="Visibility score, headline rewrites, keyword density analysis" />
+    <div className="flex flex-col h-full overflow-auto bg-[#03060f] text-slate-100 font-sans">
+      <Topbar
+        title="LinkedIn Profile & Inbound Magnet Studio"
+        subtitle="Recruiter search visibility audit, headline architecture, and viral thought-leadership post generator"
+      />
 
-      <div className="flex-1 p-6 space-y-6">
-        {/* Input panel */}
-        <Card className="glass">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base flex items-center gap-2">
-              <Link2 className="w-4 h-4 text-blue-400" />
-              Enter Your Link2 Profile Data
-            </CardTitle>
-            <CardDescription>Paste your current headline and About section for analysis</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <label className="text-xs text-muted-foreground mb-1.5 block font-medium">Current Headline</label>
-              <input
-                className="w-full px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="e.g. Software Engineer at Google | Full-Stack · TypeScript · React"
+      <div className="flex-1 p-6 space-y-6 max-w-6xl mx-auto w-full">
+        {/* Form Inputs */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Card className="glass border-cyan-500/30">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm font-bold text-white flex items-center gap-2">
+                <Link2 className="w-4 h-4 text-cyan-400" />
+                <span>LinkedIn Headline & Title Pipe</span>
+              </CardTitle>
+              <CardDescription>The #1 field indexed by recruiter search algorithms</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <textarea
+                className="w-full h-24 p-3 rounded-xl bg-secondary/50 border border-border text-xs text-foreground resize-none focus:outline-none focus:ring-1 focus:ring-primary leading-relaxed"
+                placeholder="e.g. Senior Software Engineer | Distributed Systems | Ex-FAANG | Go · TypeScript"
                 value={headline}
                 onChange={(e) => setHeadline(e.target.value)}
-                maxLength={220}
               />
-              <p className="text-[10px] text-muted-foreground mt-1">{headline.length}/220 characters</p>
-            </div>
-            <div>
-              <label className="text-xs text-muted-foreground mb-1.5 block font-medium">About / Summary Section</label>
+              <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+                <span>{headline.length} / 220 characters</span>
+                <span className={headline.length >= 80 ? "text-emerald-400 font-bold" : "text-amber-400 font-bold"}>
+                  {headline.length >= 80 ? "Optimal Length" : "Too Short"}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="glass border-cyan-500/30">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm font-bold text-white flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 text-violet-400" />
+                <span>About Section / Executive Summary</span>
+              </CardTitle>
+              <CardDescription>First-person narrative showcasing quantifiable wins & CTA</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
               <textarea
-                className="w-full h-32 px-3 py-2.5 rounded-lg bg-secondary border border-border text-sm text-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="Paste your Link2 About section here..."
+                className="w-full h-24 p-3 rounded-xl bg-secondary/50 border border-border text-xs text-foreground resize-none focus:outline-none focus:ring-1 focus:ring-primary leading-relaxed"
+                placeholder="Share your technical superpowers, high-scale deliverables, and email contact..."
                 value={summary}
                 onChange={(e) => setSummary(e.target.value)}
               />
-            </div>
-            <div className="flex gap-2">
-              <Button onClick={handleAnalyze} disabled={loading || !headline.trim()}>
-                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
-                Analyze Profile
-              </Button>
-              {data && (
-                <Button variant="outline" onClick={handleAIRewrite} disabled={aiLoading}>
-                  {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
-                  AI Rewrite
-                </Button>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+              <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+                <span>{summary.split(/\s+/).filter(Boolean).length} words</span>
+                <span className={summary.split(/\s+/).filter(Boolean).length >= 80 ? "text-emerald-400 font-bold" : "text-amber-400 font-bold"}>
+                  {summary.split(/\s+/).filter(Boolean).length >= 80 ? "High Visibility" : "Needs 100+ Words"}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
+        {/* Action Button */}
+        <Button
+          onClick={handleAnalyze}
+          disabled={loading || !headline.trim()}
+          className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold h-11 rounded-xl shadow-lg"
+        >
+          {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Zap className="w-4 h-4 mr-2" />}
+          Run Inbound Search Visibility Audit
+        </Button>
+
+        {/* Audit Results */}
         <AnimatePresence>
           {data && (
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+              className="space-y-6"
             >
-              {/* Score card */}
-              <div className="lg:col-span-1 space-y-4">
-                <Card className={cn("glass", scoreToBgColor(data.overallScore))}>
-                  <CardContent className="p-6 text-center">
-                    <div className="text-4xl font-bold tabular-nums">{data.overallScore}</div>
-                    <div className="text-xs mt-1 font-medium">{scoreToGrade(data.overallScore)}</div>
-                    <div className="text-[10px] opacity-70">Visibility Score</div>
-                  </CardContent>
-                </Card>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                {/* Score Summary Card */}
+                <Card className="glass border-border/60 p-5 space-y-4">
+                  <div className="text-center p-4 rounded-2xl bg-secondary/40 border border-border/60">
+                    <p className="text-3xl font-bold font-mono text-cyan-400">{data.overallScore}%</p>
+                    <p className="text-xs uppercase font-bold text-muted-foreground mt-0.5">Recruiter Search Index</p>
+                  </div>
 
-                <Card className="glass">
-                  <CardContent className="p-4 space-y-3">
+                  <div className="space-y-3">
                     {[
-                      { label: "Recruiter Score", value: data.recruiterScore },
+                      { label: "Recruiter Pass Rate", value: data.recruiterScore },
                       { label: "Keyword Density", value: data.summaryAnalysis.keywordDensity },
-                      { label: "Word Count", value: Math.min(100, Math.round((data.summaryAnalysis.wordCount / 300) * 100)) },
+                      { label: "Profile Word Volume", value: Math.min(100, Math.round((data.summaryAnalysis.wordCount / 200) * 100)) },
                     ].map((m) => (
-                      <div key={m.label}>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-xs text-muted-foreground">{m.label}</span>
-                          <span className={cn("text-xs font-semibold", scoreToColor(m.value))}>{m.value}%</span>
+                      <div key={m.label} className="space-y-1">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-muted-foreground">{m.label}</span>
+                          <span className={cn("font-bold font-mono", scoreToColor(m.value))}>{m.value}%</span>
                         </div>
                         <Progress value={m.value} className="h-1.5" />
                       </div>
                     ))}
-                    <div className="pt-2 border-t border-border">
-                      <p className="text-xs text-muted-foreground">Visibility Index</p>
-                      <Badge
-                        variant={data.visibilityIndex === "High" ? "success" : data.visibilityIndex === "Medium" ? "warning" : "destructive"}
-                        className="mt-1"
-                      >
-                        <Eye className="w-3 h-3 mr-1" />
-                        {data.visibilityIndex}
-                      </Badge>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+                  </div>
 
-              {/* Details panel */}
-              <div className="lg:col-span-2 space-y-4">
-                {/* Headline analysis */}
-                <Card className="glass">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-sm">Headline Analysis</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    {data.headlineAnalysis.issues.length > 0 && (
-                      <div className="space-y-2">
-                        {data.headlineAnalysis.issues.map((issue, i) => (
-                          <div key={i} className="flex items-start gap-2 text-sm">
-                            <AlertCircle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                            <span className="text-muted-foreground">{issue}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    <div>
-                      <p className="text-xs font-medium mb-2">Suggested Headlines</p>
-                      <div className="space-y-2">
-                        {data.headlineAnalysis.rewrites.map((rw, i) => (
-                          <div key={i} className="flex items-center gap-2 p-3 rounded-lg bg-secondary/50 border border-border">
-                            <p className="flex-1 text-sm text-foreground/90">{rw}</p>
-                            <button
-                              onClick={() => { navigator.clipboard.writeText(rw); toast.success("Copied!"); }}
-                              className="shrink-0 p-1 rounded hover:bg-secondary transition-colors"
-                            >
-                              <Copy className="w-3.5 h-3.5 text-muted-foreground" />
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
+                  <div className="pt-2 border-t border-border/40 flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">Inbound Visibility</span>
+                    <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 text-xs">
+                      {data.visibilityIndex} Rating
+                    </Badge>
+                  </div>
                 </Card>
 
-                {/* Missing keywords */}
-                <Card className="glass">
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center gap-2">
-                      <Target className="w-4 h-4 text-amber-400" />
-                      <CardTitle className="text-sm">Missing Keywords</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {data.summaryAnalysis.missingKeywords.map((kw) => (
-                        <button
-                          key={kw}
-                          onClick={() => { navigator.clipboard.writeText(kw); toast.success(`Copied: ${kw}`); }}
-                          className="px-2.5 py-1 rounded-full text-xs bg-amber-500/10 border border-amber-500/20 text-amber-400 hover:bg-amber-500/20 transition-colors"
-                        >
-                          {kw}
-                        </button>
-                      ))}
-                    </div>
-                    <div className="mt-4">
-                      <p className="text-xs font-medium mb-2">Suggested Skills to Add</p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {data.suggestedSkills.map((s) => (
-                          <span key={s} className="px-2 py-0.5 rounded-full text-[10px] bg-sky-500/10 border border-sky-500/20 text-sky-400">{s}</span>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Recommendations */}
-                {data.summaryAnalysis.suggestions.length > 0 && (
-                  <Card className="glass">
+                {/* Headline Suggestions & Keyword Breakdown */}
+                <div className="lg:col-span-2 space-y-4">
+                  <Card className="glass border-border/60">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm">Summary Improvements</CardTitle>
+                      <CardTitle className="text-sm font-bold text-white">Suggested High-Performing Headlines</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2">
-                        {data.summaryAnalysis.suggestions.map((s, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm">
-                            <TrendingUp className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                            <span className="text-muted-foreground">{s}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    <CardContent className="space-y-2.5">
+                      {data.headlineAnalysis.rewrites.map((rw, i) => (
+                        <div key={i} className="flex items-center justify-between gap-3 p-3 rounded-xl bg-secondary/40 border border-border/60">
+                          <p className="text-xs text-slate-200 font-medium truncate">{rw}</p>
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(rw);
+                              toast.success("Copied headline to clipboard!");
+                            }}
+                            className="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 text-xs shrink-0 flex items-center gap-1 font-semibold"
+                          >
+                            <Copy className="w-3 h-3" />
+                            <span>Copy</span>
+                          </button>
+                        </div>
+                      ))}
                     </CardContent>
                   </Card>
-                )}
+
+                  {/* Missing Keywords & Skills */}
+                  <Card className="glass border-border/60">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center gap-2">
+                        <Target className="w-4 h-4 text-amber-400" />
+                        <CardTitle className="text-sm font-bold text-white">Recommended Keywords to Index</CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <div className="flex flex-wrap gap-1.5">
+                        {data.suggestedSkills.map((sk) => (
+                          <Badge
+                            key={sk}
+                            className="bg-cyan-500/15 text-cyan-300 border-cyan-500/30 text-[11px] font-mono"
+                          >
+                            + {sk}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
+
+              {/* Viral AI Tech Thought-Leadership Post Generator */}
+              <LinkedInPostGenerator />
             </motion.div>
           )}
         </AnimatePresence>
@@ -318,5 +272,3 @@ export default function LinkedInPage() {
     </div>
   );
 }
-
-
