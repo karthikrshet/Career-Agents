@@ -16,6 +16,7 @@ import { Topbar } from "@/components/layout/topbar";
 import { useStore } from "@/lib/store";
 import { useGatewayStore } from "@/lib/gateway-store";
 import { cn, generateId, resolveApiKey } from "@/lib/utils";
+import { JobTailorModal } from "@/components/jobs/JobTailorModal";
 
 // ─── Job data structure ──────────────────────────────────────────────────────
 interface JobListing {
@@ -122,6 +123,7 @@ export default function JobsPage() {
   const [generating, setGenerating] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(true);
   const [selectedJob, setSelectedJob] = useState<JobListing | null>(null);
+  const [tailorModalJob, setTailorModalJob] = useState<JobListing | null>(null);
   const [generated, setGenerated] = useState<{ type: string; content: string } | null>(null);
 
   const fetchLiveJobs = async () => {
@@ -269,9 +271,19 @@ export default function JobsPage() {
   const bookmarkedJobs = jobsList.filter(j => bookmarks.has(j.id));
 
   return (
-    <div className="flex h-full flex-col overflow-hidden font-sans">
-      <Topbar title="Live Global Job Search & Online Scraper" subtitle={`${jobsList.length} live opportunities matched with ATS score`} />
+    <div className="flex flex-col h-full overflow-auto bg-[#04060f] text-slate-100 font-sans">
+      <Topbar
+        title="Live Job Search Radar & ATS Tailor"
+        subtitle="Real-time multi-board job listings with 1-click tailored ATS resume bullets and cover letters"
+      />
 
+      {/* 1-Click Job Tailor Modal */}
+      <JobTailorModal
+        job={tailorModalJob}
+        open={!!tailorModalJob}
+        onClose={() => setTailorModalJob(null)}
+        onAddToTracker={(j) => handleSaveToTracker(j as any)}
+      />
       <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4">
         {/* Search & Global Filter Bar */}
         <div className="space-y-3 bg-slate-900/60 border border-slate-800/80 rounded-xl p-3.5 shadow-md backdrop-blur-md">
@@ -526,6 +538,16 @@ export default function JobsPage() {
                           {selectedJob.description}
                         </div>
                       )}
+
+                      {/* 1-Click Tailor Application Button */}
+                      <Button
+                        size="sm"
+                        className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-xs h-9 gap-1.5 font-bold shadow-md"
+                        onClick={() => setTailorModalJob(selectedJob)}
+                      >
+                        <Zap className="w-3.5 h-3.5" />
+                        <span>1-Click Tailor Application</span>
+                      </Button>
 
                       {/* Quick Actions */}
                       <div className="grid grid-cols-2 gap-2">

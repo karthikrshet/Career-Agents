@@ -26,6 +26,7 @@ import { AlgorithmVisualizer } from "@/components/playground/visualizer/Algorith
 import { ContestPanel } from "@/components/playground/contest/ContestPanel";
 import { AICoachPanel } from "@/components/playground/ai-coach/AICoachPanel";
 import { SUPPORTED_20_LANGUAGES, STARTER_TEMPLATES, COMPANY_LIST, ROADMAP_COLLECTIONS } from "../../../../../packages/coding-engine";
+import { profileCodeComplexity } from "../../../../../packages/coding-engine/complexity-profiler";
 
 // Topic Categories
 const TOPIC_CATEGORIES = [
@@ -70,8 +71,8 @@ export default function PlaygroundPage() {
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const [code, setCode] = useState(STARTER_TEMPLATES.javascript);
 
-  // Left Workspace Tabs: "description" | "editorial" | "solutions" | "submissions" | "ai_tutor"
-  const [leftTab, setLeftTab] = useState<"description" | "editorial" | "solutions" | "submissions" | "ai_tutor">("description");
+  // Left Workspace Tabs: "description" | "editorial" | "solutions" | "submissions" | "ai_tutor" | "profiler"
+  const [leftTab, setLeftTab] = useState<"description" | "editorial" | "solutions" | "submissions" | "ai_tutor" | "profiler">("description");
 
   // Console Tabs: "console" | "stdin" | "testcases"
   const [consoleTab, setConsoleTab] = useState<"console" | "stdin" | "testcases">("console");
@@ -721,6 +722,16 @@ Provide concise, high-value guidance. Include complexity breakdowns, dry runs, e
                 Submissions
               </button>
               <button
+                onClick={() => setLeftTab("profiler")}
+                className={cn(
+                  "px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors border border-cyan-500/30",
+                  leftTab === "profiler" ? "bg-cyan-500/20 text-cyan-300" : "text-cyan-400/80 hover:text-cyan-300 hover:bg-cyan-500/10"
+                )}
+              >
+                <Zap className="w-3.5 h-3.5 text-cyan-400" />
+                Big-O Profiler
+              </button>
+              <button
                 onClick={() => setLeftTab("ai_tutor")}
                 className={cn(
                   "px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors border border-primary/30",
@@ -817,6 +828,88 @@ Provide concise, high-value guidance. Include complexity breakdowns, dry runs, e
                   </div>
                 </div>
               )}
+
+              {leftTab === "profiler" && (() => {
+                const profile = profileCodeComplexity(code, language);
+                return (
+                  <div className="space-y-5 text-xs text-slate-300">
+                    <div className="flex items-center justify-between border-b border-border/30 pb-2">
+                      <div className="flex items-center gap-2 text-cyan-400 font-bold">
+                        <Zap className="w-4 h-4" />
+                        <span>Real-Time Big-O Complexity & Edge Case Profiler</span>
+                      </div>
+                      <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 text-[10px]">
+                        Live Code Analysis
+                      </Badge>
+                    </div>
+
+                    {/* Complexity Gauge */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="p-3.5 rounded-xl bg-slate-900/80 border border-border/60 space-y-1">
+                        <span className="text-[10px] uppercase font-bold text-muted-foreground">Time Complexity</span>
+                        <p className="text-sm font-bold font-mono text-cyan-400">{profile.timeComplexity}</p>
+                      </div>
+                      <div className="p-3.5 rounded-xl bg-slate-900/80 border border-border/60 space-y-1">
+                        <span className="text-[10px] uppercase font-bold text-muted-foreground">Space Complexity</span>
+                        <p className="text-sm font-bold font-mono text-purple-400">{profile.spaceComplexity}</p>
+                      </div>
+                    </div>
+
+                    {/* Identified Bottlenecks */}
+                    <div className="p-4 rounded-xl bg-secondary/20 border border-border/40 space-y-2">
+                      <h4 className="font-bold text-white text-xs flex items-center gap-1.5">
+                        <AlertCircle className="w-3.5 h-3.5 text-amber-400" />
+                        <span>Runtime Bottlenecks & Analysis</span>
+                      </h4>
+                      <ul className="space-y-1 text-slate-300">
+                        {profile.bottlenecks.map((b, i) => (
+                          <li key={i} className="flex items-start gap-1.5">
+                            <span className="text-cyan-400">•</span>
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Optimization Strategies */}
+                    <div className="p-4 rounded-xl bg-secondary/15 border border-border/30 space-y-2">
+                      <h4 className="font-bold text-white text-xs flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Optimization Recommendations</span>
+                      </h4>
+                      <ul className="space-y-1 text-slate-300">
+                        {profile.optimizations.map((opt, i) => (
+                          <li key={i} className="flex items-start gap-1.5">
+                            <span className="text-emerald-400">✓</span>
+                            <span>{opt}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Essential Edge Cases */}
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-white text-xs uppercase tracking-wider text-muted-foreground">
+                        Critical Interview Edge Cases to Verify
+                      </h4>
+                      <div className="space-y-2">
+                        {profile.edgeCasesToTest.map((ec, i) => (
+                          <div key={i} className="p-3 rounded-xl bg-black/40 border border-border/40 space-y-1">
+                            <div className="flex items-center justify-between">
+                              <span className="font-bold text-slate-200">{ec.name}</span>
+                              <Badge className={cn("text-[9px] font-mono", ec.criticality === "HIGH" ? "bg-red-500/20 text-red-300 border-red-500/40" : "bg-amber-500/20 text-amber-300 border-amber-500/40")}>
+                                {ec.criticality} CRITICALITY
+                              </Badge>
+                            </div>
+                            <p className="text-[11px] font-mono text-cyan-300/90">Input: {ec.input}</p>
+                            <p className="text-[11px] text-muted-foreground">{ec.expectedBehavior}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
 
               {leftTab === "ai_tutor" && (
                 <AICoachPanel
