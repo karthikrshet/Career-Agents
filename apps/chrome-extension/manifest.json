@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Career Agents Assistant",
-  "version": "11.0.0",
+  "version": "18.0.0",
   "description": "Enterprise AI Career OS Assistant. Analyze jobs, run ATS checks, auto-fill forms, and audit portfolios.",
   "permissions": [
     "activeTab",

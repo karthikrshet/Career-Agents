@@ -7,6 +7,7 @@ export const JobDetailsSchema = z.object({
   location: z.string().optional(),
   experience: z.string().optional(),
   employmentType: z.string().optional(),
+  salary: z.string().optional(),
   text: z.string(),
   url: z.string().optional(),
 });
@@ -16,11 +17,13 @@ export type JobDetails = z.infer<typeof JobDetailsSchema>;
 export const AutofillProfileSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
+  fullName: z.string().optional(),
   email: z.string().optional(),
   phone: z.string().optional(),
   linkedin: z.string().optional(),
   github: z.string().optional(),
   portfolio: z.string().optional(),
+  location: z.string().optional(),
   workAuth: z.string().optional(),
   currentRole: z.string().optional(),
   yearsOfExperience: z.string().optional(),
@@ -47,6 +50,24 @@ export interface LiveInterviewPayload {
   role?: string;
 }
 
+export interface LinkedInProfilePayload {
+  name: string;
+  headline: string;
+  about: string;
+  url: string;
+}
+
+export interface GitHubRepoPayload {
+  name: string;
+  owner: string;
+  description: string;
+  language: string;
+  stars: number;
+  forks: number;
+  readmeText: string;
+  url: string;
+}
+
 export type ExtensionMessage = {
   type:
     | "EXTRACT_JOB_REQUEST"
@@ -55,6 +76,10 @@ export type ExtensionMessage = {
     | "AUTOFILL_FORM_RESPONSE"
     | "EXTRACT_CODE_PROBLEM_REQUEST"
     | "EXTRACT_CODE_PROBLEM_RESPONSE"
+    | "EXTRACT_LINKEDIN_REQUEST"
+    | "EXTRACT_LINKEDIN_RESPONSE"
+    | "EXTRACT_GITHUB_REPO_REQUEST"
+    | "EXTRACT_GITHUB_REPO_RESPONSE"
     | "GENERATE_STAR_ANSWER_REQUEST"
     | "GENERATE_STAR_ANSWER_RESPONSE";
   payload?: any;
