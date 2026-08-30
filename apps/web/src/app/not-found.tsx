@@ -47,7 +47,7 @@ export default function NotFound() {
 
         <div className="mt-8 pt-6 border-t border-border/40">
           <p className="text-xs text-muted-foreground/60">
-            Career Agents v17.0.0 · 167 AI Career Agents
+            Career Agents v18.0.0 · 167 AI Career Agents
           </p>
         </div>
       </div>

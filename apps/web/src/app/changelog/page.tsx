@@ -6,6 +6,19 @@ import Link from "next/link";
 export default function ChangelogPage() {
   const releases = [
     {
+      version: "v18.0.0",
+      date: "August 30, 2026",
+      title: "Multi-Agent Deliberation Swarms, Big-O Profiler & 1-Click Job Tailoring",
+      notes: [
+        "Architected Multi-Agent Deliberation Swarm with Amazon Bar Raiser, Staff Architect, and Hiring Director consensus scoring.",
+        "Launched Interactive System Design Whiteboard Studio with live back-of-the-envelope capacity calculators.",
+        "Engineered Real-Time Big-O Complexity Profiler and Critical Interview Edge Case Analyzer across 20 languages.",
+        "Integrated Google XYZ STAR Resume Bullet Rewriter and Target JD ATS Keyword Gap Inspector.",
+        "Launched 1-Click Tailored Job Application Studio & Recruiter InMail Outreach Engine.",
+        "Engineered Viral AI LinkedIn Thought-Leadership Post Generator & GitHub Architecture Case Study Engine.",
+      ],
+    },
+    {
       version: "v17.0.0",
       date: "August 15, 2026",
       title: "167-Agent Ecosystem, MCP 31 Tools & 20-Language Coding Studio",
