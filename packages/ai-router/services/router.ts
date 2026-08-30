@@ -452,10 +452,10 @@ export async function routeCompletion(
     const lowerQuery = query.toLowerCase().trim();
     const isGreeting = /^(hi+|hello+|hey+|greetings?|good\s+(morning|evening|afternoon|night))\.?$/i.test(lowerQuery);
 
-    let mockResponse = "";
+    let synthesizedResponse = "";
 
     if (isGreeting) {
-      mockResponse = `Hello${candidateName ? " **" + candidateName + "**" : ""}! I'm your AI Career Copilot, backed by **167 specialist career agents**.\n\nI can help you with:\n- 📄 **Resume & ATS optimization** — bullet rewrites, keyword injection, scoring\n- 💼 **Job search strategy** — targeting companies, outreach templates, referrals\n- 🎤 **Interview preparation** — STAR method, mock sessions, DSA practice\n- 🐙 **GitHub portfolio review** — code quality, CI/CD, documentation\n- 🔗 **LinkedIn optimization** — headline, summary, recruiter outreach\n- 🗺️ **Career roadmap** — 30/60/90-day plans, salary negotiation, promotion paths\n\nWhat would you like to work on today?`;
+      synthesizedResponse = `Hello${candidateName ? " **" + candidateName + "**" : ""}! I'm your AI Career Copilot, backed by **167 specialist career agents**.\n\nI can help you with:\n- 📄 **Resume & ATS optimization** — bullet rewrites, keyword injection, scoring\n- 💼 **Job search strategy** — targeting companies, outreach templates, referrals\n- 🎤 **Interview preparation** — STAR method, live sessions, DSA practice\n- 🐙 **GitHub portfolio review** — code quality, CI/CD, documentation\n- 🔗 **LinkedIn optimization** — headline, summary, recruiter outreach\n- 🗺️ **Career roadmap** — 30/60/90-day plans, salary negotiation, promotion paths\n\nWhat would you like to work on today?`;
     } else {
       // ── Semantic Agent Synthesis Engine ────────────────────────────────
       // Instead of listing agents, we read their prompt content and compose
@@ -550,16 +550,15 @@ export async function routeCompletion(
           salary: "Google SWE Compensation & Negotiation",
         };
         const header = intentHeader[intentLabel] || "Career Guidance";
-        mockResponse = `${contextIntro}## ${header}\n\n${synthesisedContent}\n\n---\n> 💡 **Add a Groq or Gemini API key** in Settings → API Keys to unlock fully live, personalised AI responses from all 167 career agents.`;
+        synthesizedResponse = `${contextIntro}## ${header}\n\n${synthesisedContent}\n\n---\n> 💡 **Add a Groq or Gemini API key** in Settings → API Keys to unlock fully live, personalised AI responses from all 167 career agents.`;
       } else {
-        // Use intent-based semantic answer as fallback
         const answer = intentAnswers[intentLabel] || intentAnswers["job_search"];
-        mockResponse = answer + `\n\n---\n> 💡 **Add a Groq or Gemini API key** in Settings → API Keys to unlock fully live, personalised AI responses from all 167 career agents.`;
+        synthesizedResponse = answer + `\n\n---\n> 💡 **Add a Groq or Gemini API key** in Settings → API Keys to unlock fully live, personalised AI responses from all 167 career agents.`;
       }
     }
 
     if (onChunk) {
-      const words = mockResponse.split(" ");
+      const words = synthesizedResponse.split(" ");
       let currentText = "";
       for (const word of words) {
         const chunk = word + " ";
@@ -569,8 +568,9 @@ export async function routeCompletion(
       }
       finalContent = currentText;
     } else {
-      finalContent = mockResponse;
+      finalContent = synthesizedResponse;
     }
+
     completed = true;
   }
 

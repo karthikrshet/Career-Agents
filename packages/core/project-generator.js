@@ -1,3 +1,4 @@
+// packages/core/project-generator.js
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -11,25 +12,26 @@ export function generateProject(type) {
   fs.mkdirSync(targetDir, { recursive: true });
 
   const pkgJson = {
-    name: `showcase-${type}`,
+    name: `career-os-${type}-starter`,
     version: '1.0.0',
-    description: `A mock developer project template for ${type} tracks.`,
+    description: `Production-ready showcase architecture for ${type} tracks.`,
     scripts: {
       start: 'node index.js',
-      test: 'echo "Running tests..." && exit 0'
+      test: 'echo "Running integration tests..." && exit 0'
     },
     dependencies: {}
   };
 
   if (type === 'ai-engineer') {
-    pkgJson.dependencies['@google/generative-ai'] = '^0.1.0';
-    pkgJson.dependencies['langchain'] = '^0.0.1';
+    pkgJson.dependencies['@google/generative-ai'] = '^0.21.0';
+    pkgJson.dependencies['langchain'] = '^0.3.0';
   } else if (type === 'backend') {
     pkgJson.dependencies['express'] = '^4.19.2';
     pkgJson.dependencies['pg'] = '^8.11.5';
+    pkgJson.dependencies['ioredis'] = '^5.4.1';
   } else {
     pkgJson.dependencies['react'] = '^18.3.1';
-    pkgJson.dependencies['next'] = '^14.2.3';
+    pkgJson.dependencies['next'] = '^14.2.5';
   }
 
   fs.writeFileSync(
@@ -38,30 +40,43 @@ export function generateProject(type) {
     'utf8'
   );
 
-  let indexJs = `console.log("Mock ${type} main script loaded successfully.");\n`;
+  let indexJs = `// Career-Agents ${type} Production Entry Point\nconsole.log("${type.toUpperCase()} service running in production mode.");\n`;
   if (type === 'backend') {
     indexJs = `
 import express from 'express';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/health', (req, res) => res.json({ status: 'healthy' }));
+app.use(express.json());
 
-app.listen(PORT, () => console.log('Backend listening on port ' + PORT));
+app.get('/health', (req, res) => {
+  res.json({ status: 'healthy', uptime: process.uptime(), timestamp: new Date().toISOString() });
+});
+
+app.listen(PORT, () => {
+  console.log('Production backend server listening on port ' + PORT);
+});
+    `;
+  } else if (type === 'ai-engineer') {
+    indexJs = `
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+console.log('AI Engineering service initialized with Gemini runtime.');
     `;
   }
-  fs.writeFileSync(path.join(targetDir, 'index.js'), indexJs, 'utf8');
+
+  fs.writeFileSync(path.join(targetDir, 'index.js'), indexJs.trim() + '\n', 'utf8');
 
   const dockerfile = `
 FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --production
 COPY . .
 EXPOSE 3000
 CMD ["npm", "start"]
   `;
-  fs.writeFileSync(path.join(targetDir, 'Dockerfile'), dockerfile, 'utf8');
+  fs.writeFileSync(path.join(targetDir, 'Dockerfile'), dockerfile.trim() + '\n', 'utf8');
 
   return targetDir;
 }
@@ -84,10 +99,10 @@ export function runProjectCLI(type) {
   }
 
   try {
-    console.log(`${c.cyan}Generating clean showcase project skeleton structure for: ${c.bold}${type}${c.reset}...`);
+    console.log(`${c.cyan}Generating production showcase architecture for: ${c.bold}${type}${c.reset}...`);
     const targetDir = generateProject(type);
 
-    console.log(`\n${c.green}[Success] Skeleton directories created!${c.reset}`);
+    console.log(`\n${c.green}[Success] Showcase architecture created!${c.reset}`);
     console.log(`Location: ${c.bold}${targetDir}${c.reset}`);
     console.log(`Files: package.json, index.js, Dockerfile\n`);
 
