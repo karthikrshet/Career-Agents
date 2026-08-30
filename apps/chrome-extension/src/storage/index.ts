@@ -5,11 +5,13 @@ export interface StoragePreferences {
   theme: 'light' | 'dark' | 'system';
   firstName: string;
   lastName: string;
+  fullName?: string;
   email: string;
   phone: string;
   linkedin: string;
   github: string;
   portfolio: string;
+  location?: string;
   workAuth: string;
   currentRole?: string;
   yearsOfExperience?: string;
@@ -27,8 +29,8 @@ export interface StoragePreferences {
 export function getPreferences(): Promise<Partial<StoragePreferences>> {
   return new Promise((resolve) => {
     chrome.storage.sync.get([
-      "workspaceUrl", "theme", "firstName", "lastName", "email", "phone",
-      "linkedin", "github", "portfolio", "workAuth", "currentRole",
+      "workspaceUrl", "theme", "firstName", "lastName", "fullName", "email", "phone",
+      "linkedin", "github", "portfolio", "location", "workAuth", "currentRole",
       "yearsOfExperience", "education", "visaSponsorship", "expectedSalary",
       "primarySkills", "apiProvider", "apiKey", "selectedAgentId", "tokenOptimization", "token"
     ], (res) => {

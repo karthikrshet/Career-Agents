@@ -8,11 +8,17 @@ const __dirname = path.dirname(__filename);
 const root = path.resolve(__dirname, '../..');
 
 export function generateProject(type) {
-  const targetDir = path.join(root, 'exports', 'skeletons', type);
+  const allowed = ['ai-engineer', 'backend', 'frontend'];
+  const sanitizedType = allowed.includes(type) ? type : 'backend';
+  const baseDir = path.resolve(root, 'exports', 'skeletons');
+  const targetDir = path.resolve(baseDir, sanitizedType);
+  if (!targetDir.startsWith(baseDir)) {
+    throw new Error('Invalid project directory');
+  }
   fs.mkdirSync(targetDir, { recursive: true });
 
   const pkgJson = {
-    name: `career-os-${type}-starter`,
+    name: `career-os-${sanitizedType}-starter`,
     version: '1.0.0',
     description: `Production-ready showcase architecture for ${type} tracks.`,
     scripts: {

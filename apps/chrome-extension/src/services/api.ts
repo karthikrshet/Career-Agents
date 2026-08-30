@@ -228,5 +228,6 @@ export async function generateShortAnswerEssay(
   company: string = "Target Company",
   userRole: string = "Software Engineer"
 ): Promise<string> {
-  return `I am excited about the ${userRole} opening at ${company} because of your team's commitment to high software engineering standards and cutting-edge product impact. With my background in architecting scalable systems and delivering low-latency web applications, I am eager to contribute to your core roadmap and collaborate with your talented engineering team.`;
+  const cleanQ = question.trim();
+  return `Regarding "${cleanQ.slice(0, 60)}${cleanQ.length > 60 ? "..." : ""}" for the ${userRole} role at ${company}: I bring proven technical execution in architecting high-throughput distributed systems and delivering reliable, low-latency applications. My background aligns directly with ${company}'s engineering standards and mission.`;
 }

@@ -9,9 +9,17 @@ const __dirname = path.dirname(__filename);
 const root = path.resolve(__dirname, '../..');
 
 export function loadCompanyInterviewQuestions(company = 'google', mode = 'behavioral') {
-  const companyDir = path.join(root, 'company-interviews');
-  const normalized = company.toLowerCase().trim();
-  const filePath = path.join(companyDir, `${normalized}-interview-coach.md`);
+  const companyDir = path.resolve(root, 'company-interviews');
+  const sanitizedCo = (company || 'google').toLowerCase().trim().replace(/[^a-z0-9-_]/g, '');
+  const filePath = path.resolve(companyDir, `${sanitizedCo}-interview-coach.md`);
+
+  // Path traversal guard
+  if (!filePath.startsWith(companyDir)) {
+    return [
+      `Explain how you architect scalable systems and maintain high availability under peak load.`,
+      `Describe a time you solved a complex technical conflict with a teammate.`
+    ];
+  }
 
   const questions = [];
 

@@ -238,7 +238,7 @@ function fillApplicationForm(profile: AutofillProfile): { success: boolean; fill
 }
 
 // Listen for messages from Sidepanel & Popup
-chrome.runtime.onMessage.addListener((message: ExtensionMessage, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message: ExtensionMessage, _sender, sendResponse) => {
   if (message.type === "EXTRACT_JOB_REQUEST") {
     sendResponse({ type: "EXTRACT_JOB_RESPONSE", payload: getJobMetadata() });
   } else if (message.type === "EXTRACT_CODE_PROBLEM_REQUEST") {

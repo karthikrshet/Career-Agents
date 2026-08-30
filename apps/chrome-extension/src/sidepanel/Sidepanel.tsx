@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Search, Mic, MicOff, Copy, Check, Sparkles, Code2,
-  Settings, Bot, Zap, Share2, BookOpen, Send, CheckCircle,
-  AlertCircle, ArrowRight, ExternalLink, RefreshCw, FileText,
-  UserCheck, ShieldCheck, Target, Plus, Download, Mail
+  Mic, MicOff, Copy, Check, Sparkles,
+  Zap, Share2, BookOpen, RefreshCw, UserCheck
 } from "lucide-react";
 import { getPreferences, savePreferences, StoragePreferences } from "../storage";
 import {
   JobDetails,
   CodeReviewPayload,
-  LinkedInProfilePayload,
   GitHubRepoPayload,
   AutofillProfile,
 } from "../messaging/types";
