@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import {
   Mic, MicOff, Copy, Check, Sparkles,
-  Zap, Share2, BookOpen, RefreshCw, UserCheck
+  Zap, Share2, BookOpen, RefreshCw, UserCheck,
+  ArrowUpRight
 } from "lucide-react";
 import { getPreferences, savePreferences, StoragePreferences } from "../storage";
 import {
@@ -17,11 +18,63 @@ import {
   generateLinkedInPost,
   generateGitHubCaseStudy,
   generateShortAnswerEssay,
+  calculateCompensationLadder,
+  generateCounterOfferEmail,
+  calculateSystemDesignCapacity,
+  syncJobToApplicationTracker,
 } from "../services/api";
+
+const STAR_PRINCIPLES = [
+  {
+    id: "ownership",
+    title: "1. Ownership & Latency Reduction",
+    principle: "Customer Obsession / Ownership",
+    situation: "Production database cluster at peak load experiencing p99 latency spikes up to 850ms.",
+    task: "Lead optimization initiative to cut p99 latency below 100ms without introducing downtime.",
+    action: "Analyzed slow query logs, built compound B-tree indexes in PostgreSQL, implemented Redis read-through caching, and decoupled write pipelines via Kafka.",
+    result: "Reduced p99 latency by 42% (from 850ms to 48ms), scaled throughput to 15M+ daily requests, and saved $45,000/yr in compute costs.",
+  },
+  {
+    id: "ambiguity",
+    title: "2. Technical Ambiguity & Architecture",
+    principle: "Invent & Simplify / Bias for Action",
+    situation: "Legacy monolithic authentication service failing under multi-tenant enterprise migrations.",
+    task: "Design and transition to a distributed OAuth2 / OIDC token-exchange microservice architecture.",
+    action: "Drafted RFC architecture spec, gathered consensus from 4 cross-functional teams, implemented stateless JWT caching in Redis, and executed phased canary migration.",
+    result: "Migrated 2.5M enterprise accounts with zero authentication outages and reduced token validation latency by 65%.",
+  },
+  {
+    id: "outage",
+    title: "3. Outage & Crisis Postmortem",
+    principle: "Earn Trust / Deliver Results",
+    situation: "Upstream third-party payment gateway experienced sudden 502 Bad Gateway outages causing failed checkouts.",
+    task: "Restore transaction processing and harden payment pipeline against cascading failures.",
+    action: "Implemented circuit-breaker patterns with exponential backoff, added asynchronous retry queues with idempotent transaction keys, and established alerting SLOs.",
+    result: "Prevented duplicate charges across 100k+ transactions and recovered 99.99% payment processing availability.",
+  },
+  {
+    id: "disagreement",
+    title: "4. Disagreement & Consensus",
+    principle: "Have Backbone; Disagree & Commit",
+    situation: "Team debated between adopting GraphQL vs gRPC for internal high-throughput microservice communication.",
+    task: "Resolve architectural disagreement through objective benchmarking and proof-of-concept testing.",
+    action: "Built synthetic benchmark measuring serialization overhead, network payload size, and developer ergonomics, proving gRPC yielded 4x throughput for internal RPCs.",
+    result: "Unified engineering team around gRPC for backend microservices and GraphQL for client BFF, accelerating delivery velocity by 30%.",
+  },
+];
 
 export function Sidepanel() {
   const [activeTab, setActiveTab] = useState<
-    "live-interview" | "ats-tailor" | "code-profiler" | "linkedin" | "github" | "autofill" | "settings"
+    | "live-interview"
+    | "ats-tailor"
+    | "negotiator"
+    | "system-design"
+    | "star-bank"
+    | "code-profiler"
+    | "linkedin"
+    | "github"
+    | "autofill"
+    | "settings"
   >("live-interview");
 
   const [activeHost, setActiveHost] = useState("webpage");
@@ -38,29 +91,46 @@ export function Sidepanel() {
   const [tailorResult, setTailorResult] = useState<any>(null);
   const [tailoring, setTailoring] = useState(false);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [syncStatus, setSyncStatus] = useState<string | null>(null);
 
-  // 3. LeetCode / Big-O Profiler State
+  // 3. Compensation State
+  const [compLevel, setCompLevel] = useState<"L3" | "L4" | "L5" | "L6" | "L7">("L5");
+  const [currentOfferInput, setCurrentOfferInput] = useState("$260,000");
+  const [targetOfferInput, setTargetOfferInput] = useState("$320,000");
+  const [compLadder, setCompLadder] = useState<any>(null);
+  const [counterEmail, setCounterEmail] = useState("");
+
+  // 4. System Design Estimator State
+  const [dauInput, setDauInput] = useState(50000000);
+  const [readRatioInput, setReadRatioInput] = useState(10);
+  const payloadSizeInput = 2000;
+  const [capacityResult, setCapacityResult] = useState<any>(null);
+
+  // 5. STAR Story Bank State
+  const [selectedStoryId, setSelectedStoryId] = useState("ownership");
+
+  // 6. LeetCode / Big-O Profiler State
   const [codePayload, setCodePayload] = useState<CodeReviewPayload | null>(null);
   const [codeProfilerResult, setCodeProfilerResult] = useState<any>(null);
   const [profilingCode, setProfilingCode] = useState(false);
 
-  // 4. LinkedIn Post & Inbound Magnet State
+  // 7. LinkedIn Post State
   const [postType, setPostType] = useState<"scaling" | "outage" | "transition">("scaling");
   const [generatedPost, setGeneratedPost] = useState("");
   const [generatingPost, setGeneratingPost] = useState(false);
 
-  // 5. GitHub Case Study State
+  // 8. GitHub Case Study State
   const [githubRepo, setGithubRepo] = useState<GitHubRepoPayload | null>(null);
   const [caseStudyText, setCaseStudyText] = useState("");
   const [generatingCaseStudy, setGeneratingCaseStudy] = useState(false);
 
-  // 6. Autofill & Short Answer State
+  // 9. Autofill & Short Answer State
   const [customPrompt, setCustomPrompt] = useState("");
   const [draftedAnswer, setDraftedAnswer] = useState("");
   const [autofilling, setAutofilling] = useState(false);
   const [autofillSuccessCount, setAutofillSuccessCount] = useState<number | null>(null);
 
-  // 7. Settings State
+  // 10. Settings State
   const [workspaceUrl, setWorkspaceUrl] = useState("http://localhost:3000");
   const [apiProvider, setApiProvider] = useState("groq");
   const [apiKey, setApiKey] = useState("");
@@ -85,8 +155,9 @@ export function Sidepanel() {
       if (res.apiKey) setApiKey(res.apiKey);
     });
 
-    // Auto extract metadata from current page
     handleExtractFromPage();
+    setCompLadder(calculateCompensationLadder("Google", compLevel));
+    setCapacityResult(calculateSystemDesignCapacity(dauInput, readRatioInput, payloadSizeInput));
   }, []);
 
   function handleExtractFromPage() {
@@ -94,21 +165,18 @@ export function Sidepanel() {
       if (!tabs || !tabs[0]?.id) return;
       const tabId = tabs[0].id;
 
-      // Try Job Extract
       chrome.tabs.sendMessage(tabId, { type: "EXTRACT_JOB_REQUEST" }, (response) => {
         if (response && response.payload && response.payload.title) {
           setJobDetails(response.payload);
         }
       });
 
-      // Try Code Problem Extract
       chrome.tabs.sendMessage(tabId, { type: "EXTRACT_CODE_PROBLEM_REQUEST" }, (response) => {
         if (response && response.payload && response.payload.problemText) {
           setCodePayload(response.payload);
         }
       });
 
-      // Try GitHub Extract
       chrome.tabs.sendMessage(tabId, { type: "EXTRACT_GITHUB_REPO_REQUEST" }, (response) => {
         if (response && response.payload && response.payload.name) {
           setGithubRepo(response.payload);
@@ -117,7 +185,6 @@ export function Sidepanel() {
     });
   }
 
-  // Live Speech Recognition Toggle
   function toggleVoiceListening() {
     if (isListening) {
       setIsListening(false);
@@ -169,6 +236,29 @@ export function Sidepanel() {
     const result = await generateJobTailoring(title, company, text, profile.primarySkills);
     setTailorResult(result);
     setTailoring(false);
+  }
+
+  async function handleSyncToTracker() {
+    if (!jobDetails) return;
+    setSyncStatus("Syncing...");
+    const res = await syncJobToApplicationTracker(jobDetails, "Applied");
+    setSyncStatus(res.message);
+    setTimeout(() => setSyncStatus(null), 3000);
+  }
+
+  function handleCalculateComp(level: "L3" | "L4" | "L5" | "L6" | "L7") {
+    setCompLevel(level);
+    setCompLadder(calculateCompensationLadder(jobDetails?.company || "Google", level));
+  }
+
+  function handleGenerateCounterOffer() {
+    const email = generateCounterOfferEmail(
+      jobDetails?.company || "Target Company",
+      jobDetails?.title || "Senior Software Engineer",
+      currentOfferInput,
+      targetOfferInput
+    );
+    setCounterEmail(email);
   }
 
   async function handleRunCodeProfiler() {
@@ -245,6 +335,8 @@ export function Sidepanel() {
     setTimeout(() => setCopiedKey(null), 2000);
   }
 
+  const selectedStory = STAR_PRINCIPLES.find((s) => s.id === selectedStoryId) || STAR_PRINCIPLES[0];
+
   return (
     <div className="flex flex-col h-screen w-full bg-[#070b14] text-slate-100 font-sans text-xs select-none">
       {/* Top Header Bar */}
@@ -273,18 +365,20 @@ export function Sidepanel() {
       {/* Navigation Tab Bar */}
       <div className="flex items-center gap-1 p-2 bg-[#0a0f1d] border-b border-border/40 overflow-x-auto shrink-0">
         {[
-          { id: "live-interview" as const, label: "🎙️ Interview", title: "Live Interview Swarm" },
-          { id: "ats-tailor" as const, label: "🎯 ATS Tailor", title: "Job Scanner & Tailor" },
-          { id: "code-profiler" as const, label: "⚡ Big-O", title: "LeetCode Big-O Profiler" },
-          { id: "linkedin" as const, label: "💼 LinkedIn", title: "Viral Post Creator" },
-          { id: "github" as const, label: "🐙 GitHub", title: "Repo Case Study" },
-          { id: "autofill" as const, label: "📝 Autofill", title: "Application Form Autofill" },
-          { id: "settings" as const, label: "⚙️ Setup", title: "Extension Settings" },
+          { id: "live-interview" as const, label: "🎙️ Interview" },
+          { id: "ats-tailor" as const, label: "🎯 ATS Tailor" },
+          { id: "negotiator" as const, label: "💰 Comp" },
+          { id: "system-design" as const, label: "📐 SysDesign" },
+          { id: "star-bank" as const, label: "⭐ STAR Vault" },
+          { id: "code-profiler" as const, label: "⚡ Big-O" },
+          { id: "linkedin" as const, label: "💼 LinkedIn" },
+          { id: "github" as const, label: "🐙 GitHub" },
+          { id: "autofill" as const, label: "📝 Autofill" },
+          { id: "settings" as const, label: "⚙️ Setup" },
         ].map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            title={tab.title}
             className={`px-2.5 py-1.5 rounded-lg text-[11px] font-semibold shrink-0 transition-all border ${
               activeTab === tab.id
                 ? "bg-cyan-500/20 text-cyan-300 border-cyan-400 shadow-sm"
@@ -321,7 +415,7 @@ export function Sidepanel() {
 
             <textarea
               className="w-full h-20 p-2.5 rounded-xl bg-slate-900 border border-border/60 text-xs text-white resize-none focus:outline-none focus:ring-1 focus:ring-cyan-400 leading-relaxed"
-              placeholder="Paste or speak live interview question (e.g. 'Tell me about a time you optimized database latency')..."
+              placeholder="Paste or speak live interview question..."
               value={liveQuestion}
               onChange={(e) => setLiveQuestion(e.target.value)}
             />
@@ -329,7 +423,7 @@ export function Sidepanel() {
             <button
               onClick={handleRunSwarm}
               disabled={generatingSwarm || !liveQuestion.trim()}
-              className="w-full py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold text-xs shadow transition-all flex items-center justify-center gap-1.5 disabled:opacity-50"
+              className="w-full py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 text-white font-bold text-xs shadow flex items-center justify-center gap-1.5 disabled:opacity-50"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>{generatingSwarm ? "Deliberating..." : "Deliberate Swarm & Generate STAR"}</span>
@@ -337,7 +431,6 @@ export function Sidepanel() {
 
             {swarmResult && (
               <div className="space-y-2.5 pt-1">
-                {/* Swarm Deliberation Summary */}
                 <div className="p-3 rounded-xl bg-slate-900/80 border border-border/60 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] font-bold text-white">Panel Consensus Verdict</span>
@@ -359,10 +452,9 @@ export function Sidepanel() {
                   </div>
                 </div>
 
-                {/* STAR Structured Response */}
                 <div className="p-3 rounded-xl bg-black/60 border border-border/60 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold text-cyan-300">STAR Response (45-sec Verbal Pitch)</span>
+                    <span className="text-[11px] font-bold text-cyan-300">STAR Response (45-sec Pitch)</span>
                     <button
                       onClick={() => handleCopy(swarmResult.starAnswer, "star")}
                       className="text-[10px] text-cyan-400 hover:underline flex items-center gap-1"
@@ -395,18 +487,32 @@ export function Sidepanel() {
               <p className="text-[10px] text-muted-foreground truncate">{jobDetails?.location || "Detected on active tab"}</p>
             </div>
 
-            <button
-              onClick={handleRunJobTailor}
-              disabled={tailoring}
-              className="w-full py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 text-white font-bold text-xs shadow flex items-center justify-center gap-1.5"
-            >
-              <Zap className="w-3.5 h-3.5" />
-              <span>{tailoring ? "Analyzing ATS & Keywords..." : "1-Click ATS Tailor Application"}</span>
-            </button>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={handleRunJobTailor}
+                disabled={tailoring}
+                className="py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 text-white font-bold text-xs shadow flex items-center justify-center gap-1.5"
+              >
+                <Zap className="w-3.5 h-3.5" />
+                <span>{tailoring ? "Analyzing..." : "1-Click Tailor"}</span>
+              </button>
+
+              <button
+                onClick={handleSyncToTracker}
+                disabled={!jobDetails}
+                className="py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-cyan-500/30 font-bold text-xs shadow flex items-center justify-center gap-1.5"
+              >
+                <ArrowUpRight className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Sync to Tracker</span>
+              </button>
+            </div>
+
+            {syncStatus && (
+              <p className="text-[11px] text-emerald-400 text-center font-semibold">{syncStatus}</p>
+            )}
 
             {tailorResult && (
               <div className="space-y-3 pt-1">
-                {/* Match score & keywords */}
                 <div className="p-3 rounded-xl bg-slate-900/80 border border-border/60 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-slate-200">ATS Match Score</span>
@@ -424,7 +530,6 @@ export function Sidepanel() {
                   </div>
                 </div>
 
-                {/* Google XYZ Bullets */}
                 <div className="p-3 rounded-xl bg-black/60 border border-border/60 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-cyan-300 text-[11px]">Tailored Google XYZ Bullets</span>
@@ -433,7 +538,7 @@ export function Sidepanel() {
                       className="text-[10px] text-cyan-400 hover:underline flex items-center gap-1"
                     >
                       {copiedKey === "bullets" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-                      <span>Copy Bullets</span>
+                      <span>Copy</span>
                     </button>
                   </div>
                   <div className="space-y-1.5">
@@ -445,7 +550,6 @@ export function Sidepanel() {
                   </div>
                 </div>
 
-                {/* Cover Letter */}
                 <div className="p-3 rounded-xl bg-black/60 border border-border/60 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-slate-200 text-[11px]">Custom 3-Paragraph Cover Letter</span>
@@ -466,7 +570,219 @@ export function Sidepanel() {
           </div>
         )}
 
-        {/* TAB 3: LEETCODE / BIG-O PROFILER */}
+        {/* TAB 3: SALARY & COMPENSATION NEGOTIATOR */}
+        {activeTab === "negotiator" && (
+          <div className="space-y-3">
+            <div className="p-3 rounded-xl bg-slate-900 border border-border/60 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-white text-xs">Levels.fyi Market Comp Ladder</span>
+                <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono font-bold">
+                  {jobDetails?.company || "Google"}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-1 pt-1">
+                {(["L3", "L4", "L5", "L6", "L7"] as const).map((lvl) => (
+                  <button
+                    key={lvl}
+                    onClick={() => handleCalculateComp(lvl)}
+                    className={`flex-1 py-1 rounded text-[10px] font-bold border transition-all ${
+                      compLevel === lvl
+                        ? "bg-emerald-500/20 text-emerald-300 border-emerald-400"
+                        : "bg-slate-950 border-border text-slate-400 hover:text-white"
+                    }`}
+                  >
+                    {lvl}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {compLadder && (
+              <div className="grid grid-cols-2 gap-2">
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-border/60">
+                  <p className="text-[9px] uppercase font-bold text-muted-foreground">Base Salary</p>
+                  <p className="text-xs font-bold font-mono text-slate-100 mt-0.5">{compLadder.baseSalary}</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-border/60">
+                  <p className="text-[9px] uppercase font-bold text-muted-foreground">Equity / RSUs</p>
+                  <p className="text-xs font-bold font-mono text-cyan-400 mt-0.5">{compLadder.equityAnnual}</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-border/60">
+                  <p className="text-[9px] uppercase font-bold text-muted-foreground">Total Comp (p50)</p>
+                  <p className="text-xs font-bold font-mono text-emerald-400 mt-0.5">{compLadder.totalComp}</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-border/60">
+                  <p className="text-[9px] uppercase font-bold text-muted-foreground">Top-Band (p90)</p>
+                  <p className="text-xs font-bold font-mono text-purple-400 mt-0.5">{compLadder.p90}</p>
+                </div>
+              </div>
+            )}
+
+            <div className="p-3 rounded-xl bg-black/60 border border-border/60 space-y-2">
+              <span className="font-bold text-slate-200 text-[11px] block">Draft Counter-Offer Email</span>
+              <div className="grid grid-cols-2 gap-2">
+                <input
+                  type="text"
+                  placeholder="Current Offer (e.g. $260k)"
+                  className="p-1.5 rounded bg-slate-900 border border-border text-[11px] text-white"
+                  value={currentOfferInput}
+                  onChange={(e) => setCurrentOfferInput(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="Target Ask (e.g. $320k)"
+                  className="p-1.5 rounded bg-slate-900 border border-border text-[11px] text-white"
+                  value={targetOfferInput}
+                  onChange={(e) => setTargetOfferInput(e.target.value)}
+                />
+              </div>
+              <button
+                onClick={handleGenerateCounterOffer}
+                className="w-full py-1.5 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold text-xs"
+              >
+                Generate Negotiation Pitch
+              </button>
+
+              {counterEmail && (
+                <div className="space-y-1.5 pt-1">
+                  <div className="flex justify-end">
+                    <button
+                      onClick={() => handleCopy(counterEmail, "counter_email")}
+                      className="text-[10px] text-cyan-400 hover:underline flex items-center gap-1"
+                    >
+                      {copiedKey === "counter_email" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                      <span>Copy Email</span>
+                    </button>
+                  </div>
+                  <pre className="p-2.5 rounded-lg bg-slate-900 text-[10.5px] text-slate-200 whitespace-pre-wrap leading-relaxed max-h-40 overflow-y-auto">
+                    {counterEmail}
+                  </pre>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* TAB 4: SYSTEM DESIGN ESTIMATOR */}
+        {activeTab === "system-design" && (
+          <div className="space-y-3">
+            <div className="p-3 rounded-xl bg-slate-900 border border-border/60 space-y-2">
+              <span className="font-bold text-white text-xs block">Back-of-the-Envelope Capacity Estimator</span>
+              <div className="space-y-1.5">
+                <div>
+                  <div className="flex justify-between text-[10px] text-muted-foreground">
+                    <span>Daily Active Users (DAU)</span>
+                    <span className="font-mono text-cyan-400">{(dauInput / 1000000).toFixed(0)}M DAU</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={1000000}
+                    max={500000000}
+                    step={1000000}
+                    value={dauInput}
+                    onChange={(e) => {
+                      setDauInput(Number(e.target.value));
+                      setCapacityResult(calculateSystemDesignCapacity(Number(e.target.value), readRatioInput, payloadSizeInput));
+                    }}
+                    className="w-full h-1 bg-slate-800 rounded-lg cursor-pointer"
+                  />
+                </div>
+
+                <div>
+                  <div className="flex justify-between text-[10px] text-muted-foreground">
+                    <span>Read : Write Ratio</span>
+                    <span className="font-mono text-purple-400">{readRatioInput} : 1</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={1}
+                    max={100}
+                    step={1}
+                    value={readRatioInput}
+                    onChange={(e) => {
+                      setReadRatioInput(Number(e.target.value));
+                      setCapacityResult(calculateSystemDesignCapacity(dauInput, Number(e.target.value), payloadSizeInput));
+                    }}
+                    className="w-full h-1 bg-slate-800 rounded-lg cursor-pointer"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {capacityResult && (
+              <div className="grid grid-cols-2 gap-2">
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-border/60">
+                  <p className="text-[9px] uppercase font-bold text-muted-foreground">Peak Throughput</p>
+                  <p className="text-xs font-bold font-mono text-cyan-400 mt-0.5">{capacityResult.totalQps} QPS</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-border/60">
+                  <p className="text-[9px] uppercase font-bold text-muted-foreground">Ingress / Write</p>
+                  <p className="text-xs font-bold font-mono text-slate-100 mt-0.5">{capacityResult.ingressMBps}</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-border/60">
+                  <p className="text-[9px] uppercase font-bold text-muted-foreground">5-Year Storage</p>
+                  <p className="text-xs font-bold font-mono text-emerald-400 mt-0.5">{capacityResult.storage5YearsTB}</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900 border border-border/60">
+                  <p className="text-[9px] uppercase font-bold text-muted-foreground">RAM Caching (80/20)</p>
+                  <p className="text-xs font-bold font-mono text-purple-400 mt-0.5">{capacityResult.cacheMemoryGB}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TAB 5: STAR BEHAVIORAL STORY BANK */}
+        {activeTab === "star-bank" && (
+          <div className="space-y-3">
+            <div className="p-2.5 rounded-xl bg-slate-900 border border-border/60">
+              <span className="font-bold text-white text-xs block mb-1">8-STAR Behavioral Story Vault</span>
+              <div className="flex gap-1 overflow-x-auto pb-1">
+                {STAR_PRINCIPLES.map((st) => (
+                  <button
+                    key={st.id}
+                    onClick={() => setSelectedStoryId(st.id)}
+                    className={`px-2 py-1 rounded text-[10px] font-semibold shrink-0 border ${
+                      selectedStoryId === st.id
+                        ? "bg-cyan-500/20 text-cyan-300 border-cyan-400"
+                        : "bg-slate-950 border-border text-slate-400"
+                    }`}
+                  >
+                    {st.title.split(".")[1]}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-3 rounded-xl bg-black/60 border border-border/60 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-bold text-cyan-300">{selectedStory.title}</span>
+                <button
+                  onClick={() =>
+                    handleCopy(
+                      `Situation: ${selectedStory.situation}\nTask: ${selectedStory.task}\nAction: ${selectedStory.action}\nResult: ${selectedStory.result}`,
+                      "star_story"
+                    )
+                  }
+                  className="text-[10px] text-cyan-400 hover:underline flex items-center gap-1"
+                >
+                  {copiedKey === "star_story" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                  <span>Copy Story</span>
+                </button>
+              </div>
+
+              <div className="space-y-1.5 text-[11px] text-slate-200">
+                <p><strong className="text-slate-400">Situation:</strong> {selectedStory.situation}</p>
+                <p><strong className="text-slate-400">Task:</strong> {selectedStory.task}</p>
+                <p><strong className="text-slate-400">Action:</strong> {selectedStory.action}</p>
+                <p><strong className="text-emerald-400">Result:</strong> {selectedStory.result}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 6: LEETCODE / BIG-O PROFILER */}
         {activeTab === "code-profiler" && (
           <div className="space-y-3">
             <div className="p-3 rounded-xl bg-slate-900 border border-border/60 space-y-1">
@@ -529,7 +845,7 @@ export function Sidepanel() {
           </div>
         )}
 
-        {/* TAB 4: LINKEDIN VIRAL POST GENERATOR */}
+        {/* TAB 7: LINKEDIN VIRAL POST GENERATOR */}
         {activeTab === "linkedin" && (
           <div className="space-y-3">
             <div className="p-2.5 rounded-xl bg-slate-900 border border-border/60">
@@ -561,7 +877,7 @@ export function Sidepanel() {
               className="w-full py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 text-white font-bold text-xs shadow flex items-center justify-center gap-1.5"
             >
               <Share2 className="w-3.5 h-3.5" />
-              <span>{generatingPost ? "Drafting Viral Post..." : "Generate LinkedIn Post"}</span>
+              <span>{generatingPost ? "Drafting..." : "Generate LinkedIn Post"}</span>
             </button>
 
             {generatedPost && (
@@ -584,7 +900,7 @@ export function Sidepanel() {
           </div>
         )}
 
-        {/* TAB 5: GITHUB ARCHITECTURE CASE STUDY */}
+        {/* TAB 8: GITHUB ARCHITECTURE CASE STUDY */}
         {activeTab === "github" && (
           <div className="space-y-3">
             <div className="p-3 rounded-xl bg-slate-900 border border-border/60 space-y-1">
@@ -600,7 +916,7 @@ export function Sidepanel() {
               className="w-full py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 text-white font-bold text-xs shadow flex items-center justify-center gap-1.5"
             >
               <BookOpen className="w-3.5 h-3.5" />
-              <span>{generatingCaseStudy ? "Generating Case Study..." : "Generate Architecture Case Study"}</span>
+              <span>{generatingCaseStudy ? "Generating..." : "Generate Architecture Case Study"}</span>
             </button>
 
             {caseStudyText && (
@@ -623,7 +939,7 @@ export function Sidepanel() {
           </div>
         )}
 
-        {/* TAB 6: FORM AUTOFILL & SHORT ANSWER AI */}
+        {/* TAB 9: FORM AUTOFILL & SHORT ANSWER AI */}
         {activeTab === "autofill" && (
           <div className="space-y-3">
             <div className="p-3 rounded-xl bg-slate-900 border border-border/60 space-y-1">
@@ -650,7 +966,7 @@ export function Sidepanel() {
               <span className="font-bold text-slate-200 text-[11px]">AI Short-Answer Question Drafter</span>
               <textarea
                 className="w-full h-16 p-2 rounded-lg bg-slate-900 border border-border text-xs text-white resize-none focus:outline-none focus:ring-1 focus:ring-cyan-400"
-                placeholder="Paste application question (e.g. 'Why do you want to work at this company?')..."
+                placeholder="Paste application question..."
                 value={customPrompt}
                 onChange={(e) => setCustomPrompt(e.target.value)}
               />
@@ -671,7 +987,7 @@ export function Sidepanel() {
           </div>
         )}
 
-        {/* TAB 7: SETUP & SETTINGS */}
+        {/* TAB 10: SETUP & SETTINGS */}
         {activeTab === "settings" && (
           <div className="space-y-3">
             <div className="p-3 rounded-xl bg-slate-900 border border-border/60 space-y-2.5">

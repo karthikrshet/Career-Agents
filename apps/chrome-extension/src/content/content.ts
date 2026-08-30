@@ -237,6 +237,62 @@ function fillApplicationForm(profile: AutofillProfile): { success: boolean; fill
   return { success: filledCount > 0, filledCount };
 }
 
+// 6. Floating In-Page Quick-Action HUD Badge
+function injectFloatingHUD() {
+  if (document.getElementById("career-agents-floating-hud")) return;
+
+  const supported = ["linkedin.com", "greenhouse.io", "lever.co", "ashbyhq.com", "myworkdayjobs.com", "indeed.com", "leetcode.com", "github.com"];
+  if (!hasHostnameMatch(window.location.href, supported)) return;
+
+  const hud = document.createElement("div");
+  hud.id = "career-agents-floating-hud";
+  hud.style.position = "fixed";
+  hud.style.bottom = "20px";
+  hud.style.right = "20px";
+  hud.style.zIndex = "2147483647";
+  hud.style.display = "flex";
+  hud.style.alignItems = "center";
+  hud.style.gap = "8px";
+  hud.style.padding = "8px 14px";
+  hud.style.backgroundColor = "#030712";
+  hud.style.border = "1px solid rgba(6, 182, 212, 0.4)";
+  hud.style.borderRadius = "9999px";
+  hud.style.boxShadow = "0 8px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(6, 182, 212, 0.3)";
+  hud.style.cursor = "pointer";
+  hud.style.fontFamily = "system-ui, -apple-system, sans-serif";
+  hud.style.fontSize = "12px";
+  hud.style.fontWeight = "bold";
+  hud.style.color = "#38bdf8";
+  hud.style.transition = "transform 0.2s, box-shadow 0.2s";
+
+  hud.innerHTML = `
+    <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e;"></span>
+    <span>Career Agents ⚡</span>
+  `;
+
+  hud.addEventListener("mouseenter", () => {
+    hud.style.transform = "scale(1.05)";
+    hud.style.boxShadow = "0 10px 35px rgba(0, 0, 0, 0.9), 0 0 25px rgba(6, 182, 212, 0.5)";
+  });
+  hud.addEventListener("mouseleave", () => {
+    hud.style.transform = "scale(1)";
+    hud.style.boxShadow = "0 8px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(6, 182, 212, 0.3)";
+  });
+
+  hud.addEventListener("click", () => {
+    chrome.runtime.sendMessage({ type: "OPEN_SIDEPANEL" });
+  });
+
+  document.body.appendChild(hud);
+}
+
+// Initialize HUD on document load
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", injectFloatingHUD);
+} else {
+  injectFloatingHUD();
+}
+
 // Listen for messages from Sidepanel & Popup
 chrome.runtime.onMessage.addListener((message: ExtensionMessage, _sender, sendResponse) => {
   if (message.type === "EXTRACT_JOB_REQUEST") {

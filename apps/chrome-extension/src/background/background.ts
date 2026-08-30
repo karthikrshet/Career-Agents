@@ -10,9 +10,16 @@ chrome.runtime.onInstalled.addListener(() => {
     });
 });
 
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "PING_BACKGROUND") {
     sendResponse({ type: "PING_RESPONSE", payload: { active: true } });
+  } else if (message.type === "OPEN_SIDEPANEL") {
+    if (sender.tab && sender.tab.id) {
+      chrome.sidePanel.open({ tabId: sender.tab.id })
+        .then(() => sendResponse({ success: true }))
+        .catch((err) => sendResponse({ success: false, error: err.message }));
+      return true;
+    }
   }
   return true;
 });

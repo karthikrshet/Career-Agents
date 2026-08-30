@@ -1,5 +1,6 @@
 // apps/chrome-extension/src/services/api.ts
 import { getPreferences, savePreferences } from "../storage";
+import { JobDetails } from "../messaging/types";
 
 async function getAuthHeaders(): Promise<HeadersInit> {
   const prefs = await getPreferences();
@@ -187,7 +188,157 @@ export async function generateCodeComplexityProfile(
   };
 }
 
-// 4. LinkedIn Viral Thought-Leadership Post Generator
+// 4. Compensation & Salary Ladder Calculator
+export function calculateCompensationLadder(
+  company: string = "Google",
+  level: "L3" | "L4" | "L5" | "L6" | "L7" = "L5"
+): {
+  baseSalary: string;
+  equityAnnual: string;
+  targetBonus: string;
+  totalComp: string;
+  p25: string;
+  p75: string;
+  p90: string;
+} {
+  const compMap: Record<string, Record<string, { base: number; equity: number; bonus: number }>> = {
+    google: {
+      L3: { base: 145000, equity: 45000, bonus: 21750 },
+      L4: { base: 178000, equity: 95000, bonus: 26700 },
+      L5: { base: 215000, equity: 170000, bonus: 32250 },
+      L6: { base: 265000, equity: 280000, bonus: 53000 },
+      L7: { base: 320000, equity: 480000, bonus: 80000 },
+    },
+    meta: {
+      L3: { base: 142000, equity: 50000, bonus: 14200 },
+      L4: { base: 175000, equity: 110000, bonus: 26250 },
+      L5: { base: 218000, equity: 195000, bonus: 32700 },
+      L6: { base: 270000, equity: 320000, bonus: 54000 },
+      L7: { base: 330000, equity: 520000, bonus: 82500 },
+    },
+  };
+
+  const co = company.toLowerCase().includes("meta") ? "meta" : "google";
+  const { base, equity, bonus } = compMap[co][level] || compMap.google.L5;
+  const total = base + equity + bonus;
+
+  return {
+    baseSalary: `$${Math.round(base / 1000)}k`,
+    equityAnnual: `$${Math.round(equity / 1000)}k/yr`,
+    targetBonus: `$${Math.round(bonus / 1000)}k`,
+    totalComp: `$${Math.round(total / 1000)}k`,
+    p25: `$${Math.round((total * 0.9) / 1000)}k`,
+    p75: `$${Math.round((total * 1.12) / 1000)}k`,
+    p90: `$${Math.round((total * 1.25) / 1000)}k`,
+  };
+}
+
+// 5. Counter-Offer Negotiation Email Generator
+export function generateCounterOfferEmail(
+  company: string,
+  role: string,
+  currentOffer: string,
+  targetAsk: string,
+  competingOffer: string = ""
+): string {
+  return `Hi [Recruiter Name],
+
+Thank you very much for extending the offer for the ${role} role at ${company}! I am genuinely excited about the team's engineering roadmap and the opportunity to make an immediate impact on your core systems.
+
+After reviewing the current total compensation package of ${currentOffer || "$280k"}, and considering the scope of technical ownership required${competingOffer ? ` as well as another competitive offer in consideration at ${competingOffer}` : ""}, I would be thrilled to sign immediately if we can adjust the package to ${targetAsk || "$330k Total Compensation"} (with flexibility across base salary or additional initial equity vesting).
+
+${company} is my clear top choice, and I am eager to finalize details and begin contributing to the team.
+
+Thank you again for your partnership throughout this process!
+
+Best regards,
+[Your Name]`;
+}
+
+// 6. System Design Back-of-the-Envelope Capacity Estimator
+export function calculateSystemDesignCapacity(
+  dau: number = 50000000,
+  readWriteRatio: number = 10,
+  payloadSizeBytes: number = 2000
+): {
+  totalQps: number;
+  writeQps: number;
+  readQps: number;
+  ingressMBps: string;
+  egressMBps: string;
+  storage5YearsTB: string;
+  cacheMemoryGB: string;
+} {
+  const secondsPerDay = 86400;
+  const avgQps = Math.round((dau * 10) / secondsPerDay); // Assuming 10 actions/user/day
+  const peakQps = avgQps * 2;
+  const writeQps = Math.round(peakQps / (readWriteRatio + 1));
+  const readQps = peakQps - writeQps;
+
+  const ingressMBps = ((writeQps * payloadSizeBytes) / (1024 * 1024)).toFixed(2);
+  const egressMBps = ((readQps * payloadSizeBytes) / (1024 * 1024)).toFixed(2);
+
+  const bytesPerDay = writeQps * payloadSizeBytes * secondsPerDay;
+  const storage5YearsTB = ((bytesPerDay * 365 * 5) / (1024 * 1024 * 1024 * 1024)).toFixed(1);
+  const cacheMemoryGB = (((readQps * payloadSizeBytes * secondsPerDay * 0.2) / (1024 * 1024 * 1024))).toFixed(1);
+
+  return {
+    totalQps: peakQps,
+    writeQps,
+    readQps,
+    ingressMBps: `${ingressMBps} MB/s`,
+    egressMBps: `${egressMBps} MB/s`,
+    storage5YearsTB: `${storage5YearsTB} TB (5-Yr)`,
+    cacheMemoryGB: `${cacheMemoryGB} GB RAM (80/20 Rule)`,
+  };
+}
+
+// 7. 1-Click Sync to Local Application Tracker
+export async function syncJobToApplicationTracker(
+  job: JobDetails,
+  status: string = "Applied"
+): Promise<{ success: boolean; message: string }> {
+  const prefs = await getPreferences();
+  const url = prefs.workspaceUrl || "http://localhost:3000";
+  const headers = await getAuthHeaders();
+
+  try {
+    const res = await fetch(`${url}/api/jobs/applications`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        company: job.company || "Target Company",
+        role: job.title || "Software Engineer",
+        location: job.location || "Remote",
+        salary: job.salary || "",
+        status,
+        url: job.url || "",
+        notes: `Synced from Chrome Extension on ${new Date().toLocaleDateString()}`,
+      }),
+    });
+
+    if (res.ok) {
+      return { success: true, message: `Successfully synced to Tracker as "${status}"!` };
+    }
+  } catch (e) {}
+
+  // Local Chrome Storage backup
+  const key = "saved_tracked_applications";
+  const existing = (await chrome.storage.local.get(key))[key] || [];
+  existing.unshift({
+    id: Date.now().toString(),
+    company: job.company || "Target Company",
+    role: job.title || "Software Engineer",
+    status,
+    date: new Date().toISOString(),
+    url: job.url || "",
+  });
+  await chrome.storage.local.set({ [key]: existing });
+
+  return { success: true, message: `Saved to extension application pipeline as "${status}"!` };
+}
+
+// 8. LinkedIn Viral Thought-Leadership Post Generator
 export async function generateLinkedInPost(
   type: "scaling" | "outage" | "transition" = "scaling"
 ): Promise<string> {
@@ -200,7 +351,7 @@ export async function generateLinkedInPost(
   return `The biggest difference between Mid-Level and Senior engineers isn't code speed — it's judgment 💡\n\n• Deleting 1,000 lines of dead code over writing 500 new ones.\n• Saying 'no' to over-engineered architectures.\n• Writing clear technical design docs before writing code.\n\nCode is the easy part. Managing complexity is where real leverage happens.\n\n#TechLeadership #CareerGrowth #SeniorEngineer`;
 }
 
-// 5. GitHub Repository Case Study Generator
+// 9. GitHub Repository Case Study Generator
 export async function generateGitHubCaseStudy(
   repoName: string,
   description: string,
@@ -222,7 +373,7 @@ ${description || "Engineered a production-grade system to resolve high-throughpu
 - Automated CI/CD testing pipelines with 90%+ code coverage.`;
 }
 
-// 6. AI Short-Answer Application Drafter
+// 10. AI Short-Answer Application Drafter
 export async function generateShortAnswerEssay(
   question: string,
   company: string = "Target Company",
