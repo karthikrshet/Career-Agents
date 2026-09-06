@@ -1,7 +1,7 @@
 <div align="center">
 
 <img src="https://raw.githubusercontent.com/karthikrshet/Career-Agents/main/branding/logo.svg" width="140" height="auto" alt="Career Agents Logo" />
-
+ 
 # ⚡ Career Agents: The AI Career Operating System
 
 ### Enterprise-Grade Personal Career Optimization Suite & Model Context Protocol (MCP) Infrastructure for Software Engineers
