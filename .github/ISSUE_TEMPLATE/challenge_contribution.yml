@@ -1,0 +1,116 @@
+name: "🏆 Challenge 2026: General Contribution Proposal"
+description: Proposal for open-source engineering contributions during the Career-Agents Open Source Contribution Challenge 2026
+title: "[Challenge 2026]: "
+labels: ["challenge-2026", "challenge-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Career-Agents Open Source Contribution Challenge 2026
+        Thank you for contributing to Career-Agents! Please fill out this contribution proposal form.
+        - **Official Event Guide:** [docs/contribution-challenge-2026.md](../../docs/contribution-challenge-2026.md)
+        - **Event Dates:** September 25 – October 15, 2026
+
+  - type: input
+    id: contribution_title
+    attributes:
+      label: Contribution Title
+      description: A short, descriptive title for your planned contribution.
+      placeholder: "e.g. Add Schema Validation to MCP Stdio Tool Registry"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: contribution_track
+    attributes:
+      label: Contribution Track
+      description: Select the primary track that best matches your contribution.
+      options:
+        - "Bug Fixes & Issue Resolution"
+        - "AI Agents & Career Intelligence"
+        - "MCP & Agentic Infrastructure"
+        - "CLI & Developer Experience"
+        - "Job Search & Automation"
+        - "Resume & ATS Intelligence"
+        - "Interview Intelligence"
+        - "AI, RAG & Context Retrieval"
+        - "Testing & Reliability"
+        - "Security Hardening"
+        - "Performance & Resource Optimization"
+        - "Web, UX & Accessibility"
+        - "Internationalization & Localization"
+        - "Documentation & Developer Education"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_description
+    attributes:
+      label: Problem Description
+      description: What specific issue, missing capability, or system inefficiency does this contribution address?
+      placeholder: "Explain the context, current limitation, or bug you plan to resolve..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_it_matters
+    attributes:
+      label: Why It Matters
+      description: What is the real-world engineering or user impact of this contribution?
+      placeholder: "Describe how this improves system reliability, developer experience, latency, or feature capabilities..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution & Implementation Plan
+      description: Outline your technical approach and affected codebase components.
+      placeholder: "Describe the code files, functions, or registries you plan to modify..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_testing
+    attributes:
+      label: Expected Testing & Verification Strategy
+      description: How will you verify that your change works cleanly without introducing regressions?
+      placeholder: "List unit tests, CLI verification commands, or validate.py scripts you will run..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ai_assistance
+    attributes:
+      label: AI Tool Assistance
+      description: Will you be utilizing AI coding assistants (e.g., Codex, Claude Code, Cursor, Gemini CLI, Copilot)?
+      options:
+        - "No AI assistance will be used"
+        - "Yes, AI assistance will be used (reviewed and validated by human contributor)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: first_time_contributor
+    attributes:
+      label: First-Time Open-Source Contributor Status
+      description: Is this your first contribution to open-source software?
+      options:
+        - "No, I have contributed to open-source software previously"
+        - "Yes! This is my first open-source contribution"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Contributor Acknowledgements
+      options:
+        - label: "I have searched existing repository issues to avoid duplicating ongoing work."
+          required: true
+        - label: "I have read the event guide (docs/contribution-challenge-2026.md), CONTRIBUTING.md, and AGENTS.md."
+          required: true
+        - label: "I understand that security vulnerabilities must be reported privately via SECURITY.md, not in public issues."
+          required: true
+        - label: "I agree to follow the project Code of Conduct."
+          required: true

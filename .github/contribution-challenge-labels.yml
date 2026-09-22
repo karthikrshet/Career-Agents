@@ -1,0 +1,93 @@
+# Career-Agents Open Source Contribution Challenge 2026 — Label Specifications
+labels:
+  - name: "challenge-2026"
+    color: "7c3aed"
+    description: "Official issue or PR for Career-Agents Open Source Contribution Challenge 2026"
+
+  - name: "challenge-valid"
+    color: "059669"
+    description: "Verified qualifying contribution meeting event requirements"
+
+  - name: "challenge-review"
+    color: "0284c7"
+    description: "Under maintainer technical review for Challenge 2026"
+
+  - name: "challenge-needs-changes"
+    color: "d97706"
+    description: "Revisions requested by maintainers for Challenge 2026"
+
+  - name: "good-first-issue"
+    color: "7057ff"
+    description: "Good for newcomers to open source or Career-Agents"
+
+  - name: "help-wanted"
+    color: "008672"
+    description: "Extra attention or community contribution requested"
+
+  - name: "bug"
+    color: "d73a4a"
+    description: "Something isn't working as expected"
+
+  - name: "feature"
+    color: "a2eeef"
+    description: "New feature or capability request"
+
+  - name: "ai-agents"
+    color: "3b82f6"
+    description: "Related to AI agents, prompt definitions, or agent taxonomies"
+
+  - name: "mcp"
+    color: "4f46e5"
+    description: "Model Context Protocol server, tools, or protocol transport"
+
+  - name: "cli"
+    color: "10b981"
+    description: "Command line tools, NPX scripts, or terminal diagnostics"
+
+  - name: "rag"
+    color: "8b5cf6"
+    description: "Retrieval-augmented generation, knowledge graph, or vector search"
+
+  - name: "job-search"
+    color: "f59e0b"
+    description: "Job discovery, ATS integration, or application automation"
+
+  - name: "resume-ats"
+    color: "ec4899"
+    description: "Resume parsing, ATS scoring, or Resume Studio"
+
+  - name: "interview"
+    color: "06b6d4"
+    description: "Interview practice, STAR questions, voice AI, or company tracks"
+
+  - name: "testing"
+    color: "14b8a6"
+    description: "Unit tests, integration tests, or regression test suites"
+
+  - name: "reliability"
+    color: "6366f1"
+    description: "System stability, error recovery, or fault tolerance"
+
+  - name: "security"
+    color: "dc2626"
+    description: "Security hardening, credential protection, or vulnerability fix"
+
+  - name: "performance"
+    color: "84cc16"
+    description: "Latency reduction, token optimization, or startup performance"
+
+  - name: "accessibility"
+    color: "a855f7"
+    description: "Web UI keyboard navigation, screen reader ARIA labels, or UX"
+
+  - name: "documentation"
+    color: "0075ca"
+    description: "Improvements or additions to documentation and setup guides"
+
+  - name: "internationalization"
+    color: "eab308"
+    description: "i18n, localization, non-US resume support, or regional workflows"
+
+  - name: "developer-experience"
+    color: "64748b"
+    description: "Onboarding tools, DX scripts, or maintainer workflows"

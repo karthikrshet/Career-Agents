@@ -1,0 +1,78 @@
+name: "✨ Challenge 2026: Feature Proposal"
+description: Propose a new feature, architecture enhancement, or tool capability for the Contribution Challenge 2026
+title: "[Challenge 2026 Feature]: "
+labels: ["challenge-2026", "feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Career-Agents Open Source Contribution Challenge 2026 — Feature Proposal
+        Use this template to propose a new capability or architectural improvement.
+        
+        > 💡 **IMPORTANT NOTICE FOR CONTRIBUTORS:**
+        > Do not start implementing large features until maintainers review and approve the technical direction of your proposal.
+
+  - type: textarea
+    id: problem_solved
+    attributes:
+      label: Problem Being Solved
+      description: What user problem, developer bottleneck, or feature gap does this proposal address?
+      placeholder: "Describe the current gap or opportunity..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_capability
+    attributes:
+      label: Proposed Capability
+      description: Describe the feature or capability you want to build in detail.
+      placeholder: "Detail the user experience, CLI command, MCP tool, or API functionality..."
+    validations:
+      required: true
+
+  - type: input
+    id: target_users
+    attributes:
+      label: Expected Target Users / Beneficiaries
+      description: Who will benefit from this capability (e.g., job candidates, software engineers, MCP integration devs, maintainers)?
+      placeholder: "e.g. Candidates practicing system design interviews"
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical_approach
+    attributes:
+      label: Technical Approach & Architecture
+      description: Explain how you plan to implement this within the repository structure.
+      placeholder: "Detail the files, packages, or registries that will be modified or added..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives_considered
+    attributes:
+      label: Alternatives Considered
+      description: What alternative approaches did you evaluate, and why is this approach preferred?
+    validations:
+      required: false
+
+  - type: textarea
+    id: test_strategy
+    attributes:
+      label: Expected Test Strategy
+      description: How will you test this new capability to ensure system stability and zero regressions?
+      placeholder: "Detail unit tests, integration tests, or validation scripts to execute..."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Contributor Acknowledgements
+      options:
+        - label: "I understand that maintainer direction approval is required before starting large feature implementations."
+          required: true
+        - label: "I have searched existing issues and discussions to verify this feature isn't already in development."
+          required: true
+        - label: "I agree to follow the project Code of Conduct."
+          required: true

@@ -1,0 +1,100 @@
+name: "🐛 Challenge 2026: Bug Report"
+description: Report a reproducible bug or regression during the Career-Agents Open Source Contribution Challenge 2026
+title: "[Challenge 2026 Bug]: "
+labels: ["challenge-2026", "bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Career-Agents Open Source Contribution Challenge 2026 — Bug Report
+        Use this template to report reproducible technical bugs or system failures.
+        
+        > ⚠️ **SECURITY WARNING:**
+        > Do not use this form for security vulnerabilities. Follow [SECURITY.md](../../SECURITY.md) and private disclosure procedures via [GitHub Security Advisories](https://github.com/karthikrshet/Career-Agents/security/advisories/new).
+
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: "Describe the unexpected behavior or system failure..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: Steps to Reproduce
+      description: Provide detailed steps to reproduce the behavior.
+      placeholder: |
+        1. Run command '...'
+        2. Navigate to '...'
+        3. Click on '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: A clear description of what you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened, including error logs or stack trace snippets.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment & Systems
+      description: Detail OS (Windows / macOS / Linux), Node.js version, Python version, Browser, etc.
+      placeholder: "OS: Windows 11 / Node.js: v20.11.0 / Python: 3.11.5 / Browser: Chrome 128"
+    validations:
+      required: true
+
+  - type: input
+    id: affected_component
+    attributes:
+      label: Affected Component
+      description: Which part of the system is affected (e.g., CLI, Web UI, MCP Server, Agent Registry, ATS Engine)?
+      placeholder: "e.g. apps/web/src/app/jobs/page.tsx or scripts/cli.js"
+    validations:
+      required: true
+
+  - type: textarea
+    id: root_cause
+    attributes:
+      label: Possible Root Cause (Optional)
+      description: If you have investigated the issue, describe the root cause if known.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: willingness_to_fix
+    attributes:
+      label: Intention to Implement Fix
+      description: Are you willing to submit a Pull Request to fix this bug as part of the challenge?
+      options:
+        - "Yes, I plan to submit a Pull Request fixing this bug"
+        - "No, I am only reporting this bug for another contributor to fix"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Contributor Acknowledgements
+      options:
+        - label: "I confirm this is not a security vulnerability (security issues must be reported privately via SECURITY.md)."
+          required: true
+        - label: "I have checked for existing open issues to avoid filing duplicates."
+          required: true
+        - label: "I agree to follow the project Code of Conduct."
+          required: true

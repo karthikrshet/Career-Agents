@@ -46,6 +46,19 @@
 
 ---
 
+## 🚀 Career-Agents Open Source Contribution Challenge 2026
+
+> **September 25 – October 15, 2026** — *Organized by Career-Agents × CodeMyFYP*
+> 
+> **"Find a real problem. Build the fix. Test it. Submit a Pull Request. Pass review. Get merged."**
+> 
+> Career-Agents is hosting a global open-source engineering contribution challenge for developers, AI engineers, systems architects, and open-source contributors. Participants work directly on the production codebase—improving 167+ AI agents, Model Context Protocol (MCP) tooling, CLI diagnostics, RAG retrieval algorithms, ATS automation engines, resume intelligence, voice interview systems, automated test suites, performance optimization, accessibility, and technical documentation.
+> 
+> - 📝 **Registration:** [https://luma.com/3df31stw](https://luma.com/3df31stw)
+> - 📖 **Official Event Guide:** [./docs/contribution-challenge-2026.md](./docs/contribution-challenge-2026.md)
+
+---
+
 ## 🎯 Executive Overview & What Is This
 
 > **"Companies use AI to filter candidates. Career Agents gives candidates AI to choose companies, crack top offers, and run their entire job search from one unified command center."**
