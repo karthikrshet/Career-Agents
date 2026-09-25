@@ -6,7 +6,7 @@ import { Document, Packer, Paragraph, TextRun } from 'docx';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import exceljs from 'exceljs';
 import { calculateReadiness } from '../services/readiness.js';
-import { ApplicationTracker, ATSScanner, PipelineAnalytics } from '../packages/pipeline/index.js';
+import { ApplicationTracker, ATSScanner, PipelineAnalytics, InterviewCoach } from '../packages/pipeline/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -2310,9 +2310,10 @@ async function handleToolsCall(id, params) {
       case 'search_knowledge_base': {
         const { query: q } = toolArgs;
         const gPath = path.join(root, 'search-index.json');
-        const searchIndex = loadJSON(gPath) || [];
-        const matches = searchIndex.filter(item => 
-          item.title?.toLowerCase().includes(q.toLowerCase()) || 
+        const searchIndex = loadJSON(gPath);
+        const items = Array.isArray(searchIndex?.items) ? searchIndex.items : [];
+        const matches = items.filter(item =>
+          item.name?.toLowerCase().includes(q.toLowerCase()) ||
           item.description?.toLowerCase().includes(q.toLowerCase())
         ).slice(0, 5);
 
@@ -2419,16 +2420,15 @@ async function handleToolsCall(id, params) {
 
       case 'company_dossier': {
         const { company } = toolArgs;
-        const compLower = (company || '').toLowerCase().trim();
-        const stack = COMPANY_STACKS[compLower] || ["React", "TypeScript", "Node.js", "System Design"];
+        const companyData = company ? InterviewCoach.getCompanyTrack(company) : null;
         sendResult(id, {
           content: [{
             type: 'text',
             text: JSON.stringify({
               success: true,
               companyName: company || "General Tech",
-              competencies: stack,
-              stages: ["Resume screening", "Technical coding challenge", "System design loop", "Behavioral alignment"]
+              competencies: companyData?.skills || ["React", "TypeScript", "Node.js", "System Design"],
+              stages: companyData?.interview_process || ["Resume screening", "Technical coding challenge", "System design loop", "Behavioral alignment"]
             }, null, 2)
           }]
         });
@@ -2437,7 +2437,7 @@ async function handleToolsCall(id, params) {
 
       case 'interview_plan': {
         const { company, role } = toolArgs;
-        const track = InterviewCoach.getCompanyTrack(company);
+        const track = company ? InterviewCoach.getCompanyTrack(company) : null;
         const star = InterviewCoach.generateSTARBank([], role || 'Software Engineer');
         sendResult(id, {
           content: [{
