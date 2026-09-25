@@ -392,6 +392,75 @@ async function runTests() {
     const planParsed = JSON.parse(planRes.result?.content?.[0]?.text || '{}');
     assertTest('Tool: career_action_plan', planParsed.target_role === 'Staff Frontend Developer' && Array.isArray(planParsed.action_items));
 
+    // 26. search_memory (and its search_knowledge_base alias)
+    for (const toolName of ['search_memory', 'search_knowledge_base']) {
+      console.log(`Calling ${toolName}...`);
+      const memRes = await sendRequest('tools/call', {
+        name: toolName,
+        arguments: { query: 'resume' }
+      });
+      const memParsed = JSON.parse(memRes.result?.content?.[0]?.text || '{}');
+      const memIds = (memParsed.matches || []).map(m => m.id);
+      assertTest(`Tool: ${toolName}`,
+        !memRes.error && memParsed.query === 'resume' && memParsed.total_matches > 0 && memIds.includes('ats-resume-reviewer'),
+        memRes.error ? memRes.error.message : `Matches: ${memIds.join(', ')}`
+      );
+    }
+
+    // 27. company_dossier (known company sourced from companies/google.json, unknown company falls back)
+    const googleData = JSON.parse(fs.readFileSync(path.join(root, 'companies', 'google.json'), 'utf8'));
+    console.log('Calling company_dossier...');
+    const dossierRes = await sendRequest('tools/call', {
+      name: 'company_dossier',
+      arguments: { company: 'google' }
+    });
+    const dossierParsed = JSON.parse(dossierRes.result?.content?.[0]?.text || '{}');
+    assertTest('Tool: company_dossier',
+      !dossierRes.error &&
+      JSON.stringify(dossierParsed.competencies) === JSON.stringify(googleData.skills) &&
+      JSON.stringify(dossierParsed.stages) === JSON.stringify(googleData.interview_process),
+      dossierRes.error ? dossierRes.error.message : ''
+    );
+
+    console.log('Calling company_dossier with unknown company...');
+    const dossierFallbackRes = await sendRequest('tools/call', {
+      name: 'company_dossier',
+      arguments: { company: 'unlisted-startup' }
+    });
+    const dossierFallbackParsed = JSON.parse(dossierFallbackRes.result?.content?.[0]?.text || '{}');
+    assertTest('Tool: company_dossier unknown company fallback',
+      !dossierFallbackRes.error && dossierFallbackParsed.success === true &&
+      Array.isArray(dossierFallbackParsed.competencies) && dossierFallbackParsed.competencies.length > 0 &&
+      Array.isArray(dossierFallbackParsed.stages) && dossierFallbackParsed.stages.length > 0,
+      dossierFallbackRes.error ? dossierFallbackRes.error.message : ''
+    );
+
+    // 28. interview_plan (with and without a company)
+    console.log('Calling interview_plan...');
+    const ipRes = await sendRequest('tools/call', {
+      name: 'interview_plan',
+      arguments: { company: 'google', role: 'SWE' }
+    });
+    const ipParsed = JSON.parse(ipRes.result?.content?.[0]?.text || '{}');
+    assertTest('Tool: interview_plan',
+      !ipRes.error && ipParsed.track?.id === 'google' &&
+      Array.isArray(ipParsed.track?.interview_process) && ipParsed.track.interview_process.length > 0 &&
+      Array.isArray(ipParsed.starQuestions) && ipParsed.starQuestions.length > 0,
+      ipRes.error ? ipRes.error.message : ''
+    );
+
+    console.log('Calling interview_plan without a company...');
+    const ipNoCoRes = await sendRequest('tools/call', {
+      name: 'interview_plan',
+      arguments: { role: 'SWE' }
+    });
+    const ipNoCoParsed = JSON.parse(ipNoCoRes.result?.content?.[0]?.text || '{}');
+    assertTest('Tool: interview_plan without company',
+      !ipNoCoRes.error && ipNoCoParsed.track === null && ipNoCoParsed.company === 'Target Company' &&
+      Array.isArray(ipNoCoParsed.starQuestions) && ipNoCoParsed.starQuestions.length > 0,
+      ipNoCoRes.error ? ipNoCoRes.error.message : ''
+    );
+
   } catch (err) {
     console.error('Test Execution Error:', err);
     report.push(`\n**Execution Error:** ${err.message}`);
