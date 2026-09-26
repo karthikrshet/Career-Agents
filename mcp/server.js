@@ -2455,14 +2455,20 @@ async function handleToolsCall(id, params) {
       }
 
       case 'career_pipeline_track': {
-        const { action = 'list', company, role, status = 'applied', link = '', notes = '' } = toolArgs;
+        const { action = 'list', company, role, status = 'applied', notes = '' } = toolArgs;
         const trackerPath = path.join(root, 'pipeline-tracker.md');
         const tracker = ApplicationTracker.load(trackerPath);
 
         let result = {};
         if (action === 'add') {
           if (!company || !role) throw new Error('Missing company or role');
-          const entry = tracker.addEntry({ company, role, status, link, appliedDate: new Date().toISOString().split('T')[0] });
+          // Pass only the fields the caller supplied: addEntry() updates an existing
+          // company/role in place and fills in defaults for new applications.
+          const fields = { company, role };
+          for (const key of ['status', 'link', 'notes']) {
+            if (toolArgs[key]) fields[key] = toolArgs[key];
+          }
+          const entry = tracker.addEntry(fields);
           tracker.save(trackerPath);
           result = { success: true, message: 'Added application', entry };
         } else if (action === 'status') {
