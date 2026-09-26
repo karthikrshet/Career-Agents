@@ -352,6 +352,53 @@ async function runTests() {
     const sJobsParsed = JSON.parse(sJobsRes.result?.content?.[0]?.text || '{}');
     assertTest('Tool: search_jobs', Array.isArray(sJobsParsed.jobs) && sJobsParsed.jobs.length > 0);
 
+    // career_pipeline_track add: updates keep untouched fields, notes are stored
+    const trackerPath = path.join(root, 'pipeline-tracker.md');
+    const originalTracker = fs.existsSync(trackerPath) ? fs.readFileSync(trackerPath, 'utf8') : null;
+    try {
+      fs.writeFileSync(trackerPath, [
+        '# Job Application Pipeline Tracker',
+        '',
+        '| Company | Role | Status | Applied Date | Fit Score | Link | Notes |',
+        '|---------|------|--------|--------------|-----------|------|-------|',
+        '| Northwind | Platform Engineer | interviewing | 2026-01-15 | - | https://example.com/jobs/42 | Onsite scheduled |',
+        ''
+      ].join('\n'), 'utf8');
+
+      console.log('Calling career_pipeline_track add on an existing application...');
+      await sendRequest('tools/call', {
+        name: 'career_pipeline_track',
+        arguments: { action: 'add', company: 'Northwind', role: 'Platform Engineer', notes: 'Referral from former teammate' }
+      });
+      console.log('Calling career_pipeline_track add on a new application...');
+      await sendRequest('tools/call', {
+        name: 'career_pipeline_track',
+        arguments: { action: 'add', company: 'Contoso', role: 'SRE', notes: 'Found via alumni network' }
+      });
+      const trackListRes = await sendRequest('tools/call', {
+        name: 'career_pipeline_track',
+        arguments: { action: 'list' }
+      });
+      const trackEntries = JSON.parse(trackListRes.result?.content?.[0]?.text || '{}').entries || [];
+      const updated = trackEntries.find(e => e.company === 'Northwind');
+      const added = trackEntries.find(e => e.company === 'Contoso');
+      assertTest('Tool: career_pipeline_track add keeps existing fields',
+        trackEntries.length === 2 && updated?.status === 'interviewing' && updated?.appliedDate === '2026-01-15' &&
+        updated?.link === 'https://example.com/jobs/42' && updated?.notes === 'Referral from former teammate',
+        JSON.stringify(updated)
+      );
+      assertTest('Tool: career_pipeline_track add stores notes',
+        added?.status === 'applied' && added?.notes === 'Found via alumni network',
+        JSON.stringify(added)
+      );
+    } finally {
+      if (originalTracker === null) {
+        fs.rmSync(trackerPath, { force: true });
+      } else {
+        fs.writeFileSync(trackerPath, originalTracker, 'utf8');
+      }
+    }
+
     // 22. analyze_job_posting
     console.log('Calling analyze_job_posting...');
     const postRes = await sendRequest('tools/call', {
