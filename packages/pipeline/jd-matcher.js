@@ -15,14 +15,20 @@ export class JDMatcher {
     }
 
     const techPatterns = [
-      /\b(Python|JavaScript|TypeScript|React|Next\.js|Node\.js|Express|Go|Golang|Java|Kotlin|Swift|C\+\+|C#|\.NET|Rust|SQL|PostgreSQL|MySQL|MongoDB|Redis|GraphQL|REST|Docker|Kubernetes|AWS|GCP|Azure|CI\/CD|Git|Kafka|Spark|PyTorch|TensorFlow|LLMs|RAG|MLOps|Terraform|FastAPI)\b/gi
+      /(?<![\w#+])(Python|JavaScript|TypeScript|React|Next\.js|Node\.js|Express|Go|Golang|Java|Kotlin|Swift|C\+\+|C#|\.NET|Rust|SQL|PostgreSQL|MySQL|MongoDB|Redis|GraphQL|REST|Docker|Kubernetes|AWS|GCP|Azure|CI\/CD|Git|Kafka|Spark|PyTorch|TensorFlow|LLMs|RAG|MLOps|Terraform|FastAPI)(?![\w#+])/gi
     ];
 
     const detected = new Set();
+    const seenLower = new Set();
     for (const pat of techPatterns) {
       const matches = jdText.match(pat) || [];
       for (const m of matches) {
-        detected.add(m.trim());
+        const trimmed = m.trim();
+        const lower = trimmed.toLowerCase();
+        if (!seenLower.has(lower)) {
+          seenLower.add(lower);
+          detected.add(trimmed);
+        }
       }
     }
 

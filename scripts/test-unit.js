@@ -7,6 +7,7 @@ import { analyzeJobMatch } from '../packages/resume/job-match.js';
 import { CompanyIntel } from '../packages/pipeline/company-intel.js';
 import { DedupEngine } from '../packages/pipeline/dedup.js';
 import { ApplicationTracker } from '../packages/pipeline/tracker.js';
+import { JDMatcher } from '../packages/pipeline/jd-matcher.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -224,6 +225,45 @@ function testTrackerStatusTargeting() {
   console.log('[PASS] ApplicationTracker status updates target the intended application');
 }
 
+function testJDMatcherRequirementExtraction() {
+  console.log('Testing JDMatcher requirement extraction (C++, C#, .NET, and word boundary edge cases)...');
+
+  // 1. C++, C#, .NET extraction from job description
+  const jdWithPunctuationSkills = `
+    Job Title: Senior Systems Engineer
+    Responsibilities:
+    - Architect low-latency distributed engines using modern C++ (C++20).
+    - Maintain enterprise services written in C# and .NET frameworks.
+    - Build event-driven pipelines with Python and Docker.
+  `;
+
+  const extracted = JDMatcher.extractRequirements(jdWithPunctuationSkills);
+  assert.ok(Array.isArray(extracted.skills), 'skills must be an array');
+  assert.ok(extracted.skills.includes('C++'), 'JDMatcher must extract C++');
+  assert.ok(extracted.skills.includes('C#'), 'JDMatcher must extract C#');
+  assert.ok(extracted.skills.includes('.NET'), 'JDMatcher must extract .NET');
+  assert.ok(extracted.skills.includes('Python'), 'JDMatcher must extract Python');
+  assert.ok(extracted.skills.includes('Docker'), 'JDMatcher must extract Docker');
+
+  // 2. Negative edge cases: do not false-match inside other words or compound identifiers
+  const negativeJD = 'Building planet-scale tools for Google using ongoing trust networks in java_script and dot.net.bad';
+  const negativeExtracted = JDMatcher.extractRequirements(negativeJD);
+  assert.strictEqual(negativeExtracted.skills.includes('.NET'), false, 'Should not match dot.net.bad as .NET');
+  assert.strictEqual(negativeExtracted.skills.includes('Go'), false, 'Should not match inside Google or ongoing as Go');
+  assert.strictEqual(negativeExtracted.skills.includes('Rust'), false, 'Should not match inside trust as Rust');
+  assert.strictEqual(negativeExtracted.skills.includes('Java'), false, 'Should not match inside java_script as Java');
+
+  // 3. Repeated case-insensitive skills should be deduplicated
+  const repeatedJD = 'Must know C++, c++, and modern C++. Also Python and python.';
+  const repeatedExtracted = JDMatcher.extractRequirements(repeatedJD);
+  assert.strictEqual(repeatedExtracted.skills.filter(s => s.toLowerCase() === 'c++').length, 1, 'C++ must be deduplicated');
+  assert.strictEqual(repeatedExtracted.skills.filter(s => s.toLowerCase() === 'python').length, 1, 'Python must be deduplicated');
+
+  // 4. Safe handling of invalid / empty inputs
+  assert.deepStrictEqual(JDMatcher.extractRequirements(null), { skills: [], qualifications: [], raw: '' });
+  assert.deepStrictEqual(JDMatcher.extractRequirements(''), { skills: [], qualifications: [], raw: '' });
+
+  console.log('[PASS] JDMatcher requirement extraction');
 function testTrackerMarkdownRoundTrip() {
   console.log('Testing ApplicationTracker save and reload keeps every application...');
 
@@ -272,6 +312,7 @@ try {
   testCompanyIntel();
   testDedupEngine();
   testTrackerStatusTargeting();
+  testJDMatcherRequirementExtraction();
   testTrackerMarkdownRoundTrip();
   console.log('=== ALL UNIT TESTS PASSED ===\n');
   process.exit(0);
