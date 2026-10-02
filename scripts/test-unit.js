@@ -264,6 +264,8 @@ function testJDMatcherRequirementExtraction() {
   assert.deepStrictEqual(JDMatcher.extractRequirements(''), { skills: [], qualifications: [], raw: '' });
 
   console.log('[PASS] JDMatcher requirement extraction');
+}
+
 function testTrackerMarkdownRoundTrip() {
   console.log('Testing ApplicationTracker save and reload keeps every application...');
 

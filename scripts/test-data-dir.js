@@ -129,9 +129,11 @@ function mcpSession(env, requests) {
       }
     });
     child.once('error', reject);
-    requests.forEach((request, index) => {
-      child.stdin.write(`${JSON.stringify({ jsonrpc: '2.0', id: index + 1, ...request })}\n`);
-    });
+    setTimeout(() => {
+      requests.forEach((request, index) => {
+        child.stdin.write(`${JSON.stringify({ jsonrpc: '2.0', id: index + 1, ...request })}\n`);
+      });
+    }, 1000);
   });
 }
 

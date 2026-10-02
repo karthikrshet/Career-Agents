@@ -253,6 +253,10 @@ function loadJSON(filePath) {
 export function startMcpServer() {
   log('Starting Career-Agents MCP Stdio Server...');
 
+  if (process.stdin.resume) {
+    process.stdin.resume();
+  }
+
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,

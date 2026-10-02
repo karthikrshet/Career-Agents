@@ -1,0 +1,8 @@
+{
+  "name": "mcp-clean-test",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "career-agents": "file:../../career-agents-18.2.0.tgz"
+  }
+}

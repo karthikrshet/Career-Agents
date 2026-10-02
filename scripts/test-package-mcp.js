@@ -101,7 +101,7 @@ async function handshake() {
         method: 'initialize',
         params: { protocolVersion: '2024-11-05', capabilities: {}, clientInfo: { name: 'package-test', version: '1.0.0' } }
       })}\n`);
-    }, 4_000);
+    }, 1_000);
   });
 }
 

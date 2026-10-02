@@ -24,6 +24,10 @@ try {
 const workDir = fs.mkdtempSync(path.join(os.tmpdir(), 'knowledge-index-'));
 const libDir = path.join(workDir, 'lib');
 fs.mkdirSync(libDir);
+fs.copyFileSync(
+  path.join(root, 'packages', 'brain', 'keyword-score.js'),
+  path.join(libDir, 'keyword-score.js')
+);
 for (const name of ['knowledge', 'router']) {
   const source = fs.readFileSync(path.join(root, 'packages', 'brain', `${name}.ts`), 'utf8')
     .replace(/import\.meta\.url/g, "require('url').pathToFileURL(__filename).href");
