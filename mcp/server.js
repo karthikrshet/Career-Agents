@@ -1,4 +1,5 @@
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import readline from 'readline';
 import { fileURLToPath } from 'url';
@@ -76,6 +77,19 @@ function writeFileSyncAtomic(filePath, content, options) {
       }
     } catch (_) {}
     throw err;
+  }
+}
+
+// Requests are handled concurrently, so each analysis reads its input from a temporary
+// directory of its own. The directory is removed once the analysis finishes or fails.
+async function withTempInputFile(fileName, content, analyze) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'career-agents-mcp-'));
+  try {
+    const filePath = path.join(dir, fileName);
+    writeFileSyncAtomic(filePath, content, 'utf8');
+    return await analyze(filePath);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
   }
 }
 
@@ -1216,11 +1230,8 @@ async function handleToolsCall(id, params) {
           break;
         }
         const { resumeText } = toolArgs;
-        const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_resume.txt');
-        fs.mkdirSync(path.dirname(tempPath), { recursive: true });
-        writeFileSyncAtomic(tempPath, resumeText, 'utf8');
         const { analyzeResumeStudio } = await import('../packages/resume/studio.js');
-        const report = await analyzeResumeStudio(tempPath);
+        const report = await withTempInputFile('mcp_temp_resume.txt', resumeText, tempPath => analyzeResumeStudio(tempPath));
         sendResult(id, {
           content: [{
             type: 'text',
@@ -1277,11 +1288,8 @@ async function handleToolsCall(id, params) {
           break;
         }
         const { resumeText, company } = toolArgs;
-        const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_resume.txt');
-        fs.mkdirSync(path.dirname(tempPath), { recursive: true });
-        writeFileSyncAtomic(tempPath, resumeText, 'utf8');
         const { analyzeResumeStudio } = await import('../packages/resume/studio.js');
-        const report = await analyzeResumeStudio(tempPath, company || '');
+        const report = await withTempInputFile('mcp_temp_resume.txt', resumeText, tempPath => analyzeResumeStudio(tempPath, company || ''));
         sendResult(id, {
           content: [{
             type: 'text',
@@ -1322,11 +1330,8 @@ async function handleToolsCall(id, params) {
           break;
         }
         const { profileText } = toolArgs;
-        const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_linkedin.txt');
-        fs.mkdirSync(path.dirname(tempPath), { recursive: true });
-        writeFileSyncAtomic(tempPath, profileText, 'utf8');
         const { analyzeLinkedinProfile } = await import('../packages/linkedin/analyzer.js');
-        const report = await analyzeLinkedinProfile(tempPath);
+        const report = await withTempInputFile('mcp_temp_linkedin.txt', profileText, tempPath => analyzeLinkedinProfile(tempPath));
         sendResult(id, {
           content: [{
             type: 'text',
@@ -2472,11 +2477,8 @@ async function handleToolsCall(id, params) {
 
       case 'analyze_resume': {
         const { resumeText, company } = toolArgs;
-        const tempPath = path.join(root, 'exports', 'reports', 'mcp_temp_resume.txt');
-        fs.mkdirSync(path.dirname(tempPath), { recursive: true });
-        writeFileSyncAtomic(tempPath, resumeText || '', 'utf8');
         const { analyzeResumeStudio } = await import('../packages/resume/studio.js');
-        const report = await analyzeResumeStudio(tempPath, company || '');
+        const report = await withTempInputFile('mcp_temp_resume.txt', resumeText || '', tempPath => analyzeResumeStudio(tempPath, company || ''));
         sendResult(id, {
           content: [{
             type: 'text',
