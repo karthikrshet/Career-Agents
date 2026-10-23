@@ -73,6 +73,43 @@ export function loadCompanyInterviewQuestions(company = 'google', mode = 'behavi
   ];
 }
 
+/**
+ * Score one mock interview answer by its depth, quantified impact and action verbs.
+ */
+export function evaluateInterviewAnswer(answer) {
+  const wordCount = answer.split(/\s+/).filter(Boolean).length;
+  const hasMetrics = /\b\d+(?:%|\s*percent|x|\s*billion|\s*million|\s*k)?\b/gi.test(answer);
+  const hasStarVerbs = /\b(architected|spearheaded|engineered|optimized|reduced|delivered|led|built)\b/gi.test(answer);
+
+  let score = 40;
+  if (wordCount >= 30) score += 25;
+  else if (wordCount >= 15) score += 15;
+
+  if (hasMetrics) score += 20;
+  if (hasStarVerbs) score += 15;
+
+  score = Math.min(100, score);
+
+  const feedback = [];
+  if (wordCount < 20) {
+    feedback.push('Answer is brief. Expand with Situation, Task, Action, Result context.');
+  } else {
+    feedback.push('Good explanation depth and communication clarity.');
+  }
+  if (!hasMetrics) {
+    feedback.push('Add quantified metrics (%, $, latency numbers) to prove impact.');
+  }
+
+  return { score, feedback };
+}
+
+/**
+ * Overall interview score: the rounded average of the answer scores (0 without answers).
+ */
+export function averageInterviewScore(evaluations) {
+  return Math.round(evaluations.reduce((sum, ev) => sum + ev.score, 0) / (evaluations.length || 1));
+}
+
 export async function runMockInterview(company = 'google', mode = 'behavioral') {
   const c = {
     reset: '\x1b[0m',
@@ -116,34 +153,8 @@ export async function runMockInterview(company = 'google', mode = 'behavioral') 
   rl.close();
 
   console.log(`${c.bold}=== SESSION RESULTS SCORECARD ===${c.reset}`);
-  const evaluations = answers.map(ans => {
-    const wordCount = ans.answer.split(/\s+/).filter(Boolean).length;
-    const hasMetrics = /\b\d+(?:%|\s*percent|x|\s*billion|\s*million|\s*k)?\b/gi.test(ans.answer);
-    const hasStarVerbs = /\b(architected|spearheaded|engineered|optimized|reduced|delivered|led|built)\b/gi.test(ans.answer);
-
-    let score = 40;
-    if (wordCount >= 30) score += 25;
-    else if (wordCount >= 15) score += 15;
-
-    if (hasMetrics) score += 20;
-    if (hasStarVerbs) score += 15;
-
-    score = Math.min(100, score);
-
-    const feedback = [];
-    if (wordCount < 20) {
-      feedback.push('Answer is brief. Expand with Situation, Task, Action, Result context.');
-    } else {
-      feedback.push('Good explanation depth and communication clarity.');
-    }
-    if (!hasMetrics) {
-      feedback.push('Add quantified metrics (%, $, latency numbers) to prove impact.');
-    }
-
-    return { question: ans.question, score, feedback };
-  });
-
-  const avgScore = Math.round(evaluations.reduce((sum, ev) => sum + ev.score, 0) / (evaluations.length || 1));
+  const evaluations = answers.map(ans => ({ question: ans.question, ...evaluateInterviewAnswer(ans.answer) }));
+  const avgScore = averageInterviewScore(evaluations);
   const finalColor = avgScore >= 80 ? c.green : avgScore >= 60 ? c.yellow : c.red;
 
   console.log(`Overall Readiness: ${finalColor}${avgScore} / 100${c.reset}`);

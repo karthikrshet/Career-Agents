@@ -1398,6 +1398,9 @@ async function handleToolsCall(id, params) {
         } catch (e) {
           list = [];
         }
+        if (!Array.isArray(list)) list = [];
+        const { evaluateInterviewAnswer, averageInterviewScore } = await import('../packages/interview/engine.js');
+        const evaluations = list.map(qa => evaluateInterviewAnswer(String(qa?.answer ?? '')));
         sendResult(id, {
           content: [{
             type: 'text',
@@ -1406,7 +1409,7 @@ async function handleToolsCall(id, params) {
               mode,
               total_questions: list.length,
               status: 'evaluation_completed',
-              score: Math.round(75 + Math.random() * 15)
+              score: averageInterviewScore(evaluations)
             }, null, 2)
           }]
         });
