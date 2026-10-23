@@ -42,7 +42,7 @@
 
 > 💰 **₹85 LPA Software Engineering Offer Landed:** Candidates using Career Agents' ATS Resume Studio, STAR Interview Lab, and FAANG Company Tracks successfully cracked top-tier software engineering roles — securing compensation offers up to **₹85 LPA**!
 > 
-> 🚀 **1,500+ Interview Callbacks:** Powered by multi-role ATS keyword optimization, automated STAR bullet rewrites, public GitHub portfolio health audits, and spoken voice AI interview practice across top engineering tech companies (Google, Meta, Amazon, Microsoft, Salesforce, Stripe, Uber, OpenAI).
+
 
 ---
 
