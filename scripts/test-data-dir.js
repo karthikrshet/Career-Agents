@@ -114,22 +114,36 @@ function mcpSession(env, requests) {
     const child = spawn(process.execPath, [cli, 'mcp'], { env, stdio: ['pipe', 'pipe', 'pipe'] });
     const responses = new Map();
     let stderr = '';
-    const timeout = setTimeout(() => {
-      child.kill();
-      reject(new Error(`MCP session timed out. stderr:\n${stderr}`));
-    }, 30_000);
+    let settled = false;
+    let sendTimer;
+    const finish = error => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeout);
+      clearTimeout(sendTimer);
+      if (error) {
+        child.kill();
+        reject(error);
+      } else {
+        resolve(responses);
+      }
+    };
+    const timeout = setTimeout(() => finish(new Error(`MCP session timed out. stderr:\n${stderr}`)), 30_000);
     child.stderr.on('data', chunk => { stderr += chunk; });
     readline.createInterface({ input: child.stdout }).on('line', line => {
       const message = JSON.parse(line);
       responses.set(message.id, message);
-      if (responses.size === requests.length) {
-        clearTimeout(timeout);
-        child.kill();
-        resolve(responses);
-      }
+      // The server writes its log entries after sending each response, so end the session and
+      // let the server exit before the caller reads those logs.
+      if (responses.size === requests.length) child.stdin.end();
     });
-    child.once('error', reject);
-    setTimeout(() => {
+    child.once('error', finish);
+    child.stdin.on('error', error => finish(new Error(`Could not write to the MCP server: ${error.message}. stderr:\n${stderr}`)));
+    child.once('close', code => {
+      if (responses.size === requests.length) finish();
+      else finish(new Error(`MCP server exited with code ${code} before answering every request. stderr:\n${stderr}`));
+    });
+    sendTimer = setTimeout(() => {
       requests.forEach((request, index) => {
         child.stdin.write(`${JSON.stringify({ jsonrpc: '2.0', id: index + 1, ...request })}\n`);
       });
