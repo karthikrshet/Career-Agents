@@ -2,7 +2,9 @@ import assert from 'assert';
 import { spawnSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 import { fileURLToPath } from 'url';
+import { ApplicationTracker } from '../packages/pipeline/tracker.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -111,12 +113,57 @@ function testPipelineStatusRole() {
   console.log('[PASS] pipeline status updates only the requested role.');
 }
 
+function testPipelineAddKeepsExistingFields() {
+  console.log('Testing that pipeline add keeps the fields of an existing application...');
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'pipeline-add-'));
+  const trackerPath = path.join(home, 'pipeline-tracker.md');
+  const env = { ...process.env, CAREER_AGENTS_HOME: home };
+  const cli = path.join(root, 'scripts', 'cli.js');
+  const add = (...args) => {
+    const res = spawnSync('node', [cli, 'pipeline', 'add', ...args], { encoding: 'utf8', env });
+    assert.strictEqual(res.status, 0, res.stderr);
+    return res.stdout;
+  };
+  const seed = rows => fs.writeFileSync(trackerPath, new ApplicationTracker(rows).toMarkdown(), 'utf8');
+  const entries = () => ApplicationTracker.load(trackerPath).entries;
+  const offer = { company: 'Stripe', role: 'Backend Engineer', status: 'offer', appliedDate: '2026-08-01', fitScore: 88, link: 'https://stripe.com/jobs/123', notes: 'Verbal offer from hiring manager' };
+
+  try {
+    // A. Re-adding an existing application without a URL changes nothing.
+    seed([offer]);
+    const output = add('Stripe', 'Backend Engineer');
+    assert.deepStrictEqual(entries(), [offer], 'status, date, link, notes and fit score are kept');
+    assert.ok(output.includes('Stripe - Backend Engineer (offer)'), 'the output reports the stored status');
+
+    // B. Re-adding with a new URL updates only the link.
+    const interviewing = { ...offer, status: 'interviewing', notes: 'Onsite on Friday' };
+    seed([interviewing]);
+    add('Stripe', 'Backend Engineer', 'https://stripe.com/jobs/456');
+    assert.deepStrictEqual(entries(), [{ ...interviewing, link: 'https://stripe.com/jobs/456' }], 'only the link changes');
+
+    // C. A new application still gets the default status, date and link.
+    seed([offer]);
+    add('Linear', 'Product Engineer');
+    const today = new Date().toISOString().split('T')[0];
+    assert.deepStrictEqual(entries(), [offer, { company: 'Linear', role: 'Product Engineer', status: 'applied', appliedDate: today, fitScore: null, link: '', notes: '' }]);
+
+    // D. A different capitalisation updates the existing row and keeps its spelling.
+    seed([offer]);
+    add('stripe', 'backend engineer');
+    assert.deepStrictEqual(entries(), [offer], 'the stored company and role spelling is kept');
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+  console.log('[PASS] pipeline add keeps the fields of an existing application.');
+}
+
 function run() {
   try {
     testDisabledCommand();
     testEnabledCommandHelp();
     testResumeScoreCommand();
     testPipelineStatusRole();
+    testPipelineAddKeepsExistingFields();
     console.log('=== ALL CLI ROUTING TESTS PASSED ===\n');
     process.exit(0);
   } catch (e) {
