@@ -69,7 +69,7 @@ Limit your response to 120 words. Do not write introductory or conversational he
         const agentConfig = {
           ...gatewayConfig,
           maxTokens: 512,
-          retryCount: 0,
+          retryCount: 1,
           retryDelayMs: 100,
           streaming: false,
         };
