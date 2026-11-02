@@ -61,13 +61,16 @@ export async function runCareerPipelineCLI(subcommand, args = []) {
         return;
       }
       const tracker = ApplicationTracker.load(trackerPath);
-      const entry = tracker.addEntry({
-        company,
-        role,
-        status: 'applied',
-        link: link || '',
-        appliedDate: new Date().toISOString().split('T')[0]
-      });
+      // addEntry() fills in the defaults for a new application and updates an existing company/role
+      // in place, so pass only what was given: an existing application keeps its status, date, link
+      // and the spelling it was saved with.
+      const existing = tracker.entries.find(e =>
+        e.company.toLowerCase().trim() === company.toLowerCase().trim() &&
+        e.role.toLowerCase().trim() === role.toLowerCase().trim()
+      );
+      const fields = existing ? { company: existing.company, role: existing.role } : { company, role };
+      if (link) fields.link = link;
+      const entry = tracker.addEntry(fields);
       tracker.save(trackerPath);
       console.log(`\n${c.green}✓ Added application:${c.reset} ${entry.company} - ${entry.role} (${entry.status})\nSaved to ${trackerPath}\n`);
       break;
